@@ -1,0 +1,4 @@
+// Allowed/Blocked Skills Database
+//
+// Example:
+// 8,1 = Endure cannot be used

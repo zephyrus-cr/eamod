@@ -1,0 +1,119 @@
+/* [ ============================================== =========== ============================================== ]*/
+/*						SISTEMA DE WOE POR ISAAC :: BATTLERAGNAROK 				*/
+/* [ ============================================== ] DOMINGO [ ============================================== ]*/
+
+schg_cas03,337,336,0	warp	schg301	1,1,sch_gld,97,196
+schg_cas03,57,9,0	warp	schg303	1,1,schg_cas03,337,330
+
+sch_gld,97,183,0	script	castilloDOMINGO	45,2,2,{
+	
+	OnTouch:
+		callfunc("isWOE",0,"schg_cas03",337,330);
+	end;
+	
+}
+
+
+/* [ ============================================== ] SABADO [ ============================================== ]*/
+
+arug_cas04,141,40,0	warp	arug401	1,1,aru_gld,299,345
+arug_cas04,321,52,0	warp	arug403	1,1,arug_cas04,141,45
+
+aru_gld,289,347,0	script	castilloSABADO	45,2,2,{
+	
+	OnTouch:
+		callfunc("isWOE",6,"arug_cas04",141,45);
+	end;
+}
+
+/* [ ========================================= ] MARTES Y JUEVES [ 1.0 ] [ ========================================= ]*/
+
+alde_gld,95,253,0	warp	aldg02	1,1,aldeg_cas02,88,163
+
+aldeg_cas02,88,159,0	warp	aldg02-1	1,1,alde_gld,95,249
+aldeg_cas02,84,208,0	warp	aldg201	1,1,aldeg_cas02,105,84
+aldeg_cas02,105,88,0	warp	aldg201-1	1,1,aldeg_cas02,79,208
+aldeg_cas02,45,39,0	warp	aldg201-2	1,1,aldeg_cas02,79,208
+aldeg_cas02,50,185,0	warp	aldg202	1,1,aldeg_cas02,192,192
+aldeg_cas02,192,196,0	warp	aldg202-1	1,1,aldeg_cas02,50,180
+aldeg_cas02,33,174,0	warp	aldg203	1,1,aldeg_cas02,126,61
+aldeg_cas02,130,61,0	warp	aldg203-1	1,1,aldeg_cas02,33,179
+aldeg_cas02,22,193,0	warp	aldg204	1,1,aldeg_cas02,88,11
+aldeg_cas02,88,8,0	warp	aldg204-1	1,1,aldeg_cas02,22,190
+aldeg_cas02,121,88,0	warp	aldg205	1,1,aldeg_cas02,177,135
+aldeg_cas02,177,131,0	warp	aldg205-1	1,1,aldeg_cas02,121,84
+aldeg_cas02,206,196,0	warp	aldg206	1,1,aldeg_cas02,197,13
+aldeg_cas02,197,9,0	warp	aldg206-1	1,1,aldeg_cas02,206,192
+
+
+/* [ ========================================= ] MIERCOLES Y VIERNES BABY WOE[ ======================================= ]*/
+gef_fild13,150,54,0	script	castilloBABY	45,2,2,{
+	
+	OnTouch:
+		if ( Class >= 4023 && Class <= 4045 ) 
+		{
+			if ( gettime(4) == 3 || gettime(4) == 5 ) {
+				warp "gefg_cas01",34,140;
+				close;
+			 } else {
+				mes name$; 
+				mes ""; 
+				mes " No hay woe en este castillo";
+				close;
+			}
+		} else {
+			mes name$; 
+			mes ""; 
+			mes "Este castillo es solo para babys";
+			close;		
+		}	
+	end;
+}
+
+gefg_cas01,170,14,0	warp	gefg106-1	1,1,gefg_cas01,50,84
+gefg_cas01,170,34,0	warp	gefg105-1	1,1,gefg_cas01,30,167
+gefg_cas01,181,52,0	warp	gefg107	1,1,gefg_cas01,198,160
+gefg_cas01,202,160,0	warp	gefg107-1	1,1,gefg_cas01,185,52
+gefg_cas01,209,34,0	warp	gefg103-1	1,1,gefg_cas01,56,170
+gefg_cas01,31,185,0	warp	gefg104	1,1,gefg_cas01,33,47
+gefg_cas01,33,51,0	warp	gefg104-1	1,1,gefg_cas01,35,185
+gefg_cas01,34,136,0	warp	gefg01-1	1,1,gef_fild13,150,50
+gefg_cas01,34,167,0	warp	gefg105	1,1,gefg_cas01,174,34
+gefg_cas01,39,196,0	warp	gefg101	1,1,gefg_cas01,62,13
+gefg_cas01,54,84,0	warp	gefg106	1,1,gefg_cas01,174,14
+gefg_cas01,58,185,0	warp	gefg102	1,1,gefg_cas01,90,47
+gefg_cas01,59,170,0	warp	gefg103	1,1,gefg_cas01,205,34
+gefg_cas01,62,9,0	warp	gefg101-1	1,1,gefg_cas01,39,192
+gefg_cas01,90,51,0	warp	gefg102-1	1,1,gefg_cas01,54,185
+gefg_cas01,99,178,0	warp	gefg02-1	1,1,gef_fild13,214,75
+
+
+function	script	isWOE	{
+	if ( getarg(0) == gettime(4) )
+		warp getarg(1),getarg(2),getarg(3);
+	else {
+		mes name$;
+		mes " ";
+		mes "Hoy no hay woe en este castillo";
+		close;
+	}
+	return 0;
+}
+
+gefg_cas01	mapflag	loadevent
+
+-	script	babymapflag	-1,{
+
+	OnPCLoadMapEvent:
+		getmapxy .@map$,.@x,.@y,0;
+		if (.@map$ == "gefg_cas01" ) 
+		{
+			if ( Class < 4023 || Class > 4045 ) 
+			{
+				dispbottom "[ Baby WOE ]: En esta woe solo se aceptan baby's";
+				warp "goodev_c02",102,107;
+			}
+		}
+ 	end;
+
+}

@@ -1,0 +1,616 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// ==============================================================================
+// BattleGround System - Flavius Capture the Flag
+// ==============================================================================
+
+// Registration NPC's
+// *********************************************************************
+
+bat_room,57,74,0	script	Registration::CTFR_Guillaume	418,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Flavius_CTF::OnGuillaumeJoin",1;
+	end;
+OnEnterBG:
+	set $@FlaviusCTF_id1, waitingroom2bg("bat_b02",390,10,0,"Flavius_CTF::OnGuillaumeQuit","Flavius_CTF::OnGuillaumeDie");
+	end;
+}
+
+bat_room,57,97,4	script	Registration::CTFR_Croix	414,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Flavius_CTF::OnCroixJoin",1;
+	end;
+OnEnterBG:
+	set $@FlaviusCTF_id2, waitingroom2bg("bat_b02",10,290,1,"Flavius_CTF::OnCroixQuit","Flavius_CTF::OnCroixDie");
+	end;
+}
+
+// Battleground Flags
+// *********************************************************************
+
+bat_b02,328,150,0	script	Guillaume Crystal::Guillaume_Flag	1914,1,1,{
+	end;
+
+OnTouch:
+	if( $@FlaviusCTF != 1 || HP < 1 )
+		end;
+
+	if( getcharid(4) == $@FlaviusCTF_id2 && .Flag_Status < 2 )
+	{ // Flag Captured
+		set .Flag_Status, 2; // Taken
+		set .Flag_Carrier, getcharid(0);
+
+		sc_end SC_HIDING;
+		sc_end SC_CLOAKING;
+		sc_end SC_CHASEWALK;
+		// Renewal invisibility
+		sc_end SC_CLOAKINGEXCEED;
+		sc_end SC_CAMOUFLAGE;
+		sc_end SC__INVISIBILITY;
+
+		pcblock 1,1; // Block Skills/Items
+
+		mapannounce "bat_b02","Guillaume Crystal Taken by [ " + strcharinfo(0) + " ]",1,0xFF0000;
+		bg_rankpoints "ctf_taken",1;
+		disablenpc "Guillaume_Flag";
+		addtimer 2000, "Flavius_CTF::OnBlueFlash";
+		stopnpctimer;
+	}
+	else if( getcharid(4) == $@FlaviusCTF_id1 )
+	{
+		if( .Flag_Status == 0 && getvariableofnpc(.Flag_Carrier,"Croix_Flag") == getcharid(0) )
+		{
+			set getvariableofnpc(.Flag_Carrier,"Croix_Flag"),0;
+			set .Flag_Carrier, 0;
+			mapannounce "bat_b02","Croix Crystal Captured by [ " + strcharinfo(0) + " ]!!",1,0x0000FF;
+			bg_rankpoints "ctf_captured",1;
+			pcblock 1,0; // UnBlock Skills/Items
+			stopnpctimer;
+			donpcevent "Flavius_CTF::OnGuillaumeScore";
+		}
+		else if( .Flag_Status == 1 )
+		{
+			mapannounce "bat_b02","Guillaume Crystal Returned by [ " + strcharinfo(0) + " ]!!",1,0x0000FF;
+			bg_rankpoints "fame",1;
+			disablenpc "Guillaume_Flag";
+			sleep 2000;
+			movenpc "Guillaume_Flag",328,150; // Back to Base
+			set .Flag_Status, 0;
+			initnpctimer;
+			enablenpc "Guillaume_Flag";
+		}
+	}
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Flag_Status < 2 )
+	{
+		getmapxy .@m$, .@x, .@y, 1;
+		viewpointmap "bat_b02",1, .@x, .@y, 1, 0x0000FF;
+		specialeffect 223;
+		initnpctimer;
+	}
+	end;
+
+OnBase:
+	movenpc "Guillaume_Flag",328,150;
+	set .Flag_Status, 0;
+	set .Flag_Carrier, 0;
+	initnpctimer;
+	enablenpc "Guillaume_Flag";
+	end;
+}
+
+bat_b02,62,150,0	script	Croix Crystal::Croix_Flag	1915,1,1,{
+	end;
+
+OnTouch:
+	if( $@FlaviusCTF != 1 || HP < 1 )
+		end;
+
+	if( getcharid(4) == $@FlaviusCTF_id1 && .Flag_Status < 2 )
+	{ // Flag Captured
+		set .Flag_Status, 2; // Taken
+		set .Flag_Carrier, getcharid(0);
+
+		sc_end SC_HIDING;
+		sc_end SC_CLOAKING;
+		sc_end SC_CHASEWALK;
+		// Renewal invisibility
+		sc_end SC_CLOAKINGEXCEED;
+		sc_end SC_CAMOUFLAGE;
+		sc_end SC__INVISIBILITY;
+
+		pcblock 1,1; // Block Skills/Items
+
+		mapannounce "bat_b02","Croix Crystal Taken by [ " + strcharinfo(0) + " ]",1,0x0000FF;
+		bg_rankpoints "ctf_taken",1;
+		disablenpc "Croix_Flag";
+		addtimer 2000, "Flavius_CTF::OnRedFlash";
+		stopnpctimer;
+	}
+	else if( getcharid(4) == $@FlaviusCTF_id2 )
+	{
+		if( .Flag_Status == 0 && getvariableofnpc(.Flag_Carrier,"Guillaume_Flag") == getcharid(0) )
+		{
+			set getvariableofnpc(.Flag_Carrier,"Guillaume_Flag"),0;
+			set .Flag_Carrier, 0;
+			mapannounce "bat_b02","Guillaume Crystal Captured by [ " + strcharinfo(0) + " ]!!",1,0xFF0000;
+			bg_rankpoints "ctf_captured",1;
+			pcblock 1,0; // UnBlock Skills/Items
+			stopnpctimer;
+			donpcevent "Flavius_CTF::OnCroixScore";
+		}
+		else if( .Flag_Status == 1 )
+		{
+			mapannounce "bat_b02","Croix Crystal Returned by [ " + strcharinfo(0) + " ]!!",1,0xFF0000;
+			bg_rankpoints "fame",1;
+			disablenpc "Croix_Flag";
+			sleep 2000;
+			movenpc "Croix_Flag",62,150; // Back to Base
+			set .Flag_Status, 0;
+			initnpctimer;
+			enablenpc "Croix_Flag";
+		}
+	}
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Flag_Status < 2 )
+	{
+		getmapxy .@m$, .@x, .@y, 1;
+		viewpointmap "bat_b02",1, .@x, .@y, 2, 0xFF0000;
+		specialeffect 223;
+		initnpctimer;
+	}
+	end;
+
+OnBase:
+	movenpc "Croix_Flag",62,150;
+	set .Flag_Status, 0;
+	set .Flag_Carrier, 0;
+	initnpctimer;
+	enablenpc "Croix_Flag";
+	end;
+}
+
+// Battleground Engine
+// *********************************************************************
+
+-	script	Flavius_CTF	-1,{
+	end;
+
+OnBlueFlash:
+	if( getvariableofnpc(.Flag_Carrier,"Guillaume_Flag") == getcharid(0) && $@FlaviusCTF == 1 )
+	{
+		getmapxy .@m$, .@x, .@y, 0;
+		viewpointmap "bat_b02",1, .@x, .@y, 1, 0x0000FF;
+		specialeffect2 73;
+		emotion e_hlp,1;
+		addtimer 2000, "Flavius_CTF::OnBlueFlash";
+		percentheal -5,-5;
+	}
+	end;
+
+OnRedFlash:
+	if( getvariableofnpc(.Flag_Carrier,"Croix_Flag") == getcharid(0) && $@FlaviusCTF == 1 )
+	{
+		getmapxy .@m$, .@x, .@y, 0;
+		viewpointmap "bat_b02",1, .@x, .@y, 2, 0xFF0000;
+		specialeffect2 73;
+		emotion e_hlp,1;
+		addtimer 2000, "Flavius_CTF::OnRedFlash";
+		percentheal -5,-5;
+	}
+	end;
+
+OnInit:
+	disablenpc "Guillaume_Flag";
+	disablenpc "Croix_Flag";
+	end;
+
+OnGuillaumeQuit:
+	setquest 8506; // Deserter
+	set @killer_bg_src, 0;
+	if( $@FlaviusCTF != 0 )
+		donpcevent "Flavius_CTF::OnDoBalance";
+OnGuillaumeDie:
+	if( $@FlaviusCTF == 1 && getvariableofnpc(.Flag_Carrier,"Croix_Flag") == getcharid(0) )
+	{ // Drop Flag
+		set getvariableofnpc(.Flag_Carrier,"Croix_Flag"), 0;
+		pcblock 1,0; // UnBlock Skills/Items
+		getmapxy .@m$, .@x, .@y, 0;
+		movenpc "Croix_Flag", .@x, .@y;
+		mapannounce "bat_b02","Croix Flag Droped by [ " + strcharinfo(0) + " ]",1,0xFF0000;
+		bg_rankpoints "ctf_droped",1;
+		bg_rankpoints "fame",1,@killer_bg_src;
+		set getvariableofnpc(.Flag_Status,"Croix_Flag"), 1; // OnFloor
+		initnpctimer "Croix_Flag";
+		enablenpc "Croix_Flag";
+	}
+	end;
+	
+OnCroixQuit:
+	setquest 8506; // Deserter
+	set @killer_bg_src, 0;
+	if( $@FlaviusCTF != 0 )
+		donpcevent "Flavius_CTF::OnDoBalance";
+OnCroixDie:
+	if( $@FlaviusCTF == 1 && getvariableofnpc(.Flag_Carrier,"Guillaume_Flag") == getcharid(0) )
+	{ // Drop Flag
+		set getvariableofnpc(.Flag_Carrier,"Guillaume_Flag"), 0;
+		pcblock 1,0; // UnBlock Skills/Items
+		getmapxy .@m$, .@x, .@y, 0;
+		movenpc "Guillaume_Flag", .@x, .@y;
+		mapannounce "bat_b02","Guillaume Flag Droped by [ " + strcharinfo(0) + " ]",1,0x0000FF;
+		bg_rankpoints "ctf_droped",1;
+		bg_rankpoints "fame",1,@killer_bg_src;
+		set getvariableofnpc(.Flag_Status,"Guillaume_Flag"), 1; // OnFloor
+		initnpctimer "Guillaume_Flag";
+		enablenpc "Guillaume_Flag";
+	}
+	end;
+
+OnGuillaumeJoin:
+OnCroixJoin:
+	if( $@FlaviusCTF == 0 )
+		donpcevent "Flavius_CTF::OnReadyCheck";
+	else
+		donpcevent "Flavius_CTF::OnDoBalance";
+	end;
+
+OnDoBalance:
+	if( $@FlaviusCTF != 1 )
+		end;
+
+	set .@Guillaume, bg_get_data($@FlaviusCTF_id1, 0);
+	set .@Croix, bg_get_data($@FlaviusCTF_id2, 0);
+
+	if( .@Guillaume < .@Croix )
+		waitingroom2bg_single $@FlaviusCTF_id1,"bat_b02",311,224,"CTFR_Guillaume";
+	else if( .@Guillaume > .@Croix )
+		waitingroom2bg_single $@FlaviusCTF_id2,"bat_b02",87,75,"CTFR_Croix";
+	else
+	{
+		set .@GuillaumeR, getwaitingroomstate(0,"CTFR_Guillaume");
+		set .@CroixR, getwaitingroomstate(0,"CTFR_Croix");
+
+		if( .@GuillaumeR <= .@CroixR )
+			set .@Limit, .@GuillaumeR;
+		else
+			set .@Limit, .@CroixR;
+
+		if( .@Limit + .@Guillaume > 35 )
+			set .@Limit, 35 - .@Guillaume;
+		if( .@Limit <= 0 ) end;
+
+		for( set .@i, 0; .@i < .@Limit; set .@i, .@i + 1 )
+		{
+			waitingroom2bg_single $@FlaviusCTF_id1,"bat_b02",311,224,"CTFR_Guillaume";
+			waitingroom2bg_single $@FlaviusCTF_id2,"bat_b02",87,75,"CTFR_Croix";
+		}
+
+		set .@Guillaume, .@Guillaume + .@Limit;
+		set .@Croix, .@Croix + .@Limit;
+		mapannounce "bat_room","Battleground -- Flavius CTF [80-99] G: " + .@Guillaume + "/35, C: " + .@Croix + "/35 (Playing)",1,0xA0522D;
+	}
+	end;
+
+OnReadyCheck:
+	if( $@FlaviusCTF )
+		end;
+	set .@Guillaume, getwaitingroomstate(0,"CTFR_Guillaume");
+	set .@Croix, getwaitingroomstate(0,"CTFR_Croix");
+	
+	if( .@Guillaume < 5 || .@Croix < 5 )
+	{
+		if( .@Guillaume > 3 && .@Croix > 3 && !agitcheck() && $@FlaviusCTF_Flood < gettimetick(2) )
+		{
+			announce "Battleground -- Flavius CTF [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",0,0xA0522D;
+			set $@FlaviusCTF_Flood, gettimetick(2) + 15;
+		}
+		else
+			mapannounce "bat_room","Battleground -- Flavius CTF [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0xA0522D;
+		end;
+	}
+
+	set $@FlaviusCTF, 1;
+	initnpctimer;
+
+	donpcevent "CTFR_Croix::OnEnterBG";
+	donpcevent "CTFR_Guillaume::OnEnterBG";
+	// BG Variables
+	set .Guillaume_Score, 0;
+	set .Croix_Score, 0;
+	announce "Battleground -- Flavius CTF [80-99] has started!",0,0xA0522D;
+	sleep 2000;
+	bg_warp $@FlaviusCTF_id1,"bat_b02",311,224;
+	bg_warp $@FlaviusCTF_id2,"bat_b02",87,75;
+	sleep 3000;
+	// Respawn NPC's
+	donpcevent "#guictf_respawn::OnBGStart";
+	donpcevent "#croctf_respawn::OnBGStart";
+	// Start Match!!
+	donpcevent "Flavius_CTF::OnMatchStart";
+	end;
+
+OnMatchStart:
+	if( $@FlaviusCTF != 1 )
+		end;
+
+	// Flags2Base
+	donpcevent "Guillaume_Flag::OnBase";
+	donpcevent "Croix_Flag::OnBase";
+	mapannounce "bat_b02","The Flags have been set to their Bases!!",8;
+	end;
+
+OnGuillaumeScore:
+	set .Guillaume_Score, .Guillaume_Score + 1;
+	donpcevent "Flavius_CTF::OnMatchStop";
+	end;
+
+OnCroixScore:
+	set .Croix_Score, .Croix_Score + 1;
+	donpcevent "Flavius_CTF::OnMatchStop";
+	end;
+
+OnMatchStop:
+	disablenpc "Guillaume_Flag";
+	disablenpc "Croix_Flag";
+	bg_updatescore "bat_b02",.Guillaume_Score,.Croix_Score;
+
+	viewpointmap "bat_b02",2, 0, 0, 1, 0x0000FF;
+	viewpointmap "bat_b02",2, 0, 0, 2, 0xFF0000;
+	
+	if( .Guillaume_Score > 2 )
+	{ // Guillaume Won
+		mapannounce "bat_b02","The Guillaume army has won the Battle of Flavius CTF!",1,0x0000FF;
+		donpcevent "Flavius_CTF::OnMatchEnd";
+	}
+	else if( .Croix_Score > 2 )
+	{ // Croix Won
+		mapannounce "bat_b02","The Croix army has won the Battle of Flavius CTF!",1,0xFF0000;
+		donpcevent "Flavius_CTF::OnMatchEnd";
+	}
+	else
+	{ // Keep Playing
+		sleep 8000;
+		donpcevent "Flavius_CTF::OnMatchStart";
+	}
+	end;
+
+OnTimer600000:
+	mapannounce "bat_b02","The Battle will ends in 5 minutes!!",1,0xA0522D;
+	end;
+
+OnTimer840000:
+	mapannounce "bat_b02","The Battle will ends in 1 minute!!",1,0xA0522D;
+	end;
+
+OnTimer900000:
+	disablenpc "Guillaume_Flag";
+	disablenpc "Croix_Flag";
+
+	viewpointmap "bat_b02",2, 0, 0, 1, 0x0000FF;
+	viewpointmap "bat_b02",2, 0, 0, 2, 0xFF0000;
+
+	if( .Guillaume_Score > .Croix_Score )
+		mapannounce "bat_b02","The Guillaume army has won the Battle of Flavius CTF!",1,0x0000FF;
+	else if( .Guillaume_Score < .Croix_Score )
+		mapannounce "bat_b02","The Croix army has won the Battle of Flavius CTF!",1,0xFF0000;
+	else
+		mapannounce "bat_b02","The battle is over. This is a Tie...!",1,0xA0522D;
+	donpcevent "Flavius_CTF::OnMatchEnd";
+	end;
+
+OnMatchEnd:
+	stopnpctimer;
+	disablenpc "Guillaume_Flag";
+	disablenpc "Croix_Flag";
+	donpcevent "#guictf_respawn::OnBGStop";
+	donpcevent "#croctf_respawn::OnBGStop";
+	set $@FlaviusCTF, 2;
+	// =======================================================
+	// Team Rewards
+	// =======================================================
+	if( .Guillaume_Score > .Croix_Score )
+	{
+		bg_reward $@FlaviusCTF_id1,7829,15 + .Guillaume_Score,0,8504,"BG_CTF",1,3,0;
+		bg_reward $@FlaviusCTF_id2,7829,10 + .Croix_Score,0,8504,"BG_CTF",1,3,2;
+	}
+	else if( .Croix_Score > .Guillaume_Score )
+	{
+		bg_reward $@FlaviusCTF_id1,7829,10 + .Guillaume_Score,0,8504,"BG_CTF",1,3,2;
+		bg_reward $@FlaviusCTF_id2,7829,15 + .Croix_Score,0,8504,"BG_CTF",1,3,0;
+	}
+	else
+	{
+		bg_reward $@FlaviusCTF_id1,7829,10 + .Guillaume_Score,0,8504,"BG_CTF",1,3,1;
+		bg_reward $@FlaviusCTF_id2,7829,10 + .Croix_Score,0,8504,"BG_CTF",1,3,1;
+	}
+	// =======================================================
+	sleep 2000;
+	bg_warp $@FlaviusCTF_id1,"bat_b02",390,10;
+	bg_warp $@FlaviusCTF_id2,"bat_b02",10,290;
+	sleep 3000;
+	mapannounce "bat_b02","Battle of Flavius CTF will start in 15 seconds!",1,0xA0522D;
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	if( $@FlaviusCTF == 2 )
+		mapannounce "bat_b02","Battle of Flavius CTF will start in 5 seconds!",1,0xA0522D;
+	end;
+
+OnTimer15000:
+	if( $@FlaviusCTF != 2 )
+		end;
+OnReset:
+	stopnpctimer;
+	set .Guillaume_Score, 0;
+	set .Croix_Score, 0;
+	disablenpc "Guillaume_Flag";
+	disablenpc "Croix_Flag";
+	bg_destroy $@FlaviusCTF_id1;
+	bg_destroy $@FlaviusCTF_id2;
+	set $@FlaviusCTF_id1, 0;
+	set $@FlaviusCTF_id2, 0;
+	sleep 1000;
+	mapwarp "bat_b02","bat_room",155,150;
+	sleep 1000;
+	maprespawnguildid "bat_b02",0,3; // Just in case someone else
+	bg_updatescore "bat_b02",0,0;
+	set $@FlaviusCTF, 0;
+	donpcevent "Flavius_CTF::OnReadyCheck";
+	end;
+}
+
+// Battleground Therapist
+// *********************************************************************
+
+bat_b02,390,13,5	script	Therapist in battle#ctf1	95,{
+	switch( $@FlaviusCTF )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+bat_b02,10,293,5	script	Therapist in battle#ctf2	95,{
+	switch( $@FlaviusCTF )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+// Battleground Respawn
+// *********************************************************************
+
+bat_b02,390,10,0	script	#guictf_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_b02",382,2,397,17,100,100;
+	areawarp "bat_b02",382,2,397,17,"bat_b02",311,224;
+	initnpctimer;
+	end;
+}
+
+bat_b02,10,290,0	script	#croctf_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_b02",2,282,17,297,100,100;
+	areawarp "bat_b02",2,282,17,297,"bat_b02",87,75;
+	initnpctimer;
+	end;
+}
+
+// Flags
+// *********************************************************************
+
+bat_b02,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat23	973
+bat_b02,319,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat24	973
+bat_b02,304,218,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat25	973
+bat_b02,319,218,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat26	973
+bat_b02,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat27	973
+bat_b02,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat28	973
+bat_b02,335,142,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat29	973
+bat_b02,335,157,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat30	973
+bat_b02,390,16,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat31	973
+bat_b02,292,163,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat32	973
+bat_b02,292,136,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat33	973
+bat_b02,241,185,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat34	973
+bat_b02,247,179,1	duplicate(Guillaume camp#bat)	Guillaume camp#bat35	973
+
+bat_b02,96,81,1	duplicate(Croix camp#bat)	Croix camp#bat22	974
+bat_b02,96,68,1	duplicate(Croix camp#bat)	Croix camp#bat23	974
+bat_b02,79,81,1	duplicate(Croix camp#bat)	Croix camp#bat24	974
+bat_b02,79,68,1	duplicate(Croix camp#bat)	Croix camp#bat25	974
+bat_b02,96,81,1	duplicate(Croix camp#bat)	Croix camp#bat26	974
+bat_b02,96,81,1	duplicate(Croix camp#bat)	Croix camp#bat27	974
+bat_b02,59,164,1	duplicate(Croix camp#bat)	Croix camp#bat28	974
+bat_b02,59,137,1	duplicate(Croix camp#bat)	Croix camp#bat29	974
+bat_b02,10,296,1	duplicate(Croix camp#bat)	Croix camp#bat30	974
+bat_b02,110,162,1	duplicate(Croix camp#bat)	Croix camp#bat31	974
+bat_b02,110,137,1	duplicate(Croix camp#bat)	Croix camp#bat32	974
+bat_b02,152,120,1	duplicate(Croix camp#bat)	Croix camp#bat33	974
+bat_b02,158,114,1	duplicate(Croix camp#bat)	Croix camp#bat34	974
+
+// MapFlags
+// *********************************************************************
+
+bat_b02	mapflag	battleground	2
+bat_b02	mapflag	nomemo
+bat_b02	mapflag	nosave	SavePoint
+bat_b02	mapflag	noteleport
+bat_b02	mapflag	nowarp
+bat_b02	mapflag	nowarpto
+bat_b02	mapflag	noreturn
+bat_b02	mapflag	nobranch
+bat_b02	mapflag	nopenalty
+bat_b02	mapflag	noemergencycall

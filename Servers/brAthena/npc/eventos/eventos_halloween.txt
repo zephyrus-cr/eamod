@@ -1,0 +1,2044 @@
+//    _____________________________________________________________ 
+//   /                                                             \
+//   |       _           _   _   _                                 |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _            |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |           |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |           |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|           |
+//   |                                                             |
+//   |                    brAthena Script                          |
+//   |-------------------------------------------------------------|
+//   | Nome do Script: eventos_halloween.txt                       |
+//   |-------------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                             |
+//   |-------------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.0/1.2                              |
+//   |-------------------------------------------------------------|
+//   | Descrição: Eventos de Halloween (2006,2008,2009)            |
+//   | - 2006 -                                                    |
+//   | Evento 1: Resgatar "Mojo de Abóbora" para Chapéu de Abóbora.|
+//   | Evento 2: Crie o item "Torta de Abóbora".                   |
+//   | - 2008 -                                                    |
+//   | Evento: Resgatar Bilhetes para prêmio.                      |
+//   | - 2009 -                                                    |
+//   | Evento 1: Quest para Estranho Chapéu de Abóbora.            |
+//   | Evento 2: Doces ou Travessuras.                             |
+//   | Evento 3: Monstros de evento nas cidades.                   | 
+//   |-------------------------------------------------------------|
+//   | Changelog:                                                  |
+//   | 1.0 Criado Cabeçalho [Megasantos]                           |
+//   | 1.1 União de NPCs [Holy]                                    |
+//   | 1.2 Tradução PT-BR [Triborn]                                |
+//   |-------------------------------------------------------------|
+//   | - Anotações                                                 |
+//   \_____________________________________________________________/
+
+// Quest Mojo de Abóbora (Evento 1)
+//============================================================
+prontera,162,69,5	script	Jack Triste#06_hw	1130,2,2,{
+	end;
+
+OnTouch:
+	mes "[Devil Legal]";
+	mes "Se Você tem algo a lhe-dizer,";
+	mes "é só falar comigo.";
+	mes "Você não entenderá o que o cabeça de abóbora estúpida Jack está dizendo.";
+	close;
+
+OnEffect:
+	specialeffect EF_LEVEL99;
+	end;
+
+OnEffect2:
+	specialeffect EF_HIT2;
+	end;
+}
+
+prontera,164,69,3	script	Devil Legal#06_hw	738,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 2000 || checkweight(1201,1) == 0) {
+		mes "^3355FFEspere um Segundo!";
+		mes "no momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor volte depois";
+		mes "utilize o Serviço da Kafra";
+		mes "para guardar alguns de seus itens.^000000";
+		close;
+	}
+	if (countitem(7609)) {
+		mes "[Jack Triste]";
+		mes "Ah espere, está carregando um Mojo de Abóbora?";
+		mes " ";
+		mes "[Devil Legal]";
+		mes "Ele disse.";
+		next;
+		mes "[Jack Triste]";
+		mes "Me dê de presente. Depois pago a você.";
+		mes " ";
+		mes "[Devil Legal]";
+		mes "Ele disse...";
+		mes "Eu só posso adivinhar o que ele vai dizer em seguida, então o que você vai dizer?";
+		next;
+		if (select("O que ele vai dizer?:Eu Também sei disso.") == 1) {
+			mes "[" + strcharinfo(0) + "]";
+			mes "O que ele vai dizer?";
+			next;
+			mes "[Devil Legal]";
+			mes "Jack não é como os outros. Ele é o Jack do Halloween.";
+			mes "mais um dia, ele perdeu o Mojo de Abóbora e se transformou em um Jack depressivo..";
+			mes "O Mojo de Abóbora era tudo para ele.";
+			next;
+			mes "[Devil Legal]";
+			mes "Bem, na verdade essa é a principal razão que trouxe Jack para a cidade.";
+			mes "Para encontrar seu Mojo de Abóbora. Desconfio que o maior suspeito é ^4d4dffLude Alegre^000000, o monstro conhecido como Halloween";
+			next;
+			mes "[Devil Legal]";
+			mes "Por que você não entrega volta o Mojo de Abóbora.";
+			mes "Não se preocupe que ele irá compensá-lo.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Compensar?Com o quê?";
+			next;
+			mes "[Devil Legal]";
+			mes "Se você trouxer ^4d4dff 1 Mojo de Abóbora^000000 e uma cabeça de abóbora que demos para você no ano passado,";
+			mes "eu criarei isto ^00ff00O fantástico Chapéu de Abóbora^000000.";
+			mes "Ou se você não tem uma cabeça de abóbora, você pode apenas trazer um ^3d3dff Mojo de Abóbora, uma abóbora, e um boné ^000000.";
+			next;
+			mes "[Devil Legal]";
+			mes "Bem, esse Mojo de Abóbora é inútil se você apenas guardá-la. ";
+			mes "Entregue-o para Jack. Você não sente pena dele?.";
+			close;
+		}
+		mes "[Devil Legal]";
+		mes "Ótimo.";
+		mes "Então, deixe me ver o que você tem.";
+		next;
+		if ((countitem(7609)) && (countitem(5134))) {
+			mes "[Jack Triste]";
+			mes "Oh, você trouxe a cabeça de abóbora!";
+			mes "Eu vou fazer uma melhor.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "Ele disse.";
+			next;
+			if (select( "Não, Eu voltarei mais tarde.:Ah, que bom. Faça isso agora!") == 1) {
+				mes "[Jack Triste]";
+				mes "Hã?";
+				mes " ";
+				mes "[Devil Legal]";
+				mes "O quê? Olhe para o Jack. Ele ficou tão desapontado.";
+				mes "Me prometa que dará o Mojo de Abóbora de volta para o Jack algum dia, você promete?";
+				close;
+			}
+			mes "[Jack Triste]";
+			mes "Obrigado por me dár de volta, eu vou fazer o chapéu mais bonito de todos.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "Ele disse.";
+			next;
+			donpcevent "Jack Triste#06_hw::OnEffect";
+			mes "[Jack Excitado]";
+			mes "Lalala~ lalala~";
+			mes " ";
+			mes "(Ele começa a cantar. De repente, a aura do Jack apareceu.)";
+			delitem 7609,1; //Pumpkin_Mojo
+			delitem 5134,1; //Pumpkin_Hat
+			getitem 5202,1; //Pumpkin_Hat_
+			next;
+			donpcevent "Jack Triste#06_hw::OnEffect2";
+			mes "[Jack Triste]";
+			mes "Minha aura não é como costumava ser. Talvez eu precise de mais Mojo de Abóbora.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "Ele disse...";
+			next;
+			mes "[Devil Legal]";
+			mes "Oh~pobre Jack.";
+			mes "Bem, algum dia ele irá voltar com todos os Mojos de Abóbora carregando em suas costas.";
+			close;
+		}
+		else if ((countitem(7609) > 0) && (countitem(535) > 0) && (countitem(2226) > 0)) {
+			mes "[Jack Triste]";
+			mes "Uau!";
+			mes "Vou transformar o seu chapéu em outro muito bacana.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "ele disse...";
+			next;
+			if (select( "Não, eu voltarei mais tarde.:Ah,que bom. Faça isso agora!") == 1) {
+				mes "[Jack Triste]";
+				mes "Hã?";
+				mes " ";
+				mes "[Devil Legal]";
+				mes "O quê? Olhe para o Jack. Ele ficou tão desapontado.";
+				mes "Me prometa que dará o Mojo de Abóbora de volta para o Jack algum dia, você promete?";
+				close;
+			}
+			mes "[Jack Triste]";
+			mes "Obrigado por me dár de volta, eu vou fazer o chapéu mais bonito de todos.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "ele disse.";
+			next;
+			donpcevent "Jack Triste#06_hw::OnEffect";
+			mes "[Jack Excitado]";
+			mes "Lalala~ lalala~";
+			mes " ";
+			mes "(Ele começa a cantar. De repente, a aura do Jack apareceu..)";
+			delitem 7609, 1;//Pumpkin_Mojo
+			delitem 535, 1;//Pumpkin
+			delitem 2226, 1;//Cap
+			getitem 5202, 1;//Pumpkin_Hat_
+			next;
+			donpcevent "Jack Triste#06_hw::OnEffect2";
+			mes "[Jack Triste]";
+			mes "Minha aura não é como costumava ser. Talvez eu precise de mais Mojo de Abóbora.";
+			mes " ";
+			mes "[Devil Legal]";
+			mes "ele disse...";
+			next;
+			mes "[Devil Legal]";
+			mes "Oh~pobre Jack.";
+			mes "Bem, algum dia ele irá voltar com todos os Mojos de Abóbora carregando em suas costas.";
+			close;
+		}
+		else {
+			mes "[Devil Legal]";
+			mes "Hey,there. You don't seem to have all materials for the fantastic hat. ";
+			close;
+		}
+	}
+	else {
+		mes "[Jack Triste]";
+		mes "Ei,espere. Por que você não vem aqui e ouve minha história.";
+		mes " ";
+		mes "[Devil Legal]";
+		mes "Ele disse.";
+		next;
+		mes "[Jack Triste]";
+		mes "Eu costumava ser muito famoso. Mais agora.....";
+		mes " ";
+		mes "[Devil Legal]";
+		mes "Ele disse...";
+		mes "Bem, vou apenas lhe-dizer sem traduzir.";
+		next;
+		mes "[Devil Legal]";
+		mes "Jack não é como os outros. Ele é o Jack do Halloween.";
+		mes "mais um dia, ele perdeu o Mojo de Abóbora e se transformou em um Jack depressivo..";
+		mes "O Mojo de Abóbora era tudo para ele.";
+		next;
+		mes "[Devil Legal]";
+		mes "Bem, na verdade essa é a principal razão que trouxe Jack para a cidade.";
+		mes "Para encontrar seu Mojo de Abóbora. Desconfio que o maior suspeito é ^4d4dffLude Alegre^000000, o monstro conhecido como Halloween.";
+		next;
+		mes "[Devil Legal]";
+		mes "Por que você não entrega entrega de volta o Mojo de Abóbora.";
+		mes "Não se preocupe que ele irá compensá-lo.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Compensar?Com o quê";
+		next;
+		mes "[Devil Legal]";
+		mes "Se você trouxer ^4d4dff 1 Mojo de Abóbora^000000 e uma cabeça de abóbora que demos para você no ano passado,";
+		mes "eu criarei isto ^00ff00 O fantástico Chapéu de Abóbora ^000000.";
+		mes "Ou se você não tem uma cabeça de abóbora, você pode apenas trazer um ^3d3dff Mojo de Abóbora, uma abóbora, e um boné ^000000.";
+		next;
+		mes "[Devil Legal]";
+		mes "Bem, esse Mojo de Abóbora é inútil se você apenas guardá-la. ";
+		mes "Entregue-o para Jack. Você não sente pena dele??.";
+		close;
+	}
+}
+
+
+geffen,145,132,3	script	Hoirin#06_hw	729,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 2000 || checkweight(1201,1) == 0) {
+		mes "^3355FFEspere um Segundo!";
+		mes "No momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor volte depois";
+		mes "que guardar alguns de seus itens.^000000";
+		close;
+	}
+	if (halloween < 100) {
+		mes "[Hoirin]";
+		mes "Abóbora é um presente que deus nos enviou.";
+		mes "Ela fornece uma boa nutrição e ajuda você a se manter saudável!";
+		mes "Bravo~bravo~!";
+		next;
+		mes "[Hoirin]";
+		mes "Eu, Hoirin sempre tive pensamentos sobre uma ";
+		mes "maneira de comer abóbora mais deliciosamente.";
+		mes "Mas de repente,eu percebi.";
+		next;
+		mes "[Hoirin]";
+		mes "Se eu quiser! Eu posso fazer a melhor torta de abóbora!!!!!";
+		next;
+		if (select("O que é isso??:Ignorar.") == 1) {
+			mes "[Hoirin]";
+			mes "Qual é a primeira imagem que você vê quando pensa em abóbora?";
+			mes "Eu vejo Jack! Eu acho que Jack é o mais evoluído tipo de abóbora!";
+			mes "Eu me pergunto o que faz Jack ter algo especial? Você pode imaginar?";
+			next;
+			mes "[Hoirin]";
+			mes "Eu sempre prefiro prato de abóbora original! Recentemente, descobri que existem muitos tipos de Jack no mundo ";
+			mes "e a extrema classe Jack tem aura azul em volta de seu corpo!";
+			next;
+			mes "[Hoirin]";
+			mes "Adivinhe?! ele foi o Halloween Jack!";
+			mes "Halloween Jack tem algo que se concentra com abóbora.";
+			mes "Isso é chamado de ^4d4dffMojo de Abóbora^000000. Só se eu o tiver, eu posso terminar de fazer minha torta especial.";
+			next;
+			mes "[Hoirin]";
+			mes "Traga-me os ingredientes!";
+			mes "Eu vou fazer imediatamente uma torta muito especial para você!";
+			mes "Você vai ter viciado ele.";
+			mes "Não se surpreenda depois de tentar.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "......................";
+			mes "Você parece ser uma pessoa tão apaixonada.";
+			mes "Então, qual é o ingrediente?";
+			next;
+			mes "[Hoirin]";
+			mes "Boa pergunta!";
+			mes "Para fazer minha torta de abóbora especial, eu preciso";
+			mes "^4d4dff 1 Mojo de Abóbora";
+			mes "2 Abóboras";
+			mes "2 Ovos^000000";
+			mes "";
+			next;
+			mes "[Hoirin]";
+			mes "Traga apenas Mojo de abóbora, abóbora, e um ovo.";
+			mes "Deixe o resto para mim .. Você irá experimentar a torta de abóbora melhor!";
+			set halloween, 100;
+			close;
+		}
+		mes "[Hoirin]";
+		mes "Hm .. Você vai se arrepender!";
+		mes "Torta de abóbora de Hoirin é tão deliciosa.";
+		close;
+	}
+	else {
+		mes "[Hoirin]";
+		mes "Então, você trouxe todos os materiais?";
+		mes "Estava lá tudo que era difícil de encontrar?";
+		next;
+		switch(select( "Eu trouxe todos os ingredientes.:Como posso conseguir ovos?:Não, estou só de passagem por aqui.")) {
+		case 1:
+			if ((countitem(7609)) && (countitem(535) > 1) && (countitem(574) > 1)) {
+				mes "[Hoirin]";
+				mes "Você está certo!";
+				mes "Você trouxe todas as coisas certas. Entregue tudo a mim!!";
+				specialeffect2 EF_HIT1;
+				next;
+				specialeffect EF_PIERCESELF;
+				mes "[Hoirin]";
+				mes "Abracadabra~~";
+				mes "Abracadabra~~!";
+				next;
+				mes "[Hoirin]";
+				mes "Ta-da(h)!";
+				mes "Aqui está~ajude-se.";
+				mes "Vai ser bom para sua saúde. Eu adicionei nutrientes extras nele.";
+				delitem 7609,1;  // Mojo de Abóbora
+				delitem 535,2;   // Abóbora
+				delitem 574,2;   // Ovo
+				getitem 12192,1; // Torta de Abóbora
+				close;
+			}
+			else {
+				mes "[Hoirin]";
+				mes "Não!! Isso não é suficiente. Preciso de";
+				mes "^4d4dff 1 Mojo de Abóbora";
+				mes "2 Abóboras";
+				mes "2 Ovos^000000";
+				mes " pelo menos.";
+				close;
+			}
+		case 2:
+			if (halloween == 100) {
+				mes "[Hoirin]";
+				mes "Ovos?";
+				mes "Bem, na verdade eu conheço alguém que pode ajudá-lo.";
+				mes "Há um homem que cria muitas galinhas.";
+				next;
+				mes "[Hoirin]";
+				mes "Eu posso mandá-lo para onde ele está se você quiser.";
+				mes "^4d4dffMas apenas uma vez^000000.";
+				next;
+				if (select("Mande-me para lá.:Está certo.") == 1) {
+					mes "[Hoirin]";
+					mes "Ok, vá buscar os ovos.";
+					set halloween, 101;
+					close2;
+					warp "nif_fild01", 162, 113;
+					end;
+				}
+				mes "[Hoirin]";
+				mes "Você acha que você pode ir sem a minha ajuda?!";
+				mes "Ok! continue adiante.";
+				mes "Você sabe onde ele está?";
+				close;
+			}
+			else {
+				mes "[Hoirin]";
+				mes "se você for a ^ 4d4dfffazenda de Skelington na cidade de Neiflheim ^ 000000, você vai conhecer Criador de Galinhas. Ele cria galinhas.";
+				close;
+			}
+		case 3:
+			mes "[Hoirin]";
+			mes "Da próxima vez, não se esqueça de trazer ";
+			mes "todos os ingredientes para torta de abóbora!";
+			close;
+		}
+	}
+}
+
+nif_in,18,34,5	script	Loli Ruri#06_hw	1505,2,2,{
+	end;
+
+OnTouch:
+	mes "[Deviruchi]";
+	mes "Ei, se você tem algo a dizer a Loli Ruri, fale comigo.";
+	mes "Ela não é utiliza a linguagem humana.";
+	close;
+}
+
+nif_in,19,32,3	script	Deviruchi#06_hw	738,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 2000 || checkweight(1201,1) == 0) {
+		mes "^3355FFEspere um Segundo!";
+		mes "No momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor volte depois";
+		mes "utilize o Serviço da Kafra";
+		mes "para guardar alguns de seus itens.^000000";
+		close;
+	}
+	mes "[Loli Ruri]";
+	mes "Devi~Onde está a torta de abóbora?";
+	mes "Será que os humanos,não fazem isso?";
+	mes "Você tem?";
+	mes " ";
+	mes "[Deviruchi]";
+	mes "Ele disse.";
+	next;
+	mes "[Deviruchi]";
+	mes "Se você tem uma torta de abóbora,eu poderei ter uma?";
+	mes "Porque nós somos a vítima, se Loli Ruri ficar brava.";
+	next;
+	mes "[Deviruchi]";
+	mes "Bem, eu não estou dizendo que eu quero isso de graça.";
+	mes "Não se preocupe, não vou te decepcionar.";
+	next;
+	switch(select( "Dar a torta de abóbora.:Não dar a torta de abóbora.:Hein? Que torta de abóbora?")) {
+	case 1:
+		if (countitem(12192) > 0) {
+			mes "[Loli Ruri]";
+			mes "Obrigado pela torta de abóbora!";
+			mes "Aqui, pegue isso.";
+			mes " ";
+			mes "[Deviruchi]";
+			mes "Ele disse.";
+			next;
+			mes "[Deviruchi]";
+			mes "Como eu prometi, eu vou lhe dar algo que vale a torta.";
+			mes "Pendure em....";
+			next;
+			mes "[Deviruchi]";
+			mes "Hmm ... Isso seria bom.";
+			mes "Está aqui leve isso, e obrigado novamente~";
+			delitem 12192, 1;//Pumpkin_Pie
+			set @hw_temp,rand(1,3);
+			if (@hw_temp == 2) getitem 12130,1; //Cookie_Bag
+			else getitem 7460,3; //Nifl_Express_Ticket
+			close;
+		}
+		else {
+			mes "[Loli Ruri]";
+			mes "Você está brincando comigo?";
+			mes "Onde está a torta de abóbora! Não tente mentir para mim!";
+			mes " ";
+			mes "[Deviruchi]";
+			mes "Ela disse .. Parece que está com muita raiva ... Você está com problemas.";
+			next;
+			mes "[Loli Ruri]";
+			mes "Devi !!!!! Você me disse que eu posso começar a torta de abóbora, se eu ficar aqui e esperar.";
+			mes "Tome cuidado!";
+			mes " ";
+			mes "[Deviruchi]";
+			mes "Ela disse .. Hein! Eu?!!";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Pobre Devi~";
+			mes "Você não deveria ter mentido~";
+			mes "Desejo-lhe sorte.";
+			close;
+		}
+	case 2:
+		mes "[Loli Ruri]";
+		mes "Eu quero comer torta de abóbora. Posso ficar com uma? Por favor~~~~";
+		mes " ";
+		mes "[Deviruchi]";
+		mes "Ela disse ..... Dá-me, se tiver uma.";
+		close;
+	case 3:
+		mes "[Deviruchi]";
+		mes "Há um homem que faz uma torta de abóbora muito especial.";
+		mes "ninguém consegue esquecer seu gosto.";
+		next;
+		mes "[Deviruchi]";
+		mes "Lori Ruri está esperando aqui para alguém que vai receber o bolo para ele.";
+		mes "Você pode levar uma?";
+		mes "Vou tratá-lo de volta.";
+		close;
+	}
+}
+
+// Criação da Torta de Abóbora (Segundo Evento)
+//============================================================
+nif_fild01,165,115,3	script	Criador de Galinhas#06_hw	794,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 2000 || checkweight(1201,1) == 0) {
+		mes "^3355FFEspere um Segundo!";
+		mes "no momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor volte depois";
+		mes "utilize o Serviço da Kafra";
+		mes "para guardar alguns de seus itens.^000000";
+		close;
+	}
+	if (halloween == 101) {
+		mes "[Criador de Galinhas]";
+		mes "Onde é que as galinhas foram?!";
+		mes "Oh, ei estranho. Posso ajudá-lo?";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Esta cidade é muito perigosa para que você fique por perto.";
+		mes "É melhor você voltar de onde veio....";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "...Você está procurando ovos?";
+		mes "Recentemente, as pessoas estão me pedindo ovos para fazer algum tipo de torta .... você é uma delas?";
+		next;
+		if (select( "Na verdade, sim. Eu vim aqui para obter alguns ovos:. Não..") == 1) {
+			mes "[Criador de Galinhas]";
+			mes "Ok. Mas algumas das minhas galinhas fugiram,";
+			mes "então eu não tenho muitos ovos guardados.";
+			mes "1000 zeny para 2 ovos! o que acha?";
+			next;
+			switch(select( "Ok, eu vou levar:. Eu só vou comprar um:.É muito caro.")) {
+			case 1:
+				if (Zeny > 1999) {
+					mes "[Criador de Galinhas]";
+					mes "Obrigado.";
+					mes "Aqui estão seus ovos.";
+					set Zeny,Zeny-2000;
+					set halloween, 102;
+					getitem 574,2; //Egg
+					close;
+				}
+				else {
+					mes "[Criador de Galinhas]";
+					mes "Ei isso não é o suficiente~";
+					mes "1000zenys por cada um, por isso, se você comprar dois, significa que precisará de 2000zenys.";
+					close;
+				}
+			case 2:
+				if (Zeny > 999) {
+					mes "[Criador de Galinhas]";
+					mes "Obrigado.";
+					mes "Aqui estão seus ovos.";
+					set Zeny,Zeny-1000;
+					set halloween, 102;
+					getitem 574,1; //Egg
+					close;
+				}
+				else {
+					mes "[Criador de Galinhas]";
+					mes "Você não parece ter dinheiro suficiente..";
+					mes "São 1000 zeny por cada.";
+					close;
+				}
+			case 3:
+				mes "[Criador de Galinhas]";
+				mes "Bem ... eu sei que é um pouco caro, mas como eu disse, minhas galinhas fugiram.";
+				mes "Você tem que entender.";
+				close;
+			}
+		}
+		mes "[Criador de Galinhas]";
+		mes "Deixe-me dizer apenas uma coisa!";
+		mes "Se você não quer morrer,";
+		mes "é melhor fugir. É muito perigoso aqui.";
+		close;
+	}
+	else if (halloween == 102) {
+		mes "[Criador de Galinhas]";
+		mes "Você precisa de ovos?...";
+		mes "Então, ajude-me primeiro.";
+		mes "8 de minhas galinhas fugiram.";
+		mes "Eu só não sei onde elas estão.";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Eu não espero que todas as galinhas voltem para casa.";
+		mes "Só se você me encontrar uma delas, eu venderei três ovos para você.";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Não é um grande negócio";
+		mes "Os frangos devem estar aqui em algum lugar.";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Você não tem que trazer de volta todas as galinhas para mim, se você encontrar uma,";
+		mes "Basta inserir a palavra ^4d4dff'Retornar'^000000.";
+		mes ".........";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "É uma magia para fazer as galinhas voltarem para casa.";
+		mes ".........";
+		mes "Não se esqueça 'Retornar' a palavra!";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Espero que você possa encontrar minhas galinhas.";
+		close;
+	}
+	else if (halloween == 103) {
+		mes "[Criador de Galinhas]";
+		mes "Oh, você voltou. Eu estive esperando por você.";
+		mes "E obrigado por as galinhas que você me mandou.";
+		mes "Elas serão mantidos em segurança no galinheiro, no caso de fugir novamente.";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Eu não esqueci o que prometi.";
+		mes "Diga-me quantos ovos você quer.";
+		mes "São 1000zenys por cada.";
+		mes "O máximo são 3 é tudo que você pode obter.";
+		next;
+		while(1) {
+			input .@input;
+			if (.@input == 0) {
+				mes "[Criador de Galinhas]";
+				mes "Você não precisa comprar, se você não precisar deles.";
+				close;
+			}
+			else if (@input > 3) {
+				mes "[Criador de Galinhas]";
+				mes "Só digo isso.";
+				mes "Vou vender apenas três ovos.";
+				next;
+			}
+			else
+				break;
+		}
+		set .@hw_egg, .@input * 1000;
+		if (Zeny < @hw_egg) {
+			mes "[Criador de Galinhas]";
+			mes "Você não parece ter bastante de zenys necessários.";
+			close;
+		}
+		mes "[Criador de Galinhas]";
+		mes "Aqui está.";
+		mes "Apenas isso.";
+		mes "Se você quer mais ovos, encontre-me mais galinhas.";
+		set Zeny,Zeny-@hw_egg;
+		getitem 574, @input;//Egg
+		set halloween, 102;
+		close;
+	}
+	else {
+		mes "[Criador de Galinhas]";
+		mes "Onde é que as galinhas foram?!";
+		mes "Oh, ei estranho. Posso ajudá-lo?";
+		next;
+		mes "[Criador de Galinhas]";
+		mes "Esta cidade é muito perigosa para que você fique por perto.";
+		mes "É melhor você voltar de onde veio....";
+		close;
+	}
+}
+
+nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
+	mes "Galinha adormecida.";
+	close;
+}
+
+-	script	Galinha#01	-1,{
+	if ((halloween == 102) || (halloween == 103)) {
+		mes "Oh, isso deve ser uma galinha do Criador de Galinhas.";
+		mes "Eu devo informar a palavra mágica.";
+		next;
+		input .@inputstr$;
+		if( .@inputstr$ == "Voltar" ) {
+			emotion e_omg;
+			specialeffect EF_TELEPORTATION;
+			mes "A magia está sendo carregada.";
+			set halloween, 103;
+			disablenpc "Galinha#"+strnpcinfo(1);
+			close2;
+			sleep 180000;
+			enablenpc "Galinha#"+strnpcinfo(1);
+			end;
+		}
+		else {
+			mes "[" + strcharinfo(0) + "]";
+			mes "Hm ... deve haver erros ortográficos.";
+			close;
+		}
+	}
+	else {
+		mes "Galinha adormecida.";
+		close;
+	}
+}
+
+-	script	Galinha#02	-1,{
+	set @egg_temp,rand(1,4);
+	if( @egg_temp == 3) {
+		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
+		mes "Existe um 'ovo no lugar onde a galinha desapareceu.";
+		disablenpc "Galinha#"+strnpcinfo(1);
+		getitem 574,1; //Egg
+		close;
+	}
+	else {
+		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
+		disablenpc "Galinha#"+strnpcinfo(1);
+		close;
+	}
+}
+
+-	script	Galinha#03	-1,{
+	set @egg_temp,rand(1,4);
+	if( @egg_temp == 3) {
+		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
+		mes "Você tem um 'ovo' no lugar onde a galinha desapareceu.";
+		disablenpc "Galinha#"+strnpcinfo(1);
+		getitem 574,1; //Egg
+		close;
+	}
+	else {
+		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
+		disablenpc "Galinha#"+strnpcinfo(1);
+		close;
+	}
+
+OnInit:
+	while(1) {
+		sleep 180000;
+		specialeffect EF_BAT2;
+		end;
+	}
+}
+
+nif_fild01,270,145,3	duplicate(Galinha#06_hw01)	Galinha#06_hw02	800
+nif_fild01,219,267,4	duplicate(Galinha#06_hw01)	Galinha#06_hw03	800
+nif_fild01,199,240,5	duplicate(Galinha#06_hw01)	Galinha#06_hw04	800
+nif_fild01,316,97,6	duplicate(Galinha#06_hw01)	Galinha#06_hw05	800
+nif_fild01,147,343,7	duplicate(Galinha#06_hw01)	Galinha#06_hw06	800
+nif_fild01,185,325,8	duplicate(Galinha#06_hw01)	Galinha#06_hw07	800
+nif_fild01,133,105,1	duplicate(Galinha#06_hw01)	Galinha#06_hw08	800
+nif_fild01,331,329,2	duplicate(Galinha#06_hw01)	Galinha#06_hw09	800
+
+pay_dun03,1,1,0	script	#06_hw_timer01	-1,{
+OnInit:
+	disablenpc "Galinha#06_hw_p01";
+	disablenpc "Galinha#06_hw_p02";
+	disablenpc "Galinha#06_hw_p03";
+	disablenpc "Galinha#06_hw_p04";
+	disablenpc "Galinha#06_hw_p05";
+	disablenpc "Galinha#06_hw_p06";
+	disablenpc "Galinha#06_hw_p07";
+	disablenpc "Galinha#06_hw_p08";
+	disablenpc "Galinha#06_hw_p09";
+	disablenpc "Galinha#06_hw_p10";
+	disablenpc "Galinha#06_hw_p11";
+	disablenpc "Galinha#06_hw_p12";
+	disablenpc "Galinha#06_hw_p13";
+	disablenpc "Galinha#06_hw_p14";
+	disablenpc "Galinha#06_hw_p15";
+	disablenpc "Galinha#06_hw_p16";
+	disablenpc "Galinha#06_hw_p17";
+	disablenpc "Galinha#06_hw_p18";
+	disablenpc "Galinha#06_hw_p19";
+	disablenpc "Galinha#06_hw_p20";
+	disablenpc "Galinha#06_hw_p21";
+	disablenpc "Galinha#06_hw_p22";
+	disablenpc "Galinha#06_hw_p23";
+	disablenpc "Galinha#06_hw_p24";
+	disablenpc "Galinha#06_hw_p25";
+	disablenpc "Galinha#06_hw_p26";
+	disablenpc "Galinha#06_hw_p27";
+	disablenpc "Galinha#06_hw_p28";
+	disablenpc "Galinha#06_hw_p29";
+	disablenpc "Galinha#06_hw_p30";
+	disablenpc "Galinha#06_hw_p31";
+	disablenpc "Galinha#06_hw_p32";
+	disablenpc "Galinha#06_hw_p33";
+	disablenpc "Galinha#06_hw_p34";
+	disablenpc "Galinha#06_hw_p35";
+	disablenpc "Galinha#06_hw_p36";
+	disablenpc "Galinha#06_hw_p37";
+	disablenpc "Galinha#06_hw_p38";
+	disablenpc "Galinha#06_hw_p39";
+	disablenpc "Galinha#06_hw_p40";
+	disablenpc "Galinha#06_hw_p41";
+	initnpctimer;
+	end;
+
+OnTimer3600000:
+	enablenpc "Galinha#06_hw_p01";
+	enablenpc "Galinha#06_hw_p02";
+	enablenpc "Galinha#06_hw_p03";
+	enablenpc "Galinha#06_hw_p04";
+	enablenpc "Galinha#06_hw_p05";
+	enablenpc "Galinha#06_hw_p06";
+	enablenpc "Galinha#06_hw_p07";
+	enablenpc "Galinha#06_hw_p08";
+	enablenpc "Galinha#06_hw_p09";
+	enablenpc "Galinha#06_hw_p10";
+	enablenpc "Galinha#06_hw_p11";
+	enablenpc "Galinha#06_hw_p12";
+	enablenpc "Galinha#06_hw_p13";
+	enablenpc "Galinha#06_hw_p14";
+	enablenpc "Galinha#06_hw_p15";
+	enablenpc "Galinha#06_hw_p16";
+	enablenpc "Galinha#06_hw_p17";
+	enablenpc "Galinha#06_hw_p18";
+	enablenpc "Galinha#06_hw_p19";
+	enablenpc "Galinha#06_hw_p20";
+	enablenpc "Galinha#06_hw_p21";
+	enablenpc "Galinha#06_hw_p22";
+	enablenpc "Galinha#06_hw_p23";
+	enablenpc "Galinha#06_hw_p24";
+	enablenpc "Galinha#06_hw_p25";
+	enablenpc "Galinha#06_hw_p26";
+	enablenpc "Galinha#06_hw_p27";
+	enablenpc "Galinha#06_hw_p28";
+	enablenpc "Galinha#06_hw_p29";
+	enablenpc "Galinha#06_hw_p30";
+	enablenpc "Galinha#06_hw_p31";
+	enablenpc "Galinha#06_hw_p32";
+	enablenpc "Galinha#06_hw_p33";
+	enablenpc "Galinha#06_hw_p34";
+	enablenpc "Galinha#06_hw_p35";
+	enablenpc "Galinha#06_hw_p36";
+	enablenpc "Galinha#06_hw_p37";
+	enablenpc "Galinha#06_hw_p38";
+	enablenpc "Galinha#06_hw_p39";
+	enablenpc "Galinha#06_hw_p40";
+	enablenpc "Galinha#06_hw_p41";
+	end;
+
+OnTimer4200000:
+	disablenpc "Galinha#06_hw_p01";
+	disablenpc "Galinha#06_hw_p02";
+	disablenpc "Galinha#06_hw_p03";
+	disablenpc "Galinha#06_hw_p04";
+	disablenpc "Galinha#06_hw_p05";
+	disablenpc "Galinha#06_hw_p06";
+	disablenpc "Galinha#06_hw_p07";
+	disablenpc "Galinha#06_hw_p08";
+	disablenpc "Galinha#06_hw_p09";
+	disablenpc "Galinha#06_hw_p10";
+	disablenpc "Galinha#06_hw_p11";
+	disablenpc "Galinha#06_hw_p12";
+	disablenpc "Galinha#06_hw_p13";
+	disablenpc "Galinha#06_hw_p14";
+	disablenpc "Galinha#06_hw_p15";
+	disablenpc "Galinha#06_hw_p16";
+	disablenpc "Galinha#06_hw_p17";
+	disablenpc "Galinha#06_hw_p18";
+	disablenpc "Galinha#06_hw_p19";
+	disablenpc "Galinha#06_hw_p20";
+	disablenpc "Galinha#06_hw_p21";
+	disablenpc "Galinha#06_hw_p22";
+	disablenpc "Galinha#06_hw_p23";
+	disablenpc "Galinha#06_hw_p24";
+	disablenpc "Galinha#06_hw_p25";
+	disablenpc "Galinha#06_hw_p26";
+	disablenpc "Galinha#06_hw_p27";
+	disablenpc "Galinha#06_hw_p28";
+	disablenpc "Galinha#06_hw_p29";
+	disablenpc "Galinha#06_hw_p30";
+	disablenpc "Galinha#06_hw_p31";
+	disablenpc "Galinha#06_hw_p32";
+	disablenpc "Galinha#06_hw_p33";
+	disablenpc "Galinha#06_hw_p34";
+	disablenpc "Galinha#06_hw_p35";
+	disablenpc "Galinha#06_hw_p36";
+	disablenpc "Galinha#06_hw_p37";
+	disablenpc "Galinha#06_hw_p38";
+	disablenpc "Galinha#06_hw_p39";
+	disablenpc "Galinha#06_hw_p40";
+	disablenpc "Galinha#06_hw_p41";
+	stopnpctimer;
+	initnpctimer;
+	end;
+}
+
+
+pay_dun03,151,138,3	duplicate(Galinha#03)	Galinha#06_hw_p01	800
+pay_dun03,151,138,3	duplicate(Galinha#02)	Galinha#06_hw_p02	800
+pay_dun03,152,138,3	duplicate(Galinha#02)	Galinha#06_hw_p03	800
+pay_dun03,154,138,3	duplicate(Galinha#02)	Galinha#06_hw_p04	800
+pay_dun03,155,138,3	duplicate(Galinha#02)	Galinha#06_hw_p05	800
+pay_dun03,157,138,3	duplicate(Galinha#02)	Galinha#06_hw_p06	800
+pay_dun03,158,138,3	duplicate(Galinha#03)	Galinha#06_hw_p07	800
+pay_dun03,150,137,3	duplicate(Galinha#02)	Galinha#06_hw_p08	800
+pay_dun03,153,137,3	duplicate(Galinha#02)	Galinha#06_hw_p09	800
+pay_dun03,156,137,3	duplicate(Galinha#03)	Galinha#06_hw_p10	800
+pay_dun03,159,137,3	duplicate(Galinha#02)	Galinha#06_hw_p11	800
+pay_dun03,149,136,3	duplicate(Galinha#02)	Galinha#06_hw_p12	800
+pay_dun03,152,136,3	duplicate(Galinha#03)	Galinha#06_hw_p13	800
+pay_dun03,157,136,3	duplicate(Galinha#02)	Galinha#06_hw_p14	800
+pay_dun03,160,136,3	duplicate(Galinha#02)	Galinha#06_hw_p15	800
+pay_dun03,149,135,3	duplicate(Galinha#03)	Galinha#06_hw_p16	800
+pay_dun03,151,135,3	duplicate(Galinha#02)	Galinha#06_hw_p17	800
+pay_dun03,152,135,3	duplicate(Galinha#02)	Galinha#06_hw_p18	800
+pay_dun03,153,135,3	duplicate(Galinha#03)	Galinha#06_hw_p19	800
+pay_dun03,156,135,3	duplicate(Galinha#02)	Galinha#06_hw_p20	800
+pay_dun03,157,135,3	duplicate(Galinha#02)	Galinha#06_hw_p21	800
+pay_dun03,158,135,3	duplicate(Galinha#03)	Galinha#06_hw_p22	800
+pay_dun03,160,135,3	duplicate(Galinha#02)	Galinha#06_hw_p23	800
+pay_dun03,149,134,3	duplicate(Galinha#02)	Galinha#06_hw_p24	800
+pay_dun03,152,134,3	duplicate(Galinha#03)	Galinha#06_hw_p25	800
+pay_dun03,157,134,3	duplicate(Galinha#02)	Galinha#06_hw_p26	800
+pay_dun03,160,134,3	duplicate(Galinha#02)	Galinha#06_hw_p27	800
+pay_dun03,149,133,3	duplicate(Galinha#03)	Galinha#06_hw_p28	800
+pay_dun03,160,133,3	duplicate(Galinha#02)	Galinha#06_hw_p29	800
+pay_dun03,150,132,3	duplicate(Galinha#02)	Galinha#06_hw_p30	800
+pay_dun03,153,132,3	duplicate(Galinha#03)	Galinha#06_hw_p31	800
+pay_dun03,156,132,3	duplicate(Galinha#02)	Galinha#06_hw_p32	800
+pay_dun03,159,132,3	duplicate(Galinha#02)	Galinha#06_hw_p33	800
+pay_dun03,151,131,3	duplicate(Galinha#02)	Galinha#06_hw_p34	800
+pay_dun03,152,131,3	duplicate(Galinha#02)	Galinha#06_hw_p35	800
+pay_dun03,153,131,3	duplicate(Galinha#03)	Galinha#06_hw_p36	800
+pay_dun03,154,131,3	duplicate(Galinha#02)	Galinha#06_hw_p37	800
+pay_dun03,155,131,3	duplicate(Galinha#02)	Galinha#06_hw_p38	800
+pay_dun03,156,131,3	duplicate(Galinha#03)	Galinha#06_hw_p39	800
+pay_dun03,157,131,3	duplicate(Galinha#02)	Galinha#06_hw_p40	800
+pay_dun03,158,131,3	duplicate(Galinha#03)	Galinha#06_hw_p41	800
+
+// Galinhas dos Campos de Payon
+//============================================================
+pay_fild08,1,1,0	script	#06_hw_timer02	-1,{
+OnInit:
+	disablenpc "Galinha#06_hw_pf01";
+	disablenpc "Galinha#06_hw_pf02";
+	disablenpc "Galinha#06_hw_pf03";
+	disablenpc "Galinha#06_hw_pf04";
+	disablenpc "Galinha#06_hw_pf05";
+	disablenpc "Galinha#06_hw_pf06";
+	disablenpc "Galinha#06_hw_pf07";
+	disablenpc "Galinha#06_hw_pf08";
+	disablenpc "Galinha#06_hw_pf09";
+	disablenpc "Galinha#06_hw_pf10";
+	disablenpc "Galinha#06_hw_pf11";
+	disablenpc "Galinha#06_hw_pf12";
+	disablenpc "Galinha#06_hw_pf13";
+	disablenpc "Galinha#06_hw_pf14";
+	disablenpc "Galinha#06_hw_pf15";
+	disablenpc "Galinha#06_hw_pf16";
+	disablenpc "Galinha#06_hw_pf17";
+	disablenpc "Galinha#06_hw_pf18";
+	disablenpc "Galinha#06_hw_pf19";
+	disablenpc "Galinha#06_hw_pf20";
+	disablenpc "Galinha#06_hw_pf21";
+	disablenpc "Galinha#06_hw_pf22";
+	disablenpc "Galinha#06_hw_pf23";
+	disablenpc "Galinha#06_hw_pf24";
+	disablenpc "Galinha#06_hw_pf25";
+	disablenpc "Galinha#06_hw_pf26";
+	disablenpc "Galinha#06_hw_pf27";
+	initnpctimer;
+	end;
+
+OnTimer5400000:
+	enablenpc "Galinha#06_hw_pf01";
+	enablenpc "Galinha#06_hw_pf02";
+	enablenpc "Galinha#06_hw_pf03";
+	enablenpc "Galinha#06_hw_pf04";
+	enablenpc "Galinha#06_hw_pf05";
+	enablenpc "Galinha#06_hw_pf06";
+	enablenpc "Galinha#06_hw_pf07";
+	enablenpc "Galinha#06_hw_pf08";
+	enablenpc "Galinha#06_hw_pf09";
+	enablenpc "Galinha#06_hw_pf10";
+	enablenpc "Galinha#06_hw_pf11";
+	enablenpc "Galinha#06_hw_pf12";
+	enablenpc "Galinha#06_hw_pf13";
+	enablenpc "Galinha#06_hw_pf14";
+	enablenpc "Galinha#06_hw_pf15";
+	enablenpc "Galinha#06_hw_pf16";
+	enablenpc "Galinha#06_hw_pf17";
+	enablenpc "Galinha#06_hw_pf18";
+	enablenpc "Galinha#06_hw_pf19";
+	enablenpc "Galinha#06_hw_pf20";
+	enablenpc "Galinha#06_hw_pf21";
+	enablenpc "Galinha#06_hw_pf22";
+	enablenpc "Galinha#06_hw_pf23";
+	enablenpc "Galinha#06_hw_pf24";
+	enablenpc "Galinha#06_hw_pf25";
+	enablenpc "Galinha#06_hw_pf26";
+	enablenpc "Galinha#06_hw_pf27";
+	end;
+
+OnTimer6000000:
+	disablenpc "Galinha#06_hw_pf01";
+	disablenpc "Galinha#06_hw_pf02";
+	disablenpc "Galinha#06_hw_pf03";
+	disablenpc "Galinha#06_hw_pf04";
+	disablenpc "Galinha#06_hw_pf05";
+	disablenpc "Galinha#06_hw_pf06";
+	disablenpc "Galinha#06_hw_pf07";
+	disablenpc "Galinha#06_hw_pf08";
+	disablenpc "Galinha#06_hw_pf09";
+	disablenpc "Galinha#06_hw_pf10";
+	disablenpc "Galinha#06_hw_pf11";
+	disablenpc "Galinha#06_hw_pf12";
+	disablenpc "Galinha#06_hw_pf13";
+	disablenpc "Galinha#06_hw_pf14";
+	disablenpc "Galinha#06_hw_pf15";
+	disablenpc "Galinha#06_hw_pf16";
+	disablenpc "Galinha#06_hw_pf17";
+	disablenpc "Galinha#06_hw_pf18";
+	disablenpc "Galinha#06_hw_pf19";
+	disablenpc "Galinha#06_hw_pf20";
+	disablenpc "Galinha#06_hw_pf21";
+	disablenpc "Galinha#06_hw_pf22";
+	disablenpc "Galinha#06_hw_pf23";
+	disablenpc "Galinha#06_hw_pf24";
+	disablenpc "Galinha#06_hw_pf25";
+	disablenpc "Galinha#06_hw_pf26";
+	disablenpc "Galinha#06_hw_pf27";
+	stopnpctimer;
+	initnpctimer;
+	end;
+}
+
+pay_fild08,147,353,3	duplicate(Galinha#03)	Galinha#06_hw_pf01	800
+pay_fild08,147,354,3	duplicate(Galinha#02)	Galinha#06_hw_pf02	800
+pay_fild08,147,355,3	duplicate(Galinha#02)	Galinha#06_hw_pf03	800
+pay_fild08,148,352,3	duplicate(Galinha#03)	Galinha#06_hw_pf04	800
+pay_fild08,148,356,3	duplicate(Galinha#02)	Galinha#06_hw_pf05	800
+pay_fild08,149,351,3	duplicate(Galinha#02)	Galinha#06_hw_pf06	800
+pay_fild08,149,354,3	duplicate(Galinha#03)	Galinha#06_hw_pf07	800
+pay_fild08,149,357,3	duplicate(Galinha#02)	Galinha#06_hw_pf08	800
+pay_fild08,150,351,3	duplicate(Galinha#02)	Galinha#06_hw_pf09	800
+pay_fild08,150,357,3	duplicate(Galinha#03)	Galinha#06_hw_pf10	800
+pay_fild08,151,351,3	duplicate(Galinha#02)	Galinha#06_hw_pf11	800
+pay_fild08,151,353,3	duplicate(Galinha#02)	Galinha#06_hw_pf12	800
+pay_fild08,151,355,3	duplicate(Galinha#03)	Galinha#06_hw_pf13	800
+pay_fild08,151,357,3	duplicate(Galinha#02)	Galinha#06_hw_pf14	800
+pay_fild08,152,351,3	duplicate(Galinha#02)	Galinha#06_hw_pf15	800
+pay_fild08,152,357,3	duplicate(Galinha#03)	Galinha#06_hw_pf16	800
+pay_fild08,153,351,3	duplicate(Galinha#02)	Galinha#06_hw_pf17	800
+pay_fild08,153,357,3	duplicate(Galinha#02)	Galinha#06_hw_pf18	800
+pay_fild08,154,351,3	duplicate(Galinha#03)	Galinha#06_hw_pf19	800
+pay_fild08,154,353,3	duplicate(Galinha#02)	Galinha#06_hw_pf20	800
+pay_fild08,154,355,3	duplicate(Galinha#02)	Galinha#06_hw_pf21	800
+pay_fild08,154,357,3	duplicate(Galinha#03)	Galinha#06_hw_pf22	800
+pay_fild08,155,350,3	duplicate(Galinha#02)	Galinha#06_hw_pf23	800
+pay_fild08,155,352,3	duplicate(Galinha#02)	Galinha#06_hw_pf24	800
+pay_fild08,155,354,3	duplicate(Galinha#03)	Galinha#06_hw_pf25	800
+pay_fild08,155,356,3	duplicate(Galinha#02)	Galinha#06_hw_pf26	800
+pay_fild08,155,358,3	duplicate(Galinha#03)	Galinha#06_hw_pf27	800
+
+prontera,155,285,3	script	Familiar#06_hw01::HWFamiDup	799,{
+	mes "[Familiar]";
+	mes "Olá.";
+	mes "Eu sou o Familiar bonito e fiel a Loli Ruri.";
+	mes "Você tem um convite da Loli Ruri?";
+	mes "Isso é uma espécie de^4d4dff bilhete especial para Nifflheim^000000..";
+	next;
+	if (select( "Sim, eu tenho.:Não, eu não tenho.") == 1) {
+		mes "[Familiar]";
+		mes "Você quer ir para Nifflheim?";
+		mes "Ele está disponível durante o Halloween.";
+		next;
+		if (select( "Sim, eu quero:Não, eu não quero.") == 1) {
+			if (countitem(7460) > 0) {
+				mes "[Familiar]";
+				mes "Eu verifiquei o seu bilhete.";
+				mes "Você pode ir lá agora";
+				delitem 7460,1; //Nifl_Express_Ticket
+				close2;
+				warp "nif_in", 18, 20;
+				end;
+			}
+			else {
+				mes "[Familiar]";
+				mes "Você é um mentiroso.";
+				mes "Você não tem o bilhete!";
+				mes "Eu vou sugar todo seu sangue, seu mentiroso!";
+				percentheal -20,0;
+				emotion e_omg,1;
+				close;
+			}
+		}
+		mes "[Familiar]";
+		mes "Ok.";
+		mes "Na verdade, é inútil ter um bilhete especial para Nifflheim.";
+		close;
+	}
+	mes "[Familiar]";
+	mes "Ok.";
+	mes "Se você quiser perguntar alguma coisa, dê um pedaço de torta de abóbora para Loli Ruri.";
+	mes "Ela gosta.";
+	close;
+}
+payon,156,231,3	duplicate(HWFamiDup)	Familiar#06_hw02	799
+morocc,159,143,3	duplicate(HWFamiDup)	Familiar#06_hw03	799
+geffen,120,188,3	duplicate(HWFamiDup)	Familiar#06_hw04	799
+alberta,80,171,3	duplicate(HWFamiDup)	Familiar#06_hw05	799
+
+// Criação de Monstros (Lude) do Evento
+//============================================================
+ra_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_fild13,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_san01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_san02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_san03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_san04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ra_san05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ice_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ice_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ice_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+odin_tem01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+odin_tem02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+odin_tem03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+kh_kiehl01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+kh_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+kh_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+hu_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tha_t12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+abyss_01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+abyss_02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+abyss_03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+juperos_01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+juperos_02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+jupe_core,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lhz_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ein_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gefenia01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gefenia02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gefenia03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gefenia04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ayo_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ayo_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ayo_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ayo_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gon_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gon_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gon_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ama_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ama_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ama_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lou_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lou_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lou_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+lou_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+um_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yggdrasil01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mag_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mag_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+beach_dun,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+beach_dun2,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+beach_dun3,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gon_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+ama_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+yuno_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild00,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild13,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild14,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild15,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild16,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild17,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_fild18,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild00,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild13,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_fild14,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+cmd_fild09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_07,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_08,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_09,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_10,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_11,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjolnir_12,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+xmas_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+sec_in02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_knt02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_knt01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_step,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_sew04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_sew03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_sew02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_sew01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_chyard,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_church,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+glast_01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_prison1,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_prison,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_in01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_cas02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gl_cas01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tur_dun04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tur_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tur_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+tur_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+alde_dun04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+alde_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+alde_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+alde_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+c_tower1,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+c_tower2,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+c_tower3,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+c_tower4,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+in_sphinx5,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+in_sphinx4,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+in_sphinx3,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+in_sphinx2,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+in_sphinx1,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_maze03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_maze02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_maze01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+treasure02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+treasure01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd06,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd05,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+moc_pryd01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+gef_dun00,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+iz_dun00,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+iz_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+iz_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+iz_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+iz_dun04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_dun00,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+pay_dun04,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+xmas_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+xmas_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+anthell02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+anthell01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+orcsdun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+orcsdun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjo_dun03,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjo_dun02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+mjo_dun01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_sewb4,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_sewb3,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_sewb2,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+prt_sewb1,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+nif_fild01,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+nif_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
+
+// ------------------------- Eventos Halloween 2008 -------------------------
+
+payon,162,176,4	script	Halloween Magician#iRO08	704,{
+	
+	if(Hallow08 < 1) {
+		mes "[Halloween Magician]";
+		mes "Kkkkkkkkk!";
+		mes "I have a special event this Halloween that tests your luck and agility.";
+		mes "Are you interested?";
+		next;
+		mes "[Halloween Magician]";
+		mes "Come on! Don't be a wuss!";
+		mes "If you collect enough tickets you can get good prizes!";
+		mes "So what do you say?";
+		next;
+		goto MainMenu;
+	}
+
+	if (Hallow08Kill == 1) {
+		mes "[Halloween Magician]";
+		mes "You a 'fraidy cat or something?!";
+		mes "You know you want to try again...";
+		mes "Do you know the rules?";
+		next;
+		set Hallow08Kill,0;
+		if(select("Yes, I know.:No, I don't know.") == 2) {
+			goto Rules;
+		}
+		goto Participate;
+	}
+
+	if (Hallow08Kill == 2) {
+		mes "[Halloween Magician]";
+		mes "Oh, well done! You are alright!";
+		mes "Isn't it fun with zombies??";
+		mes "You know, zombies were people too!";
+		mes "Ha!";
+		mes "Kkkkkkk.";
+		next;
+		getitem 7941,1;
+		set Hallow08Kill,0;
+		mes "[Halloween Magician]";
+		mes "As I promised";
+		mes "You can get Halloween tickets for cool items.";
+		close;
+	}
+
+	if(Hallow08 > 0) {
+		mes "[Halloween Magician]";
+		mes "Well, do you want to hear the rules again or, just get back to it...";
+		next;
+		goto MainMenu2;
+	}
+	
+		Rules:
+			mes "[Halloween Magician]";
+			mes "This village is like a virtual Payon.";
+			mes "There are zombies and ghouls roaming around and three southern exits, but only one works.";
+			mes "That's up to you to find out.";
+			next;
+			mes "[Halloween Magician]";
+			mes "You can't use any skills to kill the ghouls or zombies.";
+			mes "And one more thing...";
+			mes "you shouldn't forget...";
+			next;
+			mes "[Halloween Magician]";
+			mes "All participants should be wearing nothing.";
+			mes "Put all belongings in your storage and come back here when your weight is '0'.";
+			next;
+			mes "[Halloween Magician]";
+			mes "Oh and one more thing!";
+			mes "You can't be riding a PecoPeco or have a Cart.";
+			mes "If you are, then I will remove them before you enter.";
+			mes "Got it?";
+			next;
+			mes "[Halloween Magician]";
+			mes "Remember, there are three exits but only one works randomly, the zombies and ghouls roaming around there can't be killed and you can't be wearing anything.";
+			next;
+			if (Hallow08 > 0) {
+				mes "[Halloween Magician]";
+				mes "Hey...";
+				mes "Come back once you're ready.";
+				close;
+			}else{
+				goto MainMenu;
+			}
+			
+		Participate:
+			mes "[Halloween Magician]";
+			mes "Ok, you are ready.";
+			mes "Let me check your weight.";
+			next;
+			if (Weight > 0) {
+				mes "[Halloween Magician]";
+				mes "Gosh!";
+				mes "There's always a black sheep anywhere.";
+				next;
+				mes "[Halloween Magician]";
+				mes "You think I wouldn't notice that your weight is above '0'?";
+				mes "You're overweight...";
+				close;
+			}else{
+				mes "[Halloween Magician]";
+				mes "You seem good to go, and your weight is just right.";
+				next;
+				mes "[Halloween Magician]";
+				mes "I was quite swamped with my work, so I'm exhausted.";
+				next;
+				mes "[Halloween Magician]";
+				mes "I sometimes forget to send you there...";
+				next;
+				mes "[Halloween Magician]";
+				mes "I hope you come back well.";
+				close2;
+				if (Hallow08 < 1) {
+					set Hallow08,1;
+				}
+				set Hallow08Kill,1;
+				set @Hallow08Warp, rand(1,3);
+				percentheal -98,0;
+				setriding 0;
+				setcart 0;
+				warp "evt_zombie",155,246;
+				end;
+			}
+			
+		TicketExchange:
+			mes "[Halloween Magician]";
+			mes "You want to exchange tickets for prizes?";
+			mes "Good job! Kkkkkk!";
+			next;
+			mes "[Halloween Magician]";
+			mes "Lemme tell you what items you can exchange for.";
+			next;
+			mes "[Halloween Magician]";
+			mes "5 tickets for Pumpkin Pie.";
+			mes "20 tickets for Pumpkin-Head.";
+			mes "50 tickets for Old Blue Box.";
+			mes "70 tickets for Old Purple Box.";
+			mes "200 tickets for Old Card Album.";
+			next;
+			mes "[Halloween Magician]";
+			mes "What would you like to exchange for?";
+			next;
+			switch(select("Pumpkin Pie:Pumpkin-Head:Old Blue Box:Old Purple Box:Old Card Album")) {
+				case 1:
+					if(countitem(7941) < 5) {
+						goto NotEnough;
+					}else{
+						delitem 7941,5;
+						getitem 12192,1;
+						goto Enough;
+					}
+					break;
+				case 2:
+					if(countitem(7941) < 20) {
+						goto NotEnough;
+					}else{
+						delitem 7941,20;
+						getitem 5134,1;
+						goto Enough;
+					}
+					break;
+				case 3:
+					if(countitem(7941) < 50) {
+						goto NotEnough;
+					}else{
+						delitem 7941,50;
+						getitem 603,1;
+						goto Enough;
+					}
+					break;
+				case 4:
+					if(countitem(7941) < 70) {
+						goto NotEnough;
+					}else{
+						delitem 7941,70;
+						getitem 617,1;
+						goto Enough;
+					}
+					break;
+				case 5:
+					if(countitem(7941) < 200) {
+						goto NotEnough;
+					}else{
+						delitem 7941,200;
+						getitem 616,1;
+						goto Enough;
+					}
+			}
+					
+		NextTime:
+			mes "[Halloween Magician]";
+			mes "Ok, see you then.";
+			mes "Kkkkkkkk.";
+			close;
+
+	MainMenu:
+		menu "Explain it to me.",Rules,"I want to participate.",Participate,"I want to exchange tickets for prizes.",TicketExchange,"I'll come back next time.",NextTime;
+
+	MainMenu2:
+		menu "Get me back there now!",Participate,"Please, tell me the rules",Rules,"I want to exchange tickets for prizes.",TicketExchange,"I'll come back next time.",NextTime;
+
+	NotEnough:
+		mes "[Halloween Magician]";
+		mes "You don't have enough tickets!";
+		mes "Can't you even count?";
+		mes "Please come here with the right number of tickets.";
+		close;
+
+	Enough:
+		mes "[Halloween Magician]";
+		mes "Here it is.";
+		mes "Do you need...";
+		mes "anything else?";
+		next;
+		if (Hallow08 == 1) {
+			goto MainMenu2;
+		}else{
+			goto MainMenu;
+		}
+}
+
+evt_zombie,16,142,1	script	zombiewarp001	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 1) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",28,142;
+	}
+	end;
+}
+
+evt_zombie,122,27,1	script	zombiewarp002	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 2) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",121,40;
+	}
+	end;
+}
+
+evt_zombie,267,89,1	script	zombiewarp003	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 3) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",253,95;
+	}
+	end;
+}
+
+evt_zombie,0,0,0,0	monster	Zombie	3000,150,0,0,0
+evt_zombie,0,0,0,0	monster	Ghoul	3001,80,0,0,0
+evt_zombie,0,0,0,0	monster	Zombie Master	3002,20,0,0,0
+
+// ------------------------- Eventos Halloween 2009 -------------------------
+
+// Headgear Quest - Pumpkin Hat
+//============================================================
+prontera,152,192,5	script	Pumpkin Hat Researcher	712,{
+	if(BaseLevel < 45) {
+		mes "[Pumpkin Hat Researcher]";
+		mes "Shoo, I don't need a child. Shoo! I don't talk to novices.";
+		next;
+		mes "[Pumpkin Hat Researcher]";
+		mes "Go reach a level that can fight with stronger monsters and come back.";
+		close;
+	}
+	mes "[Pumpkin Hat Researcher]";
+	mes "Say do you like Pumpkin Pies?";
+	next;
+	mes "[Pumpkin Hat Researcher]";
+	mes "I'm a Pumpkin Hat researcher, Why don't you listen to my story?";
+	next;
+	while(1) {
+		switch(select("Listen to the story.:Ask about Pumpkin Hat.:Get a Pumpkin Hat.:Stop the conversation.")) {
+			case 1:
+				mes "[Pumpkin Hat Researcher]";
+				mes "I've been studying about an upgraded Pumpkin Hat.";
+				mes "I have discovered that it is a very simple process.";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "The process is quite simple.";
+				mes "If you bring me ^4a4aff20 Jack o' Pumpkin^000000 I can show you.";
+				mes "Isn't that a tempting proposal?";
+				next;
+				break;
+			case 2:
+				mes "[Pumpkin Hat Researcher]";
+				mes "This upgraded pumpkin hat is powerful stuff!";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "It can make a Pumpkin Pie that restores a large percentage of HP & SP using condensed energy to the person who wears it.";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "All you need is ^4a4aff20 Jack o' Pumpkin^000000s.";
+				next;
+				break;
+			case 3:
+				mes "[Pumpkin Hat Researcher]";
+				mes "Do you want to get Pumpkin Pies? Okay, let me count the Jack o' Pumpkins you've brought.";
+				next;
+				if(countitem(1062) < 20) {
+					mes "[Pumpkin Hat Researcher]";
+					mes "I need ^4a4aff20 Jack o' Pumpkin^000000.";
+					mes "I'm not an alchemist or a wizard to create something from nothing.";
+					next;
+					mes "[Pumpkin Hat Researcher]";
+					mes "Okay, go hunting monsters and come back.";
+					mes "I'm going to stay here for a while so take your time.";
+					next;
+					break;
+				}else{
+					mes "[Pumpkin Hat Researcher]";
+					mes "I hope this will be useful to you. Don't forget to wear it while fighting to get your Pumpkin Pies.";
+					delitem 1062,20;	// Jack o' Pumpkin
+					getitem 5668,1;		// Weird Pumpkin Hat
+					next;
+					mes "[Pumpkin Hat Researcher]";
+					mes "I guess that I should get back to my research.";
+					close;
+				}
+			case 4:
+				mes "[Pumpkin Hat Researcher]";
+				mes "Bye, until we'll see each other again.";
+				mes "I wish you well...";
+				close;
+		}
+	}
+}
+
+// Buffs - Trick or Treaters
+//============================================================
+-	script	Trick or Treater::09Treats	706,2,2,{
+OnTouch:
+	hideoffnpc strnpcinfo(3);
+	initnpctimer;
+	mes "[Trick or Treater]";
+	mes "Hooray! hooray! Hooray!";
+	mes "Trick or Treat?";
+	next;
+	if(select("Trick.:Treat.") == 1) {
+		mes "[Trick or Treater]";
+		mes "!!!!";
+		mes "Fine. I have no choice but to trick you back!";
+		sc_start SC_Stun,5000,0;
+		close;
+	}
+	mes "[Trick or Treater]";
+	mes "Oh yay! What kind of treat do you have?";
+	next;
+	switch(select("Candy:Candy Cane:Well-baked Cookie:Nothing")) {
+		case 1:
+			if(countitem(529) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 529,1;	// Candy
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 2:
+			if(countitem(530) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 530,1;	// Candy Cane
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 3:
+			if(countitem(538) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 538,1;	// Well-baked Cookie
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 4:
+			mes "[Trick or Treater]";
+			mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+			mes "Fine. I have no choice but to trick you!";
+			sc_start SC_Stun,5000,0;
+			close;
+	}
+OnInit:
+	hideonnpc "Trick or Treater#iRO1";
+	hideonnpc "Trick or Treater#iRO2";
+	hideonnpc "Trick or Treater#iRO3";
+	hideonnpc "Trick or Treater#iRO4";
+	hideonnpc "Trick or Treater#iRO5";
+	hideonnpc "Trick or Treater#iRO6";
+	hideonnpc "Trick or Treater#iRO7";
+	hideonnpc "Trick or Treater#iRO8";
+	end;
+	
+OnEnableTreat:
+	enablenpc strnpcinfo(3);
+	hideonnpc strnpcinfo(3);
+	end;
+	
+OnTimer15000:
+	hideonnpc strnpcinfo(3);
+	disablenpc strnpcinfo(3);
+	end;
+		
+OnTimer300000:
+	donpcevent strnpcinfo(3)+"::OnEnableTreat";
+	stopnpctimer;
+	end;
+}
+prontera,151,173,5	duplicate(09Treats)	Trick or Treater#iRO1	706,2,2
+prontera,270,350,5	duplicate(09Treats)	Trick or Treater#iRO2	706,2,2
+prontera,234,310,5	duplicate(09Treats)	Trick or Treater#iRO3	706,2,2
+prontera,156,321,5	duplicate(09Treats)	Trick or Treater#iRO4	706,2,2
+prontera,156,283,5	duplicate(09Treats)	Trick or Treater#iRO5	706,2,2
+prontera,142,214,5	duplicate(09Treats)	Trick or Treater#iRO6	706,2,2
+prontera,134,125,5	duplicate(09Treats)	Trick or Treater#iRO7	706,2,2
+prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
+
+// Monster Summoning - Halloween Wizard
+//============================================================
+-	script	Halloween Wizard#iRO09::09HallowWiz	737,{
+	mes "[Halloween Wizard]";
+	mes "...";
+	mes "Do you want to play a trick on someone?";
+	next;
+	while(1) {
+		switch(select("What trick?:Sure:No.")) {
+			case 1:
+				mes "[Halloween Wizard]";
+				mes "I can summon monsters in other parts of the world with just a few materials.";
+				next;
+				mes "[Halloween Wizard]";
+				mes "Sounds interesting huh?";
+				next;
+				mes "[Halloween Wizard]";
+				mes "If you bring me Fabric, Jack o' Pumpkins, Worn Fabric, or Crushed Pumpkins I can summon the monsters.";
+				next;
+				break;
+			case 2:
+				mes "[Halloween Wizard]";
+				mes "Which town do you want to play a trick on?";
+				next;
+				getmapxy(.@mapname$,.@mapx,.@mapy,0,""+strcharinfo(0)+"");
+				if (.@mapname$ == "prontera") {
+					switch(select("Geffen:Payon:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,3;
+							break;
+						case 2:
+							set .@HallowTown,2;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "payon") {
+					switch(select("Prontera:Geffen:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "geffen") {
+					switch(select("Prontera:Payon:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,2;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "alberta") {
+					switch(select("Prontera:Geffen:Payon:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,2;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "aldebaran") {
+					switch(select("Prontera:Geffen:Payon:Alberta")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,2;
+							break;
+						case 4:
+							set .@HallowTown,4;
+							break;
+					}
+				}
+				setarray .@HallowTowns$[1],"prontera","payon","geffen","alberta","aldebaran";
+				mes "[Halloween Wizard]";
+				mes "Ok then let's go to the next step.";
+				next;
+				mes "[Halloween Wizard]";
+				mes "How many Fabrics or Jack o' Pumpkins do you want to use? Don't go over 100 because that is the max amount that I can use.";
+				next;
+				input .@input;
+				if (.@input == 0) {
+					mes "[Halloween Wizard]";
+					mes "You have no definite idea.";
+					mes "It's not a big deal.";
+					mes "Let me know.";
+					next;
+					break;
+				}
+				else if (.@input > 100) {
+					mes "[Halloween Wizard]";
+					mes "I told you that it must be between 1 to 100!";
+					mes "You didn't pay attention!";
+					next;
+					break;
+				}
+				else {
+					set .@fabric,countitem(1059);
+					set .@jack,countitem(1062);
+					set .@worn,countitem(6299);
+					set .@crushed,countitem(6298);
+					set .@whispers,0;
+					set .@darklords,0;
+
+					set .@total,.@fabric + .@jack + .@worn + .@crushed;
+
+					if(.@total < .@input) {
+						mes "[Halloween Wizard]";
+						mes "Recount the number of items you have and tell me the total.";
+						mes "Huhuhuhuhuhu...";
+						next;
+						break;
+					}
+
+					if(.@fabric > 0) {
+						if(.@fabric >= .@input) {
+							delitem 1059,.@input;
+							set .@whispers,.@whispers+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 1059,.@fabric;
+							set .@input,.@input - .@fabric;
+							set .@whispers,.@whispers+.@fabric;
+						}
+					}
+					if(.@worn > 0 && .@input != 0) {
+						if(.@worn >= .@input) {
+							delitem 6299,.@input;
+							set .@whispers,.@whispers+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 6299,.@worn;
+							set .@input,.@input - .@worn;
+							set .@whispers,.@whispers+.@worn;
+						}
+					}
+					if(.@jack > 0 && .@input != 0) {
+						if(.@jack >= .@input) {
+							delitem 1062,.@input;
+							set .@darklords,.@darklords+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 1062,.@jack;
+							set .@input,.@input - .@jack;
+							set .@darklords,.@darklords+.@jack;
+						}
+					}
+					if(.@crushed > 0 && .@input != 0) {
+						if(.@crushed >= .@input) {
+							delitem 6298,.@input;
+							set .@darklords,.@darklords+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 6298,.@crushed;
+							set .@input,.@input - .@crushed;
+							set .@darklords,.@darklords+.@crushed;
+						}
+					}
+					if (.@input > 0) {
+						mes "Theres a problem.";
+						close;
+					}
+					monster ""+.@HallowTowns$[.@HallowTown]+"",0,0,"Halloween Whisper",3014,.@whispers;
+					monster ""+.@HallowTowns$[.@HallowTown]+"",0,0,"Halloween Dark Lord",3015,.@darklords;
+					mes "[Halloween Wizard]";
+					mes "Here's what you wanted.";
+					mes "Imagine what the people must be thinking in the other villages?";
+					mes "Muahahaha";
+					close;
+				}
+			case 3:
+				mes "[Halloween Wizard]";
+				mes "If you change your mind, come back here...";
+				mes "I'll stay here for a while...";
+				mes "Kkkk...";
+				close;
+		}
+	}
+}
+prontera,156,195,5	duplicate(09HallowWiz)	Halloween Wizard#1	737
+geffen,133,122,5	duplicate(09HallowWiz)	Halloween Wizard#2	737
+payon,156,196,5	duplicate(09HallowWiz)	Halloween Wizard#3	737
+alberta,96,57,5	duplicate(09HallowWiz)	Halloween Wizard#4	737
+aldebaran,146,122,5	duplicate(09HallowWiz)	Halloween Wizard#5	737

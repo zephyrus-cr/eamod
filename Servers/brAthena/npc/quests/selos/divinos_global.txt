@@ -1,0 +1,141 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Variáveis globais dos Itens Divinos    |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPC armazenador das variáveis globais.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [CaroLPunk]                         |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+sec_in02,15,170,0	script	Variável Global	817,{
+
+	if (getgmlevel() > 98) {
+		mes "[Verificador]";
+		mes "Escolha um menu.";
+		next;
+		switch(select("Agora.:No.1.:No.2.:No.3.:No.4.:Resetar.")) {
+		case 1:
+			mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
+			mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
+			mes "^0000FF$God3^000000 = ^FF0000" + $God3 + "^000000.";
+			mes "^0000FF$God4^000000 = ^FF0000" + $God4 + "^000000.";
+			close;
+		case 2:
+			input .@input,0,100;
+			mes "[Verificador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Verificador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God1,.@input;
+				mes "$God1 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Verificador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 3:
+			input .@input,0,100;
+			mes "[Verificador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Verificador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God2,.@input;
+				mes "$God2 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Verificador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 4:
+			input .@input,0,100;
+			mes "[Verificador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Verificador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God3,.@input;
+				mes "$God3 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Verificador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 5:
+			input .@input,0,100;
+			mes "[Verificador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Verificador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God4,.@input;
+				mes "$God4 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Verificador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 6:
+			mes "[Verificador]";
+			mes "Você tem certeza de que deseja resetar a lista de Deuses?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Verificador]";
+				mes "Agora, a lista de variáveis de Deuses está sendo resetada.";
+				next;
+				set $God1,0;
+				set $God2,0;
+				set $God3,0;
+				set $God4,0;
+				mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
+				mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
+				mes "^0000FF$God3^000000 = ^FF0000" + $God3 + "^000000.";
+				mes "^0000FF$God4^000000 = ^FF0000" + $God4 + "^000000.";
+				close;
+			}
+			else {
+				mes "[Verificador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Verificador]";
+		mes "Você não pode acessar este NPC.";
+		close;
+	}
+}

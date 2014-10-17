@@ -1,0 +1,47 @@
+8500#Tierra Gorge Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Tierra Gorge. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Tierra Gorge Battle until the time recorded expires.#
+
+8501#Tierra Eye of Storm Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Tierra Eye of Storm. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Tierra Eye of Storm Battle until the time recorded expires.#
+
+8502#Tierra Bossnia Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Tierra Bossnia. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Tierra Bossnia Battle until the time recorded expires.#
+
+8503#Flavius Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Flavius. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Flavius Battle until the time recorded expires.#
+
+8504#Flavius Capture the Flag Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Flavius Capture the Flag. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Flavius Capture the Flag Battle until the time recorded expires.#
+
+8505#Flavius Team DeathMatch Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Flavius Team DeathMatch. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Flavius Team DeathMatch Battle until the time recorded expires.#
+
+8506#Battleground Deserter#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've deserted from a Battleground match. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Battlegrounds until the time recorded expires.#
+
+8507#Flavius Stone Capture Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Flavius Stone Capture. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Flavius Stone Capture Battle until the time recorded expires.#
+
+8508#Tierra Domination Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Tierra Domination. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Tierra Domination Battle until the time recorded expires.#
+
+8509#Castle Conquest Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Castle Conquest. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Castle Conquest Battle until the time recorded expires.#
+
+8510#Castle Rush Battle#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Castle Rush. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Castle Rush Battle until the time recorded expires.#
+
+8511#Tierra Domination#SG_FEEL#QUE_NOIMAGE#
+You have received an indicator showing that you've participated in the Battle at Tierra Domination. Army Officer wouldn't let you participate in any other battles until the indicator goes off.#
+Stand-by for Tierra Domination Battle until the time recorded expires.#

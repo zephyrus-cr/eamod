@@ -1,0 +1,43 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: noexp.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.7/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que desabilita         |
+//   | experiência ganha no mapa.                             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// ================= Locais de quests de classes =================
+//job_thief1	mapflag	noexp
+//job_sword1	mapflag	noexp
+//in_moc_16	mapflag	noexp
+//job_hunte	mapflag	noexp
+//job_knt	mapflag	noexp
+//job_prist	mapflag	noexp
+//job_wiz	mapflag	noexp
+//job_cru	mapflag	noexp
+//monk_test	mapflag	noexp
+//in_rogue	mapflag	noexp
+//job_sage	mapflag	noexp
+//job_soul	mapflag	noexp
+//job_star	mapflag	noexp
+//que_ng	mapflag	noexp
+
+// ======================= Quests Variadas =======================
+// mosk_ship	mapflag	noexp

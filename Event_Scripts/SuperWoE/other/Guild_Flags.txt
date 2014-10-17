@@ -1,0 +1,1278 @@
+/////////////////////////////////////////////////////////////
+// Super WoE
+/////////////////////////////////////////////////////////////
+
+-	script	Engine	-1,{
+	end;
+
+OnInit:
+	// Configurable
+	// ------------- Setting ------------ | ------------ Description ------------
+	set .PartyPerGuild,4;			// Total of invited partys per Guild. Class limitation is apply per party, not per guild.
+
+	set .Allow_2nd,0;			// Allow Second class character creation
+	set .Allow_Exp,0;			// Allow Expanded class character creation
+	set .Allow_Adv,0;			// Allow Advanced class character creation
+	set .Allow_Bab,0;			// Allow Baby class character creation
+	
+	set .Guild_Lvl,49;			// This is the given Base Level to the Guilds. Related with the Guild Skills Points you want to allow.
+	set .Guild_Weapons,1;			// How Many packs of "Combat Knife, Sword Breaker, Mail Breaker and Ice Pick will be given to each Guild.
+	set .Guild_Zeny,5000000;		// How Many Zeny will receive the Guild Master. He will distribute it into the Zeny dependend Class members.
+	set .Guild_UAmmo,0;			// Unlimited Consumibles and Supply for all Guilds.
+
+	set .Allow_Reset,1;			// Allow stats and skill reset. This is not available when the WoE starts.
+	set .WoE_Minutes,120;			// How many minutes will take the WoE Event. You start the event with @agitstart and the script will stop it.
+
+						// Class Limits per Party. Replace values but do not remove columns, as It works directly with the .Classes array.
+	setarray .Class_Limit[0],	2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		2,		1,		2,		1,		1,			2,		1,		2,		2,		2,		2,		2,		2,		2,		2,		2,			2,		2,		2,		2,		2,			2,		2,			2,			2,		2,		2,		2,			2,		2;
+	// ------------------------------------------
+	// Engine - Non configurable
+	// ------------------------------------------
+	setarray .Classes[0],		Job_Knight,	Job_Priest,	Job_Wizard,	Job_Blacksmith,	Job_Hunter,	Job_Assassin,	Job_Crusader,	Job_Monk,	Job_Sage,	Job_Rogue,	Job_Alchemist,	Job_Bard,	Job_Dancer,	Job_Lord_Knight,Job_High_Priest,Job_High_Wizard,Job_Whitesmith,	Job_Sniper,	Job_Assassin_Cross,	Job_Paladin,	Job_Champion,	Job_Professor,	Job_Stalker,	Job_Creator,	Job_Clown,	Job_Gypsy,	Job_Gunslinger,	Job_Ninja,	Job_Taekwon,	Job_Star_Gladiator,	Job_Soul_Linker,Job_Baby_Knight,Job_Baby_Priest,Job_Baby_Wizard,Job_Baby_Blacksmith,	Job_Baby_Hunter,Job_Baby_Assassin,	Job_Baby_Crusader,	Job_Baby_Monk,	Job_Baby_Sage,	Job_Baby_Rogue,	Job_Baby_Alchemist,	Job_Baby_Bard,	Job_Baby_Dancer;
+
+	set .@Class_Count, getarraysize(.Classes);
+	set .Menu$, "";
+
+	for( set .@i, 0; .@i < .@Class_Count; set .@i, .@i + 1 )
+	{
+		if( .@i >= 0 && .@i <= 12 && .Allow_2nd )
+			set .Menu$, .Menu$ + jobname(.Classes[.@i]);
+		else if( .@i >= 13 && .@i <= 25 && .Allow_Adv )
+			set .Menu$, .Menu$ + jobname(.Classes[.@i]);
+		else if( .@i >= 26 && .@i <= 30 && .Allow_Exp )
+			set .Menu$, .Menu$ + jobname(.Classes[.@i]);
+		else if( .@i >= 31 && .@i <= 43 && .Allow_Bab )
+			set .Menu$, .Menu$ + jobname(.Classes[.@i]);
+
+		set .Menu$, .Menu$ + ":";
+	}
+
+	
+
+}
+
+
+-	script	Event_Settings	-1,{
+	end;
+
+OnInit:
+	// Number of Partys per Guild invited to the event
+	set $@PartyPerGuild, 4;
+	set $@MaxGuildMembers, 48;
+
+	// Allowed Classes
+	set $@AllowSecond, 0;
+	set $@AllowExpanded, 1;
+	set $@AllowAdvanced, 1;
+	set $@AllowBaby, 0;
+
+	// Guild Settings
+	set $@Guild_Lvl, 49;
+	set $@Guild_Weapons, 1;
+	set $@Guild_Zeny, 5000000;
+	set $@Guild_UAmmo, 0; // Unlimited Ammo
+
+	// Other Settings
+	set $@AllowResets, 1;
+
+	setarray $@Classes[0]
+		// Second Class
+			,Job_Knight,Job_Priest,Job_Wizard,Job_Blacksmith,Job_Hunter,Job_Assassin,Job_Crusader,Job_Monk,Job_Sage,Job_Rogue,Job_Alchemist,Job_Bard,Job_Dancer
+		// Advanced
+			,Job_Lord_Knight,Job_High_Priest,Job_High_Wizard,Job_Whitesmith,Job_Sniper,Job_Assassin_Cross,Job_Paladin,Job_Champion,Job_Professor,Job_Stalker,Job_Creator,Job_Clown,Job_Gypsy
+		// Expanded Class
+			,Job_Gunslinger,Job_Ninja,Job_Taekwon,Job_Star_Gladiator,Job_Soul_Linker
+		// Baby Second Class
+			,Job_Baby_Knight,Job_Baby_Priest,Job_Baby_Wizard,Job_Baby_Blacksmith,Job_Baby_Hunter,Job_Baby_Assassin,Job_Baby_Crusader,Job_Baby_Monk,Job_Baby_Sage,Job_Baby_Rogue,Job_Baby_Alchemist,Job_Baby_Bard,Job_Baby_Dancer
+		;
+	setarray $@LimitPerParty[0]
+		// Second Class
+			,2,2,2,2,2,2,2,2,2,2,2,2,2
+		// Advanced
+			,2,2,1,2,1,1,2,1,2,2,1,2,2
+		// Expanded Class
+			,2,2,2,2,2
+		// Baby Second Class
+			,2,2,2,2,2,2,2,2,2,2,2,2,2
+		;
+	
+	// Build Menu
+	set .@Limit, getarraysize($@Classes);
+	set $@Menu$, "";
+	for( set .@i, 0; .@i < .@Limit; set .@i, .@i + 1 )
+	{
+		if( .@i >= 0 && .@i <= 12 && $@AllowSecond )
+			set $@Menu$, $@Menu$ + jobname($@Classes[.@i]);
+		else if( .@i >= 13 && .@i <= 25 && $@AllowAdvanced )
+			set $@Menu$, $@Menu$ + jobname($@Classes[.@i]);
+		else if( .@i >= 26 && .@i <= 30 && $@AllowExpanded )
+			set $@Menu$, $@Menu$ + jobname($@Classes[.@i]);
+		else if( .@i >= 31 && .@i <= 43 && $@AllowBaby )
+			set $@Menu$, $@Menu$ + jobname($@Classes[.@i]);
+		
+		set $@Menu$, $@Menu$ + ":";
+	}
+
+	// Supply Per Player
+	setarray $@Item[0],  501,  502,  503,  504,  505,  506,  525,  546,  547,  645,  656,  657,
+			   12016,12118,12119,12120,12121,12004,12005,12006,12007,12008,12009,12010,12011,12012,12013,12014,12015,12183,
+			    1758, 1759, 1760, 1761, 1763, 1764, 1768, 1769,
+			     999,  998, 1002,  756,
+			     523,12020,12114,12115,12116,12117,
+			     717,  716,  715, 7321,
+			    7135, 7136, 7137, 7138, 7139,
+			    1025,  678, 1065, 1771,  514,
+			     984,  985, 7049, 1011, 1019;
+	setarray $@Ammo[0], 1000,  850,  750,  650,  500,   60,   60,  500, 1000,   20,   20,   20,
+			      50,   30,   30,   30,   30,    6,    6,    6,    6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+			     420,  420,  420,  420,  420,  420,  420,  420,
+			      30,    6,    6,    6,
+			      42,   42,   42,   42,   42,   42,
+			     165,  165,  165,  165,
+			     100,  100,  100,  100,  100,
+			      42,   9,   165,   30,   30,
+			      60,   60,   60,   60,   60;
+
+	deletearray $@ItemBlock[0],127;
+	// Ammo Menu
+	set .@Limit, getarraysize($@Item);
+	set $@Items$, "";
+	for( set .@i, 0; .@i < .@Limit; set .@i, .@i + 1 )
+		set $@Items$, $@Items$ + getitemname($@Item[.@i]) + ":";
+	
+	// Refine
+	setarray $@SafeRefine[0],4,7,6,5,4;
+
+	// Ranked Potions
+	setitemscript 501,"{ itemheal rand(67,97),0; }";
+	setitemscript 502,"{ itemheal rand(157,217),0; }";
+	setitemscript 503,"{ itemheal rand(262,352),0; }";
+	setitemscript 504,"{ itemheal rand(487,607),0; }";
+	setitemscript 505,"{ itemheal 0,rand(60,90); }";
+	setitemscript 546,"{ itemheal rand(262,352),0; }";
+	setitemscript 547,"{ itemheal rand(487,607),0; }";
+	
+	if( $@MaxGuildMembers == 0 )
+		set $@MaxGuildMembers, $@PartyPerGuild * 12;
+	end;
+
+OnAgitStart:
+	announce ">>> War of Emperium has begun <<<",0,0xFFFF00;
+	initnpctimer;
+	end;
+
+OnTimer7200000:
+	AgitEnd;
+	end;
+
+OnAgitEnd:
+	stopnpctimer;
+	announce ">>> War of Emperium is over <<<",0,0xFFFF00;
+	end;
+
+OnPCLoginEvent:
+	if( Welcome_Message ) end;
+
+	cutin "kafra_06",2;
+	mes "[ ^FF0000Kafra Staff^000000 ]";
+	mes "^0000FF" + strcharinfo(0) + "^000000, welcome to...";
+	mes "-- ^FFA500Ragnarok Champions Arena^000000";
+	mes " ";
+	mes "Terra Online Tournament Server";
+	mes "Check out our forums at...";
+	mes "-- ^0000FFhttp://foro.terra-gaming.com^000000";
+	next;
+	mes "[ ^FF0000Kafra Staff^000000 ]";
+	mes " ";
+	mes "If you are the lider of one of the participating Guilds in this event, request your ^FFA500Emperium^000000 to any ^FFA500Game Master^000000 to create your guild and proceed with the registration procedure.";
+	next;
+	mes "[ ^FF0000Kafra Staff^000000 ]";
+	mes " ";
+	mes "If you only are a member of a registered guild, search for your Guild Emblem on any of the registration flags. You will need to be on a Guild to get converted into your job and use the guild resources.";
+	next;
+	mes "[ ^FF0000Kafra Staff^000000 ]";
+	mes " ";
+	mes "I will be here if you need more information or help.";
+	close2;
+	cutin "",255;
+	set Welcome_Message, 1;
+	end;
+}
+
+prontera,155,176,4	script	Castle Owner	112,{
+	if( agitcheck() )
+		end;
+	if( set(.@GID,getcharid(2)) == 0 )
+		end;
+	if( GetCastleData("arug_cas02",1) == .@GID )
+		end;
+
+	// Set new owner
+	SetCastleData "arug_cas02",1, .@GID;
+	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
+		SetCastleData "arug_cas02", .@i, 0;
+
+	disablenpc "Kafra Employee#aru02";
+	announce "The [" + getguildname(.@gid) + "] conquered the [Valfreyja 2] stronghold of " + GetCastleName("arug_cas02"),bc_all;
+	donpcevent "Manager#aru02_02::Onreset";
+	MapRespawnGuildID "arug_cas02",GetCastleData("arug_cas02",1),6;
+	GetCastleData "arug_cas02",0,"::OnRecvCastleAr02";
+	end;
+}
+
+prt_are02,152,152,3	script	Kafra Staff	112,{
+	cutin "kafra_06",2;
+	mes "[ ^FF0000Kafra Staff^000000 ]";
+	mes "Hello again, ^0000FF" + strcharinfo(0) + "^000000...";
+	mes "What can i do for you?";
+	next;
+	if( getgmlevel() > 90 )
+	{
+		switch( select("Consumibles Limitados:Consumibes Ilimitados:Bloquear Consumibles:Menú Normal") )
+		{
+			case 1: set $@Guild_UAmmo, 0; // Limited Ammo
+				mes "[ ^FF0000Kafra Staff^000000 ]";
+				mes "Consumibles configurados como Limitados";
+				close;
+			case 2: set $@Guild_UAmmo, 1; // Unlimited Ammo
+				mes "[ ^FF0000Kafra Staff^000000 ]";
+				mes "Consumibles configurados como Ilimitados";
+				close;
+			case 3: mes "[ ^FF0000Kafra Staff^000000 ]";
+				mes "Selecciona el Consumible de la Lista:";
+				next;
+				set .@Option, select($@Items$) - 1;
+				mes "[ ^FF0000Kafra Staff^000000 ]";
+				mes "^0000FF" + getitemname($@Item[.@Option]) + "^000000";
+				mes "Que desea hacer con el Item?";
+				next;
+				set $@ItemBlock[.@Option], select("Permitir Entrega:Denegar Entrega") - 1;
+				mes "[ ^FF0000Kafra Staff^000000 ]";
+				mes "Configuración de Item realizada.";
+				close;
+			case 4: break;
+		}
+	}
+	
+	switch( select("^0000FF(1)^000000 Requeriments to join the event",
+		       "^0000FF(2)^000000 Request Emperium",
+		       "^0000FF(3)^000000 Guild Registration",
+		       "^0000FF(4)^000000 Guild House Information") )
+	{
+	case 1: mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "Please, first register your guild on Terra Online forums to participate on Super WoE.";
+		mes "-- ^0000FFhttp://foro.terra-gaming.com^000000";
+		mes "There is a requeriment of 36 to 48 members to participate.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "You can request here your Emperium to create your guild.";
+		mes "Build a Guild with 11 more players (12 with you), and come here again to receive the ^0000FFRegistration Medal^000000. Each party member need to be online and on this map.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "As a recomendation, build your guild and alliances before Super WoE starts.";
+		break;
+	case 2: mes "[ ^FF0000Kafra Staff^000000 ]";
+		if( class != Job_Novice || BaseLevel > 1 || JobLevel > 1 )
+			mes "Online novice class can receive Emperiums. Maybe you are already registered into another Guild.";
+		else if( getcharid(2) != 0 )
+			mes "You already are on a guild.";
+		else if( Autorized != 0 )
+			mes "You are already registered on another guild.";
+		else if( countitem(714) > 0 )
+			mes "You don't need a Emperium, there is already one on your inventory.";
+		else
+		{
+			mes "Please request a Emperium to a Game Master.";
+			close2;
+			cutin "",255;
+			end;
+
+			/* getitem 714,1;
+			mes "Here is your Emperium. Remember, build a Guild with 11 more members (12 with you) and come back here to receive the ^0000FFRegistration Medal^000000.";
+			next;
+			mes "[ ^FF0000Kafra Staff^000000 ]";
+			mes "Take care of...";
+			mes "- Invite only know people to the guild.";
+			mes "- Players trying to abuse of your guild and your resources for this event.";
+			next;
+			mes "[ ^FF0000Kafra Staff^000000 ]";
+			mes "Good luck, i will wait for you to guild a Guild with 12 members."; */
+		}
+		break;
+	case 3: mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "To receive the ^0000FFRegistration Medal^000000 to place your Guild Emblem into the event and receive access to the Guild House, you need to have a Guild with 12 online members.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "Let's see if you meet the requeriments.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		if( set(.@Guild_ID,getcharid(2)) == 0 )
+			mes "You are not on a Guild. If you need a Emperium, just tell me.";
+		else if( getguildmaster(.@Guild_ID) != strcharinfo(0) )
+			mes "You are not the Guild Master, and he is the only allowed to request the ^0000FFRegistration Medal^000000.";
+		else if( Autorized != 0 )
+			mes "You don't need the Medal, your guild is already registered.";
+		else if( getmapguildusers("prt_are02",.@Guild_ID) < 12 )
+			mes "Your guild don't have enough members to receive the ^0000FFRegistration Medal^000000. Remember, they need to be Online and on this map.";
+		else if( countitem(7773) > 0 )
+			mes "You don't need another ^0000FFRegistration Medal^000000. Check your inventory, there is already one there.";
+		else
+		{
+			getitem 7773,1;
+			mes "Here is the ^0000FFRegistration Medal^000000.";
+			mes "Now go and put your Guild Flag into any of the free guild slots.";
+		}
+		break;
+	case 4:
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "All those Flags around us, the small ones and the big ones, are the Registration Flags for Guilds and allow each guild member to enter the Guild House.";
+		mes "Inside each Guild House are the required tools to prepare a guild for the Event.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "The big flags with a Emblem has been already taken by a Guild.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "The small signs are available flags for new unregistered Guilds.";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "Inside the House you will find:";
+		mes "- Beds (Healer)";
+		mes "- Magic Plant (Reset Stats/Skills)";
+		mes "- Player Storage";
+		mes "- Item Storage (for the Event)";
+		mes "- Equipment (Equip and Card Builder)";
+		mes "- Mirror (to set your cloth and hair style)";
+		next;
+		mes "[ ^FF0000Kafra Staff^000000 ]";
+		mes "Outside the House:";
+		mes "- Repair/Refiner NPC";
+		mes "- Renter (Cart, Pecopeco, Falcon and Homunculus)";
+		mes "- Basket Case (To delete items)";
+		mes "- Arena Warper (to join PVP arenas)";
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+// Registration Flags
+
+function	script	convert_job	{
+	if( Converted != 0 )
+		return;
+		
+	if( getarg(0) >= Job_Lord_Knight && getarg(0) <= Job_Paladin2 )
+		atcommand "@job 4001"; // High Novice
+	else if( getarg(0) >= Job_Baby_Knight && getarg(0) <= Job_Super_Baby )
+		atcommand "@job 4023"; // Baby Novice
+	else
+		atcommand "@job 0"; // Novice
+
+	atcommand "@reset";
+	atcommand "@joblevel 9";
+	atcommand "@baselevel 98";
+
+	switch( getarg(0) )
+	{
+		// ****************
+		// * Baby Classes *
+		// ****************
+		case Job_Baby_Knight:
+			atcommand "@job 4024";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 4030";
+			atcommand "@joblevel 49";
+			skill 1001,1,0;
+			break;
+		case Job_Baby_Priest:
+			atcommand "@job 4027";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 4031";
+			atcommand "@joblevel 49";
+			skill 1014,1,0;
+			break;
+		case Job_Baby_Wizard:
+			atcommand "@job 4025";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 4032";
+			atcommand "@joblevel 49";
+			skill 1006,1,0;
+			break;
+		case Job_Baby_Blacksmith:
+			atcommand "@job 4028";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 4033";
+			atcommand "@joblevel 49";
+			skill 1012,1,0;
+			skill 1013,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Baby_Hunter:
+			atcommand "@job 4026";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4034";
+			atcommand "@joblevel 49";
+			skill 1009,1,0;
+			break;
+		case Job_Baby_Assassin:
+			atcommand "@job 4029";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 4035";
+			atcommand "@joblevel 49";
+			skill 1003,1,0;
+			skill 1004,1,0;
+			break;
+		case Job_Baby_Crusader:
+			atcommand "@job 4024";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 4037";
+			atcommand "@joblevel 49";
+			skill 1002,1,0;
+			break;
+		case Job_Baby_Monk:
+			atcommand "@job 4027";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 4038";
+			atcommand "@joblevel 49";
+			skill 1015,1,0;
+			skill 1016,1,0;
+			break;
+		case Job_Baby_Sage:
+			atcommand "@job 4025";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 4039";
+			atcommand "@joblevel 49";
+			skill 1007,1,0;
+			break;
+		case Job_Baby_Rogue:
+			atcommand "@job 4029";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 4040";
+			atcommand "@joblevel 49";
+			skill 1005,1,0;
+			break;
+		case Job_Baby_Alchemist:
+			atcommand "@job 4028";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 4041";
+			atcommand "@joblevel 49";
+			skill 238,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Baby_Bard:
+			atcommand "@job 4026";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4042";
+			atcommand "@joblevel 49";
+			skill 1010,1,0;
+			break;
+		case Job_Baby_Dancer:
+			atcommand "@job 4026";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4043";
+			atcommand "@joblevel 49";
+			skill 1011,1,0;
+			break;
+		// ******************
+		// * Second Classes *
+		// ******************
+		case Job_Knight:
+			atcommand "@job 1";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 7";
+			atcommand "@joblevel 49";
+			skill 1001,1,0;
+			break;
+		case Job_Priest:
+			atcommand "@job 4";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 8";
+			atcommand "@joblevel 49";
+			skill 1014,1,0;
+			break;
+		case Job_Wizard:
+			atcommand "@job 2";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 9";
+			atcommand "@joblevel 49";
+			skill 1006,1,0;
+			break;
+		case Job_Blacksmith:
+			atcommand "@job 5";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 10";
+			atcommand "@joblevel 49";
+			skill 1012,1,0;
+			skill 1013,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Hunter:
+			atcommand "@job 3";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 11";
+			atcommand "@joblevel 49";
+			skill 1009,1,0;
+			break;
+		case Job_Assassin:
+			atcommand "@job 6";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 12";
+			atcommand "@joblevel 49";
+			skill 1003,1,0;
+			skill 1004,1,0;
+			break;
+		case Job_Crusader:
+			atcommand "@job 1";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 14";
+			atcommand "@joblevel 49";
+			skill 1002,1,0;
+			break;
+		case Job_Monk:
+			atcommand "@job 4";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 15";
+			atcommand "@joblevel 49";
+			skill 1015,1,0;
+			skill 1016,1,0;
+			break;
+		case Job_Sage:
+			atcommand "@job 2";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 16";
+			atcommand "@joblevel 49";
+			skill 1007,1,0;
+			break;
+		case Job_Rogue:
+			atcommand "@job 6";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 17";
+			atcommand "@joblevel 49";
+			skill 1005,1,0;
+			break;
+		case Job_Alchemist:
+			atcommand "@job 5";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 18";
+			atcommand "@joblevel 49";
+			skill 238,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Bard:
+			atcommand "@job 3";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 19";
+			atcommand "@joblevel 49";
+			skill 1010,1,0;
+			break;
+		case Job_Dancer:
+			atcommand "@job 3";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 20";
+			atcommand "@joblevel 49";
+			skill 1011,1,0;
+			break;
+		// ********************
+		// * Advanced Classes *
+		// ********************
+		case Job_Lord_Knight:
+		case Job_Lord_Knight2:
+			atcommand "@job 4002";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 4008";
+			atcommand "@joblevel 69";
+			skill 1001,1,0;
+			break;
+		case Job_High_Priest:
+			atcommand "@job 4005";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 4009";
+			atcommand "@joblevel 69";
+			skill 1014,1,0;
+			break;
+		case Job_High_Wizard:
+			atcommand "@job 4003";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 4010";
+			atcommand "@joblevel 69";
+			skill 1006,1,0;
+			break;
+		case Job_Whitesmith:
+			atcommand "@job 4006";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 4011";
+			atcommand "@joblevel 69";
+			skill 1012,1,0;
+			skill 1013,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Sniper:
+			atcommand "@job 4004";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4012";
+			atcommand "@joblevel 69";
+			skill 1009,1,0;
+			break;
+		case Job_Assassin_Cross:
+			atcommand "@job 4007";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 4013";
+			atcommand "@joblevel 69";
+			skill 1003,1,0;
+			skill 1004,1,0;
+			break;
+		case Job_Paladin:
+		case Job_Paladin2:
+			atcommand "@job 4002";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			atcommand "@job 4015";
+			atcommand "@joblevel 69";
+			skill 1002,1,0;
+			break;
+		case Job_Champion:
+			atcommand "@job 4005";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 156,1,0;
+			atcommand "@job 4016";
+			atcommand "@joblevel 69";
+			skill 1015,1,0;
+			skill 1016,1,0;
+			break;
+		case Job_Professor:
+			atcommand "@job 4003";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 157,1,0;
+			atcommand "@job 4017";
+			atcommand "@joblevel 69";
+			skill 1007,1,0;
+			break;
+		case Job_Stalker:
+			atcommand "@job 4007";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			atcommand "@job 4018";
+			atcommand "@joblevel 69";
+			skill 1005,1,0;
+			break;
+		case Job_Creator:
+			atcommand "@job 4006";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			atcommand "@job 4019";
+			atcommand "@joblevel 69";
+			skill 238,1,0;
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Clown:
+			atcommand "@job 4004";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4020";
+			atcommand "@joblevel 69";
+			skill 1010,1,0;
+			break;
+		case Job_Gypsy:
+			atcommand "@job 4004";
+			atcommand "@joblevel 49";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			atcommand "@job 4021";
+			atcommand "@joblevel 69";
+			skill 1011,1,0;
+			break;
+		// *******************
+		// * Expaned Classes *
+		// *******************
+		case Job_Star_Gladiator:
+			atcommand "@job 4046";
+			atcommand "@joblevel 49";
+			atcommand "@job 4047";
+			atcommand "@joblevel 49";
+			break;
+		case Job_Soul_Linker:
+			atcommand "@job 4046";
+			atcommand "@joblevel 49";
+			atcommand "@job 4049";
+			atcommand "@joblevel 49";
+			break;
+		case Job_Gunslinger:
+			atcommand "@job 24";
+			atcommand "@joblevel 49";
+			break;
+		case Job_Ninja:
+			atcommand "@job 25";
+			atcommand "@joblevel 49";
+			set Zeny, Zeny + 10000000;
+			break;
+		case Job_Taekwon:
+			atcommand "@job 4046";
+			atcommand "@joblevel 49";
+			break;
+	}
+	
+	set Converted, 1;
+	return;
+}
+
+function	script	Guild_Register	{
+	if( set(.@Guild_ID, getcharid(2)) == 0 )
+	{
+		mes "[Registration Flag]";
+		mes "Only members of autorized Guilds can be converted into their Jobs or check the Flag information.";
+	}
+	else if( getvariableofnpc(.Guild_ID,getarg(0)) == 0 && Autorized == 0 )
+	{
+		if( getguildmaster(.@Guild_ID) == strcharinfo(0) )
+		{
+			if( countitem(7773) < 1 )
+			{
+				mes "[Registration Flag]";
+				mes "You don't have a ^0000FFRegistration Medal^000000. It's required to register your guild.";
+				mes "More information on Kafra Staff.";
+				close;
+			}
+
+			// NPC Data
+			// ***********************************************************
+			flagemblem .@Guild_ID,getarg(0);
+			flagemblem .@Guild_ID,"GuildRoom" + getarg(1);
+			flagemblem .@Guild_ID,"GuildHouse" + getarg(1);
+			set getvariableofnpc(.Guild_ID,getarg(0)), .@Guild_ID;
+			setnpcdisplay getarg(0), getguildname(.@Guild_ID), 722;
+
+			// Guild Data
+			// ***********************************************************
+			if( $@Guild_Lvl )
+				atcommand "@guildlevel " + $@Guild_Lvl;
+			
+			set getvariableofnpc(.Members,getarg(0)), $@MaxGuildMembers; // Control of Available Slots
+			set getvariableofnpc(.Converted,getarg(0)), 0; // Count of Converted Members
+			set getvariableofnpc(.ItemCount,getarg(0)), 0; // Count of Received Items (to control abuse)
+			set getvariableofnpc(.Weapons,getarg(0)), 0;
+
+			if( $@Guild_Zeny > 0 )
+				set Zeny, Zeny + $@Guild_Zeny;
+			set .@k, getarraysize($@LimitPerParty);
+			for( set .@i, 0; .@i < .@k; set .@i, .@i + 1 )
+				set getvariableofnpc(.Jobs[.@i],getarg(0)), $@LimitPerParty[.@i] * $@PartyPerGuild;
+			
+			// Ammo Settings
+			set .@k, getarraysize($@Item);
+			for( set .@i, 0; .@i < .@k; set .@i, .@i + 1 )
+				set getvariableofnpc(.Ammo[.@i],"GuildAmmo" + getarg(1)), 0;
+
+			announce "[" + strcharinfo(0) + "] has registered the Guild [" + getguildname(.@Guild_ID) + "]",0,0x00CCFF;
+			misceffect 537;
+			misceffect 259;
+
+			// Character Data
+			// ***********************************************************
+			set Autorized, 1;
+			save "rentinb" + getarg(1), 31, 12;
+
+			mes "[Registration Flag]";
+			mes "Congratulations, you have registered your Guild in this Tournament.";
+			mes "Now, each guild member and you, talk to me to choose your Class.";
+			next;
+			mes "[Registration Flag]";
+			mes "You Guild has received " + $@Guild_Lvl + " levels to allow you to configure all Guild Skills and invite the rest of the Members.";
+			mes "Each Registered and Converted member will increase your inventory for the Event.";
+		}
+		else
+		{
+			mes "[Registration Flag]";
+			mes "Only the Guild Master can register their Guild in a free flag.";
+		}
+	}
+	else if( .@Guild_ID == getvariableofnpc(.Guild_ID,getarg(0)) )
+	{
+		if( Converted )
+		{
+			if( Guild_ID != .@Guild_ID )
+			{
+				mes "[Registration Flag]";
+				mes "This is not your original registration flag. Sorry, return to your original guild.";
+				close;
+			}
+
+			mes "[Registration Flag]";
+			mes "Do you want to enter to the Guild House?";
+			next;
+			if( getguildmaster(.@Guild_ID) == strcharinfo(0) )
+				set .@Menu, select("Yes, warp me inside:No, thanks:^0000FFGuild Leader Options^000000");
+			else
+				set .@Menu, select("Yes, warp me inside:No, thanks");
+			
+			if( .@Menu == 2 )
+			{ // Cancel
+				mes "[Registration Flag]";
+				mes "Enjoy the Battle.";
+				close;
+			}
+			else if( .@Menu == 3 )
+			{
+				mes "[Registration Flag]";
+				mes "This is the Guild Leader Menu.";
+				mes "What do you want to do?";
+				next;
+
+				switch( select( "Request Special Weapons","Transfer my Guild Leader position","Remove Guild Members" ) )
+				{
+					case 1:
+						mes "[Registration Flag]";
+						mes "To receive the Guild Weapons, at least 50% of the total of invited players per guild need to be already registered and transformed into their classes.";
+						next;
+						if( $@Guild_Weapons == 0 )
+						{
+							mes "[Registration Flag]";
+							mes "I am sorry, this event don't allow Guild Weapons.";
+							close;
+						}
+						if( getvariableofnpc(.Weapons,getarg(0)) != 0 )
+						{
+							mes "[Registration Flag]";
+							mes "Your guild has already received the Guild Weapons.";
+							close;
+						}
+
+						if( getvariableofnpc(.Converted,getarg(0)) < ($@PartyPerGuild * 6) )
+						{
+							mes "[Registration Flag]";
+							mes "Your Guild has already registered " + getvariableofnpc(.Converted,getarg(0)) + " members.";
+							mes "You need at least " + ($@PartyPerGuild * 6) + " members to receive the Weapons.";
+							close;
+						}
+
+						getitem2 1228,1,1,4,0,0,0,0,0; // Combat Knife
+						getitem2 1224,1,1,4,0,0,0,0,0; // Sword Breaker
+						getitem2 1225,1,1,4,0,0,0,0,0; // Mail Breaker
+						getitem2 1230,1,1,4,0,0,0,0,0; // Ice Pick
+						set getvariableofnpc(.Weapons,getarg(0)), 1;
+						mes "[Registration Flag]";
+						mes "Here are your Guild Weapons. Only this equipment can be traded with other players, so choose who inside your Guild are going to use it.";
+						break;
+					case 2:
+						mes "[Registration Flag]";
+						mes "Who will be the new Guild Leader?";
+						mes "This player need to be Online.";
+						next;
+
+						set .@Members$, "";
+						for( set .@i, 0; getvariableofnpc(.Char_ID[.@i],getarg(0)) != 0 && .@i < 127; set .@i, .@i + 1 )
+							set .@Members$, .@Members$ + getvariableofnpc(.Char_Name$[.@i],getarg(0)) + ":";
+
+						set .@Menu, select(.@Members$) - 1;
+						set .@NewGL$, getvariableofnpc(.Char_Name$[.@Menu],getarg(0));
+
+						if( strcharinfo(0) == .@NewGL$ )
+						{
+							mes "[Registration Flag]";
+							mes "No changes where done.";
+							close;
+						}
+
+						mes "[Registration Flag]";
+						mes "You are going to transfer your Guild Leader position to ^0000FF" + .@NewGL$ + "^000000.";
+						next;
+
+						if( select("Proceed:Cancel") == 2 )
+						{
+							mes "[Registration Flag]";
+							mes "No changes where done.";
+							close;
+						}
+
+						if( agitcheck() )
+						{
+							mes "[Registration Flag]";
+							mes "You cannot transfer the Guild on WoE time.";
+							close;
+						}
+
+						atcommand "@changegm " + .@NewGL$ + "";
+						mes "[Registration Flag]";
+						mes "The change has been requested to the Server.";
+						mes "If there is a mistake, maybe the destination player is not online.";
+						mes "If the changes where done, please, both players, you and the new Guild Leader, restart your games (logout/login).";
+						break;
+					case 3:
+						mes "[Registration Flag]";
+						mes "This is the list of your registered Guild Members.";
+						mes "Please choose the member you are going to remove.";
+						next;
+						mes "[Registration Flag]";
+						mes "WARNING:";
+						mes "- The player will be banned from the server.";
+						mes "- A new account will be required if he wants to join again.";
+						mes "- The character name will not be available anymore.";
+						mes "- Remember to take any usable/healing item the user have in their account first.";
+						next;
+						set .@Menu$, "";
+						for( set .@i, 0; getvariableofnpc(.Char_ID[.@i],getarg(0)) != 0 && .@i < 127; set .@i, .@i + 1 )
+						{
+							set .@j, getvariableofnpc(.Char_Job[.@i],getarg(0));
+							set .@Menu$, .@Menu$ + getvariableofnpc(.Char_Name$[.@i],getarg(0)) + " [" + jobname($@Classes[.@j]) + "]:";
+						}
+
+						set .@Index, select(.@Menu$) - 1;
+						set .@Name$, getvariableofnpc(.Char_Name$[.@Index],getarg(0));
+						set .@Job, getvariableofnpc(.Char_Job[.@Index],getarg(0));
+						
+						mes "[Registration Flag]";
+						mes "Do you really want to remove the selected member?";
+						next;
+						if( select("Remove it:Cancel") == 2 )
+						{
+							mes "[Registration Flag]";
+							mes "No changes where done...";
+							close;
+						}
+
+						if( .@Name$ == strcharinfo(0) )
+						{
+							mes "[Registration Flag]";
+							mes "You cannot remove yourself from the Guild.";
+							close;
+						}
+						
+						atcommand "@block " + .@Name$ + "";
+						set getvariableofnpc(.Members,getarg(0)), getvariableofnpc(.Members,getarg(0)) + 1;
+						set getvariableofnpc(.Converted,getarg(0)), getvariableofnpc(.Converted,getarg(0)) - 1;
+						set getvariableofnpc(.Jobs[.@Job],getarg(0)), getvariableofnpc(.Jobs[.@Job],getarg(0)) + 1;
+
+						for( set .@i, .@Index; getvariableofnpc(.Char_ID[.@i],getarg(0)) != 0; set .@i, .@i + 1 )
+						{
+							set getvariableofnpc(.Char_ID[.@i],getarg(0)), getvariableofnpc(.Char_ID[.@i + 1],getarg(0));
+							set getvariableofnpc(.Char_Name$[.@i],getarg(0)), getvariableofnpc(.Char_Name$[.@i + 1],getarg(0));
+							set getvariableofnpc(.Char_Job[.@i],getarg(0)), getvariableofnpc(.Char_Job[.@i + 1],getarg(0));
+						}
+						
+						mes "[Registration Flag]";
+						mes "The user has been removed from the guild.";
+						mes "The slot is available again (for members and class)";
+						break;
+				}
+				close;
+			}
+
+			mes "[Registration Flag]";
+			mes "Close this conversation to be warped into the House.";
+			close2;
+			warp "rentb" + getarg(1) + "",24,6;
+			end;
+		}
+		else
+		{
+			mes "[Registration Flag]";
+			mes "Are you ready to be transformed into the Class you are going to use in the Event?.";
+			next;
+			set .@Job, select($@Menu$) - 1;
+
+			mes "[Registration Flag]";
+			mes "You choose ^0000FF" + jobname($@Classes[.@Job]) + "^000000.";
+			mes "Please, think about it. Next button will be available in 10 seconds.";
+			sleep2 10000;
+			mes "Are you sure about your selection?";
+			next;
+			if( select("^0000FFYes, i am sure^000000:No, sorry... I will choose another Class.") == 2 )
+			{
+				mes "[Registration Flag]";
+				mes "No changes done.";
+				close;
+			}
+			if( getvariableofnpc(.Jobs[.@Job],getarg(0)) < 1 )
+			{
+				mes "[Registration Flag]";
+				mes "There are no more free slots for this Class.";
+				close;
+			}
+			if( ($@Classes[.@Job] == Job_Bard || $@Classes[.@Job] == Job_Clown || $@Classes[.@Job] == Job_Baby_Bard) && Sex == 0 )
+			{
+				mes "[Registration Flag]";
+				mes "The selected class is not available for your gender.";
+				close;
+			}
+			if( ($@Classes[.@Job] == Job_Dancer || $@Classes[.@Job] == Job_Gypsy || $@Classes[.@Job] == Job_Baby_Dancer) && Sex == 1 )
+			{
+				mes "[Registration Flag]";
+				mes "The selected class is not available for your gender.";
+				close;
+			}
+			if( getvariableofnpc(.Members,getarg(0)) < 1 )
+			{
+				mes "[Registration Flag]";
+				mes "There are no more free slots for the Guild.";
+				close;
+			}
+
+			callfunc "convert_job",$@Classes[.@Job];
+			if( Converted )
+			{
+				if( !Autorized )
+				{
+					set Autorized, 1;
+					save "rentinb" + getarg(1), 31, 12;
+					announce "[" + strcharinfo(0) + "] has joined the Guild [" + getguildname(.@Guild_ID) + "]",0,0xCC9900;
+				}
+
+				mes "[Registration Flag]";
+				mes "How you are ready. Talk to me again if you want to enter the Guild House.";
+				
+				// Data Update
+				set getvariableofnpc(.Jobs[.@Job],getarg(0)), getvariableofnpc(.Jobs[.@Job],getarg(0)) - 1;
+				set getvariableofnpc(.Members,getarg(0)), getvariableofnpc(.Members,getarg(0)) - 1;
+				set getvariableofnpc(.Converted,getarg(0)), getvariableofnpc(.Converted,getarg(0)) + 1;
+
+				// Increase Consumible Items
+				if( getvariableofnpc(.ItemCount,getarg(0)) < getvariableofnpc(.Converted,getarg(0)) )
+				{
+					set getvariableofnpc(.ItemCount,getarg(0)), getvariableofnpc(.ItemCount,getarg(0)) + 1;
+
+					set .@k, getarraysize($@Item);
+					for( set .@i, 0; .@i < .@k; set .@i, .@i + 1 )
+						set getvariableofnpc(.Ammo[.@i],"GuildAmmo" + getarg(1)), getvariableofnpc(.Ammo[.@i],"GuildAmmo" + getarg(1)) + (($@Ammo[.@i] * 2) / 1);
+				}
+
+				set Guild_ID, .@Guild_ID; // Stores Guild ID
+				
+				for( set .@i, 0; getvariableofnpc(.Char_ID[.@i],getarg(0)) != 0 && .@i < 127; set .@i, .@i + 1 )
+					; // Search a Free Slot
+				if( .@i < 127 )
+				{ // Store Char Info
+					set getvariableofnpc(.Char_ID[.@i],getarg(0)), getcharid(0);
+					set getvariableofnpc(.Char_Name$[.@i],getarg(0)), strcharinfo(0);
+					set getvariableofnpc(.Char_Job[.@i],getarg(0)), .@Job; // Index to job.
+				}
+			}
+			else
+			{
+				mes "[Registration Flag]";
+				mes "There was a problem while trying to convert you into the selected Class. Please try again.";
+			}
+		}
+	}
+	else
+	{
+		if( getvariableofnpc(.Guild_ID,getarg(0)) )
+		{
+			mes "^FFA500* " + getguildname(getvariableofnpc(.Guild_ID,getarg(0))) + " *^000000";
+			for( set .@i, 0; getvariableofnpc(.Char_ID[.@i],getarg(0)) != 0 && .@i < 127; set .@i, .@i + 1 )
+			{ // Guild Members Info
+				set .@j, getvariableofnpc(.Char_Job[.@i],getarg(0));
+				mes "" + getvariableofnpc(.Char_Name$[.@i],getarg(0)) + "";
+				mes "^FFFFFF_____^000000[^0000FF" + jobname($@Classes[.@j]) + "^000000]";
+			}
+
+			if( getgmlevel() > 90 )
+			{
+				next;
+				mes "[Registration Flag]";
+				mes "Game Master, deseas accesar la Casa Privada de la guild?";
+				next;
+				if( select("Si, enviame ahora:No Gracias") == 2 )
+				{
+					mes "[Registration Flag]";
+					mes "Suerte con la organización.";
+					close;
+				}
+
+				mes "[Registration Flag]";
+				mes "Cierra esta conversación para ser enviado.";
+				close2;
+				warp "rentb" + getarg(1) + "",24,6;
+				end;
+			}
+		}
+		else
+		{
+			mes "[Registration Flag]";
+			mes "This is not your Guild Flag.";
+			mes "Your guild is already registered in another flag.";
+		}
+	}
+	close;
+}
+
+prt_are02,132,152,6	script	Champions#1::GFlag1	837,{ callfunc "Guild_Register",strnpcinfo(3),1; }
+prt_are02,132,147,6	script	Champions#2::GFlag2	837,{ callfunc "Guild_Register",strnpcinfo(3),2; }
+prt_are02,167,152,2	script	Champions#3::GFlag3	837,{ callfunc "Guild_Register",strnpcinfo(3),3; }
+prt_are02,167,147,2	script	Champions#4::GFlag4	837,{ callfunc "Guild_Register",strnpcinfo(3),4; }
+prt_are02,152,132,0	script	Champions#5::GFlag5	837,{ callfunc "Guild_Register",strnpcinfo(3),5; }
+prt_are02,147,132,0	script	Champions#6::GFlag6	837,{ callfunc "Guild_Register",strnpcinfo(3),6; }
+prt_are02,152,167,4	script	Champions#7::GFlag7	837,{ callfunc "Guild_Register",strnpcinfo(3),7; }
+prt_are02,147,167,4	script	Champions#8::GFlag8	837,{ callfunc "Guild_Register",strnpcinfo(3),8; }
+prt_are02,133,156,6	script	Champions#9::GFlag9	837,{ callfunc "Guild_Register",strnpcinfo(3),9; }
+prt_are02,133,143,6	script	Champions#10::GFlag10	837,{ callfunc "Guild_Register",strnpcinfo(3),10; }
+prt_are02,166,156,2	script	Champions#11::GFlag11	837,{ callfunc "Guild_Register",strnpcinfo(3),11; }
+prt_are02,166,143,2	script	Champions#12::GFlag12	837,{ callfunc "Guild_Register",strnpcinfo(3),12; }
+prt_are02,156,133,0	script	Champions#13::GFlag13	837,{ callfunc "Guild_Register",strnpcinfo(3),13; }
+prt_are02,143,133,0	script	Champions#14::GFlag14	837,{ callfunc "Guild_Register",strnpcinfo(3),14; }
+prt_are02,156,166,4	script	Champions#15::GFlag15	837,{ callfunc "Guild_Register",strnpcinfo(3),15; }
+prt_are02,143,166,4	script	Champions#16::GFlag16	837,{ callfunc "Guild_Register",strnpcinfo(3),16; }
+prt_are02,135,160,5	script	Champions#17::GFlag17	837,{ callfunc "Guild_Register",strnpcinfo(3),17; }
+prt_are02,139,164,5	script	Champions#18::GFlag18	837,{ callfunc "Guild_Register",strnpcinfo(3),18; }
+prt_are02,160,164,3	script	Champions#19::GFlag19	837,{ callfunc "Guild_Register",strnpcinfo(3),19; }
+prt_are02,164,160,3	script	Champions#20::GFlag20	837,{ callfunc "Guild_Register",strnpcinfo(3),20; }
+prt_are02,160,135,1	script	Champions#21::GFlag21	837,{ callfunc "Guild_Register",strnpcinfo(3),21; }
+prt_are02,164,139,1	script	Champions#22::GFlag22	837,{ callfunc "Guild_Register",strnpcinfo(3),22; }
+prt_are02,135,139,7	script	Champions#23::GFlag23	837,{ callfunc "Guild_Register",strnpcinfo(3),23; }
+prt_are02,139,135,7	script	Champions#24::GFlag24	837,{ callfunc "Guild_Register",strnpcinfo(3),24; }
+prt_are02,125,152,6	script	Champions#25::GFlag25	837,{ callfunc "Guild_Register",strnpcinfo(3),25; }
+prt_are02,126,157,6	script	Champions#26::GFlag26	837,{ callfunc "Guild_Register",strnpcinfo(3),26; }
+prt_are02,128,161,5	script	Champions#27::GFlag27	837,{ callfunc "Guild_Register",strnpcinfo(3),27; }
+prt_are02,130,164,5	script	Champions#28::GFlag28	837,{ callfunc "Guild_Register",strnpcinfo(3),28; }
+prt_are02,132,167,5	script	Champions#29::GFlag29	837,{ callfunc "Guild_Register",strnpcinfo(3),29; }
+prt_are02,135,169,5	script	Champions#30::GFlag30	837,{ callfunc "Guild_Register",strnpcinfo(3),30; }
+prt_are02,138,171,5	script	Champions#31::GFlag31	837,{ callfunc "Guild_Register",strnpcinfo(3),31; }
+prt_are02,142,173,4	script	Champions#32::GFlag32	837,{ callfunc "Guild_Register",strnpcinfo(3),32; }
+prt_are02,147,174,4	script	Champions#33::GFlag33	837,{ callfunc "Guild_Register",strnpcinfo(3),33; }
+prt_are02,152,174,4	script	Champions#34::GFlag34	837,{ callfunc "Guild_Register",strnpcinfo(3),34; }
+prt_are02,157,173,4	script	Champions#35::GFlag35	837,{ callfunc "Guild_Register",strnpcinfo(3),35; }
+prt_are02,161,171,3	script	Champions#36::GFlag36	837,{ callfunc "Guild_Register",strnpcinfo(3),36; }
+prt_are02,164,169,3	script	Champions#37::GFlag37	837,{ callfunc "Guild_Register",strnpcinfo(3),37; }
+prt_are02,167,167,3	script	Champions#38::GFlag38	837,{ callfunc "Guild_Register",strnpcinfo(3),38; }
+prt_are02,169,164,3	script	Champions#39::GFlag39	837,{ callfunc "Guild_Register",strnpcinfo(3),39; }
+prt_are02,171,161,3	script	Champions#40::GFlag40	837,{ callfunc "Guild_Register",strnpcinfo(3),40; }
+prt_are02,173,157,2	script	Champions#41::GFlag41	837,{ callfunc "Guild_Register",strnpcinfo(3),41; }
+prt_are02,174,152,2	script	Champions#42::GFlag42	837,{ callfunc "Guild_Register",strnpcinfo(3),42; }
+prt_are02,174,147,2	script	Champions#43::GFlag43	837,{ callfunc "Guild_Register",strnpcinfo(3),43; }
+prt_are02,173,142,2	script	Champions#44::GFlag44	837,{ callfunc "Guild_Register",strnpcinfo(3),44; }
+prt_are02,171,138,1	script	Champions#45::GFlag45	837,{ callfunc "Guild_Register",strnpcinfo(3),45; }
+prt_are02,169,135,1	script	Champions#46::GFlag46	837,{ callfunc "Guild_Register",strnpcinfo(3),46; }
+prt_are02,167,132,1	script	Champions#47::GFlag47	837,{ callfunc "Guild_Register",strnpcinfo(3),47; }
+prt_are02,164,130,1	script	Champions#48::GFlag48	837,{ callfunc "Guild_Register",strnpcinfo(3),48; }
+prt_are02,161,128,1	script	Champions#49::GFlag49	837,{ callfunc "Guild_Register",strnpcinfo(3),49; }
+prt_are02,157,126,0	script	Champions#50::GFlag50	837,{ callfunc "Guild_Register",strnpcinfo(3),50; }
+prt_are02,152,125,0	script	Champions#51::GFlag51	837,{ callfunc "Guild_Register",strnpcinfo(3),51; }
+prt_are02,147,125,0	script	Champions#52::GFlag52	837,{ callfunc "Guild_Register",strnpcinfo(3),52; }
+prt_are02,142,126,0	script	Champions#53::GFlag53	837,{ callfunc "Guild_Register",strnpcinfo(3),53; }
+prt_are02,138,128,7	script	Champions#54::GFlag54	837,{ callfunc "Guild_Register",strnpcinfo(3),54; }
+prt_are02,135,130,7	script	Champions#55::GFlag55	837,{ callfunc "Guild_Register",strnpcinfo(3),55; }
+prt_are02,132,132,7	script	Champions#56::GFlag56	837,{ callfunc "Guild_Register",strnpcinfo(3),56; }
+prt_are02,130,135,7	script	Champions#57::GFlag57	837,{ callfunc "Guild_Register",strnpcinfo(3),57; }
+prt_are02,128,138,7	script	Champions#58::GFlag58	837,{ callfunc "Guild_Register",strnpcinfo(3),58; }
+prt_are02,126,142,6	script	Champions#59::GFlag59	837,{ callfunc "Guild_Register",strnpcinfo(3),59; }
+prt_are02,125,147,6	script	Champions#60::GFlag60	837,{ callfunc "Guild_Register",strnpcinfo(3),60; }

@@ -1,0 +1,110 @@
+Ceres Control Panel
+=================================================================
+By Beowulf and Dekamaster
+=================================================================
+
+PLEASE READ CAREFULLY THE FOLLOWING INSTRUCTIONS. IF YOU DO THIS,
+YOU WILL HAVE YOUR CP UP AND RUNNING IN JUST A FEW MINUTES.
+
+
+-----------------------------------------------------------------
+System Requirements
+-----------------------------------------------------------------
+-- Web Server with PHP support (IIS or Apache http://www.apache.org)
+
+-- PHP module version 4.1.x or better with MySQL, Session, 
+    and gd library support enabled (recommended) (http://www.php.net)
+
+-- MySQL database server (http://www.mysql.com)
+
+-----------------------------------------------------------------
+Installing 
+-----------------------------------------------------------------
+*** Make sure the System Requirements are met.
+
+1. Unzip the package into your web site directory.
+
+2. Create a user with access to ragnarok and cp databases. 
+
+3. Set write access to apache write in ./install folder
+
+4. Run ./install/install.php
+
+//Optional
+
+5. Check /db/castles.txt to see if the castles names in cp, match the names
+of your server.
+
+-----------------------------------------------------------------
+Upgrading from Previous Versions of Ceres CP
+-----------------------------------------------------------------
+IMPORTANT: Remember to always backup your database before any 
+upgrade -- just in case.
+
+1. Rename your config.php file to config.old.php or something 
+like that so you can look at it when entering settings in the new 
+config.php file.
+
+2. Copy all the new files over your old ones including the subdirectories.
+
+3. Edit the new config.php to contain the settings you want.  
+Check all the paths are updated.
+
+4. IMPORTANT: To upgrade a previous Ceres CP installation 
+to a new version you need to select the correct upgrade file 
+from the upgrades directory (if there is one).  Place the upgrade
+file in your web root with your config.php file and launch your web
+browser to that file:
+
+    http://www.yourdomain.com/upgrade15_20.php
+    
+All the database changes will be added and updated automatically. 
+You should delete the upgrade PHP file after it has run and performed
+the upgrade.
+
+-----------------------------------------------------------------
+Known Issues
+-----------------------------------------------------------------
+Please check the site at: http://cerescp.sourceforge.net/
+
+-----------------------------------------------------------------
+Ceres CP Features 
+-----------------------------------------------------------------
+Ceres CP is an easy to use Control Panel for Athena, Freya, Nezumi. Featuring:
+
+* Ajax Based system, to speed up queries
+* Divorce System
+* Player Ladder
+* Guild Ladder
+* Zenny Ladder
+* Password Change
+* E-Mail Change
+* Money Transfer
+* Slot Changer
+* Who is Online
+* About with statistics from the server
+* Reset Position
+* Reset Look
+* More to come!
+
+-----------------------------------------------------------------
+Is Ceres CP Open Source? 
+-----------------------------------------------------------------
+YES, use it, modify it, but please always give credit.
+
+Ceres CP is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+Ceres CP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Ceres CP; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+To contact any of the authors about special permissions send
+an e-mail to cerescp@gmail.com

@@ -1,0 +1,35 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ecl_dun.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais da Caverna de Eclage.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+ecl_fild01,182,82,0	warp	eclage_caverna0001	1,1,ecl_tdun01,60,13
+ecl_tdun01,61,11,0	warp	eclage_caverna0002	1,1,ecl_fild01,182,85
+ecl_tdun01,67,106,0	warp	eclage_caverna0003	1,1,ecl_tdun02,60,88
+ecl_tdun02,60,90,0	warp	eclage_caverna0004	1,1,ecl_tdun01,70,105
+ecl_tdun02,52,9,0	warp	eclage_caverna0005	1,1,ecl_tdun03,47,13
+ecl_tdun03,49,11,0	warp	eclage_caverna0006	1,1,ecl_tdun02,50,11
+ecl_tdun03,50,46,0	warp	eclage_caverna0007	1,1,ecl_tdun04,26,23
+ecl_tdun04,26,26,0	warp	eclage_caverna0008	1,1,ecl_tdun03,50,43
+ecl_tdun04,34,17,0	warp	eclage_caverna0009	1,1,ecl_fild01,183,73
+ecl_fild01,183,70,0	warp	eclage_caverna0010	1,1,ecl_tdun04,32,19

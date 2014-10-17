@@ -1,0 +1,565 @@
+// *******************
+// * Champions Arena *
+// *  Terra Online   *
+// *******************
+
+//============================================================ 
+//= Guardian Stone Emulators
+//============================================================ 
+
+rentb1,34,10,0	script	Guardian Stone Emu#1::GuildStone	858,{
+	mes "[^0000FFGuardian Stone^000000]";
+	mes "This is a Emulator of the repair process of a Guardian Stone.";
+	mes "Click on Next to continue.";
+	next;
+	mes "^3355FFYou will need the";
+	mes "following materials to";
+	mes "rebuild a destroyed";
+	mes "Guardian Stone.^000000";
+	next;
+	mes "1 Oridecon";
+	mes "1 Elunium";
+	mes "30 Stones";
+	mes "5 Blue Gemstones";
+	mes "5 Yellow Gemstones";
+	mes "5 Red Gemstones";
+	next;
+	mes "^3355FFDo you want to continue?^000000";
+	switch( select("No:Continue") )
+	{
+		case 1:
+			mes "^3355FFWork canceled.^000000";
+			close;
+		case 2:
+			mes "^3355FFArrange Stones, Elunium, and";
+			mes "Oridecon, in that order, in the";
+			mes "center. Then you must arrange";
+			mes "the enchanted Gemstones to";
+			mes "rebuild the Guardian Stone.^000000";
+			next;
+			switch( select("Elunium:Oridecon:Stone") )
+			{
+				case 1:
+					mes "^3355FFElunium has been";
+					mes "placed in the center.^000000";
+					next;
+					break;
+				case 2:
+					mes "^3355FFOridecon has been";
+					mes "placed in the center.^000000";
+					next;
+					break;
+				case 3:
+					mes "^3355FFStones have been";
+					mes "placed in the center.^000000";
+					set .@nice,.@nice + 10;
+					dispbottom "[Bien!! " + .@nice + " puntos]";
+					next;
+					break;
+			}
+			switch( select("Elunium:Oridecon:Stone") )
+			{
+				case 1:
+					mes "^3355FFYou have lined the";
+					mes "outside of the center";
+					mes "with some Elunium.^000000";
+					set .@nice,.@nice + 10;
+					dispbottom "[Bien!! " + .@nice + " puntos]";
+					next;
+					break;
+				case 2:
+					mes "^3355FFYou have lined the";
+					mes "outside of the center";
+					mes "with some Oridecon.^000000";
+					next;
+					break;
+				case 3:
+					mes "^3355FFYou have lined the";
+					mes "outside of the center";
+					mes "with some Stones.^000000";
+					next;
+					break;
+			}
+			switch( select("Elunium:Oridecon:Stone") )
+			{
+				case 1:
+					mes "^3355FFYou covered the";
+					mes "rest of the materials";
+					mes "with some Elunium.^000000";
+					next;
+					break;
+				case 2:
+					mes "^3355FFYou covered the";
+					mes "rest of the materials";
+					mes "with some Oridecon.^000000";
+					set .@nice,.@nice + 10;
+					dispbottom "[Bien!! " + .@nice + " puntos]";
+					next;
+					break;
+				case 3:
+					mes "^3355FFYou covered the";
+					mes "rest of the materials";
+					mes "with some Stones.^000000";
+					next;
+					break;
+			}
+			mes "^3355FFNow you need to arrange";
+			mes "the enchanted Gemstones";
+			mes "accordingly. You can identify";
+			mes "their Magic properties by";
+			mes "their casting effect.^000000";
+			next;
+			while( 1 )
+			{
+				if( .@roof0 > 7 )
+				{
+					break;
+				}
+				else
+				{
+					switch( rand(1,3) )
+					{
+						case 1:
+							specialeffect EF_BEGINSPELL2;
+							mes "^3355FFThe Gemstones must";
+							mes "be arranged in the correct";
+							mes "order according to their";
+							mes "magic properties and power.^000000";
+							next;
+							switch( select("Red Gemstone:Yellow Gemstone:Blue Gemstone") )
+							{
+								case 1:
+									mes "^3355FFYou placed the Red Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou placed the Yellow Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou placed the Blue Gemstone.^000000";
+									set .@nice,.@nice + 10;
+									dispbottom "[Bien!! " + .@nice + " puntos]";
+									set .@roof0,.@roof0 + 1;
+									specialeffect EF_STEAL;
+									next;
+									break;
+							}
+							break;
+						case 2:
+							specialeffect EF_VOLCANO;
+							mes "^3355FFThe Gemstones must";
+							mes "be arranged in the correct";
+							mes "order according to their";
+							mes "magic properties and power.^000000";
+							next;
+							switch(select("Red Gemstone:Yellow Gemstone:Blue Gemstone"))
+							{
+								case 1:
+									mes "^3355FFYou placed the Red Gemstone.^000000";
+									set .@nice,.@nice + 10;
+									dispbottom "[Bien!! " + .@nice + " puntos]";
+									set .@roof0,.@roof0 + 1;
+									specialeffect EF_STEAL;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou placed the Yellow Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou placed the Blue Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+							}
+							break;
+						case 3:
+							specialeffect EF_BEGINSPELL4;
+							mes "^3355FFThe Gemstones must";
+							mes "be arranged in the correct";
+							mes "order according to their";
+							mes "magic properties and power.^000000";
+							next;
+							switch( select("Red Gemstone:Yellow Gemstone:Blue Gemstone") )
+							{
+								case 1:
+									mes "^3355FFYou placed the Red Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou placed the Yellow Gemstone.^000000";
+									set .@nice,.@nice + 10;
+									dispbottom "[Bien!! " + .@nice + " puntos]";
+									set .@roof0,.@roof0 + 1;
+									specialeffect EF_STEAL;
+									next;
+									break;
+								case 3:
+									mes "^3355FFYou placed the Blue Gemstone.";
+									mes "However, the Guardian Stone";
+									mes "Repair System failed because";
+									mes "of a magic power conflict.^000000";
+									close;
+							}
+					}
+				}
+			}
+
+			if( .@nice > 90 )
+			{
+				mes "^3355FFThe Gemstones have been";
+				mes "arranged, and the Guardian";
+				mes "Stone is successfully repaired.^000000";
+				close2;
+				specialeffect EF_ICECRASH;
+				end;
+			}
+			else
+			{
+				mes "^3355FFAfter all of that work...";
+				mes "It looks like you failed";
+				mes "to fix the Guardian Stone,";
+				mes "and lost some materials.^000000";
+				close;
+			}
+	}
+	end;
+}
+
+rentb2,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#2	858
+rentb3,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#3	858
+rentb4,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#4	858
+rentb5,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#5	858
+rentb6,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#6	858
+rentb7,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#7	858
+rentb8,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#8	858
+rentb9,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#9	858
+rentb10,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#10	858
+rentb11,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#11	858
+rentb12,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#12	858
+rentb13,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#13	858
+rentb14,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#14	858
+rentb15,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#15	858
+rentb16,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#16	858
+rentb17,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#17	858
+rentb18,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#18	858
+rentb19,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#19	858
+rentb20,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#20	858
+rentb21,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#21	858
+rentb22,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#22	858
+rentb23,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#23	858
+rentb24,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#24	858
+rentb25,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#25	858
+rentb26,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#26	858
+rentb27,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#27	858
+rentb28,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#28	858
+rentb29,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#29	858
+rentb30,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#30	858
+rentb31,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#31	858
+rentb32,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#32	858
+rentb33,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#33	858
+rentb34,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#34	858
+rentb35,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#35	858
+rentb36,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#36	858
+rentb37,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#37	858
+rentb38,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#38	858
+rentb39,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#39	858
+rentb40,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#40	858
+rentb41,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#41	858
+rentb42,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#42	858
+rentb43,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#43	858
+rentb44,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#44	858
+rentb45,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#45	858
+rentb46,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#46	858
+rentb47,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#47	858
+rentb48,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#48	858
+rentb49,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#49	858
+rentb50,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#50	858
+rentb51,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#51	858
+rentb52,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#52	858
+rentb53,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#53	858
+rentb54,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#54	858
+rentb55,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#55	858
+rentb56,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#56	858
+rentb57,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#57	858
+rentb58,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#58	858
+rentb59,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#59	858
+rentb60,34,10,0	duplicate(GuildStone)	Guardian Stone Emu#60	858
+
+//============================================================ 
+//= Control Device Emulators
+//============================================================ 
+
+rentb1,34,5,0	script	Control Device Emu#1::GuildDevice	858,{
+	mes "[^0000FFControl Device^000000]";
+	mes "This is a Emulator of the repair process of a Barricade.";
+	mes "Click next to continue.";
+	next;
+	mes "^3355FFDemolished Fortress";
+	mes "Gates can be repaired,";
+	mes "but you will need to gather";
+	mes "the following materials.^000000";
+	next;
+	mes "^4D4DFF10 Steel^000000,";
+	mes "^4D4DFF30 Trunks^000000,";
+	mes "^4D4DFF5 Oridecon^000000, and";
+	mes "^4D4DFF10 Emveretarcon^000000.";
+	next;
+	select("Continue");
+	mes "^3355FFYou will need Trunks to";
+	mes "repair the support frame,";
+	mes "Oridecon to enhance the";
+	mes "gate's endurance, and";
+	mes "Emveretarcon to basically";
+	mes "hold everything together.^000000";
+	next;
+	set .@ro_of01,rand(10,15);
+	while( 1 )
+	{
+		if( .@ro_of02 == .@ro_of01 )
+		{
+			break;
+		}
+		else
+		{
+			switch( rand(1,4) )
+			{
+				case 1:
+					mes "^3355FFThe support frame";
+					mes "is badly damaged:";
+					mes "fixing this part";
+					mes "is a top priority.^000000";
+					next;
+					switch( select("Trunk:Steel:Emveretarcon:Oridecon") )
+					{
+						case 1:
+							mes "^3355FFThe frame has been";
+							mes "reinforced with wood.^000000";
+							set .@rp_temp,.@rp_temp + 1;
+							set .@ro_of02,.@ro_of02 + 1;
+							specialeffect2 EF_REPAIRWEAPON;
+							next;
+							break;
+						case 2:
+							mes "^3355FFYou tried using steel,";
+							mes "but it's not working very";
+							mes "well. You'll have to try";
+							mes "something else.^000000";
+							close;
+						case 3:
+							mes "^3355FFYou tried using emveretarcon";
+							mes "to reinforce the gate, but it's";
+							mes "not working well at all.";
+							mes "You'll have to start over.^000000";
+							close;
+						case 4:
+							mes "^3355FFYou tried using oridecon,";
+							mes "but it's not working very";
+							mes "well. You'll have to try";
+							mes "something else.^000000";
+							close;
+					}
+					break;
+				case 2:
+					mes "^3355FFIt looks like the gate's";
+					mes "overall endurance needs to";
+					mes "be reinforced with something.^000000";
+					next;
+					switch( select("Trunk:Steel:Emveretarcon:Oridecon") )
+					{
+						case 1:
+							mes "^3355FFYou tried using wood";
+							mes "to reinforce the gate.^000000";
+							set .@ro_of02,.@ro_of02 + 1;
+							next;
+							break;
+						case 2:
+							mes "^3355FFYou tried using steel";
+							mes "to reinforce the gate, but";
+							mes "it's not working well at all.";
+							mes "You'll have to start over.^000000";
+							close;
+						case 3:
+							mes "^3355FFYou tried using emveretarcon";
+							mes "to reinforce the gate, but it's";
+							mes "not working well at all.";
+							mes "You'll have to start over.^000000";
+							close;
+						case 4:
+							mes "^3355FFYou hammered the";
+							mes "oridecon: it looks";
+							mes "like this will work.^000000";
+							set .@rp_temp,.@rp_temp + 1;
+							set .@ro_of02,.@ro_of02 + 1;
+							specialeffect2 EF_REPAIRWEAPON;
+							next;
+							break;
+					}
+					break;
+				case 3:
+					mes "^3355FFThe damage to the gate";
+					mes "has caused all these";
+					mes "cracks. You'll have to";
+					mes "weld them solid somehow.^000000";
+					next;
+					switch( select("Trunk:Steel:Emveretarcon:Oridecon") )
+					{
+						case 1:
+							mes "^3355FFYou tried using wood to fix";
+							mes "this problem, but it seems";
+							mes "to have made it worse.";
+							mes "You'll have to start all over.^000000";
+							close;
+						case 2:
+							mes "^3355FFYou used steel to weld";
+							mes "all the cracks: the gate is";
+							mes "is starting to look more solid.^000000";
+							set .@rp_temp,.@rp_temp + 1;
+							set .@ro_of02,.@ro_of02 + 1;
+							specialeffect2 EF_REPAIRWEAPON;
+							next;
+							break;
+						case 3:
+							mes "^3355FFYou tried using emveretarcon";
+							mes "to reinforce the gate, but it's";
+							mes "not working well at all.";
+							mes "You'll have to start over.^000000";
+							close;
+						case 4:
+							mes "^3355FFYou tried using oridecon,";
+							mes "but it's not working very";
+							mes "well. You'll have to try";
+							mes "something else.^000000";
+							close;
+					}
+					break;
+				case 4:
+					mes "^3355FFNow you need to make";
+					mes "sure that the gate is held";
+					mes "together pretty solidly.^000000";
+					next;
+					switch( select("Trunk:Steel:Emveretarcon:Oridecon") )
+					{
+						case 1:
+							mes "^3355FFYou tried using wood to fix";
+							mes "this problem, but it seems";
+							mes "to have made it worse.";
+							mes "You'll have to start all over.^000000";
+							close;
+						case 2:
+							mes "^3355FFYou tried using steel,";
+							mes "but it's not working very";
+							mes "well. You'll have to try";
+							mes "something else.^000000";
+							close;
+						case 3:
+							mes "^3355FFYou successfully used";
+							mes "the emveretarcon to repair";
+							mes "much of the gate's damage.^000000";
+							set .@rp_temp,.@rp_temp + 1;
+							set .@ro_of02,.@ro_of02 + 1;
+							specialeffect2 EF_REPAIRWEAPON;
+							next;
+							break;
+						case 4:
+							mes "^3355FFYou tried using oridecon,";
+							mes "but it's not working very";
+							mes "well. You'll have to try";
+							mes "something else.^000000";
+							close;
+					}
+			}
+		}
+	}
+
+	mes "^3355FFWell, it looks like";
+	mes "you're just about done";
+	mes "with repairing the gate.^000000";
+	next;
+	if( .@rp_temp == .@ro_of01 )
+	{
+		mapannounce "rentb" + strnpcinfo(2) + "","The Fortress Gate has been reconstructed!",bc_map,"0x00FF00";
+		mes "^3355FFThe Fortress Gate has";
+		mes "been successfully repaired!^000000";
+		close;
+	}
+	else
+	{
+		mes "^3355FFThe wall has been breached,";
+		mes "and the attempt to repair the";
+		mes "Fortress Gate has failed.";
+		mes "You lost some of your";
+		mes "repair resources...^000000";
+		close;
+	}
+}
+
+rentb2,34,5,0	duplicate(GuildDevice)	Control Device Emu#2	858
+rentb3,34,5,0	duplicate(GuildDevice)	Control Device Emu#3	858
+rentb4,34,5,0	duplicate(GuildDevice)	Control Device Emu#4	858
+rentb5,34,5,0	duplicate(GuildDevice)	Control Device Emu#5	858
+rentb6,34,5,0	duplicate(GuildDevice)	Control Device Emu#6	858
+rentb7,34,5,0	duplicate(GuildDevice)	Control Device Emu#7	858
+rentb8,34,5,0	duplicate(GuildDevice)	Control Device Emu#8	858
+rentb9,34,5,0	duplicate(GuildDevice)	Control Device Emu#9	858
+rentb10,34,5,0	duplicate(GuildDevice)	Control Device Emu#10	858
+rentb11,34,5,0	duplicate(GuildDevice)	Control Device Emu#11	858
+rentb12,34,5,0	duplicate(GuildDevice)	Control Device Emu#12	858
+rentb13,34,5,0	duplicate(GuildDevice)	Control Device Emu#13	858
+rentb14,34,5,0	duplicate(GuildDevice)	Control Device Emu#14	858
+rentb15,34,5,0	duplicate(GuildDevice)	Control Device Emu#15	858
+rentb16,34,5,0	duplicate(GuildDevice)	Control Device Emu#16	858
+rentb17,34,5,0	duplicate(GuildDevice)	Control Device Emu#17	858
+rentb18,34,5,0	duplicate(GuildDevice)	Control Device Emu#18	858
+rentb19,34,5,0	duplicate(GuildDevice)	Control Device Emu#19	858
+rentb20,34,5,0	duplicate(GuildDevice)	Control Device Emu#20	858
+rentb21,34,5,0	duplicate(GuildDevice)	Control Device Emu#21	858
+rentb22,34,5,0	duplicate(GuildDevice)	Control Device Emu#22	858
+rentb23,34,5,0	duplicate(GuildDevice)	Control Device Emu#23	858
+rentb24,34,5,0	duplicate(GuildDevice)	Control Device Emu#24	858
+rentb25,34,5,0	duplicate(GuildDevice)	Control Device Emu#25	858
+rentb26,34,5,0	duplicate(GuildDevice)	Control Device Emu#26	858
+rentb27,34,5,0	duplicate(GuildDevice)	Control Device Emu#27	858
+rentb28,34,5,0	duplicate(GuildDevice)	Control Device Emu#28	858
+rentb29,34,5,0	duplicate(GuildDevice)	Control Device Emu#29	858
+rentb30,34,5,0	duplicate(GuildDevice)	Control Device Emu#30	858
+rentb31,34,5,0	duplicate(GuildDevice)	Control Device Emu#31	858
+rentb32,34,5,0	duplicate(GuildDevice)	Control Device Emu#32	858
+rentb33,34,5,0	duplicate(GuildDevice)	Control Device Emu#33	858
+rentb34,34,5,0	duplicate(GuildDevice)	Control Device Emu#34	858
+rentb35,34,5,0	duplicate(GuildDevice)	Control Device Emu#35	858
+rentb36,34,5,0	duplicate(GuildDevice)	Control Device Emu#36	858
+rentb37,34,5,0	duplicate(GuildDevice)	Control Device Emu#37	858
+rentb38,34,5,0	duplicate(GuildDevice)	Control Device Emu#38	858
+rentb39,34,5,0	duplicate(GuildDevice)	Control Device Emu#39	858
+rentb40,34,5,0	duplicate(GuildDevice)	Control Device Emu#40	858
+rentb41,34,5,0	duplicate(GuildDevice)	Control Device Emu#41	858
+rentb42,34,5,0	duplicate(GuildDevice)	Control Device Emu#42	858
+rentb43,34,5,0	duplicate(GuildDevice)	Control Device Emu#43	858
+rentb44,34,5,0	duplicate(GuildDevice)	Control Device Emu#44	858
+rentb45,34,5,0	duplicate(GuildDevice)	Control Device Emu#45	858
+rentb46,34,5,0	duplicate(GuildDevice)	Control Device Emu#46	858
+rentb47,34,5,0	duplicate(GuildDevice)	Control Device Emu#47	858
+rentb48,34,5,0	duplicate(GuildDevice)	Control Device Emu#48	858
+rentb49,34,5,0	duplicate(GuildDevice)	Control Device Emu#49	858
+rentb50,34,5,0	duplicate(GuildDevice)	Control Device Emu#50	858
+rentb51,34,5,0	duplicate(GuildDevice)	Control Device Emu#51	858
+rentb52,34,5,0	duplicate(GuildDevice)	Control Device Emu#52	858
+rentb53,34,5,0	duplicate(GuildDevice)	Control Device Emu#53	858
+rentb54,34,5,0	duplicate(GuildDevice)	Control Device Emu#54	858
+rentb55,34,5,0	duplicate(GuildDevice)	Control Device Emu#55	858
+rentb56,34,5,0	duplicate(GuildDevice)	Control Device Emu#56	858
+rentb57,34,5,0	duplicate(GuildDevice)	Control Device Emu#57	858
+rentb58,34,5,0	duplicate(GuildDevice)	Control Device Emu#58	858
+rentb59,34,5,0	duplicate(GuildDevice)	Control Device Emu#59	858
+rentb60,34,5,0	duplicate(GuildDevice)	Control Device Emu#60	858

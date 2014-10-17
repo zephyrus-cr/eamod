@@ -1,0 +1,4303 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Torre Infinita                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.7/2.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Instância da Torre Infinita                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | 1.1 Tradução PT-BR  [SoulSyntax]                       |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta,214,77,6	script	Capitão Jassen	709,{
+	if (checkweight(1201,1) == 0) {
+		mes "^008800Espere aí!";
+		mes "Você está carregando muitos equipamentos. Porque não joga alguns fora e depois retorna.^000000";
+		close;
+	}
+	if (BaseLevel < 50) {
+		mes "[Capitão Janssen]";
+		mes "*Suspiro*... Eu não sei se posso sempre voltar a velejar no mar...";
+		close;
+	}
+	set .@name$,strcharinfo(0);
+	if (in_102tower == 1) {
+		mes "^0000ff*Olhando incrivelmente animado, o velho correu as pressas para loja da marinha encomendar coisas. Você não tem nada melhor pra fazer, então você decide perguntar por que ele está em uma correria dessas.*^000000";
+		next;
+		mes "^0000ff*O velho, depois de ter feito suas encomendas, anda em sua direção.*^000000";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Eu fiquei comovido quando você aceitou um pedido meu, um estranho, tão facilmente. Você deve ser realmente um dos bons, herói aventureiro. Você está interessado em sair numa viagem oceânica?";
+		next;
+		mes "["+.@name$+"]";
+		mes "Já naveguei algumas vezes... Mas agora penso sobre isto, e vejo que nunca cruzei todo o continente";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Não, isso é bom o suficiente. Talvez eu só tenha uma pequena embarcação de pesca, mas eu costumava ser um capitão que comandou uma frota";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Como você deve saber após algumas viagens marítimas, talvez muitas pessoas não tenham atravessado o oceano além do continente. Eu também falhei na conquista do oceano.";
+		next;
+		mes "^0000ff*Mr. Janssen falou sobre suas perigosas viagens oceânicas durante um bom tempo. Você tem bastante tempo livre, então você senta, e em silêncio ouve a sua história.*^000000";
+		next;
+		mes "^0000ff*Pelo menos metade de sua história soou muito exagerada, mas algo chamou sua atenção: ele insiste que uma torre monstruosa existe no oceano, e que é tão alta, que raspa no céu.*^000000";
+		set in_102tower,2;
+		close;
+	} else if (in_102tower == 2) {
+		mes "[Capitão Jassen]";
+		mes "Então tudo que eu podia fazer era lançar a âncora naquela torre monstruosa depois que minha frota foi destruída. No início, éramos para ficar lá somente até que a temPesteade acabasse, mas não chegou a acabar tão cedo quanto esperávamos.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Minha equipe estava com fome, e alguns entraram na torre a fim de encontrar alimento... Eles nunca mais voltaram.";
+		next;
+		mes "["+.@name$+"]";
+		mes "Por que você não foi lá com eles?";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Meus instintos me disseram que a torre era perigosa. Fiquei curioso, mas eu não iria arriscar a minha vida. Nós esperamos que eles retornassem por 7 dias até que a temPesteade finalmente acabou, mas ninguém retornou.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Em nosso desespero para sobreviver, abandonamos todos os nossos bens, e deixamos a torre somente com um pouco de água e plantas comestíveis que haviamos encontrado ao redor da torre. Quando finalmente em terra firme, eu era o único vivo...";
+		next;
+		mes "^0000ff*Você pôde imaginar a cena desesperadora da frota morrendo em sua última viagem, mesmo que ele não explicasse mais nada. Um olhar de lamento sombrio varreu seu rosto enquanto ele permaneceu em silêncio, e então ele disse:*^000000";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Tenho algo que devo fazer antes de morrer. Preciso recuperar os restos mortais da minha tripulação que morreu na torre, e dar-lhes um enterro apropriado.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Eu me sinto tão afortunado por receber um aventureiro caloroso como você. Com o dinheiro que você me deu, eu finalmente posso velejar até a torre novamente.";
+		next;
+		mes "["+.@name$+"]";
+		mes "Que tal me contratar como seu primeiro marujo?";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Obrigado, mas é um lugar extremamente perigoso. Eu tenho o meu dever à cumprir, e você não tem nenhuma obrigação comigo ou com eles. Não quero sacrificar alguém tão jovem como você para ir a um lugar tão perigoso.";
+		next;
+		mes "["+.@name$+"]";
+		mes "Não...";
+		mes ".";
+		mes ".";
+		mes "Como um aventureiro, é minha obrigação ajudar aqueles que precisam. Eu também estou muito curioso sobre esse lugar...";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Eu já ia sair imediatamente, mas desde que você se juntou a mim, eu devo dar-lhe tempo para se preparar. Eu vou estar aqui esperando até que você esteja pronto para ir.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "...então ok...";
+		mes "Bem vindo à bo° andaro, primeiro marujo.";
+		set in_102tower,3;
+		close;
+	} else if (in_102tower == 3) {
+		mes "[Capitão Jassen]";
+		mes "Vamos partir agora?";
+		next;
+		if(select("Sim, vamos!:Não, ainda não estou pronto...") == 1) {
+			mes "[Capitão Janssen]";
+			mes "Em seguida puxe a âncora, primeiro marujo!";
+			close2;
+			set in_102tower,4;
+			warp "e_tower",70,114;
+			end;
+		} else {
+			mes "[Capitão Janssen]";
+			mes "Claro, sem problemas. Volte quando estiver pronto.";
+			close;
+		}
+	} else if (in_102tower > 3) {
+		mes "[Capitão Jassen]";
+		mes "Bem, para viajar pelo oceano novamente, precisamos repor os suprimentos. Se você me der 10.000 zenys, eu cuido do resto.";
+		next;
+		switch(select("Voltarei depois.:Vamos, agora!")) {
+		case 1:
+			mes "["+.@name$+"]";
+			mes "Me desculpe, mas eu não tenho muito dinheiro. Eu vou voltar quando eu economizar o suficiente.";
+			next;
+			mes "[Capitão Janssen]";
+			mes "Claro, sem problemas. Eu estarei esperando pelo seu retorno.";
+			close;
+		case 2:
+			if (zeny < 10000) {
+				mes "[Capitão Jassen]";
+				mes "Me desculpe, mas você não tem dinheiro suficiente. Eu preciso de pelo menos 10.000 zenys para reabastecer os nossos suprimentos...";
+				close;
+			} else {
+				mes "[Capitão Jassen]";
+				mes "Excelente! Agora estamos pronto para ir. Vamos levantar a âncora de novo!";
+				set zeny,zeny-10000;
+				close2;
+				warp "e_tower",70,114;
+				end;
+			}
+		}
+	} else {
+		mes "[Capitão Jassen]";
+		mes "Desculpe-me, você é um aventureiro?";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Desculpe perguntar isso, principalmente quando esta é a primeira vez que nos vemos, mas você pode me fazer um favor? Serei breve.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Você pode doar ^0000ff10.000^000000 zenys para mim? É por uma causa importante para mim ...";
+		next;
+		if(select("Não!:Claro.") == 1) {
+			mes "["+.@name_102$+"]";
+			mes "Me desculpe, mas você perguntou isso a pessoa errada.";
+			next;
+			mes "[Capitão Janssen]";
+			mes "Entendo... Desculpe incomodá-lo. Eu entendo que seria muito rude perguntar algo assim.";
+			close;
+		} else {
+			mes "[Capitão Janssen]";
+			mes "Hã? Tem certeza que você não se importa em me dar tanto dinheiro? Uau, muito obrigado!";
+			next;
+			if (zeny < 10000) {
+				mes "[Capitão Janssen]";
+				mes "...Sinto muito, mas eu não acho que você tenha 10.000 zenys. Obrigado pela sua gentileza, mas eu preciso mais do que isso.";
+				close;
+			} else {
+				mes "["+.@name$+"]";
+				mes "Eu não sei porque você precisa de tanto dinheiro, mas aqui está. Pode pegar.";
+				next;
+				mes "^0000ff*Você dôou 10.000 zenys para o Capitão Janssen*^000000.";
+				next;
+				mes "[Capitão Janssen]";
+				mes "Muito obrigado! Agora posso estocar alimentos e materiais para o meu navio. Você é gentil e muito amável!";
+				set zeny,zeny-10000;
+				set in_102tower,1;
+				close;
+			}
+		}
+	}
+}
+
+e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
+
+	set .@party_id,getcharid(1);
+	set .@ins_mas,getpartyleader(.@party_id,2);
+	set .@p_name$,getpartyname(.@party_id);
+	set .@p_reader$,strcharinfo(0);
+	set .@md_name$,"Endless Tower";
+	set .@p_name2$,strcharinfo(0);
+
+	set .@etower_timer,checkquest(60200,PLAYTIME); // 1 semana
+	set .@etower_timer2,checkquest(60201,PLAYTIME); // 4 horas
+
+	set .@dun_lim_time,etower_timer+604800; // 1 semana
+	set .@dun_lim_time2,etower_timer+14400; // 4 horas
+	set .@dun_cur_time,gettimetick(2);
+	set .@dun_ent_t,(.@dun_lim_time - .@dun_cur_time);
+	set .@dun_h,(.@dun_ent_t / 3600);
+	set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
+	set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
+
+	if(!instance_check_party(.@party_id,2)){
+		mes "Me desculpe mas seu grupo não cumpre com as exigências para entrar na Torre.";
+		close;
+	}
+
+	if (.@etower_timer == -1) {
+		if (.@ins_mas == getcharid(0)) {
+			mes "Confirmado, o grupo foi feito. Você gostaria de reservar a entrada para a Torre Sem Fim?";
+			next;
+			switch(select("Gerar Calabouço da " + .@md_name$ + ":Entrar no Calabouço.:Retornar para Alberta.:Cancelar.")) {
+			case 1:
+				set .@instance, instance_create(.@md_name$, .@party_id);
+				if (.@instance < 0) {
+					mes "Nome do grupo:"+.@p_name$+"";
+					mes "Líder do grupo:"+.@p_reader$+"";
+					mes "^0000ff"+.@md_name$+" ^000000- A reserva falhou!";
+				} else {
+					mes "^0000ff"+.@md_name$+"^000000 - Tentar reservar";
+					mes "Depois de fazer uma reserva, você tem que falar com o NPC logo atrás e selecionar o menu 'Entrar no Calabouço' para entrar no calabouço.";
+					// 1,2,3,4,5,6
+					for( set .@i, 1; .@i <= 6; set .@i, .@i + 1 ) {
+						if( instance_attachmap(.@i + "@tower", .@instance) == "" ) {
+							mes "^0000ff"+.@md_name$+" ^000000- A reserva falhou!";
+							instance_destroy(.@instance);
+							close;
+						}
+					}
+					instance_attach(.@instance);
+					instance_set_timeout 14400,300,.@instance;
+					instance_init(.@instance);
+					// Revive o primeiro andar de cada mapa, que irá gerar o resto quando terminada.
+					donpcevent instance_npcname("#1F Controlador", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Fornalha Imortal#1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Fornalha Imortal#2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Fornalha Imortal#3", instance_id())+"::OnInstanceInit";
+					// Disable the warps on all floor. (enable as Andares are cleared)
+					for( set .@i, 1; .@i <= 99; set .@i, .@i + 1 )
+						donpcevent instance_npcname(.@i+"FGate102tower", instance_id())+"::OnInstanceInit";
+					// Teleportes habilitam com contador, então jogadores não poderão pegar Cinzas ilimitadas.
+					donpcevent instance_npcname("25FGate102tower-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("50FGate102tower-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("75FGate102tower-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("99FGate102tower-2", instance_id())+"::OnInstanceInit";
+					// Desabilita e ativa NPCs para o 100° e 101° andares.
+					donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#102Effect1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#102Effect2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#102FShadowDust1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Fonte da Vida#1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Trono do Tirano#", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Alma Pe° andarida#102", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Efeito30", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Efeito31", instance_id())+"::OnInstanceInit";
+				}
+				break;
+			case 2:
+				if (has_instance("1@tower") == "") {
+					mes "O calabouço da " + .@md_name$ + " não existe.";
+					mes "O líder do grupo não gerou o calabouço ainda.";
+				} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+			    mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
+					next;
+					mes "Aqui é perigoso. Vá e volte para Alberta.";
+					close2;
+					warp "alberta",223,36;
+					end;
+				} else {
+					mapannounce "e_tower", .@p_name2$ + " do grupo, " + .@p_name$ + ", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+					set party_instance_id,getcharid(1);
+					set etower_timer,gettimetick(2);
+					setquest 60200;
+					setquest 60201;
+					warp "1@tower",52,354;
+					end;
+				}
+				break;
+			case 3:
+				mes "Eu irei te levar de volta para Alberta.";
+				close2;
+				warp "alberta",223,36;
+				end;
+			case 4:
+				break;
+			}
+			close;
+		} else {
+			switch(select("Entrar no calabouço da " + .@md_name$ + ".:Voltar para Alberta.:Cancelar.")) {
+			case 1:
+				if (has_instance("1@tower") == "") {
+					mes "O calabouço da " + .@md_name$ + " não existe.";
+					mes "O líder do grupo não gerou o calabouço ainda.";
+				} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+			    mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
+					next;
+					mes "Aqui é perigoso. Vá e volte para Alberta.";
+					close2;
+					warp "alberta",223,36;
+					end;
+				} else {
+					mapannounce "e_tower", .@p_name2$ + " do grupo, " + .@p_name$ + ", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+					set party_instance_id,getcharid(1);
+					set etower_timer,gettimetick(2);
+					setquest 60200;
+					setquest 60201;
+					warp "1@tower",52,354;
+					end;
+				}
+				break;
+			case 2:
+				mes "I will move you to Alberta.";
+				close2;
+				warp "alberta",223,36;
+				end;
+			case 3:
+				break;
+			}
+			close;
+		}
+	} else if ((.@etower_timer >= 0) && (.@etower_timer2 < 2)) {
+		mes "Se você já gerou o calabouço, você poderá entrar.";
+		next;
+		switch(select("Entrar no calabouço da " + .@md_name$ + ".:Voltar para Alberta.:Cancelar.")) {
+		case 1:
+			if (has_instance("1@tower") == "") {
+				mes "O calabouço da " + .@md_name$ + " não existe.";
+				mes "O líder do grupo não gerou o calabouço ainda.";
+			} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+			  mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
+				next;
+				mes "Aqui é perigoso. Vá e volte para Alberta.";
+				close2;
+				warp "alberta",223,36;
+				end;
+			} else {
+				mapannounce "e_tower", .@p_name2$ + " do grupo, " + .@p_name$ + ", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+				set party_instance_id,getcharid(1);
+				warp "1@tower",52,354;
+				end;
+			}
+			break;
+		case 2:
+			mes "Eu irei te levar de volta para Alberta.";
+			close2;
+			warp "alberta",223,36;
+			end;
+		case 3:
+			break;
+		}
+		close;
+	} else if ((.@etower_timer >= 0) && (.@etower_timer < 2) && (.@etower_timer2 == 2)) {
+		mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
+		next;
+		mes "Aqui é perigoso. Vá e volte para Alberta.";
+		close2;
+		warp "alberta",223,36;
+		end;
+	} else {
+		set etower_timer,0;
+		erasequest 60200;
+		erasequest 60201;
+		set party_instance_id,0;
+		mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim novamente.^000000";
+		close;
+	}
+	mes "Faça ou entre num grupo com mais de 1 membro e tente novamente.";
+	close;
+}
+
+e_tower,30,30,2	script	Grande Vortex	844,2,2,{
+OnTouch:
+	mapannounce "e_tower","[ " + strcharinfo(0) + " ], parece ter sido engolido por um enorme vortex",bc_map,"0x00ff99",FW_NORMAL,12;
+	warp "alberta",223,36;
+	end;
+}
+
+/*
+e_tower,1,1,2	script	#102Administrador Modo104	844,{
+	mes "Por favor, digite a senha";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		switch(select("Gerar Pedra da Purificação.:Remover Pedra da Purificação.:Cancelar.")) {
+		case 1:
+			mes "Criar a pedra da Purificação que permanece por 30 minutos.";
+			donpcevent "Pedra da Purificação#et1::OnEnable";
+			break;
+		case 2:
+			mes "Destruir a Pedra da Purificação imediatamente";
+			donpcevent "Pedra da Purificação#et1::OnDisable";
+			break;
+		case 3:
+			mes "Abortado.";
+			break;
+		}
+		close;
+	} else {
+		mes "Entre com a senha correta.";
+		close;
+	}
+}
+
+e_tower,69,117,4	script	Pedra da Purificação#et1	406,{
+	set etower_timer,0;
+	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim novamente.^000000";
+	close;
+
+OnInit:
+	disablenpc "Pedra da Purificação#et1";
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "Pedra da Purificação#et1";
+	end;
+
+OnTimer1000:
+	enablenpc "Pedra da Purificação#et1";
+	end;
+
+OnTimer1740000:
+	mapannounce "e_tower", "A Pedra da Purificação será distruida em um minuto.",bc_map,"0x00ff99";
+	end;
+
+OnTimer1800000:
+	disablenpc "Pedra da Purificação#et1";
+	end;
+}
+
+e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
+	set etower_timer,0;
+	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim.^000000";
+	close;
+	warp "e_tower",75,108;
+	end;
+}
+*/
+
+// Andares 1-25
+//============================================================
+1@tower,50,360,0	script	Braseiro Imortal#	844,{
+	mes "-A mensagem é gravada no Braseiro Imortal -";
+	mes "Aquele que espalha as cinzas da escuridão neste lugar estará um passo mais perto de Naght Sieger, a Sombra dos Reis das Trevas...";
+	next;
+	set .@move_name$,strcharinfo(0);
+	switch(select("26° andar.:51° andar.:76° andar.")) {
+	case 1:
+		if (countitem(6000) < 1) {
+			mes "-Aviso-";
+			mes "Para ir ao 26° andar, você precisa de 1 Cinza da Escuridão.";
+			close;
+		} else {
+			delitem 6000,1; // Cinzas da Escuridão
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 26° andar.",bc_map,"0x00ff99";
+			warp "2@tower",52,354;
+		}
+		break;
+	case 2:
+		if (countitem(6000) < 2) {
+			mes "-Aviso-";
+			mes "Para ir ao 51° andar, você precisa de 2 Cinzas da Escuridão.";
+			close;
+		} else {
+			delitem 6000,2; // Cinzas da Escuridão
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 51° andar.",bc_map,"0x00ff99";
+			warp "3@tower",52,354;
+		}
+		break;
+	case 3:
+		if (countitem(6000) < 3) {
+			mes "-Warning-";
+			mes "Para ir ao 76° andar, você precisa de 3 Cinzas da Escuridão.";
+			close;
+		} else {
+			delitem 6000,3; // Cinzas da Escuridão
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 76° andar.",bc_map,"0x00ff99";
+			warp "4@tower",52,354;
+		}
+		break;
+	}
+	end;
+}
+
+1@tower,29,365,1	script	#1F Controlador	844,{
+	end;
+
+OnInstanceInit:
+	areamonster "1@tower",7,351,17,387,"Metaling",1613,15,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",7,351,17,387,"Marin",1242,5,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",7,351,17,387,"Poporing",1031,5,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",7,351,17,387,"Drops",1113,5,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",7,351,17,387,"Mastering",1090,1,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",7,351,17,387,"Poring",1002,5,instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("#1F Controlador", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 1° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("1FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 1
+	} else
+		instance_announce 0, "Monstros vivos no 1° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,12,393,0	script	1FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("1FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("1FGate102tower", instance_id());
+	areamonster "1@tower",93,351,103,387,"Lobo do Deserto",1106,20,instance_npcname("1FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,351,103,387,"Lobo Errante",1092,1,instance_npcname("1FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,351,103,387,"Filhote de Lobo do Deserto",1107,10,instance_npcname("1FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",136,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("1FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 2° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("2FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 2° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,96,393,0	script	2FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("2FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("2FGate102tower", instance_id());
+	areamonster "1@tower",181,351,191,387,"Esqueleto Arqueiro",1016,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,351,191,387,"Esqueleto Operário",1169,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,351,191,387,"Esqueleto Soldado",1028,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,351,191,387,"Orc Esqueleto",1152,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,351,191,387,"Esqueleto Pirata",1071,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,351,191,387,"Esqueleto",1076,5,instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",224,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 3° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("3FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 3° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,184,393,0	script	3FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("3FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("3FGate102tower", instance_id());
+	areamonster "1@tower",267,351,277,387,"Argiope",1099,15,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,351,277,387,"Louva-Deus",1139,5,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,351,277,387,"Argos",1100,5,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,351,277,387,"Vocal",1088,1,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,351,277,387,"Rocker",1052,5,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,351,277,387,"Zangão",1004,5,instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",310,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 4° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("4FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 4° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,270,393,0	script	4FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("4FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("4FGate102tower", instance_id());
+	areamonster "1@tower",352,351,362,387,"Besouro-Ladrão Dourado",1086,1,instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,351,362,387,"Besouro-Ladrão Macho",1054,15,instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,351,362,387,"Besouro-Ladrão Fêmea",1053,15,instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,351,362,387,"Besouro-Ladrão",1051,15,instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,351,362,387,"Ovo de Besouro-Ladrão",1048,5,instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",395,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 5° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("5FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 5° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,355,393,0	script	5FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("5FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("5FGate102tower", instance_id());
+	areamonster "1@tower",9,267,19,303,"Ovo de Dragão",1721,5,instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,267,19,303,"Ovo de Besouro-Ladrão",1048,5,instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,267,19,303,"Ovo de Andre",1097,5,instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,267,19,303,"Pupa",1008,5,instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",52,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os monstros no 6° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("6FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 6° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,12,309,0	script	6FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("6FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("6FGate102tower", instance_id());
+	areamonster "1@tower",93,267,103,303,"Estrondo",1383,15,instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,267,103,303,"Drainliar",1111,15,instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,267,103,303,"Anopheles",1627,15,instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,267,103,303,"Familiar",1005,15,instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",136,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 7° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("7FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 7° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,96,309,0	script	7FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("7FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("7FGate102tower", instance_id());
+	areamonster "1@tower",181,267,191,303,"Soldado Atirador",1403,15,instance_npcname("7FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,267,191,303,"Soldadinho de Chumbo",1248,15,instance_npcname("7FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",224,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("7FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 8° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("8FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 8° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,184,309,0	script	8FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("8FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("8FGate102tower", instance_id());
+	areamonster "1@tower",267,267,277,303,"Obsidian",1615,15,instance_npcname("8FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,267,277,303,"Golem",1040,15,instance_npcname("8FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,267,277,303,"Stapo",1784,10,instance_npcname("8FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",310,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("8FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 9° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("9FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 9° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,270,309,0	script	9FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("9FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("9FGate102tower", instance_id());
+	areamonster "1@tower",352,267,362,303,"Abelha-Rainha",1059,1,instance_npcname("9FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,267,362,303,"Zangão Ferrãoante",1303,25,instance_npcname("9FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,267,362,303,"Zangão",1004,20,instance_npcname("9FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",395,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("9FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 10° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("10FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 10° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,355,309,0	script	10FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("10FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("10FGate102tower", instance_id());
+	areamonster "1@tower",9,180,19,216,"Dríade",1493,15,instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,180,19,216,"Parasíta",1500,15,instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,180,19,216,"Hermit Plant",1413,15,instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,180,19,216,"Rafflesia",1162,5,instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",52,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 11° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("11FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 11° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,12,222,0	script	11FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("11FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("11FGate102tower", instance_id());
+	areamonster "1@tower",93,180,103,216,"Demônio Pungus",1378,25,instance_npcname("11FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,180,103,216,"Punk",1199,25,instance_npcname("11FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",136,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("11FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 12° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("12FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 12° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,96,222,0	script	12FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("12FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("12FGate102tower", instance_id());
+	areamonster "1@tower",181,180,191,216,"Yao Yun",1512,15,instance_npcname("12FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,180,191,216,"Bongun",1188,15,instance_npcname("12FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,180,191,216,"Munak",1026,10,instance_npcname("12FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",224,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("12FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 13° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("13FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 13° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,184,222,0	script	13FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("13FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("13FGate102tower", instance_id());
+	areamonster "1@tower",267,180,277,216,"Grande Orc",1213,15,instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,180,277,216,"Orc Arqueiro",1189,10,instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,180,277,216,"Senhora Orc",1273,10,instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,180,277,216,"Guerreiro Orc",1023,5,instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,180,277,216,"Filhote de Orc",1686,5,instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",310,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 14° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("14FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 14° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,270,222,0	script	14FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("14FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("14FGate102tower", instance_id());
+	areamonster "1@tower",352,180,362,216,"Maya",1147,1,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,180,362,216,"Freeoni",1159,1,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,180,362,216,"Deniro",1105,15,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,180,362,216,"Pierre",1160,15,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,180,362,216,"Andre",1095,15,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,180,362,216,"Ovo de Andre",1097,5,instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+
+	warp "1@tower",395,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 15° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("15FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 15° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,355,222,0	script	15FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("15FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("15FGate102tower", instance_id());
+	areamonster "1@tower",9,96,19,132,"Raydric Arqueiro",1276,10,instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,96,19,132,"Orc Arqueiro",1189,10,instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,96,19,132,"Gárgula",1253,10,instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,96,19,132,"Esqueleto Arqueiro",1016,10,instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",52,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 16° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("16FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 16° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,12,138,0	script	16FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("16FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("16FGate102tower", instance_id());
+	areamonster "1@tower",93,96,103,132,"Tritão",1264,10,instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,96,103,132,"Bafomé Jr.",1101,10,instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,96,103,132,"Strouf",1065,15,instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,96,103,132,"Vento da Colina",1629,5,instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",136,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 17° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("17FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 17° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,96,138,0	script	17FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("17FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("17FGate102tower", instance_id());
+	areamonster "1@tower",181,96,191,132,"Cãibra",1209,25,instance_npcname("17FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,96,191,132,"Tarou",1175,15,instance_npcname("17FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",224,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("17FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 18° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("18FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 18° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,184,138,0	script	18FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("18FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("18FGate102tower", instance_id());
+	areamonster "1@tower",267,96,277,132,"Deviace",1108,10,instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,96,277,132,"Megalodon",1064,10,instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,96,277,132,"Peixe-Espada",1069,10,instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,96,277,132,"Fen",1158,10,instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",310,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 19° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("19FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 19° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,270,138,0	script	19FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("19FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("19FGate102tower", instance_id());
+	areamonster "1@tower",352,96,362,132,"Drake",1112,1,instance_npcname("19FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,96,362,132,"Esqueleto Pirata",1071,50,instance_npcname("19FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",395,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("19FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 20° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("20FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 20° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,355,138,0	script	20FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("20FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("20FGate102tower", instance_id());
+	areamonster "1@tower",9,9,19,45,"Plasma",1693,10,instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,9,19,45,"Plasma",1696,10,instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,9,19,45,"Plasma",1695,5,instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,9,19,45,"Plasma",1697,5,instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",9,9,19,45,"Plasma",1694,5,instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",52,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 21° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("21FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 21° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,12,51,0	script	21FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("21FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("21FGate102tower", instance_id());
+	areamonster "1@tower",93,9,103,45,"Muscipular",1780,15,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,9,103,45,"Drosera",1781,15,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,9,103,45,"Flora",1118,15,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,9,103,45,"Hidra",1068,15,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,9,103,45,"Mandragora",1020,10,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",93,9,103,45,"Rafflesia",1162,10,instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",136,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 22° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("22FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 22° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,96,51,0	script	22FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("22FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("22FGate102tower", instance_id());
+	areamonster "1@tower",181,9,191,45,"Penomena",1216,15,instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,9,191,45,"Obeaune",1044,10,instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,9,191,45,"Marse",1144,10,instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,9,191,45,"Peixe-Espada",1069,10,instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",181,9,191,45,"Hidra",1068,5,instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",224,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 23° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("23FGate102tower", instance_id())+"::OnEnable";
+	} else
+		instance_announce 0, "Monstros vivos no 23° andar andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,184,51,0	script	23FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("23FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("23FGate102tower", instance_id());
+	areamonster "1@tower",267,9,277,45,"Coringa",1131,15,instance_npcname("23FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,9,277,45,"Carat",1267,15,instance_npcname("23FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",267,9,277,45,"Jakk",1130,10,instance_npcname("23FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",310,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("23FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 24° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("24FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 24
+	}
+	else
+		instance_announce 0, "Monstros vivos no 24° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,270,51,0	script	24FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("24FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("24FGate102tower", instance_id());
+	areamonster "1@tower",352,9,362,45,"Gato de Nove Caudas",1307,15,instance_npcname("24FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,9,362,45,"Flor do Luar",1150,1,instance_npcname("24FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "1@tower",352,9,362,45,"Nove Caudas",1180,15,instance_npcname("24FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "1@tower",395,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("1@tower",instance_npcname("24FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 25° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("25FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 25
+	}
+	else
+		instance_announce 0, "Monstros vivos no 25° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+1@tower,355,51,0	script	25FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("25FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("25FGate102tower", instance_id());
+	initnpctimer;
+	end;
+
+OnTouch_:
+	getitem 6000,1; // Cinzas da Escuridão
+	warp "2@tower",52,354;
+	end;
+
+OnTimer120000:
+	disablenpc instance_npcname("25FGate102tower", instance_id());
+	donpcevent instance_npcname("25FGate102tower-2", instance_id())+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+1@tower,355,51,0	script	25FGate102tower-2	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("25FGate102tower-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("25FGate102tower-2", instance_id());
+	end;
+
+OnTouch_:
+	warp "2@tower",52,354;
+	end;
+}
+
+/*
+1@tower,71,1,0	script	#Gerente1	844,{
+	mes "Por favor, digite a senha";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		mes "Este NPC controla a torre do 1° ao 25° andar.";
+		mes "Por favor, digite o número do andar que queira abrir:";
+		mes "(ex.: 1F->1, 25F->25)";
+		input .@input,1,25;
+		next;
+		if (.@input < 1 || .@input > 25)
+			mes "Digite apenas números entre 1 e 25.";
+		else {
+			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
+			mes "*** "+ .@input + "° andar está abrindo. ***";
+		}
+	}
+	close;
+}
+*/
+
+// Andares 26-50
+//============================================================
+2@tower,29,365,2	script	Fornalha Imortal#1	844,{
+	end;
+
+OnInstanceInit:
+	areamonster "2@tower",9,351,19,387,"Árvore Maldita",1503,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Pessegueira Encantada",1410,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Golem de Madeira",1497,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Atirador de Pedras",1495,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Salgueiro Ancião",1033,5,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 26° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("26FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 26
+	}
+	else
+		instance_announce 0, "Monstros vivos no 26° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,12,393,0	script	26FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("26FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("26FGate102tower", instance_id());
+	areamonster "2@tower",93,351,103,387,"Goblin Arqueiro",1258,10,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,351,103,387,"Goblin",1122,10,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,351,103,387,"Goblin",1123,5,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,351,103,387,"Goblin",1124,5,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,351,103,387,"Gobin",1125,5,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,351,103,387,"Goblin",1126,5,instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",136,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 27° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("27FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 27
+	}
+	else
+		instance_announce 0, "Monstros vivos no 27° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,96,393,0	script	27FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("27FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("27FGate102tower", instance_id());
+	areamonster "2@tower",181,351,191,387,"Arclouse",1194,30,instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,351,191,387,"Nereida",1255,15,instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,351,191,387,"Peste",1256,15,instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,351,191,387,"Kukre",1070,10,instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",224,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 28° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("28FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 28
+	}
+	else
+		instance_announce 0, "Monstros vivos no 28° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,184,393,0	script	28FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("28FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("28FGate102tower", instance_id());
+	areamonster "2@tower",267,351,277,387,"Moldura Maldita",1260,10,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,351,277,387,"Papel",1375,10,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,351,277,387,"Poltergeist",1510,10,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,351,277,387,"Quve",1508,5,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,351,277,387,"Lude",1509,5,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,351,277,387,"Sussurro",1179,10,instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",310,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 29° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("29FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 29
+	}
+	else
+		instance_announce 0, "Monstros vivos no 29° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,270,393,0	script	29FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("29FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("29FGate102tower", instance_id());
+	areamonster "2@tower",352,351,362,387,"Lady Branca",1630,1,instance_npcname("29FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,351,362,387,"Ninfa Perversa",1416,30,instance_npcname("29FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",395,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("29FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 30° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("30FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 30
+	}
+	else
+		instance_announce 0, "Monstros vivos no 30° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,355,393,0	script	30FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("30FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("30FGate102tower", instance_id());
+	areamonster "2@tower",9,267,19,303,"Ferrão",1387,20,instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,267,19,303,"Mão de Ferro",1212,15,instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,267,19,303,"Argiope",1099,10,instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,267,19,303,"Escorpião",1001,5,instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",52,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 31° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("31FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 31
+	}
+	else
+		instance_announce 0, "Monstros vivos no 31° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,12,309,0	script	31FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("31FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("31FGate102tower", instance_id());
+	areamonster "2@tower",93,267,103,303,"Líder Goblin",1299,1,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin Arqueiro",1258,10,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin",1122,10,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin",1123,5,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin",1124,5,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin",1125,5,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,267,103,303,"Goblin",1126,5,instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",136,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 32° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("32FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 32
+	}
+	else
+		instance_announce 0, "Monstros vivos no 32° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,96,309,0	script	32FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("32FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("32FGate102tower", instance_id());
+	areamonster "2@tower",181,267,191,303,"Líder Cobold",1296,1,instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,267,191,303,"Cobold",1133,15,instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,267,191,303,"Cobold Arqueiro",1282,15,instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,267,191,303,"Cobold",1134,10,instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,267,191,303,"Cobold",1135,5,instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",224,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 33° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("33FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 33
+	}
+	else
+		instance_announce 0, "Monstros vivos no 33° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,184,309,0	script	33FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("33FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("33FGate102tower", instance_id());
+	areamonster "2@tower",267,267,277,303,"Crânio Flamejante",1869,20,instance_npcname("33FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,267,277,303,"Sussurro",1179,10,instance_npcname("33FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,267,277,303,"Cochicho",1186,10,instance_npcname("33FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",310,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("33FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 34° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("34FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 34
+	}
+	else
+		instance_announce 0, "Monstros vivos no 34° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,270,309,0	script	34FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("34FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("34FGate102tower", instance_id());
+	areamonster "2@tower",352,267,362,303,"General Tartaruga",1312,1,instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,267,362,303,"Congelador",1319,10,instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,267,362,303,"Soldado",1316,10,instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,267,362,303,"Aquecedor",1318,10,instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,267,362,303,"Batedor",1314,10,instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",395,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 35° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("35FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 35
+	}
+	else
+		instance_announce 0, "Monstros vivos no 35° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,355,309,0	script	35FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("35FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("35FGate102tower", instance_id());
+	areamonster "2@tower",9,180,19,216,"Anolian",1206,30,instance_npcname("35FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,180,19,216,"Grove",1687,10,instance_npcname("35FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,180,19,216,"Crocodilo",1271,10,instance_npcname("35FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",52,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("35FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 36° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("36FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 36
+	}
+	else
+		instance_announce 0, "Monstros vivos no 36° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,12,222,0	script	36FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("36FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("36FGate102tower", instance_id());
+	areamonster "2@tower",93,180,103,216,"Gerente",1270,10,instance_npcname("36FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,180,103,216,"Relógio",1269,10,instance_npcname("36FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,180,103,216,"Alarme",1193,30,instance_npcname("36FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",136,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("36FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 37° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("37FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 37
+	}
+	else
+		instance_announce 0, "Monstros vivos no 37° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,96,222,0	script	37FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("37FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("37FGate102tower", instance_id());
+	areamonster "2@tower",181,180,191,216,"Palavra Morta",1698,25,instance_npcname("37FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,180,191,216,"Rideword",1195,25,instance_npcname("37FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",224,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("37FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 38° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("38FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 38
+	}
+	else
+		instance_announce 0, "Monstros vivos no 38° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,184,222,0	script	38FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("38FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("38FGate102tower", instance_id());
+	areamonster "2@tower",267,180,277,216,"Ninfa Perversa",1416,10,instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,180,277,216,"Mao Gui",1513,10,instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,180,277,216,"Ermitão Maligno",1412,10,instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,180,277,216,"Zhu Po Long",1514,10,instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,180,277,216,"Jin Guai",1517,5,instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",310,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 39° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("39FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 39
+	}
+	else
+		instance_announce 0, "Monstros vivos no 39° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,270,222,0	script	39FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("39FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("39FGate102tower", instance_id());
+	areamonster "2@tower",352,180,362,216,"Samurai Encarnado",1492,1,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,180,362,216,"Shinobi",1401,10,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,180,362,216,"Tengu",1405,10,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,180,362,216,"Soldado Atirador",1403,5,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,180,362,216,"Boneca de Miyabi",1404,10,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,180,362,216,"Karakasa",1400,5,instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",395,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 40° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("40FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 40
+	}
+	else
+		instance_announce 0, "Monstros vivos no 40° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,355,222,0	script	40FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("40FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("40FGate102tower", instance_id());
+	areamonster "2@tower",9,96,19,132,"Kraben",1587,50,instance_npcname("40FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",52,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("40FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 41° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("41FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 41
+	}
+	else
+		instance_announce 0, "Monstros vivos no 41° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,12,138,0	script	41FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("41FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("41FGate102tower", instance_id());
+	areamonster "2@tower",93,96,103,132,"Rochoso",1386,20,instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,96,103,132,"Sting",1207,10,instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,96,103,132,"Mi Gao",1516,10,instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,96,103,132,"Arenoso",1165,5,instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,96,103,132,"Hode",1127,5,instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",136,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 42 andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("42FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 42
+	}
+	else
+		instance_announce 0, "Monstros vivos no 42 andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,96,138,0	script	42FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("42FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("42FGate102tower", instance_id());
+	areamonster "2@tower",181,96,191,132,"Medusa",1148,10,instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,96,191,132,"Sorrateiro",1037,40,instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,96,191,132,"Anaconda",1030,5,instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,96,191,132,"Jibóia",1025,5,instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",224,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 43° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("43FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 43
+	}
+	else
+		instance_announce 0, "Monstros vivos no 43° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,184,138,0	script	43FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("43FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("43FGate102tower", instance_id());
+	areamonster "2@tower",267,96,277,132,"Hatii Bebê",1515,20,instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,96,277,132,"Bafomé Jr.",1101,20,instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,96,277,132,"Filhote de Orc",1686,1,instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,96,277,132,"Filhote de Lobo do Deserto",1107,10,instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,96,277,132,"Bebê Selvagem",1167,10,instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",310,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 44° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("44FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 44
+	}
+	else
+		instance_announce 0, "Monstros vivos no 44° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,270,138,0	script	44FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("44FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("44FGate102tower", instance_id());
+	areamonster "2@tower",352,96,362,132,"Osiris",1038,1,instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,96,362,132,"Múmia Anciã",1297,15,instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,96,362,132,"Verit",1032,15,instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,96,362,132,"Mummy",1041,20,instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",395,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 45° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("45FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 45
+	}
+	else
+		instance_announce 0, "Monstros vivos no 45° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,355,138,0	script	45FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("45FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("45FGate102tower", instance_id());
+	areamonster "2@tower",9,9,19,45,"Seeker",1774,20,instance_npcname("45FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,9,19,45,"Beholder",1633,20,instance_npcname("45FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",52,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("45FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 46° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("46FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 46
+	}
+	else
+		instance_announce 0, "Monstros vivos no 46° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,12,51,0	script	46FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("46FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("46FGate102tower", instance_id());
+	areamonster "2@tower",93,9,103,45,"Deletério",1384,20,instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,9,103,45,"Deletério",1385,10,instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,9,103,45,"Petite",1156,10,instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",93,9,103,45,"Petite",1155,10,instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",136,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 47° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("47FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 47
+	}
+	else
+		instance_announce 0, "Monstros vivos no 47° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,96,51,0	script	47FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("47FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("47FGate102tower", instance_id());
+	areamonster "2@tower",181,9,191,45,"Ancient Worm",1305,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,9,191,45,"Múmia Anciã",1297,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,9,191,45,"Ancient Mimic",1699,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",224,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 48° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("48FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 48
+	}
+	else
+		instance_announce 0, "Monstros vivos no 48° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,184,51,0	script	48FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("48FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("48FGate102tower", instance_id());
+	areamonster "2@tower",267,9,277,45,"Grizzly",1381,20,instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,9,277,45,"Leib Olmai",1306,7,instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,9,277,45,"Zipper Bear",1417,5,instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,9,277,45,"Sasquatch",1243,5,instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",267,9,277,45,"Bigfoot",1060,5,instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",310,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 49° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("49FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 49
+	}
+	else
+		instance_announce 0, "Monstros vivos no 49° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,270,51,0	script	49FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("49FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("49FGate102tower", instance_id());
+	areamonster "2@tower",352,9,362,45,"Pharaoh",1157,1,instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,9,362,45,"Amon Ra",1511,1,instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,9,362,45,"Anubis",1098,10,instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,9,362,45,"Marduk",1140,10,instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",352,9,362,45,"Matyr",1146,10,instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "2@tower",395,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 50° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("50FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 50
+	}
+	else
+		instance_announce 0, "Monstros vivos no 50° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+2@tower,355,51,0	script	50FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("50FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("50FGate102tower", instance_id());
+	initnpctimer;
+	end;
+
+OnTouch_:
+	getitem 6000,1; // Cinzas da Escuridão
+	warp "3@tower",52,354;
+	end;
+
+OnTimer120000:
+	disablenpc instance_npcname("50FGate102tower", instance_id());
+	donpcevent instance_npcname("50FGate102tower-2", instance_id())+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+2@tower,355,51,0	script	50FGate102tower-2	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("50FGate102tower-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("50FGate102tower-2", instance_id());
+	end;
+
+OnTouch_:
+	warp "3@tower",52,354;
+	end;
+}
+
+/*
+2@tower,71,1,0	script	#Manager Mode2	844,{
+	mes "Please enter the passwo° andar.";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		mes "This NPC manages the tower from the 26° to the 50° Floor.";
+		mes "Please enter andar number to open.";
+		mes "(i.g.: 26F->26, 50F->50)";
+		input .@input,26,50;
+		next;
+		if (.@onput < 26 || .@input > 50)
+			mes "You can only enter a number from 26 to 50.";
+		else {
+			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
+			mes "*** Andar "+ .@input + " is now being opened. ***";
+		}
+	}
+	close;
+}
+*/
+
+// Andares 51-75
+//============================================================
+3@tower,29,365,2	script	Fornalha Imortal#2	844,{
+	end;
+
+OnInstanceInit:
+	areamonster "3@tower",9,351,19,387,"Mini Demon",1292,20,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,351,19,387,"Diabolic",1382,20,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,351,19,387,"Deviruchi",1109,10,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 51° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("51FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 51
+	}
+	else
+		instance_announce 0, "Monstros vivos no 51° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,12,393,0	script	51FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("51FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("51FGate102tower", instance_id());
+	areamonster "3@tower",93,351,103,387,"Harpy",1376,20,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,351,103,387,"Grand Peco",1369,10,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,351,103,387,"Bloody Butterfly",1408,10,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,351,103,387,"Gárgula",1253,10,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,351,103,387,"Vento da Colina",1680,5,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,351,103,387,"Vento da Colina",1629,5,instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",136,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 52° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("52FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 52
+	}
+	else
+		instance_announce 0, "Monstros vivos no 52° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,96,393,0	script	52FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("52FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("52FGate102tower", instance_id());
+	areamonster "3@tower",181,351,191,387,"Assaulter",1315,25,instance_npcname("52FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,351,191,387,"Shinobi",1401,30,instance_npcname("52FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",224,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("52FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 53° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("53FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 53
+	}
+	else
+		instance_announce 0, "Monstros vivos no 53° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,184,393,0	script	53FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("53FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("53FGate102tower", instance_id());
+	areamonster "3@tower",267,351,277,387,"Chepet",1250,10,instance_npcname("53FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,351,277,387,"Mariontte",1143,10,instance_npcname("53FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,351,277,387,"Boneca de Miyabi",1404,10,instance_npcname("53FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",310,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("53FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 54° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("54FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 54
+	}
+	else
+		instance_announce 0, "Monstros vivos no 54° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,270,393,0	script	54FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("54FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("54FGate102tower", instance_id());
+	areamonster "3@tower",352,351,362,387,"Medusa",1148,25,instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,351,362,387,"Serpente Suprema",1418,1,instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,351,362,387,"Isis",1029,15,instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,351,362,387,"Sorrateiro",1037,15,instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",395,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 55° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("55FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 55
+	}
+	else
+		instance_announce 0, "Monstros vivos no 55° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,355,393,0	script	55FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("55FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("55FGate102tower", instance_id());
+	areamonster "3@tower",9,267,19,303,"Congelador",1319,10,instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,267,19,303,"Hatii Bebê",1515,10,instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,267,19,303,"Ice Titan",1777,15,instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,267,19,303,"Snowier",1775,10,instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,267,19,303,"Gazeti",1778,10,instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",52,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 56° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("56FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 56
+	}
+	else
+		instance_announce 0, "Monstros vivos no 56° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,12,309,0	script	56FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("56FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("56FGate102tower", instance_id());
+	areamonster "3@tower",93,267,103,303,"Arc Angeling",1388,1,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Deviling",1582,1,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Angeling",1096,1,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Ghostring",1120,1,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Mastering",1090,1,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Metaling",1613,25,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Marin",1242,5,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Poporing",1031,5,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,267,103,303,"Drops",1113,5,instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",136,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 57° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("57FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 57
+	}
+	else
+		instance_announce 0, "Monstros vivos no 57° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,96,309,0	script	57FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("57FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("57FGate102tower", instance_id());
+	areamonster "3@tower",181,267,191,303,"Fendark",1202,20,instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,267,191,303,"Rybio",1201,10,instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,267,191,303,"Zombie Prisoner",1197,10,instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,267,191,303,"Esqueleto Prisoner",1196,5,instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,267,191,303,"Injustiçado",1257,5,instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",224,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 58° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("58FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 58
+	}
+	else
+		instance_announce 0, "Monstros vivos no 58° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,184,309,0	script	58FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("58FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("58FGate102tower", instance_id());
+	areamonster "3@tower",267,267,277,303,"Ancient Mimic",1699,30,instance_npcname("58FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,267,277,303,"Mimic",1191,20,instance_npcname("58FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,267,277,303,"Mystcase",1249,10,instance_npcname("58FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",310,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("58FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 59° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("59FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 59
+	}
+	else
+		instance_announce 0, "Monstros vivos no 59° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,270,309,0	script	59FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("59FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("59FGate102tower", instance_id());
+	areamonster "3@tower",352,267,362,303,"Egnigem Cenia",1658,1,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Doppelganger",1046,1,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Armeyer Dinze",1654,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Wickebine Tres",1653,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Laurell Winder",1657,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Kavach Icarus",1656,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Errende Ebecee",1655,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,267,362,303,"Egnigem Cenia",1652,10,instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",395,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 60° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("60FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 60
+	}
+	else
+		instance_announce 0, "Monstros vivos no 60° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,355,309,0	script	60FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("60FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("60FGate102tower", instance_id());
+	areamonster "3@tower",9,180,19,216,"Agav",1769,10,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,180,19,216,"Echio",1770,10,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,180,19,216,"Isilla",1772,5,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,180,19,216,"Mobster",1313,10,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,180,19,216,"Pasana",1154,10,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,180,19,216,"Vanberk",1771,5,instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",52,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 61° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("61FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 61
+	}
+	else
+		instance_announce 0, "Monstros vivos no 61° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,12,222,0	script	61FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("61FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("61FGate102tower", instance_id());
+	areamonster "3@tower",93,180,103,216,"Andarilho",1208,35,instance_npcname("61FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",136,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("61FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 62° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("62FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 62
+	}
+	else
+		instance_announce 0, "Monstros vivos no 62° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,96,222,0	script	62FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("62FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("62FGate102tower", instance_id());
+	areamonster "3@tower",181,180,191,216,"Ragged Zombie",1865,20,instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,180,191,216,"Zombie Master",1298,10,instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,180,191,216,"Zombie Prisoner",1197,5,instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,180,191,216,"Orc Zombie",1153,5,instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,180,191,216,"Zombie",1015,5,instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",224,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 63° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("63FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 63
+	}
+	else
+		instance_announce 0, "Monstros vivos no 63° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,184,222,0	script	63FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("63FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("63FGate102tower", instance_id());
+	areamonster "3@tower",267,180,277,216,"Ungoliant",1618,30,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,180,277,216,"Ancient Worm",1305,2,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,180,277,216,"Caterpillar",1300,2,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,180,277,216,"Creamy Fear",1293,2,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,180,277,216,"Killer Louva-Deus",1294,2,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,180,277,216,"Zangão Ferrãoante",1303,2,instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",310,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 64° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("64FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 64
+	}
+	else
+		instance_announce 0, "Monstros vivos no 64° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,270,222,0	script	64FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("64FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("64FGate102tower", instance_id());
+	areamonster "3@tower",352,180,362,216,"Atros",1785,1,instance_npcname("64FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,180,362,216,"Galion",1783,20,instance_npcname("64FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",395,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("64FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 65° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("65FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 65
+	}
+	else
+		instance_announce 0, "Monstros vivos no 65° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,355,222,0	script	65FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("65FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("65FGate102tower", instance_id());
+	areamonster "3@tower",9,96,19,132,"Incubus",1374,20,instance_npcname("65FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,96,19,132,"Aliot",1736,20,instance_npcname("65FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,96,19,132,"Injustiçado",1257,10,instance_npcname("65FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",52,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("65FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 66° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("66FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 66
+	}
+	else
+		instance_announce 0, "Monstros vivos no 66° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,12,138,0	script	66FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("66FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("66FGate102tower", instance_id());
+	areamonster "3@tower",93,96,103,132,"Acidus",1716,10,instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,96,103,132,"Acidus",1713,10,instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,96,103,132,"Deletério",1384,5,instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,96,103,132,"Mutant Dragonoid",1262,10,instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,96,103,132,"Petite",1156,5,instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",136,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 67° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("67FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 67
+	}
+	else
+		instance_announce 0, "Monstros vivos no 67° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,96,138,0	script	67FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("67FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("67FGate102tower", instance_id());
+	areamonster "3@tower",181,96,191,132,"Golem de Lava",1366,10,instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,96,191,132,"Stalactic Golem",1278,10,instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,96,191,132,"Ice Titan",1777,10,instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,96,191,132,"Golem de Madeira",1497,5,instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,96,191,132,"Golem",1040,5,instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",224,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 68° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("68FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 68
+	}
+	else
+		instance_announce 0, "Monstros vivos no 68° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,184,138,0	script	68FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("68FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("68FGate102tower", instance_id());
+	areamonster "3@tower",267,96,277,132,"Dame of Sentinel",1700,20,instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,96,277,132,"Abelha-Rainha of Shelter",1701,10,instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,96,277,132,"Baronesa da Retribuição",1702,10,instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,96,277,132,"Senhora do Conforto",1703,10,instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,96,277,132,"Anjo Fajuto",1371,10,instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",310,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 69° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("69FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 69
+	}
+	else
+		instance_announce 0, "Monstros vivos no 69° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,270,138,0	script	69FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("69FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("69FGate102tower", instance_id());
+	areamonster "3@tower",352,96,362,132,"Orc Hero",1087,1,instance_npcname("69FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,96,362,132,"Senhor dos Orcs",1190,1,instance_npcname("69FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,96,362,132,"Filhote de Orc",1686,20,instance_npcname("69FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",395,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("69FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 70° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("70FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 70
+	}
+	else
+		instance_announce 0, "Monstros vivos no 70° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,355,138,0	script	70FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("70FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("70FGate102tower", instance_id());
+	areamonster "3@tower",9,9,19,45,"Succubus",1370,20,instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,9,19,45,"Pesadelo Sombrio",1379,20,instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,9,19,45,"Incubus",1374,20,instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,9,19,45,"Pesadelo",1061,5,instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",52,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 71° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("71FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 71
+	}
+	else
+		instance_announce 0, "Monstros vivos no 71° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,12,51,0	script	71FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("71FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("71FGate102tower", instance_id());
+	areamonster "3@tower",93,9,103,45,"Margaretha Sorin",1637,10,instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,9,103,45,"Batedor",1314,10,instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,9,103,45,"Errende Ebecee",1655,10,instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",93,9,103,45,"Pessegueira Encantada",1410,10,instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",136,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 72° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("72FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 72
+	}
+	else
+		instance_announce 0, "Monstros vivos no 72° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,96,51,0	script	72FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("72FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("72FGate102tower", instance_id());
+	areamonster "3@tower",181,9,191,45,"Succubus",1370,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Loli Ruri",1505,20,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Aliza",1737,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Zealotus",1200,5,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Alice",1275,5,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Green Maiden",1631,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",224,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 73° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("73FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 73
+	}
+	else
+		instance_announce 0, "Monstros vivos no 73° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,184,51,0	script	73FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("73FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("73FGate102tower", instance_id());
+	areamonster "3@tower",267,9,277,45,"Dimik",1671,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Dimik",1673,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Dimik",1672,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Venatu",1677,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Dimik",1670,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Archdam",1668,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Venatu",1678,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Venatu",1679,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",267,9,277,45,"Venatu",1676,6,instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",310,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 74° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("74FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 74
+	}
+	else
+		instance_announce 0, "Monstros vivos no 74° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,270,51,0	script	74FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("74FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("74FGate102tower", instance_id());
+	areamonster "3@tower",352,9,362,45,"Bafomé",1039,1,instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,9,362,45,"Senhor das Trevas",1272,1,instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,9,362,45,"Bafomé Jr.",1101,20,instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",352,9,362,45,"Ilusão das Trevas",1302,10,instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "3@tower",395,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Todos os montros do 75° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("75FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 75
+	}
+	else
+		instance_announce 0, "Monstros vivos no 75° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+3@tower,355,51,0	script	75FGate102tower	45,1,1,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("75FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("75FGate102tower", instance_id());
+	initnpctimer;
+	end;
+
+OnTouch_:
+	getitem 6000,1; // Cinzas da Escuridão
+	warp "4@tower",52,354;
+	end;
+
+OnTimer120000:
+	disablenpc instance_npcname("75FGate102tower", instance_id());
+	donpcevent instance_npcname("75FGate102tower-2", instance_id())+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+3@tower,355,51,0	script	75FGate102tower-2	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("75FGate102tower-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("75FGate102tower-2", instance_id());
+	end;
+
+OnTouch_:
+	warp "4@tower",52,354;
+	end;
+}
+
+/*
+3@tower,71,1,0	script	#Modo Gerente3	844,{
+	mes "Por favor, digite a senha";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		mes "Este NPC controla a torre do 51° ao 75° andar.";
+		mes "Por favor, digite o número do andar que queira abrir.";
+		mes "(ex.: 51F->51, 75F->75)";
+		input .@input,51,75;
+		next;
+		if (.@input < 51 || .@input > 75)
+			mes "Você deve digitar apenas números entre 51 e 75.";
+		else {
+			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
+			mes "*** "+.@input+"° andar está sendo aberto. ***";
+		}
+	}
+	close;
+}
+*/
+
+// Andares 76-99
+//============================================================
+4@tower,29,365,2	script	Fornalha Imortal#3	844,{
+	end;
+
+OnInstanceInit:
+	areamonster "4@tower",9,351,19,387,"Cavaleiro do Abismo",1219,30,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,351,19,387,"Pesadelo Sombrio",1379,20,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,351,19,387,"Pesadelo",1061,10,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 76° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("76FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 76
+	}
+	else
+		instance_announce 0,"Monstros vivos no 76° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,12,393,0	script	76FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("76FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("76FGate102tower", instance_id());
+	areamonster "4@tower",93,351,103,387,"Banshee",1867,30,instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,351,103,387,"Aparição",1291,10,instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,351,103,387,"Druída Maligno",1117,10,instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,351,103,387,"Alma Penada",1192,10,instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,351,103,387,"Xamã do Vento",1263,10,instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",136,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 77° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("77FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 77
+	}
+	else
+		instance_announce 0,"Monstros vivos no 77° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,96,393,0	script	77FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("77FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("77FGate102tower", instance_id());
+	areamonster "4@tower",181,351,191,387,"Guardião Espadachim",1829,5,instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,351,191,387,"Cavaleiro Sanguinário",1268,10,instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,351,191,387,"Cavaleiro do Abismo",1219,5,instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,351,191,387,"Dullahan",1504,10,instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,351,191,387,"Raydric",1163,20,instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",224,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do Andar 78° foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("78FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 78
+	}
+	else
+		instance_announce 0,"Monstros vivos no 78° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,184,393,0	script	78FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("78FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("78FGate102tower", instance_id());
+	areamonster "4@tower",267,351,277,387,"Hydrolancer",1720,10,instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,351,277,387,"Ferus",1714,10,instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,351,277,387,"Ferus",1717,10,instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,351,277,387,"Deletério",1385,5,instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,351,277,387,"Petite",1155,5,instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",310,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 79° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("79FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 79
+	}
+	else
+		instance_announce 0,"Monstros vivos no 79° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,270,393,0	script	79FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("79FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("79FGate102tower", instance_id());
+	areamonster "4@tower",352,351,362,387,"Bispo Decadente",1871,1,instance_npcname("79FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,351,362,387,"Necromante",1870,15,instance_npcname("79FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",395,354;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("79FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 80° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("80FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 80
+	}
+	else
+		instance_announce 0,"Monstros vivos no 80° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,355,393,0	script	80FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("80FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("80FGate102tower", instance_id());
+	areamonster "4@tower",9,267,19,303,"Mysteltainn",1203,20,instance_npcname("80FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,267,19,303,"Tyrfing",1204,20,instance_npcname("80FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,267,19,303,"Executor",1205,20,instance_npcname("80FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",52,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("80FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 81° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("81FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 81
+	}
+	else
+		instance_announce 0,"Monstros vivos no 81° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,12,309,0	script	81FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("81FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("81FGate102tower", instance_id());
+	areamonster "4@tower",93,267,103,303,"Cavaleiro Sanguinário",1268,10,instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,267,103,303,"Agav",1769,10,instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,267,103,303,"Serial Killer",1507,10,instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,267,103,303,"Skogul",1752,10,instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,267,103,303,"Injustiçado",1257,10,instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",136,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 82° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("82FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 82
+	}
+	else
+		instance_announce 0,"Monstros vivos no 82° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,96,309,0	script	82FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("82FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("82FGate102tower", instance_id());
+	areamonster "4@tower",181,267,191,303,"Skeggiold",1754,10,instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,267,191,303,"Ilusão das Trevas",1302,10,instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,267,191,303,"Grifo",1259,10,instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,267,191,303,"Quimera",1283,10,instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",224,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 83° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("83FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 83
+	}
+	else
+		instance_announce 0,"Monstros vivos no 83° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,184,309,0	script	83FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("83FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("83FGate102tower", instance_id());
+	areamonster "4@tower",267,267,277,303,"Succubus",1370,10,instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,267,277,303,"Ilusão das Trevas",1302,20,instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,267,277,303,"Duque Coruja",1320,10,instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,267,277,303,"Barão Coruja",1295,10,instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,267,277,303,"Incubus",1374,10,instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",310,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 84° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("84FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 84
+	}
+	else
+		instance_announce 0,"Monstros vivos no 84° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,270,309,0	script	84FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("84FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("84FGate102tower", instance_id());
+	areamonster "4@tower",352,267,362,303,"Ifrit",1832,1,instance_npcname("84FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",395,270;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("84FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 85° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("85FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 85
+	}
+	else
+		instance_announce 0,"Monstros vivos no 85° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,355,309,0	script	85FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("85FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("85FGate102tower", instance_id());
+	areamonster "4@tower",9,180,19,216,"Hydrolancer",1720,10,instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,180,19,216,"Grifo",1259,10,instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,180,19,216,"Quimera",1283,10,instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,180,19,216,"Majoruros",1310,10,instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",52,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 86° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("86FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 86
+	}
+	else
+		instance_announce 0,"Monstros vivos no 86° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,12,222,0	script	86FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("86FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("86FGate102tower", instance_id());
+	areamonster "4@tower",93,180,103,216,"Salamandra",1831,15,instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,180,103,216,"Kasa",1833,20,instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,180,103,216,"Golem de Lava",1366,15,instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,180,103,216,"Gajomart",1309,10,instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",136,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 87° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("87FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 87
+	}
+	else
+		instance_announce 0,"Monstros vivos no 87° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,96,222,0	script	87FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("87FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("87FGate102tower", instance_id());
+	areamonster "4@tower",181,180,191,216,"Necromante",1870,15,instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,180,191,216,"Anubis",1098,15,instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,180,191,216,"Aparição",1291,10,instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,180,191,216,"Múmia Anciã",1297,10,instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,180,191,216,"Khalitzburg",1132,10,instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",224,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 88° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("88FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 88
+	}
+	else
+		instance_announce 0,"Monstros vivos no 88° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,184,222,0	script	88FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("88FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("88FGate102tower", instance_id());
+	areamonster "4@tower",267,180,277,216,"Odium",1704,6,instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,180,277,216,"Despero",1705,6,instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,180,277,216,"Maero",1706,6,instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,180,277,216,"Dolor",1707,6,instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",310,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 89° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("89FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 89
+	}
+	else
+		instance_announce 0,"Monstros vivos no 89° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,270,222,0	script	89FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("89FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("89FGate102tower", instance_id());
+	areamonster "4@tower",352,180,362,216,"Valquíria Randgris",1751,1,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,180,362,216,"Baronesa da Retribuição",1702,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,180,362,216,"Senhora do Conforto",1703,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,180,362,216,"Anjo Fajuto",1371,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",395,183;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 90° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("90FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 90
+	}
+	else
+		instance_announce 0,"Monstros vivos no 90° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,355,222,0	script	90FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("90FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("90FGate102tower", instance_id());
+	areamonster "4@tower",9,96,19,132,"Cecil Damon",1638,10,instance_npcname("90FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,96,19,132,"Guardião Arqueiro",1830,10,instance_npcname("90FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,96,19,132,"Kavach Icarus",1656,30,instance_npcname("90FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",52,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("90FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 91° Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("91FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 91
+	}
+	else 
+		instance_announce 0,"Monstros vivos no 91° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,12,138,0	script	91FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("91FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("91FGate102tower", instance_id());
+	areamonster "4@tower",93,96,103,132,"Kathryne Keyron",1639,15,instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,96,103,132,"Ancião",1377,10,instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,96,103,132,"Laurell Weinder",1657,10,instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,96,103,132,"Xamã do Vento",1263,10,instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,96,103,132,"Marduk",1140,10,instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",136,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 92° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("92FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 92
+	}
+	else
+		instance_announce 0,"Monstros vivos no 92° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,96,138,0	script	92FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("92FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("92FGate102tower", instance_id());
+	areamonster "4@tower",181,96,191,132,"Seyren Windsor",1634,15,instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,96,191,132,"Cavaleiro Sanguinário",1268,10,instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,96,191,132,"Cavaleiro do Abismo",1219,10,instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,96,191,132,"Andarilho",1208,10,instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",224,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 93° andar Andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("93FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 93
+	}
+	else
+		instance_announce 0,"Monstros vivos no 93° andar Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,184,138,0	script	93FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("93FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("93FGate102tower", instance_id());
+	areamonster "4@tower",267,96,277,132,"Guardião Espadachim",1829,15,instance_npcname("93FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",267,96,277,132,"Guardião Arqueiro",1830,15,instance_npcname("93FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",310,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("93FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 94° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("94FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 94
+	}
+	else
+		instance_announce 0,"Monstros vivos no 94° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,270,138,0	script	94FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("94FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("94FGate102tower", instance_id());
+	areamonster "4@tower",352,96,362,132,"Beelzebub",1873,1,instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,96,362,132,"Mosca Caçadora",1035,30,instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,96,362,132,"Chonchon de Aço",1042,5,instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,96,362,132,"Libélula",1091,5,instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,96,362,132,"Chonchon",1011,5,instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",395,99;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 95° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("95FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 95
+	}
+	else
+		instance_announce 0,"Monstros vivos no 95° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,355,138,0	script	95FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("95FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("95FGate102tower", instance_id());
+	areamonster "4@tower",9,9,19,45,"Valquíria",1765,5,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,9,19,45,"Skeggiold",1755,10,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,9,19,45,"Skeggiold",1754,10,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",52,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 96° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("96FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 96
+	}
+	else
+		instance_announce 0,"Monstros vivos no 96° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,12,51,0	script	96FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("96FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("96FGate102tower", instance_id());
+	areamonster "4@tower",93,9,103,45,"Sombra da Inveja",1918,5,instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,9,103,45,"Sombra da Gula",1919,5,instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,9,103,45,"Sombra da Vaidade",1920,5,instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",93,9,103,45,"Sombra da Ira",1921,5,instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",136,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 97° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("97FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 97
+	}
+	else
+		instance_announce 0,"Monstros vivos no 97° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,96,51,0	script	97FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("97FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("97FGate102tower", instance_id());
+	areamonster "4@tower",181,9,191,45,"Kathryne Keyron",1639,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,9,191,45,"Seyren Windsor",1634,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,9,191,45,"Margaretha Sorin",1637,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,9,191,45,"Eremes Guile",1635,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,9,191,45,"Howard Alt-Eisen",1636,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",181,9,191,45,"Cecil Damon",1638,2,instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead";
+	end;
+
+OnTouch_:
+	warp "4@tower",224,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 98° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("98FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 98
+	}
+	else
+		instance_announce 0,"Monstros vivos no 98° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,184,51,0	script	98FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("98FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("98FGate102tower", instance_id());
+	for( set .@i, 1; .@i <= 7; set .@i, .@i + 1 ) {
+		set .@mob_ran,rand(1,30);
+		if (.@mob_ran == 1) 
+			areamonster "4@tower",267,9,277,45,"Kathryne Keyron",1639,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 2) 
+			areamonster "4@tower",267,9,277,45,"Seyren Windsor",1634,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 3) 
+			areamonster "4@tower",267,9,277,45,"Margaretha Sorin",1637,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 4) 
+			areamonster "4@tower",267,9,277,45,"Eremes Guile",1635,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 5) 
+			areamonster "4@tower",267,9,277,45,"Howard Alt-Eisen",1636,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 6) 
+			areamonster "4@tower",267,9,277,45,"Cecil Damon",1638,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 7) 
+			areamonster "4@tower",267,9,277,45,"Sombra da Inveja",1918,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 8) 
+			areamonster "4@tower",267,9,277,45,"Sombra da Gula",1919,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 9) 
+			areamonster "4@tower",267,9,277,45,"Sombra da Vaidade",1920,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 10) 
+			areamonster "4@tower",267,9,277,45,"Sombra da Ira",1921,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 11) 
+			areamonster "4@tower",267,9,277,45,"Valquíria",1765,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 12) 
+			areamonster "4@tower",267,9,277,45,"Skeggiold",1755,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 13) 
+			areamonster "4@tower",267,9,277,45,"Skeggiold",1754,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 14) 
+			areamonster "4@tower",267,9,277,45,"Seyren Windsor",1634,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 15) 
+			areamonster "4@tower",267,9,277,45,"Cavaleiro Sanguinário",1268,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 16) 
+			areamonster "4@tower",267,9,277,45,"Cavaleiro do Abismo",1219,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 17) 
+			areamonster "4@tower",267,9,277,45,"Andarilho",1208,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 18) 
+			areamonster "4@tower",267,9,277,45,"Guardião Espadachim",1829,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 19) 
+			areamonster "4@tower",267,9,277,45,"Guardião Arqueiro",1830,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 20) 
+			areamonster "4@tower",267,9,277,45,"Kathryne Keyron",1639,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 21) 
+			areamonster "4@tower",267,9,277,45,"Ancião",1377,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 22) 
+			areamonster "4@tower",267,9,277,45,"Laurell Weinder",1657,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 23) 
+			areamonster "4@tower",267,9,277,45,"Xamã do Vento",1263,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 24) 
+			areamonster "4@tower",267,9,277,45,"Marduk",1140,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 25) 
+			areamonster "4@tower",267,9,277,45,"Cecil Damon",1638,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 26) 
+			areamonster "4@tower",267,9,277,45,"Guardião Arqueiro",1830,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 27) 
+			areamonster "4@tower",267,9,277,45,"Kavach Icarus",1656,30,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 28) 
+			areamonster "4@tower",267,9,277,45,"Baronesa da Retribuição",1702,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran == 29) 
+			areamonster "4@tower",267,9,277,45,"Senhora do Conforto",1703,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+		else 
+			areamonster "4@tower",267,9,277,45,"Anjo Fajuto",1371,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+	}
+	end;
+
+OnTouch_:
+	warp "4@tower",309,12;
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0,"Todos os montros do 99° andar foram derrotados.",bc_map,"0xffff00";
+		donpcevent instance_npcname("99FGate102tower", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 99
+	}
+	else
+		instance_announce 0,"Monstros vivos no 99° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
+	end;
+}
+
+4@tower,271,51,0	script	99FGate102tower	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("99FGate102tower", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("99FGate102tower", instance_id());
+	initnpctimer;
+	end;
+
+OnTouch_:
+	getitem 6000,1; // Cinzas da Escuridão
+	warp "5@tower",101,72;
+	end;
+
+OnTimer120000:
+	disablenpc instance_npcname("99FGate102tower", instance_id());
+	donpcevent instance_npcname("99FGate102tower-2", instance_id())+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+4@tower,271,51,0	script	99FGate102tower-2	45,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("99FGate102tower-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("99FGate102tower-2", instance_id());
+	end;
+
+OnTouch_:
+	warp "5@tower",101,72;
+	end;
+}
+
+/*
+4@tower,71,1,0	script	#Modo Gerente	844,{
+	mes "Por favor, digite a senha";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		mes "Este NPC controla a torre do 76° ao 99° andar.";
+		mes "Por favor, digite o número do andar que queira abrir.";
+		mes "(ex.: 76F->76, 99F->99)";
+		input .@input,76,99;
+		next;
+		if (.@input < 76 || .@input > 99)
+			mes "Você deve digitar apenas números entre 76 e 99.";
+		else {
+			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
+			mes "*** "+.@input+"° andar está sendo aberto. ***";
+		}
+	}
+	close;
+}
+*/
+
+// Andar 100
+//============================================================
+5@tower,106,109,2	script	Cristal Translúcido#102	844,{
+	if (in_102tower < 10) {
+		mes "^0000ff*Uma misteriosa voz ecoa pela sala dizendo para você tocar o cristal translúcido que está irradiando uma luz forte.*^000000";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Bem-vindo ao meu lar, intrusos. Eu me diverti vendo vocês suportarem todas as dificuldades que eu tenho posto diante de vocês.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Infelizmente, chegou a hora de terminar o show.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Ainda é muito cedo para comemorar a vitória contra o meu braço direito Knothen porque ele não está completamente destruído!";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Vou ressuscitá-lo para o próximo show. Derrote-o novamente, e então aceitarei com prazer o desafio de vocês.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Até logo.";
+		mes "Mais uma vez, havia um bom tempo, os seres humanos. Estou ansioso para vê-los novamente.";
+		next;
+		mes "^0000ff*Assim que a voz parou de falar, uma força irresistível o levantou e lhe moveu para algum lugar.*";
+		close2;
+		set in_102tower,10;
+		warp "alberta",223,36;
+	}
+	else {
+		mes "^0000ff*A peça de cristal irradiando parece acenar para você, assim como da última vez.*^000000";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Devo ter subestimado você... Eu não esperava vê-lo novamente.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Eu posso sentir o seu suor, ouvir os suspiros de cansaço em combate. Ah~ O desejo humano pela vitória sempre me excita.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Eu agora permito que você venha ao meu encontro. Venha até mim, para o grande Naght Sieger o Rei dos reis das Trevas!";
+		close2;
+		warp "6@tower",32,12;
+	}
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Cristal Translúcido#102", instance_id());
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("Cristal Translúcido#102", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Cristal Translúcido#102", instance_id());
+	donpcevent instance_npcname("#102Effect1", instance_id())+"::OnEnable";
+	end;
+}
+
+5@tower,106,109,2	script	#102Effect1	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#102Effect1", instance_id());
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#102Effect1", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#102Effect1", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer500:
+	specialeffect EF_ENHANCE;
+	stopnpctimer;
+	donpcevent instance_npcname("#102Effect2", instance_id())+"::OnEnable";
+	end;
+}
+
+5@tower,106,109,2	script	#102Effect2	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#102Effect2", instance_id());
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#102Effect2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#102Effect2", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer500:
+	specialeffect EF_ENHANCE;
+	stopnpctimer;
+	donpcevent instance_npcname("#102Effect1", instance_id())+"::OnEnable";
+	end;
+}
+
+5@tower,82,112,2	script	#102FShadowDust1	844,{
+	end;
+
+OnInstanceInit:
+	donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnEnable";
+	monster "5@tower",83,85,"Entweihen Crothen",1957,1,instance_npcname("#102FShadowDust1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("5@tower",instance_npcname("#102FShadowDust1", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		instance_announce 0, "Voz misteriosa: Quem é você para ousar invadir o meu santuário?!",bc_map,"0xffff00";
+		donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 100
+	}
+	end;
+}
+
+5@tower,82,113,2	script	#102FShadowDust	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#102FShadowDust", instance_id());
+	end;
+
+OnDisable:
+	killmonsterall "5@tower";
+	end;
+
+OnEnable:
+	monster "5@tower",72,93,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",70,87,"Espinho da Magia",1960,1;
+	monster "5@tower",68,83,"Espinho da Puresa",1961,1;
+	monster "5@tower",70,80,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",74,81,"Espinho da Magia",1960,1;
+	monster "5@tower",78,72,"Espinho da Magia",1960,1;
+	monster "5@tower",81,70,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",78,84,"Espinho da Recuperação",1959,1;
+	monster "5@tower",85,72,"Espinho da Magia",1960,1;
+	monster "5@tower",91,74,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",79,77,"Espinho da Puresa",1961,1;
+	monster "5@tower",82,80,"Espinho da Recuperação",1959,1;
+	monster "5@tower",87,83,"Espinho da Recuperação",1959,1;
+	monster "5@tower",80,92,"Espinho da Puresa",1961,1;
+	monster "5@tower",81,89,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",85,93,"Espinho da Magia",1960,1;
+	monster "5@tower",86,90,"Espinho da Recuperação",1959,1;
+	monster "5@tower",88,88,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",91,87,"Espinho da Magia",1960,1;
+	monster "5@tower",95,94,"Espinho da Magia",1960,1;
+	monster "5@tower",91,96,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",90,82,"Espinho da Puresa",1961,1;
+	monster "5@tower",96,98,"Espinho da Magia",1960,1;
+	monster "5@tower",83,76,"Esqueleto Espinhoso",1958,1;
+	monster "5@tower",74,85,"Esqueleto Espinhoso",1958,1;
+	set .@mob_ran,rand(1,3);
+	if (.@mob_ran == 1)
+		monster "5@tower",82,85,"Esqueleto Espinhoso",1958,1;
+	else if (.@mob_ran == 2)
+		monster "5@tower",82,85,"Espinho da Magia",1960,1;
+	else
+		monster "5@tower",82,85,"Espinho da Puresa",1961,1;
+	set .@mob_ran2,rand(1,3);
+	if (.@mob_ran2 == 1)
+		monster "5@tower",84,85,"Esqueleto Espinhoso",1958,1;
+	else if (.@mob_ran2 == 2)
+		monster "5@tower",84,85,"Espinho da Magia",1960,1;
+	else
+		monster "5@tower",84,85,"Espinho da Puresa",1961,1;
+	end;
+}
+/*
+5@tower,71,1,0	script	#Modo Gerente5	844,{
+	mes "Este NPC controla o cristal no 100° andar. Por favor, digite a senha.";
+	input .@inputstr$;
+	next;
+	if (.@inputstr$ == "dmc2008") {
+		donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnEnable";
+		mes "O cristal do 100° andar foi ativado.";
+	}
+	else
+		mes "Por favor, digite a senha correta.";
+	close;
+} */
+
+// Andar 101
+//============================================================
+6@tower,45,89,2	script	Fonte da Vida#1	844,{
+	set .@pc_hp,MaxHp-Hp;
+	set .@pc_sp,MaxSp-Sp;
+	mes "^0066ffVocê tomou um gole de água límpida e sentiu-se revigorado.^000000";
+	percentheal .@pc_hp,.@pc_sp;
+	close;
+
+OnInstanceInit:
+	donpcevent instance_npcname("Fonte da Vida#2", instance_id())+"::OnEnable";
+	end;
+
+}
+
+6@tower,45,89,2	script	Fonte da Vida#2	844,{
+	end;
+
+OnEnable:
+	specialeffect EF_BUBBLE;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;;
+	donpcevent instance_npcname("Fonte da Vida#3", instance_id())+"::OnEnable";
+	end;
+}
+
+6@tower,45,89,2	script	Fonte da Vida#3	844,{
+	end;
+
+OnEnable:
+	specialeffect EF_BUBBLE;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	donpcevent instance_npcname("Fonte da Vida#2", instance_id())+"::OnEnable";
+	end;
+}
+
+6@tower,32,100,0	warp	102FGate102tower	2,2,6@tower,155,64
+
+6@tower,156,151,2	script	Trono do Tirano#	844,{
+	end;
+
+OnInstanceInit:
+	areamonster "6@tower",154,73,156,75,"Anopheles",1627,10,instance_npcname("Trono do Tirano#", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("6@tower",instance_npcname("Trono do Tirano#", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		donpcevent instance_npcname("#1° Beep", instance_id())+"::OnEnable";
+		disablenpc instance_npcname("Trono do Tirano#", instance_id());
+	}
+	end;
+}
+
+6@tower,156,151,2	script	#1° Beep	844,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer500:
+	instance_announce 0,"Hóspedes, hein? Eu espero que vocês venham aqui, sabendo que vocês serão enterrados neste lugar. Se vocês não sabem, bem... é tarde demais!",bc_map,"0x00ffcc";
+	end;
+
+OnTimer5500:
+	instance_announce 0,"É por isso que vocês, aventureiros, sempre acabam mortos.",bc_map,"0x00ffcc";
+	end;
+
+OnTimer10500:
+	instance_announce 0,"Eu pretendo aplaudi-los por sua coragem... Mas é claro que, antes, pretendo brincar um pouco com vocês.",bc_map,"0x00ffcc";
+	end;
+
+OnTimer15500:
+	instance_announce 0,"Sabem, eu gosto de ver seres humanos correndo com medo.",bc_map,"0x00ffcc";
+	end;
+
+OnTimer20500:
+	instance_announce 0,"Vamos ver quem corre mais rápido. Estão prontos?",bc_map,"0x00ffcc";
+	stopnpctimer;
+	areamonster "6@tower",151,66,153,106,"Guardião de Ossos",1152,50,instance_npcname("#1° Beep", instance_id())+"::OnMyMobDead";
+	areamonster "6@tower",158,66,160,106,"Guardião de Ossos",1152,50,instance_npcname("#1° Beep", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("6@tower",instance_npcname("#1° Beep", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		donpcevent instance_npcname("#2° Beep", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 101
+	}
+	else
+		instance_announce 0,"Monstros vivos " + .@mob_dead_num + "ea",bc_map,"0x00ff99";
+	end;
+}
+
+6@tower,156,151,2	script	#2° Beep	844,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer500:
+	instance_announce 0,"Bem, acho que eles não foram muito desafiadores para vocês.",bc_map,"0x00ffcc";
+	end;
+
+OnTimer5500:
+	instance_announce 0,"Vamos acelerar um pouco, vamos?",bc_map,"0x00ffcc";
+	end;
+
+OnTimer10500:
+	instance_announce 0,"Eu quero bis!",bc_map,"0x00ffcc";
+	stopnpctimer;
+	areamonster "6@tower",151,66,153,106,"Guardião de Vento",1263,30,instance_npcname("#2° Beep", instance_id())+"::OnMyMobDead";
+	areamonster "6@tower",158,66,160,106,"Guardião de Vento",1263,30,instance_npcname("#2° Beep", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("6@tower",instance_npcname("#2° Beep", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		donpcevent instance_npcname("#3° andar Beep", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 102
+	}
+	else
+		instance_announce 0,"Monstros vivos " + .@mob_dead_num + "ea",bc_map,"0x00ff99";
+	end;
+}
+
+6@tower,156,151,2	script	#3° andar Beep	844,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer500:
+	instance_announce 0,"Sim, isso está ficando emocionante!",bc_map,"0x00ffcc";
+	end;
+
+OnTimer5500:
+	instance_announce 0,"Lembrarei de vocês como uns dos poucos que conseguiram me entreter.",bc_map,"0x00ffcc";
+	end;
+
+OnTimer10500:
+	instance_announce 0,"Como quer jogar comigo o próximo round?",bc_map,"0x00ffcc";
+	stopnpctimer;
+	areamonster "6@tower",151,66,153,106,"Guardião da Espada Gêmea",1132,20,instance_npcname("#3° andar Beep", instance_id())+"::OnMyMobDead";
+	areamonster "6@tower",158,66,160,106,"Guardião da Espada Gêmea",1132,20,instance_npcname("#3° andar Beep", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@mob_dead_num,mobcount("6@tower",instance_npcname("#3° andar Beep", instance_id())+"::OnMyMobDead");
+	if (.@mob_dead_num < 1) {
+		donpcevent instance_npcname("#4° Beep", instance_id())+"::OnEnable";
+		//SetItemPartyInMap in_102floor 103
+	}
+	else
+		instance_announce 0,"Monstros vivos " + .@mob_dead_num + "ea",bc_map,"0x00ff99";
+	end;
+}
+
+6@tower,156,151,2	script	#4° Beep	844,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer500:
+	instance_announce 0,"Ok, chegou o momento de fazer a minha aparição!",bc_map,"0x00ffcc";
+	end;
+
+OnTimer5500:
+	instance_announce 0,"Vocês querem saber quem sou?",bc_map,"0x00ffcc";
+	end;
+
+OnTimer10500:
+	instance_announce 0,"Saberão em breve. Eu tenho a face da morte!",bc_map,"0x00ffcc";
+	stopnpctimer;
+	monster "6@tower",156,147,"Naght Sieger",1956,1,instance_npcname("#4° Beep", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnEnable";
+	end;
+}
+
+6@tower,169,127,2	script	Alma Perdida#102	796,{
+	if (checkweight(1201,1) == 0) {
+		mes "Você está carregando muito equipamento. Porque não joga alguns fora e depois retorna?";
+		close;
+	}
+	mes "[Alma Perdidas]";
+	mes "Foram vocês que nos libertaram do terrível Naght Sieger.";
+	next;
+	mes "[Alma Perdida]";
+	mes "Muito obrigado. Agora podemos escapar deste lugar frio e escuro... para o céu.";
+	next;
+	if ((countitem(13412) > 0) && (countitem(13413) > 0)) {
+		mes "[Alma Perdidas]";
+		mes "Ei, você tem os restos de Naght Sieger com você.";
+		next;
+		mes "[Alma Perdida]";
+		mes "Elas podem parecer espadas de uma mão, mas posso colocá-las juntas para fazer uma de duas mãos se quiser. Essa é a única maneira para que eu possa retribuir-lhes por me libertar.";
+		next;
+		switch(select("Faça uma espada de 2 mãos.:Não, obrigado.")) {
+		case 1:
+			mes "[Alma Perdida]";
+			mes "Bom, então eu vou combiná-las para criar uma espada de duas mãos.";
+			next;
+			delitem 13412,1; // Lâmina Gêmea de Naght Sieger
+			delitem 13413,1; // Lâmina Gêmea de Naght Sieger
+			getitem 1185,1;  // Terror Violeta
+			mes "[Alma Perdidas]";
+			mes "Eu gostaria de falar mais com vocês, mas eu tenho... Eu tenho que ir agora.";
+			next;
+			break;
+		case 2:
+			mes "[Alma Perdidas]";
+			mes "Eu vejo. Eu acho que você não são tão gananciosos ou ambiciosos quanto aqueles outros aventureiros.";
+			next;
+			mes "[Alma Perdida]";
+			mes "Eu gostaria de falar mais com vocês, mas eu tenho... Eu tenho que ir agora.";
+			next;
+			break;
+		}
+	}
+	mes "[Alma Perdidas]";
+	mes "Adeus, jovens aventureiros. Desejo-lhes boa sorte.";
+	close2;
+	warp "alberta",223,36;
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Alma Perdida#102", instance_id());
+	end;
+
+OnEnable:
+	initnpctimer;
+	enablenpc instance_npcname("Alma Perdida#102", instance_id());
+	donpcevent instance_npcname("#Efeito30", instance_id())+"::OnEnable";
+	//SetItemPartyInMap in_102floor 104
+	end;
+
+OnTimer500:
+	instance_announce 0,"Isso... isso não pode estar acontecendo! Eu não posso ser derrotado!",bc_map,"0xffff00";
+	end;
+
+OnTimer5500:
+	instance_announce 0,"Nããão! Minha alma... Meu corpo...! Nããããoo!",bc_map,"0xffff00";
+	end;
+
+OnTimer10500:
+	instance_announce 0,"O corpo de Naght Sieger se transformou em cinzas escuras que se espalharam ao vento.",bc_map,"0x00ffcc";
+	stopnpctimer;
+	end;
+}
+
+6@tower,169,127,2	script	#Efeito30	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Efeito30", instance_id());
+	end;
+
+OnEnable:
+	specialeffect EF_CONE;
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("#Efeito31", instance_id())+"::OnEnable";
+	end;
+}
+
+6@tower,169,127,2	script	#Efeito31	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Efeito31", instance_id());
+	end;
+
+OnEnable:
+	specialeffect EF_CONE;
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	stopnpctimer;
+	donpcevent instance_npcname("#Efeito30", instance_id())+"::OnEnable";
+	end;
+}

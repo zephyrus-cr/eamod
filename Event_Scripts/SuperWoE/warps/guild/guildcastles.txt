@@ -1,0 +1,74 @@
+//===== eAthena Script =======================================
+//= Guild Castles Warp Script
+//===== By: ==================================================
+//= Athena (1.0)
+//===== Current Version: =====================================
+//= 2.5
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Warp Points for Al de Baran, Payon, Prontera, Geffen,
+//= and Juno Guild Castles
+//===== Additional Comments: =================================
+//= Split off npc_warp.txt
+//= fixed aldg504-1 warp [Lupus]
+//= 2.0 Added Novice Guilds warps, optimized aldg408r warp [Lupus]
+//= 2.1 Fixed some warps positions [Yor]
+//= 2.2 Changed all breaks to end as per the new script engine. [Skotlex]
+//= 2.3 Removed 2nd entrance to Novice Castle Geffen [Lupus]
+//= 2.4 Added Warps between Juno and it's new Castle Satelite map. [L0ne_W0lf]
+//= 2.4a Added more warps between Juno Satellite and Castle Interiors. [L0ne_W0lf]
+//=	castle 1, 4 and 5 entrances are questionable, and will be updated
+//=	as I get more information.
+//= 2.4b Corrected Warp points for Juno castles 1, 4 and 5. [L0ne_W0lf]
+//= 2.5 Updated Schwaltzvalt warps and added Arunafeltz. [L0ne_W0lf]
+//============================================================
+
+// Castle Room
+arug_cas01,127,357,0	warp	arug103	1,1,arug_cas01,275,93
+arug_cas02,393,324,0	warp	arug203	1,1,arug_cas02,139,31
+arug_cas03,321,52,0	warp	arug303	1,1,arug_cas03,141,45
+schg_cas01,275,240,0	warp	schg103	1,1,schg_cas01,120,7
+
+// Salidas de Castillos
+arug_cas01,281,93,0	warp	arug101	1,1,prt_are02,149,178
+arug_cas02,139,25,0	warp	arug201	1,1,prt_are02,128,171
+arug_cas03,141,40,0	warp	arug301	1,1,prt_are02,171,171
+schg_cas01,119,4,0	warp	schg101	1,1,prt_are02,180,150
+
+// Entradas a Castillos
+prt_are02,149,210,0	script	arug102	45,1,1,{
+	if( !Converted || !Autorized || !getcharid(2) )
+		end;
+	if( getcharid(2) != Guild_ID )
+		end;
+	warp "arug_cas01",275,93;
+	end;
+}
+
+prt_are02,103,196,0	script	arug202	45,1,1,{
+	if( !Converted || !Autorized || !getcharid(2) )
+		end;
+	if( getcharid(2) != Guild_ID )
+		end;
+	warp "arug_cas02",139,31;
+	end;
+}
+
+prt_are02,196,196,0	script	arug302	45,1,1,{
+	if( !Converted || !Autorized || !getcharid(2) )
+		end;
+	if( getcharid(2) != Guild_ID )
+		end;
+	warp "arug_cas03",141,45;
+	end;
+}
+
+prt_are02,210,150,0	script	schg102	45,1,1,{
+	if( !Converted || !Autorized || !getcharid(2) )
+		end;
+	if( getcharid(2) != Guild_ID )
+		end;
+	warp "schg_cas01",119,8;
+	end;
+}

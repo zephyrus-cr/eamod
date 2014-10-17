@@ -1,0 +1,116 @@
+//    ____________________________________________________________ 
+//   /                                                            \
+//   |       _           _   _   _                                |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _           |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |          |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |          |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|          |
+//   |                                                            |
+//   |                    brAthena Script                         |
+//   |------------------------------------------------------------|
+//   | Nome do Script: gvg.txt                                    |
+//   |------------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                            |
+//   |------------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.2/1.0                             |
+//   |------------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que habilita o modo GvG nos|
+//   | mapas: Arenas (gvg), WoE (gvg_castle) e Calabouço das      |
+//   | Guildas (gvg_dungeon).                                     |
+//   |------------------------------------------------------------|
+//   | Changelog:                                                 |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                      |
+//   |------------------------------------------------------------|
+//   | - Anotações                                                |
+//   \____________________________________________________________/
+
+// ============= Arenas de GvG =============
+guild_vs1	mapflag	gvg
+guild_vs2	mapflag	gvg
+guild_vs3	mapflag	gvg
+guild_vs4	mapflag	gvg
+guild_vs5	mapflag	gvg
+
+// ============= Castelos da WoE ==========
+aldeg_cas01	mapflag	gvg_castle
+aldeg_cas02	mapflag	gvg_castle
+aldeg_cas03	mapflag	gvg_castle
+aldeg_cas04	mapflag	gvg_castle
+aldeg_cas05	mapflag	gvg_castle
+gefg_cas01	mapflag	gvg_castle
+gefg_cas02	mapflag	gvg_castle
+gefg_cas03	mapflag	gvg_castle
+gefg_cas04	mapflag	gvg_castle
+gefg_cas05	mapflag	gvg_castle
+payg_cas01	mapflag	gvg_castle
+payg_cas02	mapflag	gvg_castle
+payg_cas03	mapflag	gvg_castle
+payg_cas04	mapflag	gvg_castle
+payg_cas05	mapflag	gvg_castle
+prtg_cas01	mapflag	gvg_castle
+prtg_cas02	mapflag	gvg_castle
+prtg_cas03	mapflag	gvg_castle
+prtg_cas04	mapflag	gvg_castle
+prtg_cas05	mapflag	gvg_castle
+schg_cas01	mapflag	gvg_castle
+schg_cas02	mapflag	gvg_castle
+schg_cas03	mapflag	gvg_castle
+schg_cas04	mapflag	gvg_castle
+schg_cas05	mapflag	gvg_castle
+arug_cas01	mapflag	gvg_castle
+arug_cas02	mapflag	gvg_castle
+arug_cas03	mapflag	gvg_castle
+arug_cas04	mapflag	gvg_castle
+arug_cas05	mapflag	gvg_castle
+
+//Descomente "//" para desabilitar teleporte de monstros (cancela o teleporte quando é atacado)
+//aldeg_cas01	mapflag	monster_noteleport
+//aldeg_cas02	mapflag	monster_noteleport
+//aldeg_cas03	mapflag	monster_noteleport
+//aldeg_cas04	mapflag	monster_noteleport
+//aldeg_cas05	mapflag	monster_noteleport
+//gefg_cas01	mapflag	monster_noteleport
+//gefg_cas02	mapflag	monster_noteleport
+//gefg_cas03	mapflag	monster_noteleport
+//gefg_cas04	mapflag	monster_noteleport
+//gefg_cas05	mapflag	monster_noteleport
+//payg_cas01	mapflag	monster_noteleport
+//payg_cas02	mapflag	monster_noteleport
+//payg_cas03	mapflag	monster_noteleport
+//payg_cas04	mapflag	monster_noteleport
+//payg_cas05	mapflag	monster_noteleport
+//prtg_cas01	mapflag	monster_noteleport
+//prtg_cas02	mapflag	monster_noteleport
+//prtg_cas03	mapflag	monster_noteleport
+//prtg_cas04	mapflag	monster_noteleport
+//prtg_cas05	mapflag	monster_noteleport
+//schg_cas01	mapflag	monster_noteleport
+//schg_cas02	mapflag	monster_noteleport
+//schg_cas03	mapflag	monster_noteleport
+//schg_cas04	mapflag	monster_noteleport
+//schg_cas05	mapflag	monster_noteleport
+//arug_cas01	mapflag	monster_noteleport
+//arug_cas02	mapflag	monster_noteleport
+//arug_cas03	mapflag	monster_noteleport
+//arug_cas04	mapflag	monster_noteleport
+//arug_cas05	mapflag	monster_noteleport
+
+// ============= Castelo da WoE dos Aprendizes ===
+//n_castle	mapflag	gvg_castle
+nguild_alde	mapflag	gvg_castle
+nguild_gef	mapflag	gvg_castle
+nguild_pay	mapflag	gvg_castle
+nguild_prt	mapflag	gvg_castle
+
+//nguild_alde	mapflag	monster_noteleport
+//nguild_gef	mapflag	monster_noteleport
+//nguild_pay	mapflag	monster_noteleport
+//nguild_prt	mapflag	monster_noteleport
+
+// ============= Calabouço dos Clãs =========
+gld_dun01	mapflag	gvg_dungeon
+gld_dun02	mapflag	gvg_dungeon
+gld_dun03	mapflag	gvg_dungeon
+gld_dun04	mapflag	gvg_dungeon
+arug_dun01	mapflag	gvg_dungeon
+schg_dun01	mapflag	gvg_dungeon

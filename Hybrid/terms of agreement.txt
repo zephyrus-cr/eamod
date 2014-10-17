@@ -1,0 +1,26 @@
+TERMS OF AGREEMENT
+===================================
+
+By using these files you are agreeing that you are using them
+at your own risk. Hybrid, Zephyrus and the eAmod are not
+responsible for any code conflicts between the files here and
+those in your own custom server. Although help may be given
+if directly requested, these files are not supported by the
+eAmod team as a whole and act only to improve, not replace,
+the standard eAmod installation.
+
+Although these files are free for use, it would be 
+appreciated if they would be kept from distribution without
+my permission.
+
+If anything is bugging out, send me a shout and I'll see if
+it's a problem with my code or just a conflict with yours.
+The former I can fix for everyone, the latter we can discuss.
+
+email: brnprd@gmail.com
+skype: brnoprd
+
+
+Donate to a developer, feed a caffeine addiction
+
+paypal: lanareprado@gmail.com

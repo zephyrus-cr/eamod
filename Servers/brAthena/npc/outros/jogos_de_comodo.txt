@@ -1,0 +1,565 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: jogos_de_comodo.txt                    |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Itens aleatórios Diamante de 3 quilates em  |
+//   | Comodo.                                                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+comodo,219,158,6	script	Kachua	91,{
+
+	cutin "katsua01.bmp",2;
+	mes "[Kachua]";
+	mes "Diamantes...!";
+	mes "Eu não consigo parar de pensar";
+	mes "neles! Desde que o homem";
+	mes "me mostrou aquele diamante,";
+	mes "só tenho pensado nele!";
+	next;
+
+	if (select("Há algo a tratar comigo?", "Ah, que vergonha...") == 2) {
+		mes "[Kachua]";
+		mes "Sim, eu sei...";
+		mes "Mesmo em toda a";
+		mes "minha coleção, nada";
+		mes "se compara aos diamantes...";
+		close2;
+		cutin "katsua01.bmp",255;
+		end;
+	}
+	
+	if (countitem(732) == 0) {
+		cutin "katsua01.bmp",255;
+		cutin "katsua03.bmp",2;
+		mes "[Kachua]";
+		mes "*piff*";
+		mes "Você não possui nenhum diamante!";
+		mes "Não tente me enganar!";
+		close2;
+		cutin "katsua03.bmp",255;
+		end;
+	}
+	
+	mes "[Kachua]";
+	mes "Tem certeza que você não se importa";
+	mes "em dá-lo para mim? Muito obrigado!";
+	mes "Eu não tenho como te pagar";
+	mes "em dinheiro, mas eu posso te dar algo";
+	mes "da minha coleção como forma de pagamento~";
+	next;
+	
+	if (Weight >= MaxWeight/2) {
+		cutin "katsua01.bmp",255;
+		cutin "katsua03.bmp",2;
+		mes "[Kachua]";
+		mes "Errr...";
+		mes "Você está com muitas coisas.";
+		mes "Não há como te dar o item agora.";
+		mes "É melhor que você reorganize seu inventário e tente novamente.";
+		close2;
+		cutin "katsua03.bmp",255;
+		end;
+	}
+	
+	if (countitem(732) == 0) { // anti-roubo
+		logmes "Roubo: Você tentou ignorar a verificação de item.";
+		cutin "katsua01.bmp",255;
+		close;
+	}
+	delitem 732,1;
+	
+	mes "[Kachua]";
+	mes "Então, o que";
+	mes "você gostaria de possuir?";
+	next;
+	
+	switch(select("Arma:Armadura:Manto:Elmo:Sapatos:Escudo")) {
+	
+	case 1: // Armas
+			set .@gamble1,rand(1,1000);
+			if ((.@gamble1 > 920) && (.@gamble1 < 931)) {
+				set .@gamble2,rand(1,85);
+				if      (.@gamble2 ==  1) set .@item,1128; // Haedonggum[2]
+				else if (.@gamble2 ==  2) set .@item,1120; // Tsurugi[2]
+				else if (.@gamble2 ==  3) set .@item,1127; // Sabre[3]
+				else if (.@gamble2 ==  4) set .@item,1158; // Espada de Duas Mãos[2]
+				else if (.@gamble2 ==  5) set .@item,1155; // Espada Bastarda[3]
+				else if (.@gamble2 ==  6) set .@item,1220; // Gladius[3]
+				else if (.@gamble2 ==  7) set .@item,1222; // Damascus[1]
+				else if (.@gamble2 ==  8) set .@item,1253; // Katar[2]
+				else if (.@gamble2 ==  9) set .@item,1529; // Taco
+				else if (.@gamble2 == 10) set .@item,1251; // Jur[3]
+				else if (.@gamble2 == 11) set .@item,1361; // Machado de Duas Mãos[2]
+				else if (.@gamble2 == 12) set .@item,1258; // Katar da Chama Impetuosa
+				else if (.@gamble2 == 13) set .@item,1257; // Katar da Espinheira Empoeirada
+				else if (.@gamble2 == 14) set .@item,1256; // Katar Gélida
+				else if (.@gamble2 == 15) set .@item,1259; // Katar do Vento Perfurante
+				else if (.@gamble2 == 16) set .@item,1260; // Osso Afiado de Carniçal
+				else if (.@gamble2 == 17) set .@item,1716; // Gakkung[2]
+				else if (.@gamble2 == 18) set .@item,1715; // Arbaleste[2]
+				else if (.@gamble2 == 19) set .@item,1711; // Besta[3]
+				else if (.@gamble2 == 20) set .@item,1702; // Arco[4]
+				else if (.@gamble2 == 21) set .@item,1520; // Mangual Pesado[3]
+				else if (.@gamble2 == 22) set .@item,1610; // Cetro[1]
+				else if (.@gamble2 == 23) set .@item,1615; // Bastão Arcano
+				else if (.@gamble2 == 24) set .@item,1602; // Bastão[4]
+				else if (.@gamble2 == 25) set .@item,1461; // Tridente[3]
+				else if (.@gamble2 == 26) set .@item,1402; // Azagaia[4]
+				else if (.@gamble2 == 27) set .@item,1961; // Chicote[2]
+				else if (.@gamble2 == 28) set .@item,1957; // Azorrague[1]
+				else if (.@gamble2 == 29) set .@item,1552; // Tábula[1]
+				else if (.@gamble2 == 30) set .@item,1551; // Bíblia[2]
+				else if (.@gamble2 == 31) set .@item,1553; // Livro das Ondas
+				else if (.@gamble2 == 32) set .@item,1554; // Livro da Mãe Terra
+				else if (.@gamble2 == 33) set .@item,1555; // Livro do Sol Ardente
+				else if (.@gamble2 == 34) set .@item,1556; // Livro do Golpe do Vento
+				else if (.@gamble2 == 35) set .@item,1951; // Cordel[4]
+				else if (.@gamble2 == 36) set .@item,1959; // Chibata[2]
+				else if (.@gamble2 == 37) set .@item,1953; // Cordame[3]
+				else if (.@gamble2 == 38) set .@item,1955; // Açoite[3]
+				else if (.@gamble2 == 39) set .@item,1810; // Garra[2]
+				else if (.@gamble2 == 40) set .@item,1910; // Harpa[2]
+				else if (.@gamble2 == 41) set .@item,1906; // Alaúde[3]
+				else if (.@gamble2 == 42) set .@item,1902; // Violino[4]
+				else if (.@gamble2 == 43) set .@item,1904; // Bandolin[3]
+				else if (.@gamble2 == 44) set .@item,1912; // Gumoongoh[2]
+				else if (.@gamble2 == 45) set .@item,1908; // Violão[1]
+				else if (.@gamble2 == 46) set .@item,1808; // Punho[1]
+				else if (.@gamble2 == 47) set .@item,1802; // Waghnak[4]
+				else if (.@gamble2 == 48) set .@item,1812; // Dedos Afiados[2]
+				else if (.@gamble2 == 49) set .@item,1806; // Soco Inglês[3]
+				else if (.@gamble2 == 50) set .@item,1804; // Soqueira[3]
+				else if (.@gamble2 == 51) set .@item,1550; // Livro[3]
+				else if (.@gamble2 == 52) set .@item,1246; // Cinquedea[2]
+				else if (.@gamble2 == 53) set .@item,1147; // Espada Citadina
+				else if (.@gamble2 > 53 && .@gamble2 < 56) set .@item,1264; // Jur Especial[4]
+				else if (.@gamble2 > 55 && .@gamble2 < 58) set .@item,1262; // Unha de Loki
+				else if (.@gamble2 > 57 && .@gamble2 < 60) set .@item,1622; // Hipnotizador[2]
+				else if (.@gamble2 == 60) set .@item,1723; // Arco de Luna[2]
+				else if (.@gamble2 > 60 && .@gamble2 < 63) set .@item,1965; // Chicote de Labareda Vermelha
+				else if (.@gamble2 > 62 && .@gamble2 < 65) set .@item,1966; // Chicote de Gelo
+				else if (.@gamble2 > 64 && .@gamble2 < 67) set .@item,1967; // Chicote de Gaia
+				else if (.@gamble2 > 66 && .@gamble2 < 69) set .@item,1968; // Corda de Pular
+				else if (.@gamble2 > 68 && .@gamble2 < 71) set .@item,1914; // Violão da Paixão Ardente
+				else if (.@gamble2 > 70 && .@gamble2 < 73) set .@item,1915; // Violão do Solitário
+				else if (.@gamble2 > 72 && .@gamble2 < 75) set .@item,1916; // Violão da Mãe Terra
+				else if (.@gamble2 > 74 && .@gamble2 < 77) set .@item,1917; // Violão da Brisa Gentil
+				else if (.@gamble2 > 76 && .@gamble2 < 79) set .@item,13004; // Lâmina da Covardia[2]
+				else if (.@gamble2 > 78 && .@gamble2 < 81) set .@item,1307; // Falcão do Vento
+				else if (.@gamble2 == 81) set .@item,1560; // Diário do Sábio[2]
+				else if (.@gamble2 == 82) set .@item,1618; // Bastão do Sobrevivente[1]
+				else if (.@gamble2 == 83) set .@item,1620; // Bastão do Sobrevivente[1]
+				else if (.@gamble2 > 83 && .@gamble2 < 86) set .@item,1971; // Fio Elétrico
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 <  201)) set .@item,1201; // Faca[3]
+			else if ((.@gamble1 > 200) && (.@gamble1 <  301)) set .@item,1101; // Espada[3]
+			else if ((.@gamble1 > 300) && (.@gamble1 <  401)) set .@item,1601; // Bastão[3]
+			else if ((.@gamble1 > 400) && (.@gamble1 <  501)) set .@item,1116; // Kataná[3]
+			else if ((.@gamble1 > 500) && (.@gamble1 <  601)) set .@item,1250; // Jur[2]
+			else if ((.@gamble1 > 600) && (.@gamble1 <  701)) set .@item,1301; // Machado[3]
+			else if ((.@gamble1 > 700) && (.@gamble1 <  801)) set .@item,1701; // Arco[3]
+			else if ((.@gamble1 > 800) && (.@gamble1 <  851)) set .@item,1504; // Maça[3]
+			else if ((.@gamble1 > 850) && (.@gamble1 <  901)) set .@item,1604; // Vareta[2]
+			else if ((.@gamble1 > 900) && (.@gamble1 <  911)) set .@item,1108; // Lâmina[4]
+			else if ((.@gamble1 > 910) && (.@gamble1 <  921)) set .@item,1163; // Claymore
+			else if ((.@gamble1 > 930) && (.@gamble1 <  961)) set .@item,1522; // Atordoador
+			else if ((.@gamble1 > 960) && (.@gamble1 <  971)) set .@item,1608; // Cajado[3]
+			else if ((.@gamble1 > 970) && (.@gamble1 <  981)) set .@item,1408; // Pique[4]
+			else if ((.@gamble1 > 980) && (.@gamble1 <  991)) set .@item,1452; // Guisarme[3]
+			else if ((.@gamble1 > 990) && (.@gamble1 < 1001)) set .@item,1208; // Main Gauche[4]
+	break;
+
+	case 2: // Armaduras
+			set .@gamble1,rand(1,500);
+			if ((.@gamble1 > 299) && (.@gamble1 < 303)) {
+				set .@gamble2,rand(1,30);
+				if      ((.@gamble2 >  0) && (.@gamble2 <  3)) set .@item,2315; // Cota de Malha[1]
+				else if ((.@gamble2 >  2) && (.@gamble2 <  5)) set .@item,2336; // Traje de Gatuno[1]
+				else if ((.@gamble2 >  4) && (.@gamble2 <  7)) set .@item,2318; // Vestimenta Nobre[1]
+				else if ((.@gamble2 >  6) && (.@gamble2 <  9)) set .@item,2326; // Manto Sagrado[1]
+				else if ((.@gamble2 >  8) && (.@gamble2 < 11)) set .@item,2327; // Batina
+				else if ((.@gamble2 > 10) && (.@gamble2 < 13) || (.@gamble2 > 14) && (.@gamble2 < 17)) set .@item,2342; // Armadura Legionária[1]
+				else if ((.@gamble2 > 12) && (.@gamble2 < 15)) set .@item,2331; // Malha[1]
+				else if ((.@gamble2 > 16) && (.@gamble2 < 19)) set .@item,2311; // Casaco de Pele[1]
+				else if ((.@gamble2 > 18) && (.@gamble2 < 21)) set .@item,2320; // Paletó[1]
+				else if ((.@gamble2 > 20) && (.@gamble2 < 23)) set .@item,2319; // Jaquea Brilhante[1]
+				else if ((.@gamble2 > 22) && (.@gamble2 < 25)) set .@item,2344; // Couraça da Fúria Flamejante
+				else if ((.@gamble2 > 24) && (.@gamble2 < 27)) set .@item,2346; // Couraça da Submissão Oceânica
+				else if ((.@gamble2 > 26) && (.@gamble2 < 29)) set .@item,2348; // Couraça da Liberdade Celestial
+				else if ((.@gamble2 > 28) && (.@gamble2 < 31)) set .@item,2350; // Couraça da Perseverança Continental
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 <  51) || (.@gamble1 > 250) && (.@gamble1 < 300)) set .@item,2301; // Camisa de Algodão
+			else if ((.@gamble1 >  50) && (.@gamble1 < 101)) set .@item,2302; // Camisa de Algodão[1]
+			else if ((.@gamble1 > 100) && (.@gamble1 < 151)) set .@item,2303; // Gibão
+			else if ((.@gamble1 > 150) && (.@gamble1 < 201)) set .@item,2304; // Gibão[1]
+			else if ((.@gamble1 > 200) && (.@gamble1 < 251)) set .@item,2305; // Túnica
+			else if ((.@gamble1 > 301) && (.@gamble1 < 351)) set .@item,2307; // Capote
+			else if ((.@gamble1 > 350) && (.@gamble1 < 401)) set .@item,2309; // Casaco
+			else if ((.@gamble1 > 400) && (.@gamble1 < 402)) set .@item,2322; // Manto de Seda[1]
+			else if ((.@gamble1 > 401) && (.@gamble1 < 403)) set .@item,2310; // Casaco[1]
+			else if ((.@gamble1 > 402) && (.@gamble1 < 411)) set .@item,2306; // Adventurer's Suit[1]
+			else if ((.@gamble1 > 410) && (.@gamble1 < 416)) set .@item,2308; // Túnica[1]
+			else if ((.@gamble1 > 415) && (.@gamble1 < 421)) set .@item,2313; // Armadura Alcochoada[1]
+			else if ((.@gamble1 > 420) && (.@gamble1 < 426)) set .@item,2337; // Indumentária Ninja
+			else if ((.@gamble1 > 425) && (.@gamble1 < 431)) set .@item,2341; // Armadura Legionária
+			else if ((.@gamble1 > 430) && (.@gamble1 < 436)) set .@item,2325; // Manto Sagrado
+			else if ((.@gamble1 > 435) && (.@gamble1 < 441)) set .@item,2317; // Armadura Metálica
+			else if ((.@gamble1 > 440) && (.@gamble1 < 446)) set .@item,2330; // Malha
+			else if ((.@gamble1 > 445) && (.@gamble1 < 451)) set .@item,2314; // Cota de Malha
+			else if ((.@gamble1 > 450) && (.@gamble1 < 456)) set .@item,2335; // Traje de Gatuno
+			else if ((.@gamble1 > 455) && (.@gamble1 < 461)) set .@item,2324; // Escapulário[1]
+			else if ((.@gamble1 > 460) && (.@gamble1 < 466)) set .@item,2329; // Armadura de Madeira[1]
+			else if ((.@gamble1 > 465) && (.@gamble1 < 471)) set .@item,2340; // Armadura de Aprendiz[1]
+			else if ((.@gamble1 > 470) && (.@gamble1 < 476)) set .@item,2312; // Armadura Alcochoada
+			else if ((.@gamble1 > 475) && (.@gamble1 < 481)) set .@item,2339; // Roupa de Baixo
+			else if ((.@gamble1 > 480) && (.@gamble1 < 486)) set .@item,2328; // Armadura de Madeira
+			else if ((.@gamble1 > 485) && (.@gamble1 < 491)) set .@item,2321; // Manto de Seda
+			else if ((.@gamble1 > 490) && (.@gamble1 < 501)) set .@item,2323; // Escapulário
+	break;
+
+	case 3:  // Mantos
+			set .@gamble1,rand(1,500);
+			if ((.@gamble1 > 200) && (.@gamble1 < 204)) {
+				set .@gamble2,rand(1,16);
+				if      ((.@gamble2 >  0) && (.@gamble2 <  3)) set .@item,2506; // Manteau[1]
+				else if ((.@gamble2 >  2) && (.@gamble2 <  5)) set .@item,2504; // Sobrepeliz[1]
+				else if ((.@gamble2 >  4) && (.@gamble2 <  8)) set .@item,2508; // Capa Velha
+				else if ((.@gamble2 >  7) && (.@gamble2 < 11)) set .@item,2507; // Capa do Marquês
+				else if (.@gamble2 == 11) set .@item,2513; // Robe da Donzela Celestial[1]
+				else if (.@gamble2 == 12) set .@item,2514; // Ombreira[1]
+				else if (.@gamble2 == 13) set .@item,2523; // Camiseta[1]
+				else if (.@gamble2 == 14) set .@item,2530; // Insígnia do Cavaleiro[1]
+				else if (.@gamble2 == 15) set .@item,2509; // Capa do Sobrevivente
+				else if (.@gamble2 == 16) set .@item,2515; // Asa de Águia[1]
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 < 101)) set .@item,2503; // Sobrepeliz
+			else if ((.@gamble1 > 100) && (.@gamble1 < 201)) set .@item,2505; // Manteau
+			else if ((.@gamble1 > 203) && (.@gamble1 < 451)) set .@item,2501; // Capuz
+			else if ((.@gamble1 > 450) && (.@gamble1 < 501)) set .@item,2502; // Capuz[1]
+	break;
+
+	case 4: // Elmos
+			set .@gamble1,rand(1,1000);
+			if ((.@gamble1 > 299) && (.@gamble1 < 304)) {
+				set .@gamble2,rand(1,93);
+				if      ((.@gamble2 >  0) && (.@gamble2 <  3)) set .@item,2251; // Chapéu de Monge
+				else if ((.@gamble2 >  2) && (.@gamble2 <  5)) set .@item,2285; // Maçã de Guilherme Tell
+				else if ((.@gamble2 >  4) && (.@gamble2 <  7)) set .@item,2255; // Asas de Demônio
+				else if ((.@gamble2 >  6) && (.@gamble2 <  9)) set .@item,5045; // Cartola
+				else if ((.@gamble2 >  8) && (.@gamble2 < 11)) set .@item,2233; // Tiara[1]
+				else if ((.@gamble2 > 10) && (.@gamble2 < 13)) set .@item,2231; // Capacete de Schallern[1]
+				else if ((.@gamble2 > 12) && (.@gamble2 < 15)) set .@item,2217; // Solidéu[1]
+				else if ((.@gamble2 > 14) && (.@gamble2 < 17)) set .@item,2206; // Véu de Noiva
+				else if ((.@gamble2 > 16) && (.@gamble2 < 19)) set .@item,2246; // Peça Dourada
+				else if ((.@gamble2 > 18) && (.@gamble2 < 21)) set .@item,2261; // Capacete de Soldado
+				else if ((.@gamble2 > 20) && (.@gamble2 < 23)) set .@item,2287; // Bandana Pirata
+				else if ((.@gamble2 > 22) && (.@gamble2 < 25)) set .@item,5012; // Capelo
+				else if ((.@gamble2 > 24) && (.@gamble2 < 27)) set .@item,2244; // Laço Grande
+				else if ((.@gamble2 > 26) && (.@gamble2 < 29)) set .@item,2213; // Orelha de Gato
+				else if ((.@gamble2 > 28) && (.@gamble2 < 31)) set .@item,2248; // Chapéu do Velho Oeste
+				else if ((.@gamble2 > 30) && (.@gamble2 < 33)) set .@item,2223; // Turbante[1]
+				else if ((.@gamble2 > 32) && (.@gamble2 < 35)) set .@item,2247; // Chapéu Romântico
+				else if ((.@gamble2 > 34) && (.@gamble2 < 37)) set .@item,2245; // Chapéu Charmoso
+				else if ((.@gamble2 > 36) && (.@gamble2 < 39)) set .@item,5003; // Chapéu de Bufão
+				else if ((.@gamble2 > 38) && (.@gamble2 < 41)) set .@item,2225; // Óculos de Proteção[1]
+				else if ((.@gamble2 > 40) && (.@gamble2 < 43)) set .@item,5017; // Elmo de Osso
+				else if ((.@gamble2 > 42) && (.@gamble2 < 45)) set .@item,5030; // Chapéu de Panda
+				else if ((.@gamble2 > 44) && (.@gamble2 < 47)) set .@item,5035; // Chapéu de Poring
+				else if ((.@gamble2 > 46) && (.@gamble2 < 49)) set .@item,2250; // Laço Meigo
+				else if ((.@gamble2 > 48) && (.@gamble2 < 51)) set .@item,2277; // Chapéu de Enfermeira
+				else if ((.@gamble2 > 50) && (.@gamble2 < 53)) set .@item,5011; // Antena
+				else if ((.@gamble2 > 52) && (.@gamble2 < 55)) set .@item,2290; // Chapéu Funebre
+				else if ((.@gamble2 > 54) && (.@gamble2 < 57)) set .@item,5010; // Penacho
+				else if ((.@gamble2 > 56) && (.@gamble2 < 60)) set .@item,2259; // Hélices
+				else if ((.@gamble2 > 59) && (.@gamble2 < 62)) set .@item,5008; // Grinalda
+				else if ((.@gamble2 > 61) && (.@gamble2 < 63)) set .@item,2249; // Coroa Menor
+				else if ((.@gamble2 > 62) && (.@gamble2 < 65)) set .@item,2229; // Elmo[1]
+				else if (.@gamble2 == 65) set .@item,2258; // Chifees Pontudos
+				else if (.@gamble2 == 66) set .@item,2274; // Faixa de Fantasma
+				else if (.@gamble2 == 67) set .@item,5019; // Chapéu de Corsário
+				else if (.@gamble2 == 68) set .@item,2254; // Asas de Anjo
+				else if (.@gamble2 == 69) set .@item,5007; // Coroa do Líder
+				else if (.@gamble2 == 70) set .@item,5066; // Chifre de Succubus
+				else if (.@gamble2 == 71) set .@item,2235; // Coroa
+				else if (.@gamble2 == 72) set .@item,2234; // Diadema
+				else if (.@gamble2 == 73) set .@item,2256; // Chifres Majestosos
+				else if (.@gamble2 == 74) set .@item,5093; // Chapéu de Freira[1]
+				else if (.@gamble2 == 75) set .@item,5072; // Chifre de Incubus
+				else if (.@gamble2 == 76) set .@item,5002; // Coroa Adornada
+				else if (.@gamble2 > 76 && .@gamble2 < 80) set .@item,5118; // Orelhas de Cachorrinho
+				else if (.@gamble2 > 79 && .@gamble2 < 83) set .@item,5120; // Chapéu de Balde[1]
+				else if (.@gamble2 > 82 && .@gamble2 < 86) set .@item,5111; // Chapéu de Galápago
+				else if (.@gamble2 > 85 && .@gamble2 < 89) set .@item,5116; // Chapéu de Banana
+				else if (.@gamble2 > 88 && .@gamble2 < 92) set .@item,5119; // Chapéu do Superaprendiz[1]
+				else if (.@gamble2 > 91 && .@gamble2 < 94) set .@item,5141; // Boneca de Marionete[1]
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 <  101) || (.@gamble1 > 950) && (.@gamble1 < 1001)) set .@item,2226; // Barrete
+			else if ((.@gamble1 > 100) && (.@gamble1 <  201)) set .@item,2211; // Bandana
+			else if ((.@gamble1 > 200) && (.@gamble1 <  300)) set .@item,2209; // Laço[1]
+			else if ((.@gamble1 > 303) && (.@gamble1 <  401)) set .@item,2220; // Chapéu
+			else if ((.@gamble1 > 400) && (.@gamble1 <  501)) set .@item,2232; // Tiara
+			else if ((.@gamble1 > 500) && (.@gamble1 <  601)) set .@item,2216; // Solidéu
+			else if ((.@gamble1 > 600) && (.@gamble1 <  701)) set .@item,2230; // Capacete de Schallern
+			else if ((.@gamble1 > 700) && (.@gamble1 <  801)) set .@item,2224; // Óculos de Proteção
+			else if ((.@gamble1 > 800) && (.@gamble1 <  901)) set .@item,2222; // Turbante
+			else if ((.@gamble1 > 900) && (.@gamble1 <  906)) set .@item,2228; // Elmo
+			else if ((.@gamble1 > 905) && (.@gamble1 <  911)) set .@item,2252; // Chapéu de Bathory
+			else if ((.@gamble1 > 910) && (.@gamble1 <  916)) set .@item,2227; // Barrete[1]
+			else if ((.@gamble1 > 915) && (.@gamble1 <  921)) set .@item,2221; // Chapéu[1]
+			else if ((.@gamble1 > 920) && (.@gamble1 <  926)) set .@item,2299; // Capacete de Orc
+			else if ((.@gamble1 > 925) && (.@gamble1 <  931)) set .@item,2236; // Gorro de Natal
+			else if ((.@gamble1 > 930) && (.@gamble1 <  936)) set .@item,2275; // Faixa Marrom
+			else if ((.@gamble1 > 935) && (.@gamble1 <  941)) set .@item,5015; // Casca de Ovo
+			else if ((.@gamble1 > 940) && (.@gamble1 <  946)) set .@item,2215; // Chapéu Florido
+			else if ((.@gamble1 > 945) && (.@gamble1 <  951)) set .@item,5092; // Chapéu de Freira
+	break;
+	case 5: // Sapatos
+			set .@gamble1,rand(1,500);
+			if ((.@gamble1 > 299) && (.@gamble1 < 303)) {
+				set .@gamble2,rand(1,10);
+				if      ((.@gamble2 > 0) && (.@gamble2 <  3)) set .@item,2406; // Botas[1]
+				else if ((.@gamble2 > 2) && (.@gamble2 <  5)) set .@item,2412; // Grevas[1]
+				else if ((.@gamble2 > 4) && (.@gamble2 <  8)) set .@item,2404; // Sapatos[1]
+				else if ((.@gamble2 > 7) && (.@gamble2 < 11)) set .@item,2407; // Sapatilha de Cristal
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 < 201)) set .@item,2401; // Sandálias
+			else if ((.@gamble1 > 200) && (.@gamble1 < 300)) set .@item,2408; // Grilhões
+			else if ((.@gamble1 > 302) && (.@gamble1 < 351)) set .@item,2411; // Grevas
+			else if ((.@gamble1 > 350) && (.@gamble1 < 401)) set .@item,2403; // Sapatos
+			else if ((.@gamble1 > 400) && (.@gamble1 < 451)) set .@item,2405; // Botas
+			else if ((.@gamble1 > 450) && (.@gamble1 < 476)) set .@item,2409; // Salto Alto
+			else if ((.@gamble1 > 475) && (.@gamble1 < 501)) set .@item,2402; // Sandálias[1]
+	break;
+
+	case 6: // Escudos
+			set .@gamble1,rand(1,500);
+			if ((.@gamble1 > 200) && (.@gamble1 < 205)) {
+				set .@gamble2,rand(1,10);
+				if      ((.@gamble2 > 0) && (.@gamble2 <  3)) set .@item,2104; // Broquel[1]
+				else if ((.@gamble2 > 2) && (.@gamble2 <  5)) set .@item,2106; // Escudo[1]
+				else if ((.@gamble2 > 4) && (.@gamble2 <  7)) set .@item,2102; // Vembrassa[1]
+				else if ((.@gamble2 > 6) && (.@gamble2 <  9)) set .@item,2111; // Spiritus Sancti
+				else if ((.@gamble2 > 8) && (.@gamble2 < 11)) set .@item,2109; // Grimório
+			}
+			else if ((.@gamble1 >   0) && (.@gamble1 < 201)) set .@item,2101; // Vembrassa
+			else if ((.@gamble1 > 204) && (.@gamble1 < 301)) set .@item,2103; // Broquel
+			else if ((.@gamble1 > 300) && (.@gamble1 < 401)) set .@item,2107; // Escudo Espelhado
+			else if ((.@gamble1 > 401) && (.@gamble1 < 481)) set .@item,2105; // Escudo
+			else if ((.@gamble1 > 480) && (.@gamble1 < 501)) set .@item,2108; // Escudo Espelhado[1]
+	break;
+	default: /* Botão de cancelar / roubo */
+			cutin "katsua01.bmp",255;
+			close;
+	break;
+	}
+	
+	getitem .@item,1;
+
+	cutin "katsua01.bmp",255;
+	cutin "katsua02.bmp",2;
+	mes "[Kachua]";
+	mes "Ah~ este Diamante é lindo.";
+	mes "Espero que possa recompensá-lo de uma maneira mais satisfatória.";
+	close2;
+	cutin "katsua02.bmp",255;
+	end;
+}
+
+comodo,204,148,7	script	Devellin	90,{
+
+	mes "[Devellin]";
+	mes "Parece que há um tempo atrás algum viajante mostrou";
+	mes "um diamante enorme para Kachua. Desde então, tudo o que ela tem dito é sobre diamantes e o quanto ela os quer.";
+	next;
+	mes "[Devellin]";
+	mes "Ela está ficando muito obsessiva, isso me assusta. Parece que ela está mais do que disposta a sacrificar qualquer coisa que ela possui por um diamante.";
+	next;
+	mes "[Devellin]";
+	mes "Ela é o tipo de pessoa que faz de tudo para conseguir o que quer. Eu estou preocupado que ela possa dar algo muito mais valioso do que um diamante em uma negociação...";
+	close;
+}
+
+comodo,210,154,2	script	Homem Suspeito#cmd	118,{
+
+	if (BaseClass == Job_Thief){
+		mes "[Cain]";
+		mes "Eeeeei...";
+		mes "Parece que partilhamos a mesma linha de trabalho, você e eu. Hehe, deixe-me lhe dar uma boa dica.";
+		next;
+		mes "[Cain]";
+		mes "Eu tenho cobrado de outras pessoas para dar essa informação, mas como temos a mesma classe, eu não tenho coragem de pedir zenys.";
+		next;
+		mes "[Cain]";
+		mes "Você vê aquela senhora ? Ela é totalmente apaixonada por diamantes. E pelo que as minhas fontes me dizem, ela tem muitas coisas. Toneladas e toneladas de objectos valiosos.";
+		next;
+		mes "[Cain]";
+		mes "Eu estou falando de itens raros.";
+		mes "Tomei a liberdade de dar uma olhadinha no que ela possui e vi que ela tem um capacete com chifres de cabra e até mesmo uma coroa! Ela é tão rica que me deixa sem palavras!";
+		next;
+		mes "[Cain]";
+		mes "Boatos ao redor dizem que ela tem um estoque de armas e equipamentos raros! O que acha? Vamos ser parceiros e assaltá-la?";
+		next;
+		switch(select("Não, obrigado.:Claro, estou nessa!")){
+		case 1:
+			mes "[Cain]";
+			mes "O qu...?";
+			mes "Vamos! Eu pensei que roubar fosse algo que você também fizesse! Ah, bem então eu irei, mas não conte nada sobre isso, certo?";
+			close;
+		case 2:
+			mes "[Cain]";
+			mes "Hahaha!";
+			mes "...^660000Idiota^000000!";
+			mes "'Eu estou te enganando'";
+			next;
+			mes "[Cain]";
+			mes "Ah certo. Supostamente, há uma montanha onde existem toneladas de diamantes. Um amigo meu disse que há uma mina perto da montanha, então eu acho que se você for até lá talvez você encontrará diamantes.";
+			next;
+			mes "[Cain]";
+			mes "Só que eu acho que ele não conseguiu juntar diamantes lá. Tome cuidado, amigo~";
+			close;
+		}
+	}
+	mes "[Cain]";
+	mes "Ei...";
+	mes "Eu tenho uma boa dica para você.";
+	mes "Ela irá custar apenas 500 zeny";
+	mes "e pode confiar em mim, valerá a pena.";
+	mes "Então o que acha...?";
+	next;
+	switch(select("Certo.:Não, obrigado.")){
+	case 1:
+		if (Zeny > 499){
+			mes "[Cain]";
+			mes "Você vê aquela senhora? Ela é totalmente apaixonada por diamantes. E pelo que as minhas fontes me dizem, ela tem muitas coisas. Toneladas e toneladas de objectos valiosos.";
+			next;
+			mes "[Cain]";
+			mes "Eu estou falando de itens raros.";
+			mes "Tomei a liberdade de dar uma olhadinha no que ela possui e vi que ela tem um capacete com chifres de cabra e até mesmo uma coroa! Ela é tão rica que me deixa sem palavras!";
+			next;
+			mes "[Cain]";
+			mes "Talvez armas e equipamentos raros possam ser seus! Ela irá dar qualquer coisa por um diamante de 3 quilates. Então se você possuir um desses, você poderá negociar com ela.";
+			next;
+			mes "[Cain]";
+			mes "Ah certo. Supostamente, há uma montanha onde existem toneladas de diamantes. Um amigo meu disse que há uma mina perto da montanha, então eu acho que se você for até lá talvez você encontrará diamantes";
+			next;
+			mes "[Cain]";
+			mes "Só que eu acho que ele não conseguiu juntar diamantes lá. Tome cuidado, amigo~";
+			set Zeny,Zeny-500;
+			close;
+		}
+		mes "[Cain]";
+		mes "O que é?!";
+		mes "Você não possui nenhum dinheiro? Eu não disse 500 zenys? Uma informação como essa não pode sair de graça!";
+		close;
+	case 2:
+		mes "[Cain]";
+		mes "Ei ei!";
+		mes "O que você é, um pão-duro? Você deve saber que tudo tem seu preço e essa informação valerá a pena. Vamos lá, você não pode deixar essa chance escapar, não acha?";
+		close;
+	}
+}
+
+mjolnir_02,85,362,3	script	Ferreiro Mineiro	726,{
+
+	if(checkweight(1201,1) == 0)
+	{
+		mes "[Kachua]";
+		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
+		close;
+	}
+	mes "[Dwayne]";
+	mes "Wahahahaha~";
+	mes "Eu desenterrei uma fortuna!";
+	next;
+	mes "[Dwayne]";
+	mes "Diamantes! Centenas";
+	mes "de milhares de Diamantes,";
+	mes "todos eles na mina!";
+	mes "Estou rico!";
+	emotion 18;
+	next;
+	switch(select("Eu quero comprar algum diamante.:Parabéns.")){
+	case 1:
+		mes "[Dwayne]";
+		mes "Ah, você tem um";
+		mes "olho para valores!";
+		mes "Claro, por que não!";
+		mes "Eu irei te dar um desconto, também!";
+		mes "55,000 Zeny por um diamante,";
+		mes "o que acha?";
+		next;
+		mes "[Dwayne]";
+		mes "De quantos";
+		mes "diamantes você precisa?";
+		mes "Se você mudar de idéia,";
+		mes "por favor digite '0' para cancelar.";
+		next;
+		input .@amount;
+		if (.@amount == 0){
+			mes "[Dwayne]";
+			mes "Certo, você";
+			mes "cancelou a negociação.";
+			mes "Cuide-se!";
+			close;
+		}else if (.@amount < 1 || .@amount > 500){
+			mes "[Dwayne]";
+			mes "A quantidade";
+			mes "máxima é de 500.";
+			mes "Por favor digite 500 ou menos.";
+			close;
+		}
+		set .@cost,.@amount * 55000;
+		set .@weight,.@amount * 100;
+		if (Zeny < .@cost){
+			mes "[Dwayne]";
+			mes "Errr...";
+			mes "Me desculpe, mas você";
+			mes "não possui zeny suficiente.";
+			mes "Eu vou estar perdendo dinheiro se";
+			mes "te vender por esse preço.";
+			close;
+		}
+		if (Weight < .@weight){
+			mes "[Dwayne]";
+			mes "Errr...";
+			mes "Você está carregando muitos itens.";
+			mes "Não há como te entegar nada, sem que haja espaço em seu inventário. Por que você não guarda alguns de seus itens no Armazém Kafra?";
+			close;
+		}
+		set Zeny,Zeny - .@cost;
+		getitem 732,.@amount;
+		mes "[Dwayne]";
+		mes "Obrigado por comprar";
+		mes "meus diamantes!";
+		mes "Você é bem vindo para";
+		mes "voltar quando quiser.";
+		close;
+	case 2:
+		mes "[Dwayne]";
+		mes "Haha, obrigado~";
+		mes "Se por acaso";
+		mes "você precisar de um diamante,";
+		mes "por favor volte.";
+		mes "Irei vendê-los a";
+		mes "você por um preço acessível.";
+		close;
+	}
+}

@@ -1,0 +1,45 @@
+// Damage RO
+// By iSaaC
+-	script	HH	-1,{
+
+OnWhisperGlobal:
+
+	if ( getgmlevel() > 90 ) {
+		if ( @whispervar0$ == "activar" ) {
+			mes name$;
+			mes " Dijite % de medallas a dar.";
+			mes " -  10 ";
+			mes " -  20 ";
+			mes " -  etc";
+			input .@porciento;
+			next;
+			mes name$;
+			mes " Dijite Hora de finalizar , en hora militar ejemplo : 22 ";
+			mes " -  22  ";
+			mes " -  10  ";
+			mes " -  17  ";
+			input .fin;
+			next;
+			announce " [ " + name2$ + " ] El evento custom de BG a comenzado , en este momento da "+.@porciento+" %  mas de medallas ",0,0x00FF00;
+			set .@porcientoreal , .@porciento + 100; // el 100 es el regular si se pone 20 en .@porciento se sumara al 100 normal haciendo 120 .
+			setbattleflag "bg_reward_rates",.@porcientoreal;
+			setbattleflag "bg_ranked_mode",1;
+			close;
+			end;
+		}
+		if ( @whispervar0$ == "desactivar" ) {
+			announce "[ " + name2$ + " ] El evento custom de BG finalizó , Recuerda este no es el Happy Hour . ",0,0x00BFFF;
+			setbattleflag "bg_reward_rates",100; // Normal Rates
+			setbattleflag "bg_ranked_mode",0;
+			end;
+		}
+	}
+
+		if( gettime(3) == .fin )
+		{
+			announce "[ " + name2$ + " ] El evento custom de BG finalizó , Recuerda este no es el Happy Hour . ",0,0x00BFFF;
+			setbattleflag "bg_reward_rates",100; // Normal Rates
+			setbattleflag "bg_ranked_mode",0;
+			end;
+		}
+}

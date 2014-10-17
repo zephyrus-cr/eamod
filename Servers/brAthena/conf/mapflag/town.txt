@@ -1,0 +1,52 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: town.txt                               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0a/1.0                        |
+//   |--------------------------------------------------------|
+//   | Descrição: Pontos de acesso à Caixa de Mensagens.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera	mapflag	town
+izlude	mapflag	town
+moc_ruins	mapflag	town
+geffen	mapflag	town
+payon	mapflag	town
+pay_arche	mapflag	town
+alberta	mapflag	town
+aldebaran	mapflag	town
+yuno	mapflag	town
+lighthalzen	mapflag	town
+einbroch	mapflag	town
+einbech	mapflag	town
+comodo	mapflag	town
+umbala	mapflag	town
+amatsu	mapflag	town
+gonryun	mapflag	town
+ayothaya	mapflag	town
+louyang	mapflag	town
+hugel	mapflag	town
+rachel	mapflag	town
+veins	mapflag	town
+brasilis	mapflag	town
+dicastes01	mapflag	town
+mora	mapflag	town
+dewata	mapflag	town
+malangdo	mapflag	town
+malaya	mapflag	town
+eclage	mapflag	town

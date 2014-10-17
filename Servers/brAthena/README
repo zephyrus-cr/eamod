@@ -1,0 +1,18 @@
+// ==============================================================================
+// 				             brAthena Guide (Guia)
+// ==============================================================================
+
+
+To start work with your emulador copy, follow the steps below:
+
+- If you are on a host without viewing of the desktop, add the emulator in your apache directory. (By default is on: var/www/html)
+- Sign in folder "install" of brAthena by your navigator.
+- Follow the steps of installation and start your server.
+
+=========================================================================================================================================
+
+Para começar a trabalhar com seu novo emulador, siga as etapas abaixo:
+
+- Se você está em uma máquina sem visualização do desktop, adicione o emulador no diretório do apache. (Por padrão fica em: var/www/html)
+- Entre na pasta "install" do brAthena pelo seu navegador.
+- Siga as etapas de instalação e inicie seu servidor.

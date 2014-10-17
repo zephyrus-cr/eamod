@@ -1,0 +1,456 @@
+// *******************
+// * Champions Arena *
+// *  Terra Online   *
+// *******************
+
+// Consumibles
+
+function	script	Guild_Supply	{
+	if( getcharid(2) == 0 ) end;
+	if( strcharinfo(0) == getguildmaster(getcharid(2)) )
+	{
+		set .@Option, 0;
+		while( .@Option != 1 )
+		{
+			mes "[^0000FFGuild Supply^000000]";
+			mes "Welcome.";
+			mes "Guild Inventory is at mode:";
+			if( getvariableofnpc(.Open, getarg(0)) == 0 )
+			{
+				mes "^FF0000CLOSED - Guild Leader Only^000000.";
+				next;
+				set .@Option, select("View Inventory:Set Mode to Open");
+			}
+			else
+			{
+				mes "^0000FFOPEN - All Guild Members^000000.";
+				next;
+				set .@Option, select("View Inventory:Set Mode to Close");
+			}
+			next;
+			if( .@Option == 2 )
+			{
+				if( getvariableofnpc(.Open, getarg(0)) == 0 )
+					set getvariableofnpc(.Open, getarg(0)), 1;
+				else
+					set getvariableofnpc(.Open, getarg(0)), 0;
+			}
+		}
+	}
+	else if( getvariableofnpc(.Open, getarg(0)) == 0 )
+	{
+		mes "[^0000FFGuild Supply^000000]";
+		mes "Only Guild Leader can use inventory right now.";
+		close;
+	}
+
+	set .@Option, 0;
+	set .@Size, getarraysize($@Item);
+	while( .@Option != .@Size )
+	{
+		mes "[^0000FFGuild Supply^000000]";
+		mes "What do you want to take?";
+		set .@Option, select($@Items$ + "Close") - 1;
+		if( .@Option < .@Size )
+		{
+			mes "^0000FF" + getitemname($@Item[.@Option]) + "^000000";
+			if( getvariableofnpc(.Ammo[.@Option],getarg(0)) < 1 && !$@Guild_UAmmo )
+			{
+				mes "^FF0000No more available items of this one...^000000";
+				next;
+			}
+			else
+			{
+				if( $@Guild_UAmmo )
+					mes "You have ^0000FFUnlimited^000000. How many are you going to take?";
+				else
+					mes "You have ^0000FF" + getvariableofnpc(.Ammo[.@Option],getarg(0)) + "^000000. How many are you going to take?";
+
+				input .@Amount;
+				if( .@Amount < 1 || (.@Amount > getvariableofnpc(.Ammo[.@Option],getarg(0)) && !$@Guild_UAmmo ) )
+				{
+					mes "^FF0000Sorry, not enough items on Guild Inventory for your request.^000000";
+					next;
+				}
+				else if( $@ItemBlock[.@Option] != 0 )
+				{
+					mes "^FF0000This items is not allowed by Event configuration.^000000";
+					next;
+				}
+				else if( !checkweight($@Item[.@Option], .@Amount) )
+				{
+					mes "^FF0000Free some inventory space first. Weight problems.^000000";
+					next;
+				}
+				else
+				{
+					getitem $@Item[.@Option], .@Amount;
+					if( !$@Guild_UAmmo )
+						set getvariableofnpc(.Ammo[.@Option],getarg(0)), getvariableofnpc(.Ammo[.@Option],getarg(0)) - .@Amount;
+					mes "^FF0000You have received " + .@Amount + " units^000000";
+					next;
+				}
+			}
+		}
+	}
+	
+	mes "Take care of your items.";
+	close;
+}
+
+rentinb1,17,35,0	script	Guild Inventory#1::GuildAmmo1	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb2,17,35,0	script	Guild Inventory#2::GuildAmmo2	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb3,17,35,0	script	Guild Inventory#3::GuildAmmo3	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb4,17,35,0	script	Guild Inventory#4::GuildAmmo4	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb5,17,35,0	script	Guild Inventory#5::GuildAmmo5	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb6,17,35,0	script	Guild Inventory#6::GuildAmmo6	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb7,17,35,0	script	Guild Inventory#7::GuildAmmo7	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb8,17,35,0	script	Guild Inventory#8::GuildAmmo8	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb9,17,35,0	script	Guild Inventory#9::GuildAmmo9	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb10,17,35,0	script	Guild Inventory#10::GuildAmmo10	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb11,17,35,0	script	Guild Inventory#11::GuildAmmo11	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb12,17,35,0	script	Guild Inventory#12::GuildAmmo12	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb13,17,35,0	script	Guild Inventory#13::GuildAmmo13	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb14,17,35,0	script	Guild Inventory#14::GuildAmmo14	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb15,17,35,0	script	Guild Inventory#15::GuildAmmo15	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb16,17,35,0	script	Guild Inventory#16::GuildAmmo16	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb17,17,35,0	script	Guild Inventory#17::GuildAmmo17	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb18,17,35,0	script	Guild Inventory#18::GuildAmmo18	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb19,17,35,0	script	Guild Inventory#19::GuildAmmo19	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb20,17,35,0	script	Guild Inventory#20::GuildAmmo20	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb21,17,35,0	script	Guild Inventory#21::GuildAmmo21	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb22,17,35,0	script	Guild Inventory#22::GuildAmmo22	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb23,17,35,0	script	Guild Inventory#23::GuildAmmo23	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb24,17,35,0	script	Guild Inventory#24::GuildAmmo24	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb25,17,35,0	script	Guild Inventory#25::GuildAmmo25	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb26,17,35,0	script	Guild Inventory#26::GuildAmmo26	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb27,17,35,0	script	Guild Inventory#27::GuildAmmo27	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb28,17,35,0	script	Guild Inventory#28::GuildAmmo28	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb29,17,35,0	script	Guild Inventory#29::GuildAmmo29	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb30,17,35,0	script	Guild Inventory#30::GuildAmmo30	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb31,17,35,0	script	Guild Inventory#31::GuildAmmo31	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb32,17,35,0	script	Guild Inventory#32::GuildAmmo32	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb33,17,35,0	script	Guild Inventory#33::GuildAmmo33	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb34,17,35,0	script	Guild Inventory#34::GuildAmmo34	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb35,17,35,0	script	Guild Inventory#35::GuildAmmo35	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb36,17,35,0	script	Guild Inventory#36::GuildAmmo36	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb37,17,35,0	script	Guild Inventory#37::GuildAmmo37	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb38,17,35,0	script	Guild Inventory#38::GuildAmmo38	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb39,17,35,0	script	Guild Inventory#39::GuildAmmo39	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb40,17,35,0	script	Guild Inventory#40::GuildAmmo40	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb41,17,35,0	script	Guild Inventory#41::GuildAmmo41	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb42,17,35,0	script	Guild Inventory#42::GuildAmmo42	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb43,17,35,0	script	Guild Inventory#43::GuildAmmo43	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb44,17,35,0	script	Guild Inventory#44::GuildAmmo44	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb45,17,35,0	script	Guild Inventory#45::GuildAmmo45	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb46,17,35,0	script	Guild Inventory#46::GuildAmmo46	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb47,17,35,0	script	Guild Inventory#47::GuildAmmo47	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb48,17,35,0	script	Guild Inventory#48::GuildAmmo48	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb49,17,35,0	script	Guild Inventory#49::GuildAmmo49	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb50,17,35,0	script	Guild Inventory#50::GuildAmmo50	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb51,17,35,0	script	Guild Inventory#51::GuildAmmo51	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb52,17,35,0	script	Guild Inventory#52::GuildAmmo52	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb53,17,35,0	script	Guild Inventory#53::GuildAmmo53	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb54,17,35,0	script	Guild Inventory#54::GuildAmmo54	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb55,17,35,0	script	Guild Inventory#55::GuildAmmo55	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb56,17,35,0	script	Guild Inventory#56::GuildAmmo56	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb57,17,35,0	script	Guild Inventory#57::GuildAmmo57	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb58,17,35,0	script	Guild Inventory#58::GuildAmmo58	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb59,17,35,0	script	Guild Inventory#59::GuildAmmo59	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+rentinb60,17,35,0	script	Guild Inventory#60::GuildAmmo60	111,{ callfunc "Guild_Supply",strnpcinfo(3); }
+
+// Armamento y Equipo
+
+rentinb1,30,35,0	script	Equipment Builder#1::GuildEquip1	111,{
+	mes "[Equipment Builder]";
+	mes "You can build your equipment here.";
+	next;
+	mes "[Equipment Builder]";
+	mes "But, there are some limits per player:";
+	mes "5 headgears, 3 garments, 3 armors, 2 footgear, 5 accesories, 2 shields and 3 weapons.";
+	next;
+	mes "[Equipment Builder]";
+	mes "What do you want to Build?";
+	next;
+	cleararray @Items[0],0,127;
+	cleararray @Cards[0],0,127;
+	
+	set @MOption, select("HeadGears:Garments:Armors:Footgear:Accesories:Shields:Weapons");
+
+	switch( @MOption )
+	{
+		case 1: // Headgears
+			if( Items_Headgear > 4 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 5 headgears. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2289,5058,2285,2235,5027,5081,2274,5070,2217,2227,2231,2233,2229,5068,5074,2296,2295,5014,2291,5043,2281,2292,2265,2266,2202,5177;
+			setarray @Cards[0],4052,4010,4087,4122,4112,4127,4195,4188,4177,4271,4161,4223,4278,4296;
+			break;
+		case 2: // Garment
+			if( Items_Garment > 2 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 3 garments. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2504,2506,2508,2507;
+			setarray @Cards[0],4133,4095,4109,4056,4116,4113,4108,4102,4088,4129;
+			break;
+		case 3: // Armors
+			if( Items_Armor > 2 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 3 armors. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2308,2310,2311,2315,2337,2336,2331,2326,2322,2318,2317;
+			setarray @Cards[0],4105,4141,4114,4119,4098,4099,4089,4101,4031,4003,4014,4213,4298,4170,4173,4270,4301,4201,4216,4189,4181,4162,4286,4166,4315;
+			break;
+		case 4: // FootGears
+			if( Items_Footgear > 1 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 2 footgears. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2404,2406,2407,2409;
+			setarray @Cards[0],4097,4107,4100,4070;
+			break;
+		case 5: // Accesorys
+			if( Items_Accesory > 4 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 5 accesories. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2619,2625,2622,2624,2623,2621,2626,2615,2644,2602,2608;
+			setarray @Cards[0],4103,4091,4027,4079,4022,4064,4051,4053,4044,4093,4036,4084,4252,4028;
+			break;
+		case 6: // Shield
+			if( Items_Shield > 1 )
+			{
+				mes "[Equipment Builder]";
+				mes "You already have received 2 shields. Sorry!!";
+				close;
+			}
+		
+			setarray @Items[0],2102,2104,2106,2108,2109;
+			setarray @Cards[0],4058,4045,4231,4124,4012,4013;
+			break;
+		case 7: // Weapons
+			if( Items_Weapon > 2 )
+			{
+				mes "You already have received 3 weapons. Sorry!!";
+				close;
+			}
+
+			mes "[Equipment Builder]";
+			mes "What kind of weapon do you want to build?";
+			next;
+			switch( select("1H Axe:2H Axe:1H Spear:2H Spear:1H Sword:2H Sword:Book:Bow:Dagger:Fist:Katar:Maces:Instruments:Staff:Whips") )
+			{
+				case 1: // 1H Axe
+					setarray @Items[0],1302,1305,1306;
+					break;
+				case 2: // 2H Axe
+					setarray @Items[0],1352,1355,1361,1363,1366,1364;
+					break;
+				case 3: // 1H Spear
+					setarray @Items[0],1408,1413,1417;
+					break;
+				case 4: // 2H Spear
+					setarray @Items[0],1461,1464,1471,1468,1466;
+					break;
+				case 5: // 1H Sword
+					setarray @Items[0],1108,1120,1128,1127,1133,1131;
+					break;
+				case 6: // 2H Sword
+					setarray @Items[0],1117,1155,1162,1158;
+					break;
+				case 7: // Books
+					setarray @Items[0],1551,1550,1553,1556,1554,1555,1557,1552;
+					break;
+				case 8: // Bow
+					setarray @Items[0],1705,1711,1715,1716,1722;
+					break;
+				case 9: // Dagger
+					setarray @Items[0],1208,1220,1226,1234,1237,1223,1232,1231,13003;
+					break;
+				case 10: // Fist
+					setarray @Items[0],1802,1810,1812,1808;
+					break;
+				case 11: // Katar
+					setarray @Items[0],1251,1253,1255,1256,1259,1257,1258,1260,1261;
+					break;
+				case 12: // Maces
+					setarray @Items[0],1505,1520,1514,1531,1525;
+					break;
+				case 13: // Instruments
+					setarray @Items[0],1902,1906,1912,1908,1915,1914,1916,1917;
+					break;
+				case 14: // Staffs
+					setarray @Items[0],1602,1608,1611,1615,1613,1618,1620;
+					break;
+				case 15: // Whips
+					setarray @Items[0],1951,1955,1961,1957,1971,1967,1966,1965,1962,1970;
+					break;
+			}			
+			
+			setarray @Cards[0],4043,4106,4082,4251,4126,4094,4035,4085,4092,4004,4002,4072,4086,4020,4390,4323,4076,4055,4341,4057,4024,4104,4017,4037,4117,4281,4007;
+			break;
+	}
+	
+	// Build Item
+	set @MenuI$, "";
+	set @Sepa$, "";
+	for( set @i, 0; @Items[@i] != 0; set @i, @i + 1 )
+	{
+		if( getiteminfo(@Items[@i], 10) > 0 )
+			set @MenuI$, @MenuI$ + @Sepa$ + getitemname(@Items[@i]) + "[" + getiteminfo(@Items[@i], 10) + "]";
+		else
+			set @MenuI$, @MenuI$ + @Sepa$ + getitemname(@Items[@i]);
+		set @Sepa$, ":";
+	}
+
+	set @Item, select(@MenuI$) - 1;
+	setarray @Card[0], 0, 0, 0, 0;
+	
+	if( !checkweight(@Items[@Item], 1) )
+	{
+		mes "[Equipment Builder]";
+		mes "You cannot hold this weapons because of weight limits on your character. Please free some weight.";
+		close;
+	}
+	
+	if( !getitemisequipable(@Items[@Item]) )
+	{
+		mes "[Equipment Builder]";
+		mes "This items cannot be used by your class.";
+		close;
+	}
+
+	set @MenuC$, "";
+	set @Sepa$, "";
+	for( set @i, 0; @Cards[@i] != 0; set @i, @i + 1 )
+	{
+		set @MenuC$, @MenuC$ + @Sepa$ + getitemname(@Cards[@i]);
+		set @Sepa$, ":";
+	}
+
+	for( set @i, 0; @i < getiteminfo(@Items[@Item], 10); set @i, @i + 1 )
+	{ // Cards
+		mes "[Equipment Builder]";
+		mes "Please, choose a card for slot [" + (@i + 1) + "]";
+		next;
+		set @Card[@i], @Cards[select(@MenuC$) - 1];
+	}
+
+	mes "[Equipment Builder]";
+	mes "You want to build a : ^0000FF" + getitemname(@Items[@Item]) + "^000000.";
+	
+	if( getitemisrefinable(@Items[@Item]) )
+		set @Refine, $@SafeRefine[getiteminfo(@Items[@Item], 13)];
+	else
+		set @Refine, 0;
+	
+	mes "It will receive a ^0000FF" + @Refine + "^000000 refine.";
+	for( set @i, 0; @i < getiteminfo(@Items[@Item], 10); set @i, @i + 1 )
+	{ // Info de Cards
+		mes "Card on slot [" + (@i + 1) + "] ^0000FF" + getitemname(@Card[@i]) + "^000000";
+	}
+	
+	mes "Is this ok?";
+	next;
+	if( select("Yes, give me the item.:No, i will try another build...") == 1 )
+	{
+		mes "[Equipment Builder]";
+		mes "Here is your item.";
+		getitem2 @Items[@Item],1,1,@Refine,0,@Card[0],@Card[1],@Card[2],@Card[3];
+		
+		switch( @MOption )
+		{
+			case 1: set Items_Headgear, Items_Headgear + 1; break;
+			case 2: set Items_Garment, Items_Garment + 1; break;
+			case 3: set Items_Armor, Items_Armor + 1; break;
+			case 4: set Items_Footgear, Items_Footgear + 1; break;
+			case 5: set Items_Accesory, Items_Accesory + 1; break;
+			case 6: set Items_Shield, Items_Shield + 1; break;
+			case 7: set Items_Weapon, Items_Weapon + 1; break;
+		}
+
+	}
+	else
+	{
+		mes "[Equipment Builder]";
+		mes "No items received.";
+	}
+	close;
+}
+
+rentinb2,30,35,0	duplicate(GuildEquip1)	Equipment Builder#2	111
+rentinb3,30,35,0	duplicate(GuildEquip1)	Equipment Builder#3	111
+rentinb4,30,35,0	duplicate(GuildEquip1)	Equipment Builder#4	111
+rentinb5,30,35,0	duplicate(GuildEquip1)	Equipment Builder#5	111
+rentinb6,30,35,0	duplicate(GuildEquip1)	Equipment Builder#6	111
+rentinb7,30,35,0	duplicate(GuildEquip1)	Equipment Builder#7	111
+rentinb8,30,35,0	duplicate(GuildEquip1)	Equipment Builder#8	111
+rentinb9,30,35,0	duplicate(GuildEquip1)	Equipment Builder#9	111
+rentinb10,30,35,0	duplicate(GuildEquip1)	Equipment Builder#10	111
+rentinb11,30,35,0	duplicate(GuildEquip1)	Equipment Builder#11	111
+rentinb12,30,35,0	duplicate(GuildEquip1)	Equipment Builder#12	111
+rentinb13,30,35,0	duplicate(GuildEquip1)	Equipment Builder#13	111
+rentinb14,30,35,0	duplicate(GuildEquip1)	Equipment Builder#14	111
+rentinb15,30,35,0	duplicate(GuildEquip1)	Equipment Builder#15	111
+rentinb16,30,35,0	duplicate(GuildEquip1)	Equipment Builder#16	111
+rentinb17,30,35,0	duplicate(GuildEquip1)	Equipment Builder#17	111
+rentinb18,30,35,0	duplicate(GuildEquip1)	Equipment Builder#18	111
+rentinb19,30,35,0	duplicate(GuildEquip1)	Equipment Builder#19	111
+rentinb20,30,35,0	duplicate(GuildEquip1)	Equipment Builder#20	111
+rentinb21,30,35,0	duplicate(GuildEquip1)	Equipment Builder#21	111
+rentinb22,30,35,0	duplicate(GuildEquip1)	Equipment Builder#22	111
+rentinb23,30,35,0	duplicate(GuildEquip1)	Equipment Builder#23	111
+rentinb24,30,35,0	duplicate(GuildEquip1)	Equipment Builder#24	111
+rentinb25,30,35,0	duplicate(GuildEquip1)	Equipment Builder#25	111
+rentinb26,30,35,0	duplicate(GuildEquip1)	Equipment Builder#26	111
+rentinb27,30,35,0	duplicate(GuildEquip1)	Equipment Builder#27	111
+rentinb28,30,35,0	duplicate(GuildEquip1)	Equipment Builder#28	111
+rentinb29,30,35,0	duplicate(GuildEquip1)	Equipment Builder#29	111
+rentinb30,30,35,0	duplicate(GuildEquip1)	Equipment Builder#30	111
+rentinb31,30,35,0	duplicate(GuildEquip1)	Equipment Builder#31	111
+rentinb32,30,35,0	duplicate(GuildEquip1)	Equipment Builder#32	111
+rentinb33,30,35,0	duplicate(GuildEquip1)	Equipment Builder#33	111
+rentinb34,30,35,0	duplicate(GuildEquip1)	Equipment Builder#34	111
+rentinb35,30,35,0	duplicate(GuildEquip1)	Equipment Builder#35	111
+rentinb36,30,35,0	duplicate(GuildEquip1)	Equipment Builder#36	111
+rentinb37,30,35,0	duplicate(GuildEquip1)	Equipment Builder#37	111
+rentinb38,30,35,0	duplicate(GuildEquip1)	Equipment Builder#38	111
+rentinb39,30,35,0	duplicate(GuildEquip1)	Equipment Builder#39	111
+rentinb40,30,35,0	duplicate(GuildEquip1)	Equipment Builder#40	111
+rentinb41,30,35,0	duplicate(GuildEquip1)	Equipment Builder#41	111
+rentinb42,30,35,0	duplicate(GuildEquip1)	Equipment Builder#42	111
+rentinb43,30,35,0	duplicate(GuildEquip1)	Equipment Builder#43	111
+rentinb44,30,35,0	duplicate(GuildEquip1)	Equipment Builder#44	111
+rentinb45,30,35,0	duplicate(GuildEquip1)	Equipment Builder#45	111
+rentinb46,30,35,0	duplicate(GuildEquip1)	Equipment Builder#46	111
+rentinb47,30,35,0	duplicate(GuildEquip1)	Equipment Builder#47	111
+rentinb48,30,35,0	duplicate(GuildEquip1)	Equipment Builder#48	111
+rentinb49,30,35,0	duplicate(GuildEquip1)	Equipment Builder#49	111
+rentinb50,30,35,0	duplicate(GuildEquip1)	Equipment Builder#50	111
+rentinb51,30,35,0	duplicate(GuildEquip1)	Equipment Builder#51	111
+rentinb52,30,35,0	duplicate(GuildEquip1)	Equipment Builder#52	111
+rentinb53,30,35,0	duplicate(GuildEquip1)	Equipment Builder#53	111
+rentinb54,30,35,0	duplicate(GuildEquip1)	Equipment Builder#54	111
+rentinb55,30,35,0	duplicate(GuildEquip1)	Equipment Builder#55	111
+rentinb56,30,35,0	duplicate(GuildEquip1)	Equipment Builder#56	111
+rentinb57,30,35,0	duplicate(GuildEquip1)	Equipment Builder#57	111
+rentinb58,30,35,0	duplicate(GuildEquip1)	Equipment Builder#58	111
+rentinb59,30,35,0	duplicate(GuildEquip1)	Equipment Builder#59	111
+rentinb60,30,35,0	duplicate(GuildEquip1)	Equipment Builder#60	111

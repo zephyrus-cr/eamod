@@ -1,0 +1,47 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: jail.txt                               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag da Prisão.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// ========== Não memorizar ==========
+sec_pri	mapflag	nomemo
+
+// ========== Não salvar ==========
+sec_pri	mapflag	nosave	SavePoint
+
+// ========== Não teletransportar ==========
+sec_pri	mapflag	noteleport
+
+// ========== Não usar Portal ==========
+sec_pri	mapflag	nowarp
+
+// Não retornar: não deixa os jogadores serem puxados pelo Chamado Urgente ou por Grupo.
+sec_pri	mapflag	noreturn
+
+// ========== PvP ==========
+sec_pri	mapflag	pvp
+
+// ========== Permite atacar membros do grupo ==========
+sec_pri	mapflag	pvp_noparty
+
+// ========== Equipamentos são dropados no modo pesadelo ==========
+sec_pri	mapflag	pvp_nightmaredrop	random,equip,300

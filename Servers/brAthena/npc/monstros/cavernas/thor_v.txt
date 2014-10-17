@@ -1,0 +1,119 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: thor_v.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros das cavernas do Vulcão de Thor    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] thor_v01 - Vulcão de Thor 1
+//==================================================
+thor_v01,0,0,0,0	monster#pre	Magmaring	1836,10,0,0,0
+thor_v01,0,0,0,0	monster#pre	Imp	1837,5,0,0,0
+thor_v01,0,0,0,0	monster#pre	Imp	1837,12,1800000,0,0
+thor_v01,80,255,65,35	monster#pre	Imp	1837,2,0,0,0
+thor_v01,240,250,50,30	monster#pre	Imp	1837,2,0,0,0
+thor_v01,90,100,50,50	monster#pre	Imp	1837,2,0,0,0
+thor_v01,210,110,50,30	monster#pre	Imp	1837,2,0,0,0
+thor_v01,0,0,0,0	monster#pre	Kasa	1833,25,0,0,0
+thor_v01,80,255,65,35	monster#pre	Kasa	1833,5,0,0,0
+thor_v01,240,250,50,30	monster#pre	Kasa	1833,5,0,0,0
+thor_v01,90,100,50,50	monster#pre	Kasa	1833,5,0,0,0
+thor_v01,210,110,50,30	monster#pre	Kasa	1833,5,0,0,0
+thor_v01,0,0,0,0	monster#pre	Espadachim Guardião	1829,5,420000,0,0
+thor_v01,0,0,0,0	monster#pre	Arqueiro Guardião	1830,5,420000,0,0
+thor_v01,0,0,0,0	monster#pre	Salamandra	1831,5,3600000,0,0
+thor_v01,0,0,0,0	monster#pre	Byorgue	1839,1,3600000,0,0,{}
+
+//==================================================
+// [Renovação] thor_v01 - Vulcão de Thor
+//==================================================
+thor_v01,0,0,0,0	monster#re	Kasa	1833,45,5000,0,0
+thor_v01,0,0,0,0	monster#re	Imp	1837,25,5000,0,0
+thor_v01,0,0,0,0	monster#re	Magmaring	1836,10,5000,0,0
+thor_v01,0,0,0,0	monster#re	Salamandra	1831,7,5000,0,0
+thor_v01,0,0,0,0	monster#re	Arqueiro Guardião	1830,5,5000,0,0
+thor_v01,0,0,0,0	monster#re	Espadachim Guardião	1829,5,5000,0,0
+thor_v01,0,0,0,0	monster#re	Arqueiro Guardião	1830,5,420000,0,0
+thor_v01,0,0,0,0	monster#re	Espadachim Guardião	1829,5,420000,0,0
+thor_v01,0,0,0,0	monster#re	Byorgue	1839,1,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] thor_v02 - Vulcão de Thor 2
+//==================================================
+thor_v02,0,0,0,0	monster#pre	Magmaring	1836,10,0,0,0
+thor_v02,0,0,0,0	monster#pre	Imp	1837,5,0,0,0
+thor_v02,75,125,50,85	monster#pre	Imp	1837,3,0,0,0
+thor_v02,168,162,50,50	monster#pre	Imp	1837,2,0,0,0
+thor_v02,0,0,0,0	monster#pre	Kaho	1072,5,0,0,0
+thor_v02,75,125,50,85	monster#pre	Kaho	1072,3,0,0,0
+thor_v02,168,162,50,50	monster#pre	Kaho	1072,2,0,0,0
+thor_v02,0,0,0,0	monster#pre	Golpeador	1838,20,0,0,0
+thor_v02,75,125,50,85	monster#pre	Golpeador	1838,20,0,0,0
+thor_v02,168,162,50,50	monster#pre	Golpeador	1838,15,0,0,0
+thor_v02,0,0,0,0	monster#pre	Salamandra	1831,1,18000000,0,0
+thor_v02,0,0,0,0	monster#pre	Espadachim Guardião	1829,1,7200000,0,0
+thor_v02,0,0,0,0	monster#pre	Arqueiro Guardião	1830,1,7200000,0,0,{}
+
+//==================================================
+// [Renovação] thor_v02 - Vulcão de Thor
+//==================================================
+thor_v02,0,0,0,0	monster#re	Golpeador	1838,55,5000,0,0
+thor_v02,0,0,0,0	monster#re	Magmaring	1836,10,5000,0,0
+thor_v02,0,0,0,0	monster#re	Imp	1837,10,5000,0,0
+thor_v02,0,0,0,0	monster#re	Kaho	1072,10,5000,0,0
+thor_v02,0,0,0,0	monster#re	Salamandra	1831,1,5000,0,0
+thor_v02,0,0,0,0	monster#re	Arqueiro Guardião	1830,1,7200000,0,0
+thor_v02,0,0,0,0	monster#re	Espadachim Guardião	1829,1,7200000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] thor_v03 - Vulcão de Thor 3
+//==================================================
+thor_v03,0,0,0,0	monster#pre	Kasa	1833,16,0,0,0
+thor_v03,95,220,64,55	monster#pre	Kasa	1833,6,0,0,0
+thor_v03,223,224,65,60	monster#pre	Kasa	1833,6,0,0,0
+thor_v03,80,90,60,60	monster#pre	Kasa	1833,6,0,0,0
+thor_v03,218,81,60,60	monster#pre	Kasa	1833,6,0,0,0
+thor_v03,0,0,0,0	monster#pre	Salamandra	1831,20,0,0,0
+thor_v03,95,220,64,55	monster#pre	Salamandra	1831,10,0,0,0
+thor_v03,223,224,65,60	monster#pre	Salamandra	1831,10,0,0,0
+thor_v03,80,90,60,60	monster#pre	Salamandra	1831,10,0,0,0
+thor_v03,218,81,60,60	monster#pre	Salamandra	1831,10,0,0,0
+thor_v03,0,0,0,0	monster#pre	Espadachim Guardião	1829,5,0,0,0
+thor_v03,0,0,0,0	monster#pre	Espadachim Guardião	1829,5,1800000,0,0
+thor_v03,0,0,0,0	monster#pre	Arqueiro Guardião	1830,5,0,0,0
+thor_v03,0,0,0,0	monster#pre	Arqueiro Guardião	1830,5,1800000,0,0
+thor_v03,0,0,0,0	monster#pre	Byorgue	1839,5,1800000,0,0
+thor_v03,0,0,0,0	boss_monster#pre	Ifrit	1832,1,39600000,600000,0,{}
+
+//==================================================
+// [Renovação] thor_v03 - Vulcão de Thor
+//==================================================
+thor_v03,0,0,0,0	monster#re	Salamandra	1831,60,5000,0,0
+thor_v03,0,0,0,0	monster#re	Kasa	1833,40,5000,0,0
+thor_v03,0,0,0,0	monster#re	Arqueiro Guardião	1830,10,5000,0,0
+thor_v03,0,0,0,0	monster#re	Espadachim Guardião	1829,10,5000,0,0
+thor_v03,0,0,0,0	monster#re	Byorgue	1839,5,5000,0,0
+thor_v03,0,0,0,0	monster#re	Espadachim Guardião	1829,5,5000,0,0
+thor_v03,0,0,0,0	monster#re	Arqueiro Guardião	1830,5,5000,0,0
+thor_v03,0,0,0,0	monster#re	Arqueiro Guardião	1830,5,1800000,0,0
+thor_v03,0,0,0,0	monster#re	Espadachim Guardião	1829,5,1800000,0,0
+thor_v03,0,0,0,0	boss_monster#re	Ifrit	1832,1,39600000,600000,0,{}

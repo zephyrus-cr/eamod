@@ -1,0 +1,149 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: flauta_uivante.txt                     |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.2/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Um NPC que vende uma flauta Uivante,        |
+//   | assim que você é capaz de convocar um falcão,          |
+//   | onde quer que esteja.                                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+hu_in01,386,306,3	script	Negociador de Flautas	51,{
+	mes "[Negociador da Flauta do Falcão]";
+	if (BaseJob == Job_Hunter || Class == Job_Ranger || Class == Job_Ranger_T || Class == Job_Baby_Ranger) {
+		mes "Você precisa de um Falcão?";
+		mes "Com a Flauta magica, você pode chamar seu Falcão em qualquer lugar!";
+		next;
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Não é maravilhoso? Hahaha!";
+		next;
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Por que eu estou vendendo as Flautas?";
+		mes "É por que não tenho idéia de como elas funcionam.";
+		mes "Ha ha ha!";
+		next;
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Claro, você precisa da habilidade ^ff0000Adestrar Falcão^000000.";
+		mes "E eu não tenho essa habilidade, então não tenho como Adestrar um Falcão.";
+		mes "Por isso, no momento eu não tenho como ter um Falcão.";
+		next;
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Mas mesmo assim também não posso te dar um de graça!";
+		mes "Eu tenho que ganhar dinheiro, pois também preciso comer!";
+		next;
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Se você precisar de uma Flauta do Falcão posso te vender uma por 12,500 zeny. Ou acha que está caro?";
+		next;
+		if (BaseJob == Job_Hunter)
+			set .@price,12500;
+		else {
+			mes "[Negociador da Flauta do Falcão]";
+			mes "Mas para Sentinelas, faço um preço especial de apenas 10,000 zeny!";
+			set .@price,10000;
+			next;
+		}
+		if(select("Não comprar:Comprar uma Flauta do Falcão") == 1) {
+			mes "[Negociador da Flauta do Falcão]";
+			mes "Isso é muito chato! Se você quiser pode voltar a qualquer instante.";
+			close;
+		}
+		if (Zeny >= .@price) {
+			mes "[Negociador da Flauta do Falcão]";
+			if (countitem(12848) >= 1) {
+				mes "Vejo que você já possui uma Flauta do Falcão!";
+				mes "Não se preocupe, meu jovem amigo, já que você comprou a flauta você não precisa de uma outra";
+				mes "desde que ela não despareça, não é ótimo?";
+				close;
+			}
+			mes "Aqui, receba esta flauta.";
+			mes "Com ela você pode assobiar e chamar seu Falcão de qualquer lugar em que esteja.";
+		  	set Zeny, Zeny - .@price;
+			getitem 12848,1; // Flauta do Falcão
+			next;
+			mes "[Negociador da Flauta do Falcão]";
+			mes "Apenas lembrando.";
+			mes "Você precisa da habilidade ^ff0000Adestrar Falcão^000000 para usá-la!";
+			close;
+		}
+		mes "[Negociador da Flauta do Falcão]";
+		mes "Me desculpe mas você não possui zeny suficiente para comprar a Flauta do Falcão, por favor volte após conseguir mais zenys!";
+		close;
+	}
+	if (Class == Job_Baby_Archer || Class == Job_Archer) {
+		mes "Olá!";
+		mes "Atualmente eu não posso te ajudar,";
+		mes "mas por que você não volta aqui quando você se tornar um grande Caçador e aprender a lidar corretamente com Falcões?";
+		close;
+	}
+	mes "Hoje não é um lindo dia?";
+	close;
+}
+pay_arche,91,134,3	duplicate(Negociador de Flautas)	Negociador da Flauta do Falcão#fft2	51
+
+tur_dun01,89,170,5	script	Criador de Flauta Avançada	59,{
+	if (Class == Job_Ranger || Class == Job_Ranger_T || Class == Job_Baby_Ranger) {
+		mes "[Criador de Flauta Avançada]";
+		if (countitem(6124)) {
+			mes "A flauta que você possui foi feita por mim.";
+			mes "Você pode voltar aqui e me encontrar caso perca sua Flauta Uivante!";
+			next;
+			mes "[Criador de Flauta Avançada]";
+			mes "Esta flauta só pode ser criada por mim.";
+			mes "E também é a única que posso criar!!";
+			close;
+		}
+		mes "Precisa de alguma coisa?";
+		mes "Uma nova Flauta Uivante?";
+		next;
+		switch(select("Por favor me dê uma Flauta Uivante.:Não.")) {
+		case 1:
+			mes "[Criador de Flauta Avançada]";
+			if (countitem(7150) && Zeny >= 100000) {
+				mes "Você trouxe todos os materiais?";
+				mes "Uau! Todos os materiais estão em bom estado!";
+				mes "Isso é o suficiente.";
+				next;
+				mes "[Criador de Flauta Avançada]";
+				mes "Aqui está sua nova Flauta Uivante.";
+				mes "Espero que você possa usá-la sem problemas.";
+				delitem 7150,1; // Pedaço de Bambu
+				set Zeny, Zeny-100000;
+				getitem 6124,1; // Flauta Uivante
+				close;
+			}
+			mes "Se você quer que eu crie uma nova Flauta Uivante, me traga ^4d4dff1 Pedaço de Bambu e 100,000 zeny.^000000";
+			next;
+			mes "[Criador de Flauta Avançada]";
+			mes "^4d4dffPedaços de Bambu podem ser obtidos do Kapha ou Karakasa.^000000";
+			close;
+		case 2:
+			mes "[Criador de Flauta Avançada]";
+			mes "Se você não pode invocar um lobo, então você não precisa da Flauta Uivante.";
+			mes "Você pode voltar aqui e me encontrar se você mudar de idéia.";
+			mes "Certo?";
+			close;
+		}
+	}
+	mes "[Criador de Flauta Avançada]";
+	mes "Eeehh? Você não é um Sentinela?";
+	mes "Então, essa flauta é totalmente inútil para você!";
+	close;
+}

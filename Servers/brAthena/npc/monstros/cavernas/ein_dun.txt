@@ -1,0 +1,66 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ein_dun.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.5/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros das cavernas de Einbroch.         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] ein_dun01 - Calabouço da Mina 1
+//==================================================
+ein_dun01,0,0,0,0	monster#pre	Mineiros	1616,70,0,0,0
+ein_dun01,0,0,0,0	monster#pre	Nuvem Tóxica	1620,30,300000,0,0
+ein_dun01,0,0,0,0	monster#pre	Porcellio	1619,30,0,0,0
+ein_dun01,0,0,0,0	monster#pre	Nuvem Venenosa	1621,10,300000,0,0
+ein_dun01,0,0,0,0	monster#pre	Fornalha Velha	1617,1,1800000,600000,0
+ein_dun01,0,0,0,0	monster#pre	Ungoliant	1618,1,3600000,3000000,0,{}
+
+//==================================================
+// [Renovação] ein_dun01 - Calabouço da Mina
+//==================================================
+ein_dun01,0,0,0,0	monster#re	Mineiros	1616,70,5000,0,0
+ein_dun01,0,0,0,0	monster#re	Nuvem Tóxica	1620,30,5000,0,0
+ein_dun01,0,0,0,0	monster#re	Porcellio	1619,30,5000,0,0
+ein_dun01,0,0,0,0	monster#re	Nuvem Venenosa	1621,10,5000,0,0
+ein_dun01,0,0,0,0	monster#re	Fornalha Velha	1617,1,5000,0,0
+ein_dun01,0,0,0,0	monster#re	Ungoliant	1618,1,3600000,3000000,0,{}
+
+//==================================================
+// [Pré-Renovação] ein_dun02 - Calabouço da Mina 2
+//==================================================
+ein_dun02,0,0,0,0	monster#pre	Obsidiana	1615,10,0,0,0
+ein_dun02,0,0,0,0	monster#pre	Mineral	1614,15,0,0,0
+ein_dun02,75,151,60,133	monster#pre	Obsidiana	1615,30,300000,0,0
+ein_dun02,230,155,63,140	monster#pre	Mineral	1614,35,300000,0,0
+ein_dun02,0,0,0,0	monster#pre	Ursinho	1622,10,0,0,0
+ein_dun02,155,230,140,55	monster#pre	Ursinho	1622,20,480000,0,0
+ein_dun02,0,0,0,0	monster#pre	Fornalha Velha	1617,10,0,0,0
+ein_dun02,154,80,134,55	monster#pre	Fornalha Velha	1617,20,480000,0,0
+ein_dun02,0,0,0,0	boss_monster#pre	RSX-0806	1623,1,7500000,600000,0,{}
+
+//==================================================
+// [Renovação] ein_dun02 - Calabouço da Mina
+//==================================================
+ein_dun02,0,0,0,0	monster#re	Mineral	1614,50,5000,0,0
+ein_dun02,0,0,0,0	monster#re	Obsidiana	1615,40,5000,0,0
+ein_dun02,0,0,0,0	monster#re	Fornalha Velha	1617,30,5000,0,0
+ein_dun02,0,0,0,0	monster#re	Ursinho	1622,30,5000,0,0
+ein_dun02,0,0,0,0	boss_monster#re	RSX-0806	1623,1,7500000,600000,0,{}

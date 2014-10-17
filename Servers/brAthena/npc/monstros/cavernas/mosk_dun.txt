@@ -1,0 +1,86 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: mosk_dun.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros das cavernas de Moscovia.         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] mosk_dun01 - Caverna de Moscovia 1
+//==================================================
+mosk_dun01,64,236,100,100	monster#pre	Leshij	1880,15,10000,0,1
+mosk_dun01,64,236,100,100	monster#pre	Les	1881,7,10000,0,1
+mosk_dun01,99,162,100,100	monster#pre	Leshij	1880,15,10000,0,1
+mosk_dun01,99,162,100,100	monster#pre	Les	1881,7,10000,0,1
+mosk_dun01,150,80,100,5	monster#pre	Leshij	1880,30,10000,0,1
+mosk_dun01,150,80,100,5	monster#pre	Les	1881,15,10000,0,1
+mosk_dun01,241,177,10,10	monster#pre	Leshij	1880,3,10000,0,1
+mosk_dun01,241,177,10,10	monster#pre	Les	1881,2,10000,0,1
+mosk_dun01,198,223,10,10	monster#pre	Leshij	1880,3,10000,0,1
+mosk_dun01,198,223,10,10	monster#pre	Les	1881,2,10000,0,1
+mosk_dun01,0,0,0,0	monster#pre	Poporing	1031,20,10000,0,1
+mosk_dun01,0,0,0,0	monster#pre	Louva-a-Deus	1139,10,20000,0,0,{}
+
+//==================================================
+// mosk_dun01 - Floresta Encantada (1° Andar)
+//==================================================
+mosk_dun01,0,0,0,0	monster#re	Leshij	1880,66,5000,0,0
+mosk_dun01,0,0,0,0	monster#re	Les	1881,33,5000,0,0
+mosk_dun01,0,0,0,0	monster#re	Poporing	1031,20,5000,0,0
+mosk_dun01,0,0,0,0	monster#re	Louva-a-Deus	1139,10,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] mosk_dun02 - Caverna de Moscovia 2
+//==================================================
+mosk_dun02,0,0,0,0	monster#pre	Leshij	1880,30,10000,10000,1
+mosk_dun02,0,0,0,0	monster#pre	Les	1881,40,10000,10000,1
+mosk_dun02,0,0,0,0	monster#pre	Baba Yaga	1882,20,20000,10000,1
+mosk_dun02,0,0,0,0	monster#pre	Uzhas	1883,5,20000,10000,1,{}
+
+//==================================================
+// mosk_dun02 - Floresta Encantada (2° Andar)
+//==================================================
+mosk_dun02,0,0,0,0	monster#re	Les	1881,40,5000,0,0
+mosk_dun02,0,0,0,0	monster#re	Leshij	1880,30,5000,0,0
+mosk_dun02,0,0,0,0	monster#re	Baba Yaga	1882,20,5000,0,0
+mosk_dun02,0,0,0,0	monster#re	Kikimora	1883,5,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] mosk_dun03 - Caverna de Moscovia 3
+//==================================================
+mosk_dun03,0,0,0,0	monster#pre	Baba Yaga	1882,60,10000,10000,1
+mosk_dun03,0,0,0,0	monster#pre	Uzhas	1883,35,20000,10000,1
+mosk_dun03,0,0,0,0	monster#pre	Mavka	1884,15,20000,10000,1
+mosk_dun03,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0
+mosk_dun03,0,0,0,0	monster#pre	Planta Branca	1082,10,0,0,0
+mosk_dun03,0,0,0,0	monster#pre	Planta Brilhante	1083,5,10000,0,0
+mosk_dun03,207,221,5,5	boss_monster#pre	Gorynych	1885,1,7200000,600000,1,{}
+
+//==================================================
+// [Renovação] mosk_dun03 - Floresta Encantada (3° Andar)
+//==================================================
+mosk_dun03,0,0,0,0	monster#re	Baba Yaga	1882,60,5000,0,0
+mosk_dun03,0,0,0,0	monster#re	Kikimora	1883,35,5000,0,0
+mosk_dun03,0,0,0,0	monster#re	Mavka	1884,15,5000,0,0
+mosk_dun03,207,221,5,5	boss_monster#re	Gorynych	1885,1,7200000,600000,1
+mosk_dun03,0,0,0,0	monster#re	Planta Amarela	1081,10,5000,0,0
+mosk_dun03,0,0,0,0	monster#re	Planta Branca	1082,10,5000,0,0
+mosk_dun03,0,0,0,0	monster#re	Planta Brilhante	1083,5,10000,0,0,{}

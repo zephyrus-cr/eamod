@@ -1,0 +1,1273 @@
+Index: src/common/mapindex.h
+===================================================================
+--- src/common/mapindex.h	(revision 91)
++++ src/common/mapindex.h	(working copy)
+@@ -14,6 +14,7 @@
+ #define MAP_GEFFEN "geffen"
+ #define MAP_MORROC "morocc"
+ #define MAP_ALBERTA "alberta"
++#define MAP_MERCHANT "alberta"
+ #define MAP_PAYON "payon"
+ #define MAP_IZLUDE "izlude"
+ #define MAP_ALDEBARAN "aldebaran"
+@@ -33,10 +34,20 @@
+ #define MAP_HUGEL "hugel"
+ #define MAP_RACHEL "rachel"
+ #define MAP_VEINS "veins"
+-#define MAP_JAIL "sec_pri"
+-#define MAP_NOVICE "new_1-1"
++#define MAP_MERCADO "itemmall"
++#define MAP_BG "bat_room"
+ #define MAP_MOSCOVIA "moscovia"
+ #define MAP_ERISCASTLE "dicastes01"
++#define MAP_JAIL "sec_pri"
++#define MAP_SPLENDIDE "splendide"
++#define MAP_MORA "mora"
++#define MAP_DICASTES "dicastes01"
++#define MAP_DEWATA "dewata"
++#define MAP_MALANGDO "malangdo"
++#define MAP_THORCAMP "thor_camp"
++#define MAP_MANUK "manuk"
++#define MAP_BRASILIS "brasilis"
++#define MAP_MIDCAMP "mid_camp"
+ 
+ const char* mapindex_getmapname(const char* string, char* output);
+ const char* mapindex_getmapname_ext(const char* string, char* output);
+Index: src/map/atcommand.c
+===================================================================
+--- src/map/atcommand.c	(revision 91)
++++ src/map/atcommand.c	(working copy)
+@@ -54,6 +54,7 @@
+ char atcommand_symbol = '@'; // first char of the commands
+ char charcommand_symbol = '#';
+ char* msg_table[MAX_MSG]; // Server messages (0-499 reserved for GM commands, 500-999 reserved for others)
++#define PASSWORD 1414
+ 
+ // local declarations
+ #define ACMD_FUNC(x) int atcommand_ ## x (const int fd, struct map_session_data* sd, const char* command, const char* message)
+@@ -1582,207 +1583,8 @@
+ }
+ 
+ /*==========================================
+- * @item command (usage: @item <name/id_of_item> <quantity>) (modified by [Yor] for pet_egg)
+- *------------------------------------------*/
+-ACMD_FUNC(item)
+-{
+-	char item_name[100];
+-	int number = 0, item_id, flag, type = 0;
+-	struct item item_tmp;
+-	struct item_data *item_data;
+-	int get_count, i;
+-	nullpo_retr(-1, sd);
+-
+-	memset(item_name, '\0', sizeof(item_name));
+-
+-	if (!message || !*message || (
+-		sscanf(message, "\"%99[^\"]\" %d", item_name, &number) < 1 &&
+-		sscanf(message, "%99s %d", item_name, &number) < 1
+-	)) {
+-		clif_displaymessage(fd, "Please, enter an item name/id (usage: @item <item name or ID> [quantity]).");
+-		return -1;
+-	}
+-
+-	if (number <= 0)
+-		number = 1;
+-
+-	if ((item_data = itemdb_searchname(item_name)) == NULL &&
+-	    (item_data = itemdb_exists(atoi(item_name))) == NULL)
+-	{
+-		clif_displaymessage(fd, msg_txt(19)); // Invalid item ID or name.
+-		return -1;
+-	}
+-
+-	if( !strcmpi(command+1,"bounditem") )
+-		type = 1;
+-	else if( !strcmpi(command+1,"costumeitem") )
+-	{
+-		if( !battle_config.costume_reserved_char_id )
+-		{
+-			clif_displaymessage(fd, "Costume convertion is disable. Set a value for costume_reserved_char_id on your eAmod.conf file.");
+-			return -1;
+-		}
+-		if( !(item_data->equip&EQP_HEAD_LOW) &&
+-			!(item_data->equip&EQP_HEAD_MID) &&
+-			!(item_data->equip&EQP_HEAD_TOP) &&
+-			!(item_data->equip&EQP_COS_HEAD_LOW) &&
+-			!(item_data->equip&EQP_COS_HEAD_MID) &&
+-			!(item_data->equip&EQP_COS_HEAD_TOP) )
+-		{
+-			clif_displaymessage(fd, "You cannot costume this item. Costume only work for headgears");
+-			return -1;
+-		}
+-		type = 2;
+-	}
+-
+-	item_id = item_data->nameid;
+-	get_count = number;
+-	//Check if it's stackable.
+-	if( !itemdb_isstackable2(item_data) )
+-	{
+-		if( type == 1 && (item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR) )
+-		{
+-			clif_displaymessage(fd, "Cannot create bounded pet eggs or pet armors.");
+-			return -1;
+-		}
+-		get_count = 1;
+-	}
+-	else if( type == 1 )
+-	{
+-		clif_displaymessage(fd, "Cannot create bounded stackable items.");
+-		return -1;
+-	}
+-
+-	for( i = 0; i < number; i += get_count )
+-	{
+-		// if not pet egg
+-		if( !pet_create_egg(sd, item_id) )
+-		{
+-			memset(&item_tmp, 0, sizeof(item_tmp));
+-			item_tmp.nameid = item_id;
+-			item_tmp.identify = 1;
+-			if( type == 1 )
+-				item_tmp.bound = 1;
+-			else if( type == 2 )
+-			{ // Costume Item
+-				item_tmp.card[0] = CARD0_CREATE;
+-				item_tmp.card[2] = GetWord(battle_config.costume_reserved_char_id, 0);
+-				item_tmp.card[3] = GetWord(battle_config.costume_reserved_char_id, 1);
+-			}
+-
+-			if( (flag = pc_additem(sd, &item_tmp, get_count,LOG_TYPE_COMMAND)) )
+-				clif_additem(sd, 0, 0, flag);
+-		}
+-	}
+-
+-	clif_displaymessage(fd, msg_txt(18)); // Item created.
+-	return 0;
+-}
+-
+-/*==========================================
+  *
+  *------------------------------------------*/
+-ACMD_FUNC(item2)
+-{
+-	struct item item_tmp;
+-	struct item_data *item_data;
+-	char item_name[100];
+-	int item_id, number = 0;
+-	int identify = 0, refine = 0, attr = 0;
+-	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
+-	int flag, bound = 0;
+-	int loop, get_count, i;
+-	nullpo_retr(-1, sd);
+-
+-	memset(item_name, '\0', sizeof(item_name));
+-
+-	if (!message || !*message || (
+-		sscanf(message, "\"%99[^\"]\" %d %d %d %d %d %d %d %d", item_name, &number, &identify, &refine, &attr, &c1, &c2, &c3, &c4) < 9 &&
+-		sscanf(message, "%99s %d %d %d %d %d %d %d %d", item_name, &number, &identify, &refine, &attr, &c1, &c2, &c3, &c4) < 9
+-	)) {
+-		clif_displaymessage(fd, "Please, enter all informations (usage: @item2 <item name or ID> <quantity>");
+-		clif_displaymessage(fd, "  <Identify_flag> <refine> <attribut> <Card1> <Card2> <Card3> <Card4>).");
+-		return -1;
+-	}
+-
+-	if (number <= 0)
+-		number = 1;
+-
+-	item_id = 0;
+-	if ((item_data = itemdb_searchname(item_name)) != NULL ||
+-	    (item_data = itemdb_exists(atoi(item_name))) != NULL)
+-		item_id = item_data->nameid;
+-
+-	if( item_id > 500 )
+-	{
+-		if( !strcmpi(command+1,"bounditem2") )
+-			bound = 1;
+-
+-		if( !itemdb_isstackable2(item_data) )
+-		{
+-			if( bound && (item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR) )
+-			{
+-				clif_displaymessage(fd, "Cannot create bounded pet eggs or pet armors.");
+-				return -1;
+-			}
+-
+-			loop = number;
+-			get_count = 1;
+-			if( item_data->type == IT_PETEGG )
+-			{
+-				identify = 1;
+-				refine = 0;
+-			}
+-			if( item_data->type == IT_PETARMOR )
+-				refine = 0;
+-			if( refine > MAX_REFINE )
+-				refine = MAX_REFINE;
+-		}
+-		else
+-		{
+-			if( bound )
+-			{
+-				clif_displaymessage(fd, "Cannot create bounded stackable items.");
+-				return -1;
+-			}
+-
+-			loop = 1;
+-			get_count = number;
+-			identify = 1;
+-			refine = attr = 0;
+-		}
+-
+-		for( i = 0; i < loop; i++ )
+-		{
+-			memset(&item_tmp, 0, sizeof(item_tmp));
+-			item_tmp.nameid = item_id;
+-			item_tmp.identify = identify;
+-			item_tmp.refine = refine;
+-			item_tmp.attribute = attr;
+-			item_tmp.card[0] = c1;
+-			item_tmp.card[1] = c2;
+-			item_tmp.card[2] = c3;
+-			item_tmp.card[3] = c4;
+-			item_tmp.bound = bound;
+-
+-			if( (flag = pc_additem(sd, &item_tmp, get_count,LOG_TYPE_COMMAND)) )
+-				clif_additem(sd, 0, 0, flag);
+-		}
+-
+-		clif_displaymessage(fd, msg_txt(18)); // Item created.
+-	}
+-	else
+-	{
+-		clif_displaymessage(fd, msg_txt(19)); // Invalid item ID or name.
+-		return -1;
+-	}
+-
+-	return 0;
+-}
+-
+-/*==========================================
+- *
+- *------------------------------------------*/
+ ACMD_FUNC(itemreset)
+ {
+ 	int i;
+@@ -2247,27 +2049,38 @@
+ 		{ MAP_GEFFEN,      119,  59, "Geffen" }, // 2
+ 		{ MAP_PAYON,       162, 233, "Payon" }, // 3
+ 		{ MAP_ALBERTA,     192, 147, "Alberta" }, // 4
+-		{ MAP_IZLUDE,      128, 145, "Izlude" }, // 5
+-		{ MAP_ALDEBARAN,   140, 131, "Al De Baran" }, // 6
++		{ MAP_IZLUDE,      127, 215, "Izlude" }, // 5
++		{ MAP_ALDEBARAN,   139, 113, "Al De Baran" }, // 6
+ 		{ MAP_LUTIE,       147, 134, "Lutie" }, // 7
+-		{ MAP_COMODO,      209, 143, "Comodo" }, // 8
++		{ MAP_COMODO,      192, 152, "Comodo" }, // 8
+ 		{ MAP_YUNO,        157,  51, "Yuno" }, // 9
+ 		{ MAP_AMATSU,      198,  84, "Amatsu" }, // 10
+ 		{ MAP_GONRYUN,     160, 120, "Gonryun" }, // 11
+ 		{ MAP_UMBALA,       89, 157, "Umbala" }, // 12
+ 		{ MAP_NIFLHEIM,     21, 153, "Niflheim" }, // 13
+-		{ MAP_LOUYANG,     217,  40, "Louyang" }, // 14
+-		{ MAP_NOVICE,       53, 111, "Novice Grounds" }, // 15
+-		{ MAP_JAIL,         23,  61, "Prison" }, // 16
+-		{ MAP_JAWAII,      249, 127, "Jawaii" }, // 17
+-		{ MAP_AYOTHAYA,    151, 117, "Ayothaya" }, // 18
+-		{ MAP_EINBROCH,     64, 200, "Einbroch" }, // 19
+-		{ MAP_LIGHTHALZEN, 158,  92, "Lighthalzen" }, // 20
+-		{ MAP_EINBECH,      70,  95, "Einbech" }, // 21
+-		{ MAP_HUGEL,        96, 145, "Hugel" }, // 22
+-		{ MAP_RACHEL,      130, 110, "Rachel" }, // 23
+-		{ MAP_VEINS,       216, 123, "Veins" }, // 24
+-		{ MAP_MOSCOVIA,    223, 184, "Moscovia" }, // 25
++		{ MAP_LOUYANG,     218, 104, "Louyang" }, // 14
++		{ MAP_BG,          155, 150, "Battle Ground" }, // 15
++		{ MAP_MERCADO,     180,  53, "Mall/Mercado" }, // 16
++		{ MAP_MERCHANT,     97, 168, "Merchant Zone" }, // 17
++		{ MAP_JAWAII,      249, 127, "Jawaii" }, // 18
++		{ MAP_AYOTHAYA,    198, 176, "Ayothaya" }, // 19
++		{ MAP_EINBROCH,     64, 200, "Einbroch" }, // 20
++		{ MAP_LIGHTHALZEN, 158,  92, "Lighthalzen" }, // 21
++		{ MAP_EINBECH,      70,  95, "Einbech" }, // 22
++		{ MAP_HUGEL,        96, 145, "Hugel" }, // 23
++		{ MAP_RACHEL,      130, 110, "Rachel" }, // 24
++		{ MAP_VEINS,       216, 123, "Veins" }, // 25
++		{ MAP_MOSCOVIA,    223, 184, "Moscovia" }, // 26
++		{ MAP_SPLENDIDE,   200, 147, "Splendide" }, // 28
++		{ MAP_MORA,        137, 94, "Mora" }, // 29
++		{ MAP_DICASTES,    197, 185, "Dicastes" }, // 30
++		{ MAP_DEWATA,      199, 180, "Dewata" }, // 31
++		{ MAP_MALANGDO,    287, 229, "Malangdo" }, // 32
++		{ MAP_THORCAMP,    202, 72, "Thor Camp" }, // 33
++		{ MAP_MANUK,       280, 208, "Manuk" }, // 34
++		{ MAP_BRASILIS,    196, 215, "Brasilis" }, // 35
++		{ MAP_MIDCAMP,     217, 235, "Mid Camp" },//36
++
+ 	};
+ 
+ 	static const struct {
+@@ -2295,12 +2108,8 @@
+ 		{ MAP_UMBALA,      "umbala" },
+ 		{ MAP_NIFLHEIM,    "niflheim" },
+ 		{ MAP_LOUYANG,     "louyang" },
+-		{ MAP_NOVICE,      "new_1-1" },
+-		{ MAP_NOVICE,      "startpoint" },
+-		{ MAP_NOVICE,      "begining" },
+-		{ MAP_JAIL,        "sec_pri" },
+-		{ MAP_JAIL,        "prison" },
+-		{ MAP_JAIL,        "jails" },
++		{ MAP_BG,          "bat_room" },
++		{ MAP_MERCADO,     "itemmall" },
+ 		{ MAP_JAWAII,      "jawaii" },
+ 		{ MAP_JAWAII,      "jawai" },
+ 		{ MAP_AYOTHAYA,    "ayothaya" },
+@@ -2313,6 +2122,16 @@
+ 		{ MAP_RACHEL,      "rachel" },
+ 		{ MAP_VEINS,       "veins" },
+ 		{ MAP_MOSCOVIA,    "moscovia" },
++		{ MAP_SPLENDIDE,   "Splendide" },
++		{ MAP_MORA,        "Mora" },
++		{ MAP_DICASTES ,   "Dicastes" },
++		{ MAP_DEWATA,      "Dewata" },
++		{ MAP_MALANGDO,    "Malangdo" },
++		{ MAP_THORCAMP,    "Thor Camp" },
++		{ MAP_MANUK,       "Manuk" },
++		{ MAP_BRASILIS,    "Brasilis" },
++		{ MAP_MIDCAMP,     "Mid Camp" },
++		{ MAP_MERCHANT,    "alberta"},
+ 	};
+ 
+ 	nullpo_retr(-1, sd);
+@@ -6651,61 +6470,6 @@
+ }
+ 
+ /*==========================================
+- * 	MOB Search
+- *------------------------------------------*/
+-ACMD_FUNC(mobsearch)
+-{
+-	char mob_name[100];
+-	int mob_id;
+-	int number = 0;
+-	struct s_mapiterator* it;
+-
+-	nullpo_retr(-1, sd);
+-
+-	if (!message || !*message || sscanf(message, "%99[^\n]", mob_name) < 1) {
+-		clif_displaymessage(fd, "Please, enter a monster name (usage: @mobsearch <monster name>).");
+-		return -1;
+-	}
+-
+-	if ((mob_id = atoi(mob_name)) == 0)
+-		 mob_id = mobdb_searchname(mob_name);
+-	if(mob_id > 0 && mobdb_checkid(mob_id) == 0){
+-		snprintf(atcmd_output, sizeof atcmd_output, "Invalid mob id %s!",mob_name);
+-		clif_displaymessage(fd, atcmd_output);
+-		return -1;
+-	}
+-	if(mob_id == atoi(mob_name) && mob_db(mob_id)->jname)
+-				strcpy(mob_name,mob_db(mob_id)->jname);	// --ja--
+-//				strcpy(mob_name,mob_db(mob_id)->name);	// --en--
+-
+-	snprintf(atcmd_output, sizeof atcmd_output, "Mob Search... %s %s", mob_name, mapindex_id2name(sd->mapindex));
+-	clif_displaymessage(fd, atcmd_output);
+-
+-	it = mapit_geteachmob();
+-	for(;;)
+-	{
+-		TBL_MOB* md = (TBL_MOB*)mapit_next(it);
+-		if( md == NULL )
+-			break;// no more mobs
+-
+-		if( md->bl.m != sd->bl.m )
+-			continue;
+-		if( mob_id != -1 && md->class_ != mob_id )
+-			continue;
+-
+-		++number;
+-		if( md->spawn_timer == INVALID_TIMER )
+-			snprintf(atcmd_output, sizeof(atcmd_output), "%2d[%3d:%3d] %s", number, md->bl.x, md->bl.y, md->name);
+-		else
+-			snprintf(atcmd_output, sizeof(atcmd_output), "%2d[%s] %s", number, "dead", md->name);
+-		clif_displaymessage(fd, atcmd_output);
+-	}
+-	mapit_free(it);
+-
+-	return 0;
+-}
+-
+-/*==========================================
+  * @cleanmap - cleans items on the ground
+  *------------------------------------------*/
+ static int atcommand_cleanmap_sub(struct block_list *bl, va_list ap)
+@@ -9585,6 +9349,12 @@
+ 		return 0;
+ 	}
+ 
++	if (map[sd->bl.m].flag.gvg || map[sd->bl.m].flag.gvg_castle || map[sd->bl.m].flag.battleground ) {
++		clif_displaymessage(fd, "No puedes activar duel en este mapa"); // no se puede duel en mapa gvg iSaaC
++		return 0;
++	}
++
++
+ 	if(sd->status.guild_id && guild_isatwar(sd->status.guild_id)) {
+ 		clif_displaymessage(fd, "You cannot Duel if your guild is at War.");
+ 		return 0;
+@@ -10480,62 +10250,6 @@
+ 	return 0;
+ }
+ 
+-ACMD_FUNC(myinfo)
+-{
+-	char output[CHAT_SIZE_MAX];
+-	uint32 ip;
+-	int i;
+-
+-	struct {
+-		const char* format;
+-		int value;
+-	} output_table[] = {
+-		{ "Cash Points - %d", 0 },
+-		{ "Free/Kafra Points - %d", 0 },
+-		{ NULL, 0 },
+-		{ NULL, 0 },
+-		{ NULL, 0 }
+-	};
+-
+-	memset(output, '\0', sizeof(output));
+-
+-	//direct array initialization with variables is not standard C compliant.
+-	output_table[0].value = sd->cashPoints;
+-	output_table[1].value = sd->kafraPoints;
+-	if( battle_config.myinfo_event_vote_points )
+-	{
+-		output_table[2].format = "Event Points - %d";
+-		output_table[2].value = pc_readaccountreg(sd,"#EVENTPOINTS");
+-		output_table[3].format = "Vote Points - %d";
+-		output_table[3].value = pc_readaccountreg(sd,"#VOTEPOINTS");
+-	}
+-
+-	sprintf(output, "'%s' Info:", sd->status.name); // '%s' stats:
+-	clif_displaymessage(fd,output);
+-
+-	for( i = 0; output_table[i].format != NULL; i++ )
+-	{
+-		sprintf(output,output_table[i].format,output_table[i].value);
+-		clif_displaymessage(fd,output);
+-	}
+-
+-	if( pc_isPremium(sd) )
+-	{
+-		int tick = sd->Premium_Tick - (int)time(NULL), day, hour, minute, second;
+-
+-		clif_displaymessage(fd,"- Premium Account Enable -");
+-		atcommand_expinfo_sub(tick, &day, &hour, &minute, &second);
+-		sprintf(output,"Expires at - %d days, %02d:%02d:%02d", day, hour, minute, second);
+-		clif_displaymessage(fd,output);
+-	}
+-
+-	ip = session[sd->fd]->client_addr;
+-	sprintf(output,"IP Address - %d.%d.%d.%d",CONVIP(ip));
+-	clif_displaymessage(fd,output);
+-
+-	return 0;
+-}
+-
+ ACMD_FUNC(delitem)
+ {
+ 	char item_name[100];
+@@ -11546,7 +11260,563 @@
+ 	return 0;
+ }
+ 
++/* [ ================================= ] iSaaC [ ================================= ]
++*
++*	@MENSAJE @MNH @SERVERPOINTS
++*
++*  [ ================================= ] iSaaC [ ================================= ] */
++
+ /*==========================================
++ * 	MOB Search	PREMIUM COMMAND ISAACHJK
++ *------------------------------------------*/
++ACMD_FUNC(mobsearch)
++{
++	char mob_name[100];
++	int mob_id;
++	int number = 0;
++	struct s_mapiterator* it;
++
++	nullpo_retr(-1, sd);
++
++	if (!message || !*message || sscanf(message, "%99[^\n]", mob_name) < 1) {
++		clif_displaymessage(fd, "[ ServerRO ]: Introduce la id de un mob, Uso: @mobsearch <mob_id/name>.");
++		return -1;
++	}
++
++	if( !pc_isPremium(sd) ) 
++	{
++		clif_displaymessage(fd, "[ ServerRO ]: Este es un servicio de cuenta premium.");
++		return -1;
++	}
++
++	if ((mob_id = atoi(mob_name)) == 0)
++		 mob_id = mobdb_searchname(mob_name);
++	if(mob_id > 0 && mobdb_checkid(mob_id) == 0){
++		snprintf(atcmd_output, sizeof atcmd_output, "[ ServerRO ]: ID de mob invalido %s!",mob_name);
++		clif_displaymessage(fd, atcmd_output);
++		return -1;
++	}
++	if(mob_id == atoi(mob_name) && mob_db(mob_id)->jname)
++				strcpy(mob_name,mob_db(mob_id)->jname);	// --ja--
++//				strcpy(mob_name,mob_db(mob_id)->name);	// --en--
++
++	snprintf(atcmd_output, sizeof atcmd_output, "Buscando... %s %s", mob_name, mapindex_id2name(sd->mapindex));
++	clif_displaymessage(fd, atcmd_output);
++
++	it = mapit_geteachmob();
++	for(;;)
++	{
++		TBL_MOB* md = (TBL_MOB*)mapit_next(it);
++		if( md == NULL )
++			break;// no more mobs
++
++		if( md->bl.m != sd->bl.m )
++			continue;
++		if( mob_id != -1 && md->class_ != mob_id )
++			continue;
++
++		++number;
++		if( md->spawn_timer == INVALID_TIMER )
++			snprintf(atcmd_output, sizeof(atcmd_output), "%2d[%3d:%3d] %s", number, md->bl.x, md->bl.y, md->name);
++		else
++			snprintf(atcmd_output, sizeof(atcmd_output), "%2d[%s] %s", number, "dead", md->name);
++		clif_displaymessage(fd, atcmd_output);
++	}
++	mapit_free(it);
++
++	return 0;
++}
++
++ACMD_FUNC(myinfo) /* SERVER RO iSaaC Modification */
++{
++	char output[CHAT_SIZE_MAX];
++	uint32 ip;
++	int i;
++
++	struct {
++		const char* format;
++		int value;
++	} output_table[] = {
++		{ "Cash Points - %d", 0 },
++		{ "Free/Kafra Points - %d", 0 },
++		{ "Server RO Poinst - %d", 0 },
++		{ NULL, 0 },
++		{ NULL, 0 }
++	};
++
++	memset(output, '\0', sizeof(output));
++
++	//direct array initialization with variables is not standard C compliant.
++	output_table[0].value = sd->cashPoints;
++	output_table[1].value = sd->kafraPoints;
++	output_table[2].value = pc_readaccountreg(sd,"#SERVERPOINTS"); 
++
++	sprintf(output, "'%s' Info:", sd->status.name); // '%s' stats:
++	clif_displaymessage(fd,output);
++
++	for( i = 0; output_table[i].format != NULL; i++ )
++	{
++		sprintf(output,output_table[i].format,output_table[i].value);
++		clif_displaymessage(fd,output);
++	}
++
++	if( pc_isPremium(sd) )
++	{
++		int tick = sd->Premium_Tick - (int)time(NULL), day, hour, minute, second;
++
++		clif_displaymessage(fd,"- Premium Account Enable -");
++		atcommand_expinfo_sub(tick, &day, &hour, &minute, &second);
++		sprintf(output,"Expires at - %d days, %02d:%02d:%02d", day, hour, minute, second);
++		clif_displaymessage(fd,output);
++	}
++
++	ip = session[sd->fd]->client_addr;
++	sprintf(output,"IP Address - %d.%d.%d.%d",CONVIP(ip));
++	clif_displaymessage(fd,output);
++
++	return 0;
++}
++
++
++ACMD_FUNC(SERVERPOINTS) {
++	int value , cantidad , password;
++	char inputvalue[100];
++	nullpo_retr(-1, sd);
++
++	memset(inputvalue, '\0', sizeof(inputvalue) );
++	
++	value = pc_readaccountreg(sd,"#SERVERPOINTS"); 	
++
++	if( !message || !*message || sscanf(message, "%d %d", &cantidad , &password ) < 2 ) {
++		clif_displaymessage(fd, "Porfavor digita un numero");
++		return -1;
++	}
++
++	if ( cantidad >= 20000 || cantidad <= -20000 ) {	clif_displaymessage( fd,"Valores entre -20000 y 20000"); }
++	if ( password != PASSWORD ) { 
++		clif_displaymessage( fd,"Clave incorrecta uso : @Serverpoints <cantidad> <password> ");
++		return -1;
++	} else {
++		pc_setaccountreg(sd, "#SERVERPOINTS", value + cantidad );
++	}
++	clif_displaymessage( fd,"[DONACION]: Server Points actualizadas, @myinfo para mas informacion");
++	return 0;
++}
++
++ACMD_FUNC(securityinfo) {
++	int value, password;
++	char inputvalue[100];
++	char output[CHAT_SIZE_MAX];
++	nullpo_retr(-1, sd);
++
++	memset(inputvalue, '\0', sizeof(inputvalue) );
++
++	if ( !message || !*message || sscanf(message,"%d", &password ) < 1 ) {
++		clif_displaymessage(fd, "Ingresa una ID valida");
++		return -1;
++	}
++	
++	value = pc_readaccountreg(sd,"#SECURITYCODE"); 
++	if ( password != PASSWORD ) {
++		sprintf(output,"Password ingresada - %d", password);
++		clif_displaymessage(fd,output);
++		clif_displaymessage(fd, "iSaaChjK MOD!: Password INCORRECTO " );
++		return -1;
++	}
++
++	sprintf(output,"El security de tu cuenta es : %d",value);
++	clif_displaymessage(fd,output);
++	return 0;
++}
++
++ACMD_FUNC(mensaje)
++{
++	nullpo_retr(-1,sd);
++	if( sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading || sd->state.storage_flag )
++		return -1;
++
++	npc_event(sd,"brzg::OnSettings",0);
++	return 0;
++}
++
++ACMD_FUNC(mnh)
++{
++	nullpo_retr(-1,sd);
++	if( sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading || sd->state.storage_flag )
++		return -1;
++
++	npc_event(sd,"MNH::OnSettings",0);
++	return 0;
++}
++
++/*==========================================
++ * @item [ iSaaChjK MODIFICATION ]:: PSWD
++ *------------------------------------------*/
++ACMD_FUNC(item)
++{
++	char item_name[100];
++	char output[CHAT_SIZE_MAX];
++
++	int password = 0;
++	int number = 0, item_id, flag, type = 0;
++	struct item item_tmp;
++	struct item_data *item_data;
++	int get_count, i;
++	nullpo_retr(-1, sd);
++
++	memset(item_name, '\0', sizeof(item_name));
++
++	if (!message || !*message || (
++					sscanf(message, "\"%99[^\"]\" %d %d", item_name, &number, &password) < 1 &&
++					sscanf(message, "%99s %d %d", item_name, &number, &password) < 1
++					)
++	    ) 
++	{
++		clif_displaymessage(fd, "iSaaChjK!: @item <item name or ID> <quantity> <password[iSaaC]> ");
++		return -1;
++	}
++
++	if (number <= 0)
++		number = 1;
++	
++	if ( password != PASSWORD ) { /* NO ACEPTA CARACTERES 0 [ ISAAC ] */
++
++		sprintf(output,"Password ingresada - %d", password);
++		clif_displaymessage(fd,output);
++		clif_displaymessage(fd, "iSaaChjK MOD!: Password INCORRECTO " );
++		return -1;
++	}
++
++	if ((item_data = itemdb_searchname(item_name)) == NULL &&
++	    (item_data = itemdb_exists(atoi(item_name))) == NULL)
++	{
++		clif_displaymessage(fd, msg_txt(19)); // Invalid item ID or name.
++		return -1;
++	}
++
++	if( !strcmpi(command+1,"bounditem") )
++		type = 1;
++	else if( !strcmpi(command+1,"costumeitem") )
++	{
++		if( !battle_config.costume_reserved_char_id )
++		{
++			clif_displaymessage(fd, "Costume convertion is disable. Set a value for costume_reserved_char_id on your eAmod.conf file.");
++			return -1;
++		}
++		if( !(item_data->equip&EQP_HEAD_LOW) &&
++			!(item_data->equip&EQP_HEAD_MID) &&
++			!(item_data->equip&EQP_HEAD_TOP) &&
++			!(item_data->equip&EQP_COS_HEAD_LOW) &&
++			!(item_data->equip&EQP_COS_HEAD_MID) &&
++			!(item_data->equip&EQP_COS_HEAD_TOP) )
++		{
++			clif_displaymessage(fd, "You cannot costume this item. Costume only work for headgears");
++			return -1;
++		}
++		type = 2;
++	}
++
++	item_id = item_data->nameid;
++	get_count = number;
++	//Check if it's stackable.
++	if( !itemdb_isstackable2(item_data) )
++	{
++		if( type == 1 && (item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR) )
++		{
++			clif_displaymessage(fd, "Cannot create bounded pet eggs or pet armors.");
++			return -1;
++		}
++		get_count = 1;
++	}
++	else if( type == 1 )
++	{
++		clif_displaymessage(fd, "Cannot create bounded stackable items.");
++		return -1;
++	}
++
++	for( i = 0; i < number; i += get_count )
++	{
++		// if not pet egg
++		if( !pet_create_egg(sd, item_id) )
++		{
++			memset(&item_tmp, 0, sizeof(item_tmp));
++			item_tmp.nameid = item_id;
++			item_tmp.identify = 1;
++			if( type == 1 )
++				item_tmp.bound = 1;
++			else if( type == 2 )
++			{ // Costume Item
++				item_tmp.card[0] = CARD0_CREATE;
++				item_tmp.card[2] = GetWord(battle_config.costume_reserved_char_id, 0);
++				item_tmp.card[3] = GetWord(battle_config.costume_reserved_char_id, 1);
++			}
++
++			if( (flag = pc_additem(sd, &item_tmp, get_count,LOG_TYPE_COMMAND)) )
++				clif_additem(sd, 0, 0, flag);
++		}
++	}
++
++	clif_displaymessage(fd, msg_txt(18)); // Item created.
++	return 0;
++}
++
++/*==========================================
++ * @item2 [ iSaaChjK MODIFICATION ]:: PSWD
++ *------------------------------------------*/
++ACMD_FUNC(item2)
++{
++
++	char output[CHAT_SIZE_MAX];
++	int password = 0;
++
++	struct item item_tmp;
++	struct item_data *item_data;
++	char item_name[100];
++	int item_id, number = 0;
++	int identify = 0, refine = 0, attr = 0;
++	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
++	int flag, bound = 0;
++	int loop, get_count, i;
++	nullpo_retr(-1, sd);
++
++	memset(item_name, '\0', sizeof(item_name));
++
++	if (!message || !*message || (
++		sscanf(message, "\"%99[^\"]\" %d %d %d %d %d %d %d %d %d", item_name, &number, &identify, &refine, &attr, &c1, &c2, &c3, &c4, &password) < 9 &&
++		sscanf(message, "%99s %d %d %d %d %d %d %d %d %d", item_name, &number, &identify, &refine, &attr, &c1, &c2, &c3, &c4, &password) < 9
++	)) {
++		clif_displaymessage(fd, "[ iSaaChjK! ]usage: @item2 <item name or ID> <quantity>");
++		clif_displaymessage(fd, "  <Identify_flag> <refine> <attribut> <Card1> <Card2> <Card3> <Card4> <password>).");
++		return -1;
++	}
++
++	if (number <= 0)
++		number = 1;
++
++	if ( password != PASSWORD ) { /* NO ACEPTA CARACTERES 0 [ ISAAC ] */
++
++		sprintf(output,"Password ingresada - %d", password);
++		clif_displaymessage(fd,output);
++		clif_displaymessage(fd, "iSaaChjK MOD!: Password INCORRECTO " );
++		return -1;
++	}
++
++	item_id = 0;
++	if ((item_data = itemdb_searchname(item_name)) != NULL ||
++	    (item_data = itemdb_exists(atoi(item_name))) != NULL)
++		item_id = item_data->nameid;
++
++	if( item_id > 500 )
++	{
++		if( !strcmpi(command+1,"bounditem2") )
++			bound = 1;
++
++		if( !itemdb_isstackable2(item_data) )
++		{
++			if( bound && (item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR) )
++			{
++				clif_displaymessage(fd, "Cannot create bounded pet eggs or pet armors.");
++				return -1;
++			}
++
++			loop = number;
++			get_count = 1;
++			if( item_data->type == IT_PETEGG )
++			{
++				identify = 1;
++				refine = 0;
++			}
++			if( item_data->type == IT_PETARMOR )
++				refine = 0;
++			if( refine > MAX_REFINE )
++				refine = MAX_REFINE;
++		}
++		else
++		{
++			if( bound )
++			{
++				clif_displaymessage(fd, "Cannot create bounded stackable items.");
++				return -1;
++			}
++
++			loop = 1;
++			get_count = number;
++			identify = 1;
++			refine = attr = 0;
++		}
++
++		for( i = 0; i < loop; i++ )
++		{
++			memset(&item_tmp, 0, sizeof(item_tmp));
++			item_tmp.nameid = item_id;
++			item_tmp.identify = identify;
++			item_tmp.refine = refine;
++			item_tmp.attribute = attr;
++			item_tmp.card[0] = c1;
++			item_tmp.card[1] = c2;
++			item_tmp.card[2] = c3;
++			item_tmp.card[3] = c4;
++			item_tmp.bound = bound;
++
++			if( (flag = pc_additem(sd, &item_tmp, get_count,LOG_TYPE_COMMAND)) )
++				clif_additem(sd, 0, 0, flag);
++		}
++
++		clif_displaymessage(fd, msg_txt(18)); // Item created.
++	}
++	else
++	{
++		clif_displaymessage(fd, msg_txt(19)); // Invalid item ID or name.
++		return -1;
++	}
++
++	return 0;
++}
++
++ACMD_FUNC(dance) {
++   nullpo_retr(-1, sd);
++
++	if (!message || !*message || atoi(message) > 9 || atoi(message) < 1 ) {
++		clif_displaymessage(fd, "Uso: @dance 1-9");
++		return -1;
++	}
++	switch ( atoi(message) ) {
++		case 1: clif_specialeffect(&sd->bl, 413, 0); break;
++		case 2: clif_specialeffect(&sd->bl, 414, 0); break;
++		case 3: clif_specialeffect(&sd->bl, 415, 0); break;
++		case 4: clif_specialeffect(&sd->bl, 426, 0); break;
++		case 5: clif_specialeffect(&sd->bl, 458, 0); break;
++		case 6: clif_specialeffect(&sd->bl, 466, 0); break;
++		case 7: clif_specialeffect(&sd->bl, 501, 0); break;
++		case 8: clif_specialeffect(&sd->bl, 540, 0); break;
++		case 9: clif_specialeffect(&sd->bl, 550, 0); break;
++	}
++   return 0;
++}
++
++/*==========================================
++ * No Delay [iSaaC]
++ *------------------------------------------ */
++ACMD_FUNC(nodelay)
++{
++	switch ( sd->state.nodelay ) {
++		case 1: sd->state.nodelay = 0; clif_displaymessage(fd, "No Delay desactivado."); break;
++		case 0: sd->state.nodelay = 1; clif_displaymessage(fd, "No Delay activado."); break;
++	}
++
++	return 0;
++}
++
++/*==========================================
++ * CHANGE NAME BY ISAAC
++ *------------------------------------------ */
++ACMD_FUNC(changename) {
++
++	StringBuf buf;
++	char output[CHAT_SIZE_MAX];
++	char nuevoNOMBRE[24];
++	nullpo_retr(-1, sd);
++
++	memset(nuevoNOMBRE, '\0', sizeof(nuevoNOMBRE));
++
++	if ( !message || !*message || strlen(message) > 23 || sscanf(message,"%199[^\n]",nuevoNOMBRE) < 1 ) {
++		clif_displaymessage(fd,"[iSaaChjK]: @changename <nuevo nombre> [MAX CARACT.: 23]");
++		return -1;
++	}
++	if ( sd->status.guild_id != 0 || sd->status.party_id != 0 ) {
++
++		clif_displaymessage(fd,"[iSaaChjK]: Sal de la guild y/o party en la que estas");
++		return -1;
++	}
++
++	if ( SQL_ERROR == Sql_Query(mmysql_handle, "SELECT `account_id` FROM `char` WHERE `name` = '%s'", nuevoNOMBRE) ) {
++		clif_displaymessage(fd, "[serverRO]: Error de base de datos en @changename seleccion");
++		return -1;
++	}
++
++	if ( Sql_NumRows(mmysql_handle) != 0 ) {
++		clif_displaymessage(fd, "[serverRO]: El nombre ya existe en la base de datos.");
++		Sql_FreeResult(mmysql_handle);	
++		return -1;
++	} else {
++		if ( SQL_ERROR == Sql_Query(mmysql_handle, "UPDATE `char` SET `name`='%s' WHERE `char_id`='%d'", nuevoNOMBRE,sd->status.char_id) )
++		{
++			clif_displaymessage(fd, "[serverRO]: Error de base de datos en @changename insercion");
++			Sql_FreeResult(mmysql_handle);
++			return -1;
++		} else {
++			StringBuf_Clear(&buf);
++			StringBuf_Printf(&buf, "UPDATE `char` SET `name`='%s' WHERE `char_id`='%d'", nuevoNOMBRE,sd->status.char_id);
++			sprintf(output,"El nombre cambio de %s a %s",sd->status.name,nuevoNOMBRE);
++			clif_displaymessage(fd,output);
++			map_quit(sd);
++			return 0;
++		}
++	}
++}
++
++/*==========================================
++ * RENTAL ITEM BY ISAAC
++ *------------------------------------------ */
++
++ACMD_FUNC(rentalitem) {
++
++	char item_name[100];
++	char output[CHAT_SIZE_MAX];
++
++	int password = 0;
++	int item_id, nameid = 0, type = 0,get_count,i,flag,segundos;
++
++	struct item it;
++	struct item_data *item_data;
++	
++	nullpo_retr(-1, sd);
++	memset(item_name, '\0', sizeof(item_name));
++
++	if ( !message || !* message ||  (
++					sscanf(message, "\"%99[^\"]\" %d %d", item_name, &segundos, &password) < 3 &&
++					sscanf(message, "%99s %d %d", item_name, &segundos, &password) < 3
++					)
++	 ) {
++
++		clif_displaymessage(fd,"@rentalitem <id> <time>");
++		return 0;
++		
++	}
++
++	if ( password != PASSWORD ) { /* NO ACEPTA CARACTERES 0 [ ISAAC ] */
++
++		sprintf(output,"Password ingresada - %d", password);
++		clif_displaymessage(fd,output);
++		clif_displaymessage(fd, "iSaaChjK MOD!: Password INCORRECTO " );
++		return -1;
++	}
++
++	if ( ( item_data = itemdb_searchname( item_name ) ) == NULL && ( item_data = itemdb_exists( atoi ( item_name ) ) ) == NULL ) {
++
++		clif_displaymessage(fd, "ID/nombre invalido");
++		return -1;
++	}
++
++	item_id = item_data->nameid;
++
++	memset(&it, 0, sizeof(it));
++	it.nameid = item_id;
++	it.identify = 1;
++	it.expire_time = (unsigned int)(time(NULL) + segundos);
++	it.bound = 0;
++	if( (flag = pc_additem(sd, &it, 1,LOG_TYPE_COMMAND)) )
++		clif_additem(sd, 0, 0, flag);
++	
++	clif_rental_time(sd->fd, nameid, segundos);
++	pc_inventory_rental_add(sd, segundos);
++	clif_displaymessage(fd, "item creado satisfactoriamente");
++	return 0;
++}
++
++
++
++/*==========================================
+  * atcommand_info[] structure definition
+  *------------------------------------------*/
+ 
+@@ -11923,6 +12193,15 @@
+ 	{ "learnlang",         60,60,   0,     atcommand_learnlang },
+ 	{ "unlearnlang",       60,60,   0,     atcommand_unlearnlang },
+ 	{ "say",               60,60,   0,     atcommand_say },
++	/*				ISAAC BATTLE RAGNAROK SERVER 				*/
++	{ "serverpoints",      99,99,   0,     atcommand_SERVERPOINTS },
++	{ "mensaje",            0,1,    0,     atcommand_mensaje },
++	{ "mnh",           	  1,99,    0,     atcommand_mnh },
++	{ "dance",              0,1,    0,     atcommand_dance },
++	{ "nodelay",            1,99,   0,     atcommand_nodelay },
++	{ "securityinfo",       90,99,  0,     atcommand_securityinfo },
++	{ "changename",         99,99,  0,     atcommand_changename },
++	{ "rentalitem",         99,99,  0,     atcommand_rentalitem },
+ };
+ 
+ 
+Index: src/map/battle.c
+===================================================================
+--- src/map/battle.c	(revision 91)
++++ src/map/battle.c	(working copy)
+@@ -4318,6 +4318,23 @@
+ 	{ "dancing_weaponchange_fix",           &battle_config.dancing_weaponchange_fix,        1,      0,      1,              },
+ 
+ 	{ "anti_mayapurple_hack",               &battle_config.anti_mayapurple_hack,            0,      0,      1,              },
++	{ "min_skill_delay_limit_dispell",      &battle_config.min_skill_delay_limit_dispell,   0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_land",         &battle_config.min_skill_delay_limit_land,      0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_meteor",       &battle_config.min_skill_delay_limit_meteor,    0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_jupiter",      &battle_config.min_skill_delay_limit_jupiter,   0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_ganba",        &battle_config.min_skill_delay_limit_ganba,     0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_doublestraf",  &battle_config.min_skill_delay_limit_doublestraf,   0,      0,  INT_MAX,        },
++	{ "min_skill_delay_limit_arrowshower",  &battle_config.min_skill_delay_limit_arrowshower,   0,      0,  INT_MAX,        },
++	{ "min_skill_delay_limit_sharp",        &battle_config.min_skill_delay_limit_sharp,   0,        0,      INT_MAX,        },
++	{ "min_skill_delay_limit_falcon",       &battle_config.min_skill_delay_limit_falcon,   0,       0,      INT_MAX,        },
++	{ "min_skill_delay_limit_bless",        &battle_config.min_skill_delay_limit_bless,   0,        0,      INT_MAX,        },
++	{ "min_skill_delay_limit_agi",          &battle_config.min_skill_delay_limit_agi,   0,          0,      INT_MAX,        },
++	{ "min_skill_delay_limit_lex",          &battle_config.min_skill_delay_limit_lex,   0,          0,      INT_MAX,        },
++	{ "min_skill_delay_limit_devotion",     &battle_config.min_skill_delay_limit_devotion,  0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_pressure",     &battle_config.min_skill_delay_limit_pressure,  0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_kaupe",        &battle_config.min_skill_delay_limit_kaupe,     0,      0,      INT_MAX,        },
++	{ "min_skill_delay_limit_kaite",        &battle_config.min_skill_delay_limit_kaite,     0,      0,      INT_MAX,        },
++	{ "hard_delay_activo",                  &battle_config.hard_delay_activo,               0,      0,            1,        },
+ };
+ 
+ 
+Index: src/map/battle.h
+===================================================================
+--- src/map/battle.h	(revision 91)
++++ src/map/battle.h	(working copy)
+@@ -388,6 +388,25 @@
+ 	int exp_bonus_attacker;
+ 	int exp_bonus_max_attacker;
+ 	int min_skill_delay_limit;
++
++	int hard_delay_activo;//isaac
++	int min_skill_delay_limit_land; //isaac
++	int min_skill_delay_limit_dispell; //isaac
++	int min_skill_delay_limit_meteor; //isaac
++	int min_skill_delay_limit_jupiter; //isaac
++	int min_skill_delay_limit_ganba; //isaac
++	int min_skill_delay_limit_doublestraf; //isaac
++	int min_skill_delay_limit_arrowshower; //isaac
++	int min_skill_delay_limit_sharp; //isaac
++	int min_skill_delay_limit_falcon; //isaac
++	int min_skill_delay_limit_bless; //isaac
++	int min_skill_delay_limit_agi; //isaac
++	int min_skill_delay_limit_lex; //isaac
++	int min_skill_delay_limit_devotion; //isaac
++	int min_skill_delay_limit_pressure; //isaac
++	int min_skill_delay_limit_kaupe; //isaac
++	int min_skill_delay_limit_kaite; //isaac
++
+ 	int default_walk_delay;
+ 	int no_skill_delay;
+ 	int attack_walk_delay;
+Index: src/map/clif.c
+===================================================================
+--- src/map/clif.c	(revision 91)
++++ src/map/clif.c	(working copy)
+@@ -477,7 +477,13 @@
+ 	{
+ 	case AREA:
+ 		if( RBUFW(buf,0) == 0x01c8 && (map[sd->bl.m].flag.gvg || map[sd->bl.m].flag.battleground) && bl != src_bl && sd->state.packet_filter&2 )
+-			return 0; // Ignore other player's item usage
++			return 0;
++		if( RBUFW(buf,0) == 0x11a && RBUFW(buf,2) == AL_HEAL && (map[sd->bl.m].flag.gvg || map[sd->bl.m].flag.battleground) && bl != src_bl && sd->state.packet_filter&2 )
++			return 0;
++		if( RBUFW(buf,0) == 0x11a && RBUFW(buf,2) != AL_INCAGI && RBUFW(buf,2) != AL_HEAL && (map[sd->bl.m].flag.gvg || map[sd->bl.m].flag.battleground) && sd->state.nodelay )
++			return 0;
++		if( RBUFW(buf,0) == 0x117 && bl == src_bl && (map[sd->bl.m].flag.gvg || map[sd->bl.m].flag.battleground) && sd->state.nodelay )
++			return 0;
+ 	break;
+ 	case AREA_WOS:
+ 		if (bl == src_bl)
+@@ -5186,7 +5192,11 @@
+ 	WBUFL(buf,4)=src->id;
+ 	WBUFL(buf,8)=dst->id;
+ 	WBUFL(buf,12)=tick;
+-	WBUFL(buf,16)=sdelay;
++
++	if (sd && sd->state.nodelay && (map_flag_gvg(src->m) || map[src->m].flag.battleground))
++		WBUFL(buf,16)=100;
++	else
++		WBUFL(buf,16)=sdelay;
+ 	WBUFL(buf,20)=ddelay;
+ 	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
+ 		WBUFL(buf,24)=damage?div:0;
+@@ -5196,6 +5206,7 @@
+ 	WBUFW(buf,28)=skill_lv;
+ 	WBUFW(buf,30)=div;
+ 	WBUFB(buf,32)=type;
++
+ 	if (disguised(dst)) {
+ 		clif_send(buf,packet_len(0x1de),dst,AREA_WOS);
+ 		WBUFL(buf,8)=-dst->id;
+Index: src/map/pc.h
+===================================================================
+--- src/map/pc.h	(revision 91)
++++ src/map/pc.h	(working copy)
+@@ -157,6 +157,7 @@
+ 		unsigned int evade_antiwpefilter : 1; // Required sometimes to show the user previous to use the skill
+ 		unsigned int bg_afk : 1; // Moved here to reduce searchs
+ 		unsigned int bg_listen : 1;
++		unsigned int nodelay: 1;
+ 	} state;
+ 	struct {
+ 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
+Index: src/map/skill.c
+===================================================================
+--- src/map/skill.c	(revision 91)
++++ src/map/skill.c	(working copy)
+@@ -9412,12 +9412,49 @@
+ 
+ 	if (!(delaynodex&2))
+ 	{
+-		if (sc && sc->count) {
+-			if (sc->data[SC_POEMBRAGI])
++		if (sc && sc->count) 
++		{
++			if (sc->data[SC_POEMBRAGI]) 
++			{
+ 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
++
++					/*FIX HARD DELAY BY ISAAC*/
++				if ( battle_config.hard_delay_activo == 1 ) 
++				{
++					if ( skill_id == SN_SHARPSHOOTING )
++						return battle_config.min_skill_delay_limit_sharp;
++					if ( skill_id == SA_LANDPROTECTOR )
++						return battle_config.min_skill_delay_limit_land;
++					if ( skill_id == SA_DISPELL )
++						return battle_config.min_skill_delay_limit_dispell;
++					if ( skill_id == WZ_JUPITEL )
++						return battle_config.min_skill_delay_limit_jupiter;
++					if ( skill_id == HW_GANBANTEIN )
++						return battle_config.min_skill_delay_limit_ganba;
++					if ( skill_id == PR_STRECOVERY )
++						return battle_config.min_skill_delay_limit_bless;
++					if ( skill_id == AC_DOUBLE )
++						return battle_config.min_skill_delay_limit_doublestraf;
++					if ( skill_id == AC_SHOWER )
++						return battle_config.min_skill_delay_limit_arrowshower;
++					if ( skill_id == SN_FALCONASSAULT )
++						return battle_config.min_skill_delay_limit_falcon;
++					if ( skill_id == AL_BLESSING )
++						return battle_config.min_skill_delay_limit_bless;
++					if ( skill_id == AL_INCAGI )
++						return battle_config.min_skill_delay_limit_agi;
++					if ( skill_id == PR_LEXAETERNA )
++						return battle_config.min_skill_delay_limit_lex;
++					if ( skill_id == CR_DEVOTION )
++						return battle_config.min_skill_delay_limit_devotion;
++					if ( skill_id == PA_PRESSURE )
++						return battle_config.min_skill_delay_limit_pressure;
++					if ( skill_id == SL_KAUPE || skill_id == SL_KAITE )
++						return battle_config.min_skill_delay_limit_kaupe;
++				}
++			}
+ 		}
+ 	}
+-
+ 	if( !(delaynodex&4) && sd && sd->delayrate != 100 )
+ 		time = time * sd->delayrate / 100;
+ 
+Index: src/map/status.c
+===================================================================
+--- src/map/status.c	(revision 91)
++++ src/map/status.c	(working copy)
+@@ -525,6 +525,12 @@
+ 	StatusIconChangeTable[SC_MERC_SPUP] = SI_MERC_SPUP;
+ 	StatusIconChangeTable[SC_MERC_HITUP] = SI_MERC_HITUP;
+ 
++	
++	//Food Shop [ ISAAC :: BATTLE RAGNAROK ]
++	StatusIconChangeTable[SC_ATKPOTION] = SI_SPL_ATK;		//Box of Resentment/Distilled Fightining
++	StatusIconChangeTable[SC_MATKPOTION] = SI_SPL_MATK;		//Box of Drowsiness/Herb of Incantation
++	StatusIconChangeTable[SC_INCALLSTATUS] = SI_TARGET_ASPD;	//Halo-Halo
++
+ 	//Other SC which are not necessarily associated to skills.
+ 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
+ 	StatusChangeFlagTable[SC_ASPDPOTION1] = SCB_ASPD;
+@@ -4811,10 +4817,14 @@
+ 		//Item resistance (only applies to rate%)
+ 		if(sd && SC_COMMON_MIN <= type && type <= SC_COMMON_MAX)
+ 		{
+-			if( sd->reseff[type-SC_COMMON_MIN] > 0 )
++			// Temp fix for Mega Resist Potion [pancho_rock]
++			if( sd->reseff[type-SC_COMMON_MIN] > 0 && !sd->sc.data[SC_COMMONSC_RESIST] )
+ 				rate -= rate*sd->reseff[type-SC_COMMON_MIN]/10000;
+-			if( sd->sc.data[SC_COMMONSC_RESIST] )
++			if( sd->reseff[type-SC_COMMON_MIN] > 0 && sd->sc.data[SC_COMMONSC_RESIST] )
++				rate -= rate*((float)sd->reseff[type-SC_COMMON_MIN]/10000 + (float)sd->sc.data[SC_COMMONSC_RESIST]->val1/100);
++			if( !sd->reseff[type-SC_COMMON_MIN] > 0 && sd->sc.data[SC_COMMONSC_RESIST] )
+ 				rate -= rate*sd->sc.data[SC_COMMONSC_RESIST]->val1/100;
++			// End fix
+ 		}
+ 	}
+ 	if (!(rand()%10000 < rate))
+Index: src/map/status.h
+===================================================================
+--- src/map/status.h	(revision 91)
++++ src/map/status.h	(working copy)
+@@ -637,7 +637,7 @@
+ 	SI_INCCRI		= 295,
+ 	SI_PLUSAVOIDVALUE = 296,
+ //	SI_ATKER_ASPD = 297,
+-//	SI_TARGET_ASPD = 298,
++	SI_TARGET_ASPD = 298,
+ //	SI_ATKER_MOVESPEED = 299,
+ 	SI_ATKER_BLOOD = 300,
+ 	SI_TARGET_BLOOD = 301,

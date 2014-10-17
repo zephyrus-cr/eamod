@@ -1,0 +1,46 @@
+// ==============================================================================
+//  brAthena - Versões & Modificações (Changelog)
+// ==============================================================================
+
+
+[2.1] 17/03/2012
+	* Adição das instâncias: Caverna do Polvo e Labirinto da Neblina
+	* Adição de itens ROPs que existem no bRO junto com suas traduções.
+	* Adição de várias configurações de batalha customizadas, feitas pela equipe brAthena.
+	- Você poderá editar cálculos de fórmulas e sistemas através de txts e configurar habilitação de determinadas funções.
+	* Iniciado trabalho de adição e suporte para novas habilidades das 3rd classes.
+	- Conforme atualização do kRO do mês de março.
+	* Iniciado código para instalador dinâmico do brAthena.
+	- Um instalador via PHP que fará todo processo de instalação e configuração inicial do emulador de forma automática.
+	* Limpeza e melhoria de vários códigos da fonte.
+	* Correção de diversos problemas de crash em habilidades e classes.
+	* Adicionado sistema de PIN, conforme servidores oficiais.
+	* Banco de dados convertido para SQL.
+	- Alguns arquivos importantes permanecem em txt, para maior facilidade em alterações.
+	- Um banco de dados em inglês está disponível para usuários de outros países.
+	* Alterado esquema de scripts da renovação e pré-renovação.
+	- Removida pasta npc/re e npc/pre-re.
+	- Fundidos arquivos da re e pre-re através da condição "checkre".
+	* Atualizações para suporte de clientes 2012.
+	* Atualizado métodos de compilação.
+	- Removido CMake.
+	- Atualizado Visual Studio C++ para 2012.
+	- Atualizado autoconf para 2.69.
+	* Adicionadas as classes Kagerou e Oboro totalmente funcionais.
+	* Atualizações de todos os npcs conforme a renovação.
+	* Modificado pacotes para rejeitar conexão ao errar a senha e não fechar o cliente.
+	* Correções de diversos problemas em habilidades e fórmulas de batalha/status.
+	* Reestruturado arquivos de inicialização do emulador.
+	- Inicialização com Windows é direta e sem mais códigos inúteis.
+	- Inicialização para Mac foi adicionada.
+	* Adicionada opção de depuração para o brathena-admin.
+	* Adicionadas várias traduções de arquivos da pasta npc.
+	* Adicionado sistema de multilinguagens.
+	* Adicionadas traduções do console com acentuações conforme lista de ASCII do C.
+	- Versão multilinguagem, é possível ver o console em inglês também.
+	* Adicionadas traduções de todos os arquivos das pastas conf, battle e db.
+
+<Revisões: 1190:1885>
+
+[2.0] 14/10/2012
+	* Versão Inicial.

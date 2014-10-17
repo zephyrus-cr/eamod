@@ -1,0 +1,50 @@
+-	script	FR	-1,{
+
+OnWhisperGlobal:
+		set .@NORMAL , 10000;
+		if ( getgmlevel() > 90 ) {
+			if ( @whispervar0$ == "activar" ) {
+				mes name$;
+				do {	next; mes name$; mes ""; mes " Digite El Base rate a aumentar MAX [999]"; input .brate;
+				} while ( .brate > 999 && .brate < 0 );
+				do {	next; mes name$; mes ""; mes " Digite El Job rate a aumentar MAX [999]"; input .jrate;
+				} while ( .jrate > 999 && .jrate < 0 );
+				do {	next; mes name$; mes ""; mes " Digite El Drop rate a aumentar MAX [999]"; input .drate;
+				} while ( .drate > 999 && .drate < 0 );	
+				
+				close2;
+
+				setbattleflag("base_exp_rate", .brate * 100 );
+				setbattleflag("job_exp_rate", .jrate * 100 );
+				setbattleflag("item_rate_common", .drate * 100 );
+				setbattleflag("item_rate_heal", .drate * 100 );
+				setbattleflag("item_rate_use", .drate * 100 );
+				setbattleflag("item_rate_equip", .drate * 100 );
+				atcommand "@reloadmobdb";	
+
+				announce "[ " + name2$ + " ]: Rates : " + ( .brate ) + " x " + ( .jrate ) + " x " + ( .drate ) + " x ",bc_all,0xFF6060;
+				end;
+	
+			} else if ( @whispervar0$ == "desactivar" ) {
+				mes name$;
+			
+				close2;
+
+				setbattleflag("base_exp_rate", .@NORMAL );
+				setbattleflag("job_exp_rate", .@NORMAL );
+				setbattleflag("item_rate_common", .@NORMAL );
+				setbattleflag("item_rate_heal", .@NORMAL );
+				setbattleflag("item_rate_use", .@NORMAL );
+				setbattleflag("item_rate_equip", .@NORMAL );
+				atcommand "@reloadmobdb";	
+
+				announce "[ " + name2$ + " ]: Rates : " + ( .@NORMAL ) + " x " + ( .@NORMAL ) + " x " + ( .@NORMAL ) + " x ",bc_all,0xFF6060;
+				end;		
+			} else { 
+				dispbottom " Se inicia con activar ";
+				dispbottom " Se termina con desactivar";
+				end;
+			}
+		}
+	end;
+}

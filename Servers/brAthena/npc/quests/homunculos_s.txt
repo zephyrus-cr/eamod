@@ -1,0 +1,153 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: humunculos_s.txt                       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Evolui um Homúnculo que é pelo menos nível  |
+//   | 99 para o novo Homunculus S.                           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+job3_gen01,12,44,4	script	Viorel#job3_gen01	542,{
+
+	if((Class != Job_Genetic) && (Class != Job_Genetic_T) && (Class != Job_Baby_Genetic)){
+		mes "[Viorel]";
+		mes "A pesquisa de ^FF4800Homunculus^000000 requer muito tempo e financiamento.";
+		mes "No entanto, eu acredito que a paixão é o fator mais importante.";
+		next;
+		switch(select("Terminar conversa.:O que você está falando?:Por que você está sempre aqui?")) {
+		case 1:
+			mes "[Viorel]";
+			mes "Até logo~!";
+			close;
+		case 2:
+			mes "[Viorel]";
+			mes "Você sabe, ^006400Alquimistas^000000 possuem uma natureza inquisitiva.";
+			mes "Pessoas como eu, especialmente, pensam em construir sua vida.";
+			next;
+			mes "[Viorel]";
+			mes "Você teria que realizar uma pesquisa sobre ^FF4800Homunculus^000000 para compreender.";
+			mes "Agora, me dê licença~!";
+			close;
+		case 3:
+			emotion 4,0;
+			mes "[Viorel]";
+			mes "O que, é tão estranho ver um alquimista em seu próprio laboratório?";
+			mes "Como assim?";
+			close;
+		}
+	}
+	mes "[Viorel]";
+	mes "Olá "+strcharinfo(0)+",";
+	mes "o que eu posso fazer por um sujeito que é Alquimista como você?";
+	next;
+	switch(select("Quero evoluir meu Homunculo:Sobre Homunculos S:Cancelar")){
+	case 1:
+		mes "[Viorel]";
+		if(!getskilllv("AM_BIOETHICS")){
+			mes "Sinto muito, mas você deve possuir a habilidade Bioética! Caso contrário, eu não posso evoluir seu Homunculo para um Homunculo S.";
+			close;
+		}
+		if(!gethominfo(1)){
+			mes "Você não possui um Homunculo!";
+			close;
+		}
+		if(gethominfo(1) < 6009){
+			mes "Você deve possuir um Homunculo evoluido, caso contrário você não pode transformá-lo no novo Homunculo S.";
+			close;
+		}
+		if(gethominfo(6) < 99){
+			mes "O seu Homunculus deve ser nível 99 para evoluir para um Homuculo S!";
+			mes "Volte depois de ter treinado um pouco mais o seu Homunculo.";
+			close;
+		}
+		if(gethominfo(1) == 6048 || gethominfo(1) == 6049 || gethominfo(1) == 6050 || gethominfo(1) == 6051 || gethominfo(1) == 6052){
+			mes "Seu Homunculo S parece ótimo!";
+			mes "Eu espero que você experimente muitas grandes aventuras com ele!";
+			close;
+		}
+		mes "ótimo, parece que está tudo pronto para evoluir seu Homunculo!";
+		next;
+		mes "[Viorel]";
+		mes "Agora você pode alterar diretamente o seu Homunculo para um Homunculo S aleatório ou você pode doar uma pequena taxa de 50,000z";
+		mes "para a Guilda de Alquimistas. Com isso, você será capaz de mudar seu Homunculo para uma classe S!";
+		mes "Então, o que você acha?";
+		next;
+		switch(Select("Quero doar.:Eu não quero doar.:Cancelar")){
+		case 1:
+			if(Zeny < 50000){
+				mes "[Viorel]";
+				mes "Haha, boa tentativa amigo! Mas você não possui a taxa de zenys necessária!";
+				mes "Volte quando possuir a quantidade necessária.";
+				close;
+			}
+			mes "[Viorel]";
+			mes "Tudo bem, agora, por favor me diga qual Homunculo você gostaria de ter:";
+			next;
+			set .@i, select("Eira:Bayeri:Sera:Dieter:Elanor:Cancelar");
+			if (.@i == 6) {
+				mes "[Viorel]";
+				mes "Até logo~!";
+				close;
+			}
+		case 2:
+			mes "[Viorel]";
+			mes "Ok, está tudo pronto! Agora espere um pouco!";
+			next;
+			mes "[Viorel]";
+			mes "Abra...";
+			next;
+			mes "[Viorel]";
+			mes "Kadabra...";
+			next;
+			mes "[Viorel]";
+			mes "Simsala!";
+			mes "...";
+			mes "Ah, desculpe... jogo errado!";
+			next;
+			mes "[Viorel]";
+			mes "Aqui vai! Seu novo Homunculo S!";
+			if (.@i) {
+				hommutate 6047+.@i;
+				set Zeny,Zeny - 50000;
+			}
+			else hommutate;
+			close;
+		case 3:
+			mes "[Viorel]";
+			mes "Até logo~!";
+			close;
+		}
+	case 2:
+		mes "[Viorel]";
+		mes "Os Homunculos S são as versões novas e melhoradas dos Homunculos atuais que você conhece.";
+		mes "Esses novos Homunculos foram feitos porque os monstros em nosso mundo estão se tornando vez mais fortes,";
+		mes "e nossos Homunculos não estavam mais conseguindo se equiparar.";
+		next;
+		mes "[Viorel]";
+		mes "Mas já que somos Alquimistas e nós não queremos abandonar nossos Homunculos preciosos, nós descobrimos uma forma";
+		mes "para aumentar suas habilidades e poderes, a fim de mantê-los ao nosso lado e se juntarem mais uma vez";
+		mes "a nós nas batalhas! Não é ótimo?";
+		close;
+	case 3:
+		mes "[Viorel]";
+		mes "Até logo~!";
+		close;
+	}
+}

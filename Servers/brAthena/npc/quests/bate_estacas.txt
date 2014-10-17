@@ -1,0 +1,126 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: bate_estacas.txt                       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/2.1/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest Bate-Estacas.                         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+yuno,179,174,4	script	Gomer	851,{
+	if (Class != Job_Mechanic && Class != Job_Mechanic_T && Class != Job_Baby_Mechanic) {
+		mes "[Gomer]";
+		mes "Eu sou um mecânico aposentado e não acho que eu tenha algo a tratar com você.";
+		close;
+	}
+	mes "[Gomer]";
+	mes "Então? Qual é a sensação de estar em um Robô?";
+	mes "É algo que não é permitido para aqueles que não conseguem encontrar o seu próprio caminho.";
+	next;
+	mes "[Gomer]";
+	mes "Eu? Me aposentei há muito tempo. Porque eu sofri um acidente... fiquei gravemente ferido e não serei capaz de andar novamente. Estou chateado com isso.";
+	next;
+	mes "[Gomer]";
+	mes "Por isso eu decidi ficar aqui forjando engrenagens para Robôs.";
+	mes "Em? Não estou dizendo que não gosto desse trabalho.";
+	next;
+	mes "[Gomer]";
+	mes "Ser forçado a fazer algo que você não goste, não há nada mais triste do que isso.";
+	next;
+	mes "[Gomer]";
+	mes "Há pessoas que são felizes pelo que fazem, é como ser uma parede para alguém se apoiar.";
+	next;
+	mes "[Gomer]";
+	mes "Isso me faz sentir bem e estou prestes a fazer um novo equipamento. Eu quero que você me ajude. O que você acha?";
+	next;
+	switch(select("Eu não estou interessado.:O que você vai fazer?:Onde consigo os materiais?:Eu trouxe os materiais.")) {
+	case 1:
+		mes "[Gomer]";
+		mes "Não posso fazer nada";
+		mes "então.";
+		mes "Até a próxima!";
+		close;
+	case 2:
+		mes "[Gomer]";
+		mes "Hum, uma vara de metal enorme que poderia esmagar um oponente em um hit!";
+		next;
+		mes "[Gomer]";
+		mes "Não parece grande coisa, mas eu projetei um dispositivo de mola para atacar com grande força.";
+		next;
+		mes "[Gomer]";
+		mes "Então quando você encontrar uma oportunidade atire, isso pode deixar um oponente em estado crítico!";
+		mes "Mal posso esperar para vê-lo funcionando!";
+		next;
+		mes "[Gomer]";
+		mes "Se você está imaginando o quão bom este tipo de arma pode ser, eu vou fazer com que isso se tornar realidade.";
+		next;
+		mes "[Gomer]";
+		mes "Traga-me 200 Açoes, 30 Tubos Flexíveis, e 1 Broca. Eu poderia fazer o que eu acabei de descrever com esses materiais.";
+		close;
+	case 3:
+		mes "[Gomer]";
+		mes "Você pode obter muitos aços de monstros como os Cobolds.";
+		next;
+		mes "[Gomer]";
+		mes "Tubos flexíveis são mais dificeis, eles caem de Metalings que vivem ao redor de Einbroch e Lighthalzen.";
+		next;
+		mes "[Gomer]";
+		mes "Por fim, o mais dificel será encontrar a Broca, mas você deve ser capaz de fazer algo a respeito. Haha, procure-a!";
+		close;
+	case 4:
+		if (countitem(1549)) {
+			mes "[Gomer]";
+			mes "Então como é que o Bate Estacas está funcionando?";
+			close;
+		} else if (countitem(1415) < 1 || countitem(999) < 200 || countitem(7325) < 30) {
+			mes "[Gomer]";
+			mes "Você não trouxe todos os materiais que eu pedi.";
+			next;
+			mes "[Gomer]";
+			mes "Eu tenho o hábito de dar-se ao que estou fazendo, e procuro fazer coisas novas quando a inspiração chega.";
+			mes "É melhor se apressar!";
+			close;
+		} else {
+			mes "[Gomer]";
+			mes "Ah, eu estava esperando. Você demorou, por isso pensei que você tinha esquecido. Por favor, espere um pouco.";
+			specialeffect 101;
+			next;
+			mes "[Gomer]";
+			mes "Está pronto. O que achou? Não é tão ruim, em? Embora eu mesmo o fiz, eu tenho que dizer que está muito bom.";
+			next;
+			mes "[Gomer]";
+			mes "Combinação de peso, volume e veja como ficou sua cor e seu brilho. Ele foi feito através do meu coração!";
+			next;
+			mes "[Gomer]";
+			mes "...........";
+			next;
+			mes "[Gomer]";
+			mes "Hum, com um pouco mais de materia prima posso fazê-los em estoques. Sei que consigo produzir mais por isso irei dar este de presente para você.";
+			next;
+			mes "[Gomer]";
+			mes "Ah, e percebi que não precisava de todo o aço que te pedi.";
+			delitem 999,50;  // Aço
+			delitem 7325,30; // Tubo Flexível
+			delitem 1415,1;  // Broca
+			getitem 1549,1;  // Bate-Estacas
+			getitem 1360,1;  // Machado de Duas Mãos [1]
+			close;
+		}
+	}
+}

@@ -1,0 +1,148 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: correio.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.8/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Recebe e envia e-mail de um para outro.     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// NPCs Caixas de Correio
+//============================================================
+prontera,146,86,0	script	Caixa de Correio	888,{
+	mes "[Correio]";
+	mes "Se você deseja usar";
+	mes "o serviço de correio,";
+	mes "será necessário";
+	mes "pagar a quantia de 130 zeny.";
+	mes "Você deseja usar";
+	mes "sua caixa de correio agora?";
+	next;
+	switch(select("Sim.:Não.")) {
+	case 1:
+		mes "[Correio]";
+		if (Zeny < 130) {
+			mes "Lamento, mas você";
+			mes "verficar o seu";
+			mes "dinheiro novamente? Você não";
+			mes "possui dinheiro suficiente para pagar";
+			mes "os 130 zeny solicitados.";
+			close;
+		}
+		mes "[Correio]";
+		mes "Muito obrigado por";
+		mes "estar aqui. Por favor";
+		mes "volte novamente para usar";
+		mes "o nosso serviço de correio~";
+		set Zeny,Zeny-130;
+		openmail;
+		close;
+
+	case 2:
+		mes "[Correio]";
+		mes "Obrigado e volte novamente.";
+		close;
+	}
+}
+
+// Prontera
+//============================================================
+prontera,275,213,0	duplicate(Caixa de Correio)	Caixa de Correio#2prt	888
+prontera,34,212,0	duplicate(Caixa de Correio)	Caixa de Correio#3prt	888
+
+// Izlude
+//============================================================
+izlude,136,94,0	duplicate(Caixa de Correio)	Caixa de Correio#iz	888
+
+// Morroc
+//============================================================
+moc_ruins,72,166,0	duplicate(Caixa de Correio)	Caixa de Correio#1moc	888
+moc_ruins,156,52,0	duplicate(Caixa de Correio)	Caixa de Correio#2moc	888
+
+// Geffen
+//============================================================
+geffen,115,67,0	duplicate(Caixa de Correio)	Caixa de Correio#gef	888
+geffen,199,125,0	duplicate(Caixa de Correio)	Caixa de Correio#2gef	888
+
+// Payon
+//============================================================
+payon,191,104,0	duplicate(Caixa de Correio)	Caixa de Correio#pay	888
+payon,171,226,0	duplicate(Caixa de Correio)	Caixa de Correio#2pay	888
+pay_arche,55,127,0	duplicate(Caixa de Correio)	Caixa de Correio#3pay	888
+
+// Alberta
+//============================================================
+alberta,90,60,0	duplicate(Caixa de Correio)	Caixa de Correio#alb	888
+alberta,30,240,0	duplicate(Caixa de Correio)	Caixa de Correio#2alb	888
+
+// Al De Baran
+//============================================================
+aldebaran,135,122,0	duplicate(Caixa de Correio)	Caixa de Correio#alde	888
+
+// Juno
+//============================================================
+yuno,148,187,0	duplicate(Caixa de Correio)	Caixa de Correio#yuno	888
+yuno,332,108,0	duplicate(Caixa de Correio)	Caixa de Correio#2yuno	888
+
+// Lightalzen
+//============================================================
+lighthalzen,164,85,0	duplicate(Caixa de Correio)	Caixa de Correio#lht	888
+lighthalzen,196,320,0	duplicate(Caixa de Correio)	Caixa de Correio#2lht	888
+
+// Einbroch e Einbech
+//============================================================
+einbroch,231,215,0	duplicate(Caixa de Correio)	Caixa de Correio#ein	888
+einbroch,77,202,0	duplicate(Caixa de Correio)	Caixa de Correio#2ein	888
+einbech,182,124,0	duplicate(Caixa de Correio)	Caixa de Correio#3ein	888
+
+// Comodo
+//============================================================
+comodo,200,150,0	duplicate(Caixa de Correio)	Caixa de Correio#cmd	888
+
+// Umbala
+//============================================================
+umbala,104,155,0	duplicate(Caixa de Correio)	Caixa de Correio#um	888
+
+// Amatsu
+//============================================================
+amatsu,102,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ama	888
+
+// Gonryun
+//============================================================
+gonryun,152,117,0	duplicate(Caixa de Correio)	Caixa de Correio#gon	888
+
+// Ayothaya
+//============================================================
+ayothaya,205,169,0	duplicate(Caixa de Correio)	Caixa de Correio#ayo	888
+
+// Louyang
+//============================================================
+louyang,204,100,0	duplicate(Caixa de Correio)	Caixa de Correio#lou	888
+
+// Hugel
+//============================================================
+hugel,86,168,0	duplicate(Caixa de Correio)	Caixa de Correio#hu	111
+
+// Rachel
+//============================================================
+rachel,122,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ra	888
+
+// Veins
+//============================================================
+veins,218,123,0	duplicate(Caixa de Correio)	Caixa de Correio#ve	888

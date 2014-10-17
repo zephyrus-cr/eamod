@@ -1,0 +1,2 @@
+// eAmod
+import: ../battle/eAmod.conf

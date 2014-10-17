@@ -1,0 +1,480 @@
+// *******************
+// * Champions Arena *
+// *  Terra Online   *
+// *******************
+
+// Map Flags
+
+arug_cas01	mapflag	woe_set	1
+arug_cas03	mapflag	woe_set	1
+arug_cas02	mapflag	woe_set	1
+schg_cas01	mapflag	woe_set	1
+
+// WoE Castle Flags ******************************************************************
+
+aru_gld,164,270,4	script	Mardol#flag_Ar01_1::Ar01_Flag	722,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (.@GID == 0) {
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz declares that";
+		mes "one has yet to claim lordship";
+		mes "over this stronghold. The one";
+		mes "that breaks the Emperium will";
+		mes "be recognized as its new owner.";
+		close;
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ Ringing Voice ]";
+			mes "Courageous one,";
+			mes "do you wish to return";
+			mes "to your stronghold?";
+			next;
+			switch(select("Return to the Stronghold:Cancel")) {
+			case 1:
+				set .@GID, GetCastleData("arug_cas01",1);
+				if (getcharid(2) == .@GID) {
+					warp "arug_cas01",67,193;
+					end;
+				}
+				close;
+			case 2:
+				close;
+			}
+		}
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz decrees that";
+		mes "this stronghold is owned";
+		mes "by the ^FF0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		next;
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000 is";
+		mes "Guild Master of ^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "Any that object must claim this";
+		mes "stronghold through strength of";
+		mes "steel and magic during the";
+		mes "appointed Guild Siege times.";
+		close;
+	}
+
+OnRecvCastleAr01:
+	misceffect 537;
+	misceffect 259;
+	FlagEmblem GetCastleData("arug_cas01",1);
+	end;
+}
+
+prt_are02,145,209,4	duplicate(Ar01_Flag)	Mardol#Ar01_2	722
+prt_are02,154,209,4	duplicate(Ar01_Flag)	Mardol#Ar01_3	722
+prt_are02,143,178,4	duplicate(Ar01_Flag)	Mardol#Ar01_4	722
+prt_are02,156,178,4	duplicate(Ar01_Flag)	Mardol#Ar01_5	722
+
+aru_gld,80,41,6	script	Cyr#flag_Ar02_1::Ar02_Flag	722,{
+	set .@GID, GetCastleData("arug_cas02",1);
+	if (.@GID == 0) {
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz declares that";
+		mes "one has yet to claim lordship";
+		mes "over this stronghold. The one";
+		mes "that breaks the Emperium will";
+		mes "be recognized as its new owner.";
+		close;
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ Ringing Voice ]";
+			mes "Courageous one,";
+			mes "do you wish to return";
+			mes "to your stronghold?";
+			next;
+			switch(select("Return to the Stronghold:Cancel")) {
+			case 1:
+				set .@GID, GetCastleData("arug_cas02",1);
+				if (getcharid(2) == .@GID) {
+					warp "arug_cas02",43,256;
+					end;
+				}
+				close;
+			case 2:
+				close;
+			}
+		}
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz decrees that";
+		mes "this stronghold is owned";
+		mes "by the ^FF0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		next;
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000 is";
+		mes "Guild Master of ^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "Any that object must claim this";
+		mes "stronghold through strength of";
+		mes "steel and magic during the";
+		mes "appointed Guild Siege times.";
+		close;
+	}
+
+OnRecvCastleAr02:
+	misceffect 537;
+	misceffect 259;
+	FlagEmblem GetCastleData("arug_cas02",1);
+	end;
+}
+
+prt_are02,101,191,5	duplicate(Ar02_Flag)	Cyr#Ar02_2	722
+prt_are02,108,198,5	duplicate(Ar02_Flag)	Cyr#Ar02_3	722
+prt_are02,133,175,5	duplicate(Ar02_Flag)	Cyr#Ar02_4	722
+prt_are02,124,166,5	duplicate(Ar02_Flag)	Cyr#Ar02_5	722
+
+aru_gld,60,174,0	script	Horn#flag_Ar03_1::Ar03_Flag	722,{
+	set .@GID, GetCastleData("arug_cas03",1);
+	if (.@GID == 0) {
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz declares that";
+		mes "one has yet to claim lordship";
+		mes "over this stronghold. The one";
+		mes "that breaks the Emperium will";
+		mes "be recognized as its new owner.";
+		close;
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ Ringing Voice ]";
+			mes "Courageous one,";
+			mes "do you wish to return";
+			mes "to your stronghold?";
+			next;
+			switch(select("Return to the Stronghold:Cancel")) {
+			case 1:
+				set .@GID, GetCastleData("arug_cas03",1);
+				if (getcharid(2) == .@GID) {
+					warp "arug_cas03",121,318;
+					end;
+				}
+				close;
+			case 2:
+				close;
+			}
+		}
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz decrees that";
+		mes "this stronghold is owned";
+		mes "by the ^FF0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		next;
+		mes "[ Arunafeltz Royal Edict ]";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000 is";
+		mes "Guild Master of ^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "Any that object must claim this";
+		mes "stronghold through strength of";
+		mes "steel and magic during the";
+		mes "appointed Guild Siege times.";
+		close;
+	}
+
+OnRecvCastleAr03:
+	misceffect 537;
+	misceffect 259;
+	FlagEmblem GetCastleData("arug_cas03",1);
+	end;
+}
+
+prt_are02,191,198,3	duplicate(Ar03_Flag)	Horn#Ar03_2	722
+prt_are02,198,191,3	duplicate(Ar03_Flag)	Horn#Ar03_3	722
+prt_are02,166,175,3	duplicate(Ar03_Flag)	Horn#Ar03_4	722
+prt_are02,175,166,3	duplicate(Ar03_Flag)	Horn#Ar03_5	722
+
+sch_gld,290,90,0	script	Himinn#flag_sc01_1::sc01_Flag	722,{
+	set .@GID, GetCastleData("schg_cas01",1);
+	if (.@GID == 0) {
+		mes "[ Schwaltzvalt Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Schwaltzvalt declares that";
+		mes "one has yet to claim lordship";
+		mes "over this stronghold. The one";
+		mes "that breaks the Emperium will";
+		mes "be recognized as its new owner.";
+		close;
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ Ringing Voice ]";
+			mes "Courageous one,";
+			mes "do you wish to return";
+			mes "to your stronghold?";
+			next;
+			switch(select("Return to the Stronghold:Cancel")) {
+			case 1:
+				set .@GID, GetCastleData("schg_cas01",1);
+				if (getcharid(2) == .@GID) {
+					warp "schg_cas01",120,290;
+					end;
+				}
+				close;
+			case 2:
+				close;
+			}
+		}
+		mes "[ Schwaltzvalt Royal Edict ]";
+		mes "The Holy Kingdom of";
+		mes "Schwaltzvalt decrees that";
+		mes "this stronghold is owned";
+		mes "by the ^FF0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		next;
+		mes "[ Schwaltzvalt Royal Edict ]";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000 is";
+		mes "Guild Master of ^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "Any that object must claim this";
+		mes "stronghold through strength of";
+		mes "steel and magic during the";
+		mes "appointed Guild Siege times.";
+		close;
+	}
+
+OnRecvCastleSc01:
+	misceffect 537;
+	misceffect 259;
+	FlagEmblem GetCastleData("schg_cas01",1);
+	end;
+}
+
+prt_are02,208,145,2	duplicate(sc01_Flag)	Himinn#sc01_2	722
+prt_are02,208,154,2	duplicate(sc01_Flag)	Himinn#sc01_3	722
+prt_are02,178,156,2	duplicate(sc01_Flag)	Himinn#sc01_4	722
+prt_are02,178,143,2	duplicate(sc01_Flag)	Himinn#sc01_5	722
+
+// GVG Arena Flags ****************************************************************************
+
+prt_are02,91,154,6	script	GVG Arena 1#13::BaseFlag	722,{
+	end;
+OnInit:
+	FlagEmblem 1;
+	end;
+}
+
+prt_are02,91,145,6	duplicate(BaseFlag)	GVG Arena 1#14	722
+prt_are02,121,156,6	duplicate(BaseFlag)	GVG Arena 1#27	722
+prt_are02,121,143,6	duplicate(BaseFlag)	GVG Arena 1#28	722
+
+prt_are02,133,124,7	duplicate(BaseFlag)	PVP Arena 1#9	722
+prt_are02,124,133,7	duplicate(BaseFlag)	PVP Arena 1#10	722
+prt_are02,107,101,7	duplicate(BaseFlag)	PVP Arena 1#11	722
+prt_are02,101,107,7	duplicate(BaseFlag)	PVP Arena 1#12	722
+
+prt_are02,156,121,0	duplicate(BaseFlag)	PVP Arena 2#1	722
+prt_are02,143,121,0	duplicate(BaseFlag)	PVP Arena 2#2	722
+prt_are02,154,91,0	duplicate(BaseFlag)	PVP Arena 2#3	722
+prt_are02,145,91,0	duplicate(BaseFlag)	PVP Arena 2#4	722
+
+prt_are02,175,133,1	duplicate(BaseFlag)	PVP Arena 3#5	722
+prt_are02,166,124,1	duplicate(BaseFlag)	PVP Arena 3#6	722
+prt_are02,198,107,1	duplicate(BaseFlag)	PVP Arena 3#7	722
+prt_are02,192,101,1	duplicate(BaseFlag)	PVP Arena 3#8	722
+
+// Free Arenas Entrance
+
+prt_are02,103,103,0	script	Arena#1::GVG1	45,1,1,{
+	if( !Converted || !Autorized || getcharid(2) == 0 )
+		end;
+	
+	set .@Arena, atoi(strnpcinfo(2));
+	set .@Pos, rand(1,4);
+	switch( .@Arena )
+	{
+		case 1: switch( .@Pos )
+			{
+				case 1: warp "region_1",50,89; break;   
+				case 2: warp "region_1",49,10; break;
+				case 3: warp "region_1",10,50; break;
+				case 4: warp "region_1",89,49; break;
+			}
+			break;
+		case 2: switch( .@Pos )
+			{
+				case 1: warp "region_2",50,91; break;   
+				case 2: warp "region_2",49,8; break;
+				case 3: warp "region_2",8,50; break;
+				case 4: warp "region_2",91,49; break;
+			}
+			break;
+		case 3: switch( .@Pos )
+			{
+				case 1: warp "region_3",9,50; break;   
+				case 2: warp "region_3",90,49; break;
+				case 3: warp "region_3",9,50; break;
+				case 4: warp "region_3",90,49; break;
+			}
+			break;
+		case 4: switch( .@Pos )
+			{
+				case 1: warp "region_4",49,69; break;   
+				case 2: warp "region_4",50,8; break;
+				case 3: warp "region_4",31,51; break;
+				case 4: warp "region_4",68,52; break;
+			}
+			break;
+		case 5: switch( .@Pos )
+			{
+				case 1: warp "region_5",197,221; break;   
+				case 2: warp "region_5",198,168; break;
+				case 3: warp "region_5",172,195; break;
+				case 4: warp "region_5",223,194; break;
+			}
+			break;
+		case 6: switch( .@Pos )
+			{
+				case 1: warp "region_6",33,87; break;   
+				case 2: warp "region_6",73,15; break;
+				case 3: warp "region_6",17,44; break;
+				case 4: warp "region_6",86,58; break;
+			}
+			break;
+		case 7: switch( .@Pos )
+			{
+				case 1: warp "region_7",50,74; break;   
+				case 2: warp "region_7",49,25; break;
+				case 3: warp "region_7",21,49; break;
+				case 4: warp "region_7",78,50; break;
+			}
+			break;
+		case 8: switch( .@Pos )
+			{
+				case 1: warp "region_8",50,89; break;   
+				case 2: warp "region_8",49,10; break;
+				case 3: warp "region_8",10,50; break;
+				case 4: warp "region_8",89,49; break;
+			}
+			break;
+		case 9: switch( .@Pos )
+			{
+				case 1: warp "region_9",100,133; break;   
+				case 2: warp "region_9",99,65; break;
+				case 3: warp "region_9",64,100; break;
+				case 4: warp "region_9",135,99; break;
+			}
+			break;
+		case 10: switch( .@Pos )
+			{
+				case 1: warp "region_10",100,137; break;   
+				case 2: warp "region_10",100,61; break;
+				case 3: warp "region_10",62,99; break;
+				case 4: warp "region_10",138,98; break;
+			}
+			break;
+		case 11: switch( .@Pos )
+			{
+				case 1: warp "region_11",99,176; break;   
+				case 2: warp "region_11",100,19; break;
+				case 3: warp "region_11",37,122; break;
+				case 4: warp "region_11",165,122; break;
+			}
+			break;
+		case 12: switch( .@Pos )
+			{
+				case 1: warp "region_12",99,132; break;   
+				case 2: warp "region_12",100,67; break;
+				case 3: warp "region_12",67,99; break;
+				case 4: warp "region_12",131,100; break;
+			}
+			break;
+		case 13: switch( .@Pos )
+			{
+				case 1: warp "region_13",49,89; break;   
+				case 2: warp "region_13",49,9; break;
+				case 3: warp "region_13",9,49; break;
+				case 4: warp "region_13",90,50; break;
+			}
+			break;
+	}
+	end;
+}
+
+prt_are02,150,89,0	duplicate(GVG1)	Arena#8	45,2,2
+prt_are02,196,103,0	duplicate(GVG1)	Arena#3	45,2,2
+
+prt_are02,89,149,0	duplicate(GVG1)	Arena#7	45,2,2
+
+// Free Arenas Exit
+region_1,32,28,0	script	Exit Arena#1::ExitArena	723,{
+	mes "[Exit Arena]";
+	mes "Abandonar la arena ahora?";
+	next;
+	if( select("Sí:No") == 2 )
+		close;
+	
+	set .@Arena, atoi(strnpcinfo(2));
+	switch( .@Arena )
+	{
+		case 1: warp "prt_are02",128,128; break;
+		case 8: warp "prt_are02",150,121; break;
+		case 3: warp "prt_are02",171,128; break;
+		case 7: warp "prt_are02",121,149; break;
+		case 13: warp "prt_are02",179,150; break;
+	}
+	end;
+}
+
+region_3,40,27,0	duplicate(ExitArena)	Exit Arena#3	723
+region_7,57,73,0	duplicate(ExitArena)	Exit Arena#7	723
+region_8,59,30,0	duplicate(ExitArena)	Exit Arena#8	723
+region_13,31,68,0	duplicate(ExitArena)	Exit Arena#13	723
+
+// MapFlags
+region_1	mapflag	nopenalty
+region_1	mapflag	nosave	SavePoint
+region_1	mapflag	nowarp
+region_1	mapflag	noteleport
+region_1	mapflag	nomemo
+region_1	mapflag	pvp
+region_1	mapflag	noreturn
+region_1	mapflag	nobranch
+region_1	mapflag	pvp_noguild
+
+region_8	mapflag	nopenalty
+region_8	mapflag	nosave	SavePoint
+region_8	mapflag	nowarp
+region_8	mapflag	noteleport
+region_8	mapflag	nomemo
+region_8	mapflag	pvp
+region_8	mapflag	noreturn
+region_8	mapflag	nobranch
+region_8	mapflag	pvp_noguild
+
+region_3	mapflag	nopenalty
+region_3	mapflag	nosave	SavePoint
+region_3	mapflag	nowarp
+region_3	mapflag	noteleport
+region_3	mapflag	nomemo
+region_3	mapflag	pvp
+region_3	mapflag	noreturn
+region_3	mapflag	nobranch
+region_3	mapflag	pvp_noguild
+
+region_7	mapflag	nopenalty
+region_7	mapflag	nosave	SavePoint
+region_7	mapflag	nowarp
+region_7	mapflag	noteleport
+region_7	mapflag	nomemo
+region_7	mapflag	gvg
+region_7	mapflag	loadevent
+region_7	mapflag	noreturn
+region_7	mapflag	nobranch
+region_7	mapflag	noicewall
+region_7	mapflag	gvg_noalliance
+
+region_13	mapflag	nopenalty
+region_13	mapflag	nosave	SavePoint
+region_13	mapflag	nowarp
+region_13	mapflag	noteleport
+region_13	mapflag	nomemo
+region_13	mapflag	gvg
+region_13	mapflag	loadevent
+region_13	mapflag	noreturn
+region_13	mapflag	nobranch
+region_13	mapflag	noicewall
+region_13	mapflag	gvg_noalliance

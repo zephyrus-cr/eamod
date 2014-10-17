@@ -1,0 +1,1336 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Memorial Orc                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.6/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Instância Memorial dos Orcs.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | 1.1 Script Traduzido [insidemybrain]                   |
+//   | 1.2 Script Otimizado [Mark]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Entrada
+//============================================================
+gef_fild10,242,202,0	script	Memorial Orc	406,{
+
+	set .@party_id,getcharid(1);
+	set .@ins_mas,getpartyleader(.@party_id,1);
+	set .@p_name$,getpartyname(.@party_id);
+	set .@p_leader$,rid2name(.@ins_mas);
+	set .@md_name$,"Memorial Orc";
+
+	if(!instance_check_party(.@party_id,2,30,80)){
+		mes "Me desculpe mas seu grupo não cumpre o requisíto de nível necessário.";
+		close;
+	}
+
+	set .@orctime,checkquest(12059,PLAYTIME);
+	if (.@orctime == -1) {
+		if (.@ins_mas == getcharid(3)) {
+				mes "Criação de grupo confirmada. Gostaria de agendar a entrada de " + .@md_name$ + "?";
+			next;
+			switch(select("Reservar o " + .@md_name$ + ".:Entrar no calabouço.:Cancelar.")) {
+			case 1:
+				set .@instance,instance_create(.@md_name$,.@party_id);
+				if (.@instance < 0) {
+					mes "Nome do Grupo: "+.@p_name$+"";
+					mes "Líder do Grupo: "+.@p_leader$+"";
+					mes "^0000ff"+.@md_name$+" ^000000 - Falha ao reservar.";
+					close;
+				} else {
+					mes "^0000ff"+.@md_name$+"^000000- Aguardando a reserva.";
+					mes "Após fazer a reserva, você deve selecionar no menu a opção 'Entrar no Calabouço' caso deseje entrar no " + .@md_name$ + ".";
+					for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
+						if( instance_attachmap(.@i + "@orcs", .@instance) == "" )
+							break;
+					}
+					if( .@i < 2 ) {
+						instance_destroy(.@instance);
+						close;
+					}
+					instance_attach(.@instance);
+					instance_set_timeout 7200,300,.@instance;
+					instance_init(.@instance);
+
+					// Primeiro Andar
+					donpcevent instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("B1 Area 1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("B1 Area 2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("B1 Area 3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("B1 Area 4", instance_id())+"::OnInstanceInit";
+					disablenpc instance_npcname("Kurger#1-2", instance_id());
+
+					// Segundo Andar
+					donpcevent instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#1-1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#1-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#1-3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#1-4", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#2-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#2-3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#2-4", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#3-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#3-3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Tocha#3-4", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Warp2-1", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Warp2-2", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Warp2-3", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Boss Control", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("#Warp Outside Orc Dun", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Kruger#", instance_id())+"::OnInstanceInit";
+					disablenpc instance_npcname("Kruger#2-2", instance_id());
+					close;
+				}
+			case 2:
+				if (has_instance("1@orcs") == "") {
+					mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+					mes "O líder do grupo não reservou a entrada no calabouço.";
+					next;
+					mes "Após a reserva ser concluída, o calabouço será criado.";
+					mes "Caso o seu calabouço tenha sido destruído deverá esperar 7 dias para entrar novamente.";
+					close;
+				}
+				if((party_instance_id3 != 0) && (party_instance_id3 != getcharid(1))) {
+					mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+					mes "O Calabouço Memorial foi destruído pelo Líder do Grupo ou por causa do tempo limite. Por favor tente novamente depois de 2 Horas.";
+					close;
+				}
+				mapannounce "gef_fild10", .@p_leader$ + " of the party, " + .@p_name$ + " is entering the "+.@md_name$+".",bc_map,"0x00ff99";
+				if (checkquest(12059)== -1) setquest 12059;
+				set party_instance_id3,getcharid(1);
+				warp "1@orcs",179,15;
+				end;
+			case 3:
+				close;
+			}
+		}
+		switch(select(.@md_name$ + " Entrar no calabouço:Cancelar")) {
+		case 1:
+			if (has_instance("1@orcs") == "") {
+				mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+				mes "O Calabouço Memorial foi destruído pelo Líder do Grupo ou por causa do tempo limite. Por favor tente novamente depois de 2 Horas.";
+				close;
+			}
+			if((party_instance_id3 != 0) && (party_instance_id3 != getcharid(1))) {
+	      mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+				mes "O Calabouço Memorial foi destruído pelo Líder do Grupo ou por causa do tempo limite. Por favor tente novamente depois de 2 Horas.";
+				close;
+			}
+			mapannounce "gef_fild10",.@p_name$+" membro do grupo "+.@p_leader$+" entrou no "+.@md_name$+".",bc_map,"0x00ff99";
+			set party_instance_id3,getcharid(1);
+			if (checkquest(12059)== -1) setquest 12059;
+			warp "1@orcs",179,15;
+			end;
+		case 2:
+			close;
+		}
+	} else if (.@orctime == 0 || .@orctime == 1) {
+		mes "You can enter the Dungeon if it has been generated.";
+		next;
+		switch(select("Entrar no calabouço "+.@md_name$+":Cancelar")) {
+		case 1:
+			if (has_instance("1@orcs") == "") {
+	      mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+				mes "O Calabouço Memorial foi destruído pelo Líder do Grupo ou por causa do tempo limite. Por favor tente novamente depois de 2 Horas.";
+				close;
+			}
+			if((party_instance_id3 != 0) && (party_instance_id3 != getcharid(1))) {
+			  mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+				mes "O Calabouço Memorial foi destruído pelo Líder do Grupo ou por causa do tempo limite. Por favor tente novamente depois de 2 Horas.";
+				close;
+			}
+			mapannounce "gef_fild10",.@p_name$+" membro do grupo "+.@p_leader$+" entrou no "+.@md_name$+".",bc_map,"0x00ff99";
+			if (checkquest(12059)== -1) setquest 12059;
+			set party_instance_id3,getcharid(1);
+			warp "1@orcs",179,15;
+			end;
+		case 2:
+			close;
+		}
+	} else if (.@orctime == 2) {
+		mes "^0000ff0000ffTodos os registros relacionados ao Calabouço Memorial dos Orcs foram deletados. Agora você pode entrar novamente no Calabouço dos Orcs.^000000";
+		set party_instance_id3,0;
+		erasequest 12059;
+		close;
+	}
+	mes "Para recomeçar o calabouço, você deverá ser o líder do grupo e ter ao menos 2 membros nele.";
+	close;
+}
+
+gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
+	if (BaseLevel < 50) {
+		mes "O cientista parece não perceber a sua entrada e continua a resmungar para si mesmo.";
+		close;
+	}
+	if (mad > 1) {
+		set mad,1;
+		close;
+	} else if (mad < 1) {
+		mes "[Cientista Maluco]";
+		mes "Haha, nenhum orc está vindo me atacar!";
+		mes "O poder da Máquina do Tempo é invencível!!";
+		next;
+		if(select("Os orcs não te atacam??:Você só deseja isso...") == 1) {
+			mes "[Cientista Maluco]";
+			mes "Pois é.. sei que é difícil de acreditar. Mas eu não te culpo.";
+			mes "Eu comecei a estudar uma Máquina do Tempo, descoberta próximo de Morroc.";
+			mes "De acordo com a minha pesquisa, os minerais encontrados dentro dela contém extremo poder!";
+			next;
+		} else {
+			mes "[Cientista Maluco]";
+			mes "Você é uma pessoa bem desconfiada, né?";
+			next;
+		}
+			select("Nossa! Como... viagens para outras dimensões!?");
+			mes "[Cientista Maluco]";
+			mes "Muito esperto! Na verdade eu só fiz isso! Consegue ver aquela estátua ali? Não é seu monolito natural!";
+			next;
+			mes "[Cientista Maluco]";
+			mes "Eu a criei a partir de uma junção da nossa tecnologia com a energia ilimitada que encontrei! Gostaria de tentar?";
+			next;
+		  select("... Hm, isso não seria ilegal?");
+			mes "[Cientista Maluco]";
+			mes "Como que algo tão interessante assim pode ser ilegal!? Você pode falar com os orcs!! Vamos lá!";
+			next;
+			mes "[Cientista Maluco]";
+			mes "Provavelmente eles irão lhe dar milhões de instruções, e uma vez que eles o verem vão sempre repetir a mesma coisa!";
+			next;
+		if(select("Ok... O quê eu faço?:Hmm, acho que não.") == 1) {
+			mes "[Cientista Maluco]";
+			mes "Muito bom! Apenas coloque suas mãos na estátua e tente agir naturalmente enquanto estiver lá!";
+			set mad,1;
+			close;
+		} else {
+			mes "[Cientista Maluco]";
+			mes "Tudo bem... então que assim seja!";
+			close;
+		}
+	} else {
+		mes "[Cientista Maluco]";
+		mes "Hm? Ponha suas mãos na Estátua de Monemus se você quiser experimentar a viagem através das dimensões!";
+		close;
+ }
+}
+
+// Memorial Orc Primeiro Piso
+//============================================================
+1@orcs,180,30,0	script	#Monstros Ressuscitados1	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Monstros Ressuscitados1", instance_id());
+	end;
+
+OnDisable:
+	killmonster "1@orcs",instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#Monstros Ressuscitados1", instance_id());
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Guerreiro Orc",1023,1,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,30;
+	set .@c_mob_num,mobcount("1@orcs",instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,30);
+		if (.@mob_ran > 29) {
+			monster "1@orcs",0,0,"Guerreiro Orc",1023,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+		} else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
+			monster "1@orcs",0,0,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			if (rand(1,10) == 9) {
+				instance_announce 0, "Grande Orc: Precisamos de mais defesa! Arranje mais guerreiros para cá!",bc_map,"0xff4444";
+			}
+		} else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
+			areamonster "1@orcs",41,91,51,81,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			if (rand(1,10) == 9) {
+				instance_announce 0, "Onde estão os Grandes Orc's!? Precisamos deles para deter os inimigos!",bc_map,"0xff4444";
+			}
+		} else {
+			areamonster "1@orcs",17,187,27,177,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			if (rand(1,5) == 3) {
+				instance_announce 0, "Perigo: O exército está se concentrando na zona No. 4.",bc_map,"0x77ff77";
+			}
+			if (rand(1,100) == 50) {
+				initnpctimer;
+			}
+		}
+	}
+	end;
+
+OnTimer10:
+	instance_announce 0, "Mensagem do Guarda de Elite Orc: Acho que isso levará mais tempo que o estimado. Convoquem os Golem Estalactíticos!",bc_map,"0xff4444";
+	end;
+
+OnTimer4010:
+	instance_announce 0, "Golem Estalactíticos estão cavando profundamente o subsolo.",bc_map,"0x77ff77";
+	areamonster "1@orcs",17,187,27,177,"Golem Estalactítico",1278,20,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	stopnpctimer;
+	end;
+}
+
+1@orcs,180,30,0	script	#Monstros Ressuscitados2	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Monstros Ressuscitados2", instance_id());
+	end;
+
+OnDisable:
+	killmonster "1@orcs",instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#Monstros Ressuscitados2", instance_id());
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Lobo Treinado",1106,1,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,15;
+	set .@c_mob_num,mobcount("1@orcs",instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (rand(1,30) > 15) {
+		if (.@mob_dead_num > 0) {
+			monster "1@orcs",0,0,"Lobo Treinado",1106,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+		}
+	} else {
+		if (.@mob_dead_num > 0) {
+			areamonster "1@orcs",17,187,27,177,"Lobo Treinado",1106,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
+		}
+	}
+	end;
+}
+
+1@orcs,180,30,0	script	#Monstros Ressuscitados3	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Monstros Ressuscitados3", instance_id());
+	end;
+
+OnDisable:
+	killmonster "1@orcs",instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#Monstros Ressuscitados3", instance_id());
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "1@orcs",0,0,"Orc Arqueiro",1189,1,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,15;
+	set .@c_mob_num,mobcount("1@orcs",instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	set .@mob_ran,rand(1,30);
+	if (.@mob_ran > 29) {
+		if (.@mob_dead_num > 0) {
+			monster "1@orcs",0,0,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+		}
+	} else if ((.@mob_ran > 26) && (.@mob_ran < 30)) {
+		if (.@mob_dead_num > 0) {
+			areamonster "1@orcs",43,155,47,159,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+			if (rand(1,3) == 3) {
+				instance_announce 0, "Grande Orc: Ataquem eles pelas costas! Acabem com os seus reforços!",bc_map,"0xff4444";
+			}
+		}
+	} else {
+		if (.@mob_dead_num > 0) {
+			areamonster "1@orcs",17,187,27,177,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+		}
+	}
+	end;
+}
+
+1@orcs,180,30,0	script	#Monstros Ressuscitados4	844,{
+	end;
+
+OnInstanceInit:
+	enablenpc instance_npcname("#Monstros Ressuscitados4", instance_id());
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",98,35,178,115,"Anopheles",1627,1,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,10;
+	set .@c_mob_num,mobcount("1@orcs",instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		monster "1@orcs",0,0,"Anopheles",1627,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	}
+	end;
+
+OnDisable:
+	killmonster "1@orcs",instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	end;
+}
+
+1@orcs,180,29,4	script	Kurger#1-1	433,{
+	donpcevent instance_npcname("Kurger#1-2", instance_id())+"::OnEnable";
+	end;
+}
+
+1@orcs,180,29,4	script	Kurger#1-2	433,{
+	end;
+
+OnEnable:
+	disablenpc instance_npcname("Kurger#1-1", instance_id());
+	enablenpc instance_npcname("Kurger#1-2", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer10:
+	instance_announce 0, "Kruger: Droga... Por que demora tanto!? Eu não tenho o dia todo!!",bc_map,"0xffff00";
+	end;
+
+OnTimer5710:
+	instance_announce 0, "Kruger: Meu plano era deixar que nossos camaradas abrissem o portão, mas o plano foi arruinado desde que fui buscar o Orc Xamã.",bc_map,"0xffff00";
+	end;
+
+OnTimer14610:
+	instance_announce 0, "Mensagem do Guarda de Elite Orc: Sinto cheiro de rato.. Mande alguns reforços para a entrada!!",bc_map,"0xff4444";
+	end;
+
+OnTimer20210:
+	instance_announce 0, "Kruger: Mas que droga.. Eles podem chegar à qualquer minuto. Ok. Escutem agora.",bc_map,"0xffff00";
+	end;
+
+OnTimer24910:
+	instance_announce 0, "Kruger: O Orc Xamã selou a caverna, dividindo ela em 4 zonas. Em cada zona tem um Orc encantado que pode abrir passagem para a próxima zona.",bc_map,"0xffff00";
+	end;
+
+OnTimer34310:
+	instance_announce 0, "Kruger: Encontrem os Orcs Encantados e livrem-se deles para ir para a próxima zona.",bc_map,"0xffff00";
+	end;
+
+OnTimer39710:
+	instance_announce 0, "Kruger: Tente evitar atacar os Orcs Encatandos. Toda vez que você matar um Orc normal, Grand Orcs se reunirão no caminho para o 2º andar.",bc_map,"0xffff00";
+	end;
+
+OnTimer49210:
+	instance_announce 0, "Kruger: Na pior das hipóteses, o caminho para o 2º andar poderia ser completamente bloqueado. Para seu próprio bem, tente estar o mais escondido possível.",bc_map,"0xffff00";
+	end;
+
+OnTimer56310:
+	instance_announce 0, "Missão: Sempre desvie dos Orcs Encantandos. Evitar batalhas com os Orcs pode ser uam boa estratégia para chegar no 2º andar.",bc_map,"0x44ffff";
+	donpcevent instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnEnable";
+	disablenpc instance_npcname("Kurger#1-2", instance_id());
+	end;
+
+OnTimer60000:
+	areamonster "1@orcs",137,83,143,89,"Orc Encantado",1023,1,instance_npcname("B1 Area Mobs", instance_id())+"::OnMyMobDead";
+	stopnpctimer;
+	end;
+
+}
+
+1@orcs,168,125,0	script	B1 Area 1	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("B1 Area 1", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("B1 Area 1", instance_id());
+	areamonster "1@orcs",103,105,109,111,"Orc Encantado",1023,1,instance_npcname("B1 Area Mobs", instance_id())+"::OnMyMobDead1";
+	end;
+
+OnTouch:
+	warp "1@orcs",168,130;
+	end;
+
+OnContinue:
+	donpcevent instance_npcname("B1 Area 2", instance_id())+"::OnEnable";
+	initnpctimer;
+	end;
+
+OnTimer10300:
+	instance_announce 0, "Sussuro do Kruger: Os Orcs aqui costumavam ser meus amigos. Mas tudo mudou desde que os Orcs Xamãs dominaram eles com as magias.",bc_map,"0xff4499";
+	end;
+
+OnTimer18700:
+	instance_announce 0, "Sussuro do Kruger: Não temos muito o que fazer, mas se quisermos derrotar os Orcs Xamãs, temso que salvar as outras tribos.",bc_map,"0xff4499";
+	stopnpctimer;
+	end;
+}
+
+1@orcs,89,94,0	script	B1 Area 2	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("B1 Area 2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("B1 Area 2", instance_id());
+	areamonster "1@orcs",32,40,38,46,"Orc Encantado",1023,1,instance_npcname("B1 Area Mobs", instance_id())+"::OnMyMobDead2";
+	end;
+
+OnTouch:
+	warp "1@orcs",85,85;
+	end;
+
+OnContinue:
+	donpcevent instance_npcname("B1 Area 3", instance_id())+"::OnEnable";
+	initnpctimer;
+	end;
+
+OnTimer30300:
+	instance_announce 0, "Sussuro do Kruger: Eu vi alguns corpos de nossa tribo. Parece que o Orc Xamã está usando eles para seus rituais.",bc_map,"0xff4499";
+	end;
+
+OnTimer37600:
+	instance_announce 0, "Sussuro do Kruger: ... Tudo por causa de mim. Eu sou o responsável por toda essa maldade.",bc_map,"0xff4499";
+	stopnpctimer;
+	end;
+}
+
+1@orcs,38,105,0	script	B1 Area 3	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("B1 Area 3", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("B1 Area 3", instance_id());
+	areamonster "1@orcs",19,177,25,183,"Orc Encantado",1023,1,instance_npcname("B1 Area Mobs", instance_id())+"::OnMyMobDead3";
+	end;
+
+OnTouch:
+	warp "1@orcs",38,110;
+	end;
+
+OnContinue:
+	donpcevent instance_npcname("B1 Area 4", instance_id())+"::OnEnable";
+	initnpctimer;
+	end;
+
+OnTimer30300:
+	instance_announce 0, "Por favor, vamos parar aqui!",bc_map,"0xff4499";
+	end;
+
+OnTimer32700:
+	instance_announce 0, "Vamos chegar ao segundo porão após passarmos por aqui.",bc_map,"0xff4499";
+	stopnpctimer;
+	end;
+}
+
+1@orcs,21,189,0	script	B1 Area 4	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("B1 Area 4", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("B1 Area 4", instance_id());
+	donpcevent instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#Monstros Ressuscitados4", instance_id())+"::OnDisable";
+	end;
+
+OnTouch:
+	warp "2@orcs",32,171;
+	end;
+}
+
+1@orcs,1,1,0	script	B1 Area Mobs	-1,{
+	end;
+
+OnMyMobDead:
+	donpcevent instance_npcname("B1 Area 1", instance_id())+"::OnEnable";
+	end;
+
+OnMyMobDead1:
+	donpcevent instance_npcname("B1 Area 1", instance_id())+"::OnContinue";
+	end;
+
+OnMyMobDead2:
+	donpcevent instance_npcname("B1 Area 2", instance_id())+"::OnContinue";
+	end;
+
+OnMyMobDead3:
+	donpcevent instance_npcname("B1 Area 3", instance_id())+"::OnContinue";
+	end;
+}
+
+// Memorial Orc Segundo Piso
+//============================================================
+2@orcs,36,171,0	script	#2Monstros Ressuscitados1	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#2Monstros Ressuscitados1", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#2Monstros Ressuscitados1", instance_id());
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Vingativo",1152,1,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnDisable:
+	killmonster "2@orcs",instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,30;
+	set .@c_mob_num,mobcount("2@orcs",instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,30);
+		if (.@mob_ran > 29) {
+			monster "2@orcs",0,0,"Orc Vingativo",1152,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+		} else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
+			monster "2@orcs",0,0,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			set mob_ran2,rand(1,10);
+		} else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
+			areamonster "2@orcs",157,112,167,122,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			if (rand(1,10) == 9) {
+				instance_announce 0, "Aviso: Grand Orcs estão reunidos perto da Área 3.",bc_map,"0xff4444";
+			}
+		} else {
+			areamonster "2@orcs",173,13,183,23,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+			if (rand(1,5) == 3) {
+				instance_announce 0, "Perigo: As forças começaram a se concentrar no altar do Orc Xamã.",bc_map,"0x77ff77";
+			}
+			if (rand(1,70) == 50) {
+				initnpctimer;
+			}
+		}
+	}
+	end;
+
+OnTimer10:
+	instance_announce 0, "Voz de algum lugar: Tolo... Você realmente acha que o altar cairia assim?",bc_map,"0xff4444";
+	end;
+
+OnTimer4010:
+	instance_announce 0, "[ Alguns espectros foram sumonados por forças desconehcidas ]",bc_map,"0x77ff77";
+	areamonster "2@orcs",167,25,177,35,"Wraith",1475,30,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	stopnpctimer;
+	end;
+}
+
+2@orcs,36,171,0	script	#2Monstros Ressuscitados3	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#2Monstros Ressuscitados3", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#2Monstros Ressuscitados3", instance_id());
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Orc Zombie",1153,1,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,15;
+	set .@c_mob_num,mobcount("2@orcs",instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	set .@mob_ran,rand(1,30);
+	if (.@mob_ran > 29) {
+		if (.@mob_dead_num > 0) {
+			monster "2@orcs",0,0,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+		}
+	} else if ((.@mob_ran > 6) && (.@mob_ran < 30)) {
+		if (.@mob_dead_num > 0) {
+			areamonster "2@orcs",168,10,184,26,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+			if (rand(1,15) == 3) {
+				instance_announce 0, "Aviso: As equipes de Orcs Arqueiros estão se juntando próximo ao altar.",bc_map,"0xff4444";
+			}
+		}
+	} else {
+		if (.@mob_dead_num > 0) {
+			areamonster "2@orcs",168,21,184,21,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+		}
+	}
+	end;
+
+OnDisable:
+	killmonster "2@orcs",instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
+	end;
+}
+
+2@orcs,180,30,0	script	#2Monstros Ressuscitados4	844,{
+	end;
+
+OnInstanceInit:
+	enablenpc instance_npcname("#2Monstros Ressuscitados4", instance_id());
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .@callnum,10;
+	set .@c_mob_num,mobcount("2@orcs",instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		monster "2@orcs",0,0,"Anopheles",1627,1,instance_npcname("#2Monstros Ressuscitados4", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+2@orcs,35,169,4	script	Kruger#2-1	433,{
+	donpcevent instance_npcname("Kruger#2-2", instance_id())+"::OnEnable";
+	end;
+}
+
+2@orcs,35,169,4	script	Kruger#2-2	433,{
+	end;
+
+OnEnable:
+	disablenpc instance_npcname("Kruger#2-1", instance_id());
+	enablenpc instance_npcname("Kruger#2-2", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer10:
+	instance_announce 0, "Sussuro do Kruger: Vou te dizer como chegar ao altar do Xamã.",bc_map,"0xffff00";
+	end;
+
+OnTimer3510:
+	instance_announce 0, "Sussuro do Kruger: Consegue ver os braseiros iluminando o caminho? Para liberar a próxima zona, reforce o fogo neles.",bc_map,"0xffff00";
+	end;
+
+OnTimer10710:
+	instance_announce 0, "Sussuro do Kruger: É fato que os monstros não permitirão que você toque nos braseiros facilmente.",bc_map,"0xffff00";
+	end;
+
+OnTimer16310:
+	instance_announce 0, "Sussuro do Kruger: Mas tente manter as batalhas não-visíveis, caso contrário o Xamã enviará tropas de proteção.",bc_map,"0xffff00";
+	end;
+
+OnTimer21910:
+	instance_announce 0, "Sussuro do Kruger: Apenas o Líder do Grupo poderá reforçar as chamas, então protejam ele.",bc_map,"0xffff00";
+	end;
+
+OnTimer23910:
+	instance_announce 0, "Missão: Liberada a zona de iluminação dos braseiros. Eles só podem ser ascendidos em uma certa ordem, portanto, cuidado.",bc_map,"0x4444ff";
+	donpcevent instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Tocha#1-1", instance_id())+"::OnEnable";
+	disablenpc instance_npcname("Kruger#2-2", instance_id());
+	end;
+}
+
+2@orcs,26,164,0	script	Tocha#1-1	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#1-2", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#1-1", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#1-1", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#1-1", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,55,155,0	script	Tocha#1-2	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#1-3", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#1-2", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#1-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#1-2", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,108,146,0	script	Tocha#1-3	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#1-4", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#1-3", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#1-3", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#1-3", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,98,171,0	script	Tocha#1-4	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("#Warp2-1", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#1-4", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#1-4", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#1-4", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,48,100,0	script	#Warp2-1	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("#Warp2-1", instance_id());
+	end;
+
+OnEnable:
+	monster "2@orcs",109,156,"Guarda de Elite Orc",1981,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead1";
+	instance_announce 0, "Guarda de Elite Orc: Oh! Eu tenho companhia. Me derrotem se puderem!!",bc_map,"0xff8888";
+	end;
+
+OnContinue:
+	enablenpc instance_npcname("#Warp2-1", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	areamonster "2@orcs",28,158,40,170,"Guarda de Elite Orc",1981,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead1";
+	stopnpctimer;
+	end;
+
+OnTouch:
+	warp "2@orcs",47,93;
+	end;
+}
+
+2@orcs,35,92,0	script	Tocha#2-1	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#2-2", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#2-1", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,32,70,0	script	Tocha#2-2	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#2-3", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#2-2", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#2-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#2-2", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,70,31,0	script	Tocha#2-3	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#2-4", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#2-3", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#2-3", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#2-3", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,84,51,0	script	Tocha#2-4	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("#Warp2-2", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#2-4", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#2-4", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#2-4", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,101,55,0	script	#Warp2-2	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("#Warp2-2", instance_id());
+	end;
+
+OnEnable:
+	monster "2@orcs",67,64,"Orc Caçador",1982,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead2";
+	instance_announce 0, "Orc Caçador: Haha! Impressionante o que você fez, mas sua viagem tola acabam por aqui...",bc_map,"0xff8888";
+	end;
+
+OnContinue:
+	enablenpc instance_npcname("#Warp2-2", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	areamonster "2@orcs",40,91,52,103,"Orc Caçador",1982,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead2";
+	stopnpctimer;
+	end;
+
+OnTouch:
+	warp "2@orcs",107,55;
+	end;
+}
+
+2@orcs,142,145,0	script	Tocha#3-1	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#3-2", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#3-1", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,162,134,0	script	Tocha#3-2	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#3-3", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#3-2", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#3-2", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#3-2", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,144,117,0	script	Tocha#3-3	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("Tocha#3-4", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#3-3", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#3-3", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#3-3", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,136,98,0	script	Tocha#3-4	844,{
+	if(getpartyleader(getcharid(1),2) != getcharid(0)) end;
+	progressbar "ffff00",5;
+	donpcevent instance_npcname("#Warp2-3", instance_id())+"::OnEnable";
+	initnpctimer;
+	disablenpc instance_npcname("Tocha#3-4", instance_id());
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("Tocha#3-4", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Tocha#3-4", instance_id());
+	end;
+
+OnTimer100:
+	specialeffect EF_FIREPILLAR;
+	end;
+
+OnTimer2000:
+	specialeffect EF_FIREPILLARBOMB;
+	stopnpctimer;
+	end;
+}
+
+2@orcs,167,104,0	script	#Warp2-3	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("#Warp2-3", instance_id());
+	end;
+
+OnEnable:
+	monster "2@orcs",152,147,"Orc Morto-Vivo",1983,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead3";
+	instance_announce 0, "Orc Morto-Vivo:Sinto cheiro de carne... Estou faminto! Quero comer um pouco de carne humana!!",bc_map,"0xff8888";
+	end;
+
+OnContinue:
+	//areamonster "2@orcs",117,61,129,73,"Orc Morto-Vivo",1983,1,instance_npcname("#Mobs Control", instance_id())+"::OnMyMobDead3";
+	donpcevent instance_npcname("#Boss Control", instance_id())+"::OnEnable";
+	enablenpc instance_npcname("#Warp2-3", instance_id());
+	initnpctimer;
+	end;
+
+OnTimer10:
+	instance_announce 0, "Xamã Cargalache: Hahaha!! Então você finalmente chegou aqui... O assasino que você enviou foi totalmente inútil. Aquele Orc estúpido está morrendo agora, sob meus pés.",bc_map,"0xffff00";
+	end;
+
+OnTimer6810:
+	instance_announce 0, "Xamã Cargalache: Meu querido servo, vá pegar os intrusos!",bc_map,"0xffff00";
+	end;
+
+OnTimer10310:
+	instance_announce 0, "Espírito de Orc: Ao seu dispor, meu senhor.",bc_map,"0xff7777";
+	end;
+
+OnTimer13110:
+	instance_announce 0, "Perigo: Você fo idescoberto pelo Xamã Cargalache. O plano de Kruger, de assasinar o xamã falhou. Você agora deve derrotar o Xamã e achar vestígios de Kruger.",bc_map,"0x8888ff";
+	stopnpctimer;
+	end;
+
+OnTouch:
+	warp "2@orcs",167,95;
+	end;
+}
+
+2@orcs,36,171,0	script	#Boss Control	844,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#Boss Control", instance_id());
+	end;
+
+OnEnable:
+	monster "2@orcs",185,8,"Xamã Cargalache",1984,1,instance_npcname("#Boss Control", instance_id())+"::OnMyMobDead";
+	monster "2@orcs",179,15,"Depraved Orc Hero",1087,1;
+	enablenpc instance_npcname("#Boss Control", instance_id());
+	end;
+
+OnMyMobDead:
+	donpcevent instance_npcname("Kruger#", instance_id())+"::OnEnable";
+	set .@mob_ran,rand(1,5);
+	if (.@mob_ran == 1) {
+		instance_announce 0, "Xamã Cargalache: Como... Como poderia acontecer... Como poderia alguém como você...!!",bc_map,"0xffff00";
+	} else if (.@mob_ran == 2) {
+		instance_announce 0, "Xamã Cargalache: Como fui dominado por meros humanos!",bc_map,"0xffff00";
+	} else if (.@mob_ran == 3) {
+		instance_announce 0, "Xamã Cargalache: Isso... Isso não pode ser o fim...",bc_map,"0xffff00";
+	} else if (.@mob_ran == 4) {
+		instance_announce 0, "Xamã Cargalache: Eu... não posso morrer... ainda...!",bc_map,"0xffff00";
+	} else {
+		instance_announce 0, "Xamã Cargalache: Derrotado por um bando de imbecis... Isso não pode estar acontecendo...!",bc_map,"0xffff00";
+	}
+	donpcevent instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#Warp Outside Orc Dun", instance_id())+"::OnEnable";
+	end;
+}
+
+2@orcs,182,8,0	script	#Warp Outside Orc Dun	45,3,3,{
+OnInstanceInit:
+	disablenpc instance_npcname("#Warp Outside Orc Dun", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#Warp Outside Orc Dun", instance_id());
+	end;
+
+OnTouch:
+	warp "gef_fild10",240,197;
+	end;
+}
+
+2@orcs,172,13,0	script	Kruger#	434,{
+	if (yong_odun < 2) {
+		mes "[Kruger]";
+		mes "*Tossindo*";
+		mes strcharinfo(0)+", é você...";
+		next;
+		mes "["+strcharinfo(0)+"] ";
+		mes "Não se mexa!! Você está muito ferido!";
+		next;
+		mes "[Kruger]";
+		mes "Está... tudo bem.. Esto morrendo...";
+		mes "....";
+		mes "E o Xamã? O que aconteceu com ele?";
+		next;
+		mes "["+strcharinfo(0)+"] ";
+		mes "O Xamã está morto agora. Quem na verdade era o Xamã?";
+		next;
+		mes "*Kruger parecia estar aliviado quando ouviu falar da morte do Xamã, porém você percebe uma expressão triste no rosto dele.*";
+		next;
+		mes "[Kruger]";
+		mes "Eu... Eu não conseguia matar minah própria filha...";
+		mes "Obrigado, tenho certeza absoluta que agora ela está livre do pesadelo que assombrava a alma dela.";
+		next;
+		mes "*Kruger gostaria de dizer mais alguma coisa, porém deu seu último suspiro e se foi...*";
+		set yong_odun,2;
+		close;
+	} else {
+		mes "Você vê o corpo de Kruger estirado no chão, pacificamente.";
+		close;
+	}
+
+OnInstanceInit:
+	disablenpc instance_npcname("Kruger#", instance_id());
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("Kruger#", instance_id());
+	end;
+}
+
+2@orcs,36,171,0	script	#Mobs Control	844,{
+	end;
+
+OnMyMobDead1:
+	donpcevent instance_npcname("#Warp2-1", instance_id())+"::OnContinue";
+	end;
+
+OnMyMobDead2:
+	donpcevent instance_npcname("#Warp2-2", instance_id())+"::OnContinue";
+	end;
+
+OnMyMobDead3:
+	donpcevent instance_npcname("#Warp2-3", instance_id())+"::OnContinue";
+	end;
+}

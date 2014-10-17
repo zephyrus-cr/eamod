@@ -1,0 +1,143 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Payon)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Payon Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
+//= 1.2 Removed dialog from interior flags. [L0ne_W0lf]
+//=     Fixed position of Guild dungeon switch.
+//============================================================
+
+// Guild Flag (Outside Castle)
+//============================================================
+prontera,157,232,4	script	Bright Arbor#nf1-3	722,{
+	set .@GID, GetCastleData("nguild_pay",1);
+	if( .@GID == 0 )
+	{
+		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
+		mes " ";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+	}
+	else
+	{
+		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Following the ordinance of the";
+		mes "Divine Rune Midgard Kingdom,";
+		mes "we approve that this place is in";
+		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes " ";
+		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "If there is anyone who objects to this,";
+		mes " prove your strength and honor with a steel blade in your hand.";
+	}
+	if( !class2ancientwoe() )
+		close;
+
+	next;
+	mes "Brave ones...";
+	if( getcharid(2) == .@GID )
+	{
+		mes "Do you wish to return to your honorable place?";
+		next;
+		switch( select("Return to the Emperium Room:Return to the Castle Entrance:Quit.") )
+		{
+		case 1: if( getcharid(2) == GetCastleData("nguild_pay",1) )
+			{
+				warp "nguild_pay",212,108;
+				end;
+			}
+			close;
+		case 2: warp "nguild_pay",214,48;
+			end;
+		case 3:	close;
+		}
+	}
+	else
+	{
+		mes "Do you wish to attack this honorable place?";
+		next;
+		switch( select("Return to the Castle Entrance:Quit.") )
+		{
+		case 1: warp "nguild_pay",214,48;
+			end;
+		case 2:	close;
+		}
+	}
+	end;
+
+OnRecvCastleNPy01:
+	FlagEmblem GetCastleData("nguild_pay",1);
+	end;
+}
+
+// Guild Flag (Inside Castle)
+//============================================================
+nguild_pay,238,67,4	script	Bright Arbor#nf1-7::BrightArbor4	722,{
+	end;
+
+OnRecvCastleNPy01:
+	FlagEmblem GetCastleData("nguild_pay",1);
+	end;
+}
+
+nguild_pay,233,67,4	duplicate(BrightArbor4)	Bright Arbor#nf1-8	722
+nguild_pay,221,123,4	duplicate(BrightArbor4)	Bright Arbor#nf1-9	722
+nguild_pay,221,116,4	duplicate(BrightArbor4)	Bright Arbor#nf1-10	722
+nguild_pay,206,108,4	duplicate(BrightArbor4)	Bright Arbor#nf1-11	722
+nguild_pay,212,108,4	duplicate(BrightArbor4)	Bright Arbor#nf1-12	722
+
+// AGIT Manager
+//============================================================
+nguild_pay,139,139,0	duplicate(Gld_Agit_Manager)	Agit#nguild_pay	-1
+
+// Steward
+//============================================================
+nguild_pay,120,58,4	duplicate(Gld_Mngr_Template)	Kurunnadi#nguild_pay	55
+
+// Guardians
+//============================================================
+nguild_pay,120,58,4	duplicate(Gld_Guard_Template)	Guardian#nguild_pay	-1
+
+// Kafra Staff
+//============================================================
+nguild_pay,128,58,3	duplicate(Gld_Kafra_Template)	Kafra Staff#nguild_pay	117
+
+// Master's Room Exit
+//============================================================
+nguild_pay,295,8,0	script	#switch_NPy01	111,{
+	mes " ";
+	mes "There's a small lever. Will you pull it? ";
+	next;
+	if(select("Pull.:Do not.") == 2) close;
+	warp "nguild_pay",120,59;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+nguild_pay,291,8,0	duplicate(Gld_Trea_Protect)	ban_warp#nguild_pay	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+nguild_pay,291,8,0	duplicate(Gld_Trea_Spawn)	Treasure#nguild_pay	-1
+
+// Guild Dungeon Switch
+//============================================================
+nguild_pay,101,25,0	duplicate(Gld_Dun_Template)	#nguild_pay	111

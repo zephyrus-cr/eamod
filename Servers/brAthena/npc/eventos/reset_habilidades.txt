@@ -1,0 +1,115 @@
+//    ___________________________________________________________ 
+//   /                                                           \
+//   |       _           _   _   _                               |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _          |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |         |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |         |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|         |
+//   |                                                           |
+//   |                    brAthena Script                        |
+//   |-----------------------------------------------------------|
+//   | Nome do Script: reset_habilidades.txt                     |
+//   |-----------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                           |
+//   |-----------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0.2/1.02/1.2                         |
+//   |-----------------------------------------------------------|
+//   | Descrição: Resetar as habilidades por uma taxa de zenys.  |
+//   | - Necessário Nv. Mínimo de Base 60, para poder participar.|
+//   | - A cada Nível de Base precisa de 20.000 zenys.           |
+//   |-----------------------------------------------------------|
+//   | Changelog:                                                |
+//   | 1.0 Criado Cabeçalho [Megasantos]                         |
+//   | 1.1 Tradução PT-BR [Heaven]                               |
+//   | 1.2 Otimizações [Hold]                                    |
+//   |-----------------------------------------------------------|
+//   | - Anotações                                               |
+//   \___________________________________________________________/
+
+yuno,138,187,4	script	Hipnotizadora	124,{
+	mes "[^D5A500Hipnotizadora^000000]";
+	if(MISC_QUEST & 1024){
+		mes "Desculpe mas você só pode completar este evento uma vez.";
+		close;
+	}
+	if(BaseLevel < 60) {
+		mes "Por favor, retorne quando chegar ao Nv. de Base 60.";
+		close;
+	}
+	if(SkillPoint != 0) {
+		mes "Você precisará usar todos os seus pontos de habilidade caso queira continuar.";
+		close;
+	}
+	if(Weight || checkfalcon() || checkcart() || checkriding()) {
+		mes "Você gostaria de resetar suas habilidades?";
+		mes "Desculpe-me, mas...";
+		next;
+		mes "[^D5A500Hipnotizadora^000000]";
+		if(Weight)
+			mes "Você não pode resetar suas habilidades enquanto estiver carregando algum item.";
+		else if(checkcart())
+			mes "Por favor, livre-se do seu Carrinho para continuarmos.";
+		else if(checkfalcon())
+			mes "Por favor, livre-se do seu Falcão para continuarmos.";
+		else if(checkriding())
+			mes "Por favor, livre-se do seu PecoPeco para continuarmos.";
+		next;
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "Volte em breve!";
+		close;
+	}
+	mes "Olá, aventureiro!";
+	mes "Meu dever é ajudar os iniciantes que se arrependerão de não ter aprendido suas habilidades do jeito que gostariam.";
+	next;
+	mes "Seu nome é ^0080FF"+strcharinfo(0)+"^000000, certo?";
+	mes "Como posso ajudá-lo?";
+	next;
+	switch(select("^009500Redistribuição de Pontos de Habilidade?^000000:^00B6FFRedistribuir os Pontos de Habilidade.^000000:^000088Não se preocupe.^000000")) {
+	case 1:
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "A redistribuição de Pontos de Habilidade dá outra chance aos aventureiros de distribuir seus pontos.";
+		mes "Se não estiver satisfeito com suas habilidades atuais, então você pode usufruir do meu serviço.";
+		next;
+		mes "Resetar as habilidades não é gratuito!!";
+		mes "O gasto para resetar as habilidades é de^D5A50020.000 zenys x Nível de Base^000000.";
+		mes "Pois é ...cada Nível de Base custa 20.000 zenys para resetar suas habilidades.";
+		next;
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "Além disso, você só poderá usar meu serviço caso seu level de base seja maior que 60!";
+		next;
+		mes "Lembre-se que só é possível redistribuir seus pontos de Habilidade se não estiver carregando nenhum item com você.";
+		mes "Por favor, use antes o serviço de armazenamentro Kafra para reduzir seu peso.";
+		close;
+	case 2:
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "Antes de resetar suas habilidades, você deve me dizer seu Nível de Base.";
+		next;
+		mes "^D5A500[" + strcharinfo(0) + "]^000000";
+		mes "Meu ^AA00AANível de Base é " + BaseLevel + "^000000.";
+		next;
+		set @zeny, BaseLevel * 20000;
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "O total de zenys necessários para resetar as habilidades é de ^529DFF" + @zeny + "zenys^000000.";
+		next;
+		if(Zeny < @zeny) {
+			mes "[^D5A500Hipnotizadora^000000]";
+			mes "Parece que você não tem dinheiro suficiente.";
+			emotion e_hmm;
+			close;
+		}
+		set Zeny, Zeny - @zeny;
+		set MISC_QUEST,MISC_QUEST | 1024;
+		resetskill;
+		mes "[^D5A500Hipnotizadora^000000]";
+		mes "...Acorde.";
+		mes "Viu? Suas habilidades agora estão redistribuídas.";
+		mes "Muito obrigada por usufruir do meu serviço, e boa sorte em todas as suas aventuras...";
+		emotion e_thx;
+		logmes "SKILL RESET EVENT";
+		close;
+	case 3: break;
+	}
+	mes "[^D5A500Hipnotizadora^000000]";
+	mes "Se você quiser ajuda, sabe onde me encontrar!";
+	close;
+}

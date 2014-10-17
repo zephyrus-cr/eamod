@@ -1,0 +1,49 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// Regional Database
+// =====================================================
+// Structure:
+// <Unique ID>,<name>,<Bonus BExp>,<Bonus JExp>,<Bonus Drops>,{ <Script> }
+// =====================================================
+// Unique ID : a unique value between 1 and 127 to identify the region. It's used together with region_map_db.txt to indicate what maps belong to this Region.
+// Name : The name if this Region, and It will appear each time a player enters this Region.
+// Bonus : Extra % Base and Job Experience, and Drop, for the guilds members who owns this Region, when they hunt on this region maps.
+// Script : Extra bonus by script code, just like an equipped item for the guild members on controlling this Region.
+// =====================================================
+// How to give Region control to a Guild?
+// -----------------------------------------------------
+// Regional System works together with the array $Region[]. If you set one of those arrays values with the Guild ID, the region with the index will belong to the Guild.
+// Sample: set $Region[1],getcharid(2);
+// This will give the Region with ID 1 to the current character Guild.
+// =====================================================
+1;Prontera, Capital of Rune Midgard;0;0;0;{ }
+2;Yuno, Capital of Schwarzwald Republic;0;0;0;{ }
+3;Hugel, the Quaint Garden Village;0;0;0;{ }
+4;Lighthalzen, the City of Prosperity;0;0;0;{ }
+5;Einbroch, the City of Steel;0;0;0;{ }
+6;Einbech, the Minning Village;0;0;0;{ }
+7;Payon Town;0;0;0;{ }
+8;Morroc Town;0;0;0;{ }
+9;Wootan Tribe's Village, Umbala;0;0;0;{ }
+10;Beach Town, Comodo;0;0;0;{ }
+11;Niflheim, Realm of the Dead;0;0;0;{ }
+12;Aldebaran;0;0;0;{ }
+13;Geffen;0;0;0;{ }
+14;Rachel, Capital of Arunafelz;0;0;0;{ }
+15;Veins, the Desert Village;0;0;0;{ }
+16;The Nameless Island;0;0;0;{ }
+17;Louyang, the Highland;0;0;0;{ }
+18;Gonryun, the Hermit Land;0;0;0;{ }
+19;Ayothaya;0;0;0;{ }
+20;Moscovia;0;0;0;{ }
+21;Lutie, the Snow Village;0;0;0;{ }
+22;Amatsu, the Land of Destiny;0;0;0;{ }

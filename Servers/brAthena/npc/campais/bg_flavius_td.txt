@@ -1,0 +1,404 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// ==============================================================================
+// BattleGround System - Flavius TeamDeathMatch
+// ==============================================================================
+
+// Registration NPC's
+// *********************************************************************
+
+bat_room,113,74,0	script	Registration::TDR_Guillaume	418,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Flavius_TD::OnGuillaumeJoin",1;
+	end;
+OnEnterBG:
+	set $@FlaviusTD_id1, waitingroom2bg("bat_b03",390,10,0,"Flavius_TD::OnGuillaumeQuit","Flavius_TD::OnGuillaumeDie");
+	end;
+}
+
+bat_room,113,97,4	script	Registration::TDR_Croix	414,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Flavius_TD::OnCroixJoin",1;
+	end;
+OnEnterBG:
+	set $@FlaviusTD_id2, waitingroom2bg("bat_b03",10,290,1,"Flavius_TD::OnCroixQuit","Flavius_TD::OnCroixDie");
+	end;
+}
+
+// Battleground Engine
+// *********************************************************************
+
+-	script	Flavius_TD	-1,{
+	end;
+
+OnGuillaumeQuit:
+	setquest 8506; // Deserter
+	if( $@FlaviusTD != 0 )
+		donpcevent "Flavius_TD::OnDoBalance";
+OnGuillaumeDie:
+	if( $@FlaviusTD == 1 )
+	{
+		set .Guillaume_Score, .Guillaume_Score - 1;
+		donpcevent "Flavius_TD::OnValidateScore";
+	}
+	end;
+	
+OnCroixQuit:
+	setquest 8506; // Deserter
+	if( $@FlaviusTD != 0 )
+		donpcevent "Flavius_TD::OnDoBalance";
+OnCroixDie:
+	if( $@FlaviusTD == 1 )
+	{
+		set .Croix_Score, .Croix_Score - 1;
+		donpcevent "Flavius_TD::OnValidateScore";
+	}
+	end;
+
+OnGuillaumeJoin:
+OnCroixJoin:
+	if( $@FlaviusTD == 0 )
+		donpcevent "Flavius_TD::OnReadyCheck";
+	else
+		donpcevent "Flavius_TD::OnDoBalance";
+	end;
+
+OnDoBalance:
+	if( $@FlaviusTD != 1 )
+		end;
+
+	set .@Guillaume, bg_get_data($@FlaviusTD_id1, 0);
+	set .@Croix, bg_get_data($@FlaviusTD_id2, 0);
+
+	if( .@Guillaume < .@Croix )
+		waitingroom2bg_single $@FlaviusTD_id1,"bat_b03",311,224,"TDR_Guillaume";
+	else if( .@Guillaume > .@Croix )
+		waitingroom2bg_single $@FlaviusTD_id2,"bat_b03",87,75,"TDR_Croix";
+	else
+	{
+		set .@GuillaumeR, getwaitingroomstate(0,"TDR_Guillaume");
+		set .@CroixR, getwaitingroomstate(0,"TDR_Croix");
+
+		if( .@GuillaumeR <= .@CroixR )
+			set .@Limit, .@GuillaumeR;
+		else
+			set .@Limit, .@CroixR;
+
+		if( .@Limit + .@Guillaume > 35 )
+			set .@Limit, 35 - .@Guillaume;
+		if( .@Limit <= 0 ) end;
+
+		for( set .@i, 0; .@i < .@Limit; set .@i, .@i + 1 )
+		{
+			waitingroom2bg_single $@FlaviusTD_id1,"bat_b03",311,224,"TDR_Guillaume";
+			waitingroom2bg_single $@FlaviusTD_id2,"bat_b03",87,75,"TDR_Croix";
+		}
+
+		set .@GC, .@Guillaume + .@Limit;
+		set .@CC, .@Croix + .@Limit;
+		mapannounce "bat_room","Battleground -- Flavius TD [80-99] G: " + .@GC + "/35, C: " + .@CC + "/35 (Playing)",1,0x808000;
+	}
+
+	set .@GC, bg_get_data($@FlaviusTD_id1, 0) - .@Guillaume;
+	if( .@GC > 0 )
+	{
+		set .Guillaume_Score, .Guillaume_Score + .@GC;
+		if( .Guillaume_Score > 99 ) set .Guillaume_Score, 99;
+	}
+	
+	set .@CC, bg_get_data($@FlaviusTD_id2, 0) - .@Croix;
+	if( .@CC > 0 )
+	{
+		set .Croix_Score, .Croix_Score + .@CC;
+		if( .Croix_Score > 99 ) set .Croix_Score, 99;
+	}
+
+	if( .@GC > 0 || .@CC > 0 ) bg_updatescore "bat_b03",.Guillaume_Score,.Croix_Score;
+	end;
+
+OnReadyCheck:
+	if( $@FlaviusTD )
+		end;
+	set .@Guillaume, getwaitingroomstate(0,"TDR_Guillaume");
+	set .@Croix, getwaitingroomstate(0,"TDR_Croix");
+	
+	if( .@Guillaume < 5 || .@Croix < 5 )
+	{
+		if( .@Guillaume > 3 && .@Croix > 3 && !agitcheck() && $@FlaviusTD_Flood < gettimetick(2) )
+		{
+			announce "Battleground -- Flavius TD [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",0,0x808000;
+			set $@FlaviusTD_Flood, gettimetick(2) + 15;
+		}
+		else
+			mapannounce "bat_room","Battleground -- Flavius TD [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x808000;
+		end;
+	}
+
+	set $@FlaviusTD, 1;
+	initnpctimer;
+	donpcevent "TDR_Croix::OnEnterBG";
+	donpcevent "TDR_Guillaume::OnEnterBG";
+	set .Guillaume_Score, 99;
+	set .Croix_Score, 99;
+	announce "Battleground -- Flavius TD [80-99] has started!",0,0x808000;
+	sleep 2000;
+	bg_warp $@FlaviusTD_id1,"bat_b03",328,150;
+	bg_warp $@FlaviusTD_id2,"bat_b03",62,150;
+	sleep 3000;
+	bg_team_reveal $@FlaviusTD_id1;
+	bg_team_reveal $@FlaviusTD_id2;
+	donpcevent "#guitd_respawn::OnBGStart";
+	donpcevent "#crotd_respawn::OnBGStart";
+	bg_updatescore "bat_b03",.Guillaume_Score,.Croix_Score;
+	end;
+
+OnValidateScore:
+	if( $@FlaviusTD != 1 )
+		end;
+
+	bg_updatescore "bat_b03",.Guillaume_Score,.Croix_Score;
+	set .@Guillaume, bg_get_data($@FlaviusTD_id1, 0);
+	set .@Croix, bg_get_data($@FlaviusTD_id2, 0);
+
+	if( .Croix_Score <= 0 )
+	{ // Guillaume Won
+		bg_reward $@FlaviusTD_id1,7829,30,0,8505,"BG_TDM",1,4,0;
+		bg_reward $@FlaviusTD_id2,7829,15,0,8505,"BG_TDM",1,4,2;
+		mapannounce "bat_b03","The Guillaume army has won the Battle of Flavius TD!",1,0x0000FF;
+	}
+	else if( .Guillaume_Score <= 0 )
+	{ // Croix Won
+		bg_reward $@FlaviusTD_id1,7829,15,0,8505,"BG_TDM",1,4,2;
+		bg_reward $@FlaviusTD_id2,7829,30,0,8505,"BG_TDM",1,4,0;
+		mapannounce "bat_b03","The Croix army has won the Battle of Flavius TD!",1,0xFF0000;
+	}
+	else if( .@Croix == 0 )
+	{ // All Croix Players quit
+		set .@Rate, 99 - .Croix_Score;
+		bg_reward $@FlaviusTD_id1,7829,30 * .@Rate / 99,0,8505,"BG_TDM",1,4,0;
+		mapannounce "bat_b03","The Guillaume army has won the Battle of Flavius TD!",1,0x0000FF;
+	}
+	else if( .@Guillaume == 0 )
+	{ // All Guillaume Players quit
+		set .@Rate, 99 - .Guillaume_Score;
+		bg_reward $@FlaviusTD_id2,7829,30 * .@Rate / 99,0,8505,"BG_TDM",1,4,0;
+		mapannounce "bat_b03","The Croix army has won the Battle of Flavius TD!",1,0xFF0000;
+	}
+	else end;
+	donpcevent "Flavius_TD::OnMatchEnd";
+	end;
+
+OnTimer600000:
+	mapannounce "bat_b03","The Battle will ends in 5 minutes!!",1,0x808000;
+	end;
+
+OnTimer840000:
+	mapannounce "bat_b03","The Battle will ends in 1 minute!!",1,0x808000;
+	end;
+
+OnTimer900000:
+	if( .Guillaume_Score > .Croix_Score )
+	{ // Guillaume Won
+		bg_reward $@FlaviusTD_id1,7829,30,0,8505,"BG_TDM",1,4,0;
+		bg_reward $@FlaviusTD_id2,7829,15,0,8505,"BG_TDM",1,4,2;
+		mapannounce "bat_b03","The Guillaume army has won the Battle of Flavius TD!",1,0x0000FF;
+	}
+	else if( .Guillaume_Score < .Croix_Score )
+	{ // Croix Won
+		bg_reward $@FlaviusTD_id1,7829,15,0,8505,"BG_TDM",1,4,2;
+		bg_reward $@FlaviusTD_id2,7829,30,0,8505,"BG_TDM",1,4,0;
+		mapannounce "bat_b03","The Croix army has won the Battle of Flavius TD!",1,0xFF0000;
+	}
+	else
+	{
+		bg_reward $@FlaviusTD_id1,7829,15,0,8505,"BG_TDM",1,4,1;
+		bg_reward $@FlaviusTD_id2,7829,15,0,8505,"BG_TDM",1,4,1;
+		mapannounce "bat_b03","The battle is over. This is a Tie...!",1,0x808000;
+	}
+	donpcevent "Flavius_TD::OnMatchEnd";
+	end;
+
+OnMatchEnd:
+	set $@FlaviusTD, 2;
+	stopnpctimer;
+	donpcevent "#guitd_respawn::OnBGStop";
+	donpcevent "#crotd_respawn::OnBGStop";
+	bg_warp $@FlaviusTD_id1,"bat_b03",390,10;
+	bg_warp $@FlaviusTD_id2,"bat_b03",10,290;
+	sleep 3000;
+	mapannounce "bat_b03","Battle of Flavius TD will start in 15 seconds!",1,0x808000;
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	if( $@FlaviusTD == 2 )
+		mapannounce "bat_b03","Battle of Flavius TD will start in 5 seconds!",1,0x808000;
+	end;
+
+OnTimer15000:
+	if( $@FlaviusTD != 2 )
+		end;
+OnReset:
+	stopnpctimer;
+	set .Guillaume_Score, 99;
+	set .Croix_Score, 99;
+	bg_destroy $@FlaviusTD_id1;
+	bg_destroy $@FlaviusTD_id2;
+	set $@FlaviusTD_id1, 0;
+	set $@FlaviusTD_id2, 0;
+	sleep 1000;
+	mapwarp "bat_b03","bat_room",155,150;
+	sleep 1000;
+	maprespawnguildid "bat_b03",0,3; // Just in case someone else
+	bg_updatescore "bat_b03",99,99;
+	set $@FlaviusTD, 0;
+	donpcevent "Flavius_TD::OnReadyCheck";
+	end;
+}
+
+// Battleground Therapist
+// *********************************************************************
+
+bat_b03,390,13,5	script	Therapist in battle#td1	95,{
+	switch( $@FlaviusTD )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+bat_b03,10,293,5	script	Therapist in battle#td2	95,{
+	switch( $@FlaviusTD )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+// Battleground Respawn
+// *********************************************************************
+
+bat_b03,390,10,0	script	#guitd_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_b03",382,2,397,17,100,100;
+	areawarp "bat_b03",382,2,397,17,"bat_b03",306,138,327,161;
+	initnpctimer;
+	end;
+}
+
+bat_b03,10,290,0	script	#crotd_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_b03",2,282,17,297,100,100;
+	areawarp "bat_b03",2,282,17,297,"bat_b03",72,138,93,161;
+	initnpctimer;
+	end;
+}
+
+// Flags
+// *********************************************************************
+
+bat_b03,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_1	973
+bat_b03,319,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_2	973
+bat_b03,304,218,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_3	973
+bat_b03,319,218,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_4	973
+bat_b03,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_5	973
+bat_b03,304,231,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_6	973
+bat_b03,335,142,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_7	973
+bat_b03,335,157,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_8	973
+bat_b03,390,16,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_9	973
+bat_b03,292,163,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_10	973
+bat_b03,292,136,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_11	973
+bat_b03,241,185,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_12	973
+bat_b03,247,179,1	duplicate(Guillaume camp#bat)	Guillaume camp#td_13	973
+
+bat_b03,96,81,1	duplicate(Croix camp#bat)	Croix camp#td_1	974
+bat_b03,96,68,1	duplicate(Croix camp#bat)	Croix camp#td_2	974
+bat_b03,79,81,1	duplicate(Croix camp#bat)	Croix camp#td_3	974
+bat_b03,79,68,1	duplicate(Croix camp#bat)	Croix camp#td_4	974
+bat_b03,96,81,1	duplicate(Croix camp#bat)	Croix camp#td_5	974
+bat_b03,96,81,1	duplicate(Croix camp#bat)	Croix camp#td_6	974
+bat_b03,59,164,1	duplicate(Croix camp#bat)	Croix camp#td_7	974
+bat_b03,59,137,1	duplicate(Croix camp#bat)	Croix camp#td_8	974
+bat_b03,10,296,1	duplicate(Croix camp#bat)	Croix camp#td_9	974
+bat_b03,110,162,1	duplicate(Croix camp#bat)	Croix camp#td_10	974
+bat_b03,110,137,1	duplicate(Croix camp#bat)	Croix camp#td_11	974
+bat_b03,152,120,1	duplicate(Croix camp#bat)	Croix camp#td_12	974
+bat_b03,158,114,1	duplicate(Croix camp#bat)	Croix camp#td_13	974
+
+// MapFlags
+// *********************************************************************
+
+bat_b03	mapflag	battleground	2
+bat_b03	mapflag	nomemo
+bat_b03	mapflag	nosave	SavePoint
+bat_b03	mapflag	noteleport
+bat_b03	mapflag	nowarp
+bat_b03	mapflag	nowarpto
+bat_b03	mapflag	noreturn
+bat_b03	mapflag	nobranch
+bat_b03	mapflag	nopenalty

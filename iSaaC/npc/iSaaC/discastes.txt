@@ -1,0 +1,85 @@
+//==================================================
+// dic_dun01 - El Dicastes Dungeon
+//==================================================
+dic_dun01,0,0,0,0	monster	One-Horn Scaraba	2083,50,0,0,0
+dic_dun01,0,0,0,0	monster	Two-Horn Scaraba	2084,45,0,0,0
+dic_dun01,0,0,0,0	monster	One-Horn Scaraba Egg	2088,15,0,0,0
+dic_dun01,0,0,0,0	monster	Two-Horn Scaraba Egg	2089,15,0,0,0
+
+//==================================================
+// dic_dun02 - Scaraba Hole
+//==================================================
+dic_dun02,0,0,0,0	monster	Antler Scaraba	2085,50,0,0,0
+dic_dun02,0,0,0,0	monster	Rake Scaraba	2086,45,0,0,0
+dic_dun02,0,0,0,0	monster	Antler Scaraba Egg	2090,15,0,0,0
+dic_dun02,0,0,0,0	monster	Rake Scaraba Egg	2091,15,0,0,0
+dic_dun02,0,0,0,0	boss_monster	Queen Scaraba	2087,1,7200000,600000,1
+
+//==================================================
+// dic_dun03 - Scaraba Hole Nightmare Mode
+//==================================================
+dic_dun03,0,0,0,0	monster	One-Horn Scaraba	2083,50,0,0,0
+dic_dun03,0,0,0,0	monster	Two-Horn Scaraba	2084,45,0,0,0
+dic_dun03,0,0,0,0	monster	Antler Scaraba	2085,50,0,0,0
+dic_dun03,0,0,0,0	monster	Rake Scaraba	2086,45,0,0,0
+dic_dun03,0,0,0,0	monster	One-Horn Scaraba Egg	2088,15,0,0,0
+dic_dun03,0,0,0,0	monster	Two-Horn Scaraba Egg	2089,15,0,0,0
+dic_dun03,0,0,0,0	monster	Antler Scaraba Egg	2090,15,0,0,0
+dic_dun03,0,0,0,0	monster	Rake Scaraba Egg	2091,15,0,0,0
+dic_dun03,0,0,0,0	boss_monster	Queen Scaraba	2087,1,7200000,600000,1
+
+//==================================================
+// dic_fild01 - El Dicastes Field
+//==================================================
+dic_fild01,0,0,0,0	monster	Centipede	1987,60,0,0,0
+dic_fild01,0,0,0,0	monster	Centipede Larva	1999,30,0,0,0
+dic_fild01,0,0,0,0	monster	Tatacho	1986,25,0,0,0
+dic_fild01,0,0,0,0	monster	Dolomedes	2092,20,0,0,0
+
+//==================================================
+// dic_fild02 - El Dicastes Field
+//==================================================
+dic_fild02,0,0,0,0	monster	Centipede	1987,35,0,0,0
+dic_fild02,0,0,0,0	monster	Centipede Larva	1999,10,0,0,0
+dic_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
+dic_fild02,0,0,0,0	monster	Dolomedes	2092,80,0,0,0
+dic_fild02,0,0,0,0	monster	Bradium Golem	2024,3,0,0,0
+
+manuk,326,180,0	warp	eldicasteswarp0001	1,1,dic_dun01,32,212
+dic_dun01,28,212,0	warp	eldicasteswarp0002	1,1,manuk,322,180
+dic_dun01,88,212,0	warp	eldicasteswarp0003	1,1,dic_dun01,168,228
+dic_dun01,164,228,0	warp	eldicasteswarp0004	1,1,dic_dun01,84,212
+dic_dun01,371,228,0	warp	eldicasteswarp0005	1,1,dic_dun01,32,156
+dic_dun01,28,156,0	warp	eldicasteswarp0006	1,1,dic_dun01,367,228
+dic_dun01,371,172,0	warp	eldicasteswarp0007	1,1,dic_dun01,32,100
+dic_dun01,28,100,0	warp	eldicasteswarp0008	1,1,dic_dun01,367,172
+dic_dun01,290,107,0	warp	eldicasteswarp0009	1,1,dic_dun02,102,144
+dic_dun02,102,148,0	warp	eldicasteswarp0010	1,1,dic_dun01,290,103
+dic_dun01,370,100,0	warp	eldicasteswarp0011	1,1,dic_dun01,33,44
+dic_dun01,29,44,0	warp	eldicasteswarp0012	1,1,dic_dun01,366,100
+dic_dun01,371,44,0	warp	eldicasteswarp0013	1,1,dic_fild01,28,79
+dic_fild01,24,79,0	warp	eldicasteswarp0014	1,1,dic_dun01,367,44
+dic_fild01,69,23,0	warp	eldicasteswarp0015	1,1,dic_fild02,71,371
+dic_fild02,71,375,0	warp	eldicasteswarp0016	1,1,dic_fild01,69,27
+dic_fild01,150,281,0	warp	eldicasteswarp0017	1,1,dicastes01,199,38
+dicastes01,199,34,0	warp	eldicasteswarp0018	1,1,dic_fild01,150,277
+dicastes01,198,353,0	warp	eldicasteswarp0019	1,1,dicastes02,120,81
+dicastes02,120,77,0	warp	eldicasteswarp0020	1,1,dicastes01,198,349
+
+// Mapflags
+dicastes01	mapflag	nightenabled
+dicastes01	mapflag	nobranch
+dicastes01	mapflag	nomemo
+dicastes02	mapflag	nightenabled
+dicastes02	mapflag	nobranch
+dicastes02	mapflag	nomemo
+dic_in01	mapflag	nobranch
+dic_in01	mapflag	nomemo
+dic_in01	mapflag	noteleport
+dic_fild01	mapflag	nightenabled
+dic_fild01	mapflag	nomemo
+dic_fild02	mapflag	nightenabled
+dic_fild02	mapflag	nomemo
+dic_dun01	mapflag	nomemo
+dic_dun02	mapflag	nomemo
+dic_dun03	mapflag	nomemo

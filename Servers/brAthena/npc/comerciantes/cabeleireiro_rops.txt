@@ -1,0 +1,79 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: cabelereiro_rops.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Estilista por rops.                         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [YuMs]                              |
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+itemmall,19,74,5	script	Cabeleireiro#cash	91,{
+	mes "[Cabeleireiro]";
+	mes "Oi, eu sou Kaniki.";
+	mes "Estou aqui para iniciar uma nova moda, utilizando os meus penteados especiais!";
+	mes "Dê-me um ^FF0000Cupom de Corte de Cabelo^000000,";
+	mes "que eu mudarei seu cabelo~";
+	next;
+	mes "[Kaniki]";
+	mes "Eu tenho dois penteados especiais para"+(( Sex == 1 ) ? "os homens, a Cura Emergencial Permanente e o Corte Lâmina de Aura" : "as mulheres, o Assumptio Permanente e o Corte Trocador de Alma")+".";
+	mes "Você quer ver como esses estilos são?";
+	next;
+	cutin "hair_"+((sex == 1) ? "m":"f")+"_24.bmp",4;
+	mes "[Kaniki]";
+	mes "Este é"+(( Sex == 1 ) ? "a Cura Emergêncial Permanente" : "o Assumptio Permanente")+".";
+	mes "Ficaria muito bom em você, não acha?";
+	next;
+	cutin "",255;
+	cutin "hair_"+((sex == 1) ? "m":"f")+"_25.bmp",4;
+	mes "[Kaniki]";
+	mes ""+(( Sex == 1 ) ? "Agora este é o Corte da Lâmina de Aura" : "Em seguida está o Corte Trocador de Alma")+".";
+	mes "Você não viu nada como isso antes, não é mesmo?";
+	next;
+	cutin "",255;
+	mes "[Kaniki]";
+	mes "Já decidiu se vai querer que eu mude o seu penteado?";
+	next;
+	if(select("Mudar Penteado:Não mude") == 1) {
+		mes "[Kaniki]";
+		if (countitem(7622) > 0) {
+			mes "Excelente, você trouxe um Cupom de Corte de Cabelo!";
+			mes "Tudo certo, qual penteado você quer?";
+			next;
+			if(select(""+( Sex == 1 ) ? "Cura Emergêncial Permanente:Corte da Lâmina de Aura" : "Assumptio Permanente:Corte Trocador de Alma"+"") == 1) {
+				setlook 1,24;
+			} else{
+				setlook 1,25;
+			}
+			delitem 7622,1;	// New_Style_Coupon
+			mes "[Kaniki]";
+			mes "Pronto! Está pronto!";
+			mes "O que achou do seu novo corte?";
+			mes "Bem, Eu espero revê-lo. Cuide-se!";
+			close;
+		}
+			mes "Me desculpe, mas só posso fornecer meus serviços se você trouxer um Cupom de Corte de Cabelo.";
+			mes "Por favor, volte aqui depois que conseguir um desses cupons, ok?";
+			close;
+	}
+	mes "[Kaniki]";
+	mes "Sério? Ah, isso é muito ruim.";
+	mes "Bem, se você mudar de idéia sobre a inovação no seu cabelo, volte e me avise, ok?";
+	close;
+}

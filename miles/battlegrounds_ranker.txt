@@ -1,0 +1,78 @@
+/*
+[=========================================================]
+	Battlegrounds Ranker (eAmod Version)
+[=========================================================]
+	Documentation
+	
+	[Miles]
+	Version	1.0a:
+		• THIS VERSION ONLY WORKS FOR RATHENA r15157+
+		• Can set the Menu list on a Array for the menus
+			- Modifying just the .menu$ list won't do all
+			  the work. Must also add/modify on SQL Table
+			  
+		• For Configuration files, goto Line #44
+			  
+[=========================================================]
+*/
+
+
+-	script	BG Ranker	-1,{
+
+	mes .name$;
+	mes "I can give you the Battlegrounds Raking Information.";
+	mes "Choose what do you want to know.";
+	next;
+	
+	set .@selection, select( implode( .menu$, ":" ) ) - 1;
+	
+	query_sql "SELECT char_id, "+ .tables$[.@selection] +" FROM char_bg ORDER BY "+ .tables$[.@selection] +" DESC LIMIT "+ .maxsize , @char_id, @bgtop;
+	
+	for ( .@a = 0; .@a < .maxsize; .@a++ )
+		set .@fetch_name$, .@fetch_name$ + "char_id = "+ @char_id[.@a]+ " OR ";
+	
+	query_sql "SELECT name FROM `char` WHERE "+ .@fetch_name$, @char_name;
+	
+	mes .name$;
+	mes .menu$[.@selection];
+	for ( .@a = 0; .@a < .maxsize; .@a++ ) 
+		mes "["+ (.@a+1) +"] "+ ( (@char_name) ? @char_name : "^FF0000None^000000" );
+	close;
+	
+	
+/*
+[=========================================================]
+	Server Configuration Settings
+[=========================================================]
+*/
+
+	OnInit:
+		set .name$,		"[^0000FFBattlegrounds Ranker^000000]";
+		
+		setarray .menu$[0],		"Top Game Win",
+								"Top Game Tie",
+								"Top Game Lost",
+								"Top Leader Game Win",
+								"Top Leader Game Tie",
+								"Top Leader Game Lost";
+		
+		setarray .tables$[0],	"win",
+								"tie",
+								"lost",
+								"leader_win",
+								"leader_tie",
+								"leader_lost";
+								
+		set .maxsize,	5;		//Amount of player that will appear
+		end;
+		
+}
+
+/*
+[=========================================================]
+	Duplicates
+[=========================================================]
+*/
+
+new_1-1,51,109,5	duplicate(BG Ranker)	BG Ranker#1	55
+

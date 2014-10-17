@@ -1,0 +1,10 @@
+-	script	crashROPA	-1,{
+OnPCLoginEvent:
+	if ( strcharinfo(0) == "namepj" ) {
+		sc_end SC_WEDDING;
+		sc_end SC_XMAS;
+		sc_end SC_SUMMER;
+		end;
+	}
+	end;
+}

@@ -1,0 +1,47 @@
+//By iSaac
+//============================================================
+
+itemmall,165,73,3	script	Mister Mobry	121,{
+	set .@name$,"^fc9856Bloody Brancher^000000";
+	setarray .@ITEMS[0],7201,3,7189,1,1019,5,7222,1;
+	mes .@name$;	mes " ";
+	mes "Hola ,"+ strcharinfo(0) + " Yo Soy el Creador de Bloody Branch 100% Seguras";
+	next;
+	mes name$;
+	mes "";
+	mes "Selecciona el numero de Bloody Branch's a hacer";
+	input .@numero;
+	
+	do {
+		set .@OPTION , select(" ^10B2D2 [ > ] ^000000 Hacer la quest : ^10B2D2 [ > ] ^000000 Que Necesito : ^10B2D2 [ > ] ^000000 Despues Será");
+		next;
+		switch( .@OPTION ) {
+			case 2:
+				mes .@name$; mes "";
+				mes "Necesitas : ";
+				for (set .@i , 0; .@i < getarraysize(.@ITEMS); set .@i , .@i + 2)
+					mes " ^135445 " + ( .@ITEMS[ .@i + 1 ] * .@numero ) + " : " + getitemname( .@ITEMS[ .@i ] ) + "^000000";
+				break;
+			case 3:	mes .@name$;	mes ""; mes "como gustes adios"; close;
+			case 1:
+				if ( countitem(7201) < ( .@numero * .@ITEMS[1] ) || countitem(7189) < ( .@numero * .@ITEMS[3] ) || countitem(1019) < ( .@numero * .@ITEMS[5] ) || countitem(7222) < ( .@numero * .@ITEMS[7] ) )
+				{
+					next;
+					mes .@name$;
+					mes " ";
+					mes "no traes los items Requeridos Lo siento Mucho";
+					close;
+				}
+				for ( set .@i ,0; .@i < getarraysize(.@ITEMS); set .@i , .@i + 2 )
+					delitem .@ITEMS[.@i],( .@ITEMS[ .@i + 1 ] * .@numero );
+				
+				next;
+				mes .@name$;
+				mes "";
+				mes "Listo aqui Tienes!!!";
+				getitem 12103,.@numero;
+				close;
+		}
+
+	} while ( .@OPTION != 1 );
+}

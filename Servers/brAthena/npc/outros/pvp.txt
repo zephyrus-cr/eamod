@@ -1,0 +1,506 @@
+//    ___________________________________________________________
+//   /                                                           \
+//   |       _           _   _   _                               |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _          |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |         |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |         |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|         |
+//   |                                                           |
+//   |                    brAthena Script                        |
+//   |-----------------------------------------------------------|
+//   | Nome do Script: NPCs do PvP                               |
+//   |-----------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                           |
+//   |-----------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.3/2.3/1.2                            |
+//   |-----------------------------------------------------------|
+//   | Descrição: PvP NPCs que são encontrados em pousadas nas   |
+//   | principais cidades.                                       |
+//   | Inclui o modo Yoyo, Nightmare Mode e modo de evento       |
+//   |                                                           |
+//   | Composição da função de "F_PVPNarrator"                   |
+//   | arg(0): mapa salva jogador online                         |
+//   | arg(1): posição X no getarg(0) mapa para salvar jogador X |
+//   | arg(2): posição Y no getarg(0) mapa para salvar jogador   |
+//   |-----------------------------------------------------------|
+//   | Changelog:                                                |
+//   | 1.0 Criado Cabeçalho [Megasantos]                         |
+//   | 1.1 Tradução PT-BR [cleyton]                              |
+//   | 1.2 Otimização [brn0]                                     |
+//   |-----------------------------------------------------------|
+//   | - Anotações                                               |
+//   \___________________________________________________________/
+
+morocc_in,144,138,4	script	Guia do PVP	84,{
+	mes "[Guia do PVP]";
+	mes "Olá e bem vindo!";
+	mes "Eu sou ";
+	mes "o responsável pelo modo PVP.";
+	mes "Eu sou o narrador do PVP!";
+	next;
+	switch(select("O que é PVP?:Quais os modos de PVP?:Quais as regras do PVP?:Salvar Posição.:Fim da conversa.")) {
+	  case 1:
+		  mes "[Guia do PVP]";
+		  mes "De uma forma direta";
+		  mes "o PVP significa";
+		  mes "'Modo de Jogador contra Jogador '";
+		  mes "Esse é o único lugar onde as pessoas";
+		  mes "podem duelar contra os outros.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Diga ao ";
+		  mes "^3355FFPorteiro^000000";
+		  mes "que você deseja entrar e ele";
+		  mes "levará você para a arena de batalha PVP.";
+			next;
+		  mes "[Guia do PVP]";
+		  mes "Mas, você precisa ter no mínimo";
+		  mes "o nível 31 e também";
+		  mes "pagar 500 zeny";
+		  mes "para poder entrar";
+		  mes "na arena de PVP.";
+			break;
+		case 2:
+			mes "[Guia do PVP]";
+		  mes "Você está qualificado.";
+		  mes "Você pode escolher dois modos.";
+		  mes "Modo Yoyo, ou ";
+		  mes "modo Pesadelo.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "O modo Yoyo, isenta você de riscos.";
+		  mes "Você pode ganhar experiência em PVP";
+		  mes "sem nennhuma restrição ou";
+		  mes "punição. Esse modo é";
+		  mes "recomendado para você praticar suas habildades";
+		  mes "aqui para seguir em frente.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "O modo Pesadelo é muito";
+		  mes "perigoso! Use ele com cuidado.";
+		  mes "Você vai perder um pouco de";
+		  mes "sua experiencia real ao ser derrotado.";
+		  mes "E existe uma pequena chance do";
+		  mes "seu equipamento cair.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Porém, se você ganhar, as";
+		  mes "recompensas serão incríveis!";
+		  mes "Para evitar qualquer mal entendido,";
+		  mes "você deve pensar";
+		  mes "duas vezes antes de ir para lá...";
+		  mes "Boa sorte!";
+		  break;
+	  case 3:
+		  mes "[Guia do PVP]";
+		  mes "Cada arena de luta";
+		  mes "tem seu narrador para";
+		  mes "escolher a sua base";
+		  mes "de qualificação.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Cada narrador vai pedir";
+		  mes "para você escolher um dos";
+		  mes "cinco mapas de PVP para você ir.";
+		  mes "Escoolha, e entre!";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Cada mapa possui uma limitação";
+		  mes "no número de pessoas que podem";
+		  mes "participar. Ao participar, você vai ver";
+		  mes "uma figura no canto que mostra o";
+		  mes "total de participantes.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Além disso existe o ganho de uma pontuação";
+		  mes "oculta no modo de PVP. Essa ";
+		  mes "pontuação será aplicada dentro";
+		  mes "da zona de PVP, por isso";
+		  mes "não se preocupe.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Cada jogador começa";
+		  mes "com 5 pontos de experiência. ";
+		  mes "Se você vencer, seu";
+		  mes "ponto vai aumentar em 1 de experiência.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Da mesma forma de que";
+		  mes "se você for derrotado... Vai perder";
+		  mes "5 pontos de experiência.";
+		  mes "Por isso tome cuidado!";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Quando você é derrotado";
+		  mes "e sua experiência é igual";
+		  mes "ou inferior a 0,";
+		  mes "você será removido do PVP";
+		  mes "e seu duelo estará finalizado.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Porém, se sua experência for";
+		  mes "superior a 0, você ainda pode pedir ajuda";
+		  mes "para outros jogadores que curem...";
+		  mes "Você entendeu?";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Os comandos de luta dentro";
+		  mes "da arena de PVP são iguais aos normais.";
+		  mes "Todos os controles básicos são";
+		  mes "os mesmos.";
+		  next;
+		  mes "[Guia do PVP]";
+		  mes "Porém, existe mais uma coisa...";
+		  mes "Entro das arenas de PVP,";
+		  mes "e nas zonas de luta PVP,";
+		  mes "você não pode salvar sua posição.";
+		  mes "Lembre-se bem... Essas regras";
+		  mes "podem ajudar você garantir sua vitória.";
+			break;
+		case 4:
+			mes "[Guia do PVP]";
+		  mes "Posição salva...";
+		  mes "com sucesso.";
+		  mes "Muito obrigado, Nós";
+		  mes "esperamos ver você novamente.";
+				if(strnpcinfo(4) == "morocc_in") { savepoint "morocc_in",141,139; }
+				if(strnpcinfo(4) == "alberta_in") { savepoint "alberta_in",22,148; }
+				if(strnpcinfo(4) == "prt_in") { savepoint "prt_in",54,137; }
+				if(strnpcinfo(4) == "geffen_in") { savepoint "geffen_in",70,59; }
+				if(strnpcinfo(4) == "payon_in01") { savepoint "payon_in01",142,46; }
+			break;
+		case 5:
+			mes "[Guia do PVP]";
+		  mes "Nesse mundo de guerra entre monstros";
+		  mes "e humanos, essa é uma competição";
+		  mes "entre humanos. O modo PVP!";
+		  mes "Isso nos incentiva a nos tornar mais";
+		  mes "fortes para voltar.";
+		  mes "Nós damos os parabéns ao seu espírito de competição!";
+			break;
+	}
+	close;
+}
+
+// Guia do PVP - Duplicatas
+alberta_in,22,146,4	duplicate(Guia do PVP)	Guia do PVP#pe2	84
+prt_in,56,140,4	duplicate(Guia do PVP)	Guia do PVP#pe3	84
+geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe4	84
+payon_in01,142,50,4	duplicate(Guia do PVP)	Guia do PVP#pe5	84
+geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe6	84
+
+// Porteiro
+morocc_in,144,142,4	script	Porteiro#PvP	83,{
+	mes "[Porteiro]";
+	mes "Fico feliz em ser útil.";
+	mes "Eu vou abrir o modo de";
+	mes "PVP para você. Se você tem alguma";
+	mes "dúvida sobre o PVP,";
+	mes "modos e regras, por favor,";
+	mes "pergunte ao narrador...";
+	next;
+	switch(select("^FF5533' Modo Pesadelo de PVP'^000000:^3355FF' Modo Yoyo de PVP'^000000:^3355FF'Modo de Evento PVP'^000000:Sair")) {
+		case 1:
+			mes "[Porteiro]";
+		  mes "Lamento, mas atualmente o modo Pesadelo não está disponível.";
+		  mes "Por favor, use o modo Yoyo agora. Nós pedimos desculpas pelo inconveniente.";
+			break;
+		case 2:
+			mes "[Porteiro]";
+		  mes "A taxa de para entrar é 500 zeny.";
+		  mes "Você deseja ir para";
+		  mes "para a arena de luta";
+		  mes "do modo Yoyo?";
+			next;
+			if(select("Entrar","Cancelar")==1) {
+				if ((Zeny > 499) && (BaseLevel > 30)) {
+					set Zeny, Zeny - 500;
+					warp "pvp_y_room",51,23;
+				}
+				else {
+					mes "[Porteiro]";
+				  mes "Desculpe-me, mas";
+				  mes "você ainda não está preparado?";
+				  mes "Verifique novamente se você possui os";
+				  mes "500 zenys solicitados para entrar e";
+				  mes "você também precisa ter no mínimo level 31!";
+				}
+				close;
+			}
+			mes "[Porteiro]";
+			mes "Nesse mundo de guerra entre monstros";
+			mes "e humanos, essa é uma competição";
+			mes "entre humanos. O modo PVP!";
+			mes "Isso nos incentiva a nos tornar mais";
+			mes "fortes para voltar.";
+			mes "Nós damos os parabéns ao seu espírito de competição!";
+			close;
+		case 3:
+			mes "[Porteiro]";
+		  mes "Bem vindo.";
+		  mes "Chegue novamente";
+		  mes "se você possui o bilhete de permissão.";
+			next;
+			if ((countitem(7028) == 0) && (countitem(7029) == 0)) {
+				mes "[Porteiro]";
+			  mes "O que? Você não tem?";
+			  mes "Então eu lamento, mas essa arena de batalha é";
+			  mes "somente para pessoas que tem ";
+			  mes "os requisitos mínimos ou o cartão de permissão.";
+			  mes "Você não pode entrar sem ele.";
+			  close;
+			}
+			mes "[Porteiro]";
+		  mes "Certo, muito obrigado por sua participação. Divirta-se!";
+			warp "pvp_room",51,23;
+			break;
+		case 4:
+			mes "[Porteiro]";
+		  mes "Nesse mundo de guerra entre monstros";
+		  mes "e humanos, essa é uma competição";
+		  mes "entre humanos. O modo PVP!";
+		  mes "Isso nos incentiva a nos tornar mais";
+		  mes "fortes para voltar.";
+		  mes "Nós damos os parabéns ao seu espírito de competição!";
+			break;
+	}
+	close;
+}
+
+// Porteiro Duplicatas
+alberta_in,26,146,4	duplicate(Porteiro#PvP)	Porteiro#gke2	83
+prt_in,52,140,4	duplicate(Porteiro#PvP)	Porteiro#gke3	83
+geffen_in,63,63,4	duplicate(Porteiro#PvP)	Porteiro#gke4	83
+payon_in01,140,53,4	duplicate(Porteiro#PvP)	Porteiro#gke5	83
+
+pvp_y_room,86,85,4	script	Recepção	105,{
+	if(strnpcinfo(4) == "pvp_y_room") {
+		setarray .@Maps$[0],"pvp_y_8-1","pvp_y_8-2","pvp_y_8-3","pvp_y_8-4","pvp_y_8-5";
+		setarray .@Name$[0],"Prontera","Izlude","Payon","Alberta","Morroc";
+		setarray .@Limit[0],128,128,128,128,128;
+	} else {
+		setarray .@Maps$[0],"pvp_n_8-1","pvp_n_8-2","pvp_n_8-3","pvp_n_8-4","pvp_n_8-5";
+		setarray .@Name$[0],"Sala Sanduíche","Sala Desafio Adiante","Sala Tetra","Sala Encruzilhada","Sala da Bússola";
+		setarray .@Limit[0],64,32,32,32,32;
+	}
+	for(set .@i,0; .@i<5; set .@i,.@i+1)
+		set .@menu$, .@menu$+.@Name$[.@i]+" ["+getmapusers(.@Maps$[.@i])+" / "+.@Limit[.@i]+"]:";
+	set .@menu$, .@menu$+"Cancel.";
+	set .@i, select(.@menu$)-1;
+	if (.@i == 5) close;
+	if (getmapusers(.@Maps$[.@i]) >= .@Limit[.@i]) {
+		mes "[Equipe de Registro PVP]";
+		mes "O mapa está cheio.";
+	}
+	else warp .@Maps$[.@i],0,0;
+	close;
+
+OnInit:
+	waitingroom "Aberta para todos",0;
+end;
+}
+
+pvp_n_room,30,85,4	duplicate(Recepção)	Recepção#f2	105
+
+pvp_n_8-4,33,122,0	warp	Link_1-11	0,2,pvp_n_8-4,0,0
+pvp_n_8-4,62,84,0	warp	Link_1-12	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,49,71,0	warp	Link_1-21	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,56,166,0	warp	Link_1-22	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,99,180,0	warp	Link_1-31	2,1,pvp_n_8-4,0,0
+pvp_n_8-4,137,84,0	warp	Link_1-32	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,150,71,0	warp	Link_1-41	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,144,166,0	warp	Link_1-42	1,1,pvp_n_8-4,0,0
+pvp_n_8-5,30,30,0	warp	Link_1-99	3,3,pvp_n_8-5,100,100
+
+//============================================================ 
+pvp_room,54,85,4	script	Equipe de Registro#1	105,{
+	if (countitem(7028) == 0) {
+		mes "[Equipe de Registro]";
+		mes "O que? Como você chegou aqui?";
+		mes "Essa é uma entrada para jogadores apenas.";
+		mes "Para maiores detalhes sobre os telespectadores, por favor, inicie o seu registro com a equipe.";
+		close;
+	}
+
+	if (.pvp_close_n_room == 1 && .pvp_close_s_room == 1 && .pvp_close_w_room == 1 && .pvp_close_e_room == 1) {
+		Set .pvp_close_n_room,0;
+		Set .pvp_close_s_room,0;
+		Set .pvp_close_w_room,0;
+		Set .pvp_close_e_room,0;
+	}
+
+	if (select("Arena de combate :Cancelar") == 1) {
+		mes "[Equipe de Registro PVP]";
+		mes "'"+ strcharinfo(0) +"'";
+		mes "Você está pronto?!";
+		next;
+		if (select("Sim!:Não!") == 1) {
+			mes "[PVP Combat Square Register Staff]";
+			mes "Ok! Eu enviarei você para arena";
+			mes "Boa sorte!";
+			close2;
+			delitem 7028,1; // Convite para Duelo
+			while(1) {
+				switch(rand(1,4)) {
+				case 1:
+					if (.pvp_close_n_room == 0) {
+						set .pvp_close_n_room,1;
+						warp "pvp_2vs2",40,59;
+						end;
+					}
+				case 2:
+					if (.pvp_close_s_room == 0) {
+						set .pvp_close_s_room,1;
+						warp "pvp_2vs2",59,40;
+						end;
+					}
+				case 3:
+					if (.pvp_close_w_room == 0) {
+						set .pvp_close_w_room,1;
+						warp "pvp_2vs2",20,40;
+						end;
+					}
+				case 4:
+					if (.pvp_close_e_room == 0) {
+						set .pvp_close_e_room,1;
+						warp "pvp_2vs2",40,20;
+						end;
+					}
+				}
+			}
+		}
+		mes "[Equipe de Registro PVP]";
+		mes "Volte quando você estiver pronto.";
+		close;
+	}
+	close;
+
+OnInit:
+	Set .pvp_close_n_room,0;
+	Set .pvp_close_s_room,0;
+	Set .pvp_close_w_room,0;
+	Set .pvp_close_e_room,0;
+	waitingroom "Arena de combate apenas para jogadores",0;
+	end;
+}
+
+//============================================================ 
+pvp_room,62,85,4	script	Espectador#dum	105,{
+	if (countitem(7029) == 0) {
+		mes "[Equipe de Registro para arena PVP]";
+		mes "Essa é a entrada para os telespectadores.";
+		mes "Para obter mais detalhes sobre a entrada, por favor, registre-se com a equipe ao lado esquerdo.";
+		close;
+	}
+
+	if (select("Arena de competição:Cancelar") == 1) {
+		mes "[Equipe de Registro para arena PVP]";
+		mes "Muito bem, obrigado por participar. Divirta-se!";
+		close2;
+		delitem 7029,1; // Entrada para Duelo
+		switch(rand(1,4)) {
+		case 1: warp "pvp_2vs2",39,7; end;
+		case 2: warp "pvp_2vs2",39,73; end;
+		case 3: warp "pvp_2vs2",7,39; end;
+		case 4: warp "pvp_2vs2",73,39; end;
+		}
+	}
+	close;
+
+OnInit:
+	waitingroom "Entrada para os Telespectadores",0;
+	end;
+}
+
+pvp_room,70,85,4	duplicate(Espectador#dum)	Espectador#2	105
+pvp_room,78,85,4	duplicate(Espectador#dum)	Espectador#3	105
+pvp_room,86,85,4	duplicate(Espectador#dum)	Espectador#4	105
+//============================================================ 
+pvp_2vs2,5,4,0	script	Equipe Arena de Combate#pvp	45,1,1,{
+OnTouch:
+	mes "[Equipe da Arena de Combate]";
+	mes "Como posso ajudar?";
+	if (select("Banco central para telespectadores.:Deixar a arena de batalha.") == 1) {
+		warp "pvp_2vs2",38,38;
+		end;
+	}
+	warp "pvp_room",84,39;
+	end;
+}
+
+pvp_2vs2,5,74,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#2	45,1,1
+pvp_2vs2,74,74,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#3	45,1,1
+pvp_2vs2,74,5,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#4	45,1,1
+//============================================================
+pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
+	mes "[Equipe da Arena de Combate]";
+	mes "Como posso ajduar?";
+	if (select("Banco lateral para telespectadores.:Deixar a arena de batalha.") == 1)
+		switch(rand(1,4)) {
+		case 1: warp "pvp_2vs2",39,7; end;
+		case 2: warp "pvp_2vs2",39,73; end;
+		case 3: warp "pvp_2vs2",7,39; end;
+		case 4: warp "pvp_2vs2",73,39; end;
+		}
+	warp "pvp_c_room",84,39;
+	end;
+}
+
+//============================================================ 
+pvp_room,51,19,0	script	Saída#eventopvp	45,4,2,{
+OnTouch:
+	mes "[Equipe da Arena de Combate]";
+	mes "Você se divertiu na arena de batalha?";
+	mes "Agora para onde você deseja ir?";
+	next;
+	switch(select("Prontera.:Morocc.:Geffen.:Payon.:Alberta.:Cancelar.")) {
+	case 1: warp "prontera",107,60; end;
+	case 2: warp "morocc",157,96; end;
+	case 3: warp "geffen",120,36; end;
+	case 4: warp "payon",96,100; end;
+	case 5: warp "alberta",41,243; end;
+	case 6: close;
+	}
+}
+
+//============================================================
+// Guia de Batalha dos Clãs
+//============================================================
+
+pvp_y_room,77,85,4	script	Guia de Batalha dos Clãs	105,{
+
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Como você está?";
+	mes "Eu sou o Guia de Batalha dos Clãs";
+	mes "para os novos mapas de PvP.";
+	mes "Deixe-me mostrar as opções";
+	mes "de mapas que você pode escolher.";
+	next;
+	set @map,select("Mapa 1:Mapa 2:Mapa 3:Mapa 4:Mapa 5");
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Você escolheu o mapa "+@map+".";
+	mes "Agora, em time você";
+	mes "está? Você pode escolher";
+	mes "entre o Time 1 ou Time 2.";
+	next;
+	setarray .@x,7,9,16,8,20,91,90,83,91,79;
+	set @x,.@x[@map + (select("Time 1:Time 2")==1 ? -1:4)];
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Está certo, eu levarei você";
+	mes "para o Mapa "+@map+", como membro";
+	mes "do Time "+@menu+", você está pronto";
+	mes "para ser teleportado para o mapa agora?";
+	next;
+	if(select("Sim:Não")==1){
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Excelente! Tenha uma boa batalha!";
+		close2;
+		warp "guild_vs"+@map,@x,49+(@map%2 && @map!=1);
+		end;
+	}
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Certo, eu espero";
+	mes "ver você novamente";
+	mes "nos mapas de PvP!";
+	close;
+}

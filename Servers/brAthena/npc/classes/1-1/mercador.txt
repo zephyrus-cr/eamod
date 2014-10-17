@@ -1,0 +1,1193 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest do Mercador                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.3/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Mercador.            |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy e Protimus]                   |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta_in,53,43,6	script	Mercador#mer	86,{
+	if (Upper == 1) {
+		if (Class == Job_Novice_High && (ADVJOB == Job_Whitesmith || ADVJOB == Job_Creator)) {
+			mes "[Chefe Mansur]";
+			mes "Faz bastante tempo que não nos vemos!";
+			mes "Ei, você não deixou";
+			mes "sua classe, não foi?";
+			mes "Está feliz?";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Nossa...";
+			mes "Você realmente veio de Valhalla?! Uau, você já percorreu um longo caminho...";
+			next;
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "[Chefe Mansur]";
+				mes "Humm...";
+				mes "Parece que você não está pronto para se tornar um mercador de novo. Primeiro termine de aprender as Habilidades Básicas.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Não se preocupe, nós vamos ter sempre um lugar nos Mercadores aberto para você. Basta voltar quando estiver pronto, ok?";
+				close;
+			}
+			mes "[Chefe Mansur]";
+			mes "Eu acho que é o destino nos encontrarmos denovo. Deixe-me transformá-lo em um Mercador!";
+			next;
+			skill 143,0,0;
+			jobchange Job_Merchant_High;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			mes "[Chefe Mansur]";
+			mes "Ah~ Como é nostálgico. Assim como nos velhos tempos! Tudo bem, dê o seu melhor!";
+			close;
+		}else{
+			mes "[Chefe Mansur]";
+			mes "^333333*Suspiro*^000000";
+			mes "Estou tão entediado...";
+			mes "Quando vou ouvir minha linda flor?";
+			close;
+		}
+	}
+	if ( !checkre(0) ) {
+		if (BaseJob == Job_Merchant) {
+		mes "[Chefe Mansur]";
+		mes "Olá!";
+		mes "Como se sente";
+		mes "sendo um Mercador?";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Ter um curso com";
+		mes "dinheiro, certamente";
+		mes "tem suas vantagens,";
+		mes "não é verdade?";
+		close;
+	}
+	else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
+		mes "[Chefe Mansur]";
+		mes "Nós Mercadores odiamos pessoas que são duas caras. É ruim para os nossos negócios.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Pessoas que sempre tentam tirar vantagem de outras pessoas vendendo coisas a um preço rídiculo, são os piores mercadores.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Bem, de qualquer jeito, nós só aceitamos aprendizes que querem ser mercador. Mas agradecemos seu interesse pelo que fazemos.";
+		close;
+	}
+	else if (job_merchant_q == 9) {
+		mes "[Chefe Mansur]";
+		mes "Olá,";
+		mes ""+ strcharinfo(0) +".";
+		set job_merchant_q,0;
+		set job_merchant_q2,0;
+		set quest_alb_01,0;
+		mes "Infelizmente, você falhou no teste e não poderá receber a Licença de Mercador.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Eu vou apagar seus registros, assim você pode voltar a qualquer momento.";
+		close;
+	}
+	else if (job_merchant_q == 8 || job_merchant_q == 7) {
+		mes "[Chefe Mansur]";
+		mes "Olá,";
+		mes ""+ strcharinfo(0) +".";
+		mes "Fico feliz em dizer que";
+		mes "tenho boas notícias!";
+		next;
+		mes "[Chefe Mansur]";
+		mes "A Guilda dos Mercadores aceitou o seu pedido. Você provou que está totalmente qualificado para se tornar um Mercador.";
+		if (job_merchant_q == 7) {
+			next;
+			mes "[Chefe Mansur]";
+			mes "A única coisa é que você tem que comprar a licença de membro.";
+			mes "Você está pronto?";
+			next;
+			switch(select("Pagar o restante dos 500 Zeny:Sair")) {
+			case 1:
+				mes "[Chefe Mansur]";
+				if (Zeny < 500) {
+					mes "Humm...";
+					mes "Acho que no momento você não tem zeny suficiente para a compra da licença.";
+					next;
+					mes "[Chefe Mansur]";
+					mes "Volte aqui quando você estiver com os 500 zeny para se tornar um Mercador.";
+					close;
+				}
+				set zeny,zeny-500;
+				mes "Isso...!";
+				mes "Agora sua";
+				mes "licença já está";
+				mes "toda paga.";
+				break;
+			case 2:
+				mes "[Chefe Mansur]";
+				mes "Eu suponho que você necessite de tempo para conseguir o zeny necessário. Por favor, ";
+				mes "volte quando estiver pronto.";
+				close;
+			}
+		}
+		next;
+		mes "[Chefe Mansur]";
+		mes "Parabéns!";
+		callfunc "Job_Change",Job_Merchant;
+		callfunc "F_ClearJobVar";
+		if(checkquest(1009) != -1) {
+			completequest 1009;
+		}
+		else if(checkquest(1010) != -1) {
+			completequest 1010;
+		}
+		else if(checkquest(1011) != -1) {
+			completequest 1011;
+		}
+		else {
+			completequest 1012;
+		}
+		mes "Estou muito feliz que você tenha se integrado a Guilda dos Mercadores, e espero que você desempenhe um papel ativo na economia de Rune-Midgard.";
+		next;
+		if (quest_alb_01 == 1) {
+			mes "[Chefe Mansur]";
+			mes "*Aham* Eeeeeee deixe-me dar um pouco de dinheiro por ter entregado a mensagem para mim.";
+			mes "Eu espero que você possa me ajudar novamente~";
+			set zeny,zeny+200;
+			set quest_alb_01,2;
+		}
+		else {
+			mes "[Chefe Mansur]";
+      mes "A mensagem foi entregue como eu te pedi? Você se esqueceu? Ah bem. Bom trabalho!";
+		}
+		next;
+		mes "[Chefe Mansur]";
+		mes "Nosso objetivo é controlar 20% da renda mundial! E nós vamos precisar de jovens, como você!";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Mas no entanto, nós vamos seremos felizes para realizar empréstimos.";
+		mes "Todos sabemos~";
+		close;
+	}
+	else if (job_merchant_q <= 6 && job_merchant_q != 0) {
+		mes "[Chefe Mansur]";
+		if (job_merchant_q2 == 1 || job_merchant_q2 == 2) {
+			mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e depois leve na antiga Associação dos Espadachins em Prontera.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Após a chegada, entregue o pacote a Funcionária Kafra que fica alí por perto, o nome dela é Flor. Você consegue fazer isso?";
+			next;
+			if (job_merchant_q2 == 1) {
+				mes "[Chefe Mansur]";
+				mes "Lembre-se que o número de série do pacote é ^3355FF2485741^000000.";
+				setquest 1009;
+			}
+			else {
+				mes "[Chefe Mansur]";
+				mes "Lembre-se que o número de série do pacote é ^3355FF2328137^000000.";
+				setquest 1009;
+			}
+		}
+		else if (job_merchant_q2 == 3 || job_merchant_q2 == 4) {
+			mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e depois leve na Guilda dos Magos em Geffen.";
+			next;
+			if (job_merchant_q2 == 3) {
+				mes "[Chefe Mansur]";
+				mes "Após a chegada, entregue o pacote ao Mago da Guilda que fica alí por perto. Lembre-se que o número de série do pacote é ^3355FF2989396^000000.";
+				setquest 1010;
+			}
+			else {
+				mes "[Chefe Mansur]";
+				mes "Após a chegada, entregue o pacote ao Mago da Guilda que fica alí por perto. Lembre-se que o número de série do pacote é ^3355FF2191737^000000.";
+				setquest 1010;
+			}
+		}
+		else if (job_merchant_q2 == 5 || job_merchant_q2 == 6) {
+			mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e leve a Morroc.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Você vai encontrar Java Dullihan, o tintureiro, então entregue o pacote a ele.";
+			next;
+			if (job_merchant_q2 == 5) {
+				mes "[Chefe Mansur]";
+				mes "Mas ele é um pouco esquecido, então entregue o pacote a seus alunos. Lembre-se que o número de série do pacote é ^3355FF3012685^000000.";
+				setquest 1011;
+			}
+			else {
+				mes "[Chefe Mansur]";
+				mes "Mas ele é um pouco esquecido, então entregue o pacote a seus alunos. Lembre-se que o número de série do pacote é ^3355FF3487372^000000.";
+				setquest 1011;
+			}
+		}
+		else if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
+			mes "Primeiramente, pegue o pacote dentro do armazém, e leve na Ilha de Byalan, o nome dela é Flor.";
+			next;
+			if (job_merchant_q2 == 7) {
+				mes "[Chefe Mansur]";
+				mes "Lembre-se que o número de série do pacote é ^3355FF3318702^000000.";
+				setquest 1012;
+			}
+			else {
+				mes "[Chefe Mansur]";
+				mes "Lembre-se que o número de série do pacote é ^3355FF3543625^000000.";
+				setquest 1012;
+			}
+		}
+		if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
+			next;
+			mes "[Chefe Mansur]";
+			mes "Eeeeeee...";
+			mes "Não se esqueça de entregar a mensagem para mim~";
+		}
+		next;
+		mes "[Chefe Mansur]";
+		mes "Não esqueça o seu destino e o número de série do pacote.";
+		mes "Você vai ter que falar";
+		mes "para o guarda do armazém.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "O armazém está nessa sala";
+		mes "à minha direta. Lá, você pode";
+		mes "conversar com o guarda, ele";
+		mes "pode te ajudar.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Depois de fazer a entrega, retorne ao armazém e dê o recibo para o guarda.";
+		mes "Depos, volte";
+		mes "e fale comigo.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Está claro?";
+		mes "Tudo bem, esse é";
+		mes "o espírito.";
+		mes "Se cuida!";
+		close;
+	}
+	else if (job_merchant_q == 0) {
+		mes "[Chefe Mansur]";
+		mes "Então, oque te traz à";
+		mes "Associação dos Mercadores?";
+		mes "Existe alguma maneira";
+		mes "que eu possa te ajudar?";
+		next;
+		switch(select("Eu quero ser um Mercador.:Conte-me sobre os Mercadores.:Conte-me os requerimentos.:Nada.")) {
+		case 1:
+			mes "[Chefe Mansur]";
+			mes "Você quer ser";
+			mes "um Mercador?";
+			mes "Bem...";
+			next;
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "[Chefe Mansur]";
+				mes "Primeiro, você tem que ser um aprendiz com o nível de classe 10. Depois disso, aprenda as habilidades básicas.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Nós não fabricarmos";
+				mes "apenas dinheiro!";
+				mes "Nós nos orgulhamos de ter normas e aceitar apenas candidatos qualificados!";
+				close;
+			}
+			mes "[Chefe Mansur]";
+			mes "Tudo bem, você vai precisar preencher sua aplicação e pagar 1.000 Zeny para o pagamento de sua licença.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Ah...!";
+			mes "Se você não tiver todo o dinheiro,";
+			mes "eu posso pegar a metade agora.";
+			mes "Aí você paga a outra metade";
+			mes "depois de passar no teste e ganhar";
+			mes "sua Licença da Guilda dos Mercadores..";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Então, o que você acha?";
+			mes "Você está pronto pra começar?";
+			next;
+			if (select("Sim, estou.:Humm, talvez depois...") ==1 ) {
+				mes "[Chefe Mansur]";
+				mes "Deixe-me checar se";
+				mes "você preencheu tudo";
+				mes "corretamente em seu formulário...";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Hum... ";
+				mes ""+strcharinfo(0)+"...";
+				mes "É um bonito nome.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Esse formulário só será";
+				mes "aceito depois que a taxa";
+				mes "da licença for paga.";
+				mes "De que maneira você";
+				mes "vai querer pagar?";
+				next;
+				switch(select("Pagar os 1,000 Zeny agora!:Pagar a metade, 500 Zeny.:Sair")) {
+				case 1:
+					mes "[Chefe Mansur]";
+					if (Zeny >= 1000) {
+						set job_merchant_q,2;
+						set zeny,zeny-1000;
+						mes "Bom~";
+						mes "1,000 zeny.";
+						mes "Excelente, excelente.";
+					} else {
+						mes "Você não tem o zeny suficiente. Porque você não paga 500 zeny agora? Pense sobre isso.";
+						close;
+					}
+					break;
+				case 2:
+					mes "[Chefe Mansur]";
+					if (Zeny >= 500) {
+						set job_merchant_q,1;
+						set zeny,zeny-500;
+						mes "Vamos ver...";
+						mes "500 Zeny. eu acho que parcelar não é uma boa idéia para um Mercador, tudo bem desde que você aprenda.";
+					} else {
+						mes "Hum...";
+						mes "Parece que você não tem nem a metade para pagar a licença. Por favor, volte quando estiver a taxa necessária.";
+						close;
+					}
+					break;
+				case 3:
+					mes "[Chefe Mansur]";
+					mes "Sinta-se à vontade para";
+					mes "voltar quando estiver pronto, certo?";
+					close;
+				}
+			}
+			else {
+				mes "[Chefe Mansur]";
+				mes "Você não tem o zeny suficiente, certo? Não tem problema, volte aqui quando você estiver,";
+				mes "ok?";
+				close;
+			}
+			next;
+			mes "[Chefe Mansur]";
+			mes "Tudo bem, agora você está na lista de candidatos. Ah, antes de começar deixe-me dizer apenas uma coisa.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Há pessoas gananciosas e idiotas por aí que não sabem o que significa ser um Mercador.";
+			mes "Espero que você não seja como essas pessoas, você não vai ser né?";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Agora, deixe-me";
+			mes "explicar oque é";
+			mes "necessário para você";
+			mes "conseguir sua Licença de Mercador.";
+			next;
+			mes "[Chefe Mansur]";
+			switch(rand(1,4)) {
+			case 1:
+				mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e depois leve na antiga Associação dos Espadachins em Prontera.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Após a chegada, entregue o pacote a Funcionária Kafra que fica alí por perto, o nome dela é Flor. Você entendeu tudo?";
+				callsub S_GiveSerial,2485741,1,2328137,2;
+				break;
+			case 2:
+				mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e depois leve na Guilda dos Magos em Geffen.";
+				callsub S_GiveSerial,2989396,3,2191737,4;
+				break;
+			case 3:
+				mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e leve a Morroc, você vai encontrar Java Dullihan, o tintureiro, então entregue o pacote a ele.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Mas ele é um pouco esquecido, então entregue o pacote a seus alunos.";
+				callsub S_GiveSerial,3012685,5,3487372,6;
+				break;
+			case 4:
+				mes "Primeiramente, pegue o pacote dentro do armazém, e leve na Ilha de Byalan.";
+				callsub S_GiveSerial,3318702,7,3543625,8;
+				next;
+				mes "[Chefe Mansur]";
+				mes "Hummmm...";
+				mes "E eu tenho um";
+				mes "pedido pessoal";
+				mes "para você.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Quando for entregar o pacote, entregue essa carta a ela para mim? Por favor~";
+				getitem 1072,1; //Delivery_Message
+				break;
+			}
+			next;
+			mes "[Chefe Mansur]";
+			mes "[Chefe Mansur]";
+			mes "Não esqueça seu destino e nem o número de série. Você precisa falar com esse guarda do armazém ao meu lado e ele te dará o pacote.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Depois da entrega, dê o recibo ao guarda, e fale comigo novamente.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Certo?";
+			mes "Tudo bem, esse é";
+			mes "o espírito.";
+			mes "Se cuida!";
+			close;
+		case 2:
+			mes "[Chefe Mansur]";
+			mes "Mercador?";
+			mes "Bem, nós basicamente vendemos para ganhar dinheiro. Essa é a função";
+			mes "de um Mercador.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Só que nós não somos tão bons na luta, não temos tantas habilidades especiais, e também não temos habilidades de cura...";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Mas podemos comprar produtos a preços mais baixos nos NPC e vendê-los a um preço mais alto a outras pessoas ~";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Nossa habilidade de ataque é a 'Mammonita.' A força da Mammonita vem da raiva";
+			mes "de quando nós somos forçados a jogar nosso dinheiro fora para atacar.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Jogando zeny fora dessa maneira";
+			mes "faz com que qualquer Mercador fique com uma raiva mortal no coração!";
+			mes "Só de pensar nisso";
+			mes "faz meu sangue ferver!";
+			next;
+			mes "[Chefe Mansur]";
+			mes "De qualquer maneira, podemos usar mais armas,";
+			mes "excerto arcos, bastões e espadas de duas mãos. Mas podemos vendê-los.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Sim...";
+			mes "Nós mercadores, de forma geral,";
+			mes "sempre temos dinheiro...";
+			close;
+		case 3:
+			mes "[Chefe Mansur]";
+			mes "Há três condições que devem ser cumpridas antes de se tornar um Mercador.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "A primeira, você tem que ser um aprendiz com o nível de classe 10, e aprender as habilidades básicas.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "A segunda, Você tem que pagar 1,000 Zeny para a licença. Eu acredito que um candidato a Mercador tenha essa quantia de 1,000 Zeny.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "A terceira, há um teste físico para a licença que você deve fazer, para testar sua força física e seu senso de direção. Você vai entregar um pacote para uma pessoa específica em uma localidade específico.";
+			close;
+		case 4:
+			close;
+		}
+	}
+}
+	mes "[Chefe Mansur]";
+	mes "Ei, por que está aqui?";
+	next;
+	switch(select("Eu quero me tornar um Mercador.:Quero saber mais sobre os comerciantes.:Saber os requerimentos para se tornar um Noviço.:Nada.")) {
+	case 1:
+		if(BaseJob != Job_Novice) {
+			mes "[Chefe Mansur]";
+			if(BaseJob == Job_Merchant) {
+				mes ".....? Desculpe? O que você está dizendo?";
+				mes "Você já é um mercador. Ah meu..";
+				mes "Hum?! ...Eu preciso rir agora?!";
+			}else{
+				mes "Ahh? Você está tentando possuir duas classes?";
+				mes "Como pensa em desperdiçar tudo que conquistou até agora?";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Você sabe que temos a ética em nossos negócios.";
+			}
+			close;
+		}else{
+			mes "[Chefe Mansur]";
+			mes "Quer se tornar um mercador? Hum...";
+			next;
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "[Chefe Mansur]";
+				mes "Se você quer ser um comerciante, o seu nível de habilidade básica deve atingir o nível 9 e você terá que gastar todos os seus pontos de habilidade.";
+				next;
+				mes "[Chefe Mansur]";
+				mes "Você não acha que temos que aprender algumas habilidades básicas antes de lidar com o dinheiro?";
+				close;
+			}
+			mes "[Chefe Mansur]";
+			mes "Bom, eu acho que você está totalmente pronto para isso vendo que o seu nível de habilidade básica é suficiente.";
+			mes "Agora eu permito que você seja um mercador.";
+			next;
+			mes "[Chefe Mansur]";
+			mes "Parabéns por se tornar um mercador!";
+			mes "Parabéns mais uma vez por ser um membro da guilda de mercadores e um dos nossos colegas. Espero sua participação ativa apartir de agora!";
+			callfunc "Job_Change",Job_Merchant;
+			getitem	1381,1; // Machado de Batalha de Iniciante
+			next;
+			mes "[Chefe Mansur]";
+			mes "Absolutamente, nós precisamos de pessoas jovens que têm paixão para alcançar o nosso grande objetivo que é garantir 20% do volume de moedas em todo o mundo. Você conseguiu isso? huh?";
+			mes "Bem, eu só estou dizendo... Isso significa que vamos ganhar muito dinheiro no final. Você sabe disso~";
+			close;
+		}
+	case 2:
+		mes "[Chefe Mansur]";
+		mes "Mercador? Definindo, a pessoa que vende bem e faz o seu dinheiro é um mercador.";
+		mes "Não é bom em combate e não tem ataque especial / capacidades de recuperação... Mas um comerciante pode comprar coisas a um preço baixo e, em seguida vendê-los e ganhar dinheiro.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Bem, um comerciante tem uma habilidade final chamado Mammonita que atinge um inimigo com seu dinheiro... Podemos equipar tudo, exceto Arcos, Cajados e espadas de duas mãos. Mas sempre podemos vendê-los e comprá-los.";
+		mes "Sim... Nós os mercadores temos sempre o dinheiro em nossos pensamentos, entendeu?";
+		close;
+	case 3:
+		mes "[Chefe Mansur]";
+		mes "Para tornar-se um mercador, embora nosso trabalho seja apenas vendermos e recebermos dinheiro, você deve alcançar pelo menos o nível 9 de habilidades básicas.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Bem, estavamos habituados a receber uma comissão antes. Foi difícil fazer o dinheiro?";
+		mes "Havia muitas pessoas que não podiam reunir esse dinheiro e ficavam sempre reclamando.";
+		next;
+		mes "[Chefe Mansur]";
+		mes "Então, recentemente decidimos permitir que qualquer principiante que queira ser um mercador possa ter a possibilidade de fazer o teste.";
+		mes "Porque depois se continuarão vivos ou não é tudo habilidade.";
+		close;
+	case 4:
+		close;
+	}
+
+S_GiveSerial:
+	next;
+	mes "[Chefe Mansur]";
+	mes "Não se esqueça...";
+	if (rand(1)) {
+		mes "O número de série";
+		mes "do pacote é";
+		mes "^3355FF"+getarg(0)+"^000000.";
+		set job_merchant_q2,getarg(1);
+	} else {
+		mes "O número de série";
+		mes "do pacote é";
+		mes "^3355FF"+getarg(2)+"^000000.";
+		set job_merchant_q2,getarg(3);
+	}
+	return;
+}
+
+alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
+	if (BaseJob == Job_Merchant) {
+		mes "[Guarda Kay]";
+		mes "Olá amigo.";
+		mes "Como você está?";
+		close;
+	}
+	else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
+		mes "[Guarda Kay]";
+		mes "Ei você. Nós não temos nada para você no momento. Se você quer ganhar zeny, vá procurar noutro lugar.";
+		close;
+	}
+	else if (job_merchant_q == 9) {
+		mes "[Guarda Kay]";
+		mes "Ei você. Sim, você.";
+		mes "Se você quiser reiniciar o teste, visite Mansur na outra sala. Para que assim, podermos conversar.";
+		close;
+	}
+	else if (job_merchant_q == 8 || job_merchant_q == 7) {
+		mes "[Guarda Kay]";
+		mes "Certo! Tudo perfeito! Vou relatar o seu sucesso para o chefe. Agora vá falar com o Chefe Mansur, ok?";
+		close;
+	}
+	else if (job_merchant_q == 6 || job_merchant_q == 5) {
+		mes "[Guarda Kay]";
+		mes "Ah, sim? Ok, deixa eu verificar. Seu nome é "+strcharinfo(0)+"? Tudo bem, seu destino era ...";
+		next;
+		mes "[Guarda Kay]";
+		if (job_merchant_q2 == 1 || job_merchant_q2 == 2)
+			mes "Uau! Você encontrou a Kafra em Prontera? Sorte sua~... Recibo?";
+		else if (job_merchant_q2 == 3 || job_merchant_q2 == 4)
+			mes "Academia Mágica de Geffen. Ok, recibo?";
+		else if (job_merchant_q2 == 5 || job_merchant_q2 == 6)
+			mes "O tintureiro em morroc. Nada mal. Recibo?";
+		else if (job_merchant_q2 == 7 || job_merchant_q2 == 8)
+			mes "Oh hohohoho~! A Kafra na Ilha de Baylan?! Incrível! De qualquer maneira, você trouxe o recibo?";
+
+		if (job_merchant_q2 == 1 && countitem(1073) != 0)
+			delitem 1073,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 2 && countitem(1074) != 0)
+			delitem 1074,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 3 && countitem(1075) != 0)
+			delitem 1075,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 4 && countitem(1076) != 0)
+			delitem 1076,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 5 && countitem(1077) != 0)
+			delitem 1077,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 6 && countitem(1078) != 0)
+			delitem 1078,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 7 && countitem(1079) != 0)
+			delitem 1079,1; // Recibo de Entrega
+		else if (job_merchant_q2 == 8 && countitem(1080) != 0)
+			delitem 1080,1; // Recibo de Entrega
+		else {
+			next;
+			set job_merchant_q,9;
+			mes " [Guarda Kay] ";
+			mes "Aguarde um segundo.";
+			mes "Onde está o recibo?";
+			mes "O que aconteceu?";
+			next;
+			mes "[Guarda Kay]";
+			mes "Se você não tiver o recibo, você falhou no teste! É melhor você falar com Mansur, ok? Preste atenção na próxima vez!";
+			close;
+		}
+		next;
+		mes " [Guarda Kay] ";
+		mes "...Excelente! Tudo perfeito! Vou relatar o seu sucesso ao chefe. É melhor falar com o Chefe Mansur agora, ok?";
+		close2;
+		if (job_merchant_q == 6)
+			set job_merchant_q,8;
+		else if (job_merchant_q == 5)
+			set job_merchant_q,7;
+		end;
+	}
+	else if (job_merchant_q == 4 || job_merchant_q == 3 && countitem(1081) == 0 && countitem(1082) == 0 && countitem(1091) == 0) {
+		mes " [Guarda Kay] ";
+		mes "Hã?";
+		mes "Você está de volta?";
+		mes "Então, como é";
+		mes "que vai a entrega?";
+		next;
+		if (select("*Suspiro* Eu perdi o pacote.:Bem.") == 1) {
+			set job_merchant_q,9;
+			mes "[Guarda Kay]";
+			mes "Você está brincando comigo? Você falhará no teste se você perder o pacote!";
+			next;
+			mes "[Guarda Kay]";
+			mes "Awwww homem. Bem, se você quiser começar novamente o teste, fale com o Mansur, ok? Você tem sorte que você está recebendo uma nova chance!";
+			close;
+		}
+		mes "[Guarda Kay]";
+		mes "Huh...";
+		mes "Ok...";
+		close;
+	}
+	else if (job_merchant_q == 4 || job_merchant_q == 3 && countitem(1081) != 0 || countitem(1082) != 0 || countitem(1091) != 0) {
+		mes "[Guarda Kay]";
+		mes "Ei, o que você ainda está fazendo aqui? Não era para você já estar no caminho?";
+		next;
+		if (select("Eu preciso de um novo pacote.:Ah, sim. Você está certo!") == 1) {
+			if (!countitem(1081) && !countitem(1082) && !countitem(1083) && !countitem(1091)) {
+				mes "[Guarda Kay]";
+				mes "Oqu-?";
+				mes "Onde está o";
+				mes "pacote?";
+				mes "Onde ele está?";
+				next;
+				if (select("*Suspiro* Eu perdi!:Está aqui.") == 1) {
+					set job_merchant_q,9;
+					mes "[Guarda Kay]";
+					mes "Você...";
+					mes "perdeu?!";
+					mes "Você falhou no teste!";
+					next;
+					mes "[Guarda Kay]";
+					mes "*Suspiro* Se você quiser fazer o teste novamente, fale com Mansur na outra sala, ok?";
+					close;
+				}
+				mes "[Guarda Kay]";
+				mes "Hã.";
+				mes "Pensei que";
+				mes "você tinha perdido.";
+				mes "Você não precisa";
+				mes "de um novo.";
+				close;
+			}
+			mes "[Guarda Kay]";
+			mes "*Suspiro* Cara, você está começando a me dar dor de cabeça. Espere, deixa eu cancelar o seu registro...";
+			if (countitem(1081) != 0)
+				delitem 1081,1; // Caixa de Entrega
+			else if (countitem(1082) != 0)
+				delitem 1082,1; // Caixa de Entrega
+			else if (countitem(1091) != 0)
+				delitem 1091,1; // Caixa de Entrega
+			if (job_merchant_q == 4)
+				set job_merchant_q,2;
+			else if (job_merchant_q == 3)
+				set job_merchant_q,1;
+			next;
+			mes "[Guarda Kay]";
+			mes "Eu preciso de algum tempo para colocar tudo em ordem, então, volte mais tarde.";
+			close;
+		}
+		mes "[Guarda Kay]";
+		mes "Que chatice...";
+		close;
+	} else if ((job_merchant_q == 0 || job_merchant_q == 1 || job_merchant_q == 2)) {
+		set where_village,0;
+		mes "[Guarda Kay]";
+		mes "Ei você.";
+		mes "O que te traz";
+		mes "aqui?";
+		next;
+		switch(select("Minha Licença de Mercador.:Estou à procura de trabalho a tempo parcial.:Nada.")) {
+		case 1:
+			mes "[Guarda Kay]";
+			mes "Entendo.";
+			mes "Tudo bem.";
+			mes "Qual o";
+			mes "seu nome?";
+			mes ""+strcharinfo(0)+"...?";
+			next;
+			if (job_merchant_q == 0) {
+				mes "[Guarda Kay]";
+				mes "Huh. Seu nome não está na minha lista. Será que você não se alistou para o teste da classe?";
+				next;
+				mes "[Guarda Kay]";
+				mes "Você primeiro tem que se alistar falando com o Chefe Mansur";
+				mes "ao centro desse local, ok?";
+				close;
+			}
+			mes "[Guarda Kay]";
+			mes "Tudo bem, lá vai. Vou te dar o pacote. Agora, escolha o destino da entrega.";
+			next;
+			switch(select("Prontera.:Geffen.:Morocc.:Ilha de Byalan.")) {
+			case 1: set .@where_village,1; break;
+			case 2: set .@where_village,2; break;
+			case 3: set .@where_village,3; break;
+			case 4: set .@where_village,4; break;
+			}
+			mes "[Guarda Kay]";
+			mes "Ok, agora você precisa me dar o número de série do pacote. Se você quiser cancelar, basta digitar \"0\", ok?";
+			next;
+			while(1) {
+				while(1) {
+					input .@input;
+					if (.@input == 0) {
+						mes "[Guarda Kay]";
+						mes "Tem certeza que deseja cancelar?";
+						if (select("Sim.:Vou tentar denovo.") == 1) {
+							mes "Tudo bem, vamos cancelar.";
+							close;
+						}
+						next;
+					}
+					else if (.@input < 1000000 || .@input > 5000000) {
+						mes "[Guarda Kay]";
+            mes "Ei, ei. Esse número não é válido! Insira um valor entre 1000000-5000000. entendeu?";
+						next;
+					}
+					else 
+						break;
+				}
+				mes "[Guarda Kay]";
+				if (.@where_village == 1)
+					mes "Destino é Prontera. O número de série é " + .@input + ". Está certo?";
+				else if (.@where_village == 2)
+					mes "Destino é Geffen. Ufa! É muito longe! O número de série é "+.@input+". Está certo?";
+				else if (.@where_village == 3)
+					mes "Destino é Morocc. Voc? ir? ir longe! O número de série é "+.@input+". Está certo?";
+				else
+					mes "Boa sorte! Seu destino é a Ilha de Byalan. O número de série é "+.@input+". Está certo?";
+				next;
+				if (select("Certo.:Opa! Número errado!") == 1) {
+					break;
+				}
+			}
+			if (.@where_village == 1) {
+				if (job_merchant_q2 == 1 && .@input == 2485741)
+					getitem 1081,1; // Caixa de Entrega
+				else if (job_merchant_q2 == 2 && .@input == 2328137)
+					getitem 1082,1; // Caixa de Entrega
+				else
+					getitem 1091,1; // Caixa de Entrega
+			}
+			else if (.@where_village == 2) {
+				if (job_merchant_q2 == 3 && .@input == 2989396)
+					getitem 1081,1; // Caixa de Entrega
+				else if (job_merchant_q2 == 4 && .@input == 2191737)
+					getitem 1082,1; // Caixa de Entrega
+				else
+					getitem 1091,1; // Caixa de Entrega
+			}
+			else if (.@where_village == 3) {
+				if (job_merchant_q2 == 5 && .@input == 3012685)
+					getitem 1081,1; //Caixa de Entrega
+				else if (job_merchant_q2 == 6 && .@input == 3487372)
+					getitem 1082,1; //Caixa de Entrega
+				else
+					getitem 1091,1; // Caixa de Entrega
+			}
+			else {
+				if (job_merchant_q2 == 7 && .@input == 3318702)
+					getitem 1081,1; // Caixa de Entrega
+				else if (job_merchant_q2 == 8 && .@input == 3543625)
+					getitem 1082,1; // Caixa de Entrega
+				else
+					getitem 1091,1; // Caixa de Entrega
+			}
+			if (job_merchant_q == 2)
+				set job_merchant_q,4;
+			else if (job_merchant_q == 1)
+				set job_merchant_q,3;
+			mes "[Guarda Kay]";
+			mes "Tudo bem. Pegue esse pacote e guarde-o com você até que seja entregue com segurança ao cliente. Não perca o pacote, entendeu?";
+			next;
+			mes "[Guarda Kay]";
+			mes "Pois bem, desejo-lhe sorte. Lembre-se, você tem que me trazer";
+			mes "um recibo depois de terminar a entrega, ok?";
+			close;
+		case 2:
+			mes "[Guarda Kay]";
+			mes "Trabalho parcial? Desculpe amigo, não temos nada para oferecer ainda...";
+			close;
+		case 3:
+			mes "[Guarda Kay]";
+			mes "Nada, né?";
+			mes "Eu acho que você gosta";
+			mes "de incomodar as pessoas";
+			mes "sem nenhuma razão, né?";
+			close;
+		}
+	}
+}
+
+morocc_in,140,102,4	script#pre	Estudante de Tintas#mer	86,{
+	if ((job_merchant_q == 4) || (job_merchant_q == 3)) {
+		mes "[Estudante de Tintas]";
+		mes "Você é da";
+		mes "Guilda dos Mercadores?";
+		mes "Sim! Você veio ao";
+		mes "lugar certo.";
+		next;
+		mes "[Estudante de Tintas]";
+		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
+			mes "Ok~";
+			mes "Coloque o";
+			mes "pacote aqui";
+			mes "para mim.";
+		} else {
+			mes "Mas...";
+			mes "Onde está o";
+			mes "pacote que eu pedi?";
+			mes "Que estranho...";
+			close;
+		}
+		next;
+		mes "[Estudante de Tintas]";
+		mes "Deixe-me verificar o número de série do pacote para que eu possa te dar o recebo.";
+		next;
+		mes "[Estudante de Tintas]";
+		if (job_merchant_q2 == 5 && countitem(1081) != 0) {
+			mes "3012685...";
+			mes "Isso mesmo.";
+			mes "Aqui está seu";
+			mes "recibo.";
+			delitem 1081,1; // Caixa de Entrega
+			getitem 1077,1; // Recibo de Entrega
+		} else if (job_merchant_q2 == 6 && countitem(1082) != 0) {
+			mes "3487372...";
+			mes "Isso mesmo.";
+			mes "Aqui está seu";
+			mes "recibo.";
+			delitem 1082,1; //Merchant_Box_2
+			getitem 1078,1; //Merchant_Voucher_6
+		} else {
+			mes "Desculpe-me, mas...";
+			if (job_merchant_q2 == 5) mes "Eu acho que este não é o pacote que pedimos. O número de série deve ser 3012685. Entende?";
+			else if (job_merchant_q2 == 6) mes "Eu acho que este não é o pacote que pedimos. O número de série deve ser 3487372. Entende?";
+			else mes "Eu acho que este não é o pacote que pedimos. O número de série deve ser 3012685 ou 3487372. Bom, um dos dois...";
+			close;
+		}
+		if (job_merchant_q == 4) set job_merchant_q,6;
+		else if (job_merchant_q == 3) set job_merchant_q,5;
+		next;
+		mes "[Estudante de Tintas]";
+		mes "Muito obrigado!";
+		mes "Espero te ver";
+		mes "algum dia.";
+		close;
+	} else if (job_merchant_q == 6 || job_merchant_q == 5 && job_merchant_q2 == 6 || job_merchant_q2 == 5) {
+		mes "[Estudante de Tintas]";
+		mes "Ah...";
+		mes "Você vai";
+		mes "voltar? Ok,";
+		mes "tenha cuidado!";
+		close;
+	} else {
+		mes "[Estudante de Tintas]";
+		mes "Mr. Java Dullihan é o primeiro e único melhor fabricante de tintura no continente de Rune-Midgard.";
+		next;
+		mes "[Estudante de Tintas]";
+		mes "Eeeeee eu tenho orgulho de dizer que sou seu aluno! Algum dia, eu realmente serei capaz de fazer lindas tinturas!";
+		next;
+		mes "[Estudante de Tintas]";
+		mes "Claro, eu estou aprendendo o básico agora, mas um dia...";
+		close;
+	}
+}
+
+geffen_in,155,122,4	script#pre	Funcionário#mer	47,{
+	if (job_merchant_q == 4 || job_merchant_q == 3) {
+		mes "[Funcionário]";
+		mes "Ah, você deve estar com a Guilda dos Mercadores. Finalmente, o meu pacote chegou! Beleza...!";
+		next;
+		mes "[Funcionário]";
+		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
+			mes "Você deve estar ";
+			mes "muito cansado de ter que";
+			mes "viajar neste tipo de";
+			mes "clima...";
+		} else {
+			mes "Espere...";
+			mes "Onde está";
+			mes "o pacote?";
+			close;
+		}
+		next;
+		mes "[Funcionário]";
+		mes "Certo, deixe-me";
+		mes "checar o número de série...";
+		if (job_merchant_q2 == 3 && countitem(1081) != 0) {
+			mes "2989396. Sim, é isso que nós pedimos. Aqui está seu recibo.";
+			delitem 1081,1; // Caixa de Entrega
+			getitem 1075,1; // Recibo de Entrega
+		} else if (job_merchant_q2 == 4 && countitem(1082) != 0) {
+			mes "2191737. Sim, é isso que nós pedimos. Aqui está seu recibo.";
+			delitem 1082,1; // Caixa de Entrega
+			getitem 1076,1; // Recibo de Entrega
+		} else {
+			mes "Esse número está errado. Esse não é o que nós pedimos ...";
+			next;
+			mes "[Funcionário]";
+			if (job_merchant_q2 == 3) {
+				mes "O número de série";
+				mes "é 2989396.";
+			} else if (job_merchant_q2 == 4) {
+				mes "O número de série";
+				mes "é 2191737.";
+			} else {
+				mes "O número de série";
+				mes "é 2989396";
+				mes "ou 2191737, um";
+				mes "dos dois.";
+			}
+			mes "Olha aqui!";
+			mes "Você não vê";
+			mes "que está";
+			mes "errado?";
+			close;
+		} if (job_merchant_q == 4)
+			set job_merchant_q,6;
+		else if (job_merchant_q == 3)
+			set job_merchant_q,5;
+		next;
+		mes "[Funcionário]";
+		mes "Heheh~";
+		mes "Obrigado!";
+		mes "Tchau tchau!";
+		close;
+	} else if (job_merchant_q == 6 || job_merchant_q == 5 && job_merchant_q2 == 4 || job_merchant_q2 == 3) {
+		mes "[Funcionário]";
+		mes "Olá,";
+		mes "Mercador da Guilda~";
+		mes "Eu dou-lhe os meus agradecimentos.";
+		close;
+	} else {
+		mes "[Funcionário]";
+		mes "Meu pacote já deveria ter chegado. Hã. Eu acho que esses Mercadores estão um pouco lerdos...";
+		close;
+	}
+}
+
+prontera,248,42,0	script#pre	Funcionária Kafra#mer	116,{
+	cutin "kafra_02",2;
+	if (job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 2 || job_merchant_q2 == 1) {
+		mes "[Funcionária Kafra]";
+		mes "Ah! Obrigada por você";
+		mes "viajar tão longe para";
+		mes "vir até aqui~";
+		close2;
+		cutin "",255;
+		end;
+	} else if (job_merchant_q == 4 || job_merchant_q == 3) {
+		mes "[Funcionária Kafra]";
+		mes "Uma entrega da";
+		mes "Guilda dos Mercadores?";
+		mes "Ah, sim, deixe-me ver";
+		mes "se está tudo correto...";
+		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
+			mes "Você deve estar muito cansado";
+			mes "depois de carregar essas coisas por tanto tempo!";
+		} else {
+			mes "E-espere. Você não trouxe o pacote?";
+			mes "Onde está o pacote?";
+			close2;
+			cutin "",255;
+			end;
+		}
+		next;
+		mes "[Funcionária Kafra]";
+		mes "Agora, deixe-me";
+		mes "checar o número de série...";
+		if (job_merchant_q2 == 1 && countitem(1081) != 0) {
+			mes "2485741. Certo, esse é";
+			mes "o que pedimos. Ah,";
+			mes "não se esqueça do recibo!";
+			next;
+			delitem 1081,1; // Caixa de Entrega
+			getitem 1073,1; // Recibo de Entrega
+		} else if (job_merchant_q2 == 2 && countitem(1082) != 0) {
+			mes "2328137. Certo, esse é";
+			mes "necessário. Ah,";
+			mes "não se esqueça do recibo!";
+			next;
+			delitem 1082,1; // Caixa de Entrega
+			getitem 1074,1; // Recibo de Entrega
+		} else {
+			mes "Humm? Espere um pouco. Esse";
+			mes "é o pacote errado. O que";
+			if (job_merchant_q2 == 1) mes "eu pedi o número de série é 2485741. Tenho certeza de que não é esse.";
+			else if (job_merchant_q2 == 2) mes "eu pedi o número de série é 2328137. Tenho certeza de que não é esse.";
+			else
+				mes "eu pedi o número de série é 2328137 ou 2328137.";
+			next;
+			mes "[Funcionária Kafra]";
+			mes "Estou com medo,";
+			mes "algum problema deve";
+			mes "ter ocorrido. Talvez";
+			mes "você tenha que voltar";
+			mes "à Guilda dos Mercadores para";
+			mes "resolver essa situação?";
+			close2;
+			cutin "",255;
+			end;
+		} if (job_merchant_q == 4)
+			set job_merchant_q,6;
+		else if (job_merchant_q == 3)
+			set job_merchant_q,5;
+		mes "[Funcionária Kafra]";
+		mes "Obrigado novamente";
+		mes "por ter resolvido";
+		mes "essa situação~";
+		close2;
+		cutin "",255;
+		end;
+	} else {
+		mes "[Funcionária Kafra]";
+		mes "Bem vindo à";
+		mes "Corporação Kafra,";
+		mes "onde nossos serviços";
+		mes "estão sempre ao seu lado~";
+		next;
+		mes "[Funcionária Kafra]";
+		mes "Como você pode ver, a";
+		mes "Assossiação dos Espadachins";
+		mes "se mudou para Izlude, a";
+		mes "cidade satélite de Prontera.";
+		mes "Por isso, oferecemos o Serviço";
+		mes "de Teletransporte para Izlude por 600 Zeny.";
+		next;
+		if (select("Usar:Cancelar") == 1) {
+			if (Zeny < 600) {
+				mes "[Funcionária Kafra]";
+				mes "Me desculpe, mas você";
+				mes "não tem zeny suficiente";
+				mes "para utilizar o Serviço de Teletransporte.";
+				close2;
+				cutin "",255;
+				end;
+			}
+			set zeny,zeny-600;
+			set RESRVPTS, RESRVPTS + 37;
+			cutin "",255;
+			warp "izlude",94,103;
+			end;
+		}
+		close2;
+		cutin "",255;
+		end;
+}
+}
+
+function	script	F_MercKafra {
+	if ((job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 8 || job_merchant_q2 == 7)) {
+		mes "[Funcionária Kafra]";
+		mes "Olá~";
+		mes "Hm, tem alguma";
+		mes "razão especial por";
+		mes "você estar aqui?";
+		close2;
+		cutin "",255;
+		end;
+	} else if (job_merchant_q == 4 || job_merchant_q == 3) {
+		mes "[Funcionária Kafra]";
+		mes "Uma entrega da";
+		mes "Guilda dos Mercadores?";
+		mes "Ah, sim, deixe-me ver";
+		mes "se está tudo correto...";
+		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
+			mes "Você deve estar muito cansado";
+			mes "depois de carregar essas coisas por tanto tempo!";
+		} else {
+			mes "E-espere. Você não trouxe o pacote?";
+			mes "Onde está o pacote?";
+			close2;
+			cutin "",255;
+			end;
+		}
+		next;
+		mes "[Funcionária Kafra]";
+		mes "Agora, deixe-me";
+		mes "checar o número de série...";
+		if (job_merchant_q2 == 7 && countitem(1081)) {
+			mes "3318702. Certo, esse é";
+			mes "o que pedimos. Ah,";
+			mes "não se esqueça do recibo!";
+			delitem 1081,1; // Caixa de Entrega
+			getitem 1079,1; // Recibo de Entrega
+		} else if (job_merchant_q2 == 8 && countitem(1082)) {
+			mes "3543625. Certo, esse é";
+			mes "o que pedimos. Ah,";
+			mes "não se esqueça do recibo!";
+			delitem 1082,1; // Caixa de Entrega
+			getitem 1080,1; // Recibo de Entrega
+		} else {
+			mes "Hmmm? Espere um pouco. Esse";
+			mes "é o pacote errado. O que";
+			mes "eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
+			close2;
+			cutin "",255;
+			end;
+		}
+		if (job_merchant_q == 4) set job_merchant_q,6;
+		else if (job_merchant_q == 3) set job_merchant_q,5;
+		next;
+		if (countitem(1072) && !quest_alb_01) {
+			select("Isto é do Chefe Mansur da Guilda dos Mercadores...");
+			delitem 1072,1; // Mensagem ( Envelope de Entrega )
+			set quest_alb_01,1;
+			mes "[Funcionária Kafra]";
+			mes "Ah~! Uma carta de";
+			mes "Mansur! Muito";
+			mes "obrigado, estava morrendo";
+			mes "de vontade de ouvi-lo. Como é que";
+			mes "ele está, ele está bem?";
+			mes "Eu não posso esperar para lê-la...";
+			next;
+			mes "[Funcionária Kafra]";
+			mes "Ah, muito obrigado";
+			mes "por passar por todos";
+			mes "esses problemas para entregar";
+			mes "isso para mim. Isso não é nada";
+			mes "especial, mas por favor, leve-o.";
+			mes "Bem, vejo você de novo~";
+			getitem 513,3; //Banana
+		} else {
+			mes "[Funcionária Kafra]";
+			mes "Obrigado novamente";
+			mes "por passar por todos";
+			mes "esses problemas~";
+		}
+		close2;
+		cutin "",255;
+		end;
+	}
+	return;
+}

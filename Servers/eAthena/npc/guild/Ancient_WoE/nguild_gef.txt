@@ -1,0 +1,139 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Geffen)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Geffen Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
+//============================================================
+
+// Guild Flag (Outside Castle)
+//============================================================
+prontera,160,232,4	script	Repherion#ng1-2	722,{
+	set .@GID, GetCastleData("nguild_gef",1);
+	if (.@GID == 0) {
+		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
+		mes " ";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+	}
+	else {
+		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Following the ordinance of the";
+		mes "Divine Rune Midgard Kingdom,";
+		mes "we approve that this place is in";
+		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes " ";
+		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "If there is anyone who objects to this,";
+		mes " prove your strength and honor with a steel blade in your hand.";
+	}
+	if( !class2ancientwoe() )
+		close;
+
+	next;
+	mes "Brave ones...";
+	if( getcharid(2) == .@GID )
+	{
+		mes "Do you wish to return to your honorable place?";
+		next;
+		switch( select("Return to the Emperium Room:Return to the Castle Entrance:Quit.") )
+		{
+		case 1: if( getcharid(2) == GetCastleData("nguild_gef",1) )
+			{
+				warp "nguild_gef",83,47;
+				end;
+			}
+			close;
+		case 2: warp "nguild_gef",34,140;
+			end;
+		case 3:	close;
+		}
+	}
+	else
+	{
+		mes "Do you wish to attack this honorable place?";
+		next;
+		switch( select("Return to the Castle Entrance:Quit.") )
+		{
+		case 1: warp "nguild_gef",34,140;
+			end;
+		case 2:	close;
+		}
+	}
+	end;
+
+OnRecvCastleNG01:
+	FlagEmblem GetCastleData("nguild_gef",1);
+	end;
+}
+
+// Guild Flag (Inside Castle)
+//============================================================
+nguild_gef,28,157,4	script	Repherion#ng1-6::Repherion4	722,{
+	end;
+
+OnRecvCastleNG01:
+	FlagEmblem GetCastleData("nguild_gef",1);
+	end;
+}
+
+nguild_gef,22,156,5	duplicate(Repherion4)	Repherion#ng1-7	722
+nguild_gef,68,185,3	duplicate(Repherion4)	Repherion#ng1-8	722
+nguild_gef,17,171,5	duplicate(Repherion4)	Repherion#ng1-9	722
+nguild_gef,59,16,4	duplicate(Repherion4)	Repherion#ng1-10	722
+nguild_gef,64,16,4	duplicate(Repherion4)	Repherion#ng1-11	722
+
+// AGIT Manager
+//============================================================
+nguild_gef,198,182,0	duplicate(Gld_Agit_Manager)	Agit#nguild_gef	-1
+
+// Steward
+//============================================================
+nguild_gef,40,48,5	duplicate(Gld_Mngr_Template)	Gnahcher#nguild_gef	55
+
+// Guardians
+//============================================================
+nguild_gef,40,48,5	duplicate(Gld_Guard_Template)	Guardian#nguild_gef	-1
+
+// Kafra Staff
+//============================================================
+nguild_gef,84,47,0	duplicate(Gld_Kafra_Template)	Kafra Staff#nguild_gef	117
+
+// Master's Room Exit
+//============================================================
+nguild_gef,152,117,0	script	#switch_NG01	111,{
+	mes " ";
+	mes "There's a small lever. Will you pull it? ";
+	next;
+	if(select("Pull.:Do not.") == 2) close;
+	warp "nguild_gef",40,49;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+nguild_gef,154,112,0	duplicate(Gld_Trea_Protect)	ban_warp#nguild_gef	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+nguild_gef,154,112,0	duplicate(Gld_Trea_Spawn)	Treasure#nguild_gef	-1
+
+// Guild Dungeon Switch
+//============================================================
+nguild_gef,78,84,0	duplicate(Gld_Dun_Template)	#nguild_gef	111

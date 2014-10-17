@@ -1,0 +1,73 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Armazém de Bens Eden                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Acesso ao armazém de Grupos Éden.           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+moc_para01,173,120,0	script	Armazém de Bens#01	111,{
+	mes "Esse é um Gabinete que armazena de bens.";
+	mes "A mensagem está escrita em um pedaço de papel.";
+	next;
+	mes "+ o Armazém é exclusivo +";
+	mes "+ para membros do grupo Eden +";
+	mes "Se você deseja usar esse";
+	mes "gabinete por favor verifique";
+	mes "o seguinte:";
+	next;
+	mes "1.Você é um membro";
+	mes "   do Grupo Eden?";
+	mes "2.Você possui todas";
+	mes "   as habilidades básicas necessárias?";
+	mes "3.A taxa para usar o gabinete é";
+	mes "  ^4d4dff500 zeny^000000!";
+	next;
+	if (countitem(6219) > 0) {
+		mes "Você precisa pagar uma taxa de zenys.";
+		mes "Custo : 500 Zeny ";
+		mes "Você deseja prosseguir?";
+		next;
+		switch(select("Usar o Gabinete.:Cancelar.")) {
+			case 1:
+				if (Zeny > 499) {
+					if (getskilllv("NV_BASIC") < 6) {
+						mes "O gabinete não pode ser utilizado por você.";
+						mes "Talvez eu ainda não esteja qualificado para usar Gabinete.";
+						close;
+					}
+					set Zeny, Zeny - 500;
+					close2;
+					openstorage;
+					end;
+				}
+				mes "Você não possui zeny suficiente.";
+				mes "É preciso de pelo menos 500 zeny para usar o Gabinete.";
+				close;
+			case 2:
+				mes "Vou deixar para uma próxima.";
+				close;
+		}
+	}
+	mes "Eu preciso de um Grupo Eden registrado para permitir o uso do Gabinete.";
+	close;
+}
+
+moc_para01,170,120,0	duplicate(Armazém de Bens#01)	Armazém de Bens#02	111

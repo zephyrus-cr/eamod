@@ -1,0 +1,108 @@
+Index: conf/atcommand_athena.conf
+===================================================================
+--- conf/atcommand_athena.conf	(revision 176)
++++ conf/atcommand_athena.conf	(working copy)
+@@ -1054,6 +1054,12 @@
+ // Command to simulate how others players read you in the current language.
+ say: 99,99
+ 
++// Reloads faction db (and language db)
++reloadfactiondb: 99,99
++
++// Reloads language db
++reloadlangdb: 99,99
++
+ // **********************************************************************************************
+ // eAmod Commands - END
+ // **********************************************************************************************
+Index: conf/msg_athena.conf
+===================================================================
+--- conf/msg_athena.conf	(revision 176)
++++ conf/msg_athena.conf	(working copy)
+@@ -670,5 +670,10 @@
+ 914: This Vending exchange '%s' for Items.
+ 915: You do not have enough '%s' to process the exchange.
+ 916: Vendor cannot receive more '%s'. Transaction failed.
++
++// Faction stuff
++917: Faction Database is reloaded
++918: Language Database is reloaded
++
+ //Custom translations
+ import: conf/import/msg_conf.txt
+Index: src/map/atcommand.c
+===================================================================
+--- src/map/atcommand.c	(revision 176)
++++ src/map/atcommand.c	(working copy)
+@@ -4387,6 +4387,26 @@
+ 	return 0;
+ }
+ 
++ACMD_FUNC(reloadfactiondb)
++{
++	nullpo_retr(-1, sd);
++
++	faction_reload();
++	clif_displaymessage (fd, msg_txt(917)); // Faction DB has been reloaded
++
++	return 0;
++}
++
++ACMD_FUNC(reloadlangdb)
++{
++	nullpo_retr(-1, sd);
++
++	lang_reload();
++	clif_displaymessage (fd, msg_txt(918)); // Language DB has been reloaded
++
++	return 0;
++}
++
+ /*==========================================
+  * @mapinfo [0-3] <map name> by MC_Cameri
+  * => Shows information about the map [map name]
+@@ -11686,6 +11706,8 @@
+ 	{ "reloadstatusdb",    99,99,   0,     atcommand_reloadstatusdb },
+ 	{ "reloadpcdb",        99,99,   0,     atcommand_reloadpcdb },
+ 	{ "reloadmotd",        99,99,   0,     atcommand_reloadmotd },
++	{ "reloadfactiondb",   99,99,	0,	   atcommand_reloadfactiondb },
++	{ "reloadlangdb",	   99,99,	0,	   atcommand_reloadlangdb },
+ 	{ "mapinfo",           99,99,   0,     atcommand_mapinfo },
+ 	{ "dye",               40,40,   0,     atcommand_dye },
+ 	{ "ccolor",            40,40,   0,     atcommand_dye },
+Index: src/map/faction.c
+===================================================================
+--- src/map/faction.c	(revision 176)
++++ src/map/faction.c	(working copy)
+@@ -380,6 +380,17 @@
+ 	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n",count,path);
+ }
+ 
++void faction_reload (void)
++{
++	faction_db_load(true);
++}
++
++void lang_reload (void)
++{
++	lang_db->clear(lang_db,lang_db_clear);
++	sv_readdb(db_path, "lang_db.txt", ',', 3, 2 + (LANG_MAX_WORDS * LANG_MAX_CHARS), LANG_MAX, faction_parse_row_lang);
++}
++
+ void do_init_faction(void)
+ {
+ 	make_crc_table();
+Index: src/map/faction.h
+===================================================================
+--- src/map/faction.h	(revision 176)
++++ src/map/faction.h	(working copy)
+@@ -50,6 +50,9 @@
+ struct lang_data* lang_search(int lang_id);
+ char* lang_convert(char* dst, const char* message, size_t size, int lang_id);
+ 
++
++void faction_reload(void);
++void lang_reload(void);
+ void do_init_faction(void);
+ void do_final_faction(void);
+ 

@@ -1,0 +1,30 @@
+//===== eAthena Script =======================================
+//= War of Emperium Second Edition
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= WoE SE Guild Flags in Juno and Rachel
+//===== Additional Comments: =================================
+//= 1.0 First Version [L0ne_W0lf]
+//============================================================
+
+// Juno
+prt_are02,133,175,5	script	Cyr#arf1::Cyr	722,{
+	end;
+
+OnRecvCastlear01:
+	FlagEmblem GetCastleData("arug_cas02",1);
+	end;
+}
+
+prt_are02,124,166,5	duplicate(Cyr)	Cyr#arf2	722
+prt_are02,166,175,3	duplicate(Cyr)	Cyr#arf3	722
+prt_are02,175,166,3	duplicate(Cyr)	Cyr#arf4	722
+prt_are02,178,156,2	duplicate(Cyr)	Cyr#arf5	722
+prt_are02,178,143,2	duplicate(Cyr)	Cyr#arf6	722
+prt_are02,121,156,6	duplicate(Cyr)	Cyr#arf7	722
+prt_are02,121,143,6	duplicate(Cyr)	Cyr#arf8	722

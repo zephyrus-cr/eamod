@@ -1,0 +1,209 @@
+// Sistema de Hash Check para Cliente - Servidor
+
+Esta modificación activa una protección que hace que tu servidor solamente acepte
+un ejecutable para conectarse al mismo. Si alguien intenta usar otro .exe diferente
+o un .exe modificado, no podrá logear. Util para combatir OpenKore (consola) y
+algunas modificaciones al cliente que no permites en tu comunidad.
+
+// Modificando el Ejecutable, tu cliente:
+
+Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que harás será
+abrir tu .exe y buscar la siguiente cadena hexadecimal:
+
+33C083F906740D
+
+Y vas a reemplazar en esa cadena el 74 por EB para que quede así:
+
+33C083F906EB0D
+
+Esta modificación activa que tu cliente envie el Hash al servidor al logear.
+
+// Modificaciones al Servidor (Actualmente en eAmod-A):
+
+Aca va la parte para que tu servidor entienda el paquete de Hash y lo valide.
+Esta guía indica con ++ lo que hay que agregar, y con -- lo que debes quitar.
+
+Primero abre el archivo socket.h
+
+// @socket.h ************
+
+struct socket_data
+{
+	struct {
+		unsigned char eof : 1;
+		unsigned char server : 1;
+	} flag;
+
+	uint32 client_addr; // remote client address
+
+	uint8 *rdata, *wdata;
+	size_t max_rdata, max_wdata;
+	size_t rdata_size, wdata_size;
+	size_t rdata_pos;
+	time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
+
+	RecvFunc func_recv;
+	SendFunc func_send;
+	ParseFunc func_parse;
+
+++	uint8 hash[32]; // Hash Checker
+
+	void* session_data; // stores application-specific data related to the session
+};
+
+// ************* socket.h
+
+Ahora pasamos al login server, y vamos a abrir el archivo login.c
+
+// @login.c ************
+
+bool ladmin_auth(struct login_session_data* sd, const char* ip);
+struct Login_Config login_config;
+
+int login_fd; // login server socket
+struct mmo_char_server server[MAX_SERVERS]; // char server data
+++bool client_hash_active = false;
+++uint8 client_hash[16];
+
+// Account engines available
+static struct{
+
+// @login.c ************
+
+		case 0x0200:		// New alive packet: structure: 0x200 <account.userid>.24B. used to verify if client is always alive.
+			if (RFIFOREST(fd) < 26)
+				return 0;
+			RFIFOSKIP(fd,26);
+		break;
+
+		// client md5 hash (binary)
+		case 0x0204: // S 0204 <md5 hash>.16B (kRO 2004-05-31aSakexe langtype 0 and 6)
+			if (RFIFOREST(fd) < 18)
+				return 0;
+++			memcpy(session[fd]->hash, RFIFOP(fd,2), 16);
+			RFIFOSKIP(fd,18);
+		break;
+
+		// request client login (raw password)
+		case 0x0064: // S 0064 <version>.L <username>.24B <password>.24B <clienttype>.B
+
+// @login.c ************
+
+			if( sd->passwdenc != 0 && login_config.use_md5_passwds )
+			{
+				login_auth_failed(sd, 3); // send "rejected from server"
+				return 0;
+			}
+
+--			result = mmo_auth(sd);
+++			if( client_hash_active && memcmp(client_hash, session[fd]->hash, 16) != 0 )
+++			{
+++				uint8* hash = session[fd]->hash;
+++				ShowInfo("auth failed: invalid client hash '%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X' from %s (userid=%s).\n",
+++					hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6], hash[7], hash[8], hash[9], hash[10], hash[11], hash[12], hash[13], hash[14], hash[15], ip, sd->userid);
+++				result = 5;// exe not the latest version
+++			} else
+++				result = mmo_auth(sd);
+
+			if( result == -1 )
+				login_auth_ok(sd);
+
+// @login.c ************
+
+		else if(!strcmpi(w1, "dnsbl_servers"))
+			safestrncpy(login_config.dnsbl_servs, w2, sizeof(login_config.dnsbl_servs));
+		else if(!strcmpi(w1, "ip_sync_interval"))
+			login_config.ip_sync_interval = (unsigned int)1000*60*atoi(w2); //w2 comes in minutes.
+++		else if(!strcmpi(w1, "client_hash"))
+++		{
+++			if( strcasecmp(w2, "off") == 0 )
+++				client_hash_active = false;
+++			else
+++			{
+++				uint32 i;
+++				char c;
+++				uint8 x = 0;
+++				bool valid = true;
+++				const char* p = w2;
+++
+++				while( ISSPACE(*p) )
+++					++p;
+++				for( i = 0; valid && i < 32; ++i )
+++				{
+++					c = TOUPPER(*p);
+++					switch( c )
+++					{
+++					case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+++						x = (x<<4) + ((uint8)(c - '0'));
+++						break;
+++					case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
+++						x = (x<<4) + ((uint8)(c - 'A' + 10));
+++						break;
+++					default:
+++						x = x<<4;
+++						valid = false;
+++						break;
+++					}
+++					if( i%2 == 1 )
+++					{// byte completed
+++						client_hash[i/2] = x;
+++						x = 0;
+++					}
+++					++p;
+++				}
+++				if( valid )
+++				{
+++					client_hash_active = true;
+++				}
+++				else
+++				{
+++					ShowError("login_config_read: invalid value '%s' for client_hash in '%s'.\n", w2, cfgName);
+++					client_hash_active = false;
+++				}
+++			}
+++		}
+
+		else if(!strcmpi(w1, "admin_state"))
+			login_config.admin_state = (bool)config_switch(w2);
+		else if(!strcmpi(w1, "admin_pass"))
+
+// @login.c ************
+
+	// server port open & binding
+	login_fd = make_listen_bind(login_config.login_ip, login_config.login_port);
+
+	ShowStatus("The login-server is "CL_GREEN"ready"CL_RESET" (Server is listening on the port %u).\n\n", login_config.login_port);
+	login_log(0, "login server", 100, "login server started");
+
+++	if( client_hash_active == false ) ShowWarning("Client hash check is disabled!\n");
+++
+	return 0;
+}
+
+// ************* login.c
+
+Con esto tendremos listo la modificación de Source, pero queda pendiente
+modificar también las opciones de login_athena.conf para poder estar cambiando el Hash.
+
+// @login_athena.conf ************
+
+++// Client hash.
+++// Set to off to disable.
+++// Set to a 16 byte hash (32 hexadecimal characters) to activate the check.
+++// ex: 00112233445566778899AABBCCDDEEFF
+++client_hash: 00112233445566778899AABBCCDDEEFF
+
+import: conf/inter_athena.conf
+import: conf/import/login_conf.txt
+
+// ************* login_athena.conf
+
+Con estas modificaciones realizadas en tu cliente y en tu servidor, ejecuta el servidor
+e intenta logear con tu cliente. Al principio fallará por que el Hash no es válido, pero
+el mensaje de error te mostrará el Hash del cliente que intenta logear. Copialo y luego lo
+pones en la opcion de client_hash: que pusimos en el último paso.
+
+Suerte. Recuerda que esta guía es un beneficio por el servicio que contrataste.
+No compartas el source a nadie, es tu responsabilidad, pues si cae en manos equivocadas
+podría llegar a lugares como OpenKore y otros, en donde solo buscan dañar los servidores
+buenos de Ragnarok.

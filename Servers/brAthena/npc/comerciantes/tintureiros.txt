@@ -1,0 +1,146 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: tintureiros.txt                        |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Criador de Tinturas.                        |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |  
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+morocc_in,146,99,3	script	Java Dullihan	58,{
+	if ((MaxWeight-Weight) < 200 || checkweight(1201,1) == 0) {
+		mes "- Espere um momento! -";
+		mes "- Atualmente você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor volte novamente -";
+		mes "- após guardar alguns de seus itens no Armazém Kafra. -";
+		close;
+	}
+	mes "[Criador de Tinturas Java Dullihan]";
+	mes "Uau...";
+	mes "É um ótimo dia. Um dia perfeito para se criar Tinturas.";
+	next;
+	switch(select("Conversar:Criar Tinturas:Cancelar")) {
+	case 1:
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Erm, realmente não tenho muito a dizer para você. Mas, se você quiser que eu conte sobre minha vida, poderei fazer isso. É um pouco longa e chata, mas você gostaria de ouvir?";
+		next;
+		if (select("Ouvir:Não ouvir") == 1) {
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Pelo que lembro, meu pai foi quem começou entre nós a fazer Tinturas.. Ele costumava passar inúmeras horas fazendo tinturas de cores diferentes. Até quando minha mãe faleceu ele não parou de fazê-las.";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Em um momento na minha vida, me tornei rebelde e fugi de casa.Eu não queria ser preso e prejudicar os negócios da família, mas também queria experimentar outras coisas.";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "De qualquer forma...";
+			mes "Eventualmente já fazem 15 anos que acabei voltando para minha casa 15 para continuar a tradição de família. Acho que isso realmente está no sangue.";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Percebi algo esses dias, agora eu posso entender meu pai. E o por quê do meu pai ter dedicado toda sua vida a fazer tinturas...";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "No meio de todo desse difícil e tedioso trabalho, provavelmente ele sentiu a magia dessas cores que são passadas através dos sonhos para as pessoas.";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "E foi provavelmente através desses sonhos que ele tentou arduamente fazer tinturas para seus clientes...";
+			next;
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Hehe... Como sei disso? Bem, essa é a maneira que percebo agora. A alguns anos atrás, comecei a ser capaz de ouvir o que as cores diziam...";
+			next;
+			mes "[Criador de Tinturas Java Dullian]";
+			mes "Acredite. Um dia, eu irei conseguir fazer a cor que meu pai queria, mas nunca teve a chance de fazê-la.";
+			close;
+		}
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Ahahahaha...";
+		mes "Bem, já imaginava que ninguém quisesse ouvir minha misera história de Criador de Tinturas. Hahaha....";
+		close;
+
+	case 2:
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Ótimo! Se você quiser a farei para você. Prometo que farei a cor que você quiser. Mas dependendo da cor a taxa em zenys é diferente.";
+		next;
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Por quê? Lembre-se de que existem cores que são fáceis de se fazer e aquelas que exigem mais esforço e trabalho. Por favor, não ache a taxa cara.";
+		next;
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "A cor da tintura é especial, elas são feitas com todo meu coração e alma.";
+		next;
+		switch(select("Tintura Vermelha:Tintura Amarela:Tintura Azul:Tintura Verde:Tintura Laranja:Tintura Violeta:Tintura Branca:Tintura Preta:Cancelar")) {
+		case 1: callsub S_MakeDye,1,1; break;
+		case 2: callsub S_MakeDye,2,1; break;
+		case 3: callsub S_MakeDye,3,2; break;
+		case 4: callsub S_MakeDye,4,3; break;
+		case 5: callsub S_MakeDye,5,4; break;
+		case 6: callsub S_MakeDye,6,4; break;
+		case 7: callsub S_MakeDye,7,4; break;
+		case 8: callsub S_MakeDye,8,4; break;
+		case 9:
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Eeeehhhh!! O quê? Você muda de idéia agora!? É tão lamentável...";
+			close;
+		}
+
+	case 3:
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Não estou me vangloriando ou algo do tipo. Mas eu tenho as habilidades necessárias para se fazer tinturas. Se você precisar delas, por favor venha até mim e eu irei fazê-las para você.";
+		close;
+	}
+
+S_MakeDye:
+	mes "[Criador de Tinturas Java Dullihan]";
+	mes "Hum... Eu irei precisar de "+((getarg(0) == 1) ? "30 Ervas Vermelha" : (getarg(0) == 2) ? "30 Ervas Amarela" : (getarg(0) == 3) ? "20 Ervas Azul" : (getarg(0) == 4) ? "5 Ervas Azuis, 20 Ervas Verde, 20 Ervas Amarela" : (getarg(0) == 5) ? "20 Ervas Vermelha, 20 Ervas Amarela" : (getarg(0) == 6) ? "10 Ervas Azuis, 30 Ervas Vermelha" : (getarg(0) == 7) ? "30 Ervas Brancas" : "30 ervas de cada: Vermelha, Amarela, e Verde")+", 1 Antígeno, "+((getarg(0) == 4 || (getarg(0) == 5 || getarg(0) == 6 || getarg(0) == 8) ? "1 Mistura" : ""))+" e 1 Garrafa Vazia para fazer a Tintura "+((getarg(0) == 1) ? "Vermelha" : (getarg(0) == 2) ? "Amarela" : (getarg(0) == 3) ? "Azul" : (getarg(0) == 4) ? "Verde" : (getarg(0) == 5) ? "Laranja" : (getarg(0) == 6) ? "Violeta" : (getarg(0) == 7) ? "Branca" : "Preta")+". A taxa de criação são apenas "+((getarg(0) == 1) || (getarg(0) == 2) || (getarg(0) == 7) ? "3000" : (getarg(0) == 3) ? "3500" : (getarg(0) == 4) || (getarg(0) == 5) || (getarg(0) == 6) ? "5000" : "7000")+" zeny.";
+	setarray .@item[0],((getarg(0) == 1) ?  507 : (getarg(0) == 2) ? 508 : (getarg(0) == 3) ? 510 : (getarg(0) == 4) ? "510, 511, 508, 974" : (getarg(0) == 5) ? "507, 508, 974" : (getarg(0) == 6) ? "510, 507, 974" : (getarg(0) == 7) ? 509 : "507, 508, 511, 510, 974"), 973, 713;
+	setarray .@count[0],((getarg(0) == 1 || getarg(0) == 2) ?  30 : (getarg(0) == 3) ? 20 : (getarg(0) == 4) ? "5, 20, 20, 1" : (getarg(0) == 5) ? "20, 20, 1" : (getarg(0) == 6) ? "10, 30, 1" : (getarg(0) == 7) ? 30 : "30, 30, 30, 5, 1") , 1, 1;
+	set .@cost,((getarg(0) == 1) || (getarg(0) == 2) || (getarg(0) == 7) ? 3000 : (getarg(0) == 3) ? 3500 : (getarg(0) == 4) || (getarg(0) == 5) || (getarg(0) == 6) ? 5000 : 7000);
+	set .@dyestuff,((getarg(0) == 1) ? 975 : (getarg(0) == 2) ? 976 : (getarg(0) == 3) ? 978 : (getarg(0) == 4) ? 979 : (getarg(0) == 5) ? 980 : (getarg(0) == 6) ? 981 : (getarg(0) == 7) ? 982 : 983);
+	next;
+	if (getarg(1) && getarg(1) < 5) {
+	mes "[Criador de Tinturas Java Dullihan]";
+	mes "Ah! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?";
+	next;
+	if (select("Criar Tinturas:Cancelar") == 1) {
+		for( set .@i,0 ; .@i < getarraysize(.@item); set .@i,.@i+1 )
+			if( countitem(.@item[.@i]) < .@count[.@i] )
+				break;
+		if( .@i < getarraysize(.@item) || Zeny < .@cost ) {
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Humm. Não é o suficiente...";
+			mes "Não acho que serei capaz de fazer a cor que você deseja apenas com esses materiais. Por que você não consegue mais alguns materiais...?";
+			close;
+		}
+		for (set .@i, 0; .@i < getarraysize(.@item); set .@i, .@i+1)
+			delitem .@item[.@i], .@count[.@i];
+		set zeny,zeny-.@cost;
+		getitem .@dyestuff,1;
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Hum... Ela ficou muito boa. Uma cor muito rica. E é claro que é mais difícil de se fazer uma cor mais charmosa como essa...";
+		next;
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Bem, então. Venha sempre aqui caso precise de mais tinturas.";
+		close;
+	}
+	}
+	mes "[Criador de Tinturas Java Dullihan]";
+	mes "Eeeehhhh!! O quê??";
+	mes "Você muda de idéia agora!? É tão lamentável...";
+	return;
+}

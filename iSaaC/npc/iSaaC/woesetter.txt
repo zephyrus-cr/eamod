@@ -1,0 +1,464 @@
+
+// MapFlags - Castle Configurations
+// ========================================
+
+aldeg_cas01	mapflag	woe_set	2
+aldeg_cas02	mapflag	woe_set	2
+aldeg_cas03	mapflag	woe_set	2
+aldeg_cas04	mapflag	woe_set	2
+aldeg_cas05	mapflag	woe_set	2
+
+gefg_cas01	mapflag	woe_set	2
+gefg_cas02	mapflag	woe_set	2
+gefg_cas03	mapflag	woe_set	2
+gefg_cas04	mapflag	woe_set	2
+gefg_cas05	mapflag	woe_set	2
+
+payg_cas01	mapflag	woe_set	2
+payg_cas02	mapflag	woe_set	2
+payg_cas03	mapflag	woe_set	2
+payg_cas04	mapflag	woe_set	2
+payg_cas05	mapflag	woe_set	2
+
+prtg_cas01	mapflag	woe_set	2
+prtg_cas02	mapflag	woe_set	2
+prtg_cas03	mapflag	woe_set	2
+prtg_cas04	mapflag	woe_set	2
+prtg_cas05	mapflag	woe_set	2
+
+// WoE SE
+
+schg_cas01	mapflag	woe_set	2
+schg_cas02	mapflag	woe_set	2
+schg_cas03	mapflag	woe_set	2
+schg_cas04	mapflag	woe_set	2
+schg_cas05	mapflag	woe_set	2
+arug_cas01	mapflag	woe_set	2
+arug_cas02	mapflag	woe_set	2
+arug_cas03	mapflag	woe_set	2
+arug_cas04	mapflag	woe_set	2
+arug_cas05	mapflag	woe_set	2
+
+//============================================================ 
+sec_in02,20,20,20	script	WoE Setter	806,{
+
+
+	mes "[Woe Setter]";
+	if(getgmlevel()<99) goto L_NotGM;
+	mes "Hola soy el que maneja el horario";
+	mes "de WoE";
+	next;
+	mes "[Woe Setter]";
+	mes "En que puedo ayudarte?";
+	next;
+	menu "Agregar Horario de Woe",L_Add,"Reiniciar Horarios de Woe",L_Reset,"Ver Horarios de WoE",-;
+	mes "[Woe Setter]";
+	mes "Esta es la informacion las proximas WoE:-";
+	set @num,0;
+
+
+	
+
+
+
+L_LoopList:
+
+	if($castle[@num]==1) { set $@tempcastle$,"Neuschwanstein"; }
+	if($castle[@num]==2) { set $@tempcastle$,"Hohenschwangau"; }
+	if($castle[@num]==3) { set $@tempcastle$,"Nuenberg"; }
+	if($castle[@num]==4) { set $@tempcastle$,"Wuerzburg"; }
+	if($castle[@num]==5) { set $@tempcastle$,"Rothenburg"; }
+	if($castle[@num]==6) { set $@tempcastle$,"Repherion"; }
+	if($castle[@num]==7) { set $@tempcastle$,"Eeyolbriggar"; }
+	if($castle[@num]==8) { set $@tempcastle$,"Yenelph"; }
+	if($castle[@num]==9) { set $@tempcastle$,"Bergel"; }
+	if($castle[@num]==10) { set $@tempcastle$,"Mersetzdeitz"; }
+	if($castle[@num]==11) { set $@tempcastle$,"Bright Arbor"; }
+	if($castle[@num]==12) { set $@tempcastle$,"Scarlet Palace"; }
+	if($castle[@num]==13) { set $@tempcastle$,"Holy Shadow"; }
+	if($castle[@num]==14) { set $@tempcastle$,"Skared Altar"; }
+	if($castle[@num]==15) { set $@tempcastle$,"Bamboo Grove Hill"; }
+	if($castle[@num]==16) { set $@tempcastle$,"Kriemhild"; }
+	if($castle[@num]==17) { set $@tempcastle$,"Swanhild"; }
+	if($castle[@num]==18) { set $@tempcastle$,"Fadhgridh"; }
+	if($castle[@num]==19) { set $@tempcastle$,"Skoegul";}
+	if($castle[@num]==20) { set $@tempcastle$,"Gondul";}
+
+
+	if($castle[@num]==21) { set $@tempcastle$,"Himinn"; }
+	if($castle[@num]==22) { set $@tempcastle$,"Andlangr"; }
+	if($castle[@num]==23) { set $@tempcastle$,"Vidblainn"; }
+	if($castle[@num]==24) { set $@tempcastle$,"Hljod"; }
+	if($castle[@num]==25) { set $@tempcastle$,"Skidbladnir"; }
+	if($castle[@num]==26) { set $@tempcastle$,"Mardol"; }
+	if($castle[@num]==27) { set $@tempcastle$,"Cyr"; }
+	if($castle[@num]==28) { set $@tempcastle$,"Horn"; }
+	if($castle[@num]==29) { set $@tempcastle$,"Gefn";  }
+	if($castle[@num]==30) { set $@tempcastle$,"Banadis"; }
+
+
+
+	if($sday[@num] == 0 && $eday[@num] == 0 && $woetime[@num] == 0 && $woetime2[@num] == 0) goto L_LoopListEnd;
+	if($sday[@num]==0) set $@tempday$,"Domingo";
+	if($sday[@num]==1) set $@tempday$,"Lunes";
+	if($sday[@num]==2) set $@tempday$,"Martes";
+	if($sday[@num]==3) set $@tempday$,"Miercoles";
+	if($sday[@num]==4) set $@tempday$,"Jueves";
+	if($sday[@num]==5) set $@tempday$,"Viernes";
+	if($sday[@num]==6) set $@tempday$,"Sabado";
+	if($eday[@num]==0) set $@tempday2$,"Domingo";
+	if($eday[@num]==1) set $@tempday2$,"Lunes";
+	if($eday[@num]==2) set $@tempday2$,"Martes";
+	if($eday[@num]==3) set $@tempday2$,"Miercoles";
+	if($eday[@num]==4) set $@tempday2$,"Jueves";
+	if($eday[@num]==5) set $@tempday2$,"Viernes";
+	if($eday[@num]==6) set $@tempday2$,"Sabado";
+	if($eday[@num]==$sday[@num]) mes $@tempday$+" inicia "+$woetime[@num]+":00 termina "+$woetime2[@num]+":00 en "+$@tempcastle$;
+	if($eday[@num]!=$sday[@num]) mes "From "+$@tempday$+" "+$woetime[@num]+":00 till "+$@tempday2$+" "+$woetime2[@num]+":00 en "+$@tempcastle$;
+	set @num,@num+1;
+	goto L_LoopList;
+L_LoopListEnd:
+	close;
+L_Add:
+	set @num,0;
+L_AddLoop:
+	if($sday[@num] == 0 && $eday[@num] == 0 && $woetime[@num] == 0 && $woetime2[@num] == 0) goto L_AddLoopEnd;
+	set @num,@num+1;
+	goto L_AddLoop;
+L_AddLoopEnd: 
+	mes "[Woe Setter]";
+	mes "Selecciona el dia en que quieres que ^FF0000inicie^000000 la woe?";
+	next;
+	menu "Domingo",-,"Lunes",-,"Martes",-,"Miercoles",-,"Jueves",-,"Viernes",-,"Sabado",-;
+	if(@menu==1) set $sday[@num],0;
+	if(@menu==2) set $sday[@num],1;
+	if(@menu==3) set $sday[@num],2;
+	if(@menu==4) set $sday[@num],3;
+	if(@menu==5) set $sday[@num],4;
+	if(@menu==6) set $sday[@num],5;
+	if(@menu==7) set $sday[@num],6;
+	mes "[Woe Setter]";
+	mes "Ok, define a que hora quieres que ^FF0000inicie^000000";
+	mes "Usa formato 12hr";
+	mes "00 = Midnight";
+	mes "12 = Mid-day";
+	mes "23 = 11pm";
+	next;
+	input @input;
+	if (@input < 0 || @input > 24) goto L_BadNumber;
+	set $woetime[@num],@input;
+	mes "[Woe Setter]";
+	mes "A que hora ^FF0000finaliza^000000 la woe?";
+	next;
+	menu "Mismo dia",-,"Domingo",-,"Lunes",-,"Martes",-,"Miercoles",-,"Jueves",-,"Viernes",-,"Sabado",-;
+	if(@menu==1) set $eday[@num],$sday[@num];
+	if(@menu==2) set $eday[@num],0;
+	if(@menu==3) set $eday[@num],1;
+	if(@menu==4) set $eday[@num],2;
+	if(@menu==5) set $eday[@num],3;
+	if(@menu==6) set $eday[@num],4;
+	if(@menu==7) set $eday[@num],5;
+	if(@menu==8) set $eday[@num],6;
+	mes "[Woe Setter]";
+	mes "Ok, indica a que hora ^FF0000finaliza^000000";
+	mes "Usa formato 24Hrs";
+	mes "00 = Midnight";
+	mes "12 = Mid-day";
+	mes "23 = 11pm";
+	next;
+	input @input;
+	if (@input < 0 || @input > 24) goto L_BadNumber;
+	set $woetime2[@num],@input;
+
+	mes "[Woe Setter]";
+	mes "Ahora indica en que Ciudad quieres que inicie";
+	next;
+	menu "Prontera",prontera,"Geffen",geffen,"Payon",payon,"Aldebaran",aldebaran,"WoE 2.0",woe20;
+
+activar:
+set @activar,1;
+	mes "[Woe Setter]";
+	mes "Ahora indica en que Ciudad quieres que inicie";
+	next;
+	menu "Prontera",prontera,"Geffen",geffen,"Payon",payon,"Aldebaran",aldebaran,"WoE 2.0",woe20;
+
+
+woe20:
+	mes "WoE Setter";
+	mes "Selecciona un Grupo de castillos";
+	next;
+	menu "Schwaltzvalt Guild Castles",schg,"Arunafeltz Guild Castles",arug;
+	set @woe201,1;
+
+prontera:
+	mes "Algun castillo en especifico?";
+	menu "Kriemhild",-,"Swanhild",-,"Fadhgridh",-,"Skoegul",-,"Gondul",-;
+	if(@menu==1) set $castle[@num],16;
+	if(@menu==2) set $castle[@num],17;
+	if(@menu==3) set $castle[@num],18;
+	if(@menu==4) set $castle[@num],19;
+	if(@menu==5) set $castle[@num],20;
+	mes "El castillo fue definido";
+	if(@activar==1) goto awoe;
+close;
+
+geffen:
+	mes "Algun castillo en especifico?";
+	menu "Repherion",-,"Eeyolbriggar",-,"Yenelph",-,"Bergel",-,"Mersetzdeitz",-;
+	if(@menu==1) set $castle[@num],6;
+	if(@menu==2) set $castle[@num],7;
+	if(@menu==3) set $castle[@num],8;
+	if(@menu==4) set $castle[@num],9;
+	if(@menu==5) set $castle[@num],10;
+	mes "El castillo fue definido";
+if(@activar==1) goto awoe;
+
+close;
+
+payon:
+	mes "Algun castillo en especifico?";
+	menu "Bright Arbor",-,"Scarlet Palace",-,"Holy Shadow",-,"Skared Altar",-,"Bamboo Grove Hill",-;
+	if(@menu==1) set $castle[@num],11;
+	if(@menu==2) set $castle[@num],12;
+	if(@menu==3) set $castle[@num],13;
+	if(@menu==4) set $castle[@num],14;
+	if(@menu==5) set $castle[@num],15;
+	mes "El castillo fue definido";
+if(@activar==1) goto awoe;
+close;
+
+aldebaran:
+	mes "Algun castillo en especifico?";
+	menu "Neuschwanstein",-,"Hohenschwangau",-,"Nuenberg",-,"Wuerzburg",-,"Rothenburg",-;
+	if(@menu==1) set $castle[@num],1;
+	if(@menu==2) set $castle[@num],2;
+	if(@menu==3) set $castle[@num],3;
+	if(@menu==4) set $castle[@num],4;
+	if(@menu==5) set $castle[@num],5;
+	mes "El castillo fue definido";
+if(@activar==1) goto awoe;
+close;
+
+schg:
+	mes "En que castillo??";
+	menu "Himinn",-,"Andlangr",-,"Vidblainn",-,"Hljod",-,"Skidbladnir",-;
+	if(@menu==1) set $castle[@num],21;
+	if(@menu==2) set $castle[@num],22;
+	if(@menu==3) set $castle[@num],23;
+	if(@menu==4) set $castle[@num],24;
+	if(@menu==5) set $castle[@num],25;
+	mes "El castillo fue definido";
+if(@activar==1) goto awoe;
+close;
+
+arug:
+	mes "En que castillo??";
+	menu "Mardol",-,"Cyr",-,"Horn",-,"Gefn",-,"Banadis",-;
+	if(@menu==1) set $castle[@num],26;
+	if(@menu==2) set $castle[@num],27;
+	if(@menu==3) set $castle[@num],28;
+	if(@menu==4) set $castle[@num],29;
+	if(@menu==5) set $castle[@num],30;
+	mes "El castillo fue definido";
+if(@activar==1) goto awoe;
+close;
+
+
+
+awoe:
+
+	if($castle[@num]==1) { set $@tempcastle$,"Neuschwanstein"; }
+	if($castle[@num]==2) { set $@tempcastle$,"Hohenschwangau"; }
+	if($castle[@num]==3) { set $@tempcastle$,"Nuenberg"; }
+	if($castle[@num]==4) { set $@tempcastle$,"Wuerzburg"; }
+	if($castle[@num]==5) { set $@tempcastle$,"Rothenburg"; }
+	if($castle[@num]==6) { set $@tempcastle$,"Repherion"; }
+	if($castle[@num]==7) { set $@tempcastle$,"Eeyolbriggar"; }
+	if($castle[@num]==8) { set $@tempcastle$,"Yenelph"; }
+	if($castle[@num]==9) { set $@tempcastle$,"Bergel"; }
+	if($castle[@num]==10) { set $@tempcastle$,"Mersetzdeitz"; }
+	if($castle[@num]==11) { set $@tempcastle$,"Bright Arbor"; }
+	if($castle[@num]==12) { set $@tempcastle$,"Scarlet Palace"; }
+	if($castle[@num]==13) { set $@tempcastle$,"Holy Shadow"; }
+	if($castle[@num]==14) { set $@tempcastle$,"Skared Altar"; }
+	if($castle[@num]==15) { set $@tempcastle$,"Bamboo Grove Hill"; }
+	if($castle[@num]==16) { set $@tempcastle$,"Kriemhild"; }
+	if($castle[@num]==17) { set $@tempcastle$,"Swanhild"; }
+	if($castle[@num]==18) { set $@tempcastle$,"Fadhgridh"; }
+	if($castle[@num]==19) { set $@tempcastle$,"Skoegul";}
+	if($castle[@num]==20) { set $@tempcastle$,"Gondul";}
+
+
+	if($castle[@num]==1) { set $@tempcastle$,"Himinn"; }
+	if($castle[@num]==2) { set $@tempcastle$,"Andlangr"; }
+	if($castle[@num]==3) { set $@tempcastle$,"Vidblainn"; }
+	if($castle[@num]==4) { set $@tempcastle$,"Hljod"; }
+	if($castle[@num]==5) { set $@tempcastle$,"Skidbladnir"; }
+	if($castle[@num]==6) { set $@tempcastle$,"Mardol"; }
+	if($castle[@num]==7) { set $@tempcastle$,"Cyr"; }
+	if($castle[@num]==8) { set $@tempcastle$,"Horn"; }
+	if($castle[@num]==9) { set $@tempcastle$,"Gefn";  }
+	if($castle[@num]==10) { set $@tempcastle$,"Banadis"; }
+
+
+
+
+
+
+
+
+mes "WoE activada en "+$tempcastle$+" mapa: "+ $castillo$[$castle[@num]];
+removemapflag $castillo$[$castle[@num]],mf_blocked;
+
+close;
+
+final:
+
+removemapflag $castillo$[$castle[@num]],mf_blocked;
+close;
+
+
+
+
+
+
+
+	
+
+L_Reset:
+	mes "[Woe Setter]";
+	mes "Deseas reiniciar los horarios de woes creados?";
+	mes "Estas seguro?";
+	next;
+	menu "No, gracias",L_No,"Si, eliminar todos los horarios",-;
+	if(agitcheck()) goto L_WoEOn;
+	deletearray $sday[0],200;
+	deletearray $eday[0],200;
+	deletearray $woetime[0],200;
+	deletearray $woetime2[0],200;	
+	mes "[Woe Setter]";
+	mes "Han sido borrados los horarios";
+	close;
+L_WoEOn:
+	mes "[Woe Setter]";
+	mes "Lo siento, no puedes reiniciar los horarios en WOE";
+	close;
+L_No:
+	mes "[Woe Setter]";
+	mes "Ok, hasta pronto";
+	close;
+L_NotGM:
+	mes "EL horario de woe es: :-";
+	set @num,0;
+	goto L_LoopList;
+	end;
+L_BadNumber:
+	mes "[Woe Setter]";
+	mes "Lo siento, hora incorrecta";
+	close;
+}
+
+
+
+
+-	script	Agit_Event2	-1,{
+end;
+OnInit:
+disablenpc "Agit_Event";
+OnMinute00:
+OnMinute30:
+
+
+// starting time check
+	set $@num,0;
+L_StartLoop:
+	if($sday[$@num] == 0 && $eday[$@num] == 0 && $woetime[$@num] == 0 && $woetime2[$@num] == 0) goto L_StartLoopEnd;
+	if(gettime(4)==$sday[$@num] && gettime(3)>=$woetime[$@num] && (gettime(3)<$woetime2[$@num] || $sday[$@num]!=$eday[$@num])) goto L_Start;
+	set $@num,$@num+1;
+	goto L_StartLoop;
+
+
+// end time checks
+	L_StartLoopEnd:
+	set $@num,0;
+	L_EndLoop:
+	if($eday[$@num] == 0 && $woetime[$@num] == 0 && $woetime2[$@num] == 0) end;
+	if((gettime(4)==$eday[$@num]) && (gettime(3)==$woetime2[$@num])) goto L_End;
+	set $@num,$@num+1;
+	goto L_EndLoop;
+	end;
+
+
+// Stop WoE
+
+L_End:
+if(!agitcheck()) end;
+Announce "La WoE a terminado!",8;
+
+set $castilloactivo,0;
+while($castilloactivo <= 34){
+removemapflag $castillo$[$castilloactivo],mf_blocked;
+set $castilloactivo,$castilloactivo+1;
+}
+
+AgitEnd;
+end;
+
+// Start WoE
+L_Start:
+setarray $castillo$[1], // This array holds all WoE First Edition Castles, starting from index 1
+		"aldeg_cas01",	// 1
+		"aldeg_cas02",	// 2
+		"aldeg_cas03",	// 3
+		"aldeg_cas04",	// 4
+		"aldeg_cas05",	// 5
+		"gefg_cas01",	// 6
+		"gefg_cas02",	// 7
+		"gefg_cas03",	// 8
+		"gefg_cas04",	// 9
+		"gefg_cas05",	// 10
+		"payg_cas01",	// 11
+		"payg_cas02",	// 12
+		"payg_cas03",	// 13
+		"payg_cas04",	// 14
+		"payg_cas05",	// 15
+		"prtg_cas01",	// 16
+		"prtg_cas02",	// 17
+		"prtg_cas03",	// 18
+		"prtg_cas04",	// 19
+		"prtg_cas05",	// 20
+		"schg_cas01",	// 21
+		"schg_cas02",	// 22
+		"schg_cas03",	// 23
+		"schg_cas04",	// 24
+		"schg_cas05",	// 25
+		"arug_cas01",	// 26
+		"arug_cas02",	// 27
+		"arug_cas03",	// 28
+		"arug_cas04",	// 29
+		"arug_cas05",	// 30
+		"nguild_alde",	// 31
+		"nguild_gef",	// 32
+		"nguild_pay",	// 33
+		"nguild_prt";	// 34
+	setarray .Castles_SE_Event$[1], // This array include the Events inside each castle of WoE Second Edition (need to be one on one with the SE Castle Array)
+		"::OnRecvCastleSc01",
+		"::OnRecvCastleSc02",
+		"::OnRecvCastleSc03",
+		"::OnRecvCastleAr01",
+		"::OnRecvCastleAr02",
+		"::OnRecvCastleAr03";
+
+	if(agitcheck()) end;
+	Announce "La WoE a iniciado en el castillo " + $castillo$[$castle[$@num]] + $castle[$@num] + "!",8;
+
+set $castilloactivo,0;
+while($castilloactivo <= 34){
+removemapflag $castillo$[$castilloactivo],mf_blocked;
+set $castilloactivo,$castilloactivo+1;
+}
+
+removemapflag $castillo$[$castle[$@num]],mf_blocked;
+AgitStart $castle[$@num];
+	end;
+}

@@ -1,0 +1,15 @@
+8965#
+A skull of a killed Guillaume Warrior.
+Weight :^777777 0^000000
+^FFA500eAmod Battleground^000000
+#
+8966#
+A skull of a killed Croix Warrior.
+Weight :^777777 0^000000
+^FFA500eAmod Battleground^000000
+#
+8967#
+A skull of a killed Traitor Warrior.
+Weight :^777777 0^000000
+^FFA500eAmod Battleground^000000
+#

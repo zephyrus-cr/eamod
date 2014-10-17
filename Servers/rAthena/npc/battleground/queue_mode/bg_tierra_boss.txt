@@ -1,0 +1,349 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// ==============================================================================
+// BattleGround System - Tierra Bossnia
+// ==============================================================================
+
+// Battleground Engine
+// *********************************************************************
+
+-	script	Tierra_Boss	-1,{
+	end;
+
+OnTeam1Quit:
+OnTeam2Quit:
+	setquest 8506; // Deserter
+	if( $@BG_Status != 0 && getvariableofnpc(.BG_Arena$,"BG_Queue_Join") == "Tierra_Boss" )
+		donpcevent "BG_Queue_Join::OnJoinEvent";
+	end;
+
+OnBuildTeams:
+	set $@BG_Team1,bg_team_create("bat_a03",50,374,0,"Tierra_Boss::OnTeam1Quit","");
+	set $@BG_Team2,bg_team_create("bat_a03",42,16,1,"Tierra_Boss::OnTeam2Quit","");
+	end;
+
+OnReady:
+	if( getvariableofnpc(.BG_Arena$,"BG_Queue_Join") != "Tierra_Boss" )
+		end;
+
+	initnpctimer;
+	set .Team1_Boss, 0;
+	set .Team2_Boss, 0;
+	set .Neutral_Base, 0;
+	sleep 2000;
+	bg_warp $@BG_Team1,"bat_a03",353,344;
+	bg_warp $@BG_Team2,"bat_a03",353,52;
+	sleep 2000;
+	donpcevent "#gtb_respawn::OnBGStart";
+	donpcevent "#ctb_respawn::OnBGStart";
+	bg_updatescore "bat_a03",.Team2_Boss,.Team1_Boss;
+	sleep 3000;
+	donpcevent "Balance_Flag::OnBGStart";
+	donpcevent "Team1_Boss::OnSummon";
+	donpcevent "Team2_Boss::OnSummon";
+	mapannounce "bat_a03","-- Capture Balance Flag to remove inmunity of Enemy Guardians --",1,0x483D8B;
+	end;
+
+OnNeutralReset:
+	set .Neutral_Base, 0;
+	killmonster "bat_a03","Tierra_Boss::OnNeutralBreak";
+	bg_monster_inmunity getvariableofnpc(.Boss,"Team1_Boss"),1;
+	bg_monster_inmunity getvariableofnpc(.Boss,"Team2_Boss"),1;
+	bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	sleep 2000;
+	if( $@BG_Status != 1 || getvariableofnpc(.BG_Arena$,"BG_Queue_Join") != "Tierra_Boss" )
+		end;
+	mapannounce "bat_a03","-- Balance Flag returned to normality --",1,0x483D8B;
+	end;
+
+OnNeutralBreak:
+	if( $@BG_Status != 1 || getvariableofnpc(.BG_Arena$,"BG_Queue_Join") != "Tierra_Boss" )
+		end;
+	set .Neutral_Base, getcharid(4);
+	mapannounce "bat_a03","-- " + bg_get_data(.Neutral_Base,2) + " captured the Balance Flag. Enemy guardian now is vulnerable to attacks!! --",1,bg_get_data(.Neutral_Base,4);
+
+	if( getcharid(4) == $@BG_Team1 )
+	{
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team1_Boss"),1;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team2_Boss"),0;
+		bg_monster .Neutral_Base,"bat_a03",273,204,bg_get_data(.Neutral_Base,2) + " Flag",1912,"Tierra_Boss::OnNeutralBreak";
+	}
+	else if( getcharid(4) == $@BG_Team2 )
+	{
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team1_Boss"),0;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team2_Boss"),1;
+		bg_monster .Neutral_Base,"bat_a03",273,204,bg_get_data(.Neutral_Base,2) + " Flag",1913,"Tierra_Boss::OnNeutralBreak";
+	}
+	else
+	{
+		set .Neutral_Base, 0;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team1_Boss"),1;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Team2_Boss"),1;
+		bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	}
+	end;
+
+OnTimer600000:
+	mapannounce "bat_a03","Battle of Tierra Bossnia will ends in 5 minutes",1,0x483D8B;
+	end;
+OnTimer840000:
+	mapannounce "bat_a03","Battle of Tierra Bossnia will ends in 1 minute",1,0x483D8B;
+	end;
+
+OnTimer900000:
+OnMatchEnd:
+	stopnpctimer;
+	stopnpctimer "Team1_Boss";
+	stopnpctimer "Team2_Boss";
+	donpcevent "#gtb_respawn::OnBGStop";
+	donpcevent "#ctb_respawn::OnBGStop";
+	donpcevent "Balance_Flag::OnBGStop";
+	killmonster "bat_a03","Team1_Boss::OnBoss";
+	killmonster "bat_a03","Team2_Boss::OnBoss";
+	set $@BG_Status, 2;
+	// =======================================================
+	// Team Rewards
+	// =======================================================
+	if( .Team1_Boss < .Team2_Boss )
+	{
+		bg_reward $@BG_Team1,7828,15 + getvariableofnpc(.Team2_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,0;
+		bg_reward $@BG_Team2,7828,10 + getvariableofnpc(.Team1_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,2;
+		mapannounce "bat_a03","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Tierra Bossnia!",1,bg_get_data($@BG_Team1,4);
+	}
+	else if( .Team1_Boss > .Team2_Boss )
+	{
+		bg_reward $@BG_Team1,7828,10 + getvariableofnpc(.Team2_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,2;
+		bg_reward $@BG_Team2,7828,15 + getvariableofnpc(.Team1_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,0;
+		mapannounce "bat_a03","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Tierra Bossnia!",1,bg_get_data($@BG_Team2,4);
+	}
+	else
+	{
+		bg_reward $@BG_Team1,7828,10 + getvariableofnpc(.Team2_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,1;
+		bg_reward $@BG_Team2,7828,10 + getvariableofnpc(.Team1_Boss, "Tierra_Boss"),0,0,"BG_Boss",1,1,1;
+		mapannounce "bat_a03","The battle is over. This is a Tie...!",1,0x483D8B;
+	}
+	// =======================================================
+	set .Neutral_Base, 0;
+	set .Team1_Boss, 0;
+	set .Team2_Boss, 0;
+	donpcevent "BG_Queue_Join::OnRotate";
+	bg_updatescore "bat_a03",.Team2_Boss,.Team1_Boss;
+	end;
+}
+
+-	script	Team1_Boss	-1,{
+	end;
+
+OnSummon:
+	set .@Boss, 2000 + getvariableofnpc(.Team1_Boss, "Tierra_Boss");
+	mapannounce "bat_a03","-- " + bg_get_data($@BG_Team1,2) + " Guardian [" + strmobinfo(2,.@Boss) + "] entering the battle --",1,0x0000FF;
+	set .Boss, bg_monster($@BG_Team1,"bat_a03",176,345,bg_get_data($@BG_Team1,2) + " Guardian",.@Boss,"Team1_Boss::OnBoss");
+	bg_monster_inmunity .Boss,1;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Boss )
+	{
+		bg_monster_reveal .Boss,1,0x0000FF;
+		initnpctimer;
+	}
+	end;
+
+OnBoss:
+	stopnpctimer;
+	bg_monster_reveal .Boss,2,0x0000FF; // Hide Spot
+	set getvariableofnpc(.Team1_Boss, "Tierra_Boss"), getvariableofnpc(.Team1_Boss, "Tierra_Boss") + 1;
+	bg_updatescore "bat_a03",getvariableofnpc(.Team2_Boss,"Tierra_Boss"),getvariableofnpc(.Team1_Boss,"Tierra_Boss");
+	set .Boss, 0;
+	if( getvariableofnpc(.Team1_Boss, "Tierra_Boss") > 4 )
+		donpcevent "Tierra_Boss::OnMatchEnd";
+	else
+	{
+		donpcevent "Tierra_Boss::OnNeutralReset";
+		donpcevent "Team1_Boss::OnSummon";
+	}
+	end;
+}
+
+-	script	Team2_Boss	-1,{
+	end;
+
+OnSummon:
+	set .@Boss, 2000 + getvariableofnpc(.Team2_Boss, "Tierra_Boss");
+	mapannounce "bat_a03","-- " + bg_get_data($@BG_Team2,2) + " Guardian [" + strmobinfo(2,.@Boss) + "] entering the battle --",1,0xFF0000;
+	set .Boss, bg_monster($@BG_Team2,"bat_a03",167,50,bg_get_data($@BG_Team2,2) + " Guardian",.@Boss,"Team2_Boss::OnBoss");
+	bg_monster_inmunity .Boss,1;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Boss )
+	{
+		bg_monster_reveal .Boss,1,0xFF0000;
+		initnpctimer;
+	}
+	end;
+
+OnBoss:
+	stopnpctimer;
+	bg_monster_reveal .Boss,2,0xFF0000; // Hide Spot
+	set getvariableofnpc(.Team2_Boss, "Tierra_Boss"), getvariableofnpc(.Team2_Boss, "Tierra_Boss") + 1;
+	bg_updatescore "bat_a03",getvariableofnpc(.Team2_Boss,"Tierra_Boss"),getvariableofnpc(.Team1_Boss,"Tierra_Boss");
+	set .Boss, 0;
+	if( getvariableofnpc(.Team2_Boss, "Tierra_Boss") > 4 )
+		donpcevent "Tierra_Boss::OnMatchEnd";
+	else
+	{
+		donpcevent "Tierra_Boss::OnNeutralReset";
+		donpcevent "Team2_Boss::OnSummon";
+	}
+	end;
+}
+
+-	script	Balance_Flag	-1,{
+	end;
+
+OnBGStart:
+	viewpointmap "bat_a03",1,273,204,1,0xFFFFFF;
+	bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	viewpointmap "bat_a03",2,273,204,1,0xFFFFFF;
+	killmonster "bat_a03","Tierra_Boss::OnNeutralBreak";
+	end;
+
+OnTimer2000:
+	initnpctimer;
+	set .@NB, getvariableofnpc(.Neutral_Base,"Tierra_Boss");
+	if( .@NB == $@BG_Team1 )
+		viewpointmap "bat_a03",1,273,204,1,bg_get_data($@BG_Team1,4);
+	else if( .@NB == $@BG_Team2 )
+		viewpointmap "bat_a03",1,273,204,1,bg_get_data($@BG_Team2,4);
+	else
+		viewpointmap "bat_a03",1,273,204,1,0xFFFFFF;
+	end;
+}
+
+// MapFlags
+// *********************************************************************
+
+bat_a03	mapflag	battleground	2
+bat_a03	mapflag	nomemo
+bat_a03	mapflag	nosave	SavePoint
+bat_a03	mapflag	noteleport
+bat_a03	mapflag	monster_noteleport
+bat_a03	mapflag	nowarp
+bat_a03	mapflag	nowarpto
+bat_a03	mapflag	noreturn
+bat_a03	mapflag	nobranch
+bat_a03	mapflag	nopenalty
+
+// Other Flags
+// *********************************************************************
+
+bat_a03,148,85,1	duplicate(Base Flag#bg)	Omega Base#tb_1	974
+bat_a03,155,85,1	duplicate(Base Flag#bg)	Omega Base#tb_2	974
+bat_a03,357,75,1	duplicate(Base Flag#bg)	Omega Base#tb_3	974
+bat_a03,348,74,1	duplicate(Base Flag#bg)	Omega Base#tb_4	974
+bat_a03,199,49,1	duplicate(Base Flag#bg)	Omega Base#tb_5	974
+bat_a03,168,16,1	duplicate(Base Flag#bg)	Omega Base#tb_6	974
+bat_a03,138,12,1	duplicate(Base Flag#bg)	Omega Base#tb_7	974
+bat_a03,108,35,1	duplicate(Base Flag#bg)	Omega Base#tb_8	974
+bat_a03,164,308,1	duplicate(Base Flag#bg)	Alpha Base#tb_1	973
+bat_a03,157,308,1	duplicate(Base Flag#bg)	Alpha Base#tb_2	973
+bat_a03,359,327,1	duplicate(Base Flag#bg)	Alpha Base#tb_3	973
+bat_a03,350,326,1	duplicate(Base Flag#bg)	Alpha Base#tb_4	973
+bat_a03,209,344,1	duplicate(Base Flag#bg)	Alpha Base#tb_5	973
+bat_a03,173,380,1	duplicate(Base Flag#bg)	Alpha Base#tb_6	973
+bat_a03,150,380,1	duplicate(Base Flag#bg)	Alpha Base#tb_7	973
+bat_a03,118,357,1	duplicate(Base Flag#bg)	Alpha Base#tb_8	973
+bat_a03,119,336,1	duplicate(Base Flag#bg)	Alpha Base#tb_9	973
+
+// Battleground Therapist
+// *********************************************************************
+
+bat_a03,53,377,3	script	Therapist in battle#tb1	95,{
+	mes "[Therapist in battle]";
+	mes "Just close your eyes, and take a deep breathe.";
+	mes "You can be free from pain.";
+	specialeffect2 312;
+	percentheal 100,100;
+	repairall;
+	close2;
+	openstorage;
+	end;
+}
+
+bat_a03,45,18,3	script	Therapist in battle#tb2	95,{
+	mes "[Therapist in battle]";
+	mes "Just close your eyes, and take a deep breathe.";
+	mes "You can be free from pain.";
+	specialeffect2 312;
+	percentheal 100,100;
+	repairall;
+	close2;
+	openstorage;
+	end;
+}
+
+// Battleground Respawn
+// *********************************************************************
+
+bat_a03,50,374,0	script	#gtb_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_a03",46,370,54,378,100,100;
+	areawarp "bat_a03",46,370,54,378,"bat_a03",354,340;
+	initnpctimer;
+	end;
+}
+
+bat_a03,42,16,0	script	#ctb_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_a03",38,12,47,21,100,100;
+	areawarp "bat_a03",38,12,47,21,"bat_a03",354,57;
+	initnpctimer;
+	end;
+}

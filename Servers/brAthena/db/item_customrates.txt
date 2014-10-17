@@ -1,0 +1,5 @@
+// Item Custom Rate
+// Allow you to configure specific rates for items, ignoring the global drops configuration.
+// ItemID,Drop Rate (100 = 1x),Add Drop Rate (100 = 1x)
+// Example: 1230,1000,0 // Ice pick 10x
+// Example: 12033,0,500 // Bonus Drop per Card of Box of Sunlight at 5x

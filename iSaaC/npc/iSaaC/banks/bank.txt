@@ -1,0 +1,128 @@
+prontera,132,217,5	script	Banco::Banco	109,{
+
+	mes name$; mes "";
+	mes "Hola soy el mejor banco de " + name2$ + " En que te puedo ayudar hoy";
+
+	set .cant,10; 
+	set .cantbattle,12; 
+
+	setarray .@medallasBATTL[1],7828		,7829		,7773				    ;
+	setarray .@medallasBTLCN[1],10		,10		,12				    ;
+
+	setarray .@monedaCSHZNYSN[0],8968		,8969		,8970		  ,	0	    ;
+	setarray .@monedaVALOREAL[0],100000	,50		,50		  ,	10	    ;
+	setarray .@menuPRINCIPAL$[0],"Zeny Coin","Cash Coin",name2$ + " Coin","Battle Ground Badges";
+	setarray .@menuSECUNDARI$[0],"Comprar ","Vender ";
+	
+	 set .@menuprinc$ , "";
+	for ( set .@i , 0; .@i < getarraysize(.@menuPRINCIPAL$); set .@i , .@i + 1 )
+		set .@menuprinc$ , .@menuprinc$ + "^10B2D2 [ > ] ^000000"+ .@menuPRINCIPAL$[ .@i ] + ":";
+	set .@ESCOJIDO1 , select ( .@menuprinc$ );
+	set .@ESCOJIDO1 , .@ESCOJIDO1 - 1;
+
+	if ( .@ESCOJIDO1 == 3 ) {
+		next; mes name$; mes "";
+		mes "^23BC42 [ - ] ^000000 "+getitemname( .@medallasBATTL[1] )+ " : "+.@medallasBTLCN[1]+" ^9A26EECP's^000000";
+		mes "^23BC42 [ - ] ^000000 "+getitemname( .@medallasBATTL[2] )+ " : "+.@medallasBTLCN[2]+" ^9A26EECP's^000000";
+		mes "^23BC42 [ - ] ^000000 "+getitemname( .@medallasBATTL[3] )+ " : "+.@medallasBTLCN[3]+" ^9A26EECP's^000000";
+		set .@medallaESCOJIDA , select (" ^10B2D2 [ > ] ^000000 Cambiar Bravery Badge : ^10B2D2 [ > ] ^000000 Cambiar Valor Badge : ^10B2D2 [ > ] ^000000 Cambiar Battle Badge ");
+		switch ( .@medallaESCOJIDA ) {
+			case 1:
+				next; 
+				mes name$; 	
+				mes "Digite Cantidad a Cambiar ... "; 
+				input .@cant;
+				if ( .@cant <= countitem( .@medallasBATTL[.@medallaESCOJIDA] ) && .@cant != 0 ) 
+				{
+					delitem .@medallasBATTL[.@medallaESCOJIDA] , .@cant;
+					set #CASHPOINTS , #CASHPOINTS + ( .@cant * .@medallasBTLCN[.@medallaESCOJIDA] );
+					close;
+				} else {
+					 mes name$;
+					 mes "NO tienes suficientes Medallas "+getitemname( .@medallasBATTL[.@medallaESCOJIDA] )+" ."; 
+					 close; 
+				}
+			case 2:  
+				next; 
+				mes name$; 
+				mes "Digite Cantidad a Cambiar ... "; 
+				input .@cant;
+				if ( .@cant <= countitem( .@medallasBATTL[.@medallaESCOJIDA] ) && .@cant > 0 ) 
+				{
+					delitem .@medallasBATTL[.@medallaESCOJIDA] , .@cant;
+					set #CASHPOINTS , #CASHPOINTS + ( .@cant * .@medallasBTLCN[.@medallaESCOJIDA] );
+					close;
+				} else {
+					 mes .name$;
+					 mes "NO tienes suficientes Medallas "+getitemname( .@medallasBATTL[.@medallaESCOJIDA] )+" .";
+					 close; 
+				}
+
+			case 3:
+				next; 
+				mes name$; 
+				mes "Digite Cantidad a Cambiar ... "; 
+				input .@cant;
+				if ( .@cant <= countitem( .@medallasBATTL[.@medallaESCOJIDA] ) && .@cant != 0 ) 
+				{
+					delitem .@medallasBATTL[.@medallaESCOJIDA] , .@cant;
+					set #CASHPOINTS , #CASHPOINTS + ( .@cant * .@medallasBTLCN[.@medallaESCOJIDA] );
+					close;
+				} else { 
+					mes .name$;
+					mes "NO tienes suficientes Medallas "+getitemname( .@medallasBATTL[.@medallaESCOJIDA] )+" .";
+					close;
+				}
+		}
+	} else {
+
+		set .@menusecun$, "";
+		for ( set .@i , 0; .@i < getarraysize(.@menuSECUNDARI$); set .@i , .@i + 1 )
+			set .@menusecun$ , .@menusecun$ + "^10B2D2 [ > ] ^000000" + .@menuSECUNDARI$[ .@i ] + .@menuPRINCIPAL$[ .@ESCOJIDO1 ]  + ":";
+		set .@ESCOJIDO2 , select ( .@menusecun$ );
+	
+		input .@cantidad;
+	
+		next; mes name$; mes ""; mes "";
+		mes  .@menuPRINCIPAL$[ .@ESCOJIDO1 ] + "'s ";
+		mes " ^23BC42 [ - ] ^000000 Compra & Venta : ^2363BC" +  .@monedaVALOREAL[ .@ESCOJIDO1 ] +"^000000";	
+		next; mes name$; mes "";
+
+		if (  .@ESCOJIDO1 == 0 && .@ESCOJIDO2 == 1 ) {
+			if ( zeny >= .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1] ) {
+				set zeny , zeny - .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];
+				security_mod_getitem .@monedaCSHZNYSN[.@ESCOJIDO1],.@cantidad;
+			} else { mes "No tienes el zeny suficiente"; close; }
+		} else if ( .@ESCOJIDO1 == 0 && .@ESCOJIDO2 == 2 ) {
+			if ( countitem( .@monedaCSHZNYSN[ .@ESCOJIDO1 ] ) >= .@cantidad  ) {
+				delitem .@monedaCSHZNYSN[ .@ESCOJIDO1 ] , .@cantidad;
+				set zeny , zeny + .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];
+			} else { mes "No tienes las monedas suficientes"; close; }
+		} else if (  .@ESCOJIDO1 == 1 && .@ESCOJIDO2 == 1 ) {
+			if ( #CASHPOINTS >= .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1] ) {
+				set #CASHPOINTS , #CASHPOINTS - .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];
+				security_mod_getitem .@monedaCSHZNYSN[.@ESCOJIDO1], .@cantidad ;
+			} else { mes "No tienes suficientes cashpoints"; close; }
+		} else if (  .@ESCOJIDO1 == 1 && .@ESCOJIDO2 == 2 ) {
+			if ( countitem( .@monedaCSHZNYSN[ .@ESCOJIDO1 ] ) >= .@cantidad ) {	
+				delitem .@monedaCSHZNYSN[ .@ESCOJIDO1 ] , .@cantidad;
+				set #CASHPOINTS , #CASHPOINTS + .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];		
+			} else { mes "No tienes las monedas suficientes"; close; }
+		} else if ( .@ESCOJIDO1 == 2 && .@ESCOJIDO2 == 1 ) {
+			if ( #STEADYPOINTS >= .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1]  ) {
+				set #STEADYPOINTS , #STEADYPOINTS - .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];
+				security_mod_getitem .@monedaCSHZNYSN[.@ESCOJIDO1], .@cantidad ;
+			} else { mes "No tienes los suficientes STEADY points"; }
+		} else if ( .@ESCOJIDO1 == 2 && .@ESCOJIDO2 == 2 ) {	
+			if ( countitem( .@monedaCSHZNYSN[ .@ESCOJIDO1 ] ) >= .@cantidad ) {	
+				delitem .@monedaCSHZNYSN[ .@ESCOJIDO1 ] , .@cantidad;
+				set #STEADYPOINTS , #STEADYPOINTS + .@cantidad * .@monedaVALOREAL[.@ESCOJIDO1];				
+			} else { mes "No tienes las monedas suficientes"; close; }
+		}
+	}
+	close;
+}
+
+izlude,137,221,3	duplicate(Banco)	Banco#1-1	109
+goodev_c02,109,118,3	duplicate(Banco)	Banco#1-2	109
+gonryun,154,120,3	duplicate(Banco)	Banco#1-3	109

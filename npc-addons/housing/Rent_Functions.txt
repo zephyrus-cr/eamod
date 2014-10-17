@@ -1,0 +1,2714 @@
+//===== eAthena Script ======================================= 
+//= Shared Functions - Housing for Rent
+//===== By: ================================================== 
+//= Zephyrus
+//===== Current Version: ===================================== 
+//= 1.0 10399
+//===== Compatible With: ===================================== 
+//= eAthena SVN Stable 
+//===== Description: ========================================= 
+//= Funciones principales aplicables a la mayoria de las 
+//= houses para alquiler. Esto reduce el tamaño de Scripts.
+//===== Additional Comments: ================================= 
+//= 1.0 Versión Inicial
+//============================================================ 
+
+//============================================================ 
+//= Renting Informer
+//============================================================ 
+
+function	script	rent_disponible	{
+	set .@j, getarg(1);
+	set .@k, getarg(1);
+	for (set .@i, 1; .@i <= .@k; set .@i, .@i + 1) {
+		if (getd("$house" + getarg(0) + .@i + "_rent") == 1) set .@j, .@j - 1;
+	}
+	return .@j;
+}
+
+prontera,126,186,0	script	Real Estate Agent::RentMainNPC	833,{
+	mes "[Real Estate Agent]";
+	mes "Interested in visiting the houses for rent?";
+	while( 1 )
+	{
+		next;
+		switch( select("Teleport to a Village: Who are you?: Vacation?: Availability of Homes: Complete") )
+		{
+		case 1:
+			mes "[Real Estate Agent]";
+			mes "Any town you want to travel to?";
+			mes "The cost will be 2,000 zeny.";
+			if( Zeny < 2000 )
+			{
+				mes "Although I do not have enough now.";
+				close;
+			}
+			next;
+			switch( select("Prontera Village:Geffen Village:Morroc Village:Payon Village:Alberta Village:Izlude Village:Aldebaran Village") )
+			{
+			case 1: set Zeny, Zeny - 2000; warp "rent_mb",133,113; break;
+			case 2: set Zeny, Zeny - 2000; warp "rent_md",49,92; break;
+			case 3: set Zeny, Zeny - 2000; warp "rent_mc",49,92; break;
+			case 4: set Zeny, Zeny - 2000; warp "rent_ma",49,92; break;
+			case 5: set Zeny, Zeny - 2000; warp "rent_me",49,92; break;
+			case 6: set Zeny, Zeny - 2000; warp "rent_mf",49,92; break;
+			case 7: set Zeny, Zeny - 2000; warp "rent_mg",49,92; break;
+			}
+			end;
+		case 2:
+			mes "[Real Estate Agent]";
+			mes "I am in charge of finding tenants for rental houses that are in the key cities.";
+			mes "Prontera, Payon, Geffen, Aldebaran, Izlude, Morroc and Alberta";
+			next;
+			mes "[Real Estate Agent]";
+			mes "Any other questions?";
+			break;
+		case 3:
+			mes "[Real Estate Agent]";
+			mes "Yes .. actually some people bought dumps and built several houses for rent.";
+			mes "These houses are located in major scities.";
+			next;
+			mes "[Real Estate Agent]";
+			mes "Want to know where exactly?";
+			while( 1 )
+			{
+				next;
+				switch( select("Location and Fees: Information Houses: Conditions of Contract: Thanks for the information") )
+				{
+				case 1:
+					mes "[Real Estate Agent]";
+					mes "Villas can be found in several cities.";
+					mes "The requirement to rent a house is to have a^0000FFPremium Account^000000";
+					mes "Or you can pay 250.000 Zeny per Week.";
+					mes "Only you can rent a house per account.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Prontera Village.";
+					mes "Direction: Map of the city, on the top left.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Payon Village.";
+					mes "Direction: In Archer Village. go right, just above the statue of Buddha";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Geffen Village.";
+					mes "Direction: Map West of the city, on the top right";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Morroc Village.";
+					mes "Direction: North of the city map, on the top right.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Izlude Village.";
+					mes "Direction: Western Town Map, a little below the entrance to Izlude, and go down the hill near the river.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Alberta Village.";
+					mes "Direction: West City of the Map, on the top right, just a little above the entrance to Alberta.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Aldebaran Village.";
+					mes "Direction: South of the city map, on the top right.";
+					break;
+				case 2:
+					mes "[Real Estate Agent]";
+					mes "All houses have:";
+					mes "Beds for resting";
+					mes "Closet with access to Storage";
+					mes "1 Piano for various themes";
+					mes "Cleaning Services for the room.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Outside the house you can find:";
+					mes "1 Activator/Deactivator of PVP";
+					mes "An apple";
+					mes "Pets";
+					mes "A beautiful garden (white, blue, red, green, yellow herbs)";
+					mes "Option to use Dead Branch";
+					next;
+					mes "[Real Estate Agent]";
+					mes "Over time, we will implement new things";
+					break;
+				case 3:
+					mes "[Real Estate Agent]";
+					mes "It is simple, the condition is that you visit your home and use it.";
+					mes "If you go to your house every now and then, kill the insects that appear on the loose.";
+					next;
+					mes "[Real Estate Agent]";
+					mes "It gets a critter every 2 hours, and if they accumulate 20 of them, you will lose the property because of pests.";
+					mes "Also you can only have one property.";
+					break;
+				case 4:
+					mes "[Real Estate Agent]";
+					mes "I hope I have addressed all your questions.";
+					mes "Go back and talk to me if you need more help.";
+					close;
+				}
+			}
+		case 4:
+			mes "[Real Estate Agent]";
+			mes "Let me check my documents and I will tell you how many houses are available.";
+			next;
+			mes "[Real Estate Agent]";
+			mes "Payon: " + callfunc("rent_disponible","a",22) + " houses.";
+			mes "Prontera: " + callfunc("rent_disponible","b",27) + " houses.";
+			mes "Morroc: " + callfunc("rent_disponible","c",22) + " houses.";
+			mes "Geffen: " + callfunc("rent_disponible","d",22) + " houses.";
+			mes "Alberta: " + callfunc("rent_disponible","e",22) + " houses.";
+			mes "Izlude: " + callfunc("rent_disponible","f",22) + " houses.";
+			mes "Aldebaran: " + callfunc("rent_disponible","g",22) + " houses.";
+			next;
+			mes "[Real Estate Agent]";
+			mes "Any more questions?";
+			break;
+		case 5:
+			mes "[Real Estate Agent]";
+			mes "Have a good day.";
+			close;
+		}
+	}
+	end;
+}
+
+//============================================================ 
+//= Renter
+//============================================================ 
+
+function	script	rent_isrenting	{
+
+	set .@Tick, gettimetick(2);
+	for( set .@i, 1; .@i < 23; set .@i, .@i + 1 )
+	{
+		if( getd("$House_a" + .@i + "_account") == getarg(0) && getd("$House_a" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_b" + .@i + "_account") == getarg(0) && getd("$House_b" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_c" + .@i + "_account") == getarg(0) && getd("$House_c" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_d" + .@i + "_account") == getarg(0) && getd("$House_d" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_e" + .@i + "_account") == getarg(0) && getd("$House_e" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_f" + .@i + "_account") == getarg(0) && getd("$House_f" + .@i + "_expire") > .@Tick )
+			break;
+		if( getd("$House_g" + .@i + "_account") == getarg(0) && getd("$House_g" + .@i + "_expire") > .@Tick )
+			break;
+	}
+
+	if( .@i < 23 ) return 1;
+
+	for( set .@i, 23; .@i < 28; set .@i, .@i + 1 )
+	{
+		if( getd("$House_b" + .@i + "_account") == getarg(0) && getd("$House_b" + .@i + "_expire") > .@Tick )
+			break;
+	}
+
+	if( .@i < 28 ) return 1;
+	
+	return 0; // Not Renting
+}
+
+-	script	BRent_Propietario	-1,{
+
+	if( strnpcinfo(2) == "a" ) { set .@City$, "Payon"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "b" )	{ set .@City$, "Prontera"; set .@Houses, 27; }
+	else if( strnpcinfo(2) == "c" ) { set .@City$, "Morroc"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "d" ) { set .@City$, "Geffen"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "e" ) { set .@City$, "Alberta"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "f" ) { set .@City$, "Izlude"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "g" ) { set .@City$, "Aldebaran"; set .@Houses, 22; }
+	else end;
+	
+	mes "^0000FF[Owner]^000000";
+	mes "Hi, welcome to Villas. ^FF0000" + .@City$ + "^000000.";
+	mes "I am the owner and manager of the properties for rent";
+	mes "Are you interested?";
+	next;
+	switch( select("I want to rent: Information: No thanks") )
+	{
+	case 1:
+		mes "^0000FF[Owner]^000000";
+		mes "Good things it's good!";
+		mes "Want to rent a property, let me check if you qualify.";
+		next;
+		if( callfunc("rent_isrenting",getcharid(3)) == 1 )
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "I see, and you currently own a home.";
+			mes "You cannot rent more than one house on the same account.";
+			close;
+		}
+		
+		mes "^0000FF[Owner]^000000";
+		mes "Everything seems in order.";
+		mes "First, let me ask you some questions";
+		next;
+		
+		if( isPremium() == 0 )
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "Because you don't own a Premium Account...";
+			mes "How many weeks do you want to rent the house?";
+			mes "Week Value : 250.000 zeny";
+			next;
+			set .@RentWeeks, select("1 Week:2 Weeks:3 Weeks:4 Weeks");
+			set .@RentTime, .@RentWeeks * 604800;
+			set .@RentCost, .@RentWeeks * 250000;
+		}
+
+		while(1)
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "What will be your password?";
+			mes "This key allows you to set special options for your home.";
+			next;
+			input .@AdminPass$;
+			mes "^0000FF[Owner]^000000";
+			mes "Selected Key: ^FF0000" + .@AdminPass$ + "^000000";
+			next;
+			if( select("Back to change: That is fine") == 2 )
+				break;
+		}
+		
+		while(1)
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "What is your guest key?";
+			mes "This key allows others to enter the house.";
+			next;
+			input .@GuestPass$;
+			mes "^0000FF[Owner]^000000";
+			mes "Selected Key: ^FF0000" + .@GuestPass$ + "^000000";
+			next;
+			if( select("Back to change: That is fine") == 2 )
+				break;
+		}
+		
+		mes "^0000FF[Owner]^000000";
+		mes "OK, now that I have all the necessary information, are you sure you want to rent?";
+		mes "I hope you've seen the houses on the outside, they are very beautiful..";
+		next;
+		if( select("If you proceed with the rent: No, I regret it...") == 2 )
+		{
+			mes "^0000FF[Ownder]^000000";
+			mes "I understand that it is an important decision";
+			mes "Come back when you're ready.";
+			close;
+		}
+		
+		if( isPremium() == 0 && ( Zeny < .@RentCost || .@RentCost == 0 ) )
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "I am sorry, but you don't have the required Zeny to pay, and you don't own a Premium Account.";
+			mes "Read forums to know about this system.";
+			close;
+		}
+
+		set .@Tick, gettimetick(2);
+		for( set .@i, 1; .@i <= .@Houses; set .@i, .@i + 1 )
+		{ // Looking for a free House to Rent in this village
+			if( getd("$House_" + strnpcinfo(2) + .@i + "_expire") <= .@Tick )
+				break;
+		}
+		
+		if( .@i > .@Houses )
+		{
+			mes "^0000FF[Owner]^000000";
+			mes "Too bad, sorry I wasted your time.";
+			mes "I have no houses available for rent right now.";
+			next;
+			mes "^0000FF[Owner]^000000";
+			mes "Check the sign to find out when will we have houses available again.";
+			close;
+		}
+
+		if( isPremium() )
+		{ // Set Expiration Time
+			set .@RentExpire, #Premium_Tick;
+			set .@RentCost, 0;
+		}
+		else
+			set .@RentExpire, .@Tick + .@RentTime;
+
+		set getd("$House_" + strnpcinfo(2) + .@i + "_expire"), .@RentExpire; // Rental Time
+		set getd("$House_" + strnpcinfo(2) + .@i + "_account"), getcharid(3); // Account_ID
+		set getd("$House_" + strnpcinfo(2) + .@i + "_Owner$"), strcharinfo(0); // Owner Name
+		set getd("$House_" + strnpcinfo(2) + .@i + "_Admin$"), .@AdminPass$; // Admin Password
+		set getd("$House_" + strnpcinfo(2) + .@i + "_Guest$"), .@GuestPass$; // Guest Password
+		set Zeny, Zeny - .@RentCost;
+
+		mes "^0000FF[Owner]^000000";
+		mes "Congratulations, " + strcharinfo(0) + ", You now have a house!";
+		mes "I assigned you the house number^FF0000" + .@i + "^000000.";
+		mes "Enjoy!";
+		close;
+	case 2:
+		mes "^0000FF[Owner]^000000";
+		mes "You can rent a home in any town as long as you have your premium account.";
+		mes "Or you can rent it from 1 to 4 weeks, paying 250.000 Zeny per Week.";
+		next;
+		mes "^0000FF[Owner]^000000";
+		mes "While the house is yours, you can protect it with your password, have key guests and have all their benefits.";
+		next;
+		mes "^0000FF[Owner]^000000";
+		mes "You can only have a rented house for the town that you like.";
+		mes "This system is free.";
+		close;
+	case 3:
+		mes "^0000FF[Owner]^000000";
+		mes "Have a good day, and remember that a home for your activities is very good.";
+		close;
+	}
+}
+
+//============================================================ 
+//= Entrance sign - World
+//============================================================ 
+
+-	script	BRent_SignA	-1,{
+
+	if( strnpcinfo(2) == "a" ) { set .@City$, "Payon"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "b" )	{ set .@City$, "Prontera"; set .@Houses, 27; }
+	else if( strnpcinfo(2) == "c" ) { set .@City$, "Morroc"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "d" ) { set .@City$, "Geffen"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "e" ) { set .@City$, "Alberta"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "f" ) { set .@City$, "Izlude"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "g" ) { set .@City$, "Aldebaran"; set .@Houses, 22; }
+	else end;
+	
+	mes "^FF0000[Villas " + .@City$ + "]^000000";
+	mes " ";
+	mes "^FF0000* The best place to have your home *^000000";
+	mes " ";
+	mes "" + .@Houses + " Rental homes.";
+
+	set .@c, 0;
+	set .@Tick, gettimetick(2);
+
+	for( set .@i, 1; .@i <= .@Houses; set .@i, .@i + 1 )
+	{
+		if( getd("$House_" + strnpcinfo(2) + .@i + "_expire") <= .@Tick )
+			set .@c, .@c + 1;
+	}
+	
+	mes "" + .@c + " available properties.";
+	close;
+}
+
+//============================================================ 
+//= Entrance sign - Rent map
+//============================================================ 
+
+-	script	BRent_SignB	-1,{
+
+	if( strnpcinfo(2) == "a" ) { set .@City$, "Payon"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "b" )	{ set .@City$, "Prontera"; set .@Houses, 27; }
+	else if( strnpcinfo(2) == "c" ) { set .@City$, "Morroc"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "d" ) { set .@City$, "Geffen"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "e" ) { set .@City$, "Alberta"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "f" ) { set .@City$, "Izlude"; set .@Houses, 22; }
+	else if( strnpcinfo(2) == "g" ) { set .@City$, "Aldebaran"; set .@Houses, 22; }
+	else end;
+
+	mes "^0000FF[Villa rentals " + .@City$ + "]^000000";
+	set .@Tick, gettimetick(2);
+	for( set .@i, 1; .@i <= .@Houses; set .@i, .@i + 1 )
+	{
+		mes " ";
+		if( getd("$House_" + strnpcinfo(2) + .@i + "_expire") <= .@Tick )
+			mes "^FF0000Casa Nº " + .@i + "^000000 : (Disponible)";
+		else
+		{
+			mes "^FF0000Casa Nº " + .@i + "^000000 : " + getd("$House_" + strnpcinfo(2) + .@i + "_Owner$") + "";
+			mes "- Ends at " + callfunc("Time2Str",getd("$House_" + strnpcinfo(2) + .@i + "_expire")) + "";
+		}
+	}
+	close;
+}
+
+//============================================================ 
+//= Kafra Service
+//============================================================ 
+
+-	script	BRent_Kafra	-1,{
+
+	if( strnpcinfo(2) == "a" ) { set .@City$, "Payon"; set .@x, 49; set .@y, 92; }
+	else if( strnpcinfo(2) == "b" )	{ set .@City$, "Prontera"; set .@x, 133; set .@y, 113; }
+	else if( strnpcinfo(2) == "c" ) { set .@City$, "Morroc"; set .@x, 49; set .@y, 92; }
+	else if( strnpcinfo(2) == "d" ) { set .@City$, "Geffen"; set .@x, 49; set .@y, 92; }
+	else if( strnpcinfo(2) == "e" ) { set .@City$, "Alberta"; set .@x, 49; set .@y, 92; }
+	else if( strnpcinfo(2) == "f" ) { set .@City$, "Izlude"; set .@x, 49; set .@y, 92; }
+	else if( strnpcinfo(2) == "g" ) { set .@City$, "Aldebaran"; set .@x, 49; set .@y, 92; }
+	else end;
+
+	mes "[Kafra Employee]";
+	mes "Welcome to the";
+	mes "Kafra Corporartion.";
+	mes "The Kafra services";
+	mes "are always on your side.";
+	mes "How may I assist you?";
+	next;
+
+	switch( select("Save","Use Storage","Return to " + .@City$ + "") )
+	{
+	case 1:
+		mes "[Kafra Employee]";
+		mes "Your Respawn Point";
+		mes "has been saved here";
+		mes "Thank you for using";
+		mes "the Kafra Services.";
+		savepoint "rent_m" + strnpcinfo(2) + "",.@x,.@y;
+		close;
+	case 2:
+		mes "[Kafra Employee]";
+		callfunc "F_KafStor",0,60,5;
+		close;
+	case 3:
+		if( strnpcinfo(2) == "a" ) { warp "payon",161,58; }
+		else if( strnpcinfo(2) == "b" )	{ warp "prontera",116,72; }
+		else if( strnpcinfo(2) == "c" ) { warp "morocc",156,46; }
+		else if( strnpcinfo(2) == "d" ) { warp "geffen",120,39; }
+		else if( strnpcinfo(2) == "e" ) { warp "alberta",117,56; }
+		else if( strnpcinfo(2) == "f" ) { warp "izlude",91,105; }
+		else if( strnpcinfo(2) == "g" ) { warp "aldebaran",168,112; }
+		end;
+	}
+}
+
+//============================================================ 
+//= House sign - Rent map
+//============================================================ 
+
+-	script	BRent_SignC	-1,{
+	
+	set .@Tick, gettimetick(2);
+	if( getd("$House_" + strnpcinfo(2) + "_expire") <= .@Tick )
+	{
+		mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+		mes "Available, consult the owner to rent a property.";
+		close;
+	}
+	
+	mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+	mes "Rented by : ^FF0000" + getd("$House_" + strnpcinfo(2) + "_Owner$") + "^000000";
+	mes "During : ^FF0000" + callfunc("Time2Str",getd("$House_" + strnpcinfo(2) + "_expire")) + "^000000";
+	next;
+	switch( select("Sign in:Home Maintenance: Exit") )
+	{
+	case 1:
+		if( getd("$House_" + strnpcinfo(2) + "_account") != getcharid(3) )
+		{
+			input .@AccessPass$;
+			if( .@AccessPass$ != getd("$House_" + strnpcinfo(2) + "_Admin$") && .@AccessPass$ != getd("$House_" + strnpcinfo(2) + "_Guest$") )
+			{
+				mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+				mes " ";
+				mes "^FF0000- Access denied -^000000";
+				close;
+			}
+		}
+
+		if( compare(strnpcinfo(2),"a") ) { warp "rent" + strnpcinfo(2) + "",20,5; }
+		else if( compare(strnpcinfo(2),"b") ) { warp "rent" + strnpcinfo(2) + "",24,6; }
+		else if( compare(strnpcinfo(2),"c") ) { warp "rent" + strnpcinfo(2) + "",20,5; }
+		else if( compare(strnpcinfo(2),"d") ) { warp "rent" + strnpcinfo(2) + "",20,5; }
+		else if( compare(strnpcinfo(2),"e") ) { warp "rent" + strnpcinfo(2) + "",31,19; }
+		else if( compare(strnpcinfo(2),"f") ) { warp "rent" + strnpcinfo(2) + "",20,5; }
+		else if( compare(strnpcinfo(2),"g") ) { warp "rent" + strnpcinfo(2) + "",20,5; }
+		end;
+	case 2:
+		if( getd("$House_" + strnpcinfo(2) + "_account") != getcharid(3) )
+		{
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes "This option is only available to the owner Account of this House.";
+			close;
+		}
+
+		input .@AccessPass$;
+		if( .@AccessPass$ != getd("$House_" + strnpcinfo(2) + "_Admin$") )
+		{
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes " ";
+			mes "^FF0000- Access Denied -^000000";
+			close;
+		}
+		
+		switch( select("Admin Change Password: Change Password Guests: Extend Contract: Evict tenants") )
+		{
+		case 1:
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes "Enter a new password";
+			input .@AdminPass$;
+			mes "The new key is : ^FF0000" + .@AdminPass$ + "^000000";
+			mes "Apply the change?";
+			select( "Change Password" );
+			
+			set getd("$House_" + strnpcinfo(2) + "_Admin$"), .@AdminPass$;
+			mes "Change made. Good day!";
+			close;
+		case 2:
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes "Enter a new Guest Password";
+			input .@GuestPass$;
+			mes "The new key is : ^FF0000" + .@GuestPass$ + "^000000";
+			mes "Apply the change?";
+			select( "Change password" );
+
+			set getd("$House_" + strnpcinfo(2) + "_Guest$"), .@GuestPass$;
+			mes "Change made. Good day!";
+			close;
+		case 3:
+			if( isPremium() == 0 || getd("$House_" + strnpcinfo(2) + "_expire") == #Premium_Tick )
+			{
+				mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+				mes "This service is only if you wish to renew time income if you bought more time ^FF0000Premium Account^000000.";
+				close;
+			}
+
+			set getd("$House_" + strnpcinfo(2) + "_expire"), #Premium_Tick;
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes "The Rent of the house has been extended according to your Premium Account.";
+			close;
+		case 4:
+			maprespawnguildid "rent" + strnpcinfo(2) + "",0,3;
+			maprespawnguildid "rentin" + strnpcinfo(2) + "",0,3;
+
+			mes "^0000FF[House Nº " + strnpcinfo(2) + "]^000000";
+			mes "Tenants who were inside the house have been expelled.";
+			close;
+		}
+	case 3: close;
+	}
+}
+
+//============================================================ 
+//= Apple Tree
+//============================================================ 
+
+-	script	BRent_AppleTree	-1,{
+	if( getd("$@House_" + strnpcinfo(2) + "_apple") > 0 )
+	{
+		set getd("$@House_" + strnpcinfo(2) + "_apple"), getd("$@House_" + strnpcinfo(2) + "_apple") - 1;
+		getitem 512,1;
+		specialeffect2 363;
+	}
+	end;
+
+OnMinute00:
+OnMinute10:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute50:
+
+	if( strnpcinfo(0) == "BRent_AppleTree" || getd("$House_" + strnpcinfo(2) + "_expire") <= gettimetick(2) ) end;
+
+	if( getd("$@House_" + strnpcinfo(2) + "_apple") < 20 )
+		set getd("$@House_" + strnpcinfo(2) + "_apple"), getd("$@House_" + strnpcinfo(2) + "_apple") + 1;
+
+	if( rand(10) < 5 ) end;
+
+	getmapxy .@map$, .@x, .@y, 1;
+	set .@rate, rand(100);
+
+	if( .@rate < 90 )
+		flooritem2xy .@map$, rand(.@x - 2,.@x + 2), rand(.@y - 2,.@y + 2), 520 + rand(2), 1;
+	else
+		flooritem2xy .@map$, rand(.@x - 2,.@x + 2), rand(.@y - 2,.@y + 2), 607 + rand(2), 1;
+	end;
+}
+
+//============================================================ 
+//= PVP Arena
+//============================================================ 
+
+-	script	BRent_PVPSwitch	-1,{
+
+	getmapxy .@map$, .@x, .@y, 1;
+	mes "^0000FF[PVP Switch]^000000";
+	mes " ";
+	mes "^FF0000- This control enables/disables PVP mode on the outside of your home. Handle with care -^000000";
+
+	switch( select("On:Off") )
+	{
+	case 1: pvpon .@map$; close;
+	case 2: pvpoff .@map$; close;
+	}
+}
+
+//============================================================ 
+//= Bed
+//============================================================ 
+
+-	script	BRent_Bed	-1,{
+
+	mes "Take a nap?";
+	if( select("Yes:No") == 2 )
+		close;
+
+	percentheal 100,100;
+	getmapxy .@map$, .@x, .@y, 1;
+
+	if( compare(strnpcinfo(2),"ax") ) { warp .@map$,40,22; }
+	else if( compare(strnpcinfo(2),"ay") ) { warp .@map$,40,22; }
+	else if( compare(strnpcinfo(2),"bx") ) { warp .@map$,7,30; }
+	else if( compare(strnpcinfo(2),"by") ) { warp .@map$,23,31; }
+	else if( compare(strnpcinfo(2),"bz") ) { warp .@map$,30,31; }
+	else if( compare(strnpcinfo(2),"cx") ) { warp .@map$,7,30; }
+	else if( compare(strnpcinfo(2),"cy") ) { warp .@map$,30,32; }
+	else if( compare(strnpcinfo(2),"dx") ) { warp .@map$,33,30; }
+	else if( compare(strnpcinfo(2),"dy") ) { warp .@map$,8,33; }
+	else if( compare(strnpcinfo(2),"ex") ) { warp .@map$,31,32; }
+	else if( compare(strnpcinfo(2),"ey") ) { warp .@map$,8,32; }
+	else if( compare(strnpcinfo(2),"ez") ) { warp .@map$,9,32; }
+	else if( compare(strnpcinfo(2),"fx") ) { warp .@map$,8,32; }
+	else if( compare(strnpcinfo(2),"fy") ) { warp .@map$,17,32; }
+	else if( compare(strnpcinfo(2),"gx") ) { warp .@map$,29,31; }
+	else if( compare(strnpcinfo(2),"gy") ) { warp .@map$,29,31; }
+	else if( compare(strnpcinfo(2),"gz") ) { warp .@map$,32,9; }
+
+	sleep2 2000;
+	emotion e_yawn,1;
+	end;
+}
+
+//============================================================ 
+//= Piano
+//============================================================ 
+
+-	script	BRent_Piano	-1,{
+	
+	mes "^0000FF[Player]^000000";
+	mes "Music Track List:";
+	mes " ";
+	set .@SoundTrack, select("Chaos of Eternity:Bragis Poem:Ring of Nibelungen:Dont Forget Me Not:In To The Abyss:Assassin of Sunset");
+	if( getd("$@House_" + strnpcinfo(2) + "_piano") )
+	{
+		mes "^FF0000- Piano busy... -^000000";
+		close;
+	}
+
+	set getd("$@House_" + strnpcinfo(2) + "_piano"), 1;
+	initnpctimer;
+	getmapxy .@map$, .@x, .@y, 1;
+	switch( .@SoundTrack )
+	{
+	case 1: soundeffectall "chaos_of_eternity.wav",0,.@map$,0,0,50,50; break;
+	case 2: soundeffectall "bragis_poem.wav",0,.@map$,0,0,50,50; break;
+	case 3: soundeffectall "ring_of_nibelungen.wav",0,.@map$,0,0,50,50; break;
+	case 4: soundeffectall "dont_forget_me_not.wav",0,.@map$,0,0,50,50; break;
+	case 5: soundeffectall "in_to_the_abyss.wav",0,.@map$,0,0,50,50; break;
+	case 6: soundeffectall "assassin_of_sunset.wav",0,.@map$,0,0,50,50; break;
+	}
+	
+	mes "^FF0000- Playing... -^000000";
+	close;
+
+OnTimer50000:
+	emotion e_no1;
+	stopnpctimer;
+	set getd("$@House_" + strnpcinfo(2) + "_piano"), 0;
+	end;
+}
+
+//============================================================ 
+//= Storage
+//============================================================ 
+
+-	script	BRent_Storage	-1,{
+	callfunc("F_CheckKafCode");
+	
+	set .@St, 0;
+	mes "Password OK...";
+	if( isPremium() == 1 )
+	{
+		mes "Please chosee the Storage to open?";
+		set .@St, select("Normal Storage","^0000FFPremium Storage^000000") - 1;
+	}
+
+	mes "Close this window to open your storage.";
+	close2;
+	if( @St )
+		openrentstorage;
+	else
+		openstorage;
+	end;
+}
+
+//============================================================ 
+//= Closet
+//============================================================ 
+
+-	script	BRent_Closet	-1,{
+	mes "^0000FF[Closet]^000000";
+	set .@Option, select("Normal:Formal:Abrigo:Verano");
+	
+	sc_end SC_WEDDING;
+	sc_end SC_XMAS;
+	sc_end SC_SUMMER;
+	switch( .@Option )
+	{
+	case 1: break;
+	case 2: sc_start SC_WEDDING,300000,0; break;
+	case 3: sc_start SC_XMAS,300000,0; break;
+	case 4: sc_start SC_SUMMER,300000,0; break;
+	}
+	close;
+}
+
+//============================================================ 
+//= Cleaning Service
+//============================================================ 
+
+function	script	rent_aliceXY	{
+	set .@CP, getarg(0); // Position X o Y Actual
+	set .@DST, rand(1,5); // Walking Distance
+	if (rand(2)) // Directions to take (izq der arr abj)
+		set .@CP, .@CP + .@DST;
+	else
+		set .@CP, .@CP - .@DST;
+	if (.@CP < getarg(1))
+		set .@CP, .@CP + .@DST; // If the new point is less than the minimum
+	if (.@CP > getarg(2))
+		set .@CP, .@CP - .@DST; // If the new point is more than the maximum
+	return .@CP;
+}
+
+-	script	BRent_Alice	-1,{
+	switch( rand(1,5) )
+	{
+	case 1: npctalk "Yes sir, I'm almost done with my work."; break;
+	case 2: npctalk "Want something to drink? maybe you'll find it in the kitchen..."; break;
+	case 3: npctalk "I'm not paid enough for this"; emotion e_pif; break;
+	case 4: npctalk "How lucky am I, I found a few coins"; emotion e_heh; break;
+	case 5: npctalk "This house is a mess"; emotion e_wah; break;
+	}
+	end;
+
+OnInit: npcspeed 100; end;
+
+OnStartCleaning:
+	npctalk "Leave everything tidy!";
+	initnpctimer;
+	end;
+
+OnTimer4000:
+	emotion e_ho;
+	getmapxy .@map$, .@x, .@y, 1;
+	set .@curX, callfunc("rent_aliceXY",.@x,8,35);
+	set .@curY, callfunc("rent_aliceXY",.@y,5,27);
+	npcwalkto .@curX, .@curY;
+	initnpctimer;
+	end;
+
+OnStopCleaning:
+	npctalk "All finished!!";
+	stopnpctimer;
+	end;
+}
+
+//============================================================ 
+//= Cleaning Service Call
+//============================================================ 
+
+-	script	BRent_Call	-1,{
+	mes " ";
+	mes "* biiip biiip *";
+	next;
+	mes "^0000FF[Administrator]^000000";
+	mes "Hello? good day...";
+	mes "Can I help you today?";
+	next;
+	switch( select("Contract Cleaning (5000Z): Hold an Alice now: Food Express") )
+	{
+	case 1:
+		if( getd("$@House_" + strnpcinfo(2) + "_alice") == 1 )
+		{
+			mes "^0000FF[Administrator]^000000";
+			mes "Sorry, but Alice is now at home right now.";
+			mes "Come back if you need something else.";
+			close;
+		}
+		
+		if( Zeny < 5000 )
+		{
+			mes "^0000FF[Administrator]^000000";
+			mes "The cost for cleaning is 5000 zeny.";
+			mes "When you call to request the amount.";
+			close;
+		}
+		
+		set getd("$@House_" + strnpcinfo(2) + "_alice"), 1;
+		set Zeny, Zeny - 5000;
+		enablenpc "Alice#" + strnpcinfo(2) + "";
+		donpcevent "Alice#" + strnpcinfo(2) + "::OnStartCleaning";
+		initnpctimer;
+		
+		mes "^0000FF[Administrator]^000000";
+		mes "We've taken Alice to your house, she will clean the house and clear the bugs.";
+		mes "Have a good day!!";
+		close;
+	case 2:
+		if( getd("$@House_" + strnpcinfo(2) + "_alice") == 0 )
+		{
+			mes "^0000FF[Administrator]^000000";
+			mes "Sorry, but Alice is not at home at this time.";
+			mes "Come back if something else happens.";
+			close;
+		}
+		
+		set getd("$@House_" + strnpcinfo(2) + "_alice"), 0;
+		donpcevent "Alice#" + strnpcinfo(2) + "::OnStopCleaning";
+		disablenpc "Alice#" + strnpcinfo(2) + "";
+		stopnpctimer;
+		
+		mes "^0000FF[Administrator]^000000";
+		mes "We hope that Alice has left her house very clean.";
+		mes "Have a good day!!";
+		close;
+	case 3:
+		mes "^0000FF[Adminstrator]^000000";
+		mes "For now we do not have this service, soon take home delicious dishes and desserts.";
+		close;
+	}
+
+OnInit: 
+	if( strnpcinfo(0) == "BRent_Call" )
+		end;
+	disablenpc "Alice#" + strnpcinfo(2) + "";
+	end;
+
+OnTimer28800000:
+	set getd("$@House_" + strnpcinfo(2) + "_alice"), 0;
+	donpcevent "Alice#" + strnpcinfo(2) + "::OnStopCleaning";
+	disablenpc "Alice#" + strnpcinfo(2) + "";
+	stopnpctimer;
+	end;
+
+OnClock0000:
+OnClock0200:
+OnClock0400:
+OnClock0600:
+OnClock0800:
+OnClock1000:
+OnClock1200:
+OnClock1400:
+OnClock1600:
+OnClock1800:
+OnClock2000:
+OnClock2200:
+	if( strnpcinfo(0) == "BRent_Call" )
+		end;
+
+	if( getd("$House_" + strnpcinfo(2) + "_expire") <= gettimetick(2) )
+		end; // Free House
+
+	if( getd("$@House_" + strnpcinfo(2) + "_alice") == 1 )
+		end; // Alice Cleaning - No spawn
+
+	if( getd("$@House_" + strnpcinfo(2) + "_bugs") >= 25 )
+		end; // Bugs everywhere!!
+
+	monster "rentin" + strnpcinfo(2) + "",0,0,"Thief Bug",1051,1,"Services#" + strnpcinfo(2) + "::OnBugKilled";
+	set getd("$@House_" + strnpcinfo(2) + "_bugs"), getd("$@House_" + strnpcinfo(2) + "_bugs") + 1;
+	end;
+
+OnBugKilled:
+	set getd("$@House_" + strnpcinfo(2) + "_bugs"), getd("$@House_" + strnpcinfo(2) + "_bugs") - 1;
+	end;
+
+}
+
+//============================================================ 
+//= Script MapFlags - Out House
+//============================================================ 
+
+rent_ma	mapflag	noteleport
+rent_ma	mapflag	nopenalty
+rent_ma	mapflag	nobranch
+rent_mb	mapflag	noteleport
+rent_mb	mapflag	nopenalty
+rent_mb	mapflag	nobranch
+rent_mc	mapflag	noteleport
+rent_mc	mapflag	nopenalty
+rent_mc	mapflag	nobranch
+rent_md	mapflag	noteleport
+rent_md	mapflag	nopenalty
+rent_md	mapflag	nobranch
+rent_me	mapflag	noteleport
+rent_me	mapflag	nopenalty
+rent_me	mapflag	nobranch
+rent_mf	mapflag	noteleport
+rent_mf	mapflag	nopenalty
+rent_mf	mapflag	nobranch
+rent_mg	mapflag	noteleport
+rent_mg	mapflag	nopenalty
+rent_mg	mapflag	nobranch
+
+//============================================================ 
+//= Script MapFlags - OutDoor
+//============================================================ 
+
+renta1	mapflag	nomemo
+renta2	mapflag	nomemo
+renta3	mapflag	nomemo
+renta4	mapflag	nomemo
+renta5	mapflag	nomemo
+renta6	mapflag	nomemo
+renta7	mapflag	nomemo
+renta8	mapflag	nomemo
+renta9	mapflag	nomemo
+renta10	mapflag	nomemo
+renta11	mapflag	nomemo
+renta12	mapflag	nomemo
+renta13	mapflag	nomemo
+renta14	mapflag	nomemo
+renta15	mapflag	nomemo
+renta16	mapflag	nomemo
+renta17	mapflag	nomemo
+renta18	mapflag	nomemo
+renta19	mapflag	nomemo
+renta20	mapflag	nomemo
+renta21	mapflag	nomemo
+renta22	mapflag	nomemo
+rentb1	mapflag	nomemo
+rentb2	mapflag	nomemo
+rentb3	mapflag	nomemo
+rentb4	mapflag	nomemo
+rentb5	mapflag	nomemo
+rentb6	mapflag	nomemo
+rentb7	mapflag	nomemo
+rentb8	mapflag	nomemo
+rentb9	mapflag	nomemo
+rentb10	mapflag	nomemo
+rentb11	mapflag	nomemo
+rentb12	mapflag	nomemo
+rentb13	mapflag	nomemo
+rentb14	mapflag	nomemo
+rentb15	mapflag	nomemo
+rentb16	mapflag	nomemo
+rentb17	mapflag	nomemo
+rentb18	mapflag	nomemo
+rentb19	mapflag	nomemo
+rentb20	mapflag	nomemo
+rentb21	mapflag	nomemo
+rentb22	mapflag	nomemo
+rentb23	mapflag	nomemo
+rentb24	mapflag	nomemo
+rentb25	mapflag	nomemo
+rentb26	mapflag	nomemo
+rentb27	mapflag	nomemo
+rentc1	mapflag	nomemo
+rentc2	mapflag	nomemo
+rentc3	mapflag	nomemo
+rentc4	mapflag	nomemo
+rentc5	mapflag	nomemo
+rentc6	mapflag	nomemo
+rentc7	mapflag	nomemo
+rentc8	mapflag	nomemo
+rentc9	mapflag	nomemo
+rentc10	mapflag	nomemo
+rentc11	mapflag	nomemo
+rentc12	mapflag	nomemo
+rentc13	mapflag	nomemo
+rentc14	mapflag	nomemo
+rentc15	mapflag	nomemo
+rentc16	mapflag	nomemo
+rentc17	mapflag	nomemo
+rentc18	mapflag	nomemo
+rentc19	mapflag	nomemo
+rentc20	mapflag	nomemo
+rentc21	mapflag	nomemo
+rentc22	mapflag	nomemo
+rentd1	mapflag	nomemo
+rentd2	mapflag	nomemo
+rentd3	mapflag	nomemo
+rentd4	mapflag	nomemo
+rentd5	mapflag	nomemo
+rentd6	mapflag	nomemo
+rentd7	mapflag	nomemo
+rentd8	mapflag	nomemo
+rentd9	mapflag	nomemo
+rentd10	mapflag	nomemo
+rentd11	mapflag	nomemo
+rentd12	mapflag	nomemo
+rentd13	mapflag	nomemo
+rentd14	mapflag	nomemo
+rentd15	mapflag	nomemo
+rentd16	mapflag	nomemo
+rentd17	mapflag	nomemo
+rentd18	mapflag	nomemo
+rentd19	mapflag	nomemo
+rentd20	mapflag	nomemo
+rentd21	mapflag	nomemo
+rentd22	mapflag	nomemo
+rente1	mapflag	nomemo
+rente2	mapflag	nomemo
+rente3	mapflag	nomemo
+rente4	mapflag	nomemo
+rente5	mapflag	nomemo
+rente6	mapflag	nomemo
+rente7	mapflag	nomemo
+rente8	mapflag	nomemo
+rente9	mapflag	nomemo
+rente10	mapflag	nomemo
+rente11	mapflag	nomemo
+rente12	mapflag	nomemo
+rente13	mapflag	nomemo
+rente14	mapflag	nomemo
+rente15	mapflag	nomemo
+rente16	mapflag	nomemo
+rente17	mapflag	nomemo
+rente18	mapflag	nomemo
+rente19	mapflag	nomemo
+rente20	mapflag	nomemo
+rente21	mapflag	nomemo
+rente22	mapflag	nomemo
+rentf1	mapflag	nomemo
+rentf2	mapflag	nomemo
+rentf3	mapflag	nomemo
+rentf4	mapflag	nomemo
+rentf5	mapflag	nomemo
+rentf6	mapflag	nomemo
+rentf7	mapflag	nomemo
+rentf8	mapflag	nomemo
+rentf9	mapflag	nomemo
+rentf10	mapflag	nomemo
+rentf11	mapflag	nomemo
+rentf12	mapflag	nomemo
+rentf13	mapflag	nomemo
+rentf14	mapflag	nomemo
+rentf15	mapflag	nomemo
+rentf16	mapflag	nomemo
+rentf17	mapflag	nomemo
+rentf18	mapflag	nomemo
+rentf19	mapflag	nomemo
+rentf20	mapflag	nomemo
+rentf21	mapflag	nomemo
+rentf22	mapflag	nomemo
+rentg1	mapflag	nomemo
+rentg2	mapflag	nomemo
+rentg3	mapflag	nomemo
+rentg4	mapflag	nomemo
+rentg5	mapflag	nomemo
+rentg6	mapflag	nomemo
+rentg7	mapflag	nomemo
+rentg8	mapflag	nomemo
+rentg9	mapflag	nomemo
+rentg10	mapflag	nomemo
+rentg11	mapflag	nomemo
+rentg12	mapflag	nomemo
+rentg13	mapflag	nomemo
+rentg14	mapflag	nomemo
+rentg15	mapflag	nomemo
+rentg16	mapflag	nomemo
+rentg17	mapflag	nomemo
+rentg18	mapflag	nomemo
+rentg19	mapflag	nomemo
+rentg20	mapflag	nomemo
+rentg21	mapflag	nomemo
+rentg22	mapflag	nomemo
+
+renta1	mapflag	nopenalty
+renta2	mapflag	nopenalty
+renta3	mapflag	nopenalty
+renta4	mapflag	nopenalty
+renta5	mapflag	nopenalty
+renta6	mapflag	nopenalty
+renta7	mapflag	nopenalty
+renta8	mapflag	nopenalty
+renta9	mapflag	nopenalty
+renta10	mapflag	nopenalty
+renta11	mapflag	nopenalty
+renta12	mapflag	nopenalty
+renta13	mapflag	nopenalty
+renta14	mapflag	nopenalty
+renta15	mapflag	nopenalty
+renta16	mapflag	nopenalty
+renta17	mapflag	nopenalty
+renta18	mapflag	nopenalty
+renta19	mapflag	nopenalty
+renta20	mapflag	nopenalty
+renta21	mapflag	nopenalty
+renta22	mapflag	nopenalty
+rentb1	mapflag	nopenalty
+rentb2	mapflag	nopenalty
+rentb3	mapflag	nopenalty
+rentb4	mapflag	nopenalty
+rentb5	mapflag	nopenalty
+rentb6	mapflag	nopenalty
+rentb7	mapflag	nopenalty
+rentb8	mapflag	nopenalty
+rentb9	mapflag	nopenalty
+rentb10	mapflag	nopenalty
+rentb11	mapflag	nopenalty
+rentb12	mapflag	nopenalty
+rentb13	mapflag	nopenalty
+rentb14	mapflag	nopenalty
+rentb15	mapflag	nopenalty
+rentb16	mapflag	nopenalty
+rentb17	mapflag	nopenalty
+rentb18	mapflag	nopenalty
+rentb19	mapflag	nopenalty
+rentb20	mapflag	nopenalty
+rentb21	mapflag	nopenalty
+rentb22	mapflag	nopenalty
+rentb23	mapflag	nopenalty
+rentb24	mapflag	nopenalty
+rentb25	mapflag	nopenalty
+rentb26	mapflag	nopenalty
+rentb27	mapflag	nopenalty
+rentc1	mapflag	nopenalty
+rentc2	mapflag	nopenalty
+rentc3	mapflag	nopenalty
+rentc4	mapflag	nopenalty
+rentc5	mapflag	nopenalty
+rentc6	mapflag	nopenalty
+rentc7	mapflag	nopenalty
+rentc8	mapflag	nopenalty
+rentc9	mapflag	nopenalty
+rentc10	mapflag	nopenalty
+rentc11	mapflag	nopenalty
+rentc12	mapflag	nopenalty
+rentc13	mapflag	nopenalty
+rentc14	mapflag	nopenalty
+rentc15	mapflag	nopenalty
+rentc16	mapflag	nopenalty
+rentc17	mapflag	nopenalty
+rentc18	mapflag	nopenalty
+rentc19	mapflag	nopenalty
+rentc20	mapflag	nopenalty
+rentc21	mapflag	nopenalty
+rentc22	mapflag	nopenalty
+rentd1	mapflag	nopenalty
+rentd2	mapflag	nopenalty
+rentd3	mapflag	nopenalty
+rentd4	mapflag	nopenalty
+rentd5	mapflag	nopenalty
+rentd6	mapflag	nopenalty
+rentd7	mapflag	nopenalty
+rentd8	mapflag	nopenalty
+rentd9	mapflag	nopenalty
+rentd10	mapflag	nopenalty
+rentd11	mapflag	nopenalty
+rentd12	mapflag	nopenalty
+rentd13	mapflag	nopenalty
+rentd14	mapflag	nopenalty
+rentd15	mapflag	nopenalty
+rentd16	mapflag	nopenalty
+rentd17	mapflag	nopenalty
+rentd18	mapflag	nopenalty
+rentd19	mapflag	nopenalty
+rentd20	mapflag	nopenalty
+rentd21	mapflag	nopenalty
+rentd22	mapflag	nopenalty
+rente1	mapflag	nopenalty
+rente2	mapflag	nopenalty
+rente3	mapflag	nopenalty
+rente4	mapflag	nopenalty
+rente5	mapflag	nopenalty
+rente6	mapflag	nopenalty
+rente7	mapflag	nopenalty
+rente8	mapflag	nopenalty
+rente9	mapflag	nopenalty
+rente10	mapflag	nopenalty
+rente11	mapflag	nopenalty
+rente12	mapflag	nopenalty
+rente13	mapflag	nopenalty
+rente14	mapflag	nopenalty
+rente15	mapflag	nopenalty
+rente16	mapflag	nopenalty
+rente17	mapflag	nopenalty
+rente18	mapflag	nopenalty
+rente19	mapflag	nopenalty
+rente20	mapflag	nopenalty
+rente21	mapflag	nopenalty
+rente22	mapflag	nopenalty
+rentf1	mapflag	nopenalty
+rentf2	mapflag	nopenalty
+rentf3	mapflag	nopenalty
+rentf4	mapflag	nopenalty
+rentf5	mapflag	nopenalty
+rentf6	mapflag	nopenalty
+rentf7	mapflag	nopenalty
+rentf8	mapflag	nopenalty
+rentf9	mapflag	nopenalty
+rentf10	mapflag	nopenalty
+rentf11	mapflag	nopenalty
+rentf12	mapflag	nopenalty
+rentf13	mapflag	nopenalty
+rentf14	mapflag	nopenalty
+rentf15	mapflag	nopenalty
+rentf16	mapflag	nopenalty
+rentf17	mapflag	nopenalty
+rentf18	mapflag	nopenalty
+rentf19	mapflag	nopenalty
+rentf20	mapflag	nopenalty
+rentf21	mapflag	nopenalty
+rentf22	mapflag	nopenalty
+rentg1	mapflag	nopenalty
+rentg2	mapflag	nopenalty
+rentg3	mapflag	nopenalty
+rentg4	mapflag	nopenalty
+rentg5	mapflag	nopenalty
+rentg6	mapflag	nopenalty
+rentg7	mapflag	nopenalty
+rentg8	mapflag	nopenalty
+rentg9	mapflag	nopenalty
+rentg10	mapflag	nopenalty
+rentg11	mapflag	nopenalty
+rentg12	mapflag	nopenalty
+rentg13	mapflag	nopenalty
+rentg14	mapflag	nopenalty
+rentg15	mapflag	nopenalty
+rentg16	mapflag	nopenalty
+rentg17	mapflag	nopenalty
+rentg18	mapflag	nopenalty
+rentg19	mapflag	nopenalty
+rentg20	mapflag	nopenalty
+rentg21	mapflag	nopenalty
+rentg22	mapflag	nopenalty
+
+renta1	mapflag	noteleport
+renta2	mapflag	noteleport
+renta3	mapflag	noteleport
+renta4	mapflag	noteleport
+renta5	mapflag	noteleport
+renta6	mapflag	noteleport
+renta7	mapflag	noteleport
+renta8	mapflag	noteleport
+renta9	mapflag	noteleport
+renta10	mapflag	noteleport
+renta11	mapflag	noteleport
+renta12	mapflag	noteleport
+renta13	mapflag	noteleport
+renta14	mapflag	noteleport
+renta15	mapflag	noteleport
+renta16	mapflag	noteleport
+renta17	mapflag	noteleport
+renta18	mapflag	noteleport
+renta19	mapflag	noteleport
+renta20	mapflag	noteleport
+renta21	mapflag	noteleport
+renta22	mapflag	noteleport
+rentb1	mapflag	noteleport
+rentb2	mapflag	noteleport
+rentb3	mapflag	noteleport
+rentb4	mapflag	noteleport
+rentb5	mapflag	noteleport
+rentb6	mapflag	noteleport
+rentb7	mapflag	noteleport
+rentb8	mapflag	noteleport
+rentb9	mapflag	noteleport
+rentb10	mapflag	noteleport
+rentb11	mapflag	noteleport
+rentb12	mapflag	noteleport
+rentb13	mapflag	noteleport
+rentb14	mapflag	noteleport
+rentb15	mapflag	noteleport
+rentb16	mapflag	noteleport
+rentb17	mapflag	noteleport
+rentb18	mapflag	noteleport
+rentb19	mapflag	noteleport
+rentb20	mapflag	noteleport
+rentb21	mapflag	noteleport
+rentb22	mapflag	noteleport
+rentb23	mapflag	noteleport
+rentb24	mapflag	noteleport
+rentb25	mapflag	noteleport
+rentb26	mapflag	noteleport
+rentb27	mapflag	noteleport
+rentc1	mapflag	noteleport
+rentc2	mapflag	noteleport
+rentc3	mapflag	noteleport
+rentc4	mapflag	noteleport
+rentc5	mapflag	noteleport
+rentc6	mapflag	noteleport
+rentc7	mapflag	noteleport
+rentc8	mapflag	noteleport
+rentc9	mapflag	noteleport
+rentc10	mapflag	noteleport
+rentc11	mapflag	noteleport
+rentc12	mapflag	noteleport
+rentc13	mapflag	noteleport
+rentc14	mapflag	noteleport
+rentc15	mapflag	noteleport
+rentc16	mapflag	noteleport
+rentc17	mapflag	noteleport
+rentc18	mapflag	noteleport
+rentc19	mapflag	noteleport
+rentc20	mapflag	noteleport
+rentc21	mapflag	noteleport
+rentc22	mapflag	noteleport
+rentd1	mapflag	noteleport
+rentd2	mapflag	noteleport
+rentd3	mapflag	noteleport
+rentd4	mapflag	noteleport
+rentd5	mapflag	noteleport
+rentd6	mapflag	noteleport
+rentd7	mapflag	noteleport
+rentd8	mapflag	noteleport
+rentd9	mapflag	noteleport
+rentd10	mapflag	noteleport
+rentd11	mapflag	noteleport
+rentd12	mapflag	noteleport
+rentd13	mapflag	noteleport
+rentd14	mapflag	noteleport
+rentd15	mapflag	noteleport
+rentd16	mapflag	noteleport
+rentd17	mapflag	noteleport
+rentd18	mapflag	noteleport
+rentd19	mapflag	noteleport
+rentd20	mapflag	noteleport
+rentd21	mapflag	noteleport
+rentd22	mapflag	noteleport
+rente1	mapflag	noteleport
+rente2	mapflag	noteleport
+rente3	mapflag	noteleport
+rente4	mapflag	noteleport
+rente5	mapflag	noteleport
+rente6	mapflag	noteleport
+rente7	mapflag	noteleport
+rente8	mapflag	noteleport
+rente9	mapflag	noteleport
+rente10	mapflag	noteleport
+rente11	mapflag	noteleport
+rente12	mapflag	noteleport
+rente13	mapflag	noteleport
+rente14	mapflag	noteleport
+rente15	mapflag	noteleport
+rente16	mapflag	noteleport
+rente17	mapflag	noteleport
+rente18	mapflag	noteleport
+rente19	mapflag	noteleport
+rente20	mapflag	noteleport
+rente21	mapflag	noteleport
+rente22	mapflag	noteleport
+rentf1	mapflag	noteleport
+rentf2	mapflag	noteleport
+rentf3	mapflag	noteleport
+rentf4	mapflag	noteleport
+rentf5	mapflag	noteleport
+rentf6	mapflag	noteleport
+rentf7	mapflag	noteleport
+rentf8	mapflag	noteleport
+rentf9	mapflag	noteleport
+rentf10	mapflag	noteleport
+rentf11	mapflag	noteleport
+rentf12	mapflag	noteleport
+rentf13	mapflag	noteleport
+rentf14	mapflag	noteleport
+rentf15	mapflag	noteleport
+rentf16	mapflag	noteleport
+rentf17	mapflag	noteleport
+rentf18	mapflag	noteleport
+rentf19	mapflag	noteleport
+rentf20	mapflag	noteleport
+rentf21	mapflag	noteleport
+rentf22	mapflag	noteleport
+rentg1	mapflag	noteleport
+rentg2	mapflag	noteleport
+rentg3	mapflag	noteleport
+rentg4	mapflag	noteleport
+rentg5	mapflag	noteleport
+rentg6	mapflag	noteleport
+rentg7	mapflag	noteleport
+rentg8	mapflag	noteleport
+rentg9	mapflag	noteleport
+rentg10	mapflag	noteleport
+rentg11	mapflag	noteleport
+rentg12	mapflag	noteleport
+rentg13	mapflag	noteleport
+rentg14	mapflag	noteleport
+rentg15	mapflag	noteleport
+rentg16	mapflag	noteleport
+rentg17	mapflag	noteleport
+rentg18	mapflag	noteleport
+rentg19	mapflag	noteleport
+rentg20	mapflag	noteleport
+rentg21	mapflag	noteleport
+rentg22	mapflag	noteleport
+
+renta1	mapflag	nosave	SavePoint
+renta2	mapflag	nosave	SavePoint
+renta3	mapflag	nosave	SavePoint
+renta4	mapflag	nosave	SavePoint
+renta5	mapflag	nosave	SavePoint
+renta6	mapflag	nosave	SavePoint
+renta7	mapflag	nosave	SavePoint
+renta8	mapflag	nosave	SavePoint
+renta9	mapflag	nosave	SavePoint
+renta10	mapflag	nosave	SavePoint
+renta11	mapflag	nosave	SavePoint
+renta12	mapflag	nosave	SavePoint
+renta13	mapflag	nosave	SavePoint
+renta14	mapflag	nosave	SavePoint
+renta15	mapflag	nosave	SavePoint
+renta16	mapflag	nosave	SavePoint
+renta17	mapflag	nosave	SavePoint
+renta18	mapflag	nosave	SavePoint
+renta19	mapflag	nosave	SavePoint
+renta20	mapflag	nosave	SavePoint
+renta21	mapflag	nosave	SavePoint
+renta22	mapflag	nosave	SavePoint
+rentb1	mapflag	nosave	SavePoint
+rentb2	mapflag	nosave	SavePoint
+rentb3	mapflag	nosave	SavePoint
+rentb4	mapflag	nosave	SavePoint
+rentb5	mapflag	nosave	SavePoint
+rentb6	mapflag	nosave	SavePoint
+rentb7	mapflag	nosave	SavePoint
+rentb8	mapflag	nosave	SavePoint
+rentb9	mapflag	nosave	SavePoint
+rentb10	mapflag	nosave	SavePoint
+rentb11	mapflag	nosave	SavePoint
+rentb12	mapflag	nosave	SavePoint
+rentb13	mapflag	nosave	SavePoint
+rentb14	mapflag	nosave	SavePoint
+rentb15	mapflag	nosave	SavePoint
+rentb16	mapflag	nosave	SavePoint
+rentb17	mapflag	nosave	SavePoint
+rentb18	mapflag	nosave	SavePoint
+rentb19	mapflag	nosave	SavePoint
+rentb20	mapflag	nosave	SavePoint
+rentb21	mapflag	nosave	SavePoint
+rentb22	mapflag	nosave	SavePoint
+rentb23	mapflag	nosave	SavePoint
+rentb24	mapflag	nosave	SavePoint
+rentb25	mapflag	nosave	SavePoint
+rentb26	mapflag	nosave	SavePoint
+rentb27	mapflag	nosave	SavePoint
+rentc1	mapflag	nosave	SavePoint
+rentc2	mapflag	nosave	SavePoint
+rentc3	mapflag	nosave	SavePoint
+rentc4	mapflag	nosave	SavePoint
+rentc5	mapflag	nosave	SavePoint
+rentc6	mapflag	nosave	SavePoint
+rentc7	mapflag	nosave	SavePoint
+rentc8	mapflag	nosave	SavePoint
+rentc9	mapflag	nosave	SavePoint
+rentc10	mapflag	nosave	SavePoint
+rentc11	mapflag	nosave	SavePoint
+rentc12	mapflag	nosave	SavePoint
+rentc13	mapflag	nosave	SavePoint
+rentc14	mapflag	nosave	SavePoint
+rentc15	mapflag	nosave	SavePoint
+rentc16	mapflag	nosave	SavePoint
+rentc17	mapflag	nosave	SavePoint
+rentc18	mapflag	nosave	SavePoint
+rentc19	mapflag	nosave	SavePoint
+rentc20	mapflag	nosave	SavePoint
+rentc21	mapflag	nosave	SavePoint
+rentc22	mapflag	nosave	SavePoint
+rentd1	mapflag	nosave	SavePoint
+rentd2	mapflag	nosave	SavePoint
+rentd3	mapflag	nosave	SavePoint
+rentd4	mapflag	nosave	SavePoint
+rentd5	mapflag	nosave	SavePoint
+rentd6	mapflag	nosave	SavePoint
+rentd7	mapflag	nosave	SavePoint
+rentd8	mapflag	nosave	SavePoint
+rentd9	mapflag	nosave	SavePoint
+rentd10	mapflag	nosave	SavePoint
+rentd11	mapflag	nosave	SavePoint
+rentd12	mapflag	nosave	SavePoint
+rentd13	mapflag	nosave	SavePoint
+rentd14	mapflag	nosave	SavePoint
+rentd15	mapflag	nosave	SavePoint
+rentd16	mapflag	nosave	SavePoint
+rentd17	mapflag	nosave	SavePoint
+rentd18	mapflag	nosave	SavePoint
+rentd19	mapflag	nosave	SavePoint
+rentd20	mapflag	nosave	SavePoint
+rentd21	mapflag	nosave	SavePoint
+rentd22	mapflag	nosave	SavePoint
+rente1	mapflag	nosave	SavePoint
+rente2	mapflag	nosave	SavePoint
+rente3	mapflag	nosave	SavePoint
+rente4	mapflag	nosave	SavePoint
+rente5	mapflag	nosave	SavePoint
+rente6	mapflag	nosave	SavePoint
+rente7	mapflag	nosave	SavePoint
+rente8	mapflag	nosave	SavePoint
+rente9	mapflag	nosave	SavePoint
+rente10	mapflag	nosave	SavePoint
+rente11	mapflag	nosave	SavePoint
+rente12	mapflag	nosave	SavePoint
+rente13	mapflag	nosave	SavePoint
+rente14	mapflag	nosave	SavePoint
+rente15	mapflag	nosave	SavePoint
+rente16	mapflag	nosave	SavePoint
+rente17	mapflag	nosave	SavePoint
+rente18	mapflag	nosave	SavePoint
+rente19	mapflag	nosave	SavePoint
+rente20	mapflag	nosave	SavePoint
+rente21	mapflag	nosave	SavePoint
+rente22	mapflag	nosave	SavePoint
+rentf1	mapflag	nosave	SavePoint
+rentf2	mapflag	nosave	SavePoint
+rentf3	mapflag	nosave	SavePoint
+rentf4	mapflag	nosave	SavePoint
+rentf5	mapflag	nosave	SavePoint
+rentf6	mapflag	nosave	SavePoint
+rentf7	mapflag	nosave	SavePoint
+rentf8	mapflag	nosave	SavePoint
+rentf9	mapflag	nosave	SavePoint
+rentf10	mapflag	nosave	SavePoint
+rentf11	mapflag	nosave	SavePoint
+rentf12	mapflag	nosave	SavePoint
+rentf13	mapflag	nosave	SavePoint
+rentf14	mapflag	nosave	SavePoint
+rentf15	mapflag	nosave	SavePoint
+rentf16	mapflag	nosave	SavePoint
+rentf17	mapflag	nosave	SavePoint
+rentf18	mapflag	nosave	SavePoint
+rentf19	mapflag	nosave	SavePoint
+rentf20	mapflag	nosave	SavePoint
+rentf21	mapflag	nosave	SavePoint
+rentf22	mapflag	nosave	SavePoint
+rentg1	mapflag	nosave	SavePoint
+rentg2	mapflag	nosave	SavePoint
+rentg3	mapflag	nosave	SavePoint
+rentg4	mapflag	nosave	SavePoint
+rentg5	mapflag	nosave	SavePoint
+rentg6	mapflag	nosave	SavePoint
+rentg7	mapflag	nosave	SavePoint
+rentg8	mapflag	nosave	SavePoint
+rentg9	mapflag	nosave	SavePoint
+rentg10	mapflag	nosave	SavePoint
+rentg11	mapflag	nosave	SavePoint
+rentg12	mapflag	nosave	SavePoint
+rentg13	mapflag	nosave	SavePoint
+rentg14	mapflag	nosave	SavePoint
+rentg15	mapflag	nosave	SavePoint
+rentg16	mapflag	nosave	SavePoint
+rentg17	mapflag	nosave	SavePoint
+rentg18	mapflag	nosave	SavePoint
+rentg19	mapflag	nosave	SavePoint
+rentg20	mapflag	nosave	SavePoint
+rentg21	mapflag	nosave	SavePoint
+rentg22	mapflag	nosave	SavePoint
+
+renta1	mapflag	town
+renta2	mapflag	town
+renta3	mapflag	town
+renta4	mapflag	town
+renta5	mapflag	town
+renta6	mapflag	town
+renta7	mapflag	town
+renta8	mapflag	town
+renta9	mapflag	town
+renta10	mapflag	town
+renta11	mapflag	town
+renta12	mapflag	town
+renta13	mapflag	town
+renta14	mapflag	town
+renta15	mapflag	town
+renta16	mapflag	town
+renta17	mapflag	town
+renta18	mapflag	town
+renta19	mapflag	town
+renta20	mapflag	town
+renta21	mapflag	town
+renta22	mapflag	town
+rentb1	mapflag	town
+rentb2	mapflag	town
+rentb3	mapflag	town
+rentb4	mapflag	town
+rentb5	mapflag	town
+rentb6	mapflag	town
+rentb7	mapflag	town
+rentb8	mapflag	town
+rentb9	mapflag	town
+rentb10	mapflag	town
+rentb11	mapflag	town
+rentb12	mapflag	town
+rentb13	mapflag	town
+rentb14	mapflag	town
+rentb15	mapflag	town
+rentb16	mapflag	town
+rentb17	mapflag	town
+rentb18	mapflag	town
+rentb19	mapflag	town
+rentb20	mapflag	town
+rentb21	mapflag	town
+rentb22	mapflag	town
+rentb23	mapflag	town
+rentb24	mapflag	town
+rentb25	mapflag	town
+rentb26	mapflag	town
+rentb27	mapflag	town
+rentc1	mapflag	town
+rentc2	mapflag	town
+rentc3	mapflag	town
+rentc4	mapflag	town
+rentc5	mapflag	town
+rentc6	mapflag	town
+rentc7	mapflag	town
+rentc8	mapflag	town
+rentc9	mapflag	town
+rentc10	mapflag	town
+rentc11	mapflag	town
+rentc12	mapflag	town
+rentc13	mapflag	town
+rentc14	mapflag	town
+rentc15	mapflag	town
+rentc16	mapflag	town
+rentc17	mapflag	town
+rentc18	mapflag	town
+rentc19	mapflag	town
+rentc20	mapflag	town
+rentc21	mapflag	town
+rentc22	mapflag	town
+rentd1	mapflag	town
+rentd2	mapflag	town
+rentd3	mapflag	town
+rentd4	mapflag	town
+rentd5	mapflag	town
+rentd6	mapflag	town
+rentd7	mapflag	town
+rentd8	mapflag	town
+rentd9	mapflag	town
+rentd10	mapflag	town
+rentd11	mapflag	town
+rentd12	mapflag	town
+rentd13	mapflag	town
+rentd14	mapflag	town
+rentd15	mapflag	town
+rentd16	mapflag	town
+rentd17	mapflag	town
+rentd18	mapflag	town
+rentd19	mapflag	town
+rentd20	mapflag	town
+rentd21	mapflag	town
+rentd22	mapflag	town
+rente1	mapflag	town
+rente2	mapflag	town
+rente3	mapflag	town
+rente4	mapflag	town
+rente5	mapflag	town
+rente6	mapflag	town
+rente7	mapflag	town
+rente8	mapflag	town
+rente9	mapflag	town
+rente10	mapflag	town
+rente11	mapflag	town
+rente12	mapflag	town
+rente13	mapflag	town
+rente14	mapflag	town
+rente15	mapflag	town
+rente16	mapflag	town
+rente17	mapflag	town
+rente18	mapflag	town
+rente19	mapflag	town
+rente20	mapflag	town
+rente21	mapflag	town
+rente22	mapflag	town
+rentf1	mapflag	town
+rentf2	mapflag	town
+rentf3	mapflag	town
+rentf4	mapflag	town
+rentf5	mapflag	town
+rentf6	mapflag	town
+rentf7	mapflag	town
+rentf8	mapflag	town
+rentf9	mapflag	town
+rentf10	mapflag	town
+rentf11	mapflag	town
+rentf12	mapflag	town
+rentf13	mapflag	town
+rentf14	mapflag	town
+rentf15	mapflag	town
+rentf16	mapflag	town
+rentf17	mapflag	town
+rentf18	mapflag	town
+rentf19	mapflag	town
+rentf20	mapflag	town
+rentf21	mapflag	town
+rentf22	mapflag	town
+rentg1	mapflag	town
+rentg2	mapflag	town
+rentg3	mapflag	town
+rentg4	mapflag	town
+rentg5	mapflag	town
+rentg6	mapflag	town
+rentg7	mapflag	town
+rentg8	mapflag	town
+rentg9	mapflag	town
+rentg10	mapflag	town
+rentg11	mapflag	town
+rentg12	mapflag	town
+rentg13	mapflag	town
+rentg14	mapflag	town
+rentg15	mapflag	town
+rentg16	mapflag	town
+rentg17	mapflag	town
+rentg18	mapflag	town
+rentg19	mapflag	town
+rentg20	mapflag	town
+rentg21	mapflag	town
+rentg22	mapflag	town
+
+renta1	mapflag	pvp_noguild
+renta2	mapflag	pvp_noguild
+renta3	mapflag	pvp_noguild
+renta4	mapflag	pvp_noguild
+renta5	mapflag	pvp_noguild
+renta6	mapflag	pvp_noguild
+renta7	mapflag	pvp_noguild
+renta8	mapflag	pvp_noguild
+renta9	mapflag	pvp_noguild
+renta10	mapflag	pvp_noguild
+renta11	mapflag	pvp_noguild
+renta12	mapflag	pvp_noguild
+renta13	mapflag	pvp_noguild
+renta14	mapflag	pvp_noguild
+renta15	mapflag	pvp_noguild
+renta16	mapflag	pvp_noguild
+renta17	mapflag	pvp_noguild
+renta18	mapflag	pvp_noguild
+renta19	mapflag	pvp_noguild
+renta20	mapflag	pvp_noguild
+renta21	mapflag	pvp_noguild
+renta22	mapflag	pvp_noguild
+rentb1	mapflag	pvp_noguild
+rentb2	mapflag	pvp_noguild
+rentb3	mapflag	pvp_noguild
+rentb4	mapflag	pvp_noguild
+rentb5	mapflag	pvp_noguild
+rentb6	mapflag	pvp_noguild
+rentb7	mapflag	pvp_noguild
+rentb8	mapflag	pvp_noguild
+rentb9	mapflag	pvp_noguild
+rentb10	mapflag	pvp_noguild
+rentb11	mapflag	pvp_noguild
+rentb12	mapflag	pvp_noguild
+rentb13	mapflag	pvp_noguild
+rentb14	mapflag	pvp_noguild
+rentb15	mapflag	pvp_noguild
+rentb16	mapflag	pvp_noguild
+rentb17	mapflag	pvp_noguild
+rentb18	mapflag	pvp_noguild
+rentb19	mapflag	pvp_noguild
+rentb20	mapflag	pvp_noguild
+rentb21	mapflag	pvp_noguild
+rentb22	mapflag	pvp_noguild
+rentb23	mapflag	pvp_noguild
+rentb24	mapflag	pvp_noguild
+rentb25	mapflag	pvp_noguild
+rentb26	mapflag	pvp_noguild
+rentb27	mapflag	pvp_noguild
+rentc1	mapflag	pvp_noguild
+rentc2	mapflag	pvp_noguild
+rentc3	mapflag	pvp_noguild
+rentc4	mapflag	pvp_noguild
+rentc5	mapflag	pvp_noguild
+rentc6	mapflag	pvp_noguild
+rentc7	mapflag	pvp_noguild
+rentc8	mapflag	pvp_noguild
+rentc9	mapflag	pvp_noguild
+rentc10	mapflag	pvp_noguild
+rentc11	mapflag	pvp_noguild
+rentc12	mapflag	pvp_noguild
+rentc13	mapflag	pvp_noguild
+rentc14	mapflag	pvp_noguild
+rentc15	mapflag	pvp_noguild
+rentc16	mapflag	pvp_noguild
+rentc17	mapflag	pvp_noguild
+rentc18	mapflag	pvp_noguild
+rentc19	mapflag	pvp_noguild
+rentc20	mapflag	pvp_noguild
+rentc21	mapflag	pvp_noguild
+rentc22	mapflag	pvp_noguild
+rentd1	mapflag	pvp_noguild
+rentd2	mapflag	pvp_noguild
+rentd3	mapflag	pvp_noguild
+rentd4	mapflag	pvp_noguild
+rentd5	mapflag	pvp_noguild
+rentd6	mapflag	pvp_noguild
+rentd7	mapflag	pvp_noguild
+rentd8	mapflag	pvp_noguild
+rentd9	mapflag	pvp_noguild
+rentd10	mapflag	pvp_noguild
+rentd11	mapflag	pvp_noguild
+rentd12	mapflag	pvp_noguild
+rentd13	mapflag	pvp_noguild
+rentd14	mapflag	pvp_noguild
+rentd15	mapflag	pvp_noguild
+rentd16	mapflag	pvp_noguild
+rentd17	mapflag	pvp_noguild
+rentd18	mapflag	pvp_noguild
+rentd19	mapflag	pvp_noguild
+rentd20	mapflag	pvp_noguild
+rentd21	mapflag	pvp_noguild
+rentd22	mapflag	pvp_noguild
+rente1	mapflag	pvp_noguild
+rente2	mapflag	pvp_noguild
+rente3	mapflag	pvp_noguild
+rente4	mapflag	pvp_noguild
+rente5	mapflag	pvp_noguild
+rente6	mapflag	pvp_noguild
+rente7	mapflag	pvp_noguild
+rente8	mapflag	pvp_noguild
+rente9	mapflag	pvp_noguild
+rente10	mapflag	pvp_noguild
+rente11	mapflag	pvp_noguild
+rente12	mapflag	pvp_noguild
+rente13	mapflag	pvp_noguild
+rente14	mapflag	pvp_noguild
+rente15	mapflag	pvp_noguild
+rente16	mapflag	pvp_noguild
+rente17	mapflag	pvp_noguild
+rente18	mapflag	pvp_noguild
+rente19	mapflag	pvp_noguild
+rente20	mapflag	pvp_noguild
+rente21	mapflag	pvp_noguild
+rente22	mapflag	pvp_noguild
+rentf1	mapflag	pvp_noguild
+rentf2	mapflag	pvp_noguild
+rentf3	mapflag	pvp_noguild
+rentf4	mapflag	pvp_noguild
+rentf5	mapflag	pvp_noguild
+rentf6	mapflag	pvp_noguild
+rentf7	mapflag	pvp_noguild
+rentf8	mapflag	pvp_noguild
+rentf9	mapflag	pvp_noguild
+rentf10	mapflag	pvp_noguild
+rentf11	mapflag	pvp_noguild
+rentf12	mapflag	pvp_noguild
+rentf13	mapflag	pvp_noguild
+rentf14	mapflag	pvp_noguild
+rentf15	mapflag	pvp_noguild
+rentf16	mapflag	pvp_noguild
+rentf17	mapflag	pvp_noguild
+rentf18	mapflag	pvp_noguild
+rentf19	mapflag	pvp_noguild
+rentf20	mapflag	pvp_noguild
+rentf21	mapflag	pvp_noguild
+rentf22	mapflag	pvp_noguild
+rentg1	mapflag	pvp_noguild
+rentg2	mapflag	pvp_noguild
+rentg3	mapflag	pvp_noguild
+rentg4	mapflag	pvp_noguild
+rentg5	mapflag	pvp_noguild
+rentg6	mapflag	pvp_noguild
+rentg7	mapflag	pvp_noguild
+rentg8	mapflag	pvp_noguild
+rentg9	mapflag	pvp_noguild
+rentg10	mapflag	pvp_noguild
+rentg11	mapflag	pvp_noguild
+rentg12	mapflag	pvp_noguild
+rentg13	mapflag	pvp_noguild
+rentg14	mapflag	pvp_noguild
+rentg15	mapflag	pvp_noguild
+rentg16	mapflag	pvp_noguild
+rentg17	mapflag	pvp_noguild
+rentg18	mapflag	pvp_noguild
+rentg19	mapflag	pvp_noguild
+rentg20	mapflag	pvp_noguild
+rentg21	mapflag	pvp_noguild
+rentg22	mapflag	pvp_noguild
+
+//============================================================ 
+//= Script MapFlags - InDoor
+//============================================================ 
+
+rentina1	mapflag	nomemo
+rentina2	mapflag	nomemo
+rentina3	mapflag	nomemo
+rentina4	mapflag	nomemo
+rentina5	mapflag	nomemo
+rentina6	mapflag	nomemo
+rentina7	mapflag	nomemo
+rentina8	mapflag	nomemo
+rentina9	mapflag	nomemo
+rentina10	mapflag	nomemo
+rentina11	mapflag	nomemo
+rentina12	mapflag	nomemo
+rentina13	mapflag	nomemo
+rentina14	mapflag	nomemo
+rentina15	mapflag	nomemo
+rentina16	mapflag	nomemo
+rentina17	mapflag	nomemo
+rentina18	mapflag	nomemo
+rentina19	mapflag	nomemo
+rentina20	mapflag	nomemo
+rentina21	mapflag	nomemo
+rentina22	mapflag	nomemo
+rentinb1	mapflag	nomemo
+rentinb2	mapflag	nomemo
+rentinb3	mapflag	nomemo
+rentinb4	mapflag	nomemo
+rentinb5	mapflag	nomemo
+rentinb6	mapflag	nomemo
+rentinb7	mapflag	nomemo
+rentinb8	mapflag	nomemo
+rentinb9	mapflag	nomemo
+rentinb10	mapflag	nomemo
+rentinb11	mapflag	nomemo
+rentinb12	mapflag	nomemo
+rentinb13	mapflag	nomemo
+rentinb14	mapflag	nomemo
+rentinb15	mapflag	nomemo
+rentinb16	mapflag	nomemo
+rentinb17	mapflag	nomemo
+rentinb18	mapflag	nomemo
+rentinb19	mapflag	nomemo
+rentinb20	mapflag	nomemo
+rentinb21	mapflag	nomemo
+rentinb22	mapflag	nomemo
+rentinb23	mapflag	nomemo
+rentinb24	mapflag	nomemo
+rentinb25	mapflag	nomemo
+rentinb26	mapflag	nomemo
+rentinb27	mapflag	nomemo
+rentinc1	mapflag	nomemo
+rentinc2	mapflag	nomemo
+rentinc3	mapflag	nomemo
+rentinc4	mapflag	nomemo
+rentinc5	mapflag	nomemo
+rentinc6	mapflag	nomemo
+rentinc7	mapflag	nomemo
+rentinc8	mapflag	nomemo
+rentinc9	mapflag	nomemo
+rentinc10	mapflag	nomemo
+rentinc11	mapflag	nomemo
+rentinc12	mapflag	nomemo
+rentinc13	mapflag	nomemo
+rentinc14	mapflag	nomemo
+rentinc15	mapflag	nomemo
+rentinc16	mapflag	nomemo
+rentinc17	mapflag	nomemo
+rentinc18	mapflag	nomemo
+rentinc19	mapflag	nomemo
+rentinc20	mapflag	nomemo
+rentinc21	mapflag	nomemo
+rentinc22	mapflag	nomemo
+rentind1	mapflag	nomemo
+rentind2	mapflag	nomemo
+rentind3	mapflag	nomemo
+rentind4	mapflag	nomemo
+rentind5	mapflag	nomemo
+rentind6	mapflag	nomemo
+rentind7	mapflag	nomemo
+rentind8	mapflag	nomemo
+rentind9	mapflag	nomemo
+rentind10	mapflag	nomemo
+rentind11	mapflag	nomemo
+rentind12	mapflag	nomemo
+rentind13	mapflag	nomemo
+rentind14	mapflag	nomemo
+rentind15	mapflag	nomemo
+rentind16	mapflag	nomemo
+rentind17	mapflag	nomemo
+rentind18	mapflag	nomemo
+rentind19	mapflag	nomemo
+rentind20	mapflag	nomemo
+rentind21	mapflag	nomemo
+rentind22	mapflag	nomemo
+rentine1	mapflag	nomemo
+rentine2	mapflag	nomemo
+rentine3	mapflag	nomemo
+rentine4	mapflag	nomemo
+rentine5	mapflag	nomemo
+rentine6	mapflag	nomemo
+rentine7	mapflag	nomemo
+rentine8	mapflag	nomemo
+rentine9	mapflag	nomemo
+rentine10	mapflag	nomemo
+rentine11	mapflag	nomemo
+rentine12	mapflag	nomemo
+rentine13	mapflag	nomemo
+rentine14	mapflag	nomemo
+rentine15	mapflag	nomemo
+rentine16	mapflag	nomemo
+rentine17	mapflag	nomemo
+rentine18	mapflag	nomemo
+rentine19	mapflag	nomemo
+rentine20	mapflag	nomemo
+rentine21	mapflag	nomemo
+rentine22	mapflag	nomemo
+rentinf1	mapflag	nomemo
+rentinf2	mapflag	nomemo
+rentinf3	mapflag	nomemo
+rentinf4	mapflag	nomemo
+rentinf5	mapflag	nomemo
+rentinf6	mapflag	nomemo
+rentinf7	mapflag	nomemo
+rentinf8	mapflag	nomemo
+rentinf9	mapflag	nomemo
+rentinf10	mapflag	nomemo
+rentinf11	mapflag	nomemo
+rentinf12	mapflag	nomemo
+rentinf13	mapflag	nomemo
+rentinf14	mapflag	nomemo
+rentinf15	mapflag	nomemo
+rentinf16	mapflag	nomemo
+rentinf17	mapflag	nomemo
+rentinf18	mapflag	nomemo
+rentinf19	mapflag	nomemo
+rentinf20	mapflag	nomemo
+rentinf21	mapflag	nomemo
+rentinf22	mapflag	nomemo
+renting1	mapflag	nomemo
+renting2	mapflag	nomemo
+renting3	mapflag	nomemo
+renting4	mapflag	nomemo
+renting5	mapflag	nomemo
+renting6	mapflag	nomemo
+renting7	mapflag	nomemo
+renting8	mapflag	nomemo
+renting9	mapflag	nomemo
+renting10	mapflag	nomemo
+renting11	mapflag	nomemo
+renting12	mapflag	nomemo
+renting13	mapflag	nomemo
+renting14	mapflag	nomemo
+renting15	mapflag	nomemo
+renting16	mapflag	nomemo
+renting17	mapflag	nomemo
+renting18	mapflag	nomemo
+renting19	mapflag	nomemo
+renting20	mapflag	nomemo
+renting21	mapflag	nomemo
+renting22	mapflag	nomemo
+
+rentina1	mapflag	nopenalty
+rentina2	mapflag	nopenalty
+rentina3	mapflag	nopenalty
+rentina4	mapflag	nopenalty
+rentina5	mapflag	nopenalty
+rentina6	mapflag	nopenalty
+rentina7	mapflag	nopenalty
+rentina8	mapflag	nopenalty
+rentina9	mapflag	nopenalty
+rentina10	mapflag	nopenalty
+rentina11	mapflag	nopenalty
+rentina12	mapflag	nopenalty
+rentina13	mapflag	nopenalty
+rentina14	mapflag	nopenalty
+rentina15	mapflag	nopenalty
+rentina16	mapflag	nopenalty
+rentina17	mapflag	nopenalty
+rentina18	mapflag	nopenalty
+rentina19	mapflag	nopenalty
+rentina20	mapflag	nopenalty
+rentina21	mapflag	nopenalty
+rentina22	mapflag	nopenalty
+rentinb1	mapflag	nopenalty
+rentinb2	mapflag	nopenalty
+rentinb3	mapflag	nopenalty
+rentinb4	mapflag	nopenalty
+rentinb5	mapflag	nopenalty
+rentinb6	mapflag	nopenalty
+rentinb7	mapflag	nopenalty
+rentinb8	mapflag	nopenalty
+rentinb9	mapflag	nopenalty
+rentinb10	mapflag	nopenalty
+rentinb11	mapflag	nopenalty
+rentinb12	mapflag	nopenalty
+rentinb13	mapflag	nopenalty
+rentinb14	mapflag	nopenalty
+rentinb15	mapflag	nopenalty
+rentinb16	mapflag	nopenalty
+rentinb17	mapflag	nopenalty
+rentinb18	mapflag	nopenalty
+rentinb19	mapflag	nopenalty
+rentinb20	mapflag	nopenalty
+rentinb21	mapflag	nopenalty
+rentinb22	mapflag	nopenalty
+rentinb23	mapflag	nopenalty
+rentinb24	mapflag	nopenalty
+rentinb25	mapflag	nopenalty
+rentinb26	mapflag	nopenalty
+rentinb27	mapflag	nopenalty
+rentinc1	mapflag	nopenalty
+rentinc2	mapflag	nopenalty
+rentinc3	mapflag	nopenalty
+rentinc4	mapflag	nopenalty
+rentinc5	mapflag	nopenalty
+rentinc6	mapflag	nopenalty
+rentinc7	mapflag	nopenalty
+rentinc8	mapflag	nopenalty
+rentinc9	mapflag	nopenalty
+rentinc10	mapflag	nopenalty
+rentinc11	mapflag	nopenalty
+rentinc12	mapflag	nopenalty
+rentinc13	mapflag	nopenalty
+rentinc14	mapflag	nopenalty
+rentinc15	mapflag	nopenalty
+rentinc16	mapflag	nopenalty
+rentinc17	mapflag	nopenalty
+rentinc18	mapflag	nopenalty
+rentinc19	mapflag	nopenalty
+rentinc20	mapflag	nopenalty
+rentinc21	mapflag	nopenalty
+rentinc22	mapflag	nopenalty
+rentind1	mapflag	nopenalty
+rentind2	mapflag	nopenalty
+rentind3	mapflag	nopenalty
+rentind4	mapflag	nopenalty
+rentind5	mapflag	nopenalty
+rentind6	mapflag	nopenalty
+rentind7	mapflag	nopenalty
+rentind8	mapflag	nopenalty
+rentind9	mapflag	nopenalty
+rentind10	mapflag	nopenalty
+rentind11	mapflag	nopenalty
+rentind12	mapflag	nopenalty
+rentind13	mapflag	nopenalty
+rentind14	mapflag	nopenalty
+rentind15	mapflag	nopenalty
+rentind16	mapflag	nopenalty
+rentind17	mapflag	nopenalty
+rentind18	mapflag	nopenalty
+rentind19	mapflag	nopenalty
+rentind20	mapflag	nopenalty
+rentind21	mapflag	nopenalty
+rentind22	mapflag	nopenalty
+rentine1	mapflag	nopenalty
+rentine2	mapflag	nopenalty
+rentine3	mapflag	nopenalty
+rentine4	mapflag	nopenalty
+rentine5	mapflag	nopenalty
+rentine6	mapflag	nopenalty
+rentine7	mapflag	nopenalty
+rentine8	mapflag	nopenalty
+rentine9	mapflag	nopenalty
+rentine10	mapflag	nopenalty
+rentine11	mapflag	nopenalty
+rentine12	mapflag	nopenalty
+rentine13	mapflag	nopenalty
+rentine14	mapflag	nopenalty
+rentine15	mapflag	nopenalty
+rentine16	mapflag	nopenalty
+rentine17	mapflag	nopenalty
+rentine18	mapflag	nopenalty
+rentine19	mapflag	nopenalty
+rentine20	mapflag	nopenalty
+rentine21	mapflag	nopenalty
+rentine22	mapflag	nopenalty
+rentinf1	mapflag	nopenalty
+rentinf2	mapflag	nopenalty
+rentinf3	mapflag	nopenalty
+rentinf4	mapflag	nopenalty
+rentinf5	mapflag	nopenalty
+rentinf6	mapflag	nopenalty
+rentinf7	mapflag	nopenalty
+rentinf8	mapflag	nopenalty
+rentinf9	mapflag	nopenalty
+rentinf10	mapflag	nopenalty
+rentinf11	mapflag	nopenalty
+rentinf12	mapflag	nopenalty
+rentinf13	mapflag	nopenalty
+rentinf14	mapflag	nopenalty
+rentinf15	mapflag	nopenalty
+rentinf16	mapflag	nopenalty
+rentinf17	mapflag	nopenalty
+rentinf18	mapflag	nopenalty
+rentinf19	mapflag	nopenalty
+rentinf20	mapflag	nopenalty
+rentinf21	mapflag	nopenalty
+rentinf22	mapflag	nopenalty
+renting1	mapflag	nopenalty
+renting2	mapflag	nopenalty
+renting3	mapflag	nopenalty
+renting4	mapflag	nopenalty
+renting5	mapflag	nopenalty
+renting6	mapflag	nopenalty
+renting7	mapflag	nopenalty
+renting8	mapflag	nopenalty
+renting9	mapflag	nopenalty
+renting10	mapflag	nopenalty
+renting11	mapflag	nopenalty
+renting12	mapflag	nopenalty
+renting13	mapflag	nopenalty
+renting14	mapflag	nopenalty
+renting15	mapflag	nopenalty
+renting16	mapflag	nopenalty
+renting17	mapflag	nopenalty
+renting18	mapflag	nopenalty
+renting19	mapflag	nopenalty
+renting20	mapflag	nopenalty
+renting21	mapflag	nopenalty
+renting22	mapflag	nopenalty
+
+rentina1	mapflag	noteleport
+rentina2	mapflag	noteleport
+rentina3	mapflag	noteleport
+rentina4	mapflag	noteleport
+rentina5	mapflag	noteleport
+rentina6	mapflag	noteleport
+rentina7	mapflag	noteleport
+rentina8	mapflag	noteleport
+rentina9	mapflag	noteleport
+rentina10	mapflag	noteleport
+rentina11	mapflag	noteleport
+rentina12	mapflag	noteleport
+rentina13	mapflag	noteleport
+rentina14	mapflag	noteleport
+rentina15	mapflag	noteleport
+rentina16	mapflag	noteleport
+rentina17	mapflag	noteleport
+rentina18	mapflag	noteleport
+rentina19	mapflag	noteleport
+rentina20	mapflag	noteleport
+rentina21	mapflag	noteleport
+rentina22	mapflag	noteleport
+rentinb1	mapflag	noteleport
+rentinb2	mapflag	noteleport
+rentinb3	mapflag	noteleport
+rentinb4	mapflag	noteleport
+rentinb5	mapflag	noteleport
+rentinb6	mapflag	noteleport
+rentinb7	mapflag	noteleport
+rentinb8	mapflag	noteleport
+rentinb9	mapflag	noteleport
+rentinb10	mapflag	noteleport
+rentinb11	mapflag	noteleport
+rentinb12	mapflag	noteleport
+rentinb13	mapflag	noteleport
+rentinb14	mapflag	noteleport
+rentinb15	mapflag	noteleport
+rentinb16	mapflag	noteleport
+rentinb17	mapflag	noteleport
+rentinb18	mapflag	noteleport
+rentinb19	mapflag	noteleport
+rentinb20	mapflag	noteleport
+rentinb21	mapflag	noteleport
+rentinb22	mapflag	noteleport
+rentinb23	mapflag	noteleport
+rentinb24	mapflag	noteleport
+rentinb25	mapflag	noteleport
+rentinb26	mapflag	noteleport
+rentinb27	mapflag	noteleport
+rentinc1	mapflag	noteleport
+rentinc2	mapflag	noteleport
+rentinc3	mapflag	noteleport
+rentinc4	mapflag	noteleport
+rentinc5	mapflag	noteleport
+rentinc6	mapflag	noteleport
+rentinc7	mapflag	noteleport
+rentinc8	mapflag	noteleport
+rentinc9	mapflag	noteleport
+rentinc10	mapflag	noteleport
+rentinc11	mapflag	noteleport
+rentinc12	mapflag	noteleport
+rentinc13	mapflag	noteleport
+rentinc14	mapflag	noteleport
+rentinc15	mapflag	noteleport
+rentinc16	mapflag	noteleport
+rentinc17	mapflag	noteleport
+rentinc18	mapflag	noteleport
+rentinc19	mapflag	noteleport
+rentinc20	mapflag	noteleport
+rentinc21	mapflag	noteleport
+rentinc22	mapflag	noteleport
+rentind1	mapflag	noteleport
+rentind2	mapflag	noteleport
+rentind3	mapflag	noteleport
+rentind4	mapflag	noteleport
+rentind5	mapflag	noteleport
+rentind6	mapflag	noteleport
+rentind7	mapflag	noteleport
+rentind8	mapflag	noteleport
+rentind9	mapflag	noteleport
+rentind10	mapflag	noteleport
+rentind11	mapflag	noteleport
+rentind12	mapflag	noteleport
+rentind13	mapflag	noteleport
+rentind14	mapflag	noteleport
+rentind15	mapflag	noteleport
+rentind16	mapflag	noteleport
+rentind17	mapflag	noteleport
+rentind18	mapflag	noteleport
+rentind19	mapflag	noteleport
+rentind20	mapflag	noteleport
+rentind21	mapflag	noteleport
+rentind22	mapflag	noteleport
+rentine1	mapflag	noteleport
+rentine2	mapflag	noteleport
+rentine3	mapflag	noteleport
+rentine4	mapflag	noteleport
+rentine5	mapflag	noteleport
+rentine6	mapflag	noteleport
+rentine7	mapflag	noteleport
+rentine8	mapflag	noteleport
+rentine9	mapflag	noteleport
+rentine10	mapflag	noteleport
+rentine11	mapflag	noteleport
+rentine12	mapflag	noteleport
+rentine13	mapflag	noteleport
+rentine14	mapflag	noteleport
+rentine15	mapflag	noteleport
+rentine16	mapflag	noteleport
+rentine17	mapflag	noteleport
+rentine18	mapflag	noteleport
+rentine19	mapflag	noteleport
+rentine20	mapflag	noteleport
+rentine21	mapflag	noteleport
+rentine22	mapflag	noteleport
+rentinf1	mapflag	noteleport
+rentinf2	mapflag	noteleport
+rentinf3	mapflag	noteleport
+rentinf4	mapflag	noteleport
+rentinf5	mapflag	noteleport
+rentinf6	mapflag	noteleport
+rentinf7	mapflag	noteleport
+rentinf8	mapflag	noteleport
+rentinf9	mapflag	noteleport
+rentinf10	mapflag	noteleport
+rentinf11	mapflag	noteleport
+rentinf12	mapflag	noteleport
+rentinf13	mapflag	noteleport
+rentinf14	mapflag	noteleport
+rentinf15	mapflag	noteleport
+rentinf16	mapflag	noteleport
+rentinf17	mapflag	noteleport
+rentinf18	mapflag	noteleport
+rentinf19	mapflag	noteleport
+rentinf20	mapflag	noteleport
+rentinf21	mapflag	noteleport
+rentinf22	mapflag	noteleport
+renting1	mapflag	noteleport
+renting2	mapflag	noteleport
+renting3	mapflag	noteleport
+renting4	mapflag	noteleport
+renting5	mapflag	noteleport
+renting6	mapflag	noteleport
+renting7	mapflag	noteleport
+renting8	mapflag	noteleport
+renting9	mapflag	noteleport
+renting10	mapflag	noteleport
+renting11	mapflag	noteleport
+renting12	mapflag	noteleport
+renting13	mapflag	noteleport
+renting14	mapflag	noteleport
+renting15	mapflag	noteleport
+renting16	mapflag	noteleport
+renting17	mapflag	noteleport
+renting18	mapflag	noteleport
+renting19	mapflag	noteleport
+renting20	mapflag	noteleport
+renting21	mapflag	noteleport
+renting22	mapflag	noteleport
+
+rentina1	mapflag	nosave	SavePoint
+rentina2	mapflag	nosave	SavePoint
+rentina3	mapflag	nosave	SavePoint
+rentina4	mapflag	nosave	SavePoint
+rentina5	mapflag	nosave	SavePoint
+rentina6	mapflag	nosave	SavePoint
+rentina7	mapflag	nosave	SavePoint
+rentina8	mapflag	nosave	SavePoint
+rentina9	mapflag	nosave	SavePoint
+rentina10	mapflag	nosave	SavePoint
+rentina11	mapflag	nosave	SavePoint
+rentina12	mapflag	nosave	SavePoint
+rentina13	mapflag	nosave	SavePoint
+rentina14	mapflag	nosave	SavePoint
+rentina15	mapflag	nosave	SavePoint
+rentina16	mapflag	nosave	SavePoint
+rentina17	mapflag	nosave	SavePoint
+rentina18	mapflag	nosave	SavePoint
+rentina19	mapflag	nosave	SavePoint
+rentina20	mapflag	nosave	SavePoint
+rentina21	mapflag	nosave	SavePoint
+rentina22	mapflag	nosave	SavePoint
+rentinb1	mapflag	nosave	SavePoint
+rentinb2	mapflag	nosave	SavePoint
+rentinb3	mapflag	nosave	SavePoint
+rentinb4	mapflag	nosave	SavePoint
+rentinb5	mapflag	nosave	SavePoint
+rentinb6	mapflag	nosave	SavePoint
+rentinb7	mapflag	nosave	SavePoint
+rentinb8	mapflag	nosave	SavePoint
+rentinb9	mapflag	nosave	SavePoint
+rentinb10	mapflag	nosave	SavePoint
+rentinb11	mapflag	nosave	SavePoint
+rentinb12	mapflag	nosave	SavePoint
+rentinb13	mapflag	nosave	SavePoint
+rentinb14	mapflag	nosave	SavePoint
+rentinb15	mapflag	nosave	SavePoint
+rentinb16	mapflag	nosave	SavePoint
+rentinb17	mapflag	nosave	SavePoint
+rentinb18	mapflag	nosave	SavePoint
+rentinb19	mapflag	nosave	SavePoint
+rentinb20	mapflag	nosave	SavePoint
+rentinb21	mapflag	nosave	SavePoint
+rentinb22	mapflag	nosave	SavePoint
+rentinb23	mapflag	nosave	SavePoint
+rentinb24	mapflag	nosave	SavePoint
+rentinb25	mapflag	nosave	SavePoint
+rentinb26	mapflag	nosave	SavePoint
+rentinb27	mapflag	nosave	SavePoint
+rentinc1	mapflag	nosave	SavePoint
+rentinc2	mapflag	nosave	SavePoint
+rentinc3	mapflag	nosave	SavePoint
+rentinc4	mapflag	nosave	SavePoint
+rentinc5	mapflag	nosave	SavePoint
+rentinc6	mapflag	nosave	SavePoint
+rentinc7	mapflag	nosave	SavePoint
+rentinc8	mapflag	nosave	SavePoint
+rentinc9	mapflag	nosave	SavePoint
+rentinc10	mapflag	nosave	SavePoint
+rentinc11	mapflag	nosave	SavePoint
+rentinc12	mapflag	nosave	SavePoint
+rentinc13	mapflag	nosave	SavePoint
+rentinc14	mapflag	nosave	SavePoint
+rentinc15	mapflag	nosave	SavePoint
+rentinc16	mapflag	nosave	SavePoint
+rentinc17	mapflag	nosave	SavePoint
+rentinc18	mapflag	nosave	SavePoint
+rentinc19	mapflag	nosave	SavePoint
+rentinc20	mapflag	nosave	SavePoint
+rentinc21	mapflag	nosave	SavePoint
+rentinc22	mapflag	nosave	SavePoint
+rentind1	mapflag	nosave	SavePoint
+rentind2	mapflag	nosave	SavePoint
+rentind3	mapflag	nosave	SavePoint
+rentind4	mapflag	nosave	SavePoint
+rentind5	mapflag	nosave	SavePoint
+rentind6	mapflag	nosave	SavePoint
+rentind7	mapflag	nosave	SavePoint
+rentind8	mapflag	nosave	SavePoint
+rentind9	mapflag	nosave	SavePoint
+rentind10	mapflag	nosave	SavePoint
+rentind11	mapflag	nosave	SavePoint
+rentind12	mapflag	nosave	SavePoint
+rentind13	mapflag	nosave	SavePoint
+rentind14	mapflag	nosave	SavePoint
+rentind15	mapflag	nosave	SavePoint
+rentind16	mapflag	nosave	SavePoint
+rentind17	mapflag	nosave	SavePoint
+rentind18	mapflag	nosave	SavePoint
+rentind19	mapflag	nosave	SavePoint
+rentind20	mapflag	nosave	SavePoint
+rentind21	mapflag	nosave	SavePoint
+rentind22	mapflag	nosave	SavePoint
+rentine1	mapflag	nosave	SavePoint
+rentine2	mapflag	nosave	SavePoint
+rentine3	mapflag	nosave	SavePoint
+rentine4	mapflag	nosave	SavePoint
+rentine5	mapflag	nosave	SavePoint
+rentine6	mapflag	nosave	SavePoint
+rentine7	mapflag	nosave	SavePoint
+rentine8	mapflag	nosave	SavePoint
+rentine9	mapflag	nosave	SavePoint
+rentine10	mapflag	nosave	SavePoint
+rentine11	mapflag	nosave	SavePoint
+rentine12	mapflag	nosave	SavePoint
+rentine13	mapflag	nosave	SavePoint
+rentine14	mapflag	nosave	SavePoint
+rentine15	mapflag	nosave	SavePoint
+rentine16	mapflag	nosave	SavePoint
+rentine17	mapflag	nosave	SavePoint
+rentine18	mapflag	nosave	SavePoint
+rentine19	mapflag	nosave	SavePoint
+rentine20	mapflag	nosave	SavePoint
+rentine21	mapflag	nosave	SavePoint
+rentine22	mapflag	nosave	SavePoint
+rentinf1	mapflag	nosave	SavePoint
+rentinf2	mapflag	nosave	SavePoint
+rentinf3	mapflag	nosave	SavePoint
+rentinf4	mapflag	nosave	SavePoint
+rentinf5	mapflag	nosave	SavePoint
+rentinf6	mapflag	nosave	SavePoint
+rentinf7	mapflag	nosave	SavePoint
+rentinf8	mapflag	nosave	SavePoint
+rentinf9	mapflag	nosave	SavePoint
+rentinf10	mapflag	nosave	SavePoint
+rentinf11	mapflag	nosave	SavePoint
+rentinf12	mapflag	nosave	SavePoint
+rentinf13	mapflag	nosave	SavePoint
+rentinf14	mapflag	nosave	SavePoint
+rentinf15	mapflag	nosave	SavePoint
+rentinf16	mapflag	nosave	SavePoint
+rentinf17	mapflag	nosave	SavePoint
+rentinf18	mapflag	nosave	SavePoint
+rentinf19	mapflag	nosave	SavePoint
+rentinf20	mapflag	nosave	SavePoint
+rentinf21	mapflag	nosave	SavePoint
+rentinf22	mapflag	nosave	SavePoint
+renting1	mapflag	nosave	SavePoint
+renting2	mapflag	nosave	SavePoint
+renting3	mapflag	nosave	SavePoint
+renting4	mapflag	nosave	SavePoint
+renting5	mapflag	nosave	SavePoint
+renting6	mapflag	nosave	SavePoint
+renting7	mapflag	nosave	SavePoint
+renting8	mapflag	nosave	SavePoint
+renting9	mapflag	nosave	SavePoint
+renting10	mapflag	nosave	SavePoint
+renting11	mapflag	nosave	SavePoint
+renting12	mapflag	nosave	SavePoint
+renting13	mapflag	nosave	SavePoint
+renting14	mapflag	nosave	SavePoint
+renting15	mapflag	nosave	SavePoint
+renting16	mapflag	nosave	SavePoint
+renting17	mapflag	nosave	SavePoint
+renting18	mapflag	nosave	SavePoint
+renting19	mapflag	nosave	SavePoint
+renting20	mapflag	nosave	SavePoint
+renting21	mapflag	nosave	SavePoint
+renting22	mapflag	nosave	SavePoint
+
+rentina1	mapflag	town
+rentina2	mapflag	town
+rentina3	mapflag	town
+rentina4	mapflag	town
+rentina5	mapflag	town
+rentina6	mapflag	town
+rentina7	mapflag	town
+rentina8	mapflag	town
+rentina9	mapflag	town
+rentina10	mapflag	town
+rentina11	mapflag	town
+rentina12	mapflag	town
+rentina13	mapflag	town
+rentina14	mapflag	town
+rentina15	mapflag	town
+rentina16	mapflag	town
+rentina17	mapflag	town
+rentina18	mapflag	town
+rentina19	mapflag	town
+rentina20	mapflag	town
+rentina21	mapflag	town
+rentina22	mapflag	town
+rentinb1	mapflag	town
+rentinb2	mapflag	town
+rentinb3	mapflag	town
+rentinb4	mapflag	town
+rentinb5	mapflag	town
+rentinb6	mapflag	town
+rentinb7	mapflag	town
+rentinb8	mapflag	town
+rentinb9	mapflag	town
+rentinb10	mapflag	town
+rentinb11	mapflag	town
+rentinb12	mapflag	town
+rentinb13	mapflag	town
+rentinb14	mapflag	town
+rentinb15	mapflag	town
+rentinb16	mapflag	town
+rentinb17	mapflag	town
+rentinb18	mapflag	town
+rentinb19	mapflag	town
+rentinb20	mapflag	town
+rentinb21	mapflag	town
+rentinb22	mapflag	town
+rentinb23	mapflag	town
+rentinb24	mapflag	town
+rentinb25	mapflag	town
+rentinb26	mapflag	town
+rentinb27	mapflag	town
+rentinc1	mapflag	town
+rentinc2	mapflag	town
+rentinc3	mapflag	town
+rentinc4	mapflag	town
+rentinc5	mapflag	town
+rentinc6	mapflag	town
+rentinc7	mapflag	town
+rentinc8	mapflag	town
+rentinc9	mapflag	town
+rentinc10	mapflag	town
+rentinc11	mapflag	town
+rentinc12	mapflag	town
+rentinc13	mapflag	town
+rentinc14	mapflag	town
+rentinc15	mapflag	town
+rentinc16	mapflag	town
+rentinc17	mapflag	town
+rentinc18	mapflag	town
+rentinc19	mapflag	town
+rentinc20	mapflag	town
+rentinc21	mapflag	town
+rentinc22	mapflag	town
+rentind1	mapflag	town
+rentind2	mapflag	town
+rentind3	mapflag	town
+rentind4	mapflag	town
+rentind5	mapflag	town
+rentind6	mapflag	town
+rentind7	mapflag	town
+rentind8	mapflag	town
+rentind9	mapflag	town
+rentind10	mapflag	town
+rentind11	mapflag	town
+rentind12	mapflag	town
+rentind13	mapflag	town
+rentind14	mapflag	town
+rentind15	mapflag	town
+rentind16	mapflag	town
+rentind17	mapflag	town
+rentind18	mapflag	town
+rentind19	mapflag	town
+rentind20	mapflag	town
+rentind21	mapflag	town
+rentind22	mapflag	town
+rentine1	mapflag	town
+rentine2	mapflag	town
+rentine3	mapflag	town
+rentine4	mapflag	town
+rentine5	mapflag	town
+rentine6	mapflag	town
+rentine7	mapflag	town
+rentine8	mapflag	town
+rentine9	mapflag	town
+rentine10	mapflag	town
+rentine11	mapflag	town
+rentine12	mapflag	town
+rentine13	mapflag	town
+rentine14	mapflag	town
+rentine15	mapflag	town
+rentine16	mapflag	town
+rentine17	mapflag	town
+rentine18	mapflag	town
+rentine19	mapflag	town
+rentine20	mapflag	town
+rentine21	mapflag	town
+rentine22	mapflag	town
+rentinf1	mapflag	town
+rentinf2	mapflag	town
+rentinf3	mapflag	town
+rentinf4	mapflag	town
+rentinf5	mapflag	town
+rentinf6	mapflag	town
+rentinf7	mapflag	town
+rentinf8	mapflag	town
+rentinf9	mapflag	town
+rentinf10	mapflag	town
+rentinf11	mapflag	town
+rentinf12	mapflag	town
+rentinf13	mapflag	town
+rentinf14	mapflag	town
+rentinf15	mapflag	town
+rentinf16	mapflag	town
+rentinf17	mapflag	town
+rentinf18	mapflag	town
+rentinf19	mapflag	town
+rentinf20	mapflag	town
+rentinf21	mapflag	town
+rentinf22	mapflag	town
+renting1	mapflag	town
+renting2	mapflag	town
+renting3	mapflag	town
+renting4	mapflag	town
+renting5	mapflag	town
+renting6	mapflag	town
+renting7	mapflag	town
+renting8	mapflag	town
+renting9	mapflag	town
+renting10	mapflag	town
+renting11	mapflag	town
+renting12	mapflag	town
+renting13	mapflag	town
+renting14	mapflag	town
+renting15	mapflag	town
+renting16	mapflag	town
+renting17	mapflag	town
+renting18	mapflag	town
+renting19	mapflag	town
+renting20	mapflag	town
+renting21	mapflag	town
+renting22	mapflag	town

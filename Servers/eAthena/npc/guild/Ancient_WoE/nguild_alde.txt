@@ -1,0 +1,149 @@
+//===== eAthena Script =======================================
+//= War of Emperium (Al De baran)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Al De Baran Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
+//============================================================
+
+// Guild Flag (Outside Castle)
+//============================================================
+prontera,151,232,4	script	Neuschwanstein#na1-2	722,{
+	set .@GID, GetCastleData("nguild_alde",1);
+	if (.@GID == 0) {
+		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
+		mes " ";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+	}
+	else {
+		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " ";
+		mes "1. Following the ordinance of the";
+		mes "Divine Rune Midgard Kingdom,";
+		mes "we approve that this place is in";
+		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes " ";
+		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "If there is anyone who objects to this,";
+		mes " prove your strength and honor with a steel blade in your hand.";
+	}
+	if( !class2ancientwoe() )
+		close;
+
+	next;
+	mes "Brave ones...";
+	if( getcharid(2) == .@GID )
+	{
+		mes "Do you wish to return to your honorable place?";
+		next;
+		switch( select("Return to the Emperium Room:Return to the Castle Entrance:Quit.") )
+		{
+		case 1: if( getcharid(2) == GetCastleData("nguild_alde",1) )
+			{
+				warp "nguild_alde",218,170;
+				end;
+			}
+			close;
+		case 2: warp "nguild_alde",34,248;
+			end;
+		case 3:	close;
+		}
+	}
+	else
+	{
+		mes "Do you wish to attack this honorable place?";
+		next;
+		switch( select("Return to the Castle Entrance:Quit.") )
+		{
+		case 1: warp "nguild_alde",34,248;
+			end;
+		case 2:	close;
+		}
+	}
+	end;
+
+OnRecvCastleNA01:
+	FlagEmblem GetCastleData("nguild_alde",1);
+	end;
+}
+
+// Guild Flag (Inside Castle)
+//============================================================
+nguild_alde,30,248,4	script	Neuschwanstein#na1-6::Neuschwanstein4	722,{
+	end;
+
+OnRecvCastleNA01:
+	FlagEmblem GetCastleData("nguild_alde",1);
+	end;
+}
+
+nguild_alde,30,246,4	duplicate(Neuschwanstein4)	Neuschwanstein#na1-7	722
+nguild_alde,37,248,4	duplicate(Neuschwanstein4)	Neuschwanstein#na1-8	722
+nguild_alde,37,246,4	duplicate(Neuschwanstein4)	Neuschwanstein#na1-9	722
+nguild_alde,95,80,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-10	722
+nguild_alde,95,59,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-11	722
+nguild_alde,62,75,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-12	722
+nguild_alde,70,75,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-13	722
+nguild_alde,74,75,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-14	722
+nguild_alde,62,64,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-15	722
+nguild_alde,66,64,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-16	722
+nguild_alde,70,64,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-17	722
+nguild_alde,74,64,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-18	722
+nguild_alde,203,150,4	duplicate(Neuschwanstein4)	Neuschwanstein#na1-19	722
+nguild_alde,210,150,4	duplicate(Neuschwanstein4)	Neuschwanstein#na1-20	722
+nguild_alde,66,75,2	duplicate(Neuschwanstein4)	Neuschwanstein#na1-21	722
+
+// AGIT Manager
+//============================================================
+nguild_alde,216,24,0	duplicate(Gld_Agit_Manager)	Agit#nguild_alde	-1
+
+// Steward
+//============================================================
+nguild_alde,218,175,0	duplicate(Gld_Mngr_Template)	Alfredo#nguild_alde	55
+
+// Guardians
+//============================================================
+nguild_alde,218,175,0	duplicate(Gld_Guard_Template)	Guardian#nguild_alde	-1
+
+// Kafra Staff
+//============================================================
+nguild_alde,218,170,0	duplicate(Gld_Kafra_Template)	Kafra Staff#nguild_alde	117
+
+// Master's Room Exit
+//============================================================
+nguild_alde,123,223,0	script	#switch_NA01	111,{
+	mes " ";
+	mes "There's a small lever. Will you pull it? ";
+	next;
+	if(select("Pull.:Do not.") == 2) close;
+	warp "nguild_alde",218,176;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+nguild_alde,118,223,0	duplicate(Gld_Trea_Protect)	ban_warp#nguild_alde	-1,8,8
+
+// Guild Treasure Spawns
+//============================================================
+nguild_alde,118,223,0	duplicate(Gld_Trea_Spawn)	Treasure#nguild_alde	-1
+
+// Guild Dungeon Switch
+//============================================================
+nguild_alde,211,181,0	duplicate(Gld_Dun_Template)	#nguild_alde	111

@@ -1,0 +1,1651 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Santuário Selado                       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.7/2.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Instância do Santuário Selado               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | 1.1 Tradução PT-BR [Avassalador]                       |
+//   | 1.2 Otimizações [Protimus]                             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Entrada da Catacumba Selada
+//============================================================
+monk_test,309,146,3	script	Frei Patrick#edq	412,{	
+
+	set .@party_id,getcharid(1);
+	set .@ins_bapho_check,getpartyleader(.@party_id,1);
+	set .@p_name$,getpartyname(.@party_id);
+	set .@p_leader$,rid2name(.@ins_bapho_check);
+	set .@md_name$,"Santuário Selado";
+	
+	cutin "ins_cata_pri_n",2;
+	mes "[Frei Patrick]";
+	mes "A paz do mundo jamais pode durar para sempre... As mãos do Mal estão chegando ao mundo novamente...";
+	next;
+	mes "[Frei Patrick]";
+	mes "O que te leva a este lugar?";
+	next;
+	if (countitem(6004) > 0) {
+		set .@doll,1;
+		set .@selection,select("Que lugar é este?:Eu quero entrar.:Sobre o Boneco de Baphomet Amaldiçoado.:Cancelar.");
+	} else {
+		set .@selection,select("Que lugar é este?:Eu quero entrar.:Cancelar.");
+	}
+	switch(.@selection) {
+	case 1:
+		mes "[Frei Patrick]";
+		mes "Huh... Você não sabe? Este é o Monastério de St. Capitolina onde os irmãos treinam e oram para virarem monjes.";
+		next;
+		mes "[Frei Patrick]";
+		mes "E esse lugar é... Como eu posso falar... Sim. É o túmulo do Demônio. Túmulo...";
+		next;
+		mes "[Frei Patrick]";
+		mes "É o lugar onde o grande Demônio que demoliu esse mundo uma vez se encontra dormindo.";
+		next;
+		switch(select("Me conte mais.:Terminar conversa.")) {
+		case 1:
+			cutin "ins_cata_pri_n",2;
+			mes "[Frei Patrick]";
+			mes "Bafomé... é o nome do Demônio... Eu acho que você já tenha escutado o nome dele.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Vários homens bravos e irmãos treinaram nesse monastério...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Abaixo desse túmulo na sua frente... Baphomet se encontra selado.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Porém... Como foi dito, o Imperador Morroc está manipulando suas magias poderosas para afetar toda vida nesse continente.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Baphomet também... tem despertado e está se preparando para sua ressurreição, dentro desse mundo, com o enfraquecimento do selo devido ao poder do Imperador Morroc...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Agora... Estou procurando por pessoas bravas o suficiente para selar Baphomet em seu santuário... como nós fizemos muitos anos atrás...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Todos que lutam pelo bem, devem saber, que o mal ameaça a conquistar esse mundo...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Treine mais e use suas habilidades para proteger o mundo da eminente presença do mal...";
+			break;
+		case 2:
+			cutin "ins_cata_pri_n",2;
+			mes "[Frei Patrick]";
+			mes "Todos que lutam pelo bem, devem saber, que o mal ameaça conquistar esse mundo...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Treine mais e use suas habilidades para proteger o mundo da eminente presença do mal...";
+			break;
+		}
+		break;
+	case 2:
+		if (BaseLevel > 74) {
+			set .@party_id,getcharid(1);
+			mes "[Frei Patrick]";
+			mes "Está certo que você irá ao santuário e selar Baphomet novamente?";
+			next;
+
+			// 12 horas de intervalo.
+			set .@ins_bapho_check,checkquest(3040,PLAYTIME);
+
+			if(!instance_check_party(.@party_id,2,75)){
+				mes "Me desculpe mas seu grupo não cumpre os requisitos necesários do Santuário Selado.";
+				close;
+			}
+
+			if (.@ins_bapho_check == -1) {
+				if (getpartyleader(.@party_id,2) == getcharid(0)) {
+				set .@instance,instance_create(.@md_name$,.@party_id);
+					if (.@instance < 0) {
+						mes "[Frei Patrick]";
+						mes "O nome do grupo é  "+.@p_name$+"";
+						mes "O nome do líder é "+.@p_leader$+"";
+						mes "Hum... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
+					} else {
+
+						for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
+							if( instance_attachmap("" + .@i + "@cata", .@instance) == "" )
+								break;
+						}
+						if( .@i < 2 ) {
+							instance_destroy(.@instance);
+							close;
+						}
+
+						instance_attach(.@instance);
+						instance_set_timeout 7200,300,.@instance;
+						instance_init(.@instance);
+
+						// Primeiro Andar
+						disablenpc instance_npcname("Alma do Herói#1F", instance_id());
+						disablenpc instance_npcname("ins_bapho_to_2f", instance_id());
+
+						for( set .@i, 1; .@i < 13; set .@i, .@i + 1 ) {
+							disablenpc instance_npcname("Túmulo#1F_"+.@i+"T", instance_id());
+							disablenpc instance_npcname("Túmulo#1F_"+.@i+"F", instance_id());
+						}
+						for( set .@i, 1; .@i <= 12; set .@i, .@i + 1 ) {
+							disablenpc instance_npcname("Tocha#"+.@i, instance_id());
+						}
+
+						// Segundo Andar
+						disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
+						disablenpc instance_npcname("ins_2f_enter_broad", instance_id());
+						disablenpc instance_npcname("Selo Mágico#0", instance_id());
+						disablenpc instance_npcname("Selo Mágico#2", instance_id());
+						disablenpc instance_npcname("Selo Mágico#4", instance_id());
+						disablenpc instance_npcname("Selo Mágico#8", instance_id());
+						disablenpc instance_npcname("Selo Mágico#10", instance_id());
+						disablenpc instance_npcname("Alma do Herói#2F", instance_id());
+						disablenpc instance_npcname("control_baphomet", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
+						disablenpc instance_npcname("2f_callmon_pattern_c", instance_id());
+						disablenpc instance_npcname("2f_callmon_pattern", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_pattern_c", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_pattern", instance_id());
+
+						// Sepultura.
+						donpcevent instance_npcname("ins_baphomet_lotto", instance_id())+"::OnEnable";
+
+						// Invocação de Monstros.
+						donpcevent instance_npcname("ins_1f_spawn_mobs", instance_id())+"::OnEnable";
+
+						mes "[Frei Patrick]";
+						mes "O nome do grupo é "+.@p_name$+"";
+						mes "O nome do líder é "+.@p_leader$+"";
+						mes "Ok... Irei ajustar o selo do santuário para você e seu grupo possam entrar..";
+						next;
+						mes "[Frei Patrick]";
+						mes "Você verá um sinal quando o selo for destruído. Aguarde até o sinal aparecer...";
+						next;
+						mes "[Frei Patrick]";
+						mes "Quando você ver o sinal, coloque suas mãos sobre o túmulo... E então você pode empurrá-lo.";
+						next;
+						mes "[Frei Patrick]";
+						mes "Uma coisa que você deve lembrar é... Todos aqueles que entrarem no santuário serão amaldiçoados por Baphomet e não poderam entrar ou sair enquando estiverem amaldioçoados.";
+						next;
+						mes "[Frei Patrick]";
+						mes "E mais uma coisa... Nessa área amaldiçoada, certas habilidades, que são protegidas por uma força exterior, são proibidas pelo efeito do selo.";
+						next;
+						mes "[Frei Patrick]";
+						mes "Por exemplo, habilidades como ^0000FFEscudo Mágico e Assumptio^000000... Então é melhor você estar preparado entes de entrar no santuário.";
+					}
+				} else {
+					mes "[Frei Patrick]";
+					mes "Humm... Eu reconheço usa coragem, porém... Não posso permitir qualquer um entrar nesse lugar. Eu só permito o líder do grupo a entrar primeiro.";
+					next;
+					mes "[Frei Patrick]";
+					mes "Uma vez que o líder grupo foi permitido, o resto do grupo pode entrar. Isto é uma regra deste monastério, por favor a entenda.";
+				}
+			} else if (.@ins_bapho_check == 0 || .@ins_bapho_check == 1) {
+				mes "[Frei Patrick]";
+				mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua. A maldição de Baphomet só desaparece quando um certo período de tempo se passa.";
+			} else if (.@ins_bapho_check == 2) {
+				mes "[Frei Patrick]";
+				mes "Umm... Parece que a Maldição de Baphomet se enfraqueceu. Eu posso retira-la agora.";
+				next;
+				mes "[Frei Patrick]";
+				mes "Haaaaaaap... Hocus Pocus Wingardium Abracadabra!!!!!";
+				next;
+				if (checkquest(3040)>=0) erasequest 3040;
+				if (checkquest(3041)>=0) erasequest 3041;
+				if (checkquest(3045)>=0) erasequest 3045;
+				set party_instance_id4,0;
+				mes "[Frei Patrick]";
+				mes "Huu... Acabou. Agora que retirei a Maldição de Baphomet, você pode entrar novamente.";
+			}
+		} else {
+			mes "[Frei Patrick]";
+			mes "Hum... Você precisa treinar mais para entrar nesse lugar perigoso... Você tem que estar no mínimo no nível 75 para poder entrar aqui.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Treine mais e volte novamente.";
+		}
+		break;
+	case 3:
+		if (.@doll == 1) {
+			mes "[Frei Patrick]";
+			mes "O que é... esse boneco que está segurando?... Deixe me ver.";
+			next;
+			mes "[Frei Patrick]";
+			mes "... ... ...";
+			next;
+			mes "[Frei Patrick]";
+			mes "Correto... Posso sentir os sentimentos de Baphomet... O que eu farei com esse boneco?";
+			next;
+			mes "[Frei Patrick]";
+			mes "É muito perigoso que alguém perca esse objeto... Conheço alguem que pode te ajudar... Deseja falar com ele?";
+			next;
+			mes "[Frei Patrick]";
+			mes "Fale com ^0000FFRust Blackhand^000000 que está proximo a uma contrução do monastério... Ele pode fazer com que este boneco seja útil para você.";
+			setquest 3042;
+			break;
+		}
+	case 4:
+		mes "[Frei Patrick]";
+		mes "Todos que lutam pelo bem, devem saber, que o mal ameaça a conquistar esse mundo...";
+		next;
+		mes "[Frei Patrick]";
+		mes "Treine mais e use suas habilidades para proteger o mundo da eminente presença do mal...";
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+monk_test,306,151,3	script	Túmulo de Bafomé#edq	111,{
+	if (countitem(6002)) delitem 6002,countitem(6002); //Token_Of_Apostle
+	mes "Esse túmulo tem uma imagem de um grande demônio com enormes chifres. Ela desperta um sentimento ameaçador.";
+	next;
+	switch(select("Tocar.:Voltar.")) {
+	case 1:
+		set .@party_id,getcharid(1);
+		set .@instance, instance_id(1);
+		instance_attach(.@instance);
+		
+		// 12 horas de intervalo.
+		set .@ins_bapho_check,checkquest(3040,PLAYTIME);
+		// Limite de duas horas.
+		//set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
+		
+		if(!instance_check_party(.@party_id,2,75)){
+			mes "Me desculpe mas seu grupo não cumpre os requisitos necesários do Santuário Selado.";
+			close;
+		}
+		if (.@ins_bapho_check == -1) {
+			if (has_instance("1@cata") == "") {
+				mes "É frio ao tocar. Mais nada acontece.";
+			} else if((party_instance_id4 != 0) && (party_instance_id4 != getcharid(1))) {
+				mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
+			} else {
+				mapannounce "monk_test","[" + strcharinfo(0) + "] member of the [" + getpartyname(.@party_id) + "] party has entered the Sealed Shrine.",bc_map,"0x00ff99";
+				if (checkquest(3040) == -1) setquest 3040;
+				set party_instance_id4,getcharid(1);
+				warp "1@cata",100,224;
+				end;
+			}
+		} else if (.@ins_bapho_check == 0 || .@ins_bapho_check == 1) {
+			mes "[Frei Patrick]";
+			mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
+			mes "A Maldição de Baphomet desparece após de um certo tempo após sua entrada.";
+		} else if (.@ins_bapho_check == 2) {
+			mes "[Frei Patrick]";
+			mes "Humm... Parece que a maldição de Baphomet está enfraquecendo. Irei retirá-la completamente.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Haaaaaaap... Wingardium Leviosa Expecto Patronum !!!!!";
+			specialeffect2 EF_HOLYHIT;
+			if (checkquest(3040)>=0) erasequest 3040;
+			if (checkquest(3041)>=0) erasequest 3041;
+			if (checkquest(3045)>=0) erasequest 3045;
+			set party_instance_id4,0;
+			next;
+			mes "[Frei Patrick]";
+			mes "Huu... Acabou. Agora que retirei todas as maldições sobre você. Você pode entrar novamente.";
+		}
+		break;
+	case 2:
+		break;
+	}
+	close;
+}
+
+prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
+	set .@new_maje,checkquest(3043);
+	mes "[Rust Blackhand]";
+	mes "Quem é você? O que deseja?";
+	next;
+	mes "[Rust Blackhand]";
+	mes "Você não é um monje, o que quer de mim?";
+	next;
+	if ((.@new_maje == 0) || (.@new_maje == 1)) {
+		mes "[Rust Blackhand]";
+		mes "Você trouxe todos os materiais?";
+		next;
+		if ((countitem(6004) > 0) && (countitem(2256) > 0) && (countitem(7799) > 29) && (countitem(7798) > 49) && (Zeny > 990000)) {
+			mes "[Rust Blackhand]";
+			mes "kkk... Irei preparar os chifres. Tem como esperar um pouco?";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Humm... Faz tempo que vejo esses chifres... kkk... Deixe-me começar...";
+			next;
+			mes "...";
+			next;
+			mes "... ...";
+			next;
+			mes "... ... ...";
+			next;
+			delitem 6004,1;  // Boneco de Bafomé Maldito
+			delitem 2256,1;  // Chfires Majestosos
+			delitem 7799,30; // Cristal da Escuridão
+			delitem 7798,50; // Fragmento da Escuridão
+			set zeny,zeny-990000;
+			completequest 3043;
+			getitem 5518,1;  // Chifres Místicos de Bafomé
+			mes "[Rust Blackhand]";
+			mes "Está pronto. Você já deve estar excitado. Eu entendo...";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Não aceito reclamações sobre meu serviço. Então vá...";
+			close;
+		} else {
+			mes "[Rust Blackhand]";
+			mes "Huu... Você não entendeu o que eu disse. Você não pode fazer nada com esses ingredientes.";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Irei falar sobre os materiais novamente. São eles:";
+			next;
+			mes "[Rust Blackhand]";
+			mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
+			close;
+		}
+	} else if ((.@new_maje == -1) && (countitem(6004) > 0)) {
+		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
+		case 1:
+			mes "[Rust Blackhand]";
+			mes "Como?... Hmmm... Você conseguiu o boneco?...";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Vamos ver... Foi o Patrick que te trouxe até aqui?";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Certo... Vou fazer que esse boneco seja algo de ultilidade. O que poderei fazer?";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Posso fazer fortes e largos chifres com toda a força de Baphomet contida nele.";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Seu nome é ^4d4dffChifres Magestosos Gigantes^000000. Os chifres Majestosos normais são nada comparados à esses.";
+			next;
+			mes "[Rust Blackhand]";
+			mes "O Boneco de Baphomet Amaldiçoado é a peça mais importante... Poderei fazer isso se você quiser. Deseja que eu o faça?";
+			next;
+			switch(select("Quero sim.:Não preciso disso!")) {
+			case 1:
+				mes "[Rust Blackhand]";
+				mes "kkk... Sim, homens sabem o que fazem quando a oportunidade chega. Irei lhe falar os ingredientes. Não esqueça, e traga eles todos.";
+				next;
+				mes "[Rust Blackhand]";
+			    	mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Você pode conseguir os chifres Majestosos dos Baphomets enfraquecidos do labirinto da floresta. E os cristais você consegue com as Sombras de Morroc.";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Estou certo que você poderá conseguir os ingredientes até porque você conseguiu selar o verdadeiro Baphomet. Não é? kkk...";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Você nunca saberá como é bom isso até conseguir um. Se você souber, vá e pegue os ingredientes.";
+				changequest 3042,3043;
+				close;
+			case 2:
+				mes "[Rust Blackhand]";
+				mes "Huh... Não mesmo? Faça o que quiser... Você quer realmente perder essa oportunidade?";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Tut, tut... Eu não ligo se esse boneco ameaça sua vida todo o tempo!";
+				close;
+			}
+		case 2:
+			mes "[Rust Blackhand]";
+			mes "Que menino chato é esse?... huh...";
+			close;
+		}
+	} else if ((.@new_maje == -1) && (countitem(6004) == 0)) {
+		mes "[Rust Blackhand]";
+		mes "Se não tiver nada a fazer, vá embora! Como você pode ver, eu só faço equipamentos para os irmãos do monastério.";
+		close;
+	} else if ((.@new_maje == 2) && (countitem(6004) > 0)) {
+		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
+		case 1:
+			mes "[Rust Blackhand]";
+			mes "Que?... Você denovo? O que faz nesse instante?";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Como assim? Você oncseguiu outro boneco do perverso demônio? Umm... Você é bem melhor do que eu pensava...";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Está certo... Irei lhe ajudar denovo.";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Se você quiser tranformar o seu boneco num^4d4dffChifres Magestosos Gigantes^000000 novamente, eu poderei fazer outro.";
+			next;
+			mes "[Rust Blackhand]";
+			mes "Irei lhe falar os ingredientes novamente. Então, você deseja fazer?";
+			next;
+			switch(select("Quero sim.:Não preciso disso!")) {
+			case 1:
+				mes "[Rust Blackhand]";
+				mes "kkk... Sim, homens sabem o que fazem quando a oportunidade chega. Irei lhe falar os ingredientes. Não esqueça, e traga eles todos.";
+				next;
+				mes "[Rust Blackhand]";
+			  mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Você pode conseguir os chifres Majestosos dos Baphomets enfraquecidos do labirinto da floresta. E os cristais você consegue com as Sombras de Morroc.";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Estou certo que você poderá conseguir os ingredientes até porque você conseguiu selar o verdadeiro Baphomet. Não é? kkk...";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Você nunca saberá como é bom isso até conseguir um. Se você souber, vá e pegue os ingredientes.";
+				//recall_completequest 3043
+				changequest 3042,3043;
+				close;
+			case 2:
+				mes "[Rust Blackhand]";
+				mes "Huh... Não mesmo? Faça o que quiser... Você quer realmente perder essa oportunidade?";
+				next;
+				mes "[Rust Blackhand]";
+				mes "Tut, tut... Eu não ligo se esse boneco ameaça sua vida todo o tempo!";
+				close;
+			}
+		case 2:
+			mes "[Rust Blackhand]";
+			mes "Que menino chato é esse?... huh...";
+			close;
+		}
+	} else if ((.@new_maje == 2) && (countitem(6004) == 0)) {
+		mes "[Rust Blackhand]";
+		mes "O está fazendo aqui? Se não quer os ^4d4dffChifres Magestosos Giganetes^000000, saia daqui";
+		close;
+	}
+}
+
+// Interior do Santuário Selado
+//============================================================
+1@cata,1,2,0	script	ins_baphomet_lotto	-1,{
+OnEnable:
+	switch(rand(1,13)) {
+	case 1:
+		enablenpc instance_npcname("Túmulo#1F_1T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 2:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 3:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 4:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 5:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 6:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 7:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 8:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 9:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 10:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 11:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 12:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12T", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
+		end;
+	case 13:
+		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
+		enablenpc instance_npcname("Túmulo#1F_13T", instance_id());
+		end;
+	}
+	end;
+}
+
+1@cata,3,2,0	script	ins_baphomet_lotto2	-1,{
+OnEnable:
+	enablenpc instance_npcname("Tocha#1", instance_id());
+	enablenpc instance_npcname("Tocha#2", instance_id());
+	enablenpc instance_npcname("Tocha#3", instance_id());
+	enablenpc instance_npcname("Tocha#4", instance_id());
+	enablenpc instance_npcname("Tocha#5", instance_id());
+	enablenpc instance_npcname("Tocha#6", instance_id());
+	enablenpc instance_npcname("Tocha#7", instance_id());
+	enablenpc instance_npcname("Tocha#8", instance_id());
+	enablenpc instance_npcname("Tocha#9", instance_id());
+	enablenpc instance_npcname("Tocha#10", instance_id());
+	enablenpc instance_npcname("Tocha#11", instance_id());
+	enablenpc instance_npcname("Tocha#12", instance_id());
+	end;
+}
+
+1@cata,4,2,0	script	ins_baphomet_lotto3	-1,{
+OnEnable:
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1869,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1291,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1869,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1291,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1869,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1291,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1869,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1132,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1117,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1132,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1117,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1132,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1291,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1117,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	monster "1@cata",0,0,"Apóstolo de Baphomet",1869,1,instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnDisable:
+	killmonster "1@cata",instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	if (mobcount("1@cata",instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead") < 1) {
+		instance_announce 0, "Todos os Apóstolos de Baphomet estão mortos!",bc_map,"0x00ff99";
+	}
+	getitem 6002,1; // Medalhão do Apóstolo
+	end;
+}
+
+// Espírito do Herói da Tumba do Norte
+//============================================================
+1@cata,141,221,0	script	Túmulo#	844,3,3,{
+	set .@party_id,getcharid(1);
+	if ('ins_baphomet == 0) {
+		mes "O Túmulo está trêmulo...";
+		next;
+		mes "Ao tocá-lo, posso ouvir uma voz";
+		next;
+		specialeffect2 EF_CONE;
+		mes "[Túmulo do Herói]";
+		mes "Estava esperando que algum aventureiro forte como você voltasse...";
+		next;
+		while(1) {
+			switch(select("Quem é você?:Esperando por mim?:Cancelar.")) {
+			case 1:
+				mes "[Túmulo do Herói]";
+				mes "Eu sou um dos aventureiros que tentaram parar o Baphomet. Agora, estou morto e só minha alma que me resta...";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "Como sabe... Não temos tempo suficiente. Não podem parar o Baphomet sozinhos. Seu poder continua forte durante décadas.";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "No passado, meu grupo e eu selamos o Baphomet no segundo andar e bloqueamos a entrada.";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "Mudei a essência da minha alma, para que eu possa permanecer neste mundo. Isso foi quando eu me tornei guardião deste túmulo.";
+				next;
+				break;
+			case 2:
+				mes "[Túmulo do Herói]";
+				mes "O poder de Baphomet pode quebrar o selo que fizemos. Se eu não reativá-los... Ele irá finalmente renascer.";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "Para poder entrar, você deve substancializar minha alma. Vou abrir a porta e reativar os selos enfraquecidos depois que estiver substancializado.";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "Para isso você deve achar o meu corpo que deve estar dentro de algum desses Túmulos.";
+				next;
+				mes "[Túmulo do Herói]";
+				mes "Se o ^0000FFlíder do grupo^000000 trouxer meu pingente, minha alma será substancializada.";
+				set 'ins_baphomet,1;
+				close;
+			case 3:
+				mes "Posso ouvir uma voz fraca.";
+				close;
+			}
+		}
+	} else if ('ins_baphomet == 1) {
+		mes "[Túmulo do Herói]";
+		mes "O poder de Baphomet pode quebrar o selo que fizemos. Se eu não reativá-los... Ele irá finalmente renascer.";
+		next;
+		mes "[Túmulo do Herói]";
+		mes "Para poder entrar, você deve substancializar minha alma. Vou abrir a porta e reativar os selos enfraquecidos depois que estiver substancializado.";
+		next;
+		mes "[Túmulo do Herói]";
+		mes "Para isso você deve achar o meu corpo que deve estar dentro de algum desses túmulos.";
+		close;
+	} else if (('ins_baphomet == 2) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+		mes "[Túmulo do Herói]";
+		mes "Encontraram meu pingente?";
+		next;
+		if (countitem(6003) > 0) {
+			specialeffect EF_MAPPILLAR;
+			mes "[Túmulo do Herói]";
+		mes "Sim... É esse... Meu Pingente...";
+			next;
+			delitem 6003,1; // Pingente do Espírito
+			enablenpc instance_npcname("Alma do Herói#1F", instance_id());
+			disablenpc instance_npcname("Túmulo#", instance_id());
+			mes "[Túmulo do Herói]";
+			mes "Agora posso substancializar minha alma. Esperarei no altar de fogo no centro do mapa. Me encontre lá.";
+			next;
+			instance_announce 0, "Alma do Herói : Esperarei no altar de fogo no centro do mapa.",bc_map,"0xFFFF00";
+			mes "Posso ouvir uma voz fraca.";
+			close;
+		} else {
+			mes "[Túmulo do Herói]";
+			mes "Ainda está aqui? Traga meu Pingente o mais rápido possível.";
+			next;
+			mes "[Túmulo do Herói]";
+			mes "Você pode encontrar meu corpo com meu pingente nesse mapa.";
+			close;
+		}
+	} else {
+		mes "[Túmulo do Herói]";
+		mes "Eu quero falar com o ^0000FFlíder do grupo^000000. Outros, aguardem aqui.";
+		close;
+	}
+	end;
+
+OnTouch:
+	if ('ins_baphomet == 0) {
+		mes "'Krrrr... Krrrr...'";
+		next;
+		mes "Eu posso sentir um sentimento estranho no túmulo. É como que alguém estivesse pedindo algo em silêncio...";
+		close;
+	}
+	end;
+}
+
+1@cata,176,119,4	script	Alma do Herói#1F	411,{
+	set .@party_id,getcharid(1);
+	cutin "ins_cata_champ_n",2;
+	if ('ins_baphomet == 2) {
+		mes "[Alma do Herói]";
+		mes "Com sua ajuda, a minha alma pode ser substancializada. Eu quero falar, mais não temos tempo suficiente...";
+		next;
+		mes "[Alma do Herói]";
+		mes "Posso ficar assim por uma hora. Para chegar ao altar principal do subterrâneo, você deve me ajudar a realizar a cerimônia de abertura de cada selo.";
+		next;
+		mes "[Alma do Herói]";
+		mes "Irei falar o que você deve fazer. Primeiro, pegue as ^0000FFEssências de Fogo^000000 das tochas dos túmulos...";
+		next;
+		mes "[Alma do Herói]";
+		mes "Segundo, todos os membros que entrarem no subterrâneo devem levar um símbolo que é chamado Símbolo do Apóstolo.";
+		next;
+		while(1) {
+			cutin "ins_cata_champ_n",2;
+			switch(select("Essências de Fogo?:Símbolo do Apóstolo?:O que fazer?:Estou pronto!")) {
+			case 1:
+				set .@ins_baphomet_1f_1,.@ins_baphomet_1f_1+1;
+				mes "[Alma do Herói]";
+				mes "Você pode ver as Tochas por aqui. Elas contém a essência de Thor, o deus do Trovão. Elas são herdadas de nossos antecessores para parar a escuridão de Baphomet...";
+				next;
+				mes "[Alma do Herói]";
+				mes "Para abrir a ponte que leva ao subsolo é preciso ser purificado pelas ^0000FFEssências de Fogo^000000.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Uma coisa que você deve lembrar é que ... Estas ^0000FFEssências de Fogo^000000 só podem ser recolhidas pelo herdeiro da Fé.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Somente o líder do grupo que pode recolher as ^0000FFEssências de Fogo^000000.";
+				next;
+				break;
+			case 2:
+				set .@ins_baphomet_1f_2,.@ins_baphomet_1f_2+1;
+				mes "[Alma do Herói]";
+				mes "Naquele tempo, era impossível se livrar do demônio Baphomet por nós mesmos. Depois de numerosos heróis terem sacrificados suas vidas, nós conseguimos selar o Demônio nessa abadia.";
+				next;
+				mes "[Alma do Herói]";
+				mes "No entanto, Baphomet nunca desistiu. Ele continua reforçado o seu poder trazendo nova a este santuário.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Alguns desses monstros têm poderes mágicos. Baphomet os chama de Apóstolos.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Nesse tempo, é impossivel combater o Baphomet sozinhos.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Entretando, Baphomet nunca cairá. Seu poder continua aumentando. Esse poder trouxe nova vida ao seu túmulo.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Alguns desses monstros possuem um grande poder. Baphomet os chamam de 'Apóstolos'.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Os Apóstolos se clonam para encher este túmulo de poder. Eles são os monstros de dentro dessas catacumbas.";
+				next;
+				mes "[Alma do Herói]";
+				mes "Matem os Apóstolos. Somente os verdadeiros que derrubam o ^0000FFSímbolo do Apóstolo^000000...";
+				next;
+				break;
+			case 3:
+				set .@ins_baphomet_1f_3,.@ins_baphomet_1f_3+1;
+				if (getpartyleader(.@party_id,2) == getcharid(0)) {
+					mes "[Alma do Herói]";
+					mes "Você parece ser o líder do grupo. Você precisa ter ^0000FF10 Essências de Fogo^000000 das tochas.";
+					next;
+					mes "[Alma do Herói]";
+					mes "Agora irei cravar o símbolo que mostra que você é o herdeiro da fé. Saiba que, somente você pode carregas as Essências do Fogo.";
+					next;
+					specialeffect2 EF_HOLYHIT;
+					mes "[Alma do Herói]";
+					mes "Você deve carregar o ^0000FFSímbolo do Apóstolo^000000 também. Então prepare-se.";
+					next;
+					mes "[Alma do Herói]";
+					mes "Me avise quando todos estiverem prontos que irei abrir a ponte selada.";
+					next;
+				} else {
+					mes "[Alma do Herói]";
+					mes "Esteja certo que o Líder do Grupo escutou minhas explicações para o andamento a instância";
+					next;
+					mes "[Alma do Herói]";
+					mes "Matem os Apóstolos de Baphomet e peguem seu ^0000FFSímbolo do Apóstolo^000000.";
+					next;
+					mes "[Alma do Herói]";
+					mes "É melhor matarem todos os Apóstolos pois é difícil saber qual é o certo.";
+					next;
+					mes "[Alma do Herói]";
+					mes "Está pronto?";
+					mes "Esteja certo que você escutou todas as minhas explicações antes de ir.";
+					next;
+				}
+				break;
+			case 4:
+				if ((.@ins_baphomet_1f_1 > 0) && (.@ins_baphomet_1f_2 > 0) && (.@ins_baphomet_1f_3 > 0)) {
+					cutin "ins_cata_champ_n",2;
+					mes "[Alma do Herói]";
+					mes "Está pronto? Irei abrir a ponte agora mesmo.";
+					next;
+					set .@exitloop,1;
+				} else {
+					cutin "ins_cata_champ_a",2;
+					mes "[Alma do Herói]";
+					mes "Parece ser difícil mas espero que sua bravura e suas habilidades sejam o suficiente para isso.";
+					next;
+					mes "[Alma do Herói]";
+					mes "Lembre-se, eu preciso que você traga para mim ^FFAA0010 Essências de Fogo^000000 encontradas nas tochas desse lugar e o ^0000FFSímbolo do Apóstolo^000000 dos Apóstolos de Baphomet.";
+					next;
+				}
+				break;
+			}
+			if (.@exitloop) break;
+		}
+		if (getpartyleader(.@party_id,2) == getcharid(0)) {
+			mes "[Alma do Herói]";
+			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
+			set 'ins_baphomet,3;
+			donpcevent instance_npcname("ins_baphomet_1f_timer", instance_id())+"::OnEnable";
+			donpcevent instance_npcname("ins_baphomet_lotto2", instance_id())+"::OnEnable";
+			donpcevent instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnEnable";
+		} else {
+			mes "[Alma do Herói]";
+			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
+			//set 'ins_baphomet,3;
+		}
+		close2;
+		cutin "",255;
+		end;
+	} else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "Você pegou as 10^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
+		next;
+		if ((countitem(6001) > 9) && (countitem(6002) > 0)) {
+			delitem 6001,countitem(6001); //Essence_Of_Fire
+			set 'ins_baphomet,4;
+			mes "[Alma do Herói]";
+			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
+		} else {
+			mes "[Alma do Herói]";
+			mes "Não estão prontos ainda? eu preciso que você traga para mim ^FFAA0010 Essências de Fogo^000000 encontradas nas tochas desse lugar e o ^0000FFSímbolo do Apóstolo^000000 dos Apóstolos de Bafomé.";
+		}
+		close2;
+		cutin "",255;
+		end;
+	} else if ('ins_baphomet == 3) {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "Você tem o ^0000FFSímbolo do Apóstolo^000000?";
+		next;
+		if (countitem(6002) > 0) {
+			set 'ins_baphomet,4;
+			mes "[Alma do Herói]";
+			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
+		} else {
+			mes "[Alma do Herói]";
+			mes "Ainda não? eu preciso do ^0000FFSímbolo do Apóstolo^000000 dos Apóstolos de Bafomé.";
+		}
+		close2;
+		cutin "",255;
+		end;
+	} else if (('ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "Está pronto? Abri a ponte neste momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
+		next;
+		set 'ins_baphomet,5;
+		specialeffect EF_TELEPORTATION;
+		enablenpc instance_npcname("ins_bapho_to_2f", instance_id());
+		mes "[Alma do Herói]";
+		mes "Agora já pode ir ao altar principal. Ele se encontra no sudeste do mapa.";
+		next;
+		mes "[Alma do Herói]";
+		mes "A verdadeira batalha começa... Irei os serguir e encontrar alguma forma de ajudar.";
+		next;
+		mes "[Alma do Herói]";
+		mes "Vão à frente, guerreiros.";
+		cutin "",255;
+		instance_announce 0, "Alma do Herói : Agora já podem ir ao Altar Principal. Ele está localizado no Sudeste do mapa",bc_map,"0xFFFF00";
+		close;
+	} else if ('ins_baphomet == 4) {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "Está pronto? Abri a ponte nesse momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
+		next;
+		mes "[Alma do Herói]";
+		mes "Irei abrir a ponte quando o Líder do grupo estiver pronto.";
+		cutin "",255;
+		close;
+	} else if ('ins_baphomet == 5) {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "O que está fazendo? A entrada para o Altar está aberta, vá e lute! A entrada se encontra no sudeste do mapa.";
+		cutin "",255;
+		close;
+	} else {
+		cutin "ins_cata_champ_n",2;
+		mes "[Alma do Herói]";
+		mes "Não tenho nada a falar com você...";
+		cutin "",255;
+		close;
+	}
+}
+
+1@cata,281,12,0	script	ins_bapho_to_2f	45,1,1,{
+OnTouch:
+	if (countitem(6002) > 0) {
+		delitem 6002,countitem(6002); // Medalhão do Apóstolo
+		set 'ins_baphomet,5;
+		warp "2@cata",80,144;
+		end;
+	} else {
+		mes "[Alma do Herói]";
+		mes "Cadê seu Símbolo do Apóstolo? Eu disse que precisava dele para passar pela ponte.";
+		close;
+	}
+}
+
+// Túmulos
+//============================================================
+1@cata,86,214,0	script	Túmulo#SS1	844,{
+	if ('ins_baphomet == 1) {
+		getitem 6003,1; // Pingente do Espírito
+		set 'ins_baphomet,2;
+		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Eu acho que é o pingente...";
+		close;
+	} else {
+		mes "Posso sentir a tristeza vinda desse túmulo.";
+		close;
+	}
+}
+1@cata,200,209,0	duplicate(Túmulo#SS1)	Túmulo#1F_2T	844
+1@cata,230,195,0	duplicate(Túmulo#SS1)	Túmulo#1F_3T	844
+1@cata,118,182,0	duplicate(Túmulo#SS1)	Túmulo#1F_4T	844
+1@cata,193,182,0	duplicate(Túmulo#SS1)	Túmulo#1F_5T	844
+1@cata,253,156,0	duplicate(Túmulo#SS1)	Túmulo#1F_6T	844
+1@cata,88,154,0	duplicate(Túmulo#SS1)	Túmulo#1F_7T	844
+1@cata,127,116,0	duplicate(Túmulo#SS1)	Túmulo#1F_8T	844
+1@cata,90,98,0	duplicate(Túmulo#SS1)	Túmulo#1F_9T	844
+1@cata,188,84,0	duplicate(Túmulo#SS1)	Túmulo#1F_10T	844
+1@cata,244,42,0	duplicate(Túmulo#SS1)	Túmulo#1F_11T	844
+1@cata,127,32,0	duplicate(Túmulo#SS1)	Túmulo#1F_12T	844
+1@cata,267,30,0	duplicate(Túmulo#SS1)	Túmulo#1F_13T	844
+
+1@cata,86,214,0	script	Túmulo#SS2	844,{
+	mes "Posso sentir a tristeza vinda desse túmulo.";
+	close;
+}
+1@cata,200,209,0	duplicate(Túmulo#SS2)	Túmulo#1F_2F	844
+1@cata,230,195,0	duplicate(Túmulo#SS2)	Túmulo#1F_3F	844
+1@cata,118,182,0	duplicate(Túmulo#SS2)	Túmulo#1F_4F	844
+1@cata,193,182,0	duplicate(Túmulo#SS2)	Túmulo#1F_5F	844
+1@cata,253,156,0	duplicate(Túmulo#SS2)	Túmulo#1F_6F	844
+1@cata,88,154,0	duplicate(Túmulo#SS2)	Túmulo#1F_7F	844
+1@cata,127,116,0	duplicate(Túmulo#SS2)	Túmulo#1F_8F	844
+1@cata,90,98,0	duplicate(Túmulo#SS2)	Túmulo#1F_9F	844
+1@cata,188,84,0	duplicate(Túmulo#SS2)	Túmulo#1F_10F	844
+1@cata,244,42,0	duplicate(Túmulo#SS2)	Túmulo#1F_11F	844
+1@cata,127,32,0	duplicate(Túmulo#SS2)	Túmulo#1F_12F	844
+1@cata,267,30,0	duplicate(Túmulo#SS2)	Túmulo#1F_13F	844
+
+// Tochas
+//============================================================
+1@cata,267,210,0	script	Tocha#SS	844,{
+	set .@party_id,getcharid(1);
+	if (getpartyleader(.@party_id,2) == getcharid(0)) {
+		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
+			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
+			next;
+			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segurá-la.";
+			next;
+			specialeffect2 EF_HOLYHIT;
+			getitem 6001,1; // Essência de Fogo
+			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
+			disablenpc instance_npcname(strnpcinfo(0), instance_id());
+			close;
+		} else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
+			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
+			close;
+		} else {
+			mes "Você não precisa mais pegar as Essências de Fogo.";
+			close;
+		}
+	} else {
+		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
+		next;
+		mes "[Voz Misteriosa]";
+		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
+		specialeffect2 EF_FIRESPLASHHIT;
+		percentheal -50,0;
+		close;
+	}
+}
+1@cata,85,182,0	duplicate(Tocha#SS)	Tocha#2	844
+1@cata,267,154,0	duplicate(Tocha#SS)	Tocha#3	844
+1@cata,157,139,0	duplicate(Tocha#SS)	Tocha#4	844
+1@cata,193,138,0	duplicate(Tocha#SS)	Tocha#5	844
+1@cata,193,102,0	duplicate(Tocha#SS)	Tocha#6	844
+1@cata,157,102,0	duplicate(Tocha#SS)	Tocha#7	844
+1@cata,113,112,0	duplicate(Tocha#SS)	Tocha#8	844
+1@cata,253,56,0	duplicate(Tocha#SS)	Tocha#9	844
+1@cata,239,56,0	duplicate(Tocha#SS)	Tocha#10	844
+1@cata,71,42,0	duplicate(Tocha#SS)	Tocha#11	844
+1@cata,155,14,0	duplicate(Tocha#SS)	Tocha#12	844
+
+1@cata,1,1,0	script	ins_baphomet_1f_timer	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
+	initnpctimer;
+	end;
+
+OnDisable:;
+	disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
+	stopnpctimer;
+	end;
+
+OnTimer1800000:
+	instance_announce 0, "Alma do Herói : Não temos tempo suficiente. Apressem-se!",bc_map,"0xFFFF00";
+	end;
+
+OnTimer2400000:
+	instance_announce 0, "Alma do Herói : Meu corpo está desaparecendo... Apressem-se!",bc_map,"0xFFFF00";
+	end;
+
+OnTimer3000000:
+	instance_announce 0, "Alma do Herói : Tudo acabou... Não tem como prosseguirmos...",bc_map,"0xFFFF00";
+	end;
+
+OnTimer3050000:
+	instance_announce 0, "Alma do Herói : We failed... However... We still have a chance. I hope you will train yourselves until the time comes.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer3100000:
+	instance_announce 0, "Falhamos... Entretanto... Ainda temos chances. Espero que treinem mais até a hora chegar.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer3500000:
+	instance_warpall "monk_test",310,150;
+	stopnpctimer;
+	end;
+}
+
+2@cata,80,144,0	script	ins_2f_enter	-1,3,3,{
+OnTouch:
+	donpcevent instance_npcname("ins_2f_enter_broad", instance_id())+"::OnEnable";
+	disablenpc instance_npcname("ins_2f_enter", instance_id());
+	end;
+}
+
+2@cata,1,1,0	script	ins_2f_enter_broad	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_2f_enter_broad", instance_id());
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("ins_2f_enter_broad", instance_id());
+	end;
+
+OnTimer10000:
+	instance_announce 0, "Baphomet : Humanos... interferindo novamente...",bc_map,"0xdb7093";
+	end;
+
+OnTimer13000:
+	instance_announce 0, "Apóstolo de Baphomet : Humanos! Humanos invadiram nosso santuário!",bc_map,"0xFFFF00";
+	end;
+
+OnTimer16000:
+	instance_announce 0, "Apóstolo de Baphomet : Matem-nos! Não deixem parar a ressurreição de nosso mestre!",bc_map,"0xFFFF00";
+	end;
+
+OnTimer18000:
+	instance_announce 0, "Apóstolo de Baphomet : Apressem-se em liberar os selos dos altares! O retorno de nosso mestre está sobre nós.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	disablenpc instance_npcname("ins_2f_enter_broad", instance_id());
+	end;
+}
+
+2@cata,50,67,0	script	slave_left	-1,5,5,{
+OnTouch:
+	disablenpc instance_npcname("slave_left", instance_id());
+	instance_announce 0, "Apóstolo de Baphomet : Matem os Humanos! Não os deixem enterromper a volta de nosso Mestre!",bc_map,"0xFFFF00";
+	monster "2@cata",55,67,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",51,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",58,67,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",53,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",54,67,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",55,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",56,67,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",58,66,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",56,66,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",60,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",59,66,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",54,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",55,66,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",56,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",50,65,"Apóstolo de Baphomet",1867,1;
+	monster "2@cata",61,65,"Apóstolo de Baphomet",1292,1;
+	end;
+}
+
+2@cata,109,67,0	script	slave_right	-1,5,5,{
+OnTouch:
+	disablenpc instance_npcname("slave_right", instance_id());
+	instance_announce 0, "Apóstolo de Baphomet : Matem os Humanos! Não os deixem enterromper a volta de nosso Mestre!",bc_map,"0xFFFF00";
+	monster "2@cata",105,67,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",104,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",107,67,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",106,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",102,67,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",103,67,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",103,67,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",109,66,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",108,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",101,66,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",106,66,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",102,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",104,66,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",103,66,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",109,65,"Apóstolo de Baphomet",1867,1;
+	monster "2@cata",108,65,"Apóstolo de Baphomet",1292,1;
+	end;
+}
+
+2@cata,79,39,0	script	slave_down	-1,5,5,{
+OnTouch:
+	disablenpc instance_npcname("slave_down", instance_id());
+	instance_announce 0, "Apóstolo de Baphomet : Apóstolo de Baphomet : Matem os Humanos! Não os deixem enterromper a volta de nosso Mestre!",bc_map,"0xFFFF00";
+	monster "2@cata",78,41,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",79,42,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",78,46,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",81,41,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",81,42,"Apóstolo de Baphomet",1869,1;
+	monster "2@cata",79,43,"Apóstolo de Baphomet",1291,1;
+	monster "2@cata",77,40,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",79,41,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",79,42,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",79,43,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",79,48,"Apóstolo de Baphomet",1117,1;
+	monster "2@cata",78,49,"Apóstolo de Baphomet",1132,1;
+	monster "2@cata",78,41,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",74,42,"Apóstolo de Baphomet",1292,1;
+	monster "2@cata",72,48,"Apóstolo de Baphomet",1867,1;
+	monster "2@cata",72,38,"Apóstolo de Baphomet",1292,1;
+	end;
+}
+
+// Selo Mágicos
+//============================================================
+2@cata,79,81,0	script	Selo Mágico#SS	844,{
+	set .@seal_check,checkquest(3041,PLAYTIME);
+	if (.@seal_check == 0 || .@seal_check == 1) {
+		specialeffect2 EF_SILENCEATTACK;
+		percentheal -50,0;
+		sc_start Eff_Stone,30000,0;
+		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
+		close;
+	}
+	if (.@seal_check == 2) erasequest 3041;
+	specialeffect EF_LEXDIVINA;
+	disablenpc instance_npcname(strnpcinfo(0), instance_id());
+	if (strnpcinfo(2) == "0") areamobuseskill "2@cata",79,81,10,1929,686,1,0,0,26,0;
+	else if (strnpcinfo(2) == "2") areamobuseskill "2@cata",123,109,10,1929,686,1,0,0,26,0;
+	else if (strnpcinfo(2) == "4") areamobuseskill "2@cata",123,22,10,1929,686,1,0,0,26,0;
+	else if (strnpcinfo(2) == "8") areamobuseskill "2@cata",35,21,10,1929,686,1,0,0,26,0;
+	else if (strnpcinfo(2) == "10") areamobuseskill "2@cata",35,109,10,1929,686,1,0,0,26,0;
+	percentheal -50,0;
+	sc_start Eff_Stone,20000,0;
+	setquest 3041;
+	instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
+	mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
+	next;
+	mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
+	close;
+}
+2@cata,123,109,0	duplicate(Selo Mágico#SS)	Selo Mágico#2	844
+2@cata,123,22,0	duplicate(Selo Mágico#SS)	Selo Mágico#4	844
+2@cata,35,21,0	duplicate(Selo Mágico#SS)	Selo Mágico#8	844
+2@cata,35,109,0	duplicate(Selo Mágico#SS)	Selo Mágico#10	844
+
+2@cata,79,65,0	script	Altar Principal#ss	844,{
+	set .@party_id,getcharid(1);
+	if (('ins_baphomet == 5) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
+		next;
+		mes "Pergaminhos Mágicos piscam rapidamente, na tentativa de suprimir esse poder terrível.";
+		next;
+		mes "O Altar Principal treme furiosamente.";
+		next;
+		specialeffect EF_METEORSTORM;
+		specialeffect EF_METEORSTORM;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Olhem! Algo... Algo está vindo.";
+		set 'ins_baphomet,6;
+		donpcevent instance_npcname("ins_2f_hero_broad", instance_id())+"::OnEnable";
+		disablenpc instance_npcname("Altar Principal#ss", instance_id());
+		close;
+	} else {
+		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
+		next;
+		mes "Pergaminhos Mágicos piscam rapidamente, na tentativa de suprimir esse poder terrível.";
+		close;
+	}
+	end;
+}
+
+2@cata,80,63,4	script	Alma do Herói#2F	411,{
+	cutin "ins_cata_champ_s",2;
+	if (checkquest(3041)>=0) erasequest 3041;
+	mes "[Alma do Herói]";
+	mes "Bom trablaho, meus descendentes... Vocês realizaram meu desejo que muitos não cumprem faz tempo.";
+	next;
+	mes "[Alma do Herói]";
+	mes "Realmente aprecio isso.";
+	mes "Suas almas finalmente podem descansar em paz...";
+	next;
+	mes "[Alma do Herói]";
+	mes "A luta pela paz neste mundo nunca vai acabar. Mas ... o meu papel aqui finalmente chega ao fim, porque há bravos heróis como você.";
+	next;
+	switch(select("Leve-me ao monastério.:Terminar conversa.")) {
+	case 1:
+		mes "[Alma do Herói]";
+		mes "Ok. Tirarei seu grupo daqui com segurança.";
+		next;
+		mes "[Alma do Herói]";
+		mes "Quando sair, diga um oi ao Patrick.";
+		cutin "",255;
+		set 'ins_baphomet,0;
+		warp "monk_test",310,150;
+		close;
+	case 2:
+		mes "[Alma do Herói]";
+		mes "Ainda tem algo para fazer aqui? Quando estiver pronto para sair, fale comigo...";
+		cutin "",255;
+		close;
+	}
+}
+
+2@cata,1,2,0	script	ins_2f_hero_broad	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_2f_hero_broad", instance_id());
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("ins_2f_hero_broad", instance_id());
+	end;
+
+OnTimer3000:
+	instance_announce 0, "Alma do Herói : Meu deus! O selo do Altar Principal está enfraquecendo!",bc_map,"0xFFFF00";
+	end;
+
+OnTimer6000:
+	instance_announce 0, "Alma do Herói : Companheiros... Escutem com atenção o que irei dizer.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer9000:
+	instance_announce 0, "Alma do Herói : Os altares, que controlam o poder altar principal, estão localizados nos cantos Nordeste, Sudeste, Sudoeste e Noroeste deste quarto.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer12000:
+	instance_announce 0, "Alma do Herói : Encontre estes altares e ative os seus selos antes que Baphomet reviva.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer15000:
+	instance_announce 0, "Baphomet : Tarde demais, fracos... Agora, vocês irão sentir o desespero da morte!",bc_map,"0xdb7093";
+	end;
+
+OnTimer17000:
+	instance_announce 0, "Baphomet : Ninguém pode me prejudicar aqui. Você será o meu primeiro sacrifício.",bc_map,"0xdb7093";
+	donpcevent instance_npcname("control_baphomet", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("ins_2f_hero_broad2", instance_id())+"::OnEnable";
+	stopnpctimer;
+	disablenpc instance_npcname("ins_2f_hero_broad", instance_id());
+	end;
+}
+
+2@cata,3,3,0	script	control_baphomet	-1,{
+OnEnable:
+	enablenpc instance_npcname("control_baphomet", instance_id());
+	donpcevent instance_npcname("2f_callmon_pattern_c", instance_id())+"::OnEnable";
+	monster "2@cata",79,64,"Baphomet#",1929,1,instance_npcname("control_baphomet", instance_id())+"::OnMyMobDead";
+	end;
+
+OnDisable:
+	disablenpc "control_baphomet";
+	end;
+
+OnMyMobDead:
+	if (mobcount("2@cata",instance_npcname("control_baphomet", instance_id())+"::OnMyMobDead") < 1) {
+		set 'ins_baphomet,7;
+		erasequest 3041;
+		instance_announce 0, "Baphomet : Não! Nãoooo!Levarei isso como insulto, seus insetos!... Não!!...",bc_map,"0xdb7093";
+		enablenpc instance_npcname("Alma do Herói#2F", instance_id());
+		disablenpc instance_npcname("slave_down", instance_id());
+		disablenpc instance_npcname("slave_left", instance_id());
+		disablenpc instance_npcname("slave_right", instance_id());
+		donpcevent instance_npcname("ins_2f_hero_broad", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("ins_2f_hero_broad2", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("2f_callmon_pattern_c", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("2f_callmon_pattern", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("ins_2f_hero_pattern", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("ins_2f_enter_broad", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("control_baphomet", instance_id())+"::OnDisable";
+		disablenpc instance_npcname("control_baphomet", instance_id());
+	}
+	end;
+}
+
+2@cata,2,2,0	script	ins_2f_hero_broad2	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
+	end;
+
+OnTimer8000:
+	instance_announce 0, "Alma do Herói : Não se preocupem, o Baphomet ainda pode ser derrotado.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer11000:
+	instance_announce 0, "Alma do Herói : Vá para os alteres e ativem os selos.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer13000:
+	instance_announce 0, "Alma do Herói : Quando os selos se recuperarem, Baphomet ficará vulnerável.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer16000:
+	instance_announce 0, "Alma do Herói : Você deve atrair Baphomet aos altares não selados. Caso contrário, seu esforço será inútil.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer19000:
+	instance_announce 0, "Alma do Herói : Temos apenas 1 hora de parar Baphomet. Se o tempo passar, o poder dos selos será inútil.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer22000:
+	instance_announce 0, "Baphomet : É inútil. Faça mais selos. Eu vou esmagá-los. Nenhum de vocês vai sobreviver.",bc_map,"0xdb7093";
+	end;
+
+OnTimer26000:
+	instance_announce 0, "Alma do Herói : O poder mágico do selo central está se esgotando. Vá para o selo central e coloque o poder mágico.",bc_map,"0xFFFF00";
+	enablenpc instance_npcname("Selo Mágico#0", instance_id());
+	disablenpc instance_npcname("Selo Mágico#2", instance_id());
+	disablenpc instance_npcname("Selo Mágico#4", instance_id());
+	disablenpc instance_npcname("Selo Mágico#8", instance_id());
+	disablenpc instance_npcname("Selo Mágico#10", instance_id());
+	donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::OnEnable";
+	stopnpctimer;
+	disablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
+	end;
+}
+
+2@cata,4,1,0	script	2f_callmon_pattern_c	-1,{
+OnEnable:
+	enablenpc instance_npcname("2f_callmon_pattern_c", instance_id());
+	initnpctimer;
+	donpcevent instance_npcname("2f_callmon_pattern_c", instance_id())+"::Ongo";
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc instance_npcname("2f_callmon_pattern_c", instance_id());
+	end;
+
+Ongo:
+	donpcevent instance_npcname("2f_callmon_pattern", instance_id())+"::OnEnable";
+	end;
+
+OnTimer3600000:
+	donpcevent instance_npcname("2f_callmon_pattern_c", instance_id())+"::OnDisable";
+	end;
+}
+
+2@cata,4,2,0	script	2f_callmon_pattern	-1,{
+OnEnable:
+	enablenpc instance_npcname("2f_callmon_pattern", instance_id());
+	stopnpctimer;
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("2f_callmon_pattern", instance_id());
+	stopnpctimer;
+	end;
+
+OnTimer300000:
+	enablenpc instance_npcname("slave_down", instance_id());
+	enablenpc instance_npcname("slave_left", instance_id());
+	enablenpc instance_npcname("slave_right", instance_id());
+	donpcevent instance_npcname("2f_callmon_pattern_c", instance_id())+"::Ongo";
+	end;
+}
+
+2@cata,3,1,0	script	ins_2f_hero_pattern_c	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_2f_hero_pattern_c", instance_id());
+	initnpctimer;
+	donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::Ongo";
+	end;
+
+Ongo:
+	donpcevent instance_npcname("ins_2f_hero_pattern", instance_id())+"::OnEnable";
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc instance_npcname("Selo Mágico#0", instance_id());
+	disablenpc instance_npcname("Selo Mágico#2", instance_id());
+	disablenpc instance_npcname("Selo Mágico#4", instance_id());
+	disablenpc instance_npcname("Selo Mágico#8", instance_id());
+	disablenpc instance_npcname("Selo Mágico#10", instance_id());
+	donpcevent instance_npcname("ins_2f_hero_pattern", instance_id())+"::OnDisable";
+	disablenpc instance_npcname("ins_2f_hero_pattern_c", instance_id());
+	end;
+
+OnTimer3600000:
+	instance_announce 0, "Baphomet : krrrr... Agora você não pode me parar por causa de um selo. Basta esperar pela sua morte!",bc_map,"0xdb7093";
+	end;
+
+OnTimer3605000:
+	instance_announce 0, "Alma do Herói : Você não pode mais parar o Baphomet com os selos. Tudo agora depende de Deus...",bc_map,"0xFFFF00";
+	donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::OnDisable";
+	end;
+}
+
+2@cata,3,2,0	script	ins_2f_hero_pattern	-1,{
+OnEnable:
+	enablenpc instance_npcname("ins_2f_hero_pattern", instance_id());
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("ins_2f_hero_pattern", instance_id());
+	stopnpctimer;
+	end;
+
+OnTimer70000:
+	switch(rand(1,5)) {
+	case 1:
+		instance_announce 0, "Alma do Herói : Meu Deus! O poder controlado pelo altar principal está enfraquecendo!",bc_map,"0xFFFF00";
+		enablenpc instance_npcname("Selo Mágico#0", instance_id());
+		disablenpc instance_npcname("Selo Mágico#2", instance_id());
+		disablenpc instance_npcname("Selo Mágico#4", instance_id());
+		disablenpc instance_npcname("Selo Mágico#8", instance_id());
+		disablenpc instance_npcname("Selo Mágico#10", instance_id());
+		break;
+	case 2:
+		instance_announce 0, "Alma do Herói : O poder do altar das 2 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
+		disablenpc instance_npcname("Selo Mágico#0", instance_id());
+		enablenpc instance_npcname("Selo Mágico#2", instance_id());
+		disablenpc instance_npcname("Selo Mágico#4", instance_id());
+		disablenpc instance_npcname("Selo Mágico#8", instance_id());
+		disablenpc instance_npcname("Selo Mágico#10", instance_id());
+		break;
+	case 3:
+		instance_announce 0, "Alma do Herói : O poder do altar das 4 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
+		disablenpc instance_npcname("Selo Mágico#0", instance_id());
+		disablenpc instance_npcname("Selo Mágico#2", instance_id());
+		enablenpc instance_npcname("Selo Mágico#4", instance_id());
+		disablenpc instance_npcname("Selo Mágico#8", instance_id());
+		disablenpc instance_npcname("Selo Mágico#10", instance_id());
+		break;
+	case 4:
+		instance_announce 0, "Alma do Herói : O poder do altar das 8 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
+		disablenpc instance_npcname("Selo Mágico#0", instance_id());
+		disablenpc instance_npcname("Selo Mágico#2", instance_id());
+		disablenpc instance_npcname("Selo Mágico#4", instance_id());
+		enablenpc instance_npcname("Selo Mágico#8", instance_id());
+		disablenpc instance_npcname("Selo Mágico#10", instance_id());
+		break;
+	case 5:
+		instance_announce 0, "Alma do Herói : O poder do altar das 10 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
+		disablenpc instance_npcname("Selo Mágico#0", instance_id());
+		disablenpc instance_npcname("Selo Mágico#2", instance_id());
+		disablenpc instance_npcname("Selo Mágico#4", instance_id());
+		disablenpc instance_npcname("Selo Mágico#8", instance_id());
+		enablenpc instance_npcname("Selo Mágico#10", instance_id());
+	}
+	stopnpctimer;
+	donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::Ongo";
+	end;
+}
+
+1@cata,1,1,0	script	ins_1f_spawn_mobs	-1,{
+OnEnable:
+	monster "1@cata",0,0,"Zumbi Mestre",1298,10;
+	monster "1@cata",0,0,"Aparição",1291,10;
+	//monster "1@cata",0,0,"Mímico Antigo",1699,10;
+	monster "1@cata",0,0,"Crânio Flamejante",1869,10;
+	monster "1@cata",0,0,"Esqueleto General",1290,10;
+	monster "1@cata",0,0,"Zumbi Mestre",1298,10;
+	monster "1@cata",0,0,"Esqueleto General",1290,10;
+	monster "1@cata",0,0,"Crânio Flamejante",1869,10;
+	monster "1@cata",0,0,"Aparição",1291,10;
+	monster "1@cata",0,0,"Aparição",1291,10;
+	monster "1@cata",0,0,"Khalitzburg",1132,10;
+	monster "1@cata",0,0,"Khalitzburg",1132,10;
+	monster "1@cata",0,0,"Crânio Flamejante",1869,10;
+	monster "1@cata",0,0,"Crânio Flamejante",1869,10;
+	monster "1@cata",0,0,"Mímico Antigo",1699,10;
+	monster "1@cata",0,0,"Zumbi Mestre",1298,10;
+	monster "1@cata",0,0,"Mímico Antigo",1699,10;
+	monster "1@cata",0,0,"Zumbi Mestre",1298,10;
+	monster "1@cata",0,0,"Aparição",1291,10;
+	monster "1@cata",0,0,"Esqueleto General",1290,10;
+	monster "1@cata",0,0,"Esqueleto General",1290,10;
+	monster "1@cata",0,0,"Xamã do Vento",1263,10;
+	monster "1@cata",0,0,"Xamã do Vento",1263,10;
+	monster "1@cata",0,0,"Xamã do Vento",1263,10;
+	monster "1@cata",0,0,"Lude",1509,10;
+	monster "1@cata",0,0,"Lude",1509,10;
+	monster "1@cata",0,0,"Druida Malígno",1117,10;
+	monster "1@cata",0,0,"Druida Malígno",1117,10;
+	monster "1@cata",0,0,"Druida Malígno",1117,10;
+	monster "1@cata",0,0,"Banshee",1867,10;
+	monster "1@cata",0,0,"Ilusão das Trevas",1302,1;
+	end;
+}

@@ -1,0 +1,325 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: louyang.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.9/3.0/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Louyang.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Louyang - Trasportação
+//============================================================
+alberta,245,45,3	script	Garota#0lou	815,{
+	mes "[Garota]";
+	mes "La la la la~";
+	mes "Me sinto ótima hoje~";
+	mes "Estou com vontade de ir";
+	mes "a um piquenique!";
+	mes "La la la la~";
+	next;
+	switch(select("Sobre Louyang.:Ir para Louyang.:Cancelar.")) {
+	case 1:
+		mes "[Garota]";
+		mes "Oh, você está";
+		mes "interessado em Louyang?";
+		mes "É um lugar legal";
+		mes "para viajantes.";
+		next;
+		mes "[Garota]";
+		mes "Louyang tem uma história longa,";
+		mes "com lendas de magias antigas e guerreiros. Também dizem que muitos monstros malvados";
+		mes "rondam Louyang.";
+		next;
+		mes "[Garota]";
+		mes "Você encontrará remédios contra tudo, ocorrências misteriosas";
+		mes "e artes marciais, tudo em um só lugar!";
+		next;
+		mes "[Garota]";
+		mes "Eu treinava artes marciais toda manhã quando morava em Louyang. Posso não parecer, mas sou muito forte!";
+		next;
+		mes "[Garota]";
+		mes "Se quiser visitar";
+		mes "Louyang, fale comigo.";
+		mes "Só me dê alguns zenys";
+		mes "e iremos!";
+		close;
+	case 2:
+		mes "[Garota]";
+		mes "Levarei você a";
+		mes "Louyang agora mesmo.";
+		mes "Por meu serviço,";
+		mes "cobro 10 000 zenys.";
+		next;
+		mes "[Garota]";
+		mes "Então, vamos?";
+		next;
+		if (select("Sim!:Não.") == 1) {
+				mes "[Garota]";
+			if (Zeny > 9999) {
+				mes "Okay~";
+				mes "Pronto!";
+				mes "Divirta-se!";
+				close2;
+				set zeny,zeny-10000;
+				warp "lou_fild01",190,101;
+				end;
+			}
+			mes "...";
+			mes "Você não parece";
+			mes "ter 10 000 zenys...";
+			mes "Vá pegar dinheiro antes!";
+			close;
+		}
+		mes "[Garota]";
+		mes "Oh...";
+		mes "É desapontador ouví-lo";
+		mes "falar isso...";
+		mes "Bem, tenha um bom-dia.";
+		close;
+	case 3:
+		mes "[Garota]";
+		mes "Oh...";
+		mes "Tenha um bom-dia!";
+		close;
+	}
+}
+
+lou_fild01,190,100,7	script	Garota#1lou	815,{
+	mes "[Garota]";
+	mes "Você gostaria";
+	mes "de voltar";
+	mes "para Alberta?";
+	next;
+	if (select("Voltar para Alberta.:Cancelar.") == 1) {
+		mes "[Garota]";
+		mes "Espero vê-lo";
+		mes "novamente!";
+		mes "Tchau!";
+		close2;
+		if (checkre(0))
+			warp "alberta",236,40;
+		else
+			warp "alberta",235,45;
+		end;
+	}
+	mes "[Garota]";
+	mes "Se você gostou";
+	mes "daqui, por que não";
+	mes "fica e aprecia a";
+	mes "comida e a vista?";
+	next;
+		mes "[Garota]";
+	if (Sex) {
+		mes "E por vista...";
+		mes "Quero dizer garotas!";
+		mes "Hehe~";
+	} else {
+		mes "E os meninos também";
+		mes "não são nada feios~";
+	}
+	close;
+}
+
+// NPCs Genéricos de Louyang
+//============================================================
+louyang,297,167,2	script	Mulher Musculosa#lou	815,{
+		mes "[Zhi Ching Li]";
+	if (!Sex) {
+		mes "Todos os membros do Palácio da Donzela, incluindo eu e a mestra, são mulheres.";
+		next;
+		mes "[Zhi Ching Li]";
+		mes "Recentemente, tivemos problemas para recrutar novos membros, então vim checar se alguma mulher deseja se juntar a nós.";
+		emotion e_dots;
+		close;
+	}
+	mes "...";
+	next;
+	mes "[Zhi Ching Li]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[Zhi Ching Li]";
+	mes "Por favor me deixe,";
+	mes "estou ocupada agora.";
+	close;
+}
+
+louyang,274,136,4	script	Olhando Cara Poderoso#lou	819,{
+	mes "[Akiira]";
+	mes "Estou praticando a 'Garra do Dragão'. Não basta usar o poder dos meus punhos, também é preciso se condicionar espiritualmente.";
+	next;
+	mes "[Akiira]";
+	mes "Toda arte marcial requere";
+	mes "treinamento espiritual, já";
+	mes "que a mente controla o corpo.";
+	mes "Se você for treinado espiritualmente, pode";
+	mes "facilmente dominar qualquer movimento!";
+	next;
+	mes "[Akiira]";
+	mes "Se você considera estudar";
+	mes "artes marciais, deve primeiro adquirir conhecimento, antes de começar";
+	mes "o treinamento físico.";
+	next;
+	mes "[Akiira]";
+	mes "Estude as artes marciais";
+	mes "e pense nas verdades da vida. Você precisa atingir a paz espiritual antes de tentar dominar sua mente e seu corpo.";
+	close;
+}
+
+louyang,276,136,4	script	Primeiro Mestre#lou	819,{
+	mes "[Zhiang Xiau Ji]";
+	mes "Finalmente...";
+	mes "Eu dominei a";
+	mes "'Garra do Dragão'!";
+	next;
+	mes "[Zhiang Xiau Ji]";
+	mes "Embora existam oito passos básicos, eu tive que aprender a história dessa arte, e focar no meu desenvolvimento espiritual";
+	mes "por três anos.";
+	next;
+	mes "[Zhiang Xiau Ji]";
+	mes "Depois, meu mestre finalmente começou a me treinar fisicamente para eu poder usar os oito passos da Garra do Dragão. Eu me dediquei a essa arte por trinta anos.";
+	next;
+	mes "[Zhiang Xiau Ji]";
+	mes "Tenho muito orgulho de ter dominado";
+	mes "essa arte dez anos antes do esperado. Agora, preciso estudar e melhorar, corrigindo meus pontos fracos e aumentando minha força.";
+	next;
+	mes "[Zhiang Xiau Ji]";
+	mes "Acho que levarei dez anos. Mas isso não me desanima nem um pouco.";
+	next;
+	mes "[Zhiang Xiau Ji]";
+	mes "Quando você aprende uma arte marcial, não pode se apressar e aprender tudo rapidamente. É impossível! E essa não é a essência da arte...";
+	close;
+}
+
+louyang,276,133,0	script	Aluno#1lou	819,{
+	mes "[Aluno]";
+	mes "Yeeeyap~!";
+	mes "Taaaaaah~~!!";
+	mes "Hooo~.";
+	close;
+}
+
+louyang,276,131,0	script	Aluno#2lou	819,{
+	mes "[Aluno]";
+	mes "Tah Tah Tah!";
+	mes "Taaaaaah~~!!";
+	mes "Schwooooooo~";
+	close;
+}
+
+louyang,276,129,0	script	Aluno#3lou	819,{
+	mes "[Aluno]";
+	mes "Si!";
+	mes "Ayah!!";
+	close;
+}
+
+louyang,274,133,0	script	Aluno#4lou	819,{
+	mes "[Aluno]";
+	mes "Dergh!";
+	mes "Dergh!";
+	mes "Schwa--!";
+	close;
+}
+
+louyang,274,131,0	script	Aluno#5lou	819,{
+	mes "[Aluno]";
+	mes "Yah Yah Yah!";
+	mes "Taaaaaah~~!!";
+	mes "Wataaaaaaaah!";
+	close;
+}
+
+louyang,274,129,0	script	Aluno#6lou	819,{
+	mes "[Aluno]";
+	mes "Yeeeyap~!";
+	mes "Taaaaaah~~!!";
+	mes "Hooo~";
+	close;
+}
+
+louyang,278,133,0	duplicate(Aluno#1lou)	Aluno#7lou	819
+louyang,278,131,0	duplicate(Aluno#1lou)	Aluno#8lou	819
+louyang,278,129,0	duplicate(Aluno#1lou)	Aluno#9lou	819
+louyang,272,133,0	duplicate(Aluno#1lou)	Aluno#10lou	819
+louyang,272,131,0	duplicate(Aluno#1lou)	Aluno#11lou	819
+louyang,272,129,0	duplicate(Aluno#1lou)	Aluno#12lou	819
+
+// Louyang - Torre
+//============================================================
+lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
+	mes "[Hong Miao]";
+	mes "Bem-vindo.";
+	next;
+	mes "[Hong Miao]";
+	mes "Esse é um elevador que leva até a";
+	mes "Torre de Observação. Providenciamos uma viagem rápida e segura por uma taxa razoável. Gostaria de usar esse serviço?";
+	next;
+	switch(select("Informações.:Sim.:Talvez uma outra vez.")) {
+	case 1:
+		mes "[Hong Miao]";
+		mes "Depois que muitas propostas e sugestões foram enviadas para o escritório de turismo de Louyang, a Torre de Observação foi construída, para que os turistas pudessem apreciar a vista.";
+		next;
+		mes "[Hong Miao]";
+		mes "Devido à geografia de Louyang,";
+		mes "é difícil apreciar a maravilhosa vista que nossa terra oferece.";
+		next;
+		mes "[Hong Miao]";
+		mes "Você pode subir à Torre pegando o elevador aqui. Cobramos 500 zenys por pessoa.";
+		close;
+	case 2:
+			mes "[Hong Miao]";
+		if (Zeny < 500) {
+			mes "Sinto muito, você não tem dinheiro suficiente. Espero que volte depois para apreciar a Torre de Observação. Bom-dia.";
+			close;
+		}
+		mes "Obrigado pelo apoio.";
+		mes "Tentamos providenciar o melhor serviço possível.";
+		mes "Por favor volte novamente.";
+		next;
+		set zeny,zeny-500;
+		warp "lou_in01",17,19;
+		end;
+	case 3:
+		mes "[Hong Miao]";
+		mes "Por favor volte";
+		mes "novamente.";
+		mes "Bom-dia.";
+		close;
+	}
+}
+
+louyang,84,254,0	script	Saída#lou	111,{
+	mes "^3355FFExiste uma espécie";
+	mes "de dispositivo de queda.";
+	mes "Gostaria de usá-lo?^000000";
+	next;
+	if (select("Sim.:Não.") == 1) {
+		if (rand(1,100) == 34) {
+			percentheal -99,0;
+			warp "louyang",86,269;
+			mapannounce "louyang",""+strnpcinfo(0)+" : Meu Deus, estou caiiiiiiiiiiiiiiindo~~!!!!",bc_map;
+		} else {
+			warp "lou_in01",10,18;
+		}
+		end;
+	}
+	close;
+}

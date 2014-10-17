@@ -1,0 +1,262 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_aldebaran.txt                     |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Aldebaran.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Otimização [Holy & Hold]                           |
+//   | 1.2 Tradução (PT-BR) [Hold]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+aldebaran,139,63,4	script	Guia#01aldebaran	105,{
+	cutin "prt_soldier",2;
+	if(checkre(0)) {
+		// Renewal
+		mes "[Guia de Al De Baran]";
+		mes "Bem-vindo à ^8B4513Al De Baran^000000,";
+		mes "a cidade fronteira.";
+		mes "Precisa de alguma ajuda para se localizar?";
+		next;
+		while (1) {
+			switch(select("[ Principais Locais ]:[ Lojas & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
+			case 1:
+				set .@loop,1;
+				while (.@loop) {
+					switch(select("[ Central da Kafra Corp. ]:[ Guilda dos Alquimistas ]:[ Torre do Relógio ]:[ Hospedaria & Loja de Utilidades ]:[ Reparador & Venda de Equipamentos ]:[ Taverna ]:Menu anterior")) {
+					case 1:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização da";
+						mes "^B9062FCentral da Kafra Corp.^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,61,229,0,0xFF0000;
+						next;
+						break;
+					case 2:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização";
+						mes "da ^0000FFGuilda dos Alquimistas^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,60,60,1,0x0A82FF;
+						next;
+						break;
+					case 3:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização";
+						mes "da ^FF5400Torre do Relógio^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,139,133,2,0xFFB400;
+						next;
+						break;
+					case 4:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização";
+						mes "da ^006400Hospedaria^000000 e";
+						mes "da ^006400Loja de Utilidades^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,197,70,3,0xAAFF00;
+						next;
+						break;
+					case 5:
+						mes "[Guia de Al De Baran]";
+						mes "Se você quiser ^7F3300Comprar ou Reparar um equipamento^000000";
+						mes "este é o lugar aonde você deve ir.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,72,197,4,0xD2691E;
+						next;
+						break;
+					case 6:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização";
+						mes "da ^800080Taverna^000000";
+						mes "em seu mini-mapa.";
+						viewpoint 1,231,106,5,0xDA70D6;
+						next;
+						break;
+					case 7:
+						set .@loop,0;
+						break;
+					}
+				}
+				break;
+			case 2:
+				set .@loop,1;
+				while (.@loop) {
+					switch(select("[ Oficial de Teleporte do Eden ]:[ Funcionária Kafra ]:[ Sr. Claus ]:[ Chef Assistente ]:Menu Anterior")) {
+					case 1:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização do";
+						mes "^B9062FOficial de Teleporte do Eden^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,133,119,6,0xFF0000;
+						next;
+						break;
+					case 2:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização da";
+						mes "^0000FFFuncionária Kafra^000000";
+						mes "em seu mini-mapa.";
+						viewpoint 1,143,119,7,0x0A82FF;
+						next;
+						break;
+					case 3:
+						mes "[Guia de Al De Baran]";
+						mes "Sr. Claus pode teleportar";
+						mes "você para ^006400Lutie^000000.";
+						mes "Vou marcar a localização dele";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,168,168,8,0xAAFF00;
+						next;
+						break;
+					case 4:
+						mes "[Guia de Al De Baran]";
+						mes "Deixe-me marcar a localização da";
+						mes "^7F3300Chef Assistente^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
+						viewpoint 1,165,107,9,0xD2691E;
+						next;
+						break;
+					case 5:
+						set .@loop,0;
+						break;
+					}
+				}
+				break;
+			case 3:
+				mes "[Guia de Al De Baran]";
+				mes "Claro, Vou remover todas as marcações do seu mini-mapa.";
+				mes "Mais alguma coisa que eu possa fazer por você?";
+				viewpoint 2,1,1,0,0xFFFF00;
+				viewpoint 2,1,1,1,0x000000;
+				viewpoint 2,1,1,2,0xFF0000;
+				viewpoint 2,1,1,3,0xFFFF00;
+				viewpoint 2,1,1,4,0xFFFF00;
+				viewpoint 2,1,1,5,0xFFFF00;
+				viewpoint 2,1,1,6,0xFFFF00;
+				viewpoint 2,1,1,7,0xFFFF00;
+				viewpoint 2,1,1,8,0xFFFF00;
+				viewpoint 2,1,1,9,0xFFFF00;
+				next;
+				break;
+			case 4:
+				mes "[Guia de Al De Baran]";
+				mes "Tudo bem,";
+				mes "aproveite sua estadia!";
+				close2;
+				cutin "prt_soldier",255;
+				end;
+			}
+		}
+	} else {
+		// pré-Renewal
+		mes "[Guarda de Al De Baran]";
+		mes "Eu só um simples guarda";
+		mes "que você pode encontrar em qualquer outra cidade. Acho que nem tenho um nome...";
+		next;
+		mes "[Guarda de Al De Baran]";
+		mes "Eu sou um dos encarregados do Serviço de Guia de Al de Baran. deixe me guiá-lo";
+		mes "por nossa cidade!";
+		next;
+		if (select("Ver guia de locais.:Terminar conversa.") == 1) {
+			viewpoint 1,61,229,0,0xFF6633;
+			viewpoint 1,72,197,1,0x0000FF;
+			viewpoint 1,223,222,2,0x00FFFF;
+			viewpoint 1,233,105,3,0x515151;
+			viewpoint 1,197,70,4,0x3355FF;
+			viewpoint 1,60,60,5,0xFF5555;
+			mes "^FF6633+^000000 -> Escritório Central das Kafras";
+			mes "^0000FF+^000000 -> Loja de Armas";
+			mes "^00FFFF+^000000 -> Guilda dos Feiticeiros (Fechada)";
+			mes "^515151+^000000 -> Bar";
+			mes "^3355FF+^000000 -> Loja de Items";
+			mes "^FF5555+^000000 -> Guilda dos Alquimistas";
+			close2;
+			cutin "prt_soldier",255;
+			end;
+		}
+		mes "[Guarda de Al De Baran]";
+		mes "Nós juramos proteger Al De Baran! As forças do mal sempre serão esmagas pelo";
+		mes "poderoso punho da justiça!";
+		close2;
+		cutin "prt_soldier",255;
+		end;
+	}
+}
+
+aldebaran,243,143,2	duplicatr(Guia#01aldebaran)	Guia#02aldebaran	105
+aldebaran,135,243,4	duplicatr(Guia#01aldebaran)	Guia#03aldebaran	105
+aldebaran,36,135,6	duplicatr(Guia#01aldebaran)	Guia#04aldebaran	105,{}
+
+aldebaran,133,108,4	script#pre	Soldado#alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Guarda de Al De Baran]";
+	mes "Eu sou só um";
+	mes "simples guarda,";
+	mes "que você pode até";
+	mes "encontrar em qualquer cidade.";
+	next;
+	mes "[Guarda de Al De Baran]";
+	mes "Quando não estou ocupado";
+	mes "protegendo a população";
+	mes "de Al de Baran, Eu ajudo a guiar aventureiros assim";
+	mes "como você.";
+	next;
+	switch(select("Escritório Principal das Kafras:Loja de Armas:Guilda dos Feiticeiros:Bar:Loja de Items:Guilda dos Alquimistas:Terminar conversa")) {
+	case 1:
+		viewpoint 1,61,229,0,0xFF6633;
+		mes "^FF6633+^000000 -> Escritório Principal das Kafras";
+		break;
+	case 2:
+		viewpoint 1,72,197,1,0x0000FF;
+		mes "^0000FF+^000000 -> Loja de Armas";
+		break;
+	case 3:
+		viewpoint 1,223,222,2,0x00FFFF;
+		mes "^00FFFF+^000000 -> Guila dos Feiticeiros (Fechada)";
+		break;
+	case 4:
+		viewpoint 1,233,105,3,0x515151;
+		mes "^515151+^000000 -> Bar";
+		break;
+	case 5:
+		viewpoint 1,197,70,4,0x3355FF;
+		mes "^3355FF+^000000 -> Loja de Itens";
+		break;
+	case 6:
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF5555+^000000 -> Guilda dos Alquimistas";
+		break;
+	case 7:
+		mes "[Guarda de Al De Baran]";
+		mes "Estamos ocupados";
+		mes "protegendo Al de Baran!";
+		mes "As forças do bem sempre";
+		mes "prevalecerão sobre o mal~";
+		break;
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}

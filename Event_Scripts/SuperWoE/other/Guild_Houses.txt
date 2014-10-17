@@ -1,0 +1,2424 @@
+// *******************
+// * Champions Arena *
+// *  Terra Online   *
+// *******************
+
+// Private Guilds Houses
+
+//============================================================ 
+//= MapFlags
+//============================================================ 
+-	script	MapFlags	-1,{
+	end;
+
+OnInit:
+	for( set .@i, 1; .@i <= 60; set .@i, .@i + 1 )
+	{
+		// Guild Lock
+		setmapflag "rentb" + .@i + "",mf_guildlock;
+		setmapflag "rentinb" + .@i + "",mf_guildlock;
+		// NoMemo
+		setmapflag "rentb" + .@i + "",mf_nomemo;
+		setmapflag "rentinb" + .@i + "",mf_nomemo;
+		// Town
+		setmapflag "rentb" + .@i + "",mf_town;
+		setmapflag "rentinb" + .@i + "",mf_town;
+		// No Teleport
+		setmapflag "rentb" + .@i + "",mf_noteleport;
+		setmapflag "rentinb" + .@i + "",mf_noteleport;
+		// No Penalty
+		setmapflag "rentb" + .@i + "",mf_nopenalty;
+		setmapflag "rentinb" + .@i + "",mf_nopenalty;
+		// PVP No Guild
+		setmapflag "rentb" + .@i + "",mf_pvp_noguild;
+	}
+	end;
+}
+
+//============================================================ 
+//= Warps rentb -> rent_mb (Salida a la Ciudad)
+//============================================================ 
+
+rentb1,24,2,0	warp	rentb1-1	1,1,prt_are02,133,152
+rentb2,24,2,0	warp	rentb2-1	1,1,prt_are02,133,147
+rentb3,24,2,0	warp	rentb3-1	1,1,prt_are02,166,152
+rentb4,24,2,0	warp	rentb4-1	1,1,prt_are02,166,147
+rentb5,24,2,0	warp	rentb5-1	1,1,prt_are02,152,133
+rentb6,24,2,0	warp	rentb6-1	1,1,prt_are02,147,133
+rentb7,24,2,0	warp	rentb7-1	1,1,prt_are02,152,166
+rentb8,24,2,0	warp	rentb8-1	1,1,prt_are02,147,166
+rentb9,24,2,0	warp	rentb9-1	1,1,prt_are02,134,156
+rentb10,24,2,0	warp	rentb10-1	1,1,prt_are02,134,143
+rentb11,24,2,0	warp	rentb11-1	1,1,prt_are02,165,156
+rentb12,24,2,0	warp	rentb12-1	1,1,prt_are02,165,143
+rentb13,24,2,0	warp	rentb13-1	1,1,prt_are02,156,134
+rentb14,24,2,0	warp	rentb14-1	1,1,prt_are02,143,134
+rentb15,24,2,0	warp	rentb15-1	1,1,prt_are02,156,165
+rentb16,24,2,0	warp	rentb16-1	1,1,prt_are02,143,165
+rentb17,24,2,0	warp	rentb17-1	1,1,prt_are02,136,159
+rentb18,24,2,0	warp	rentb18-1	1,1,prt_are02,140,163
+rentb19,24,2,0	warp	rentb19-1	1,1,prt_are02,159,163
+rentb20,24,2,0	warp	rentb20-1	1,1,prt_are02,163,159
+rentb21,24,2,0	warp	rentb21-1	1,1,prt_are02,159,136
+rentb22,24,2,0	warp	rentb22-1	1,1,prt_are02,163,140
+rentb23,24,2,0	warp	rentb23-1	1,1,prt_are02,136,140
+rentb24,24,2,0	warp	rentb24-1	1,1,prt_are02,140,136
+rentb25,24,2,0	warp	rentb25-1	1,1,prt_are02,126,152
+rentb26,24,2,0	warp	rentb26-1	1,1,prt_are02,127,157
+rentb27,24,2,0	warp	rentb27-1	1,1,prt_are02,129,160
+rentb28,24,2,0	warp	rentb28-1	1,1,prt_are02,131,163
+rentb29,24,2,0	warp	rentb29-1	1,1,prt_are02,133,166
+rentb30,24,2,0	warp	rentb30-1	1,1,prt_are02,136,168
+rentb31,24,2,0	warp	rentb31-1	1,1,prt_are02,139,170
+rentb32,24,2,0	warp	rentb32-1	1,1,prt_are02,142,172
+rentb33,24,2,0	warp	rentb33-1	1,1,prt_are02,147,173
+rentb34,24,2,0	warp	rentb34-1	1,1,prt_are02,152,173
+rentb35,24,2,0	warp	rentb35-1	1,1,prt_are02,157,172
+rentb36,24,2,0	warp	rentb36-1	1,1,prt_are02,160,170
+rentb37,24,2,0	warp	rentb37-1	1,1,prt_are02,163,168
+rentb38,24,2,0	warp	rentb38-1	1,1,prt_are02,166,166
+rentb39,24,2,0	warp	rentb39-1	1,1,prt_are02,168,163
+rentb40,24,2,0	warp	rentb40-1	1,1,prt_are02,170,160
+rentb41,24,2,0	warp	rentb41-1	1,1,prt_are02,172,157
+rentb42,24,2,0	warp	rentb42-1	1,1,prt_are02,173,152
+rentb43,24,2,0	warp	rentb43-1	1,1,prt_are02,173,147
+rentb44,24,2,0	warp	rentb44-1	1,1,prt_are02,172,142
+rentb45,24,2,0	warp	rentb45-1	1,1,prt_are02,170,139
+rentb46,24,2,0	warp	rentb46-1	1,1,prt_are02,168,136
+rentb47,24,2,0	warp	rentb47-1	1,1,prt_are02,166,133
+rentb48,24,2,0	warp	rentb48-1	1,1,prt_are02,163,131
+rentb49,24,2,0	warp	rentb49-1	1,1,prt_are02,160,129
+rentb50,24,2,0	warp	rentb50-1	1,1,prt_are02,157,127
+rentb51,24,2,0	warp	rentb51-1	1,1,prt_are02,152,126
+rentb52,24,2,0	warp	rentb52-1	1,1,prt_are02,147,126
+rentb53,24,2,0	warp	rentb53-1	1,1,prt_are02,142,127
+rentb54,24,2,0	warp	rentb54-1	1,1,prt_are02,139,129
+rentb55,24,2,0	warp	rentb55-1	1,1,prt_are02,136,131
+rentb56,24,2,0	warp	rentb56-1	1,1,prt_are02,133,133
+rentb57,24,2,0	warp	rentb57-1	1,1,prt_are02,131,136
+rentb58,24,2,0	warp	rentb58-1	1,1,prt_are02,129,139
+rentb59,24,2,0	warp	rentb59-1	1,1,prt_are02,127,142
+rentb60,24,2,0	warp	rentb60-1	1,1,prt_are02,126,147
+
+//============================================================ 
+//= Warps rentb -> rentinb (Entrada a Indoors)
+//============================================================ 
+
+rentb1,19,23,0	warp	rentb1-2	1,1,rentinb1,34,6
+rentb2,19,23,0	warp	rentb2-2	1,1,rentinb2,34,6
+rentb3,19,23,0	warp	rentb3-2	1,1,rentinb3,34,6
+rentb4,19,23,0	warp	rentb4-2	1,1,rentinb4,34,6
+rentb5,19,23,0	warp	rentb5-2	1,1,rentinb5,34,6
+rentb6,19,23,0	warp	rentb6-2	1,1,rentinb6,34,6
+rentb7,19,23,0	warp	rentb7-2	1,1,rentinb7,34,6
+rentb8,19,23,0	warp	rentb8-2	1,1,rentinb8,34,6
+rentb9,19,23,0	warp	rentb9-2	1,1,rentinb9,34,6
+rentb10,19,23,0	warp	rentb10-2	1,1,rentinb10,34,6
+rentb11,19,23,0	warp	rentb11-2	1,1,rentinb11,34,6
+rentb12,19,23,0	warp	rentb12-2	1,1,rentinb12,34,6
+rentb13,19,23,0	warp	rentb13-2	1,1,rentinb13,34,6
+rentb14,19,23,0	warp	rentb14-2	1,1,rentinb14,34,6
+rentb15,19,23,0	warp	rentb15-2	1,1,rentinb15,34,6
+rentb16,19,23,0	warp	rentb16-2	1,1,rentinb16,34,6
+rentb17,19,23,0	warp	rentb17-2	1,1,rentinb17,34,6
+rentb18,19,23,0	warp	rentb18-2	1,1,rentinb18,34,6
+rentb19,19,23,0	warp	rentb19-2	1,1,rentinb19,34,6
+rentb20,19,23,0	warp	rentb20-2	1,1,rentinb20,34,6
+rentb21,19,23,0	warp	rentb21-2	1,1,rentinb21,34,6
+rentb22,19,23,0	warp	rentb22-2	1,1,rentinb22,34,6
+rentb23,19,23,0	warp	rentb23-2	1,1,rentinb23,34,6
+rentb24,19,23,0	warp	rentb24-2	1,1,rentinb24,34,6
+rentb25,19,23,0	warp	rentb25-2	1,1,rentinb25,34,6
+rentb26,19,23,0	warp	rentb26-2	1,1,rentinb26,34,6
+rentb27,19,23,0	warp	rentb27-2	1,1,rentinb27,34,6
+rentb28,19,23,0	warp	rentb28-2	1,1,rentinb28,34,6
+rentb29,19,23,0	warp	rentb29-2	1,1,rentinb29,34,6
+rentb30,19,23,0	warp	rentb30-2	1,1,rentinb30,34,6
+rentb31,19,23,0	warp	rentb31-2	1,1,rentinb31,34,6
+rentb32,19,23,0	warp	rentb32-2	1,1,rentinb32,34,6
+rentb33,19,23,0	warp	rentb33-2	1,1,rentinb33,34,6
+rentb34,19,23,0	warp	rentb34-2	1,1,rentinb34,34,6
+rentb35,19,23,0	warp	rentb35-2	1,1,rentinb35,34,6
+rentb36,19,23,0	warp	rentb36-2	1,1,rentinb36,34,6
+rentb37,19,23,0	warp	rentb37-2	1,1,rentinb37,34,6
+rentb38,19,23,0	warp	rentb38-2	1,1,rentinb38,34,6
+rentb39,19,23,0	warp	rentb39-2	1,1,rentinb39,34,6
+rentb40,19,23,0	warp	rentb40-2	1,1,rentinb40,34,6
+rentb41,19,23,0	warp	rentb41-2	1,1,rentinb41,34,6
+rentb42,19,23,0	warp	rentb42-2	1,1,rentinb42,34,6
+rentb43,19,23,0	warp	rentb43-2	1,1,rentinb43,34,6
+rentb44,19,23,0	warp	rentb44-2	1,1,rentinb44,34,6
+rentb45,19,23,0	warp	rentb45-2	1,1,rentinb45,34,6
+rentb46,19,23,0	warp	rentb46-2	1,1,rentinb46,34,6
+rentb47,19,23,0	warp	rentb47-2	1,1,rentinb47,34,6
+rentb48,19,23,0	warp	rentb48-2	1,1,rentinb48,34,6
+rentb49,19,23,0	warp	rentb49-2	1,1,rentinb49,34,6
+rentb50,19,23,0	warp	rentb50-2	1,1,rentinb50,34,6
+rentb51,19,23,0	warp	rentb51-2	1,1,rentinb51,34,6
+rentb52,19,23,0	warp	rentb52-2	1,1,rentinb52,34,6
+rentb53,19,23,0	warp	rentb53-2	1,1,rentinb53,34,6
+rentb54,19,23,0	warp	rentb54-2	1,1,rentinb54,34,6
+rentb55,19,23,0	warp	rentb55-2	1,1,rentinb55,34,6
+rentb56,19,23,0	warp	rentb56-2	1,1,rentinb56,34,6
+rentb57,19,23,0	warp	rentb57-2	1,1,rentinb57,34,6
+rentb58,19,23,0	warp	rentb58-2	1,1,rentinb58,34,6
+rentb59,19,23,0	warp	rentb59-2	1,1,rentinb59,34,6
+rentb60,19,23,0	warp	rentb60-2	1,1,rentinb60,34,6
+
+//============================================================ 
+//= Warps rentinb -> rentb (Salida de Indoors)
+//============================================================ 
+
+rentinb1,34,3,0	warp	rentb1-3	1,1,rentb1,19,18
+rentinb2,34,3,0	warp	rentb2-3	1,1,rentb2,19,18
+rentinb3,34,3,0	warp	rentb3-3	1,1,rentb3,19,18
+rentinb4,34,3,0	warp	rentb4-3	1,1,rentb4,19,18
+rentinb5,34,3,0	warp	rentb5-3	1,1,rentb5,19,18
+rentinb6,34,3,0	warp	rentb6-3	1,1,rentb6,19,18
+rentinb7,34,3,0	warp	rentb7-3	1,1,rentb7,19,18
+rentinb8,34,3,0	warp	rentb8-3	1,1,rentb8,19,18
+rentinb9,34,3,0	warp	rentb9-3	1,1,rentb9,19,18
+rentinb10,34,3,0	warp	rentb10-3	1,1,rentb10,19,18
+rentinb11,34,3,0	warp	rentb11-3	1,1,rentb11,19,18
+rentinb12,34,3,0	warp	rentb12-3	1,1,rentb12,19,18
+rentinb13,34,3,0	warp	rentb13-3	1,1,rentb13,19,18
+rentinb14,34,3,0	warp	rentb14-3	1,1,rentb14,19,18
+rentinb15,34,3,0	warp	rentb15-3	1,1,rentb15,19,18
+rentinb16,34,3,0	warp	rentb16-3	1,1,rentb16,19,18
+rentinb17,34,3,0	warp	rentb17-3	1,1,rentb17,19,18
+rentinb18,34,3,0	warp	rentb18-3	1,1,rentb18,19,18
+rentinb19,34,3,0	warp	rentb19-3	1,1,rentb19,19,18
+rentinb20,34,3,0	warp	rentb20-3	1,1,rentb20,19,18
+rentinb21,34,3,0	warp	rentb21-3	1,1,rentb21,19,18
+rentinb22,34,3,0	warp	rentb22-3	1,1,rentb22,19,18
+rentinb23,34,3,0	warp	rentb23-3	1,1,rentb23,19,18
+rentinb24,34,3,0	warp	rentb24-3	1,1,rentb24,19,18
+rentinb25,34,3,0	warp	rentb25-3	1,1,rentb25,19,18
+rentinb26,34,3,0	warp	rentb26-3	1,1,rentb26,19,18
+rentinb27,34,3,0	warp	rentb27-3	1,1,rentb27,19,18
+rentinb28,34,3,0	warp	rentb28-3	1,1,rentb28,19,18
+rentinb29,34,3,0	warp	rentb29-3	1,1,rentb29,19,18
+rentinb30,34,3,0	warp	rentb30-3	1,1,rentb30,19,18
+rentinb31,34,3,0	warp	rentb31-3	1,1,rentb31,19,18
+rentinb32,34,3,0	warp	rentb32-3	1,1,rentb32,19,18
+rentinb33,34,3,0	warp	rentb33-3	1,1,rentb33,19,18
+rentinb34,34,3,0	warp	rentb34-3	1,1,rentb34,19,18
+rentinb35,34,3,0	warp	rentb35-3	1,1,rentb35,19,18
+rentinb36,34,3,0	warp	rentb36-3	1,1,rentb36,19,18
+rentinb37,34,3,0	warp	rentb37-3	1,1,rentb37,19,18
+rentinb38,34,3,0	warp	rentb38-3	1,1,rentb38,19,18
+rentinb39,34,3,0	warp	rentb39-3	1,1,rentb39,19,18
+rentinb40,34,3,0	warp	rentb40-3	1,1,rentb40,19,18
+rentinb41,34,3,0	warp	rentb41-3	1,1,rentb41,19,18
+rentinb42,34,3,0	warp	rentb42-3	1,1,rentb42,19,18
+rentinb43,34,3,0	warp	rentb43-3	1,1,rentb43,19,18
+rentinb44,34,3,0	warp	rentb44-3	1,1,rentb44,19,18
+rentinb45,34,3,0	warp	rentb45-3	1,1,rentb45,19,18
+rentinb46,34,3,0	warp	rentb46-3	1,1,rentb46,19,18
+rentinb47,34,3,0	warp	rentb47-3	1,1,rentb47,19,18
+rentinb48,34,3,0	warp	rentb48-3	1,1,rentb48,19,18
+rentinb49,34,3,0	warp	rentb49-3	1,1,rentb49,19,18
+rentinb50,34,3,0	warp	rentb50-3	1,1,rentb50,19,18
+rentinb51,34,3,0	warp	rentb51-3	1,1,rentb51,19,18
+rentinb52,34,3,0	warp	rentb52-3	1,1,rentb52,19,18
+rentinb53,34,3,0	warp	rentb53-3	1,1,rentb53,19,18
+rentinb54,34,3,0	warp	rentb54-3	1,1,rentb54,19,18
+rentinb55,34,3,0	warp	rentb55-3	1,1,rentb55,19,18
+rentinb56,34,3,0	warp	rentb56-3	1,1,rentb56,19,18
+rentinb57,34,3,0	warp	rentb57-3	1,1,rentb57,19,18
+rentinb58,34,3,0	warp	rentb58-3	1,1,rentb58,19,18
+rentinb59,34,3,0	warp	rentb59-3	1,1,rentb59,19,18
+rentinb60,34,3,0	warp	rentb60-3	1,1,rentb60,19,18
+
+//============================================================ 
+//= Activador de PVP en Mapa Outdoor
+//============================================================ 
+
+rentb1,4,17,3	script	Switch#Rb1	837,{ callfunc "rent_pvp"; }
+rentb2,4,17,3	script	Switch#Rb2	837,{ callfunc "rent_pvp"; }
+rentb3,4,17,3	script	Switch#Rb3	837,{ callfunc "rent_pvp"; }
+rentb4,4,17,3	script	Switch#Rb4	837,{ callfunc "rent_pvp"; }
+rentb5,4,17,3	script	Switch#Rb5	837,{ callfunc "rent_pvp"; }
+rentb6,4,17,3	script	Switch#Rb6	837,{ callfunc "rent_pvp"; }
+rentb7,4,17,3	script	Switch#Rb7	837,{ callfunc "rent_pvp"; }
+rentb8,4,17,3	script	Switch#Rb8	837,{ callfunc "rent_pvp"; }
+rentb9,4,17,3	script	Switch#Rb9	837,{ callfunc "rent_pvp"; }
+rentb10,4,17,3	script	Switch#Rb10	837,{ callfunc "rent_pvp"; }
+rentb11,4,17,3	script	Switch#Rb11	837,{ callfunc "rent_pvp"; }
+rentb12,4,17,3	script	Switch#Rb12	837,{ callfunc "rent_pvp"; }
+rentb13,4,17,3	script	Switch#Rb13	837,{ callfunc "rent_pvp"; }
+rentb14,4,17,3	script	Switch#Rb14	837,{ callfunc "rent_pvp"; }
+rentb15,4,17,3	script	Switch#Rb15	837,{ callfunc "rent_pvp"; }
+rentb16,4,17,3	script	Switch#Rb16	837,{ callfunc "rent_pvp"; }
+rentb17,4,17,3	script	Switch#Rb17	837,{ callfunc "rent_pvp"; }
+rentb18,4,17,3	script	Switch#Rb18	837,{ callfunc "rent_pvp"; }
+rentb19,4,17,3	script	Switch#Rb19	837,{ callfunc "rent_pvp"; }
+rentb20,4,17,3	script	Switch#Rb20	837,{ callfunc "rent_pvp"; }
+rentb21,4,17,3	script	Switch#Rb21	837,{ callfunc "rent_pvp"; }
+rentb22,4,17,3	script	Switch#Rb22	837,{ callfunc "rent_pvp"; }
+rentb23,4,17,3	script	Switch#Rb23	837,{ callfunc "rent_pvp"; }
+rentb24,4,17,3	script	Switch#Rb24	837,{ callfunc "rent_pvp"; }
+rentb25,4,17,3	script	Switch#Rb25	837,{ callfunc "rent_pvp"; }
+rentb26,4,17,3	script	Switch#Rb26	837,{ callfunc "rent_pvp"; }
+rentb27,4,17,3	script	Switch#Rb27	837,{ callfunc "rent_pvp"; }
+rentb28,4,17,3	script	Switch#Rb28	837,{ callfunc "rent_pvp"; }
+rentb29,4,17,3	script	Switch#Rb29	837,{ callfunc "rent_pvp"; }
+rentb30,4,17,3	script	Switch#Rb30	837,{ callfunc "rent_pvp"; }
+rentb31,4,17,3	script	Switch#Rb31	837,{ callfunc "rent_pvp"; }
+rentb32,4,17,3	script	Switch#Rb32	837,{ callfunc "rent_pvp"; }
+rentb33,4,17,3	script	Switch#Rb33	837,{ callfunc "rent_pvp"; }
+rentb34,4,17,3	script	Switch#Rb34	837,{ callfunc "rent_pvp"; }
+rentb35,4,17,3	script	Switch#Rb35	837,{ callfunc "rent_pvp"; }
+rentb36,4,17,3	script	Switch#Rb36	837,{ callfunc "rent_pvp"; }
+rentb37,4,17,3	script	Switch#Rb37	837,{ callfunc "rent_pvp"; }
+rentb38,4,17,3	script	Switch#Rb38	837,{ callfunc "rent_pvp"; }
+rentb39,4,17,3	script	Switch#Rb39	837,{ callfunc "rent_pvp"; }
+rentb40,4,17,3	script	Switch#Rb40	837,{ callfunc "rent_pvp"; }
+rentb41,4,17,3	script	Switch#Rb41	837,{ callfunc "rent_pvp"; }
+rentb42,4,17,3	script	Switch#Rb42	837,{ callfunc "rent_pvp"; }
+rentb43,4,17,3	script	Switch#Rb43	837,{ callfunc "rent_pvp"; }
+rentb44,4,17,3	script	Switch#Rb44	837,{ callfunc "rent_pvp"; }
+rentb45,4,17,3	script	Switch#Rb45	837,{ callfunc "rent_pvp"; }
+rentb46,4,17,3	script	Switch#Rb46	837,{ callfunc "rent_pvp"; }
+rentb47,4,17,3	script	Switch#Rb47	837,{ callfunc "rent_pvp"; }
+rentb48,4,17,3	script	Switch#Rb48	837,{ callfunc "rent_pvp"; }
+rentb49,4,17,3	script	Switch#Rb49	837,{ callfunc "rent_pvp"; }
+rentb50,4,17,3	script	Switch#Rb50	837,{ callfunc "rent_pvp"; }
+rentb51,4,17,3	script	Switch#Rb51	837,{ callfunc "rent_pvp"; }
+rentb52,4,17,3	script	Switch#Rb52	837,{ callfunc "rent_pvp"; }
+rentb53,4,17,3	script	Switch#Rb53	837,{ callfunc "rent_pvp"; }
+rentb54,4,17,3	script	Switch#Rb54	837,{ callfunc "rent_pvp"; }
+rentb55,4,17,3	script	Switch#Rb55	837,{ callfunc "rent_pvp"; }
+rentb56,4,17,3	script	Switch#Rb56	837,{ callfunc "rent_pvp"; }
+rentb57,4,17,3	script	Switch#Rb57	837,{ callfunc "rent_pvp"; }
+rentb58,4,17,3	script	Switch#Rb58	837,{ callfunc "rent_pvp"; }
+rentb59,4,17,3	script	Switch#Rb59	837,{ callfunc "rent_pvp"; }
+rentb60,4,17,3	script	Switch#Rb60	837,{ callfunc "rent_pvp"; }
+
+//============================================================ 
+//= NPCs de Indoor
+//============================================================ 
+
+//============================================================ 
+//= Camas
+//============================================================ 
+
+rentinb1,5,33,0	script	Bed#Rb1a	111,{ callfunc "rent_camas","b1",7,30; }
+rentinb1,26,34,0	script	Bed#Rb1b	111,{ callfunc "rent_camas","b1",23,31; }
+rentinb1,33,34,0	script	Bed#Rb1c	111,{ callfunc "rent_camas","b1",30,31; }
+rentinb2,5,33,0	script	Bed#Rb2a	111,{ callfunc "rent_camas","b2",7,30; }
+rentinb2,26,34,0	script	Bed#Rb2b	111,{ callfunc "rent_camas","b2",23,31; }
+rentinb2,33,34,0	script	Bed#Rb2c	111,{ callfunc "rent_camas","b2",30,31; }
+rentinb3,5,33,0	script	Bed#Rb3a	111,{ callfunc "rent_camas","b3",7,30; }
+rentinb3,26,34,0	script	Bed#Rb3b	111,{ callfunc "rent_camas","b3",23,31; }
+rentinb3,33,34,0	script	Bed#Rb3c	111,{ callfunc "rent_camas","b3",30,31; }
+rentinb4,5,33,0	script	Bed#Rb4a	111,{ callfunc "rent_camas","b4",7,30; }
+rentinb4,26,34,0	script	Bed#Rb4b	111,{ callfunc "rent_camas","b4",23,31; }
+rentinb4,33,34,0	script	Bed#Rb4c	111,{ callfunc "rent_camas","b4",30,31; }
+rentinb5,5,33,0	script	Bed#Rb5a	111,{ callfunc "rent_camas","b5",7,30; }
+rentinb5,26,34,0	script	Bed#Rb5b	111,{ callfunc "rent_camas","b5",23,31; }
+rentinb5,33,34,0	script	Bed#Rb5c	111,{ callfunc "rent_camas","b5",30,31; }
+rentinb6,5,33,0	script	Bed#Rb6a	111,{ callfunc "rent_camas","b6",7,30; }
+rentinb6,26,34,0	script	Bed#Rb6b	111,{ callfunc "rent_camas","b6",23,31; }
+rentinb6,33,34,0	script	Bed#Rb6c	111,{ callfunc "rent_camas","b6",30,31; }
+rentinb7,5,33,0	script	Bed#Rb7a	111,{ callfunc "rent_camas","b7",7,30; }
+rentinb7,26,34,0	script	Bed#Rb7b	111,{ callfunc "rent_camas","b7",23,31; }
+rentinb7,33,34,0	script	Bed#Rb7c	111,{ callfunc "rent_camas","b7",30,31; }
+rentinb8,5,33,0	script	Bed#Rb8a	111,{ callfunc "rent_camas","b8",7,30; }
+rentinb8,26,34,0	script	Bed#Rb8b	111,{ callfunc "rent_camas","b8",23,31; }
+rentinb8,33,34,0	script	Bed#Rb8c	111,{ callfunc "rent_camas","b8",30,31; }
+rentinb9,5,33,0	script	Bed#Rb9a	111,{ callfunc "rent_camas","b9",7,30; }
+rentinb9,26,34,0	script	Bed#Rb9b	111,{ callfunc "rent_camas","b9",23,31; }
+rentinb9,33,34,0	script	Bed#Rb9c	111,{ callfunc "rent_camas","b9",30,31; }
+rentinb10,5,33,0	script	Bed#Rb10a	111,{ callfunc "rent_camas","b10",7,30; }
+rentinb10,26,34,0	script	Bed#Rb10b	111,{ callfunc "rent_camas","b10",23,31; }
+rentinb10,33,34,0	script	Bed#Rb10c	111,{ callfunc "rent_camas","b10",30,31; }
+rentinb11,5,33,0	script	Bed#Rb11a	111,{ callfunc "rent_camas","b11",7,30; }
+rentinb11,26,34,0	script	Bed#Rb11b	111,{ callfunc "rent_camas","b11",23,31; }
+rentinb11,33,34,0	script	Bed#Rb11c	111,{ callfunc "rent_camas","b11",30,31; }
+rentinb12,5,33,0	script	Bed#Rb12a	111,{ callfunc "rent_camas","b12",7,30; }
+rentinb12,26,34,0	script	Bed#Rb12b	111,{ callfunc "rent_camas","b12",23,31; }
+rentinb12,33,34,0	script	Bed#Rb12c	111,{ callfunc "rent_camas","b12",30,31; }
+rentinb13,5,33,0	script	Bed#Rb13a	111,{ callfunc "rent_camas","b13",7,30; }
+rentinb13,26,34,0	script	Bed#Rb13b	111,{ callfunc "rent_camas","b13",23,31; }
+rentinb13,33,34,0	script	Bed#Rb13c	111,{ callfunc "rent_camas","b13",30,31; }
+rentinb14,5,33,0	script	Bed#Rb14a	111,{ callfunc "rent_camas","b14",7,30; }
+rentinb14,26,34,0	script	Bed#Rb14b	111,{ callfunc "rent_camas","b14",23,31; }
+rentinb14,33,34,0	script	Bed#Rb14c	111,{ callfunc "rent_camas","b14",30,31; }
+rentinb15,5,33,0	script	Bed#Rb15a	111,{ callfunc "rent_camas","b15",7,30; }
+rentinb15,26,34,0	script	Bed#Rb15b	111,{ callfunc "rent_camas","b15",23,31; }
+rentinb15,33,34,0	script	Bed#Rb15c	111,{ callfunc "rent_camas","b15",30,31; }
+rentinb16,5,33,0	script	Bed#Rb16a	111,{ callfunc "rent_camas","b16",7,30; }
+rentinb16,26,34,0	script	Bed#Rb16b	111,{ callfunc "rent_camas","b16",23,31; }
+rentinb16,33,34,0	script	Bed#Rb16c	111,{ callfunc "rent_camas","b16",30,31; }
+rentinb17,5,33,0	script	Bed#Rb17a	111,{ callfunc "rent_camas","b17",7,30; }
+rentinb17,26,34,0	script	Bed#Rb17b	111,{ callfunc "rent_camas","b17",23,31; }
+rentinb17,33,34,0	script	Bed#Rb17c	111,{ callfunc "rent_camas","b17",30,31; }
+rentinb18,5,33,0	script	Bed#Rb18a	111,{ callfunc "rent_camas","b18",7,30; }
+rentinb18,26,34,0	script	Bed#Rb18b	111,{ callfunc "rent_camas","b18",23,31; }
+rentinb18,33,34,0	script	Bed#Rb18c	111,{ callfunc "rent_camas","b18",30,31; }
+rentinb19,5,33,0	script	Bed#Rb19a	111,{ callfunc "rent_camas","b19",7,30; }
+rentinb19,26,34,0	script	Bed#Rb19b	111,{ callfunc "rent_camas","b19",23,31; }
+rentinb19,33,34,0	script	Bed#Rb19c	111,{ callfunc "rent_camas","b19",30,31; }
+rentinb20,5,33,0	script	Bed#Rb20a	111,{ callfunc "rent_camas","b20",7,30; }
+rentinb20,26,34,0	script	Bed#Rb20b	111,{ callfunc "rent_camas","b20",23,31; }
+rentinb20,33,34,0	script	Bed#Rb20c	111,{ callfunc "rent_camas","b20",30,31; }
+rentinb21,5,33,0	script	Bed#Rb21a	111,{ callfunc "rent_camas","b21",7,30; }
+rentinb21,26,34,0	script	Bed#Rb21b	111,{ callfunc "rent_camas","b21",23,31; }
+rentinb21,33,34,0	script	Bed#Rb21c	111,{ callfunc "rent_camas","b21",30,31; }
+rentinb22,5,33,0	script	Bed#Rb22a	111,{ callfunc "rent_camas","b22",7,30; }
+rentinb22,26,34,0	script	Bed#Rb22b	111,{ callfunc "rent_camas","b22",23,31; }
+rentinb22,33,34,0	script	Bed#Rb22c	111,{ callfunc "rent_camas","b22",30,31; }
+rentinb23,5,33,0	script	Bed#Rb23a	111,{ callfunc "rent_camas","b23",7,30; }
+rentinb23,26,34,0	script	Bed#Rb23b	111,{ callfunc "rent_camas","b23",23,31; }
+rentinb23,33,34,0	script	Bed#Rb23c	111,{ callfunc "rent_camas","b23",30,31; }
+rentinb24,5,33,0	script	Bed#Rb24a	111,{ callfunc "rent_camas","b24",7,30; }
+rentinb24,26,34,0	script	Bed#Rb24b	111,{ callfunc "rent_camas","b24",23,31; }
+rentinb24,33,34,0	script	Bed#Rb24c	111,{ callfunc "rent_camas","b24",30,31; }
+rentinb25,5,33,0	script	Bed#Rb25a	111,{ callfunc "rent_camas","b25",7,30; }
+rentinb25,26,34,0	script	Bed#Rb25b	111,{ callfunc "rent_camas","b25",23,31; }
+rentinb25,33,34,0	script	Bed#Rb25c	111,{ callfunc "rent_camas","b25",30,31; }
+rentinb26,5,33,0	script	Bed#Rb26a	111,{ callfunc "rent_camas","b26",7,30; }
+rentinb26,26,34,0	script	Bed#Rb26b	111,{ callfunc "rent_camas","b26",23,31; }
+rentinb26,33,34,0	script	Bed#Rb26c	111,{ callfunc "rent_camas","b26",30,31; }
+rentinb27,5,33,0	script	Bed#Rb27a	111,{ callfunc "rent_camas","b27",7,30; }
+rentinb27,26,34,0	script	Bed#Rb27b	111,{ callfunc "rent_camas","b27",23,31; }
+rentinb27,33,34,0	script	Bed#Rb27c	111,{ callfunc "rent_camas","b27",30,31; }
+rentinb28,5,33,0	script	Bed#Rb28a	111,{ callfunc "rent_camas","b28",7,30; }
+rentinb28,26,34,0	script	Bed#Rb28b	111,{ callfunc "rent_camas","b28",23,31; }
+rentinb28,33,34,0	script	Bed#Rb28c	111,{ callfunc "rent_camas","b28",30,31; }
+rentinb29,5,33,0	script	Bed#Rb29a	111,{ callfunc "rent_camas","b29",7,30; }
+rentinb29,26,34,0	script	Bed#Rb29b	111,{ callfunc "rent_camas","b29",23,31; }
+rentinb29,33,34,0	script	Bed#Rb29c	111,{ callfunc "rent_camas","b29",30,31; }
+rentinb30,5,33,0	script	Bed#Rb30a	111,{ callfunc "rent_camas","b30",7,30; }
+rentinb30,26,34,0	script	Bed#Rb30b	111,{ callfunc "rent_camas","b30",23,31; }
+rentinb30,33,34,0	script	Bed#Rb30c	111,{ callfunc "rent_camas","b30",30,31; }
+rentinb31,5,33,0	script	Bed#Rb31a	111,{ callfunc "rent_camas","b31",7,30; }
+rentinb31,26,34,0	script	Bed#Rb31b	111,{ callfunc "rent_camas","b31",23,31; }
+rentinb31,33,34,0	script	Bed#Rb31c	111,{ callfunc "rent_camas","b31",30,31; }
+rentinb32,5,33,0	script	Bed#Rb32a	111,{ callfunc "rent_camas","b32",7,30; }
+rentinb32,26,34,0	script	Bed#Rb32b	111,{ callfunc "rent_camas","b32",23,31; }
+rentinb32,33,34,0	script	Bed#Rb32c	111,{ callfunc "rent_camas","b32",30,31; }
+rentinb33,5,33,0	script	Bed#Rb33a	111,{ callfunc "rent_camas","b33",7,30; }
+rentinb33,26,34,0	script	Bed#Rb33b	111,{ callfunc "rent_camas","b33",23,31; }
+rentinb33,33,34,0	script	Bed#Rb33c	111,{ callfunc "rent_camas","b33",30,31; }
+rentinb34,5,33,0	script	Bed#Rb34a	111,{ callfunc "rent_camas","b34",7,30; }
+rentinb34,26,34,0	script	Bed#Rb34b	111,{ callfunc "rent_camas","b34",23,31; }
+rentinb34,33,34,0	script	Bed#Rb34c	111,{ callfunc "rent_camas","b34",30,31; }
+rentinb35,5,33,0	script	Bed#Rb35a	111,{ callfunc "rent_camas","b35",7,30; }
+rentinb35,26,34,0	script	Bed#Rb35b	111,{ callfunc "rent_camas","b35",23,31; }
+rentinb35,33,34,0	script	Bed#Rb35c	111,{ callfunc "rent_camas","b35",30,31; }
+rentinb36,5,33,0	script	Bed#Rb36a	111,{ callfunc "rent_camas","b36",7,30; }
+rentinb36,26,34,0	script	Bed#Rb36b	111,{ callfunc "rent_camas","b36",23,31; }
+rentinb36,33,34,0	script	Bed#Rb36c	111,{ callfunc "rent_camas","b36",30,31; }
+rentinb37,5,33,0	script	Bed#Rb37a	111,{ callfunc "rent_camas","b37",7,30; }
+rentinb37,26,34,0	script	Bed#Rb37b	111,{ callfunc "rent_camas","b37",23,31; }
+rentinb37,33,34,0	script	Bed#Rb37c	111,{ callfunc "rent_camas","b37",30,31; }
+rentinb38,5,33,0	script	Bed#Rb38a	111,{ callfunc "rent_camas","b38",7,30; }
+rentinb38,26,34,0	script	Bed#Rb38b	111,{ callfunc "rent_camas","b38",23,31; }
+rentinb38,33,34,0	script	Bed#Rb38c	111,{ callfunc "rent_camas","b38",30,31; }
+rentinb39,5,33,0	script	Bed#Rb39a	111,{ callfunc "rent_camas","b39",7,30; }
+rentinb39,26,34,0	script	Bed#Rb39b	111,{ callfunc "rent_camas","b39",23,31; }
+rentinb39,33,34,0	script	Bed#Rb39c	111,{ callfunc "rent_camas","b39",30,31; }
+rentinb40,5,33,0	script	Bed#Rb40a	111,{ callfunc "rent_camas","b40",7,30; }
+rentinb40,26,34,0	script	Bed#Rb40b	111,{ callfunc "rent_camas","b40",23,31; }
+rentinb40,33,34,0	script	Bed#Rb40c	111,{ callfunc "rent_camas","b40",30,31; }
+rentinb41,5,33,0	script	Bed#Rb41a	111,{ callfunc "rent_camas","b41",7,30; }
+rentinb41,26,34,0	script	Bed#Rb41b	111,{ callfunc "rent_camas","b41",23,31; }
+rentinb41,33,34,0	script	Bed#Rb41c	111,{ callfunc "rent_camas","b41",30,31; }
+rentinb42,5,33,0	script	Bed#Rb42a	111,{ callfunc "rent_camas","b42",7,30; }
+rentinb42,26,34,0	script	Bed#Rb42b	111,{ callfunc "rent_camas","b42",23,31; }
+rentinb42,33,34,0	script	Bed#Rb42c	111,{ callfunc "rent_camas","b42",30,31; }
+rentinb43,5,33,0	script	Bed#Rb43a	111,{ callfunc "rent_camas","b43",7,30; }
+rentinb43,26,34,0	script	Bed#Rb43b	111,{ callfunc "rent_camas","b43",23,31; }
+rentinb43,33,34,0	script	Bed#Rb43c	111,{ callfunc "rent_camas","b43",30,31; }
+rentinb44,5,33,0	script	Bed#Rb44a	111,{ callfunc "rent_camas","b44",7,30; }
+rentinb44,26,34,0	script	Bed#Rb44b	111,{ callfunc "rent_camas","b44",23,31; }
+rentinb44,33,34,0	script	Bed#Rb44c	111,{ callfunc "rent_camas","b44",30,31; }
+rentinb45,5,33,0	script	Bed#Rb45a	111,{ callfunc "rent_camas","b45",7,30; }
+rentinb45,26,34,0	script	Bed#Rb45b	111,{ callfunc "rent_camas","b45",23,31; }
+rentinb45,33,34,0	script	Bed#Rb45c	111,{ callfunc "rent_camas","b45",30,31; }
+rentinb46,5,33,0	script	Bed#Rb46a	111,{ callfunc "rent_camas","b46",7,30; }
+rentinb46,26,34,0	script	Bed#Rb46b	111,{ callfunc "rent_camas","b46",23,31; }
+rentinb46,33,34,0	script	Bed#Rb46c	111,{ callfunc "rent_camas","b46",30,31; }
+rentinb47,5,33,0	script	Bed#Rb47a	111,{ callfunc "rent_camas","b47",7,30; }
+rentinb47,26,34,0	script	Bed#Rb47b	111,{ callfunc "rent_camas","b47",23,31; }
+rentinb47,33,34,0	script	Bed#Rb47c	111,{ callfunc "rent_camas","b47",30,31; }
+rentinb48,5,33,0	script	Bed#Rb48a	111,{ callfunc "rent_camas","b48",7,30; }
+rentinb48,26,34,0	script	Bed#Rb48b	111,{ callfunc "rent_camas","b48",23,31; }
+rentinb48,33,34,0	script	Bed#Rb48c	111,{ callfunc "rent_camas","b48",30,31; }
+rentinb49,5,33,0	script	Bed#Rb49a	111,{ callfunc "rent_camas","b49",7,30; }
+rentinb49,26,34,0	script	Bed#Rb49b	111,{ callfunc "rent_camas","b49",23,31; }
+rentinb49,33,34,0	script	Bed#Rb49c	111,{ callfunc "rent_camas","b49",30,31; }
+rentinb50,5,33,0	script	Bed#Rb50a	111,{ callfunc "rent_camas","b50",7,30; }
+rentinb50,26,34,0	script	Bed#Rb50b	111,{ callfunc "rent_camas","b50",23,31; }
+rentinb50,33,34,0	script	Bed#Rb50c	111,{ callfunc "rent_camas","b50",30,31; }
+rentinb51,5,33,0	script	Bed#Rb51a	111,{ callfunc "rent_camas","b51",7,30; }
+rentinb51,26,34,0	script	Bed#Rb51b	111,{ callfunc "rent_camas","b51",23,31; }
+rentinb51,33,34,0	script	Bed#Rb51c	111,{ callfunc "rent_camas","b51",30,31; }
+rentinb52,5,33,0	script	Bed#Rb52a	111,{ callfunc "rent_camas","b52",7,30; }
+rentinb52,26,34,0	script	Bed#Rb52b	111,{ callfunc "rent_camas","b52",23,31; }
+rentinb52,33,34,0	script	Bed#Rb52c	111,{ callfunc "rent_camas","b52",30,31; }
+rentinb53,5,33,0	script	Bed#Rb53a	111,{ callfunc "rent_camas","b53",7,30; }
+rentinb53,26,34,0	script	Bed#Rb53b	111,{ callfunc "rent_camas","b53",23,31; }
+rentinb53,33,34,0	script	Bed#Rb53c	111,{ callfunc "rent_camas","b53",30,31; }
+rentinb54,5,33,0	script	Bed#Rb54a	111,{ callfunc "rent_camas","b54",7,30; }
+rentinb54,26,34,0	script	Bed#Rb54b	111,{ callfunc "rent_camas","b54",23,31; }
+rentinb54,33,34,0	script	Bed#Rb54c	111,{ callfunc "rent_camas","b54",30,31; }
+rentinb55,5,33,0	script	Bed#Rb55a	111,{ callfunc "rent_camas","b55",7,30; }
+rentinb55,26,34,0	script	Bed#Rb55b	111,{ callfunc "rent_camas","b55",23,31; }
+rentinb55,33,34,0	script	Bed#Rb55c	111,{ callfunc "rent_camas","b55",30,31; }
+rentinb56,5,33,0	script	Bed#Rb56a	111,{ callfunc "rent_camas","b56",7,30; }
+rentinb56,26,34,0	script	Bed#Rb56b	111,{ callfunc "rent_camas","b56",23,31; }
+rentinb56,33,34,0	script	Bed#Rb56c	111,{ callfunc "rent_camas","b56",30,31; }
+rentinb57,5,33,0	script	Bed#Rb57a	111,{ callfunc "rent_camas","b57",7,30; }
+rentinb57,26,34,0	script	Bed#Rb57b	111,{ callfunc "rent_camas","b57",23,31; }
+rentinb57,33,34,0	script	Bed#Rb57c	111,{ callfunc "rent_camas","b57",30,31; }
+rentinb58,5,33,0	script	Bed#Rb58a	111,{ callfunc "rent_camas","b58",7,30; }
+rentinb58,26,34,0	script	Bed#Rb58b	111,{ callfunc "rent_camas","b58",23,31; }
+rentinb58,33,34,0	script	Bed#Rb58c	111,{ callfunc "rent_camas","b58",30,31; }
+rentinb59,5,33,0	script	Bed#Rb59a	111,{ callfunc "rent_camas","b59",7,30; }
+rentinb59,26,34,0	script	Bed#Rb59b	111,{ callfunc "rent_camas","b59",23,31; }
+rentinb59,33,34,0	script	Bed#Rb59c	111,{ callfunc "rent_camas","b59",30,31; }
+rentinb60,5,33,0	script	Bed#Rb60a	111,{ callfunc "rent_camas","b60",7,30; }
+rentinb60,26,34,0	script	Bed#Rb60b	111,{ callfunc "rent_camas","b60",23,31; }
+rentinb60,33,34,0	script	Bed#Rb60c	111,{ callfunc "rent_camas","b60",30,31; }
+
+//============================================================ 
+//= Piano
+//============================================================ 
+
+rentinb1,22,16,0	script	Piano#Rb1	111,{ callfunc "rent_pianoStart","b1"; OnTimer50000: callfunc "rent_pianoStop","b1"; }
+rentinb2,22,16,0	script	Piano#Rb2	111,{ callfunc "rent_pianoStart","b2"; OnTimer50000: callfunc "rent_pianoStop","b2"; }
+rentinb3,22,16,0	script	Piano#Rb3	111,{ callfunc "rent_pianoStart","b3"; OnTimer50000: callfunc "rent_pianoStop","b3"; }
+rentinb4,22,16,0	script	Piano#Rb4	111,{ callfunc "rent_pianoStart","b4"; OnTimer50000: callfunc "rent_pianoStop","b4"; }
+rentinb5,22,16,0	script	Piano#Rb5	111,{ callfunc "rent_pianoStart","b5"; OnTimer50000: callfunc "rent_pianoStop","b5"; }
+rentinb6,22,16,0	script	Piano#Rb6	111,{ callfunc "rent_pianoStart","b6"; OnTimer50000: callfunc "rent_pianoStop","b6"; }
+rentinb7,22,16,0	script	Piano#Rb7	111,{ callfunc "rent_pianoStart","b7"; OnTimer50000: callfunc "rent_pianoStop","b7"; }
+rentinb8,22,16,0	script	Piano#Rb8	111,{ callfunc "rent_pianoStart","b8"; OnTimer50000: callfunc "rent_pianoStop","b8"; }
+rentinb9,22,16,0	script	Piano#Rb9	111,{ callfunc "rent_pianoStart","b9"; OnTimer50000: callfunc "rent_pianoStop","b9"; }
+rentinb10,22,16,0	script	Piano#Rb10	111,{ callfunc "rent_pianoStart","b10"; OnTimer50000: callfunc "rent_pianoStop","b10"; }
+rentinb11,22,16,0	script	Piano#Rb11	111,{ callfunc "rent_pianoStart","b11"; OnTimer50000: callfunc "rent_pianoStop","b11"; }
+rentinb12,22,16,0	script	Piano#Rb12	111,{ callfunc "rent_pianoStart","b12"; OnTimer50000: callfunc "rent_pianoStop","b12"; }
+rentinb13,22,16,0	script	Piano#Rb13	111,{ callfunc "rent_pianoStart","b13"; OnTimer50000: callfunc "rent_pianoStop","b13"; }
+rentinb14,22,16,0	script	Piano#Rb14	111,{ callfunc "rent_pianoStart","b14"; OnTimer50000: callfunc "rent_pianoStop","b14"; }
+rentinb15,22,16,0	script	Piano#Rb15	111,{ callfunc "rent_pianoStart","b15"; OnTimer50000: callfunc "rent_pianoStop","b15"; }
+rentinb16,22,16,0	script	Piano#Rb16	111,{ callfunc "rent_pianoStart","b16"; OnTimer50000: callfunc "rent_pianoStop","b16"; }
+rentinb17,22,16,0	script	Piano#Rb17	111,{ callfunc "rent_pianoStart","b17"; OnTimer50000: callfunc "rent_pianoStop","b17"; }
+rentinb18,22,16,0	script	Piano#Rb18	111,{ callfunc "rent_pianoStart","b18"; OnTimer50000: callfunc "rent_pianoStop","b18"; }
+rentinb19,22,16,0	script	Piano#Rb19	111,{ callfunc "rent_pianoStart","b19"; OnTimer50000: callfunc "rent_pianoStop","b19"; }
+rentinb20,22,16,0	script	Piano#Rb20	111,{ callfunc "rent_pianoStart","b20"; OnTimer50000: callfunc "rent_pianoStop","b20"; }
+rentinb21,22,16,0	script	Piano#Rb21	111,{ callfunc "rent_pianoStart","b21"; OnTimer50000: callfunc "rent_pianoStop","b21"; }
+rentinb22,22,16,0	script	Piano#Rb22	111,{ callfunc "rent_pianoStart","b22"; OnTimer50000: callfunc "rent_pianoStop","b22"; }
+rentinb23,22,16,0	script	Piano#Rb23	111,{ callfunc "rent_pianoStart","b23"; OnTimer50000: callfunc "rent_pianoStop","b23"; }
+rentinb24,22,16,0	script	Piano#Rb24	111,{ callfunc "rent_pianoStart","b24"; OnTimer50000: callfunc "rent_pianoStop","b24"; }
+rentinb25,22,16,0	script	Piano#Rb25	111,{ callfunc "rent_pianoStart","b25"; OnTimer50000: callfunc "rent_pianoStop","b25"; }
+rentinb26,22,16,0	script	Piano#Rb26	111,{ callfunc "rent_pianoStart","b26"; OnTimer50000: callfunc "rent_pianoStop","b26"; }
+rentinb27,22,16,0	script	Piano#Rb27	111,{ callfunc "rent_pianoStart","b27"; OnTimer50000: callfunc "rent_pianoStop","b27"; }
+rentinb28,22,16,0	script	Piano#Rb28	111,{ callfunc "rent_pianoStart","b28"; OnTimer50000: callfunc "rent_pianoStop","b28"; }
+rentinb29,22,16,0	script	Piano#Rb29	111,{ callfunc "rent_pianoStart","b29"; OnTimer50000: callfunc "rent_pianoStop","b29"; }
+rentinb30,22,16,0	script	Piano#Rb30	111,{ callfunc "rent_pianoStart","b30"; OnTimer50000: callfunc "rent_pianoStop","b30"; }
+rentinb31,22,16,0	script	Piano#Rb31	111,{ callfunc "rent_pianoStart","b31"; OnTimer50000: callfunc "rent_pianoStop","b31"; }
+rentinb32,22,16,0	script	Piano#Rb32	111,{ callfunc "rent_pianoStart","b32"; OnTimer50000: callfunc "rent_pianoStop","b32"; }
+rentinb33,22,16,0	script	Piano#Rb33	111,{ callfunc "rent_pianoStart","b33"; OnTimer50000: callfunc "rent_pianoStop","b33"; }
+rentinb34,22,16,0	script	Piano#Rb34	111,{ callfunc "rent_pianoStart","b34"; OnTimer50000: callfunc "rent_pianoStop","b34"; }
+rentinb35,22,16,0	script	Piano#Rb35	111,{ callfunc "rent_pianoStart","b35"; OnTimer50000: callfunc "rent_pianoStop","b35"; }
+rentinb36,22,16,0	script	Piano#Rb36	111,{ callfunc "rent_pianoStart","b36"; OnTimer50000: callfunc "rent_pianoStop","b36"; }
+rentinb37,22,16,0	script	Piano#Rb37	111,{ callfunc "rent_pianoStart","b37"; OnTimer50000: callfunc "rent_pianoStop","b37"; }
+rentinb38,22,16,0	script	Piano#Rb38	111,{ callfunc "rent_pianoStart","b38"; OnTimer50000: callfunc "rent_pianoStop","b38"; }
+rentinb39,22,16,0	script	Piano#Rb39	111,{ callfunc "rent_pianoStart","b39"; OnTimer50000: callfunc "rent_pianoStop","b39"; }
+rentinb40,22,16,0	script	Piano#Rb40	111,{ callfunc "rent_pianoStart","b40"; OnTimer50000: callfunc "rent_pianoStop","b40"; }
+rentinb41,22,16,0	script	Piano#Rb41	111,{ callfunc "rent_pianoStart","b41"; OnTimer50000: callfunc "rent_pianoStop","b41"; }
+rentinb42,22,16,0	script	Piano#Rb42	111,{ callfunc "rent_pianoStart","b42"; OnTimer50000: callfunc "rent_pianoStop","b42"; }
+rentinb43,22,16,0	script	Piano#Rb43	111,{ callfunc "rent_pianoStart","b43"; OnTimer50000: callfunc "rent_pianoStop","b43"; }
+rentinb44,22,16,0	script	Piano#Rb44	111,{ callfunc "rent_pianoStart","b44"; OnTimer50000: callfunc "rent_pianoStop","b44"; }
+rentinb45,22,16,0	script	Piano#Rb45	111,{ callfunc "rent_pianoStart","b45"; OnTimer50000: callfunc "rent_pianoStop","b45"; }
+rentinb46,22,16,0	script	Piano#Rb46	111,{ callfunc "rent_pianoStart","b46"; OnTimer50000: callfunc "rent_pianoStop","b46"; }
+rentinb47,22,16,0	script	Piano#Rb47	111,{ callfunc "rent_pianoStart","b47"; OnTimer50000: callfunc "rent_pianoStop","b47"; }
+rentinb48,22,16,0	script	Piano#Rb48	111,{ callfunc "rent_pianoStart","b48"; OnTimer50000: callfunc "rent_pianoStop","b48"; }
+rentinb49,22,16,0	script	Piano#Rb49	111,{ callfunc "rent_pianoStart","b49"; OnTimer50000: callfunc "rent_pianoStop","b49"; }
+rentinb50,22,16,0	script	Piano#Rb50	111,{ callfunc "rent_pianoStart","b50"; OnTimer50000: callfunc "rent_pianoStop","b50"; }
+rentinb51,22,16,0	script	Piano#Rb51	111,{ callfunc "rent_pianoStart","b51"; OnTimer50000: callfunc "rent_pianoStop","b51"; }
+rentinb52,22,16,0	script	Piano#Rb52	111,{ callfunc "rent_pianoStart","b52"; OnTimer50000: callfunc "rent_pianoStop","b52"; }
+rentinb53,22,16,0	script	Piano#Rb53	111,{ callfunc "rent_pianoStart","b53"; OnTimer50000: callfunc "rent_pianoStop","b53"; }
+rentinb54,22,16,0	script	Piano#Rb54	111,{ callfunc "rent_pianoStart","b54"; OnTimer50000: callfunc "rent_pianoStop","b54"; }
+rentinb55,22,16,0	script	Piano#Rb55	111,{ callfunc "rent_pianoStart","b55"; OnTimer50000: callfunc "rent_pianoStop","b55"; }
+rentinb56,22,16,0	script	Piano#Rb56	111,{ callfunc "rent_pianoStart","b56"; OnTimer50000: callfunc "rent_pianoStop","b56"; }
+rentinb57,22,16,0	script	Piano#Rb57	111,{ callfunc "rent_pianoStart","b57"; OnTimer50000: callfunc "rent_pianoStop","b57"; }
+rentinb58,22,16,0	script	Piano#Rb58	111,{ callfunc "rent_pianoStart","b58"; OnTimer50000: callfunc "rent_pianoStop","b58"; }
+rentinb59,22,16,0	script	Piano#Rb59	111,{ callfunc "rent_pianoStart","b59"; OnTimer50000: callfunc "rent_pianoStop","b59"; }
+rentinb60,22,16,0	script	Piano#Rb60	111,{ callfunc "rent_pianoStart","b60"; OnTimer50000: callfunc "rent_pianoStop","b60"; }
+
+//============================================================ 
+//= Armarios
+//============================================================ 
+
+rentinb1,35,24,0	script	Storage#Rb1a	111,{ callfunc "rent_armario"; }
+rentinb1,13,26,0	script	Storage#Rb1b	111,{ callfunc "rent_armario"; }
+rentinb2,35,24,0	script	Storage#Rb2a	111,{ callfunc "rent_armario"; }
+rentinb2,13,26,0	script	Storage#Rb2b	111,{ callfunc "rent_armario"; }
+rentinb3,35,24,0	script	Storage#Rb3a	111,{ callfunc "rent_armario"; }
+rentinb3,13,26,0	script	Storage#Rb3b	111,{ callfunc "rent_armario"; }
+rentinb4,35,24,0	script	Storage#Rb4a	111,{ callfunc "rent_armario"; }
+rentinb4,13,26,0	script	Storage#Rb4b	111,{ callfunc "rent_armario"; }
+rentinb5,35,24,0	script	Storage#Rb5a	111,{ callfunc "rent_armario"; }
+rentinb5,13,26,0	script	Storage#Rb5b	111,{ callfunc "rent_armario"; }
+rentinb6,35,24,0	script	Storage#Rb6a	111,{ callfunc "rent_armario"; }
+rentinb6,13,26,0	script	Storage#Rb6b	111,{ callfunc "rent_armario"; }
+rentinb7,35,24,0	script	Storage#Rb7a	111,{ callfunc "rent_armario"; }
+rentinb7,13,26,0	script	Storage#Rb7b	111,{ callfunc "rent_armario"; }
+rentinb8,35,24,0	script	Storage#Rb8a	111,{ callfunc "rent_armario"; }
+rentinb8,13,26,0	script	Storage#Rb8b	111,{ callfunc "rent_armario"; }
+rentinb9,35,24,0	script	Storage#Rb9a	111,{ callfunc "rent_armario"; }
+rentinb9,13,26,0	script	Storage#Rb9b	111,{ callfunc "rent_armario"; }
+rentinb10,35,24,0	script	Storage#Rb10a	111,{ callfunc "rent_armario"; }
+rentinb10,13,26,0	script	Storage#Rb10b	111,{ callfunc "rent_armario"; }
+rentinb11,35,24,0	script	Storage#Rb11a	111,{ callfunc "rent_armario"; }
+rentinb11,13,26,0	script	Storage#Rb11b	111,{ callfunc "rent_armario"; }
+rentinb12,35,24,0	script	Storage#Rb12a	111,{ callfunc "rent_armario"; }
+rentinb12,13,26,0	script	Storage#Rb12b	111,{ callfunc "rent_armario"; }
+rentinb13,35,24,0	script	Storage#Rb13a	111,{ callfunc "rent_armario"; }
+rentinb13,13,26,0	script	Storage#Rb13b	111,{ callfunc "rent_armario"; }
+rentinb14,35,24,0	script	Storage#Rb14a	111,{ callfunc "rent_armario"; }
+rentinb14,13,26,0	script	Storage#Rb14b	111,{ callfunc "rent_armario"; }
+rentinb15,35,24,0	script	Storage#Rb15a	111,{ callfunc "rent_armario"; }
+rentinb15,13,26,0	script	Storage#Rb15b	111,{ callfunc "rent_armario"; }
+rentinb16,35,24,0	script	Storage#Rb16a	111,{ callfunc "rent_armario"; }
+rentinb16,13,26,0	script	Storage#Rb16b	111,{ callfunc "rent_armario"; }
+rentinb17,35,24,0	script	Storage#Rb17a	111,{ callfunc "rent_armario"; }
+rentinb17,13,26,0	script	Storage#Rb17b	111,{ callfunc "rent_armario"; }
+rentinb18,35,24,0	script	Storage#Rb18a	111,{ callfunc "rent_armario"; }
+rentinb18,13,26,0	script	Storage#Rb18b	111,{ callfunc "rent_armario"; }
+rentinb19,35,24,0	script	Storage#Rb19a	111,{ callfunc "rent_armario"; }
+rentinb19,13,26,0	script	Storage#Rb19b	111,{ callfunc "rent_armario"; }
+rentinb20,35,24,0	script	Storage#Rb20a	111,{ callfunc "rent_armario"; }
+rentinb20,13,26,0	script	Storage#Rb20b	111,{ callfunc "rent_armario"; }
+rentinb21,35,24,0	script	Storage#Rb21a	111,{ callfunc "rent_armario"; }
+rentinb21,13,26,0	script	Storage#Rb21b	111,{ callfunc "rent_armario"; }
+rentinb22,35,24,0	script	Storage#Rb22a	111,{ callfunc "rent_armario"; }
+rentinb22,13,26,0	script	Storage#Rb22b	111,{ callfunc "rent_armario"; }
+rentinb23,35,24,0	script	Storage#Rb23a	111,{ callfunc "rent_armario"; }
+rentinb23,13,26,0	script	Storage#Rb23b	111,{ callfunc "rent_armario"; }
+rentinb24,35,24,0	script	Storage#Rb24a	111,{ callfunc "rent_armario"; }
+rentinb24,13,26,0	script	Storage#Rb24b	111,{ callfunc "rent_armario"; }
+rentinb25,35,24,0	script	Storage#Rb25a	111,{ callfunc "rent_armario"; }
+rentinb25,13,26,0	script	Storage#Rb25b	111,{ callfunc "rent_armario"; }
+rentinb26,35,24,0	script	Storage#Rb26a	111,{ callfunc "rent_armario"; }
+rentinb26,13,26,0	script	Storage#Rb26b	111,{ callfunc "rent_armario"; }
+rentinb27,35,24,0	script	Storage#Rb27a	111,{ callfunc "rent_armario"; }
+rentinb27,13,26,0	script	Storage#Rb27b	111,{ callfunc "rent_armario"; }
+rentinb28,35,24,0	script	Storage#Rb28a	111,{ callfunc "rent_armario"; }
+rentinb28,13,26,0	script	Storage#Rb28b	111,{ callfunc "rent_armario"; }
+rentinb29,35,24,0	script	Storage#Rb29a	111,{ callfunc "rent_armario"; }
+rentinb29,13,26,0	script	Storage#Rb29b	111,{ callfunc "rent_armario"; }
+rentinb30,35,24,0	script	Storage#Rb30a	111,{ callfunc "rent_armario"; }
+rentinb30,13,26,0	script	Storage#Rb30b	111,{ callfunc "rent_armario"; }
+rentinb31,35,24,0	script	Storage#Rb31a	111,{ callfunc "rent_armario"; }
+rentinb31,13,26,0	script	Storage#Rb31b	111,{ callfunc "rent_armario"; }
+rentinb32,35,24,0	script	Storage#Rb32a	111,{ callfunc "rent_armario"; }
+rentinb32,13,26,0	script	Storage#Rb32b	111,{ callfunc "rent_armario"; }
+rentinb33,35,24,0	script	Storage#Rb33a	111,{ callfunc "rent_armario"; }
+rentinb33,13,26,0	script	Storage#Rb33b	111,{ callfunc "rent_armario"; }
+rentinb34,35,24,0	script	Storage#Rb34a	111,{ callfunc "rent_armario"; }
+rentinb34,13,26,0	script	Storage#Rb34b	111,{ callfunc "rent_armario"; }
+rentinb35,35,24,0	script	Storage#Rb35a	111,{ callfunc "rent_armario"; }
+rentinb35,13,26,0	script	Storage#Rb35b	111,{ callfunc "rent_armario"; }
+rentinb36,35,24,0	script	Storage#Rb36a	111,{ callfunc "rent_armario"; }
+rentinb36,13,26,0	script	Storage#Rb36b	111,{ callfunc "rent_armario"; }
+rentinb37,35,24,0	script	Storage#Rb37a	111,{ callfunc "rent_armario"; }
+rentinb37,13,26,0	script	Storage#Rb37b	111,{ callfunc "rent_armario"; }
+rentinb38,35,24,0	script	Storage#Rb38a	111,{ callfunc "rent_armario"; }
+rentinb38,13,26,0	script	Storage#Rb38b	111,{ callfunc "rent_armario"; }
+rentinb39,35,24,0	script	Storage#Rb39a	111,{ callfunc "rent_armario"; }
+rentinb39,13,26,0	script	Storage#Rb39b	111,{ callfunc "rent_armario"; }
+rentinb40,35,24,0	script	Storage#Rb40a	111,{ callfunc "rent_armario"; }
+rentinb40,13,26,0	script	Storage#Rb40b	111,{ callfunc "rent_armario"; }
+rentinb41,35,24,0	script	Storage#Rb41a	111,{ callfunc "rent_armario"; }
+rentinb41,13,26,0	script	Storage#Rb41b	111,{ callfunc "rent_armario"; }
+rentinb42,35,24,0	script	Storage#Rb42a	111,{ callfunc "rent_armario"; }
+rentinb42,13,26,0	script	Storage#Rb42b	111,{ callfunc "rent_armario"; }
+rentinb43,35,24,0	script	Storage#Rb43a	111,{ callfunc "rent_armario"; }
+rentinb43,13,26,0	script	Storage#Rb43b	111,{ callfunc "rent_armario"; }
+rentinb44,35,24,0	script	Storage#Rb44a	111,{ callfunc "rent_armario"; }
+rentinb44,13,26,0	script	Storage#Rb44b	111,{ callfunc "rent_armario"; }
+rentinb45,35,24,0	script	Storage#Rb45a	111,{ callfunc "rent_armario"; }
+rentinb45,13,26,0	script	Storage#Rb45b	111,{ callfunc "rent_armario"; }
+rentinb46,35,24,0	script	Storage#Rb46a	111,{ callfunc "rent_armario"; }
+rentinb46,13,26,0	script	Storage#Rb46b	111,{ callfunc "rent_armario"; }
+rentinb47,35,24,0	script	Storage#Rb47a	111,{ callfunc "rent_armario"; }
+rentinb47,13,26,0	script	Storage#Rb47b	111,{ callfunc "rent_armario"; }
+rentinb48,35,24,0	script	Storage#Rb48a	111,{ callfunc "rent_armario"; }
+rentinb48,13,26,0	script	Storage#Rb48b	111,{ callfunc "rent_armario"; }
+rentinb49,35,24,0	script	Storage#Rb49a	111,{ callfunc "rent_armario"; }
+rentinb49,13,26,0	script	Storage#Rb49b	111,{ callfunc "rent_armario"; }
+rentinb50,35,24,0	script	Storage#Rb50a	111,{ callfunc "rent_armario"; }
+rentinb50,13,26,0	script	Storage#Rb50b	111,{ callfunc "rent_armario"; }
+rentinb51,35,24,0	script	Storage#Rb51a	111,{ callfunc "rent_armario"; }
+rentinb51,13,26,0	script	Storage#Rb51b	111,{ callfunc "rent_armario"; }
+rentinb52,35,24,0	script	Storage#Rb52a	111,{ callfunc "rent_armario"; }
+rentinb52,13,26,0	script	Storage#Rb52b	111,{ callfunc "rent_armario"; }
+rentinb53,35,24,0	script	Storage#Rb53a	111,{ callfunc "rent_armario"; }
+rentinb53,13,26,0	script	Storage#Rb53b	111,{ callfunc "rent_armario"; }
+rentinb54,35,24,0	script	Storage#Rb54a	111,{ callfunc "rent_armario"; }
+rentinb54,13,26,0	script	Storage#Rb54b	111,{ callfunc "rent_armario"; }
+rentinb55,35,24,0	script	Storage#Rb55a	111,{ callfunc "rent_armario"; }
+rentinb55,13,26,0	script	Storage#Rb55b	111,{ callfunc "rent_armario"; }
+rentinb56,35,24,0	script	Storage#Rb56a	111,{ callfunc "rent_armario"; }
+rentinb56,13,26,0	script	Storage#Rb56b	111,{ callfunc "rent_armario"; }
+rentinb57,35,24,0	script	Storage#Rb57a	111,{ callfunc "rent_armario"; }
+rentinb57,13,26,0	script	Storage#Rb57b	111,{ callfunc "rent_armario"; }
+rentinb58,35,24,0	script	Storage#Rb58a	111,{ callfunc "rent_armario"; }
+rentinb58,13,26,0	script	Storage#Rb58b	111,{ callfunc "rent_armario"; }
+rentinb59,35,24,0	script	Storage#Rb59a	111,{ callfunc "rent_armario"; }
+rentinb59,13,26,0	script	Storage#Rb59b	111,{ callfunc "rent_armario"; }
+rentinb60,35,24,0	script	Storage#Rb60a	111,{ callfunc "rent_armario"; }
+rentinb60,13,26,0	script	Storage#Rb60b	111,{ callfunc "rent_armario"; }
+
+//============================================================ 
+//= Guild Flag Inside House
+//============================================================ 
+
+rentinb1,26,17,4	script	Guild Room#1::GuildRoom1	722,{ end; }
+rentinb2,26,17,4	script	Guild Room#2::GuildRoom2	722,{ end; }
+rentinb3,26,17,4	script	Guild Room#3::GuildRoom3	722,{ end; }
+rentinb4,26,17,4	script	Guild Room#4::GuildRoom4	722,{ end; }
+rentinb5,26,17,4	script	Guild Room#5::GuildRoom5	722,{ end; }
+rentinb6,26,17,4	script	Guild Room#6::GuildRoom6	722,{ end; }
+rentinb7,26,17,4	script	Guild Room#7::GuildRoom7	722,{ end; }
+rentinb8,26,17,4	script	Guild Room#8::GuildRoom8	722,{ end; }
+rentinb9,26,17,4	script	Guild Room#9::GuildRoom9	722,{ end; }
+rentinb10,26,17,4	script	Guild Room#10::GuildRoom10	722,{ end; }
+rentinb11,26,17,4	script	Guild Room#11::GuildRoom11	722,{ end; }
+rentinb12,26,17,4	script	Guild Room#12::GuildRoom12	722,{ end; }
+rentinb13,26,17,4	script	Guild Room#13::GuildRoom13	722,{ end; }
+rentinb14,26,17,4	script	Guild Room#14::GuildRoom14	722,{ end; }
+rentinb15,26,17,4	script	Guild Room#15::GuildRoom15	722,{ end; }
+rentinb16,26,17,4	script	Guild Room#16::GuildRoom16	722,{ end; }
+rentinb17,26,17,4	script	Guild Room#17::GuildRoom17	722,{ end; }
+rentinb18,26,17,4	script	Guild Room#18::GuildRoom18	722,{ end; }
+rentinb19,26,17,4	script	Guild Room#19::GuildRoom19	722,{ end; }
+rentinb20,26,17,4	script	Guild Room#20::GuildRoom20	722,{ end; }
+rentinb21,26,17,4	script	Guild Room#21::GuildRoom21	722,{ end; }
+rentinb22,26,17,4	script	Guild Room#22::GuildRoom22	722,{ end; }
+rentinb23,26,17,4	script	Guild Room#23::GuildRoom23	722,{ end; }
+rentinb24,26,17,4	script	Guild Room#24::GuildRoom24	722,{ end; }
+rentinb25,26,17,4	script	Guild Room#25::GuildRoom25	722,{ end; }
+rentinb26,26,17,4	script	Guild Room#26::GuildRoom26	722,{ end; }
+rentinb27,26,17,4	script	Guild Room#27::GuildRoom27	722,{ end; }
+rentinb28,26,17,4	script	Guild Room#28::GuildRoom28	722,{ end; }
+rentinb29,26,17,4	script	Guild Room#29::GuildRoom29	722,{ end; }
+rentinb30,26,17,4	script	Guild Room#30::GuildRoom30	722,{ end; }
+rentinb31,26,17,4	script	Guild Room#31::GuildRoom31	722,{ end; }
+rentinb32,26,17,4	script	Guild Room#32::GuildRoom32	722,{ end; }
+rentinb33,26,17,4	script	Guild Room#33::GuildRoom33	722,{ end; }
+rentinb34,26,17,4	script	Guild Room#34::GuildRoom34	722,{ end; }
+rentinb35,26,17,4	script	Guild Room#35::GuildRoom35	722,{ end; }
+rentinb36,26,17,4	script	Guild Room#36::GuildRoom36	722,{ end; }
+rentinb37,26,17,4	script	Guild Room#37::GuildRoom37	722,{ end; }
+rentinb38,26,17,4	script	Guild Room#38::GuildRoom38	722,{ end; }
+rentinb39,26,17,4	script	Guild Room#39::GuildRoom39	722,{ end; }
+rentinb40,26,17,4	script	Guild Room#40::GuildRoom40	722,{ end; }
+rentinb41,26,17,4	script	Guild Room#41::GuildRoom41	722,{ end; }
+rentinb42,26,17,4	script	Guild Room#42::GuildRoom42	722,{ end; }
+rentinb43,26,17,4	script	Guild Room#43::GuildRoom43	722,{ end; }
+rentinb44,26,17,4	script	Guild Room#44::GuildRoom44	722,{ end; }
+rentinb45,26,17,4	script	Guild Room#45::GuildRoom45	722,{ end; }
+rentinb46,26,17,4	script	Guild Room#46::GuildRoom46	722,{ end; }
+rentinb47,26,17,4	script	Guild Room#47::GuildRoom47	722,{ end; }
+rentinb48,26,17,4	script	Guild Room#48::GuildRoom48	722,{ end; }
+rentinb49,26,17,4	script	Guild Room#49::GuildRoom49	722,{ end; }
+rentinb50,26,17,4	script	Guild Room#50::GuildRoom50	722,{ end; }
+rentinb51,26,17,4	script	Guild Room#51::GuildRoom51	722,{ end; }
+rentinb52,26,17,4	script	Guild Room#52::GuildRoom52	722,{ end; }
+rentinb53,26,17,4	script	Guild Room#53::GuildRoom53	722,{ end; }
+rentinb54,26,17,4	script	Guild Room#54::GuildRoom54	722,{ end; }
+rentinb55,26,17,4	script	Guild Room#55::GuildRoom55	722,{ end; }
+rentinb56,26,17,4	script	Guild Room#56::GuildRoom56	722,{ end; }
+rentinb57,26,17,4	script	Guild Room#57::GuildRoom57	722,{ end; }
+rentinb58,26,17,4	script	Guild Room#58::GuildRoom58	722,{ end; }
+rentinb59,26,17,4	script	Guild Room#59::GuildRoom59	722,{ end; }
+rentinb60,26,17,4	script	Guild Room#60::GuildRoom60	722,{ end; }
+
+rentb1,25,21,4	script	Guild House#1::GuildHouse1	722,{ end; }
+rentb2,25,21,4	script	Guild House#2::GuildHouse2	722,{ end; }
+rentb3,25,21,4	script	Guild House#3::GuildHouse3	722,{ end; }
+rentb4,25,21,4	script	Guild House#4::GuildHouse4	722,{ end; }
+rentb5,25,21,4	script	Guild House#5::GuildHouse5	722,{ end; }
+rentb6,25,21,4	script	Guild House#6::GuildHouse6	722,{ end; }
+rentb7,25,21,4	script	Guild House#7::GuildHouse7	722,{ end; }
+rentb8,25,21,4	script	Guild House#8::GuildHouse8	722,{ end; }
+rentb9,25,21,4	script	Guild House#9::GuildHouse9	722,{ end; }
+rentb10,25,21,4	script	Guild House#10::GuildHouse10	722,{ end; }
+rentb11,25,21,4	script	Guild House#11::GuildHouse11	722,{ end; }
+rentb12,25,21,4	script	Guild House#12::GuildHouse12	722,{ end; }
+rentb13,25,21,4	script	Guild House#13::GuildHouse13	722,{ end; }
+rentb14,25,21,4	script	Guild House#14::GuildHouse14	722,{ end; }
+rentb15,25,21,4	script	Guild House#15::GuildHouse15	722,{ end; }
+rentb16,25,21,4	script	Guild House#16::GuildHouse16	722,{ end; }
+rentb17,25,21,4	script	Guild House#17::GuildHouse17	722,{ end; }
+rentb18,25,21,4	script	Guild House#18::GuildHouse18	722,{ end; }
+rentb19,25,21,4	script	Guild House#19::GuildHouse19	722,{ end; }
+rentb20,25,21,4	script	Guild House#20::GuildHouse20	722,{ end; }
+rentb21,25,21,4	script	Guild House#21::GuildHouse21	722,{ end; }
+rentb22,25,21,4	script	Guild House#22::GuildHouse22	722,{ end; }
+rentb23,25,21,4	script	Guild House#23::GuildHouse23	722,{ end; }
+rentb24,25,21,4	script	Guild House#24::GuildHouse24	722,{ end; }
+
+rentb25,25,21,4	script	Guild House#25::GuildHouse25	722,{ end; }
+rentb26,25,21,4	script	Guild House#26::GuildHouse26	722,{ end; }
+rentb27,25,21,4	script	Guild House#27::GuildHouse27	722,{ end; }
+rentb28,25,21,4	script	Guild House#28::GuildHouse28	722,{ end; }
+rentb29,25,21,4	script	Guild House#29::GuildHouse29	722,{ end; }
+rentb30,25,21,4	script	Guild House#30::GuildHouse30	722,{ end; }
+rentb31,25,21,4	script	Guild House#31::GuildHouse31	722,{ end; }
+rentb32,25,21,4	script	Guild House#32::GuildHouse32	722,{ end; }
+rentb33,25,21,4	script	Guild House#33::GuildHouse33	722,{ end; }
+rentb34,25,21,4	script	Guild House#34::GuildHouse34	722,{ end; }
+rentb35,25,21,4	script	Guild House#35::GuildHouse35	722,{ end; }
+rentb36,25,21,4	script	Guild House#36::GuildHouse36	722,{ end; }
+rentb37,25,21,4	script	Guild House#37::GuildHouse37	722,{ end; }
+rentb38,25,21,4	script	Guild House#38::GuildHouse38	722,{ end; }
+rentb39,25,21,4	script	Guild House#39::GuildHouse39	722,{ end; }
+rentb40,25,21,4	script	Guild House#40::GuildHouse40	722,{ end; }
+rentb41,25,21,4	script	Guild House#41::GuildHouse41	722,{ end; }
+rentb42,25,21,4	script	Guild House#42::GuildHouse42	722,{ end; }
+rentb43,25,21,4	script	Guild House#43::GuildHouse43	722,{ end; }
+rentb44,25,21,4	script	Guild House#44::GuildHouse44	722,{ end; }
+rentb45,25,21,4	script	Guild House#45::GuildHouse45	722,{ end; }
+rentb46,25,21,4	script	Guild House#46::GuildHouse46	722,{ end; }
+rentb47,25,21,4	script	Guild House#47::GuildHouse47	722,{ end; }
+rentb48,25,21,4	script	Guild House#48::GuildHouse48	722,{ end; }
+rentb49,25,21,4	script	Guild House#49::GuildHouse49	722,{ end; }
+rentb50,25,21,4	script	Guild House#50::GuildHouse50	722,{ end; }
+rentb51,25,21,4	script	Guild House#51::GuildHouse51	722,{ end; }
+rentb52,25,21,4	script	Guild House#52::GuildHouse52	722,{ end; }
+rentb53,25,21,4	script	Guild House#53::GuildHouse53	722,{ end; }
+rentb54,25,21,4	script	Guild House#54::GuildHouse54	722,{ end; }
+rentb55,25,21,4	script	Guild House#55::GuildHouse55	722,{ end; }
+rentb56,25,21,4	script	Guild House#56::GuildHouse56	722,{ end; }
+rentb57,25,21,4	script	Guild House#57::GuildHouse57	722,{ end; }
+rentb58,25,21,4	script	Guild House#58::GuildHouse58	722,{ end; }
+rentb59,25,21,4	script	Guild House#59::GuildHouse59	722,{ end; }
+rentb60,25,21,4	script	Guild House#60::GuildHouse60	722,{ end; }
+
+//============================================================ 
+//= Funcion para Control de PVP en el mapa Outdoor
+//============================================================ 
+
+function	script	rent_pvp	{
+	if (getmapxy(@mapa$,@mapx,@mapy,0,strcharinfo(0)) != 0) end;
+	mes "[Switch]";
+	mes "What do you want to do?";
+	next;
+	menu "Enable PVP",L_PvpOn,"Disable PVP",L_PvpOff,"Nothing",-;
+	mes "[Switch]";
+	mes "Good Day";
+	close;
+
+L_PvpOn:
+	mes "[Switch]";
+	mes "PVP Mode Enable";
+	pvpon @mapa$;
+	close;
+
+L_PvpOff:
+	mes "[Switch]";
+	mes "PVP Mode Disable";
+	pvpoff @mapa$;
+	close;
+}
+
+//============================================================ 
+//= Camas
+//= (id de Casa,X,Y)
+//============================================================ 
+
+function	script	rent_camas	{
+	mes "Take a rest?";
+	menu "Yes",-,"No",L_No;
+	close2;
+	percentheal 100,100;
+	warp "rentin" + getarg(0) + "",getarg(1),getarg(2);
+	sleep2 2000;
+	emotion e_yawn,1;
+	end;
+
+L_No:
+	close;
+}
+
+//============================================================ 
+//= Funciones de Inicio y Fin de Reproducción de Piano
+//= (id de Casa)
+//============================================================ 
+
+function	script	rent_pianoStart	{
+	if (getmapxy(@mapa$,@mapx,@mapy,0,strcharinfo(0)) != 0) end;
+	mes "[Piano]";
+	if (getd("$@Piano" + getarg(0)) > 0) {
+		mes "Please wait for the piano to be ready again.";
+		close;
+	}
+	mes "What do you want to play?";
+	set @Tema, select ("Chaos of Eternity","Bragis Poem","Ring of Nibelungen","Dont Forget Me Not","In To The Abyss","Assassin of Sunset","Ninguno");
+	if (@Tema >= 7) close;
+	if (@Tema < 10) set @Tema$, "m0" + @Tema + ".wav";
+	else set @Tema$, "m" + @Tema + ".wav";
+	close2;
+	if (getd("$@Piano" + getarg(0)) <= 0) {
+		// Sonar el Tema Elegido
+		setd "$@Piano" + getarg(0), 1; // Reproduciendo
+		initnpctimer;
+		switch (@Tema) {
+			case 1:  soundeffectall "chaos_of_eternity.wav",0,@mapa$,0,0,50,50; break;
+			case 2:  soundeffectall "bragis_poem.wav",0,@mapa$,0,0,50,50; break;
+			case 3:  soundeffectall "ring_of_nibelungen.wav",0,@mapa$,0,0,50,50; break;
+			case 4:  soundeffectall "dont_forget_me_not.wav",0,@mapa$,0,0,50,50; break;
+			case 5:  soundeffectall "in_to_the_abyss.wav",0,@mapa$,0,0,50,50; break;
+			case 6:  soundeffectall "assassin_of_sunset.wav",0,@mapa$,0,0,50,50; break;
+		}
+	}
+	end;
+}
+
+function	script	rent_pianoStop	{
+	emotion e_no1;
+	stopnpctimer;
+	setd "$@Piano" + getarg(0), 0; // Fin de Tema
+	end;
+}
+
+//============================================================ 
+//= Storage
+//============================================================ 
+
+function	script	rent_armario	{
+	openstorage;
+	end;
+}
+
+//============================================================ 
+//= Mirror
+//============================================================ 
+
+rentinb1,34,28,0	script	Mirror#1::GuildMirror	-1,1,1,{
+	end;
+
+OnTouch:
+	set @HairStyle, getlook(1);
+	set @HairColor, getlook(6);
+	set @Clothes, getlook(7);
+
+	mes "[^FFA500Espejo Mágico^000000]";
+	mes "Mmmmm... talvez te vendría bien un cambio...";
+	next;
+
+	switch( select("^FFA500Cambiar mi apariencia^000000:Mi Paleta Favorita 1:Mi Paleta Favorita 2") )
+	{
+		case 2: // Paleta Favorita 1
+			mes "[^FFA500Espejo Mágico^000000]";
+			mes "Dime, que deseas hacer?";
+			next;
+			switch( select("Abrir Paleta","Guardar Paleta","Comprar Cupones") )
+			{
+				case 1:
+					if( !Palete_1 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "No has creado tu Paleta Favorita 1.";
+						close;
+					}
+
+					setlook 1, Palete_1_HS;
+					setlook 6, Palete_1_HC;
+					setlook 7, Palete_1_CT;
+					set SkinColor, Palete_1_Skin;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Esta es tu Paleta Favorita 1.";
+					mes "Nos vemos.";
+					close;
+				case 2:
+					set Palete_1, 1;
+					set Palete_1_HS, @HairStyle;
+					set Palete_1_HC, @HairColor;
+					set Palete_1_CT, @Clothes;
+					set Palete_1_Skin, SkinColor;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Tu estilo actual ha sido guardado en tu Paleta Favorita 1.";
+					mes "Nos vemos.";
+					close;
+				case 3:
+					if( !Palete_1 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "No has creado tu Paleta Favorita 1.";
+						close;
+					}
+
+					if( countitem(6046) >= 10 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "El máximo de cupones que puedes tener es de 10.";
+						mes "Cuando gastes algunos, vuelve.";
+						close;
+					}
+
+					set @Amount, 10 - countitem(6046);
+					set @Cost, @Amount * 250;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "El cupon te permite cambiar tu vestimenta a tu Paleta Favorita 1 en cualquier lugar.";
+					mes "Te puedo vender" + @Amount + " cupones en " + @Cost + "z.";
+					next;
+					if( select("Sí por favor:No gracias") == 2 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "Un gusto ayudarte.";
+						close;
+					}
+
+					if( Zeny < @Cost )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "Que pena, no tienes suficiente dinero.";
+						close;
+					}
+
+					set Zeny, Zeny - @Cost;
+					getitem 6046,@Amount;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Aquí tienes tus cupones. Luce tus diseños al mundo y suerte!!.";
+					close;
+			}
+		case 3: // Paleta Favorita 2
+			mes "[^FFA500Espejo Mágico^000000]";
+			mes "Dime, que deseas hacer?";
+			next;
+			switch( select("Abrir Paleta","Guardar Paleta","Comprar Cupones") )
+			{
+				case 1:
+					if( !Palete_2 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "No has creado tu Paleta Favorita 2.";
+						close;
+					}
+
+					setlook 1, Palete_2_HS;
+					setlook 6, Palete_2_HC;
+					setlook 7, Palete_2_CT;
+					set SkinColor, Palete_2_Skin;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Esta es tu Paleta Favorita 2.";
+					mes "Nos vemos.";
+					close;
+				case 2:
+					set Palete_2, 1;
+					set Palete_2_HS, @HairStyle;
+					set Palete_2_HC, @HairColor;
+					set Palete_2_CT, @Clothes;
+					set Palete_2_Skin, SkinColor;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Tu estilo actual ha sido guardado en tu Paleta Favorita 2.";
+					mes "Nos vemos.";
+					close;
+				case 3:
+					if( !Palete_2 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "No has creado tu Paleta Favorita 2.";
+						close;
+					}
+
+					if( countitem(6047) >= 10 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "El máximo de cupones que puedes tener es de 10.";
+						mes "Cuando gastes algunos, vuelve.";
+						close;
+					}
+
+					set @Amount, 10 - countitem(6047);
+					set @Cost, @Amount * 250;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "El cupon te permite cambiar tu vestimenta a tu Paleta Favorita 2 en cualquier lugar.";
+					mes "Te puedo vender" + @Amount + " cupones en " + @Cost + "z.";
+					next;
+					if( select("Sí por favor:No gracias") == 2 )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "Un gusto ayudarte.";
+						close;
+					}
+
+					if( Zeny < @Cost )
+					{
+						mes "[^FFA500Espejo Mágico^000000]";
+						mes "Que pena, no tienes suficiente dinero.";
+						close;
+					}
+
+					set Zeny, Zeny - @Cost;
+					getitem 6047,@Amount;
+
+					mes "[^FFA500Espejo Mágico^000000]";
+					mes "Aquí tienes tus cupones. Luce tus diseños al mundo y suerte!!.";
+					close;
+			}
+	}
+
+	mes "[^FFA500Espejo Mágico^000000]";
+	mes "Vamos a trabajar en tu estilo, navega entre las opciones disponibles y busca la combinación que mejor te haga sentir.";
+	next;
+
+	// Ranges Definition
+	set .@HairS_Min, 0; set .@HairS_Max, 25;
+	set .@HairC_Min, 0; set .@HairC_Max, 244;
+	set .@ClotC_Min, 0; set .@ClotC_Max, 303;
+	// Brown Skin
+	set .@BHair_Min, 21; set .@BHair_Max, 40;
+	set .@BClot_Min, 304; set .@BClot_Max, 530;
+	// User Paletes
+	set .@UClot_Min, 0; set .@UClot_Max, 0;
+
+	switch( Class )
+	{
+		case Job_Priest:
+		case Job_High_Priest:
+		case Job_Baby_Priest:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1001; set .@UClot_Max, 1032;
+			} else {
+				set .@UClot_Min, 4001; set .@UClot_Max, 4032;
+			}
+			break;
+		case Job_Monk:
+		case Job_Champion:
+		case Job_Baby_Monk:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1101; set .@UClot_Max, 1128;
+			} else {
+				set .@UClot_Min, 4101; set .@UClot_Max, 4129;
+			}
+			break;
+		case Job_Wizard:
+		case Job_High_Wizard:
+		case Job_Baby_Wizard:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1201; set .@UClot_Max, 1233;
+			} else {
+				set .@UClot_Min, 4201; set .@UClot_Max, 4235;
+			}
+			break;
+		case Job_Sage:
+		case Job_Professor:
+		case Job_Baby_Sage:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1301; set .@UClot_Max, 1338;
+			} else {
+				set .@UClot_Min, 4301; set .@UClot_Max, 4339;
+			}
+			break;
+		case Job_Alchem:
+		case Job_Creator:
+		case Job_Baby_Alchem:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1401; set .@UClot_Max, 1428;
+			} else {
+				set .@UClot_Min, 4401; set .@UClot_Max, 4442;
+			}
+			break;
+		case Job_Assassin:
+		case Job_Assassin_Cross:
+		case Job_Baby_Assassin:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1501; set .@UClot_Max, 1529;
+			} else {
+				set .@UClot_Min, 4501; set .@UClot_Max, 4530;
+			}
+			break;
+		case Job_Blacksmith:
+		case Job_Whitesmith:
+		case Job_Baby_Blacksmith:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1601; set .@UClot_Max, 1633;
+			} else {
+				set .@UClot_Min, 4601; set .@UClot_Max, 4633;
+			}
+			break;
+		case Job_Stalker:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1701; set .@UClot_Max, 1732;
+			} else {
+				set .@UClot_Min, 4701; set .@UClot_Max, 4732;
+			}
+			break;
+		case Job_Hunter:
+		case Job_Sniper:
+		case Job_Baby_Hunter:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1801; set .@UClot_Max, 1828;
+			} else {
+				set .@UClot_Min, 4801; set .@UClot_Max, 4825;
+			}
+			break;
+		case Job_Crusader:
+		case Job_Crusader2:
+		case Job_Paladin:
+		case Job_Paladin2:
+		case Job_Baby_Crusader:
+		case Job_Baby_Crusader2:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 1901; set .@UClot_Max, 1932;
+			} else {
+				set .@UClot_Min, 4901; set .@UClot_Max, 4932;
+			}
+			break;
+		case Job_Knight:
+		case Job_Knight2:
+		case Job_Lord_Knight:
+		case Job_Lord_Knight2:
+		case Job_Baby_Knight:
+		case Job_Baby_Knight2:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 2001; set .@UClot_Max, 2034;
+			} else {
+				set .@UClot_Min, 5001; set .@UClot_Max, 5042;
+			}
+			break;
+		case Job_Dancer:
+		case Job_Gypsy:
+		case Job_Baby_Dancer:
+		case Job_Bard:
+		case Job_Clown:
+		case Job_Baby_Bard:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 2101; set .@UClot_Max, 2138;
+			} else {
+				set .@UClot_Min, 5101; set .@UClot_Max, 5120;
+			}
+			break;
+		case Job_Soul_Linker:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 2201; set .@UClot_Max, 2220;
+			} else {
+				set .@UClot_Min, 5201; set .@UClot_Max, 5220;
+			}
+			break;
+		case Job_Star_Gladiator:
+		case Job_Star_Gladiator2:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 2301; set .@UClot_Max, 2320;
+			} else {
+				set .@UClot_Min, 5301; set .@UClot_Max, 5320;
+			}
+			break;
+		case Job_Gunslinger:
+			if( Sex == 0 ) {
+				set .@UClot_Min, 2401; set .@UClot_Max, 2412;
+			} else {
+				set .@UClot_Min, 5401; set .@UClot_Max, 5412;
+			}
+			break;
+	}
+
+	// Starting Styles
+	set @NHairC, SkinColor * 21;
+	set @NClotC, SkinColor * 304;
+	set @NHairS, @HairStyle;
+
+	// Reset Look with vars
+	changelook 6, @NHairC;
+	changelook 7, @NClotC;
+
+	set @OnStylist, 1; // Using Stylist - Security
+	addtimer 1000, "GuildMirror::OnLeaveSty";
+
+	while( select("Cambiar Color de Piel:Estilo de Pelo:Color de Pelo:Color de Ropa:^0000FFTerminar^000000") != 5 )
+	{
+		switch( @menu )
+		{
+			case 1: // Skin Color
+				while( select("Piel Blanca:Piel Morena:^0000FFRegresar^000000") != 3 )
+				{
+					set @NSkin, @menu - 1;
+					if( @NSkin != SkinColor )
+					{ // Reset Aparience and Counters
+						set SkinColor, @NSkin;
+						changelook 6,set(@NHairC, 21 * @NSkin);
+						changelook 7,set(@NClotC, 304 * @NSkin);
+					}
+				}
+
+				break;
+			case 2: // Hair Style
+				while( select("^FFA500[<] ^000000 Anterior:^FFA500[>] ^000000 Siguiente:^0000FFRegresar^000000") != 3 )
+				{
+					switch( @menu )
+					{
+						case 1:
+							set @NHairS, @NHairS - 1;
+							if( @NHairS < .@HairS_Min ) set @NHairS, .@HairS_Max;
+							break;
+						case 2:
+							set @NHairS, @NHairS + 1;
+							if( @NHairS > .@HairS_Max ) set @NHairS, .@HairS_Min;
+							break;
+					}
+
+					changelook 1,@NHairS;
+					dispbottom "[ Model : " + @NHairS + " | " + @NHairC + " | " + @NClotC + " ]";
+				}
+
+				break;
+			case 3: // Hair Color
+				while( select("^FFA500[<] ^000000 Anterior:^FFA500[>] ^000000 Siguiente:^0000FFRegresar^000000") != 3 )
+				{
+					switch( @menu )
+					{
+						case 1:
+							set @NHairC, @NHairC - 1;
+							if( SkinColor == 0 )
+							{ // White Skin
+								if( @NHairC < .@HairC_Min ) set @NHairC, .@HairC_Max;
+								else if( @NHairC == .@BHair_Max ) set @NHairC, .@BHair_Min - 1;
+							}
+							else
+							{ // Brown Skin
+								if( @NHairC < .@BHair_Min ) set @NHairC, .@BHair_Max;
+							}
+							break;
+						case 2:
+							set @NHairC, @NHairC + 1;
+							if( SkinColor == 0 )
+							{ // White Skin
+								if( @NHairC > .@HairC_Max ) set @NHairC, .@HairC_Min;
+								else if( @NHairC == .@BHair_Min ) set @NHairC, .@BHair_Max + 1;
+							}
+							else
+							{ // Brown Skin
+								if( @NHairC > .@BHair_Max ) set @NHairC, .@BHair_Min;
+							}
+							break;
+					}
+
+					changelook 6,@NHairC;
+					dispbottom "[ Model : " + @NHairS + " | " + @NHairC + " | " + @NClotC + " ]";
+				}
+
+				break;
+			case 4: // Clothes Color
+				while( select("^FFA500[<] ^000000 Anterior:^FFA500[>] ^000000 Siguiente:^0000FFRegresar^000000") != 3 )
+				{
+					switch( @menu )
+					{
+						case 1:
+							set @NClotC, @NClotC - 1;
+							if( SkinColor == 0 )
+							{ // White Skin
+								if( @NClotC == .@ClotC_Min - 1 )
+								{
+									if( .@UClot_Max )
+										set @NClotC, .@UClot_Max;
+									else
+										set @NClotC, .@ClotC_Max;
+								}
+								else if( .@UClot_Min && @NClotC == .@UClot_Min - 1 )
+									set @NClotC, .@ClotC_Max;
+							}
+							else
+							{ // Brown Skin
+								if( @NClotC < .@BClot_Min ) set @NClotC, .@BClot_Max;
+							}
+							break;
+						case 2:
+							set @NClotC, @NClotC + 1;
+							if( SkinColor == 0 )
+							{ // White Skin
+								if( @NClotC == .@ClotC_Max + 1 )
+								{
+									if( .@UClot_Min )
+										set @NClotC, .@UClot_Min;
+									else
+										set @NClotC, .@ClotC_Min;
+								}
+								else if( .@UClot_Max && @NClotC == .@UClot_Max + 1 )
+									set @NClotC, .@ClotC_Min;
+							}
+							else
+							{ // Brown Skin
+								if( @NClotC > .@BClot_Max ) set @NClotC, .@BClot_Min;
+							}
+							break;
+					}
+
+					changelook 7,@NClotC;
+					dispbottom "[ Model : " + @NHairS + " | " + @NHairC + " | " + @NClotC + " ]";
+				}
+
+				break;
+		}
+	}
+
+	if( select( "^0000FFMe gustó, me quedaré así^000000","No, no me gustó..." ) == 2 )
+	{
+		mes "[^FFA500Espejo Mágico^000000]";
+		mes "Que!!? Pero gasté mucho tiempo!!.";
+		mes "Bueno, vuelve si cambias de parecer.";
+
+		// Reset Look
+		changelook 1,@HairStyle;
+		changelook 6,@HairColor;
+		changelook 7,@Clothes;
+
+		set @OnStylist, 0;
+		deltimer "GuildMirror::OnLeaveSty";
+		close;
+	}
+
+	set @OnStylist, 0;
+	deltimer "GuildMirror::OnLeaveSty";
+
+	// Real Set of new Paletes
+	setlook 1,@NHairS;
+	setlook 6,@NHairC;
+	setlook 7,@NClotC;
+
+	mes "[^FFA500Espejo Mágico^000000]";
+	mes "Genial!!, te vez muy bien...";
+	mes "Un gusto trabajar para tí.";
+	close;
+
+OnLeaveSty:
+	if( @OnStylist == 1 )
+	{ // Escaping from NPC? return to original palettes
+		changelook 1, @HairStyle;
+		changelook 6, @HairColor;
+		changelook 7, @Clothes;
+		set @OnStylist, 0;
+	}
+	end;
+}
+
+rentinb2,34,28,0	duplicate(GuildMirror)	Mirror#2	-1,1,1
+rentinb3,34,28,0	duplicate(GuildMirror)	Mirror#3	-1,1,1
+rentinb4,34,28,0	duplicate(GuildMirror)	Mirror#4	-1,1,1
+rentinb5,34,28,0	duplicate(GuildMirror)	Mirror#5	-1,1,1
+rentinb6,34,28,0	duplicate(GuildMirror)	Mirror#6	-1,1,1
+rentinb7,34,28,0	duplicate(GuildMirror)	Mirror#7	-1,1,1
+rentinb8,34,28,0	duplicate(GuildMirror)	Mirror#8	-1,1,1
+rentinb9,34,28,0	duplicate(GuildMirror)	Mirror#9	-1,1,1
+rentinb10,34,28,0	duplicate(GuildMirror)	Mirror#10	-1,1,1
+rentinb11,34,28,0	duplicate(GuildMirror)	Mirror#11	-1,1,1
+rentinb12,34,28,0	duplicate(GuildMirror)	Mirror#12	-1,1,1
+rentinb13,34,28,0	duplicate(GuildMirror)	Mirror#13	-1,1,1
+rentinb14,34,28,0	duplicate(GuildMirror)	Mirror#14	-1,1,1
+rentinb15,34,28,0	duplicate(GuildMirror)	Mirror#15	-1,1,1
+rentinb16,34,28,0	duplicate(GuildMirror)	Mirror#16	-1,1,1
+rentinb17,34,28,0	duplicate(GuildMirror)	Mirror#17	-1,1,1
+rentinb18,34,28,0	duplicate(GuildMirror)	Mirror#18	-1,1,1
+rentinb19,34,28,0	duplicate(GuildMirror)	Mirror#19	-1,1,1
+rentinb20,34,28,0	duplicate(GuildMirror)	Mirror#20	-1,1,1
+rentinb21,34,28,0	duplicate(GuildMirror)	Mirror#21	-1,1,1
+rentinb22,34,28,0	duplicate(GuildMirror)	Mirror#22	-1,1,1
+rentinb23,34,28,0	duplicate(GuildMirror)	Mirror#23	-1,1,1
+rentinb24,34,28,0	duplicate(GuildMirror)	Mirror#24	-1,1,1
+rentinb25,34,28,0	duplicate(GuildMirror)	Mirror#25	-1,1,1
+rentinb26,34,28,0	duplicate(GuildMirror)	Mirror#26	-1,1,1
+rentinb27,34,28,0	duplicate(GuildMirror)	Mirror#27	-1,1,1
+rentinb28,34,28,0	duplicate(GuildMirror)	Mirror#28	-1,1,1
+rentinb29,34,28,0	duplicate(GuildMirror)	Mirror#29	-1,1,1
+rentinb30,34,28,0	duplicate(GuildMirror)	Mirror#30	-1,1,1
+rentinb31,34,28,0	duplicate(GuildMirror)	Mirror#31	-1,1,1
+rentinb32,34,28,0	duplicate(GuildMirror)	Mirror#32	-1,1,1
+rentinb33,34,28,0	duplicate(GuildMirror)	Mirror#33	-1,1,1
+rentinb34,34,28,0	duplicate(GuildMirror)	Mirror#34	-1,1,1
+rentinb35,34,28,0	duplicate(GuildMirror)	Mirror#35	-1,1,1
+rentinb36,34,28,0	duplicate(GuildMirror)	Mirror#36	-1,1,1
+rentinb37,34,28,0	duplicate(GuildMirror)	Mirror#37	-1,1,1
+rentinb38,34,28,0	duplicate(GuildMirror)	Mirror#38	-1,1,1
+rentinb39,34,28,0	duplicate(GuildMirror)	Mirror#39	-1,1,1
+rentinb40,34,28,0	duplicate(GuildMirror)	Mirror#40	-1,1,1
+rentinb41,34,28,0	duplicate(GuildMirror)	Mirror#41	-1,1,1
+rentinb42,34,28,0	duplicate(GuildMirror)	Mirror#42	-1,1,1
+rentinb43,34,28,0	duplicate(GuildMirror)	Mirror#43	-1,1,1
+rentinb44,34,28,0	duplicate(GuildMirror)	Mirror#44	-1,1,1
+rentinb45,34,28,0	duplicate(GuildMirror)	Mirror#45	-1,1,1
+rentinb46,34,28,0	duplicate(GuildMirror)	Mirror#46	-1,1,1
+rentinb47,34,28,0	duplicate(GuildMirror)	Mirror#47	-1,1,1
+rentinb48,34,28,0	duplicate(GuildMirror)	Mirror#48	-1,1,1
+rentinb49,34,28,0	duplicate(GuildMirror)	Mirror#49	-1,1,1
+rentinb50,34,28,0	duplicate(GuildMirror)	Mirror#50	-1,1,1
+rentinb51,34,28,0	duplicate(GuildMirror)	Mirror#51	-1,1,1
+rentinb52,34,28,0	duplicate(GuildMirror)	Mirror#52	-1,1,1
+rentinb53,34,28,0	duplicate(GuildMirror)	Mirror#53	-1,1,1
+rentinb54,34,28,0	duplicate(GuildMirror)	Mirror#54	-1,1,1
+rentinb55,34,28,0	duplicate(GuildMirror)	Mirror#55	-1,1,1
+rentinb56,34,28,0	duplicate(GuildMirror)	Mirror#56	-1,1,1
+rentinb57,34,28,0	duplicate(GuildMirror)	Mirror#57	-1,1,1
+rentinb58,34,28,0	duplicate(GuildMirror)	Mirror#58	-1,1,1
+rentinb59,34,28,0	duplicate(GuildMirror)	Mirror#59	-1,1,1
+rentinb60,34,28,0	duplicate(GuildMirror)	Mirror#60	-1,1,1
+
+//============================================================ 
+//= Rental NPC
+//============================================================ 
+
+rentb1,31,28,5	script	Universal Renter#1::GuildRental	732,{
+	mes "[Universal Renter]";
+	mes "Hi, what do you need Master?";
+	next;
+
+	switch( select("Cart:Falcon:PecoPeco:Homunculus (or Food)") )
+	{
+		case 1: // Carro
+			if( BaseClass != Job_Merchant && BaseJob != Job_SuperNovice )
+			{
+				mes "[Universal Renter]";
+				mes "This is only available for Mechant Class.";
+				close;
+			}
+			if( checkcart() )
+			{
+				mes "[Universal Renter]";
+				mes "You already have a Cart.";
+				close;
+			}
+			if( getskilllv("MC_PUSHCART") < 1 )
+			{
+				mes "[Universal Renter]";
+				mes "You don't have the required skill to receive a Cart.";
+				close;
+			}
+			
+			setcart;
+			mes "[Universal Renter]";
+			mes "Here is your Cart.";
+			close;
+		case 2: // Falcon
+			if( BaseJob == Job_Archer || BaseClass != Job_Archer )
+			{
+				mes "[Universal Renter]";
+				mes "Falcon is only available for Hunter and Sniper Class.";
+				close;
+			}
+			if( checkfalcon() )
+			{
+				mes "[Universal Renter]";
+				mes "You already have a Falcon.";
+				close;
+			}
+			if( getskilllv("HT_FALCON") < 1 )
+			{
+				mes "[Universal Renter]";
+				mes "You don't have the required skill to receive a Falcon.";
+				close;
+			}
+			
+			setfalcon;
+			mes "[Universal Renter]";
+			mes "Here is your Falcon.";
+			close;
+		case 3: // Pecopeco
+			if( BaseJob == Job_Swordman || BaseClass != Job_Swordman )
+			{
+				mes "[Universal Renter]";
+				mes "Pecopeco are only available for Knights and Crusaders Class.";
+				close;
+			}
+			if( checkriding() )
+			{
+				mes "[Universal Renter]";
+				mes "You already have a Pecopeco.";
+				close;
+			}
+			if( getskilllv("KN_RIDING") < 1 )
+			{
+				mes "[Universal Renter]";
+				mes "You don't have the required skill to receive a Pecopeco.";
+				close;
+			}
+			
+			setriding;
+			mes "[Universal Renter]";
+			mes "Here is your Pecopeco.";
+			close;
+		case 4: // Homunculus
+			if( Class != Job_Creator && Class != Job_Alchemist )
+			{
+				mes "[Universal Renter]";
+				mes "Homunculus are only available for Creators and Alchemists.";
+				close;
+			}
+			if( getskilllv(238) < 1 )
+			{
+				mes "[Universal Renter]";
+				mes "You don't have the required skill to receive a Homunculus.";
+				close;
+			}
+			if( HomumType )
+			{
+				mes "[Universal Renter]";
+				mes "You already has received a homunculus. Need food?";
+				next;
+				if( select("Yes, please:No thanks") == 1 )
+				{
+					switch( HomumType )
+					{
+						case 6009: getitem 537,2; break;
+						case 6010: getitem 912,2; break;
+						case 6011: getitem 910,2; break;
+						case 6012: getitem 911,2; break;
+						case 6013: getitem 537,2; break;
+						case 6014: getitem 912,2; break;
+						case 6015: getitem 910,2; break;
+						case 6016: getitem 911,2; break;
+					}
+				}
+				
+				mes "[Universal Renter]";
+				mes "See ya...";
+				close;
+			}
+			
+			mes "[Universal Renter]";
+			mes "Please, tell me what homunculus do you want?";
+			mes "Take care, once you receive a Homunculus, you cannot change it for another, including if you delete it.";
+			next;
+			
+			set .@Option, 6008 + select("Lif(Green Girl):Amistr(Sheep):Filir(Blue Bird):Vanilmirth(Fish):Lif(Red Girl):Amistr(Monkey):Filir(Colored Bird):Vanilmirth(Rare Thing)");
+			atcommand "@makehomun " + .@Option;
+
+			mes "[Universal Renter]";
+			mes "Please wait while your homunculus appear.";
+			next;
+			mes "[Universal Renter]";
+			mes "Now, let give your homunculus the Base and Job levels for the event.";
+			mes "Click on next to continue.";
+			next;
+			atcommand "@homlevel 98";
+			atcommand "@homfriendly 1000";
+			atcommand "@homhungry 100";
+			set HomumType, .@Option;
+			
+			mes "[Universal Renter]";
+			mes "Done. Talk me again if you need Homunculus food.";
+			close;
+	}
+}
+
+rentb2,31,28,5	duplicate(GuildRental)	Universal Renter#2	732
+rentb3,31,28,5	duplicate(GuildRental)	Universal Renter#3	732
+rentb4,31,28,5	duplicate(GuildRental)	Universal Renter#4	732
+rentb5,31,28,5	duplicate(GuildRental)	Universal Renter#5	732
+rentb6,31,28,5	duplicate(GuildRental)	Universal Renter#6	732
+rentb7,31,28,5	duplicate(GuildRental)	Universal Renter#7	732
+rentb8,31,28,5	duplicate(GuildRental)	Universal Renter#8	732
+rentb9,31,28,5	duplicate(GuildRental)	Universal Renter#9	732
+rentb10,31,28,5	duplicate(GuildRental)	Universal Renter#10	732
+rentb11,31,28,5	duplicate(GuildRental)	Universal Renter#11	732
+rentb12,31,28,5	duplicate(GuildRental)	Universal Renter#12	732
+rentb13,31,28,5	duplicate(GuildRental)	Universal Renter#13	732
+rentb14,31,28,5	duplicate(GuildRental)	Universal Renter#14	732
+rentb15,31,28,5	duplicate(GuildRental)	Universal Renter#15	732
+rentb16,31,28,5	duplicate(GuildRental)	Universal Renter#16	732
+rentb17,31,28,5	duplicate(GuildRental)	Universal Renter#17	732
+rentb18,31,28,5	duplicate(GuildRental)	Universal Renter#18	732
+rentb19,31,28,5	duplicate(GuildRental)	Universal Renter#19	732
+rentb20,31,28,5	duplicate(GuildRental)	Universal Renter#20	732
+rentb21,31,28,5	duplicate(GuildRental)	Universal Renter#21	732
+rentb22,31,28,5	duplicate(GuildRental)	Universal Renter#22	732
+rentb23,31,28,5	duplicate(GuildRental)	Universal Renter#23	732
+rentb24,31,28,5	duplicate(GuildRental)	Universal Renter#24	732
+rentb25,31,28,5	duplicate(GuildRental)	Universal Renter#25	732
+rentb26,31,28,5	duplicate(GuildRental)	Universal Renter#26	732
+rentb27,31,28,5	duplicate(GuildRental)	Universal Renter#27	732
+rentb28,31,28,5	duplicate(GuildRental)	Universal Renter#28	732
+rentb29,31,28,5	duplicate(GuildRental)	Universal Renter#29	732
+rentb30,31,28,5	duplicate(GuildRental)	Universal Renter#30	732
+rentb31,31,28,5	duplicate(GuildRental)	Universal Renter#31	732
+rentb32,31,28,5	duplicate(GuildRental)	Universal Renter#32	732
+rentb33,31,28,5	duplicate(GuildRental)	Universal Renter#33	732
+rentb34,31,28,5	duplicate(GuildRental)	Universal Renter#34	732
+rentb35,31,28,5	duplicate(GuildRental)	Universal Renter#35	732
+rentb36,31,28,5	duplicate(GuildRental)	Universal Renter#36	732
+rentb37,31,28,5	duplicate(GuildRental)	Universal Renter#37	732
+rentb38,31,28,5	duplicate(GuildRental)	Universal Renter#38	732
+rentb39,31,28,5	duplicate(GuildRental)	Universal Renter#39	732
+rentb40,31,28,5	duplicate(GuildRental)	Universal Renter#40	732
+rentb41,31,28,5	duplicate(GuildRental)	Universal Renter#41	732
+rentb42,31,28,5	duplicate(GuildRental)	Universal Renter#42	732
+rentb43,31,28,5	duplicate(GuildRental)	Universal Renter#43	732
+rentb44,31,28,5	duplicate(GuildRental)	Universal Renter#44	732
+rentb45,31,28,5	duplicate(GuildRental)	Universal Renter#45	732
+rentb46,31,28,5	duplicate(GuildRental)	Universal Renter#46	732
+rentb47,31,28,5	duplicate(GuildRental)	Universal Renter#47	732
+rentb48,31,28,5	duplicate(GuildRental)	Universal Renter#48	732
+rentb49,31,28,5	duplicate(GuildRental)	Universal Renter#49	732
+rentb50,31,28,5	duplicate(GuildRental)	Universal Renter#50	732
+rentb51,31,28,5	duplicate(GuildRental)	Universal Renter#51	732
+rentb52,31,28,5	duplicate(GuildRental)	Universal Renter#52	732
+rentb53,31,28,5	duplicate(GuildRental)	Universal Renter#53	732
+rentb54,31,28,5	duplicate(GuildRental)	Universal Renter#54	732
+rentb55,31,28,5	duplicate(GuildRental)	Universal Renter#55	732
+rentb56,31,28,5	duplicate(GuildRental)	Universal Renter#56	732
+rentb57,31,28,5	duplicate(GuildRental)	Universal Renter#57	732
+rentb58,31,28,5	duplicate(GuildRental)	Universal Renter#58	732
+rentb59,31,28,5	duplicate(GuildRental)	Universal Renter#59	732
+rentb60,31,28,5	duplicate(GuildRental)	Universal Renter#60	732
+
+rentb1,34,27,1	script	Gran Peco#1	1369,{ end; }
+rentb2,34,27,1	script	Gran Peco#2	1369,{ end; }
+rentb3,34,27,1	script	Gran Peco#3	1369,{ end; }
+rentb4,34,27,1	script	Gran Peco#4	1369,{ end; }
+rentb5,34,27,1	script	Gran Peco#5	1369,{ end; }
+rentb6,34,27,1	script	Gran Peco#6	1369,{ end; }
+rentb7,34,27,1	script	Gran Peco#7	1369,{ end; }
+rentb8,34,27,1	script	Gran Peco#8	1369,{ end; }
+rentb9,34,27,1	script	Gran Peco#9	1369,{ end; }
+rentb10,34,27,1	script	Gran Peco#10	1369,{ end; }
+rentb11,34,27,1	script	Gran Peco#11	1369,{ end; }
+rentb12,34,27,1	script	Gran Peco#12	1369,{ end; }
+rentb13,34,27,1	script	Gran Peco#13	1369,{ end; }
+rentb14,34,27,1	script	Gran Peco#14	1369,{ end; }
+rentb15,34,27,1	script	Gran Peco#15	1369,{ end; }
+rentb16,34,27,1	script	Gran Peco#16	1369,{ end; }
+rentb17,34,27,1	script	Gran Peco#17	1369,{ end; }
+rentb18,34,27,1	script	Gran Peco#18	1369,{ end; }
+rentb19,34,27,1	script	Gran Peco#19	1369,{ end; }
+rentb20,34,27,1	script	Gran Peco#20	1369,{ end; }
+rentb21,34,27,1	script	Gran Peco#21	1369,{ end; }
+rentb22,34,27,1	script	Gran Peco#22	1369,{ end; }
+rentb23,34,27,1	script	Gran Peco#23	1369,{ end; }
+rentb24,34,27,1	script	Gran Peco#24	1369,{ end; }
+rentb25,34,27,1	script	Gran Peco#25	1369,{ end; }
+rentb26,34,27,1	script	Gran Peco#26	1369,{ end; }
+rentb27,34,27,1	script	Gran Peco#27	1369,{ end; }
+rentb28,34,27,1	script	Gran Peco#28	1369,{ end; }
+rentb29,34,27,1	script	Gran Peco#29	1369,{ end; }
+rentb30,34,27,1	script	Gran Peco#30	1369,{ end; }
+rentb31,34,27,1	script	Gran Peco#31	1369,{ end; }
+rentb32,34,27,1	script	Gran Peco#32	1369,{ end; }
+rentb33,34,27,1	script	Gran Peco#33	1369,{ end; }
+rentb34,34,27,1	script	Gran Peco#34	1369,{ end; }
+rentb35,34,27,1	script	Gran Peco#35	1369,{ end; }
+rentb36,34,27,1	script	Gran Peco#36	1369,{ end; }
+rentb37,34,27,1	script	Gran Peco#37	1369,{ end; }
+rentb38,34,27,1	script	Gran Peco#38	1369,{ end; }
+rentb39,34,27,1	script	Gran Peco#39	1369,{ end; }
+rentb40,34,27,1	script	Gran Peco#40	1369,{ end; }
+rentb41,34,27,1	script	Gran Peco#41	1369,{ end; }
+rentb42,34,27,1	script	Gran Peco#42	1369,{ end; }
+rentb43,34,27,1	script	Gran Peco#43	1369,{ end; }
+rentb44,34,27,1	script	Gran Peco#44	1369,{ end; }
+rentb45,34,27,1	script	Gran Peco#45	1369,{ end; }
+rentb46,34,27,1	script	Gran Peco#46	1369,{ end; }
+rentb47,34,27,1	script	Gran Peco#47	1369,{ end; }
+rentb48,34,27,1	script	Gran Peco#48	1369,{ end; }
+rentb49,34,27,1	script	Gran Peco#49	1369,{ end; }
+rentb50,34,27,1	script	Gran Peco#50	1369,{ end; }
+rentb51,34,27,1	script	Gran Peco#51	1369,{ end; }
+rentb52,34,27,1	script	Gran Peco#52	1369,{ end; }
+rentb53,34,27,1	script	Gran Peco#53	1369,{ end; }
+rentb54,34,27,1	script	Gran Peco#54	1369,{ end; }
+rentb55,34,27,1	script	Gran Peco#55	1369,{ end; }
+rentb56,34,27,1	script	Gran Peco#56	1369,{ end; }
+rentb57,34,27,1	script	Gran Peco#57	1369,{ end; }
+rentb58,34,27,1	script	Gran Peco#58	1369,{ end; }
+rentb59,34,27,1	script	Gran Peco#59	1369,{ end; }
+rentb60,34,27,1	script	Gran Peco#60	1369,{ end; }
+
+//============================================================ 
+//= Repair Man
+//============================================================ 
+
+rentb1,16,15,3	script	Repair Man#1::GuildRepair	851,{
+	mes "[Repair Man]";
+	mes "Hi, i am here to fix or refine your equipment.";
+	mes "You have ^0000FF" + (5 - Item_Refines) + "^000000 refine points.";
+	next;
+	switch(select("Repair Item:Refine Item:Nothing."))
+	{
+	case 1:
+		set .@checkitem,1;
+		while( 1 )
+		{
+			if( getbrokenid(.@checkitem) == 0 )
+				break;
+
+			set .@checkitem, .@checkitem + 1;
+		}
+		set .@checkitem, .@checkitem - 1;
+		if( !.@checkitem )
+		{
+			mes "[Repair Man]";
+			mes "Oh, there is nothing damaged on your equipment.";
+			close;
+		}
+
+		mes "[Repair Man]";
+		mes "" + .@checkitem + " are damaged in your inventory.";
+		mes "Do you want to fix then?";
+		next;
+		switch( select("Yes:No") )
+		{
+		case 1:
+			set .@checkitem2,1;
+			while( 1 )
+			{
+				if( getbrokenid(.@checkitem2) == 0 )
+					break;
+
+				set .@checkitem2,.@checkitem2+1;
+			}
+			set .@checkitem2, .@checkitem2 - 1;
+			if( .@checkitem == .@checkitem2 )
+			{
+				while( .@checkitem )
+				{
+					repair(.@checkitem);
+					set .@checkitem, .@checkitem - 1;
+				}
+
+				mes "[Repair Man]";
+				mes "Done, take care.";
+				close;
+			}
+			else
+			{
+				mes "[Repair Man]";
+				mes "Something is wrong... I remember there was more items.";
+				close;
+			}
+		case 2:
+			mes "[Repair Man]";
+			mes "Please repair then as soon as possible.";
+			close;
+		}
+	case 2:
+		if( Item_Refines > 4 )
+		{
+			mes "[Repair Man]";
+			mes "You don't have more Refine Points. Sorry.";
+			close;
+		}
+		
+		mes "[Repair Man]";
+		mes "Tell me what do you want to refine?";
+		mes "^0000FFLimits are:^000000";
+		mes "- Armor +7";
+		mes "- Weapons Lvl 1 +9";
+		mes "- Weapons Lvl 2 +8";
+		mes "- Weapons Lvl 3 +7";
+		mes "- Weapons Lvl 4 +5";
+		next;
+
+		setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+		set .@menu$,"";
+		for( set .@i, 1; .@i <= 10; set .@i, .@i + 1 )
+		{
+			if( getequipisequiped(.@i) )
+				set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+	
+			set .@menu$, .@menu$ + ":";
+		}
+		set .@part,select(.@menu$);
+		
+		if( !getequipisequiped(.@part) )
+		{
+			mes "[Repair Man]";
+			mes "Nothing to refine there.";
+			close;
+		}
+		
+		if( !getequipisenableref(.@part) )
+		{
+			mes "[Repair Man]";
+			mes "This item is not refinable.";
+			close;
+		}
+		
+		if( !getequipisidentify(.@part) )
+		{
+			mes "[Repair Man]";
+			mes "Please identify this item first.";
+			close;
+		}
+		
+		if( getequiprefinerycnt(.@part) >= 10 )
+		{
+			mes "[Repair Man]";
+			mes "This items is at the maximum refine.";
+			close;
+		}
+		
+		set .@refineitemid, getequipid(.@part);
+		set .@refinerycnt, getequiprefinerycnt(.@part);
+		
+		switch( getequipweaponlv(.@part) )
+		{
+			case 0: set .@safe, 7; break;
+			case 1: set .@safe, 9; break;
+			case 2: set .@safe, 8; break;
+			case 3: set .@safe, 7; break;
+			case 4: set .@safe, 5; break;
+			default:
+				mes "[Repair Man]";
+				mes "What's this?";
+				close;
+		}
+		
+		if( .@refinerycnt >= .@safe )
+		{
+			mes "[Repair Man]";
+			mes "This item is at the maximum allowed.";
+			close;
+		}
+		
+		mes "[Repair Man]";
+		mes "Everything is ready. Remember, this is a SAFE REFINE, so there is no way to break the item.";
+		mes "Refining ^0000FF" + getitemname(.@refineitemid) + "^000000";
+		mes "Proceed?";
+		next;
+		
+		if( select("Yes, do it:No thanks") == 2 )
+		{
+			mes "[Repair Man]";
+			mes "Ok, as you wish.";
+			close;
+		}
+
+		if( getequipisequiped(.@part) == 0 )
+		{
+			mes "[Repair Man]";
+			mes "Where is the item?...";
+			close;
+		}
+
+		if( getequiprefinerycnt(.@part) != .@refinerycnt || getequipid(.@part) != .@refineitemid )
+		{
+			mes "[Repair Man]";
+			mes "This is not the same item i was going to refine...";
+			close;
+		}
+
+		successrefitem .@part;
+		set Item_Refines, Item_Refines + 1;
+
+		mes "[Repair Man]";
+		mes "Here is, your item have been refined and you have used 1 Refine Point.";
+		close;
+	case 3:
+		mes "[Repair Man]";
+		mes "Good day.";
+		close;
+	}
+}
+
+rentb2,16,15,3	duplicate(GuildRepair)	Repair Man#2	851
+rentb3,16,15,3	duplicate(GuildRepair)	Repair Man#3	851
+rentb4,16,15,3	duplicate(GuildRepair)	Repair Man#4	851
+rentb5,16,15,3	duplicate(GuildRepair)	Repair Man#5	851
+rentb6,16,15,3	duplicate(GuildRepair)	Repair Man#6	851
+rentb7,16,15,3	duplicate(GuildRepair)	Repair Man#7	851
+rentb8,16,15,3	duplicate(GuildRepair)	Repair Man#8	851
+rentb9,16,15,3	duplicate(GuildRepair)	Repair Man#9	851
+rentb10,16,15,3	duplicate(GuildRepair)	Repair Man#10	851
+rentb11,16,15,3	duplicate(GuildRepair)	Repair Man#11	851
+rentb12,16,15,3	duplicate(GuildRepair)	Repair Man#12	851
+rentb13,16,15,3	duplicate(GuildRepair)	Repair Man#13	851
+rentb14,16,15,3	duplicate(GuildRepair)	Repair Man#14	851
+rentb15,16,15,3	duplicate(GuildRepair)	Repair Man#15	851
+rentb16,16,15,3	duplicate(GuildRepair)	Repair Man#16	851
+rentb17,16,15,3	duplicate(GuildRepair)	Repair Man#17	851
+rentb18,16,15,3	duplicate(GuildRepair)	Repair Man#18	851
+rentb19,16,15,3	duplicate(GuildRepair)	Repair Man#19	851
+rentb20,16,15,3	duplicate(GuildRepair)	Repair Man#20	851
+rentb21,16,15,3	duplicate(GuildRepair)	Repair Man#21	851
+rentb22,16,15,3	duplicate(GuildRepair)	Repair Man#22	851
+rentb23,16,15,3	duplicate(GuildRepair)	Repair Man#23	851
+rentb24,16,15,3	duplicate(GuildRepair)	Repair Man#24	851
+rentb25,16,15,3	duplicate(GuildRepair)	Repair Man#25	851
+rentb26,16,15,3	duplicate(GuildRepair)	Repair Man#26	851
+rentb27,16,15,3	duplicate(GuildRepair)	Repair Man#27	851
+rentb28,16,15,3	duplicate(GuildRepair)	Repair Man#28	851
+rentb29,16,15,3	duplicate(GuildRepair)	Repair Man#29	851
+rentb30,16,15,3	duplicate(GuildRepair)	Repair Man#30	851
+rentb31,16,15,3	duplicate(GuildRepair)	Repair Man#31	851
+rentb32,16,15,3	duplicate(GuildRepair)	Repair Man#32	851
+rentb33,16,15,3	duplicate(GuildRepair)	Repair Man#33	851
+rentb34,16,15,3	duplicate(GuildRepair)	Repair Man#34	851
+rentb35,16,15,3	duplicate(GuildRepair)	Repair Man#35	851
+rentb36,16,15,3	duplicate(GuildRepair)	Repair Man#36	851
+rentb37,16,15,3	duplicate(GuildRepair)	Repair Man#37	851
+rentb38,16,15,3	duplicate(GuildRepair)	Repair Man#38	851
+rentb39,16,15,3	duplicate(GuildRepair)	Repair Man#39	851
+rentb40,16,15,3	duplicate(GuildRepair)	Repair Man#40	851
+rentb41,16,15,3	duplicate(GuildRepair)	Repair Man#41	851
+rentb42,16,15,3	duplicate(GuildRepair)	Repair Man#42	851
+rentb43,16,15,3	duplicate(GuildRepair)	Repair Man#43	851
+rentb44,16,15,3	duplicate(GuildRepair)	Repair Man#44	851
+rentb45,16,15,3	duplicate(GuildRepair)	Repair Man#45	851
+rentb46,16,15,3	duplicate(GuildRepair)	Repair Man#46	851
+rentb47,16,15,3	duplicate(GuildRepair)	Repair Man#47	851
+rentb48,16,15,3	duplicate(GuildRepair)	Repair Man#48	851
+rentb49,16,15,3	duplicate(GuildRepair)	Repair Man#49	851
+rentb50,16,15,3	duplicate(GuildRepair)	Repair Man#50	851
+rentb51,16,15,3	duplicate(GuildRepair)	Repair Man#51	851
+rentb52,16,15,3	duplicate(GuildRepair)	Repair Man#52	851
+rentb53,16,15,3	duplicate(GuildRepair)	Repair Man#53	851
+rentb54,16,15,3	duplicate(GuildRepair)	Repair Man#54	851
+rentb55,16,15,3	duplicate(GuildRepair)	Repair Man#55	851
+rentb56,16,15,3	duplicate(GuildRepair)	Repair Man#56	851
+rentb57,16,15,3	duplicate(GuildRepair)	Repair Man#57	851
+rentb58,16,15,3	duplicate(GuildRepair)	Repair Man#58	851
+rentb59,16,15,3	duplicate(GuildRepair)	Repair Man#59	851
+rentb60,16,15,3	duplicate(GuildRepair)	Repair Man#60	851
+
+//============================================================ 
+//= Reset Skills / Stats / Skills Platinum
+//============================================================ 
+
+rentinb1,15,11,0	script	Magic Plant#1::GuildReset	111,{
+	mes "[^0000FFMagic Plant^000000]";
+	mes "This magic plant have special effects on you.";
+	mes "What do you want to do?";
+	next;
+	switch( select("Reset Skills:Reset Stats:Reset Both:Skill Platinum") )
+	{
+		case 1: // Reset Skills
+			if( !$@AllowResets )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Resets are not allowed on this Event.";
+				close;
+			}
+			if( agitcheck() )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "This service is not allowed on WoE time.";
+				close;
+			}
+			if( Weight > 10000 )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Please, free some space in your inventory..";
+				mes "Max allowed weight to reset is 1000";
+				close;
+			}
+			
+			if( checkriding() || checkfalcon() || checkcart() || gethominfo(0) )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Please, remove your Cart/Falcon/Pecopeco/Homunculus first.";
+				close;
+			}
+			
+			sc_end SC_All;
+			resetskill;
+
+			mes "[^0000FFMagic Plant^000000]";
+			mes "Your skills have been reseted.";
+			close;
+		case 2: // Reset Stats
+			if( !$@AllowResets )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Resets are not allowed on this Event.";
+				close;
+			}
+			if( agitcheck() )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "This service is not allowed on WoE time.";
+				close;
+			}
+			if( Weight > 10000 )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Please, free some space in your inventory..";
+				mes "Max allowed weight to reset is 1000";
+				close;
+			}
+
+			sc_end SC_All;
+			resetstatus;
+
+			mes "[^0000FFMagic Plant^000000]";
+			mes "Your stats have been reseted.";
+			close;
+		case 3: // Reset Total
+			if( !$@AllowResets )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Resets are not allowed on this Event.";
+				close;
+			}
+			if( agitcheck() )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "This service is not allowed on WoE time.";
+				close;
+			}
+			if( Weight > 10000 )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Please, free some space in your inventory..";
+				mes "Max allowed weight to reset is 1000";
+				close;
+			}
+
+			if( checkriding() || checkfalcon() || checkcart() || gethominfo(0) )
+			{
+				mes "[^0000FFMagic Plant^000000]";
+				mes "Please, remove your Cart/Falcon/Pecopeco/Homunculus first.";
+				close;
+			}
+
+			sc_end SC_All;
+			resetskill;
+			resetstatus;
+
+			mes "[^0000FFMagic Plant^000000]";
+			mes "Your stats and skills have been reseted.";
+			close;
+		case 4: // Skills Platinum
+			mes "[^0000FFMagic Plant^000000]";
+			mes "Click next to receive the special platinum skills for your class...";
+			next;
+			switch( Class )
+			{
+				case Job_Knight:
+				case Job_Lord_Knight:
+				case Job_Lord_Knight2:
+				case Job_Baby_Knight:
+					skill 1001,1,0;
+					skill 142,1,0;
+					skill 144,1,0;
+					skill 145,1,0;
+					skill 146,1,0;
+					break;
+				case Job_Crusader:
+				case Job_Paladin:
+				case Job_Paladin2:
+				case Job_Baby_Crusader:
+					skill 1002,1,0;
+					skill 142,1,0;
+					skill 144,1,0;
+					skill 145,1,0;
+					skill 146,1,0;
+					break;
+				case Job_Wizard:
+				case Job_High_Wizard:
+				case Job_Baby_Wizard:
+					skill 1006,1,0;
+					skill 142,1,0;
+					skill 157,1,0;
+					break;
+				case Job_Sage:
+				case Job_Professor:
+				case Job_Baby_Sage:
+					skill 1007,1,0;
+					switch( sage_ele )
+					{
+						case 1: skill 1008,1,0; break;
+						case 2: skill 1017,1,0; break;
+						case 3: skill 1018,1,0; break;
+						case 4: skill 1019,1,0; break;
+						default:
+							mes "[^0000FFMagic Plant^000000]";
+							mes "Please choose the Elemental Change type.";
+							next;
+							switch( select("Water","Earth","Fire","Wind") )
+							{
+								case 1: skill 1008,1,0; set sage_ele,1; break;
+								case 2: skill 1017,1,0; set sage_ele,2; break;
+								case 3: skill 1018,1,0; set sage_ele,3; break;
+								case 4: skill 1019,1,0; set sage_ele,4; break;
+							}
+							break;
+					}
+					skill 142,1,0;
+					skill 157,1,0;
+					break;
+				case Job_Hunter:
+				case Job_Sniper:
+				case Job_Baby_Hunter:
+					skill 1009,1,0;
+					skill 142,1,0;
+					skill 147,1,0;
+					skill 148,1,0;
+					break;
+				case Job_Bard:
+				case Job_Clown:
+				case Job_Baby_Bard:
+					skill 1010,1,0;
+					skill 142,1,0;
+					skill 147,1,0;
+					skill 148,1,0;
+					break;
+				case Job_Dancer:
+				case Job_Gypsy:
+				case Job_Baby_Dancer:
+					skill 1011,1,0;
+					skill 142,1,0;
+					skill 147,1,0;
+					skill 148,1,0;
+					break;
+				case Job_Priest:
+				case Job_High_Priest:
+				case Job_Baby_Priest:
+					skill 1014,1,0;
+					skill 142,1,0;
+					skill 156,1,0;
+					break;
+				case Job_Monk:
+				case Job_Champion:
+				case Job_Baby_Monk:
+					skill 1015,1,0;
+					skill 1016,1,0;
+					skill 142,1,0;
+					skill 156,1,0;
+					break;
+				case Job_Blacksmith:
+				case Job_Whitesmith:
+				case Job_Baby_Blacksmith:
+					skill 1012,1,0;
+					skill 1013,1,0;
+					skill 142,1,0;
+					skill 153,1,0;
+					skill 154,1,0;
+					skill 155,1,0;
+					break;
+				case Job_Alchem:
+				case Job_Creator:
+				case Job_Baby_Alchem:
+					skill 238,1,0;
+					if( alch_bock != 1 )
+					{
+						getitem 7434,1;
+						set alch_bock,1;
+					}
+					skill 142,1,0;
+					skill 153,1,0;
+					skill 154,1,0;
+					skill 155,1,0;
+					break;
+				case Job_Assassin:
+				case Job_Assassin_Cross:
+				case Job_Baby_Assassin:
+					skill 1003,1,0;
+					skill 1004,1,0;
+					skill 142,1,0;
+					skill 149,1,0;
+					skill 150,1,0;
+					skill 151,1,0;
+					skill 152,1,0;
+					break;
+				case Job_Rogue:
+				case Job_Stalker:
+				case Job_Baby_Rogue:
+					skill 1005,1,0;
+					skill 142,1,0;
+					skill 149,1,0;
+					skill 150,1,0;
+					skill 151,1,0;
+					skill 152,1,0;
+					break;
+				default:
+					mes "[^0000FFMagic Plant^000000]";
+					mes "There are no special skills for your class.";
+					close;
+			}
+			
+			mes "[^0000FFMagic Plant^000000]";
+			mes "Special skills now are available for you.";
+			close;
+	}
+}
+
+rentinb2,15,11,0	duplicate(GuildReset)	Magic Plant#2	111
+rentinb3,15,11,0	duplicate(GuildReset)	Magic Plant#3	111
+rentinb4,15,11,0	duplicate(GuildReset)	Magic Plant#4	111
+rentinb5,15,11,0	duplicate(GuildReset)	Magic Plant#5	111
+rentinb6,15,11,0	duplicate(GuildReset)	Magic Plant#6	111
+rentinb7,15,11,0	duplicate(GuildReset)	Magic Plant#7	111
+rentinb8,15,11,0	duplicate(GuildReset)	Magic Plant#8	111
+rentinb9,15,11,0	duplicate(GuildReset)	Magic Plant#9	111
+rentinb10,15,11,0	duplicate(GuildReset)	Magic Plant#10	111
+rentinb11,15,11,0	duplicate(GuildReset)	Magic Plant#11	111
+rentinb12,15,11,0	duplicate(GuildReset)	Magic Plant#12	111
+rentinb13,15,11,0	duplicate(GuildReset)	Magic Plant#13	111
+rentinb14,15,11,0	duplicate(GuildReset)	Magic Plant#14	111
+rentinb15,15,11,0	duplicate(GuildReset)	Magic Plant#15	111
+rentinb16,15,11,0	duplicate(GuildReset)	Magic Plant#16	111
+rentinb17,15,11,0	duplicate(GuildReset)	Magic Plant#17	111
+rentinb18,15,11,0	duplicate(GuildReset)	Magic Plant#18	111
+rentinb19,15,11,0	duplicate(GuildReset)	Magic Plant#19	111
+rentinb20,15,11,0	duplicate(GuildReset)	Magic Plant#20	111
+rentinb21,15,11,0	duplicate(GuildReset)	Magic Plant#21	111
+rentinb22,15,11,0	duplicate(GuildReset)	Magic Plant#22	111
+rentinb23,15,11,0	duplicate(GuildReset)	Magic Plant#23	111
+rentinb24,15,11,0	duplicate(GuildReset)	Magic Plant#24	111
+rentinb25,15,11,0	duplicate(GuildReset)	Magic Plant#25	111
+rentinb26,15,11,0	duplicate(GuildReset)	Magic Plant#26	111
+rentinb27,15,11,0	duplicate(GuildReset)	Magic Plant#27	111
+rentinb28,15,11,0	duplicate(GuildReset)	Magic Plant#28	111
+rentinb29,15,11,0	duplicate(GuildReset)	Magic Plant#29	111
+rentinb30,15,11,0	duplicate(GuildReset)	Magic Plant#30	111
+rentinb31,15,11,0	duplicate(GuildReset)	Magic Plant#31	111
+rentinb32,15,11,0	duplicate(GuildReset)	Magic Plant#32	111
+rentinb33,15,11,0	duplicate(GuildReset)	Magic Plant#33	111
+rentinb34,15,11,0	duplicate(GuildReset)	Magic Plant#34	111
+rentinb35,15,11,0	duplicate(GuildReset)	Magic Plant#35	111
+rentinb36,15,11,0	duplicate(GuildReset)	Magic Plant#36	111
+rentinb37,15,11,0	duplicate(GuildReset)	Magic Plant#37	111
+rentinb38,15,11,0	duplicate(GuildReset)	Magic Plant#38	111
+rentinb39,15,11,0	duplicate(GuildReset)	Magic Plant#39	111
+rentinb40,15,11,0	duplicate(GuildReset)	Magic Plant#40	111
+rentinb41,15,11,0	duplicate(GuildReset)	Magic Plant#41	111
+rentinb42,15,11,0	duplicate(GuildReset)	Magic Plant#42	111
+rentinb43,15,11,0	duplicate(GuildReset)	Magic Plant#43	111
+rentinb44,15,11,0	duplicate(GuildReset)	Magic Plant#44	111
+rentinb45,15,11,0	duplicate(GuildReset)	Magic Plant#45	111
+rentinb46,15,11,0	duplicate(GuildReset)	Magic Plant#46	111
+rentinb47,15,11,0	duplicate(GuildReset)	Magic Plant#47	111
+rentinb48,15,11,0	duplicate(GuildReset)	Magic Plant#48	111
+rentinb49,15,11,0	duplicate(GuildReset)	Magic Plant#49	111
+rentinb50,15,11,0	duplicate(GuildReset)	Magic Plant#50	111
+rentinb51,15,11,0	duplicate(GuildReset)	Magic Plant#51	111
+rentinb52,15,11,0	duplicate(GuildReset)	Magic Plant#52	111
+rentinb53,15,11,0	duplicate(GuildReset)	Magic Plant#53	111
+rentinb54,15,11,0	duplicate(GuildReset)	Magic Plant#54	111
+rentinb55,15,11,0	duplicate(GuildReset)	Magic Plant#55	111
+rentinb56,15,11,0	duplicate(GuildReset)	Magic Plant#56	111
+rentinb57,15,11,0	duplicate(GuildReset)	Magic Plant#57	111
+rentinb58,15,11,0	duplicate(GuildReset)	Magic Plant#58	111
+rentinb59,15,11,0	duplicate(GuildReset)	Magic Plant#59	111
+rentinb60,15,11,0	duplicate(GuildReset)	Magic Plant#60	111
+
+//============================================================ 
+//= Arena Warpers
+//============================================================ 
+
+rentb1,34,15,3	script	Arena Warper#1::GuildArena	950,{
+	mes "[^0000FFArena Warper^000000]";
+	mes "Choose your destination.";
+	set .@Pos, rand(1,4);
+	switch( select("-- ^FF0000Join BattleGround Arena^000000 --",
+		       "^0000FF[" + (getmapusers("region_1")) + " users] ^FFA500PVP Arena 1^000000",
+		       "^0000FF[" + (getmapusers("region_8")) + " users] ^FFA500PVP Arena 2^000000",
+		       "^0000FF[" + (getmapusers("region_3")) + " users] ^FFA500PVP Arena 3^000000",
+		       "^0000FF[" + (getmapusers("region_7")) + " users] ^FFA500GVG Arena 1^000000",
+		       "^0000FF[" + (getmapusers("region_13")) + " users] ^FFA500GVG Arena 2^000000") )
+	{
+		case 1: warp "bat_room",155,150; break;
+		case 2: switch( .@Pos )
+			{
+				case 1: warp "region_1",50,89; break;   
+				case 2: warp "region_1",49,10; break;
+				case 3: warp "region_1",10,50; break;
+				case 4: warp "region_1",89,49; break;
+			}
+			break;
+		case 3: switch( .@Pos )
+			{
+				case 1: warp "region_8",50,89; break;   
+				case 2: warp "region_8",49,10; break;
+				case 3: warp "region_8",10,50; break;
+				case 4: warp "region_8",89,49; break;
+			}
+			break;
+		case 4: switch( .@Pos )
+			{
+				case 1: warp "region_3",9,50; break;   
+				case 2: warp "region_3",90,49; break;
+				case 3: warp "region_3",9,50; break;
+				case 4: warp "region_3",90,49; break;
+			}
+			break;
+		case 5: switch( .@Pos )
+			{
+				case 1: warp "region_7",50,74; break;   
+				case 2: warp "region_7",49,25; break;
+				case 3: warp "region_7",21,49; break;
+				case 4: warp "region_7",78,50; break;
+			}
+			break;
+		case 6: switch( .@Pos )
+			{
+				case 1: warp "region_13",49,89; break;   
+				case 2: warp "region_13",49,9; break;
+				case 3: warp "region_13",9,49; break;
+				case 4: warp "region_13",90,50; break;
+			}
+			break;		
+	}
+	end;
+}
+
+rentb2,34,15,3	duplicate(GuildArena)	Arena Warper#2	950
+rentb3,34,15,3	duplicate(GuildArena)	Arena Warper#3	950
+rentb4,34,15,3	duplicate(GuildArena)	Arena Warper#4	950
+rentb5,34,15,3	duplicate(GuildArena)	Arena Warper#5	950
+rentb6,34,15,3	duplicate(GuildArena)	Arena Warper#6	950
+rentb7,34,15,3	duplicate(GuildArena)	Arena Warper#7	950
+rentb8,34,15,3	duplicate(GuildArena)	Arena Warper#8	950
+rentb9,34,15,3	duplicate(GuildArena)	Arena Warper#9	950
+rentb10,34,15,3	duplicate(GuildArena)	Arena Warper#10	950
+rentb11,34,15,3	duplicate(GuildArena)	Arena Warper#11	950
+rentb12,34,15,3	duplicate(GuildArena)	Arena Warper#12	950
+rentb13,34,15,3	duplicate(GuildArena)	Arena Warper#13	950
+rentb14,34,15,3	duplicate(GuildArena)	Arena Warper#14	950
+rentb15,34,15,3	duplicate(GuildArena)	Arena Warper#15	950
+rentb16,34,15,3	duplicate(GuildArena)	Arena Warper#16	950
+rentb17,34,15,3	duplicate(GuildArena)	Arena Warper#17	950
+rentb18,34,15,3	duplicate(GuildArena)	Arena Warper#18	950
+rentb19,34,15,3	duplicate(GuildArena)	Arena Warper#19	950
+rentb20,34,15,3	duplicate(GuildArena)	Arena Warper#20	950
+rentb21,34,15,3	duplicate(GuildArena)	Arena Warper#21	950
+rentb22,34,15,3	duplicate(GuildArena)	Arena Warper#22	950
+rentb23,34,15,3	duplicate(GuildArena)	Arena Warper#23	950
+rentb24,34,15,3	duplicate(GuildArena)	Arena Warper#24	950
+rentb25,34,15,3	duplicate(GuildArena)	Arena Warper#25	950
+rentb26,34,15,3	duplicate(GuildArena)	Arena Warper#26	950
+rentb27,34,15,3	duplicate(GuildArena)	Arena Warper#27	950
+rentb28,34,15,3	duplicate(GuildArena)	Arena Warper#28	950
+rentb29,34,15,3	duplicate(GuildArena)	Arena Warper#29	950
+rentb30,34,15,3	duplicate(GuildArena)	Arena Warper#30	950
+rentb31,34,15,3	duplicate(GuildArena)	Arena Warper#31	950
+rentb32,34,15,3	duplicate(GuildArena)	Arena Warper#32	950
+rentb33,34,15,3	duplicate(GuildArena)	Arena Warper#33	950
+rentb34,34,15,3	duplicate(GuildArena)	Arena Warper#34	950
+rentb35,34,15,3	duplicate(GuildArena)	Arena Warper#35	950
+rentb36,34,15,3	duplicate(GuildArena)	Arena Warper#36	950
+rentb37,34,15,3	duplicate(GuildArena)	Arena Warper#37	950
+rentb38,34,15,3	duplicate(GuildArena)	Arena Warper#38	950
+rentb39,34,15,3	duplicate(GuildArena)	Arena Warper#39	950
+rentb40,34,15,3	duplicate(GuildArena)	Arena Warper#40	950
+rentb41,34,15,3	duplicate(GuildArena)	Arena Warper#41	950
+rentb42,34,15,3	duplicate(GuildArena)	Arena Warper#42	950
+rentb43,34,15,3	duplicate(GuildArena)	Arena Warper#43	950
+rentb44,34,15,3	duplicate(GuildArena)	Arena Warper#44	950
+rentb45,34,15,3	duplicate(GuildArena)	Arena Warper#45	950
+rentb46,34,15,3	duplicate(GuildArena)	Arena Warper#46	950
+rentb47,34,15,3	duplicate(GuildArena)	Arena Warper#47	950
+rentb48,34,15,3	duplicate(GuildArena)	Arena Warper#48	950
+rentb49,34,15,3	duplicate(GuildArena)	Arena Warper#49	950
+rentb50,34,15,3	duplicate(GuildArena)	Arena Warper#50	950
+rentb51,34,15,3	duplicate(GuildArena)	Arena Warper#51	950
+rentb52,34,15,3	duplicate(GuildArena)	Arena Warper#52	950
+rentb53,34,15,3	duplicate(GuildArena)	Arena Warper#53	950
+rentb54,34,15,3	duplicate(GuildArena)	Arena Warper#54	950
+rentb55,34,15,3	duplicate(GuildArena)	Arena Warper#55	950
+rentb56,34,15,3	duplicate(GuildArena)	Arena Warper#56	950
+rentb57,34,15,3	duplicate(GuildArena)	Arena Warper#57	950
+rentb58,34,15,3	duplicate(GuildArena)	Arena Warper#58	950
+rentb59,34,15,3	duplicate(GuildArena)	Arena Warper#59	950
+rentb60,34,15,3	duplicate(GuildArena)	Arena Warper#60	950

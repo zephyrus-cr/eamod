@@ -1,0 +1,10 @@
+// Extended Vending System Coins
+// =====================================================
+// Add your own coins to the Vending System if your server uses any kind of item to exchange.
+// Requires 0 Weight ETC Items only
+// =====================================================
+// Structure:
+// <ItemID>
+// =====================================================
+// Samples
+// 7773 (to allow open a Vending requesting Valor Badges to exchange items)

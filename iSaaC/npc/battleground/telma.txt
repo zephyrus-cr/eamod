@@ -1,0 +1,339 @@
+bat_room,163,147,2	script	Telma::Telma	701,{
+set .@name$ , "^10B2D2 Pulpe ^000000";
+mes .@name$; mes " ";
+	mes "Buenas Glorios"+ (Sex?"o":"a") + " "+ (Sex?"Joven":"Dama") + ".";
+	mes "Qué deseas hacer????";
+	next;
+	soundeffect "siroma_move.wav",0;
+	switch( select("^10B2D2 [ > ] "+name2$+" Random Box^000000:^10B2D2 [ > ] ^000000 Items Universales :^10B2D2 [ > ] ^000000 Valor ~ Bravery") )	{
+	case 3:
+		soundeffect "siroma_move.wav",0;
+		switch(select(" Valor ^10B2D2 [ > ] ^000000 Bravery : Bravery ^10B2D2 [ > ] ^000000 Valor ") ) {
+		case 1:
+			soundeffect "siroma_move.wav",0;
+			mes .@name$; mes " ";
+			mes "Digita la cantidad a cambiar";
+			set .@val,0;
+			input .@val;
+			if (.@val > countitem(7829)) {
+				mes "Lo siento pero no tienes la cantidad digitada";
+				close;
+			} else {
+				delitem 7829,.@val;
+				getitem 7828,.@val;
+				close;
+			}
+		
+		case 2:
+			soundeffect "siroma_move.wav",0;
+			mes .@name$; mes " ";
+			mes "dijita cantidad a cambiar";
+			set .@val,0;
+			input .@val;
+			if (.@val > countitem(7828)) {
+				mes "lo siento no tienes cantidad digitada";
+				close;
+			} else {
+				delitem 7828,.@val;
+				getitem 7829,.@val;
+				close;
+			}	
+		}
+	case 1:
+		soundeffect "siroma_move.wav",0;
+		mes .@name$; mes " ";
+		mes "Hola, soy la encargada de contar los Battle Ground jugados y luego premiar con una ^FF0000Damage Random Box^000000.";
+		mes "Necesitas 10 BGs de uno mismo para reclamar mi Premio";
+		mes "Quieres ver cuantos puntos tienes...?";
+		next;
+		mes "Tierra EoS : ^0000FF" + BG_EoE + "^000000";
+		mes "Tierra Boss : ^0000FF" + BG_Boss + "^000000";
+		mes "Tierra TI : ^0000FF" + BG_TI + "^000000";
+		mes "Flavius TDM : ^0000FF" + BG_TDM + "^000000";
+		mes "Conquest : ^0000FF" + BG_CON + "^000000";
+		next;
+		mes "Qué BG Quieres Cambiar por una Zgame's Random Box ????";
+		switch(select(" ^10B2D2 [ > ] ^000000 Conquest : ^10B2D2 [ > ] ^000000 Rush : ^10B2D2 [ > ] ^000000 Terra Boss : ^10B2D2 [ > ] ^000000 Terra TI : ^10B2D2 [ > ] ^000000 Terra EOE : ^10B2D2 [ > ] ^000000 Flavius TDM : - Nada -")) {
+			case 1:	soundeffect "siroma_move.wav",0;	if( BG_CON >= 10 ) {	set BG_CON, BG_CON - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 2:	soundeffect "siroma_move.wav",0;	if( BG_RUSH >= 10 ) {	set BG_RUSH, BG_RUSH - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 3:	soundeffect "siroma_move.wav",0;	if( BG_Boss >= 10 ) {	set BG_Boss, BG_Boss - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 4:	soundeffect "siroma_move.wav",0;	if( BG_TI >= 10 ) {	set BG_TI, BG_TI - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 5:	soundeffect "siroma_move.wav",0;	if( BG_EoE >= 10 ) {	set BG_EoE, BG_EoE - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 6:	soundeffect "siroma_move.wav",0;	if( BG_TDM >= 10 ) {	set BG_CON, BG_CON - 10;	getitem 5000,1;	mes .@name$; mes " ";	mes "Exelente Sigue Ganando";	close;	} else {mes "no tienes 10 puntos Conquest";	close;	}
+			case 7:	close;
+		}
+	case 2:
+		soundeffect "siroma_move.wav",0;
+		switch( select(" ^10B2D2 [ > ] ^000000 Usables: ^10B2D2 [ > ] ^000000 Boxes: ^10B2D2 [ > ] ^000000 Foods: ^10B2D2 [ > ] ^000000 Class Specific: ^10B2D2 [ > ] ^000000 Miscellaneous: ^10B2D2 [ > ] ^000000 Repair Kit: ^10B2D2 [ > ] ^000000 Nada ") )	{
+		case 1:
+			setarray .@Items[0],   547,  11502, 522, 526, 662, 12118,  12120,  12121;
+			setarray .@Amount[0],  50,   50,   50,    50,   40,    50,  50,  50;
+			setarray .@Value[0],     2,    2,    2,    2, 2, 2, 2, 2, 2, 2, 2;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 2: // WoE Supply
+			setarray .@Items[0],  12028, 12029, 12030, 12031, 12032;
+			setarray .@Amount[0],    25,    25,    25,    25,    25;
+			setarray .@Value[0],    2,   2,   2,   2,   2,   2;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 3: // WoE Supply
+			setarray .@Items[0],  12075,   12080,   12095,    12090,   12085,   12100,  12319,  12320,  12321, 12267;
+			setarray .@Amount[0],    5,   5,   5,   5,   5,  5,  5,  5,  5, 5;
+			setarray .@Value[0],    1,  1,   1,  1,  1,  1,  1,  1,  1, 1;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 4: // WoE Supply
+			setarray .@Items[0],  678, 1025, 7136, 7135,  7139,  7137,  7138,  7321;
+			setarray .@Amount[0],    25,   50,    100,  100,  50,  50,  50,  50;
+			setarray .@Value[0],    1,   1,   3,   3,   1,   1,  1, 1;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 5: // WoE Supply
+			setarray .@Items[0],  12016,  606,  687,  715, 716, 717, 645, 656, 657;
+			setarray .@Amount[0],    25,  50,  50, 100, 100, 100,  40,  40,  40;
+			setarray .@Value[0],    1,  1,  1,  1, 1, 1,  1 ,  1,  1;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 6: //7 Kits
+			setarray .@Items[0],  14287,  14288;
+			setarray .@Amount[0],    1, 1;
+			setarray .@Value[0],    5,   5;
+			set .@cID, 0;
+			set .@Tarjet$, "Everywhere";
+			break;
+		case 7:
+			close;
+	}
+
+
+}
+
+
+	set .@Menu$, "";
+	for( set .@i, 0; .@i < getarraysize(.@Items); set .@i, .@i + 1 )
+		set .@Menu$, .@Menu$ + .@Amount[.@i] + " " + getitemname(.@Items[.@i]) + " (" + .@Value[.@i] + " badges):";
+	set .@j, select(.@Menu$) - 1;
+
+	mes .@name$; mes " ";
+	soundeffect "siroma_move.wav",0;
+	mes "^0000FF" + .@Amount[.@j] + " " + getitemname(.@Items[.@j]) + "^000000";
+	mes "Te costará " + .@Value[.@j] + " badges por pack.";
+	mes "Recuerda que sólo puede ser usado en " + .@Tarjet$ + ".";
+	next;
+	soundeffect "siroma_move.wav",0;
+	
+	mes .@name$; mes " ";
+	mes "pero dime primero, dónde quieres recibir los items?";
+	next;
+	soundeffect "siroma_move.wav",0;
+	set .@Destiny, select("^10B2D2 [ > ] ^000000Aquí:^10B2D2 [ > ] ^000000Storage") - 1;
+
+	mes .@name$; mes " ";
+	mes "Cuántos paquetes quieres comprar? (1..100)";
+	next;
+	soundeffect "siroma_move.wav",0;
+
+	input .@total;
+	if( .@total < 1 || .@total > 100 )
+	{
+		mes .@name$; mes " ";
+		soundeffect "siroma_move.wav",0;
+		mes "Lo siento, Por avor u valor del 1 al 100.";
+		mes "Av{isame cuando elijas.";
+		close;
+	}
+	
+	set .@vtotal, .@total * .@Value[.@j]; // Value of all Packages
+	set .@total, .@total * .@Amount[.@j]; // Total Amount of Items
+
+	if( .@Destiny ) {
+		if( .@cID ) {
+			if( checkspace(.@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff) == 0 ) {
+				mes .@name$; mes " ";
+				mes "Tu storage no puede aceptar más items.";
+				mes "Ve a tu Storage y revisa que tengas suficientes espacio.";
+				close;
+			}
+		} else {
+			if( checkspace(.@Items[.@j],.@total,1,0,0,0,0,0,0) == 0 ) {
+				mes .@name$; mes " ";
+				mes "Tu storage no puede aceptar más items.";
+				mes "Ve a tu Storage y revisa que tengas suficientes espacio.";
+				close;
+			}
+		}
+	} else {
+		if( checkweight(.@Items[.@j],.@total) == 0 ) {
+			mes .@name$; mes " ";
+			mes "No puedes soportar el peso de lo que deseas comprar.";
+			mes "Ve y guarda algunos items en tu Storage.";
+			close;
+		}
+	}
+
+	if( countitem(7828) + countitem(7829) + (countitem(7773)) < .@vtotal )
+	{
+		mes .@name$; mes " ";
+		mes "Badges Requeridos: ^0000FF" + .@vtotal + "^000000";
+		mes "No tienes suficientes badges. Lo siento...";
+		mes "Participa en Battleground Arenas para recibirlas.";
+		close;
+	}
+	set .@vcount, .@vtotal;
+	set .@i7828, 0;
+	set .@i7829, 0;
+	set .@i7773, 0;
+
+	if( countitem(7828) > 0 )
+	{
+		mes .@name$; mes " ";
+		mes "Badges Requeridas: ^0000FF" + .@vcount + "^000000";
+		mes "Bravery Badges a gastar:";
+		next;
+		input .@i7828;
+		if( .@i7828 < 0 || .@i7828 > countitem(7828) )
+		{
+			mes .@name$; mes " ";
+			mes "Número inválido... Lo siento.";
+			close;
+		}
+		
+		if( .@i7828 > .@vcount ) set .@i7828,.@vcount;
+		set .@vcount, .@vcount - .@i7828;
+	}
+
+	// Valor Badges
+	if( .@vcount && countitem(7829) > 0 )
+	{
+		mes .@name$; mes " ";
+		mes "Badges Requeridas: ^0000FF" + .@vcount + "^000000";
+		mes "Valor Badges a gastar:";
+		next;
+		input .@i7829;
+		if( .@i7829 < 0 || .@i7829 > countitem(7829) )
+		{
+			mes .@name$; mes " ";
+			mes "Número inválido... Lo siento.";
+			close;
+		}
+		
+		if( .@i7829 > .@vcount ) set .@i7829,.@vcount;
+		set .@vcount, .@vcount - .@i7829;
+	}
+
+	// Heroism Badges
+	if( .@vcount && countitem(7773) > 0 )
+	{
+		mes .@name$; mes " ";
+		mes "Badges Requeridas: ^0000FF" + .@vcount + "^000000";
+		mes "Heroism Badges a gastar:";
+		next;
+		input .@i7773;
+		//if( (.@i7773 < 5) > 0 ) set .@i7773, .@i7773 - (.@i7773 % 5); // Value rounded down
+		if( .@i7773 < 0 || .@i7773 > countitem(7773) )
+		{
+			mes .@name$; mes " ";
+			mes "Número inválido... Lo siento.";
+			close;
+		}
+
+		if( .@i7773 > .@vcount ) set .@i7773, .@vcount;
+		set .@vcount, .@vcount - .@i7773;
+	}
+
+	// Final Checks
+	if( .@vcount != 0 )
+	{
+		mes .@name$; mes " ";
+		mes "Lo siento, no son suficientes badges para pagar el valor total.";
+		close;
+	}
+
+	mes .@name$; mes " ";
+	mes "Estás list@ para recibir tus items?";
+	mes "Tus detalles de pago:";
+	mes "^0000FF" + .@i7828 + "^000000 Bravery Badges";
+	mes "^0000FF" + .@i7829 + "^000000 Valor Badges";
+	mes "^0000FF" + .@i7773 + "^000000 Heroism Badges";
+	next;
+
+	if( select("Si, hagámoslo:Lo siento... no en este momento") == 2 )
+	{
+		mes .@name$; mes " ";
+		mes "Muy bien, regresa si cambias de opinión";
+		close;
+	}
+
+	if( .@Destiny )
+	{ // Check Storage Space Limit
+		if( .@cID )
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff) == 0 )
+			{
+				mes .@name$; mes " ";
+				mes "Tu storage no puede aceptar más items.";
+				mes "Ve a tu Storage y revisa que tengas suficientes espacio";
+				close;
+			}
+		}
+		else
+		{
+			if( checkspace(.@Items[.@j],.@total,1,0,0,0,0,0,0) == 0 )
+			{
+				mes .@name$; mes " ";
+				mes "Tu storage no puede aceptar más items.";
+				mes "Ve a tu Storage y revisa que tengas suficientes espacio";
+				close;
+			}
+		}
+	}
+	else
+	{ // Check Weight Limit
+		if( checkweight(.@Items[.@j],.@total) == 0 )
+		{
+			mes .@name$; mes " ";
+			mes "No puedes soportar el peso de lo que deseas comprar.";
+			mes "Ve y guarda algunos items en tu Storage";
+			close;
+		}
+	}
+
+	if( .@i7828 > countitem(7828) || .@i7829 > countitem(7829) || .@i7773 > countitem(7773) )
+	{
+		mes .@name$; mes " ";
+		mes "Qué!?, eres un mago o un ladrón? Qué hiciste con tus badges!?";
+		mes "vete de aquí!";
+		close;
+	}
+
+	delitem 7828,.@i7828;
+	delitem 7829,.@i7829;
+	delitem 7773,.@i7773;
+
+	if( .@cID )
+	{
+		if( .@Destiny )
+			storeitem2 .@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff;
+		else
+			getitem2 .@Items[.@j],.@total,1,0,0,254,0,.@cID&0xffff,(.@cID>>16)&0xffff;
+	}
+	else
+	{
+		if( .@Destiny )
+			storeitem .@Items[.@j],.@total;
+		else
+			getitem .@Items[.@j],.@total;
+	}
+
+	mes .@name$; mes " ";
+	mes "Aquí están... Cuídate y pelea por el honor y gloria de tu príncipe!.";
+	close;
+}
+
+goodev_c02,116,51,3	duplicate(Telma)	Dispensadora#1-1	701

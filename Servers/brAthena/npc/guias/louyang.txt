@@ -1,0 +1,299 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_louyang.txt                       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|	
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Louyang.                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Otimização [Holy & Hold]                           |
+//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+louyang,224,104,4	script	Soldado#01louyang	818,{
+	mes "[Representante]";
+	mes "Bem-vindo à Castelo do Dragão, que tem uma história longa e vigorosa.";
+	next;
+	mes "Nós desenvolvemos um modo novo de negociar com estrangeiros.";
+	mes "Depois disso, os estrangeiros puderam ir e vir com mais facilidade.";
+	next;
+	mes "[Soldado]";
+	mes "Com uma história tão antiga, há muitas coisas para se ver.";
+	mes "Como nós nunca tínhamos negociado antes deve haver algumas coisas agradáveis e valiosas que não poderei lhe mostrar.";
+	mes "Por favor, fique quanto tempo quiser.";
+	if(checkre(0)) {
+		while (1) {
+			next;
+			switch(select("[ Dragon Castle ]:[ Doctor's Office ]:[ City Hall ]:[ Weapon Shop ]:[ Tool Shop ]:[ Tavern ]:[ Observatory ]:[ Return to Alberta ]:Remove Marks from Mini-Map:Cancel")) {
+			case 1:
+				mes "[Representante]";
+				mes "The Dragon Castle is located at ^0A82FF+^000000. It is where all the nobles reside, including our lord.";
+				mes "Since you're an outsider, I guess it would be appropriate for you to visit our lord first.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,218,253,0,0x0A82FF;
+				break;
+			case 2:
+				mes "[Representante]";
+				mes "It's a famous ^AAFF00Doctor's Office^000000";
+				mes "according to rumor it can cure all diseases. But I'm not sure if it's true or not.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,261,93,1,0xAAFF00;
+				break;
+			case 3:
+				mes "[Representante]";
+				mes "We have a City Hall where the federal government operates.";
+				mes "It is located at ^008080+^000000.";
+				next;
+				mes "[Representante]";
+				mes "If you have any problems,";
+				mes "you should talk with the";
+				mes "employees there.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,309,78,2,0x20B2AA;
+				break;
+			case 4:
+				mes "[Representante]";
+				mes "The Weapon Shop is located at ^55FF33+^000000.";
+				next;
+				mes "[Representante]";
+				mes "You will see";
+				mes "marvelous weapons forged";
+				mes "by the well-experienced";
+				mes "Blacksmiths of Louyang.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,145,172,3,0xFF1493;
+				break;
+			case 5:
+				mes "[Representante]";
+				mes "The Tool Shop is located at ^3355FF+^000000.";
+				next;
+				mes "[Representante]";
+				mes "Knowing your enemy";
+				mes "is half the battle!";
+				mes "It's also safer to prepare yourself than to be sorry later. Why don't you go check their supplies?";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,138,99,4,0xFF0000;
+				break;
+			case 6:
+				mes "[Representante]";
+				mes "When you get tired during your trip, I suggest that you visit the Tavern. It's located at ^00FF00+^000000.";
+				next;
+				mes "[Soldier]";
+				mes "The Tavern is a good place";
+				mes "to meet other tourists, as well as to hear of any news that may be helpful to know.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,280,165,5,0xDAA520;
+				break;
+			case 7:
+				mes "[Representante]";
+				mes "You won't get a better view of the world than you can at the Observatory.";
+				mes "It's a must see here.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,136,245,6,0xD8BFD8;
+				break;
+			case 8:
+				mes "[Representante]";
+				mes "If you want to return to Alberta,";
+				mes "find the ^00BFFFKGirl^000000 outside town on the docks.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 1,218,22,7,0x00BFFF;
+				break;
+			case 9:
+				mes "[Representante]";
+				mes "I'll remove all marks from your mini-map.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 2,1,1,0,0xFFFFFF;
+				viewpoint 2,1,1,1,0xFFFFFF;
+				viewpoint 2,1,1,2,0xFFFFFF;
+				viewpoint 2,1,1,3,0xFFFFFF;
+				viewpoint 2,1,1,4,0xFFFFFF;
+				viewpoint 2,1,1,5,0xFFFFFF;
+				viewpoint 2,1,1,6,0xFFFFFF;
+				viewpoint 2,1,1,7,0xFFFFFF;
+				break;
+			case 10:
+				mes "[Representante]";
+				mes "Enjoy your trip~!";
+				close;
+			}
+		}
+	} else {
+		next;
+		switch(select("Indicações.:Limpar indicações do minimapa.:Cancelar.")) {
+		case 1:
+			set .@compass_check,1;
+			mes "[Soldado]";
+			mes "O que você gostaria de conhecer?";
+			next;
+			switch(select("O Castelo.:O Hospital.:A Sede do Governo.:A Loja de Armas.:A Loja de Utilidades.:A Taverna.:Cancelar.")) {
+			case 1:
+				mes "[Soldado]";
+				mes "O castelo está localizado em ^FF3355+^000000.";
+				mes "O castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.";
+				mes "Isso é uma boa etiqueta, não acha?";
+				viewpoint 1,218,255,2,0xFFFF33;
+				break;
+			case 2:
+				mes "[Soldado]";
+				mes "Tem um famoso doutor de medicina oriental no castelo.";
+				mes "^CE6300+^000000";
+				mes "Dizem que não há nada que ele não cure mas não sei se isso é verdade.";
+				viewpoint 1,263,94,3,0xFFCE63;
+				break;
+			case 3:
+				mes "[Soldado]";
+				mes "Existe uma sede do governo no Castelo do Dragão.";
+				mes "A sede se localiza em ^A5BAAD+^000000";
+				mes "Se estiver em apuros, vá direto para a sede do governo.";
+				viewpoint 1,309,80,4,0xFF00FF;
+				break;
+			case 4:
+				mes "[Soldado]";
+				mes "A loja de armas está localizada em ^55FF33+^000000.";
+				mes "Lá você encontra as melhores armas feitas por ferreiros experientes.";
+				viewpoint 1,145,174,5,0xFF55FF;
+				break;
+			case 5:
+				mes "[Soldado]";
+				mes "A loja de utilidades está localizada em ^3355FF+^000000.";
+				mes "Para vencer sempre, conheça o seu inimigo!";
+				next;
+				mes "[Representante]";
+				mes "Você precisa estar sempre preparado.";
+				mes "E não perca tempo filosofando. Haha.";
+				viewpoint 1,135,98,6,0xFF3355;
+				break;
+			case 6:
+				mes "[Soldado]";
+				mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
+				next;
+				mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
+				mes "Lá se pode escutar muitas histórias de outros viajantes.";
+				viewpoint 1,280,167,7,0xFF00FF;
+				break;
+			case 7:
+				mes "[Soldado]";
+				mes "Se quiser remover as marcações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
+			}
+			break;
+		case 2:
+			viewpoint 2,218,255,2,0xFF00FF;
+			viewpoint 2,263,94,3,0xFF00FF;
+			viewpoint 2,309,80,4,0xFF00FF;
+			viewpoint 2,145,174,5,0xFF00FF;
+			viewpoint 2,135,98,6,0xFF00FF;
+			viewpoint 2,280,167,7,0xFF00FF;
+			mes "[Soldado]";
+			mes "Eu apaguei todas as indicações do minimapa. Se quer marcá-las de novo, fale novamente comigo.";
+			break;
+		case 3:
+			mes "[Soldado]";
+			mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
+			break;
+		}
+		close;
+	}
+}
+
+louyang,213,213,3	script#pre	Soldier#Lou	825,{
+	mes "[Soldado]";
+	mes "Este é o castelo do Dragão.";
+	mes "Um lugar como esse possui uma longa história de orgulho e espírito de guerra.";
+	mes "Porém, de uns tempos para cá, temos focado nossos esforços em desenvolver mais nosso comércio com terras distantes.";
+	mes "Por esse motivo, estrangeiros podem entrar e sair mais facilmente desta região.";
+	next;
+	mes "[Soldado]";
+	mes "Com uma história tão antiga, há muitas coisas para se ver.";
+	mes "Como nós nunca tínhamos negociado antes, deve haver algumas coisa agradáveis e valiosas que não poderei lhe mostrar.";
+	mes "Por favor, fique quanto tempo quiser.";
+	next;
+	switch(select("Indicações.:Limpar indicações do minimapa.:Cancelar.")) {
+	case 1:
+		mes "[Soldado]";
+		mes "O que você gostaria de conhecer?";
+		next;
+		switch(select("O Castelo.:O Hospital.:A Sede do Governo.:A Loja de Utilidades.:A Loja de Armas.:A Taverna.:Cancelar.")) {
+		case 1:
+			mes "[Soldado]";
+			mes "O castelo está localizado em ^FF3355+^000000.";
+			mes "O castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.";
+			mes "Isso é uma boa etiqueta, não acha?";
+			viewpoint 1,218,255,2,0xFF3355;
+			break;
+		case 2:
+			mes "[Soldado]";
+			mes "Tem um famoso professor de medicina oriental no castelo.";
+			next;
+			mes "[Soldier]";
+			mes "Dizem que não há nada que ele não cure, mas não sei se isso é verdade.";
+			viewpoint 1,263,94,3,0xCE6300;
+			break;
+		case 3:
+			mes "[Soldado]";
+			mes "Existe uma sede do governo em Castelo do Dragão.";
+			mes "A sede se localiza em ^A5BAAD+^000000.";
+			mes "Se estiver em apuros, vá direto para a sede do governo.";
+			viewpoint 1,309,80,4,0xA5BAAD;
+			break;
+		case 4:
+			mes "[Soldado]";
+			mes "A loja de utilidades está localizada em ^55FF33+^000000.";
+			mes "Lá você encontra as melhores armas feitas por ferreiros experientes.";
+			viewpoint 1,145,174,5,0x55FF33;
+			break;
+		case 5:
+			mes "[Soldado]";
+			mes "A loja de armas está localizada em ^3355FF+^000000.";
+			mes "Para vencer sempre, conheça o seu inimigo!";
+			next;
+			mes "[Soldado]";
+			mes "Você precisa estar sempre preparado.";
+			mes "E não perca tempo filosofando... Haha.";
+			viewpoint 1,135,98,6,0x3355FF;
+			break;
+		case 6:
+			mes "[Soldado]";
+			mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
+			next;
+			mes "[Soldado]";
+			mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
+			mes "Lá se pode escutar muitas histórias de outros viajantes.";
+			viewpoint 1,280,167,7,0x00FF00;
+			break;
+		case 7:
+			mes "[Soldado]";
+			mes "Se quiser apagar as indicações no minimapa, selecione no menu 'Limpar indicações do minimapa'.";
+		}
+		break;
+	case 2:
+		viewpoint 2,218,255,2,0xFF00FF;
+		viewpoint 2,263,94,3,0xFF00FF;
+		viewpoint 2,309,80,4,0xFF00FF;
+		viewpoint 2,145,174,5,0xFF00FF;
+		viewpoint 2,135,98,6,0xFF00FF;
+		viewpoint 2,280,167,7,0xFF00FF;
+		mes "[Soldado]";
+		mes "Eu apaguei todas as indicações do minimapa. Se quiser marcá-las denovo, fale novamente comigo.";
+		break;
+	case 3:
+		mes "[Soldier]";
+		mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
+	}
+	close;
+}
+
+louyang,160,175,3	duplicatp(Soldier#Lou)	Soldier#BB	825,{}

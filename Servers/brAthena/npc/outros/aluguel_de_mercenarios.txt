@@ -1,0 +1,297 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: aluguel_de_mercenarios.txt             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.4/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Vende Lança, Espada e Arcos, mercenários.   |
+//   | Vende itens de mercenários e relacionados.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Script Traduzido (PT-BR) [Hold]                    |
+//   |--------------------------------------------------------|
+//   | - Algumas mudanças em menus e falas foram feitas para  |
+//   |   se adequar ao novo idioma após a tradução. [Hold]    |
+//   \________________________________________________________/
+
+izlude,47,169,5	script	Locador de Mercenários#Espadachim	105,{
+	setarray .@name$, 	"Lanceiro", 		"Espadachim", 		"Arqueiro";
+	setarray .@faith$, 	"SPEAR_MERC_GUILD",	"SWORD_MERC_GUILD",	"ARCH_MERC_GUILD";
+	setarray .@item, 	12182,				12172,				12162;
+	set .@faith_lancer, mercenary_get_faith(getd(.@faith$[.@type]));
+	set .@npc$, strnpcinfo(2);
+	for (set .@size, getarraysize(.@name$); .@i < .@size; set .@i, .@i + 1)
+		if (.@npc$ == .@name$[.@i]) set .@type, .@i;
+	mes "[Locador de Mercenários]";
+	mes "Bem-vind"+(Sex?"o":"a")+" à";
+	mes "Guilda dos Mercenários "+.@npc$+"s.";
+	mes "Em que posso lhe ajudar?";
+	next;
+	switch(select("Contratar Mercenário:Fale sobre os Mercenários:Nada:Mercenários Nível 10")) {
+		case 1:
+			mes "[Locador de Mercenários]";
+			mes "Você deseja contratar um";
+			mes "Mercenário "+.@npc$+"?";
+			mes "Qual nível de Mercenário";
+			mes "você gostaria de contratar?";
+			next;
+			for (set .@i, 1; .@i <= 9; set .@i, .@i + 1)
+				set .@menu$, .@menu$ + "Mercenário " + .@npc$ + " Nível " + .@i + ":";
+			set .@Grade, select(.@menu$);
+			set .@BaseLevel, 5 + (.@Grade * 10);
+			set .@BaseLevel, (.@val > 90)? 90 : .@BaseLevel;
+			set .@ZenyCost, 7 * .@Grade;
+			setarray .@FaithCost[7], 50,100,300;
+			set .@FaithCost, .@FaithCost[.@Grade];
+			mes "[Locador de Mercenários]";
+			mes "Então você deseja contratar um";
+			mes "Mercenário " + .@npc$ + " Nível " + .@Grade + ".";
+			mes "Você precisa ter alcançado";
+			mes "Nível de base " + .@BaseLevel + " ou maior, e";
+			mes "precisa pagar " + .@ZenyCost + ",000 Zenys.";
+			next;
+			if(select("Continuar:Cancelar") == 2) {
+				mes "[Locador de Mercenários]";
+				mes "Oh, sério? Bem, agora";
+				mes "pode não ser uma boa hora";
+				mes "para você contratar um";
+				mes "Mercenário, mas sinta-se";
+				mes "a vontade para voltar quando";
+				mes "mudar de ideia. Obrigado~";
+			}
+			else if(.@FaithCost && .@faith_lancer < .@FaithCost) {
+				mes "[Locador de Mercenários]";
+				mes "Oh... Seu nível de fidelidade";
+				mes "com a Guilda dos Mercenários";
+				mes .@npc$ + "s não é alta suficiente";
+				mes "para contratar um Mercenário.";
+				mes "Volte quando você tiver conseguido";
+				mes "" + .@FaithCost + " ou mais fidelidade conosco.";
+			}
+			else if (BaseLevel < .@BaseLevel) {
+				mes "[Locador de Mercenários]";
+				mes "Me desculpe, mas seu Nível";
+				mes "base não é alto suficiente";
+				mes "para alugar este Mercenário.";
+				mes "Volte e fale comigo quando";
+				mes "você alcançar Nível de base " + .@BaseLevel + ".";
+			}
+			else if (Zeny < .@ZenyCost * 1000) {
+				mes "[Locador de Mercenários]";
+				mes "Sinto muito, mas você";
+				mes "não possui Zenys suficientes";
+				mes "para contratar este Mercenário.";
+				mes "A contratação custa " + .@ZenyCost + ",000 Zenys.";
+			}
+			else {
+				mes "[Locador de Mercenários]";
+				mes "Excelente! Nossos Mercenários";
+				mes "são sinceros e empenhados";
+				mes "em proteger seus clientes.";
+				mes "Após invocados eles irão";
+				mes "oferecer ajuda para você por";
+				mes "30 minutos. Lembre-se disto.";
+				set Zeny, Zeny - (.@ZenyCost * 1000);
+				getitem .@item[.@type] - 10 + .@Grade, 1;
+			}
+			close;
+		case 2:
+			mes "[Locador de Mercenários]";
+			mes "Mercenários são guerreiros";
+			mes "que irão lutar ao seu lado";
+			mes "no campo de batalha, mas há";
+			mes "algumas exigências e condições";
+			mes "que você precisa atender para alugá-los.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Você precisa possuir certo nível";
+			mes "e pagar uma certa quantia de Zenys";
+			mes "para poder alugar um Mercenário.";
+			mes "Mercenários de nível alto";
+			mes "irão requerir que você possua";
+			mes "uma certa fidelidade conosco.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Contratos de Mercenários não";
+			mes "podem ser emprestados a outras";
+			mes "pessoas, e só permitimos uma";
+			mes "diferença de 5 níveis do Mercenário";
+			mes "e o cliente não pode alugar um";
+			mes "Mercenário mais forte que ele mesmo.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Bem, você poderá saber mais";
+			mes "detalhes quando firmar um";
+			mes "contrato com algum de nossos";
+			mes "Mercenários, e receber";
+			mes "o Pergaminho de Invocação que";
+			mes "irá trazer o Mercenário até você.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Você não pode repassar este";
+			mes "pergaminho para ninguém, e o";
+			mes "Mercenário irá lhe ajudar";
+			mes "durante 30 minutos após você";
+			mes "tê-lo invocado. Não se esqueça";
+			mes "do tempo limite, Ok?";
+			close;
+		case 3:
+			mes "[Locador de Mercenários]";
+			mes "Não? Você não quer nenhuma";
+			mes "ajuda? Bem, sinta-se a vontade";
+			mes "para me consultar se tiver qualquer";
+			mes "dúvida sobre Mercenários.";
+			close;
+		case 4:
+			mes "[Locador de Mercenários]";
+			mes "Mercenários Nível 10 são";
+			mes "os melhores que possuímos,";
+			mes "e usamos critérios diferentes";
+			mes "para nossos clientes ao alugá-los.";
+			mes "Não há pagamento em Zeny, mas você";
+			mes "precisa ter 500 de fidelidade.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Sempre que fizer um contrato";
+			mes "com um Mercenário Nível 10,";
+			mes "seus Pontos de Fidelidade serão";
+			mes "reduzidos em 400. Em outras";
+			mes "palavras, pagará 400 de Fidelidade";
+			mes "para contratar um Mercenário Nível 10.";
+			next;
+			mes "[Locador de Mercenários]";
+			mes "Você precisará possuir";
+			mes "Nível de base 90 ou maior para";
+			mes "contratar um Mercenário Nível 10.";
+			mes "Estaria interessad"+(Sex?"o":"a")+" em";
+			mes "firmar um contrato?";
+			next;
+			if (select("Sim:Não") == 2) {
+				mes "[Locador de Mercenários]";
+				mes "Eu entendo... pode ser";
+				mes "um pouco difícil e chato";
+				mes "conseguir cada ponto para";
+				mes "poder alugar um Mercenário";
+				mes "Nível 10. Já pensou em alugar";
+				mes "um Mercenário de nível mais baixo?";
+			}
+			else if (.@faith_lancer < 500) {
+				mes "[Locador de Mercenários]";
+				mes "Desculpe-me, mas seu";
+				mes "nível de Fidelidade ainda";
+				mes "é baixo para alugar um Mercenário";
+				mes "Nível 10. Você precisa ter";
+				mes "500 ou mais de Fidelidade para";
+				mes "fazer um contrato deste tipo.";
+			}
+			else if (BaseLevel < 90) {
+				mes "[Locador de Mercenários]";
+				mes "Sinto muito, mas você precisa";
+				mes "ter pelo menos Nível base 90";
+				mes "ou maior para fazer um contrato";
+				mes "com um Mercenário Nível 10.";
+			}
+			else {
+				mes "[Locador de Mercenários]";
+				mes "Parabéns! Me parece que";
+				mes "você está planejando entrar";
+				mes "em alguma jornada difícil";
+				mes "para ter alugado um Mercenário";
+				mes "Nível 10. Desejo a você muita";
+				mes "sorte com ele.";
+				mercenary_set_faith getd(.@faith$[.@type]),-400;
+				getitem .@item[.@type],1;
+			}
+			close;
+	}
+}
+prontera,41,337,5	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Lanceiro	105
+pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Arqueiro	732
+
+// NPCs de Utilidades para Mercenários
+//============================================================
+izlude,56,169,4	script	Artigos para Mercenários#Espadachim	892,{
+	mes "[Vendedora de Artigos]";
+	mes "Olá, Eu vendo utilidades";
+	mes "que podem ser úteis";
+	mes "para Mercenários. Há";
+	mes "algo em particular";
+	mes "que você queira?";
+	next;
+	setarray .@item, 12184,	12185,	12241,	12242,	12243;
+	setarray .@cost, 1750,	3000,	560,	1050,	2100;
+	for (set .@size, getarraysize(.@item); .@i < .@size; set .@i, .@i + 1)
+		set .@menu$, .@menu$ + getitemname(.@item[.@i]) + ":";
+	set .@m, select(.@menu$)-1;
+	set .@str$, .@cost[.@m] + "";
+	set .@len, getstrlen(.@str$);
+	set .@str_cost$, (.@len <= 3)? .@str$ : insertchar(.@str$,",",.@len-3);
+	mes "[Vendedora de Artigos]";
+	mes "Cada" + getitemname(.@item[.@m]);
+	mes "custa " + .@str_cost$ + " Zenys.";
+	mes "quantos você gostaria de comprar?";
+	next;
+	input .@input;
+	if (!.@input) {
+		mes "[Vendedora de Artigos]";
+		mes "Mudou de ideia?";
+		mes "Tudo bem, sinta-se a vontade";
+		mes "para voltar quando precisar";
+		mes "comprar algumas utilidades.";
+		close;
+	}
+	else if (.@input < 0 || .@input > 10000) {
+		mes "[Vendedora de Artigos]";
+		mes "Me desculpe, mas você";
+		mes "você só pode comprar";
+		mes "no máximo 10,000 unidades";
+		mes "por vez. Por favor insira";
+		mes "uma quantidade entre 1 e 10,000.";
+		close;
+	}
+	else if (set(.@total_po, .@input * .@cost[.@m]) > Zeny) {
+		mes "[Vendedora de Artigos]";
+		mes "Sinto muito, mas você não";
+		mes "possui Zenys suficientes para";
+		mes "esta quantidade de items. Bem,";
+		mes "estarei aqui quando quiser comprar";
+		mes "alguma de minhas mercadorias.";
+		close;
+	}
+	else if (!checkweight(.@item[.@m], .@input)) {
+		mes "[Vendedora de Artigos]";
+		mes "Se eu der a você esta quantidade";
+		mes "de items, você não conseguirá";
+		mes "carregá-las com você.";
+		mes "Por favor volte depois que";
+		mes "se livrar de uma parte";
+		mes "dos items de seu inventário.";
+		close;
+	}
+	mes "[Vendedora de Artigos]";
+	if (.@input == 1) 
+		mes "Aqui está " + getitemname(.@item[.@m]) + ".";
+	else {
+		mes "Aqui estão, exatamente";
+		mes .@input + " " + getitemname(.@item[.@m]) + "s.";
+	}
+	mes "Obrigada, e por favor volte";
+	mes "novamente se precisar de mais";
+	mes "items para seus Mercenários.";
+	set Zeny, Zeny - .@total_po;
+	getitem .@item[.@m], .@input;
+	close;
+}
+prontera,30,337,4	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Lanceiro	700
+pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Arqueiro	879

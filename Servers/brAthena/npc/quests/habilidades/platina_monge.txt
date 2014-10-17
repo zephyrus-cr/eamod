@@ -1,0 +1,434 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest Habilidades de Platina: Monge    |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4a/1.5/1.1                        |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest das habilidade Concessão Espiritual e |
+//   | Punhos Intensos.                                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução (PT-BR) [Hold]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prt_monk,270,198,3	script	Monge Aprendiz#qsk_mo	753,{
+	if (BaseJob == Job_Monk) {
+		if (MONK_SK == 7) {
+			mes "[Monge]";
+			mes "Encontrar tempo para";
+			mes "realizar seus principais";
+			mes "objetivos, suas prioridades,";
+			mes "nunca é desperdício de tempo.";
+			mes "Nunca se atrapalhe fazendo o";
+			mes "possível para alcançar o que deseja.";
+			close;
+		}
+		if (MONK_SK == 6 && getskilllv("MO_KITRANSLATION") == 0) {
+			mes "[Monge]";
+			mes "Você esqueceu os princípios";
+			mes "básicos de como usar a";
+			mes "Concessão Espiritual?";
+			mes "Como isso aconteceu...?";
+			next;
+			mes "[Monge]";
+			mes "Ah, agora entendo.";
+			mes "Você transcendeu e expandiu";
+			mes "seus limites, e agora se tornou";
+			mes "um Mestre. Me desculpe por";
+			mes "não ter percebido antes.";
+			next;
+			mes "[Monge]";
+			mes "Tudo bem. Será um honra";
+			mes "para mim ajudá-lo a reaprender";
+			mes "a habilidade Concessão Espiritual.";
+			mes "Como efeito colateral, você provavelmente";
+			mes "irá reaprender também Punhos Itensos.";
+			next;
+			mes "[Monge]";
+			mes "Agora acalme-se e relaxe";
+			mes "com minha técnica especial";
+			mes "de acumpressura vou treinar";
+			mes "seu sistema nervoso para";
+			mes "receber a habilidade...";
+			next;
+			mes "^3355FF*Tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+			mes "tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+			mes "tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+			mes "tap-tap-tap-tap-tap-tap* *POKE*^000000";
+			set MONK_SK,7;
+			skill "MO_KITRANSLATION",1,0;
+			skill "MO_BALKYOUNG",1,0;
+			next;
+			mes "[Monge]";
+			mes "Está pronto. Por favor";
+			mes "continue usando essas técnicas";
+			mes "para promover a paz e";
+			mes "harmonia nesse mundo.";
+			mes "Até mais, meu bom amigo.";
+			close;
+		}
+		if (MONK_SK > 2) {
+			mes "[Monge]";
+			mes "Encontrar tempo para";
+			mes "realizar seus principais";
+			mes "objetivos, suas prioridades,";
+			mes "nunca é desperdício de tempo.";
+			mes "Nunca se atrapalhe fazendo o";
+			mes "possível para alcançar o que deseja.";
+			next;
+			mes "[Monge]";
+			mes "Ah, Eu tenho um favor para lhe pedir.";
+			mes "Por favor não diga aos outros";
+			mes "que eu lhe ensinei a Concessão";
+			mes "Espiritual. Eu não quero gastar";
+			mes "todo meu tempo ensinando";
+			mes "habilidades para muitas pessoas...";
+			close;
+		}
+		if (MONK_SK == 2) {
+			if (Weight == 0) {
+				mes "[Monge]";
+				mes "Ah. Muito bem. Estou vendo";
+				mes "que você aprendeu uma coisa";
+				mes "muito importante, desapego";
+				mes "de si mesmo. Eu acredito que";
+				mes "você não irá abusar das";
+				mes "técnicas que lhe ensinei.";
+				next;
+				mes "[Monge]";
+				mes "Meu teste pode parecer um pouco";
+				mes "rigoroso, mas é impossível aprender a";
+				mes "Concessão Espiritual sem a disciplina adequada. Como todas";
+				mes "as coisas, desenvoltura e preparação são importates para tudo o que fazemos.";
+				next;
+				mes "[Monge]";
+				mes "Agora relaxe por um momento.";
+				mes "eu vou usar minha técnica de acumpressura";
+				mes "para preparar seu sitema nervoso para";
+				mes "aprender os movimentos necessários";
+				mes "da Concessão Espiritual.";
+				next;
+				mes "^3355FF*Tap... tap*";
+				mes "*Tap... Tap*";
+				mes "*Tap tap tap*^000000";
+				next;
+				mes "^3355FF*Tap tap tap*";
+				mes "*Tap tap tap*";
+				mes "*Tap... Tap tap*^000000";
+				next;
+				mes "^3355FF*Tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+				mes "tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+				mes "tap-tap-tap-tap-tap-tap-tap-tap- tap-tap-tap-tap-tap-tap-tap-tap-";
+				mes "tap-tap-tap-tap-tap-tap* *POKE*^000000";
+				next;
+				mes "[Monge]";
+				mes "Pronto. Você agora é capaz";
+				mes "de usar a Concessão Espiritual.";
+				mes "Ah, sim. Eu nunca dei um nome";
+				mes "a essa habilidade, mas é assim que ela é chamada";
+				mes "pelos outros monges que já a viram.";
+				next;
+				mes "[Monge]";
+				mes "Lembre-se esta habilidade possui";
+				mes "um grande tempo de conjuração e pós-conjuração,";
+				mes "use-a com bastante cuidado. Ela";
+				mes "também permite que você passe Esferas Espirituais para os companheiros do seu grupo";
+				mes "consumindo 40 de SP.";
+				next;
+				mes "[Monge]";
+				mes "Você entenderá melhor o";
+				mes "funcionamento da habilidade";
+				mes "praticando-a. Tenha sempre o pensamento";
+				mes "de que lutar é necessário as vezes,";
+				mes "porém, os meios não justificam os fins.";
+				set MONK_SK,3;
+				skill "MO_KITRANSLATION",1,0;
+				next;
+				mes "[Monge]";				
+				mes "Nossas habilidades não devem";
+				mes "ser usadas para derramar sangue.";
+				mes "Se você pode evitar um conflito,";
+				mes "você verá que uma luta não vale";
+				mes "a pena. Fique em paz, meu amigo.";
+				close;
+			}
+			else {
+				mes "[Monge]";				
+				mes "Você aprendeu a";
+				mes "desapega-se de si mesmo?";
+				mes "Quando você abandonar a ganância";
+				mes "e os desejos mundanos,";
+				mes "você estará pronto para meus ensinamentos.";
+				close;
+			}
+		}
+		if (MONK_SK == 1) {
+			mes "[Monge]";			
+			mes "Lutar é algo sem sentido.";
+			mes "Devemos evitar os conflitos";
+			mes "e perceber que somos todos";
+			mes "um só. Treine sua mente e a";
+			mes "verdade será revelada.";
+			next;
+			mes "[Monge]";			
+			mes "Hum? Para qual propósito";
+			mes "você veio até aqui? Ah, então";
+			mes "você deseja aprender a habilidade que eu desenvolvi.";
+			mes "Meu amigo estava certo: Muitas e muitas pessoas queriam aprender isso.";
+			next;
+			mes "[Monge]";			
+			mes "Não me entenda mal.";
+			mes "É verdade que o poder e";
+			mes "a justiça, sabedoria e força";
+			mes "devem ser balenceados. Contudo,";
+			mes "eu tenho sido visitado por muitas pessoas com fome de poder e sede de sangue.";
+			next;
+			mes "[Monge]";			
+			mes "Com toda confiança, eu lhe";
+			mes "darei uma chance. Prove para";
+			mes "mim que você irá usar as";
+			mes "habilidades que lhe ensinarei em prol";
+			mes "da paz e da justiça. Prove";
+			mes "que você está livre do egoísmo.";
+			set MONK_SK,2;
+			close;
+		}
+	}
+	mes "[Monge]";	
+	mes "Lutar é algo sem sentido.";
+	mes "Devemos evitar os conflitos e";
+	mes "perceber que somos todos";
+	mes "um só. Treine sua mente e";
+	mes "a verdade será revelada.";
+	close;
+}
+
+monk_test,316,69,5	script	Monge#qsk_mo	823,{
+	if (BaseJob == Job_Monk) {
+		if (MONK_SK == 6) {
+			mes "[Monge]";			
+			mes "Como você convenceu";
+			mes "aquele monge e te ensinar";
+			mes "a Concessão Espiritual?";
+			mes "Seria legal popularizar nossas";
+			mes "habilidades especiais, mas o mundo pode não estar pronto ainda.";
+			close;
+		}
+		if (MONK_SK == 5) {
+			mes "[Monge]";			
+			mes "Vamos começar, para utilizar";
+			mes "Punhos Itensos você deve transformar";
+			mes "sua força interior em força exterior.";
+			mes "Após isso, você deve focar a energia em suas mãos.";
+			mes "Você poderá até explodir se cometer algum erro.";
+			next;
+			mes "[Monge]";			
+			mes "O uso dessa habilidade pode";
+			mes "ser um pouco doloroso, consome";
+			mes "20 SP e 10 HP. Ela irá empurrar";
+			mes "os inimigos para trás com uma certa";
+			mes "chance de atordoá-los, mas somente o monstro-alvo sofrerá dano.";
+			next;
+			mes "[Monge]";			
+			mes "Se você usar esta habilidade";
+			mes "em outras pessoas, irá causar";
+			mes "uma boa quantidade de dano,";
+			mes "mas não irá empurrar outras";
+			mes "pessoas além do alvo. Isso faz algum sentido?";
+			next;
+			mes "[Monge]";
+			mes "Enfim, continue praticando";
+			mes "esses princípios e você será";
+			mes "um mestre dos Punhos Intensos.";
+			mes "Você deverá ser capaz disso";
+			mes "já que conseguiu aprender";
+			mes "a Concessão Espiritual.";
+			set MONK_SK,6;
+			skill "MO_BALKYOUNG",1,0;
+			next;
+			mes "[Monge]";
+			mes "Bem, completamos todo";
+			mes "o ensinamento. Acredito";
+			mes "que você irá usar suas novas";
+			mes "habilidades para lutar pela";
+			mes "justiça e combater o mal.";
+			mes "Adeus por enquanto, bom amigo.";
+			close;
+		}
+		if (MONK_SK == 4 && countitem(905) > 19 && countitem(711) > 2) {
+			mes "[Monge]";			
+			mes "O quê...?";
+			mes "Você aprendeu a habilidade";
+			mes "Concessão Espiritual? Acredito";
+			mes "que você queira aprender agora";
+			mes "Punhos Intensos. Estou certo?";
+			next;
+			mes "[Monge]";			
+			mes "Hum. Bem, você é forte";
+			mes "o suficiente para derrotar";
+			mes "muitas Mandrágoras. Tudo bem então,";
+			mes "você parece estar preparado. Volte daqui a pouco";
+			mes "enquanto termino os preparativos.";
+			delitem 905,20; //Caule
+			delitem 711,3; //Broto
+			set MONK_SK,5;
+			close;
+		}
+		if (MONK_SK == 4) {
+			mes "[Monge]";			
+			mes "O quê...?";
+			mes "Você aprendeu a";
+			mes "habilidade Concessão";
+			mes "Espiritual? Acredito que";
+			mes "você queira aprender agora";
+			mes "Punhos Intensos.Estou certo?";
+			next;
+			mes "[Monge]";			
+			mes "Como eu já mencionei,";
+			mes "você deve derrotar Mandrágoras";
+			mes "para mostrar que você é qualificado";
+			mes "em termos de força e compaixão,";
+			mes "logo após poderá aprender Punhos Itensos.";
+			next;
+			mes "[Monge]";			
+			mes "Lute para proteger aqueles";
+			mes "inocentes que estiverem sendo";
+			mes "aterrorizados pelas terríveis Mandrágoras.";
+			mes "Se você me trouxer^FF0000 20 Caules^000000 e";
+			mes "^FF0000 3 Brotos^000000, eu ficarei satisfeito com essa prova de habilidade.";
+			next;
+			mes "[Monge]";
+			mes "Conseguiu entender agora?";
+			close;
+		}
+		if (MONK_SK == 3) {
+			mes "[Monge]";			
+			mes "Você veio para aprender";
+			mes "Punhos Intensos? Se for";
+			mes "isso mesmo. Existem dois";
+			mes "obstáculos que você deverá";
+			mes "superar para conseguir.";
+			next;
+			mes "[Monge]";
+			mes "Primeiramente, você deve";
+			mes "aprender a habilidade Concessão";
+			mes "Espiritual antes. Será muito difícil";
+			mes "convecer aquele monge a te ensinar,";
+			mes "se não for impossível.";
+			next;
+			mes "[Monge]";			
+			mes "Segundo, você precisará".
+			mes "passar em meu pequeno teste de";
+			mes "força, para que eu possar saber";
+			mes "se seu corpo suporta o";
+			mes "uso de Punhos Itensos.";
+			next;
+			mes "[Monge]";			
+			mes "Hum. Eu sei que aquelas Mandrágoras";
+			mes "têem incomodado os viajantes,";
+			mes "então se você me provar que";
+			mes "consegue caçá-las, você provará".
+			mes "que é capaz de aprender";
+			mes "Punhos Intensos.";
+			next;
+			mes "[Monge]";			
+			mes "Se você conseguir convencer";
+			mes "aquele monge e lhe ensinar";
+			mes "Concessão Espiritual, pedirei";
+			mes "a você para me trazer";
+			mes "^FF0000 20 Caules^000000 e^FF0000 3 Brotos^000000";
+			mes "caçando Mandrágoras.";
+			next;
+			mes "[Monge]";			
+			mes "Mas claro, não será possível";
+			mes "concluir meu teste se você";
+			mes "não aprender antes a";
+			mes "Concessão Espiritual. ";
+			mes "Desejo-lhe boa sorte...";
+			set MONK_SK,4;
+			close;
+		}
+		if (MONK_SK == 1) {
+			mes "[Monge]";			
+			mes "Lá tem um monge pacifista";
+			mes "vivendo em isolamento ele";
+			mes "pode te ensinar a habilidade";
+			mes "Concessão Espiritual. Contudo,";
+			mes "ele é teimoso e já se recusou a ensinar muitas pessoas que queriam aprender com ele.";
+			next;
+			mes "[Monge]";			
+			mes "Seria bom se você";
+			mes "conseguisse convencê-lo a lhe";
+			mes "lhe ensinar, sendo que é impossível";
+			mes "aprender esta habilidade sozinha.";
+			mes "É realmente uma pena...";
+			close;
+		}
+		if (MONK_SK == 0) {
+			mes "[Monge]";			
+			mes "Poder sem justiça não";
+			mes "resulta em nada. Justiça sem";
+			mes "poder não se mantém.";
+			mes "O poder não se compara a";
+			mes "justiça, mas a verdadeira justiça";
+			mes "pode ser um caminho para o poder.";
+			next;
+			mes "[Monge]";			
+			mes "Lembre-se sempre desses ensinamentos.";
+			mes "Justiça e poder, compaixão";
+			mes "e força, conhecimento e ações. Todos esses componentes andam de";
+			mes "mãos dadas e precisam estar";
+			mes "sempre harmoniosamente balaceados.";
+			next;
+			mes "[Monge]";			
+			mes "Isso acontece com algumas habilidades.";
+			mes "Eu desenvolvi uma habilidade que é";
+			mes "manifestação de poder: Punhos Intensos!";
+			mes "No entanto, ela é inútil sem";
+			mes "um complemento para balanceá-la.";
+			next;
+			mes "[Monge]";			
+			mes "O complemento para minha habilidade";
+			mes "é uma outra habilidade chamada";
+			mes "Concessão Espiritual, que só pode";
+			mes "ser ensinada por um Monge. No entanto,";
+			mes "ele se recusa a ensiná-la aos outros, achando que eles não são merecedores.";
+			next;
+			mes "[Monge]";			
+			mes "Embora eu tenha tentado convencê-lo";
+			mes "que seria bom popularizar a habilidade,";
+			mes "devo respeitar a opinião dele. Mesmo assim,";
+			mes "você pode tentar convencê-lo a lhe ensinar a";
+			mes "habilidade se estiver com vontade de aprender nova técnicas.";
+			set MONK_SK,1;
+			next;
+			mes "[Monge]";			
+			mes "Para encontrá-lo, basta procurar";
+			mes "um monge que sempre fala sobre ";
+			mes "o quão vazio são as lutas.";
+			mes "Este será ele.";
+			close;
+		}
+	}
+	mes "[Monge]";	
+	mes "Poder sem justiça não resulta";
+	mes "em nada. Justiça sem";
+	mes "poder não se mantém.";
+	mes "O poder não se compara a";
+	mes "justiça, mas a verdadeira justiça";
+	mes "poder ser um caminho para o poder.";
+	close;
+}

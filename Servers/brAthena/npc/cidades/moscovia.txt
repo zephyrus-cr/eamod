@@ -1,0 +1,147 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: moscovia.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Moscóvia.                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Moscovia Transportação
+//============================================================ 
+alberta,246,51,4	script	Oficial de Moscovia#1	960,{
+	mes "[Oficial de Moscovia]";
+	mes "Moscovia! Você conhece Moscovia?";
+	mes "O paraíso se espalhando nos mares sem fim...";
+	mes "Bem-vindo a Moscovia.";
+	mes "É uma terra mística.";
+	next;
+	switch(select("Sobre Moscovia...:Ir para Moscovia.:Cancelar")) {
+	case 1:
+		mes "[Oficial de Moscovia]";
+		mes "Moscovia é um lindo reino,";
+		mes "uma ilha localizada no norte";
+		mes "de Rune-Midgard.";
+		next;
+		mes "[Oficial de Moscovia]";
+		mes "Sei que você ficará";
+		mes "fascinado pelo lindo";
+		mes "cenário de Moscovia,";
+		mes "e pelo belo palácio.";
+		next;
+		mes "[Oficial de Moscovia]";
+		mes "Agora que nosso longo";
+		mes "inverno passou, estou";
+		mes "feliz por poder mostrar a você";
+		mes "nossa linda cidade.";
+		next;
+		mes "[Oficial de Moscovia]";
+		mes "Se você quiser visitar";
+		mes "Moscovia, vá agora!";
+		mes "Eu levarei você em uma boa";
+		mes "viagem por Moscovia!";
+		close;
+
+	case 2:
+		mes "[Oficial de Moscovia]";
+		mes "Ok, vamos começar agora.";
+		mes "Você deve me pagar 10 000 zenys";
+		mes "para ir a Moscovia.";
+		mes "Mas não precisa pagar";
+		mes "para voltar.";
+		next;
+		mes "[Oficial de Moscovia]";
+		mes "Podemos ir?";
+		next;
+		if (select("Vamos!:Cancelar") == 2) {
+			mes "[Oficial de Moscovia]";
+			mes "Se você está ocupado agora,";
+			mes "me avise quando quiser ir.";
+			mes "Estou sempre pronto para guiar alguém por Moscovia.";
+			close;
+		}
+			mes "[Oficial de Moscovia]";
+      if (Zeny < 10000) {
+			mes "Sinto muito, mas você";
+			mes "não tem dinheiro suficiente.";
+			mes "Precisa de 10 000 zenys";
+			mes "para ir a Moscovia.";
+			mes "Obrigado.";
+			close;
+      }
+			mes "Certo, estamos indo agora.";
+			close2;
+			set Zeny,Zeny - 10000;
+			warp "moscovia",163,55;
+			end;
+	case 3:
+		mes "[Oficial de Moscovia]";
+		mes "Se você está ocupado agora,";
+		mes "me avise quando quiser ir.";
+		mes "Estou sempre pronto para guiar alguém por Moscovia.";
+		close;
+	}
+}
+
+moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
+	mes "[Oficial de Moscovia]";
+	mes "Como foi sua viagem?";
+	mes "Tem boas lembranças de Moscovia?";
+	mes "Um navio sairá agora";
+	mes "para Rune-Midgard.";
+	next;
+	if (select("Retornar para Alberta:Cancelar") == 2) {
+		mes "[Oficial de Moscovia]";
+		mes "Se quiser passear mais,";
+		mes "leve o tempo que quiser.";
+		close;
+	}
+	mes "[Oficial de Moscovia]";
+	mes "Por favor venha vistar-nos.";
+	mes "Certo, vamos indo.";
+	close2;
+	if (checkre(0))
+		warp "alberta",244,52;
+	else
+		warp "alberta",243,67;
+	end;
+}
+
+// NPCs Genéricos de Moscovia
+//============================================================
+moscovia,253,166,4	script	Soldado#mosc1	966,{
+	mes "[Soldado]";
+	mes "Nosso querido Czar Alexsay III ainda está no palácio.";
+	mes "Ele governa Moscovia.";
+	mes "Cuidado para não causar-lhe problemas.";
+	close;
+}
+
+// Palácio de Moscovia
+//============================================================
+mosk_in,118,66,5	script	Soldado#mosc	966,{
+	mes "[Soldado]";
+	mes "Não faça barulho ou o Czar ficará bravo.";
+	close;
+}
+
+mosk_in,133,110,3	duplicate(Soldado#mosc)	Soldado#mosc02	966
+mosk_in,133,73,3	duplicate(Soldado#mosc)	Soldado#mosc03	966
+mosk_in,113,124,5	duplicate(Soldado#mosc)	Soldado#mosc04	966

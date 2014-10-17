@@ -1,0 +1,5 @@
+en:
+    failed_execution: "Failed to execute command"
+    failed_connection: "Failed to connect"
+    host_info: 'host','port'
+    host_auth: 'user','pass'

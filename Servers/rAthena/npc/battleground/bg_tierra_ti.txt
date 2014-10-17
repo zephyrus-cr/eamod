@@ -1,0 +1,608 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// ==============================================================================
+// BattleGround System - Tierra Triple Infierno
+// ==============================================================================
+
+// Registration NPC's
+// *********************************************************************
+
+bat_room,197,74,0	script	Registration::TTIR_Guillaume	418,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Tierra_TI::OnGuillaumeJoin",1;
+	end;
+OnEnterBG:
+	set $@TierraTI_id1, waitingroom2bg("region_8",10,49,0,"Tierra_TI::OnGuillaumeQuit","Tierra_TI::OnGuillaumeDie");
+	end;
+}
+
+bat_room,197,97,4	script	Registration::TTIR_Croix	414,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Tierra_TI::OnCroixJoin",1;
+	end;
+OnEnterBG:
+	set $@TierraTI_id2, waitingroom2bg("region_8",89,49,1,"Tierra_TI::OnCroixQuit","Tierra_TI::OnCroixDie");
+	end;
+}
+
+bat_room,225,74,0	script	Registration::TTIR_Traitor	733,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Tierra_TI::OnTraitorJoin",1;
+	end;
+OnEnterBG:
+	set $@TierraTI_id3, waitingroom2bg("region_8",49,89,2,"Tierra_TI::OnTraitorQuit","Tierra_TI::OnTraitorDie");
+	end;
+}
+
+// Battleground Engine
+// *********************************************************************
+
+-	script	Tierra_TI	-1,{
+	end;
+
+OnInit:
+	setwall "region_8",46,85,8,6,0,"ti_wall_a";
+	setwall "region_8",46,74,8,6,0,"ti_wall_a2";
+	setwall "region_8",14,46,8,0,0,"ti_wall_b";
+	setwall "region_8",25,46,8,0,0,"ti_wall_b2";
+	setwall "region_8",85,46,8,0,0,"ti_wall_c";
+	setwall "region_8",74,46,8,0,0,"ti_wall_c2";
+	end;
+
+OnGuillaumeQuit:
+OnCroixQuit:
+OnTraitorQuit:
+	setquest 8506; // Deserter
+	if( $@TierraTI != 0 ) donpcevent "Tierra_TI::OnDoBalance";
+	end;
+
+OnGuillaumeJoin:
+OnCroixJoin:
+OnTraitorJoin:
+	if( $@TierraTI == 0 )
+		donpcevent "Tierra_TI::OnReadyCheck";
+	else
+		donpcevent "Tierra_TI::OnDoBalance";
+	end;
+
+OnDoBalance:
+	if( $@TierraTI != 1 )
+		end;
+
+	// Team Members
+	set .@Guillaume, bg_get_data($@TierraTI_id1, 0);
+	set .@Croix, bg_get_data($@TierraTI_id2, 0);
+	set .@Traitor, bg_get_data($@TierraTI_id3, 0);
+
+	if( .@Guillaume == .@Croix && .@Croix == .@Traitor && .@Guillaume >= 35 ) end; // Full Teams
+
+	// Waiting Room Members
+	set .@GuillaumeR, getwaitingroomstate(0,"TTIR_Guillaume");
+	set .@CroixR, getwaitingroomstate(0,"TTIR_Croix");
+	set .@TraitorR, getwaitingroomstate(0,"TTIR_Traitor");
+
+	if( .@GuillaumeR == .@CroixR && .@CroixR == .@TraitorR && .@GuillaumeR <= 0 ) end; // No waiting Players
+
+	// Max Team Members
+	set .@Max, .@Guillaume;
+	if( .@Max < .@Croix ) set .@Max, .@Croix;
+	if( .@Max < .@Traitor ) set .@Max, .@Traitor;
+
+	if( .@Guillaume == .@Croix && .@Croix == .@Traitor )
+	{ // All Teams same members
+		set .@Min, .@GuillaumeR;
+		if( .@Min > .@CroixR ) set .@Min, .@CroixR;
+		if( .@Min > .@TraitorR ) set .@Min, .@TraitorR;
+		
+		if( .@Min <= 0 ) end; // No need to continue
+
+		set .@Max, .@Max + .@Min;
+		if( .@Max > 35 ) set .@Max, 35;
+	}
+
+	set .@Changed, 0;
+
+	// Guillaume Adding
+	for( set .@i, .@Guillaume; (.@i < .@Max && .@GuillaumeR > 0 && .@Guillaume <= 35); set .@i, .@i + 1 )
+	{
+		waitingroom2bg_single $@TierraTI_id1,"region_8",10,49,"TTIR_Guillaume";
+		set .@Guillaume, .@Guillaume + 1;
+		set .@GuillaumeR, .@GuillaumeR - 1;
+		set .@Changed, 1;
+	}
+
+	// Croix Adding
+	for( set .@i, .@Croix; (.@i < .@Max && .@CroixR > 0 && .@Croix <= 35); set .@i, .@i + 1 )
+	{
+		waitingroom2bg_single $@TierraTI_id2,"region_8",89,49,"TTIR_Croix";
+		set .@Croix, .@Croix + 1;
+		set .@CroixR, .@CroixR - 1;
+		set .@Changed, 1;
+	}
+
+	// Traitor Adding
+	for( set .@i, .@Traitor; (.@i < .@Max && .@TraitorR > 0 && .@Traitor <= 35); set .@i, .@i + 1 )
+	{
+		waitingroom2bg_single $@TierraTI_id3,"region_8",49,89,"TTIR_Traitor";
+		set .@Traitor, .@Traitor + 1;
+		set .@TraitorR, .@TraitorR - 1;
+		set .@Changed, 1;
+	}
+
+	if( .@Changed )
+		mapannounce "bat_room","Battleground -- Tierra TI [80-99] G: " + .@Guillaume + "/35, C: " + .@Croix + "/35, T: " + .@Traitor + "/35 (Playing)",1,0x696969;
+	end;
+
+OnReadyCheck:
+	if( $@TierraTI )
+		end;
+	set .@Guillaume, getwaitingroomstate(0,"TTIR_Guillaume");
+	set .@Croix, getwaitingroomstate(0,"TTIR_Croix");
+	set .@Traitor, getwaitingroomstate(0,"TTIR_Traitor");
+	
+	if( .@Guillaume < 5 || .@Croix < 5 || .@Traitor < 5 )
+	{
+		if( .@Guillaume > 3 && .@Croix > 3 && .@Traitor > 3 && !agitcheck() && $@TierraTI_Flood < gettimetick(2) )
+		{
+			announce "Battleground -- Tierra TI [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5, T: " + .@Traitor + "/5",0,0x696969;
+			set $@TierraTI_Flood, gettimetick(2) + 15;
+		}
+		else
+			mapannounce "bat_room","Battleground -- Tierra TI [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5, T: " + .@Traitor + "/5",1,0x696969;
+		end;
+	}
+
+	set $@TierraTI, 1;
+	initnpctimer;
+	donpcevent "TTIR_Croix::OnEnterBG";
+	donpcevent "TTIR_Guillaume::OnEnterBG";
+	donpcevent "TTIR_Traitor::OnEnterBG";
+	donpcevent "::OnEmblemTI";
+	set .Guillaume_Score, 0;
+	set .Croix_Score, 0;
+	set .Traitor_Score, 0;
+	announce "Battleground -- Tierra TI [80-99] has started!",0,0x696969;
+	sleep 2000;
+	bg_warp $@TierraTI_id1,"region_8",29,49;
+	bg_warp $@TierraTI_id2,"region_8",70,50;
+	bg_warp $@TierraTI_id3,"region_8",49,70;
+	sleep 1000;
+	bg_team_reveal $@TierraTI_id1;
+	bg_team_updatescore $@TierraTI_id1,.Guillaume_Score;
+	sleep 1000;
+	bg_team_reveal $@TierraTI_id2;
+	bg_team_updatescore $@TierraTI_id2,.Croix_Score;
+	sleep 1000;
+	bg_team_reveal $@TierraTI_id3;
+	bg_team_updatescore $@TierraTI_id3,.Traitor_Score;
+	donpcevent "#gti_respawn::OnBGStart";
+	donpcevent "#cti_respawn::OnBGStart";
+	donpcevent "#tti_respawn::OnBGStart";
+	end;
+
+OnGuillaumeDie:
+OnCroixDie:
+OnTraitorDie:
+	if( $@TierraTI == 1 )
+	{
+		// Killed Position
+		getmapxy .@m$, .@x, .@y, 0;
+		set .@Bid, getcharid(4);
+		// Current Skulls
+		set .@id8965,countitem(8965);
+		set .@id8966,countitem(8966);
+		set .@id8967,countitem(8967);
+		// Remove Skulls
+		delitem 8965,.@id8965;
+		delitem 8966,.@id8966;
+		delitem 8967,.@id8967;
+		// Drop Skulls
+		flooritem2xy "region_8",.@x,.@y,8965,.@id8965;
+		flooritem2xy "region_8",.@x,.@y,8966,.@id8966;
+		flooritem2xy "region_8",.@x,.@y,8967,.@id8967;
+		// Drop a New Skull
+		if( @killer_bg_id != .@Bid )
+		{
+			if( .@Bid == $@TierraTI_id1 )
+				flooritem2xy "region_8",.@x,.@y,8965,1;
+			else if( .@Bid == $@TierraTI_id2 )
+				flooritem2xy "region_8",.@x,.@y,8966,1;
+			else if( .@Bid == $@TierraTI_id3 )
+				flooritem2xy "region_8",.@x,.@y,8967,1;
+		}
+	}
+	end;
+
+OnValidateScore:
+	if( $@TierraTI != 1 )
+		end;
+	if( .Guillaume_Score >= 80 || .Croix_Score >= 80 || .Traitor_Score >= 80 )
+		donpcevent "Tierra_TI::OnMatchEnd";
+	end;
+
+OnTimer600000:
+	mapannounce "region_8","The Battle will ends in 5 minutes!!",1,0x696969;
+	end;
+
+OnTimer840000:
+	mapannounce "region_8","The Battle will ends in 1 minute!!",1,0x696969;
+	end;
+
+OnTimer900000:
+OnMatchEnd:
+	set $@TierraTI, 2;
+	bg_cleanmap "region_8"; // Removes all ground items
+	stopnpctimer;
+	donpcevent "#gti_respawn::OnBGStop";
+	donpcevent "#cti_respawn::OnBGStop";
+	donpcevent "#tti_respawn::OnBGStop";
+	if( .Guillaume_Score > .Croix_Score && .Guillaume_Score > .Traitor_Score )
+	{
+		bg_reward $@TierraTI_id1,7773,30,0,8508,"BG_TI",1,2,0;
+		bg_reward $@TierraTI_id2,7773,15,0,8508,"BG_TI",1,2,2;
+		bg_reward $@TierraTI_id3,7773,15,0,8508,"BG_TI",1,2,2;
+		mapannounce "region_8","The Guillaume army has won the Battle of Tierra Inferno!",1,0x0000FF;
+	}
+	else if( .Croix_Score > .Guillaume_Score && .Croix_Score > .Traitor_Score )
+	{
+		bg_reward $@TierraTI_id1,7773,15,0,8508,"BG_TI",1,2,2;
+		bg_reward $@TierraTI_id2,7773,30,0,8508,"BG_TI",1,2,0;
+		bg_reward $@TierraTI_id3,7773,15,0,8508,"BG_TI",1,2,2;
+		mapannounce "region_8","The Croix army has won the Battle of Tierra Inferno!",1,0xFF0000;
+	}
+	else if( .Traitor_Score > .Guillaume_Score && .Traitor_Score > .Croix_Score )
+	{
+		bg_reward $@TierraTI_id1,7773,15,0,8508,"BG_TI",1,2,2;
+		bg_reward $@TierraTI_id2,7773,15,0,8508,"BG_TI",1,2,2;
+		bg_reward $@TierraTI_id3,7773,30,0,8508,"BG_TI",1,2,0;
+		mapannounce "region_8","The Traitor army has won the Battle of Tierra Inferno!",1,0x00FF00;
+	}
+	else
+	{
+		bg_reward $@TierraTI_id1,7773,15,0,8508,"BG_TI",1,2,1;
+		bg_reward $@TierraTI_id2,7773,15,0,8508,"BG_TI",1,2,1;
+		bg_reward $@TierraTI_id3,7773,15,0,8508,"BG_TI",1,2,1;
+		mapannounce "region_8","The battle is over. There are no Winners!",1,0x696969;
+	}
+
+	sleep 2000;
+	bg_warp $@TierraTI_id1,"region_8",10,49;
+	bg_warp $@TierraTI_id2,"region_8",89,49;
+	bg_warp $@TierraTI_id3,"region_8",49,89;
+	sleep 3000;
+	mapannounce "region_8","Battle of Tierra TI will start in 15 seconds!",1,0x696969;
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	if( $@TierraTI == 2 )
+		mapannounce "region_8","Battle of Tierra TI will start in 5 seconds!",1,0x696969;
+	end;
+
+OnTimer15000:
+	if( $@TierraTI != 2 )
+		end;
+OnReset:
+	stopnpctimer;
+	set .Guillaume_Score, 0;
+	set .Croix_Score, 0;
+	set .Traitor_Score, 0;
+	bg_destroy $@TierraTI_id1;
+	bg_destroy $@TierraTI_id2;
+	bg_destroy $@TierraTI_id3;
+	set $@TierraTI_id1, 0;
+	set $@TierraTI_id2, 0;
+	set $@TierraTI_id3, 0;
+	sleep 1000;
+	mapwarp "region_8","bat_room",155,150;
+	sleep 1000;
+	maprespawnguildid "region_8",0,3; // Just in case someone else
+	set $@TierraTI, 0;
+	donpcevent "Tierra_TI::OnReadyCheck";
+	end;
+}
+
+region_8,28,42,0	script	Sacrifice Totem::BlueTotem	111,2,2,{
+	end;
+
+OnTouch:
+	if( $@TierraTI != 1 ) end;
+	if( getcharid(4) != $@TierraTI_id1 ) end;
+
+	set .@Points, 0;
+	delitem 8965,countitem(8965);
+
+	if( set(.@n,countitem(8966)) > 0 )
+	{ // Croix Skulls
+		delitem 8966,.@n;
+		set .@Points, .@Points + .@n;
+	}
+
+	if( set(.@n,countitem(8967)) > 0 )
+	{ // Traitor Skulls
+		delitem 8967,.@n;
+		set .@Points, .@Points + .@n;
+	}
+	if( .@Points > 0 )
+	{
+		emotion e_no1,1;
+		specialeffect 622;
+		set .@Score, getvariableofnpc(.Guillaume_Score,"Tierra_TI") + .@Points;
+		if( .@Score > 80 ) set .@Score, 80;
+		set getvariableofnpc(.Guillaume_Score,"Tierra_TI"),.@Score;
+		bg_team_updatescore $@TierraTI_id1,.@Score;
+		mapannounce "region_8","Guillaume Totem : " + .@Points + " slaughtered skulls by " + strcharinfo(0) + " [" + .@Score + "/80]",1,0x0000FF;
+		bg_rankpoints "skulls",.@Points;
+		donpcevent "Tierra_TI::OnValidateScore";
+	}
+	end;
+}
+
+region_8,28,57,0	duplicate(BlueTotem)	Sacrifice Totem#1	111,2,2
+
+region_8,71,57,0	script	Sacrifice Totem::RedTotem	111,2,2,{
+	end;
+
+OnTouch:
+	if( $@TierraTI != 1 ) end;
+	if( getcharid(4) != $@TierraTI_id2 ) end;
+
+	set .@Points, 0;
+	delitem 8966,countitem(8966);
+
+	if( set(.@n,countitem(8965)) > 0 )
+	{ // Guillaume Skulls
+		delitem 8965,.@n;
+		set .@Points, .@Points + .@n;
+	}
+
+	if( set(.@n,countitem(8967)) > 0 )
+	{ // Traitor Skulls
+		delitem 8967,.@n;
+		set .@Points, .@Points + .@n;
+	}
+	if( .@Points > 0 )
+	{
+		emotion e_no1,1;
+		specialeffect 622;
+		set .@Score, getvariableofnpc(.Croix_Score,"Tierra_TI") + .@Points;
+		if( .@Score > 80 ) set .@Score, 80;
+		set getvariableofnpc(.Croix_Score,"Tierra_TI"),.@Score;
+		bg_team_updatescore $@TierraTI_id2,.@Score;
+		mapannounce "region_8","Croix Totem : " + .@Points + " slaughtered skulls by " + strcharinfo(0) + " [" + .@Score + "/80]",1,0xFF0000;
+		bg_rankpoints "skulls",.@Points;
+		donpcevent "Tierra_TI::OnValidateScore";
+	}
+	end;
+}
+
+region_8,71,42,0	duplicate(RedTotem)	Sacrifice Totem#2	111,2,2
+
+region_8,44,71,0	script	Sacrifice Totem::GreenTotem	111,2,2,{
+	end;
+
+OnTouch:
+	if( $@TierraTI != 1 ) end;
+	if( getcharid(4) != $@TierraTI_id3 ) end;
+
+	set .@Points, 0;
+	delitem 8967,countitem(8967);
+
+	if( set(.@n,countitem(8965)) > 0 )
+	{ // Guillaume Skulls
+		delitem 8965,.@n;
+		set .@Points, .@Points + .@n;
+	}
+
+	if( set(.@n,countitem(8966)) > 0 )
+	{ // Croix Skulls
+		delitem 8966,.@n;
+		set .@Points, .@Points + .@n;
+	}
+	if( .@Points > 0 )
+	{
+		emotion e_no1,1;
+		specialeffect 622;
+		set .@Score, getvariableofnpc(.Traitor_Score,"Tierra_TI") + .@Points;
+		if( .@Score > 80 ) set .@Score, 80;
+		set getvariableofnpc(.Traitor_Score,"Tierra_TI"),.@Score;
+		bg_team_updatescore $@TierraTI_id3,.@Score;
+		mapannounce "region_8","Traitor Totem : " + .@Points + " slaughtered skulls by " + strcharinfo(0) + " [" + .@Score + "/80]",1,0x00FF00;
+		bg_rankpoints "skulls",.@Points;
+		donpcevent "Tierra_TI::OnValidateScore";
+	}
+	end;
+}
+
+region_8,55,71,0	duplicate(GreenTotem)	Sacrifice Totem#3	111,2,2
+
+// MapFlags
+// *********************************************************************
+
+region_8	mapflag	bg_topscore	80
+region_8	mapflag	battleground	3
+region_8	mapflag	nomemo
+region_8	mapflag	nosave	SavePoint
+region_8	mapflag	noteleport
+region_8	mapflag	nowarp
+region_8	mapflag	nowarpto
+region_8	mapflag	noreturn
+region_8	mapflag	nobranch
+region_8	mapflag	nopenalty
+
+// Other Flags
+// *********************************************************************
+
+region_8,75,47,2	script	Croix Camp::TIF_Crox	722,{
+	end;
+OnEmblemTI:
+	FlagEmblem $@TierraTI_id2;
+	end;
+}
+
+region_8,75,52,2	duplicate(TIF_Crox)	Croix camp#ti_2	722
+
+region_8,24,47,6	script	Guillaume Camp::TIF_Guillaume	722,{
+	end;
+OnEmblemTI:
+	FlagEmblem $@TierraTI_id1;
+	end;
+}
+
+region_8,24,52,6	duplicate(TIF_Guillaume)	Guillaume camp#ti_2	722
+
+region_8,47,75,4	script	Traitor Camp::TIF_Traitor	722,{
+	end;
+OnEmblemTI:
+	FlagEmblem $@TierraTI_id3;
+	end;
+}
+
+region_8,52,75,4	duplicate(TIF_Traitor)	Traitor camp#ti_2	722
+
+// Battleground Therapist
+// *********************************************************************
+
+region_8,7,52,5	script	Therapist in battle#ti_1	95,{
+	switch( $@TierraTI )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+region_8,52,92,3	script	Therapist in battle#ti_2	95,{
+	switch( $@TierraTI )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+region_8,92,52,3	script	Therapist in battle#ti_3	95,{
+	switch( $@TierraTI )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+// Battleground Respawn
+// *********************************************************************
+
+region_8,49,89,0	script	#tti_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer19000:
+	misceffect 83;
+	end;
+
+OnTimer20000:
+	areapercentheal "region_8",46,86,53,93,100,100;
+	areawarp "region_8",46,86,53,93,"region_8",46,70,53,72;
+	initnpctimer;
+	end;
+}
+
+region_8,10,49,0	script	#gti_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "region_8",6,46,13,53,100,100;
+	areawarp "region_8",6,46,13,53,"region_8",27,46,29,53;
+	initnpctimer;
+	end;
+}
+
+region_8,89,49,0	script	#cti_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "region_8",86,46,93,53,100,100;
+	areawarp "region_8",86,46,93,53,"region_8",70,46,72,53;
+	initnpctimer;
+	end;
+}

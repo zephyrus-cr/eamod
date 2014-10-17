@@ -1,0 +1,154 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ginasio.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Passe Anti-Gravitacional para               |
+//   | "Ampliar o limite de peso".                            |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+payon,173,141,4	script	Ripped Cabus#GymPass	899,{
+	mes "[Ripped]";
+	mes "Opa! As pessoas não são";
+	mes "ativas fisicamente como";
+	mes "costumavam ser. Para você que luta";
+	mes "pela vida, seu corpo pode ficar";
+	mes "fraco e flácido em algumas partes.";
+	mes "Entende o que quero dizer?";
+	next;
+	mes "[Ripped]";
+	mes "Opa, treine comigo, eu posso";
+	mes "garantir que você vai ser ";
+	mes "capaz de levantar e transportar mais que o seu próprio peso.";
+	mes "Apenas me dê a sua ";
+	mes "^FF0000Passagem Antigravitacional^000000";
+	mes "e nós iremos muito bem.";
+	next;
+	mes "[Ripped]";
+	mes "Ma não fique tão animado,";
+	mes "não importa o quanto";
+	mes "você tenha treinado, jamais";
+	mes "exagere. Você já ouviu falar";
+	mes "em pessoas que tem muito pele?";
+	mes "É porque já estão mortas, consegue ver?";
+	next;
+	mes "[Ripped]";
+	mes "Eu digo que você estará seguro";
+	mes "se levar o meu treinamento";
+	mes "a sério, sendo que comigo você vai aumentar sua";
+	mes "capacidade de carregar itens em ^FF000010 vezes^000000.";
+	mes "Então... Está pronto para suar?";
+	next;
+	switch(select("Sim:Não:Hum, esse treinamento me desgasta.")) {
+	case 1:
+		if (gympassmemory < 10) {
+			set .@add_carry,gympassmemory + 1;
+			set .@remain_carry,10 - .@add_carry;
+			if (countitem(7776) > 0) {
+				mes "[Ripped]";
+				mes "Incrível, vejo que você";
+				mes "trouxe a sua Passagem Antigravitacional.";
+				mes "Certo, agora o que eu farei";
+				mes "é tentar sentir o fogo interior.";
+				mes "Está pronto? Vamos começar.";
+				next;
+				specialeffect2 EF_EARTHSPIKE;
+				next;
+				specialeffect2 EF_DEVIL;
+				next;
+				specialeffect2 EF_COIN;
+				next;
+				specialeffect2 EF_SIGHTRASHER;
+				next;
+				mes "[Ripped]";
+				mes "Dessa forma, você será capaz";
+				mes "de realizar mais tarefas.";
+				mes "Vamos ver, nós podemos aumentar sua";
+				mes "capacidade de carregar itens em";
+				mes "^FF00000" + .@remain_carry + "^000000 vezes, se continuarmos.";
+				mes "treinando juntos dessa forma.";
+				delitem 7776,1; // Passagem Antigravitacional
+				set gympassmemory,.@add_carry;
+				skill "ALL_INCCARRY",.@add_carry,0;
+				close;
+			} else {
+				mes "[Ripped]";
+				mes "Cara, você trouxe o que te pedi?";
+				mes "Você tem que me trazer a sua";
+				mes "^FF0000Passagem Antigravitacional^000000 se quiser";
+				mes "trabalhar para fortalecer";
+				mes "os seus músculos.";
+				close;
+			}
+		} else {
+			mes "[Ripped]";
+			mes "Cara, acho que não podemos";
+			mes "trabalhar em seus";
+			mes "músculos para aumentar mais que isso.";
+			mes "É perigoso para o seu";
+			mes "corpo se nós continuarmos a tentar. Vamos lá";
+			mes "eu falei para você sobre os limites.";
+			close;
+		}
+	case 2:
+		mes "[Ripped]";
+		mes "Ah, isso é muito ruim.";
+		mes "Bem, se você voltar a";
+		mes "mudar de idéia, converse com";
+		mes "seus amigos sobre mim,";
+		mes "caso eles estejam flácidos. Eu ajudarei eles";
+		mes "a entrar em forma.";
+		close;
+	case 3:
+		if (gympassmemory > 0) {
+			mes "[Ripped]";
+			mes "O que aconteceu?";
+			mes "Você deixou os seus";
+			mes "musculos atrofiarem?";
+			mes "Não existe nada igual ao um exercício";
+			mes "muscular. E não vai demorar tanto tempo";
+			mes "para reconstruir os músculos novamente...";
+			next;
+			specialeffect2 EF_EARTHSPIKE;
+			next;
+			specialeffect2 EF_DEVIL;
+			next;
+			specialeffect2 EF_COIN;
+			next;
+			specialeffect2 EF_SIGHTRASHER;
+			next;
+			mes "[Ripped]";
+			mes "Como está?";
+			mes "Seus músculos";
+			mes "creceram novamente";
+			mes "com isto! Não tente";
+			mes "novamente, ok?";
+			skill "ALL_INCCARRY",gympassmemory,0;
+			close;
+		} else {
+			mes "[Ripped]";
+			mes "Uhh...";
+			mes "Nosso trabalho não ";
+			mes "deu certo  antes.";
+			mes "Eu tenho certeza sobre isso.";
+			close;
+		}
+	}
+}

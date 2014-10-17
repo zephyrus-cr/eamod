@@ -1,0 +1,145 @@
+aev_fild01,141,237,5	script	Necoring	508,{
+
+	cutin "witch_alice_01",2;
+	set .@name$,"^10B2D2 Necoring ^000000";
+	mes .@name$;
+	mes " ";
+	mes "Quieres pintar tu LBH ???";
+	mes "Muy Bien aqui tienes!";
+	next;
+	cutin "witch_alice_02",2;
+	mes ".";
+	sleep2 600;
+	mes "..";
+	sleep2 600;
+	mes "...";
+	sleep2 600;
+	mes "....";
+	sleep2 600;
+	mes ".....";
+	sleep2 600;
+	mes "......";
+	next;
+
+	mes .@name$;
+	mes " ";
+	
+	if ( #NPCENBATROOM == 0 ) {
+
+		mes "Primero necesito que vayas a hablar con mi hermamo GG!";
+		mes "el se ubica en la esquina remota de Bat_Room";
+		cutin "", 255;
+		close;
+	}
+	if ( #NPCENBATROOM >= 1 ) 
+	{
+		mes "Oh!!! Mi hermano te dió la reseta !!";
+		cutin "witch_alice_03",2;
+		mes "Dímela!!!";
+		input .@RESETA$;
+		if ( .@RESETA$ == "Medio kilo de chupsui seco" ) {
+			mes " ^10B2D2 [ ~ ] ^000000 1/2 chupsui seco";
+			input .@RESETA2$;
+			if ( .@RESETA2$ == "Mondongo en salsa de espinaca" ) {
+				mes " ^10B2D2 [ ~ ] ^000000 Mondongo en salsa de espinaca";
+				input .@RESETA3$;
+				if ( .@RESETA3$ == "Y caldo de marisco encebollado" ) {
+					mes " ^10B2D2 [ ~ ] ^000000 Y caldo de marisco encebollado";	
+
+					next;
+					mes .@name$; 
+					mes " ";
+					if ( countitem(5011) < 40 || zeny < 1000000 || countitem(5518) < 1 ) {
+						mes "por ultimo traeme";
+						mes "Debes tener :";
+						mes "  ^10B2D2 [ ~ ] ^000000  40 " + getitemname(5011);
+						mes "  ^10B2D2 [ ~ ] ^000000  1 Millon de Zeny";
+ 						mes "  ^10B2D2 [ ~ ] ^000000  1 Large baphomet horn";
+
+						cutin "", 255;
+						close;
+					}
+	
+					mes "Que color las quieres??";
+					setarray .@Colores$[0],"Amarillos","Celestes","Azules","Blancos","Dorados","Lilas","Negros","Rojos","Rosados","Verdes Claros","Verdes";
+					setarray .@ID_color[0],      30020,     30021,   30022,    30023,    30024,  30025,   30026,  30027,    30028,          30030,   30031;
+
+					set .@Menu$, "";
+					for ( set .@i , 0; .@i < getarraysize(.@Colores$); set .@i , .@i + 1 ) 
+						set .@Menu$ , .@Menu$ + " ^10B2D2 [ > ] ^000000 " + .@Colores$[.@i] + ":";
+					set .@Eleccion , select(.@Menu$) - 1;
+
+					set zeny , zeny - 1000000;
+					delitem 5518,1;
+					set #NPCENBATROOM , 0;
+					delitem 5011,40;
+
+					getitem .@ID_color[.@Eleccion],1;
+					mes "Disfruta mi hat :3!!";
+					cutin "", 255;
+					close;
+
+				} 
+			}
+
+		}
+		next;
+		cutin "witch_alice_00",2;
+		mes .@name$;
+		mes "Esa no es la reseta T_T";
+		cutin "", 255;
+		close;
+	}
+}
+
+bat_room,119,119,3	script	Necro	508,{
+	if ( #NPCENBATROOM == 0 ) {
+		set .@name$ , "^10B2D2 Necoring ^000000";
+		mes .@name$; mes " ";
+		mes " Necroning : Mi hermano es un arrogante, siempre quiso mi reseta secreta";
+		next;
+		mes .@name$; mes " ";
+		mes strcharinfo(0) +" : Damela";
+		next;
+		mes .@name$; mes " ";
+		mes " Necroning : Naa...";
+		mes " .... ";
+		sleep2 500;
+		next;
+		mes .@name$; mes " ";
+		mes " Necroning : Aunque si me das 450 medallas de todas te la doy!!!";
+		next;
+		if ( countitem(7773) < 450 || countitem(7829) < 450 || countitem(7828) < 450 )
+		{
+			
+			mes .@name$;
+			mes "";
+			mes "jijiji adios!!";
+			close;
+	
+		}
+		delitem 7773,450;
+		delitem 7829,450;
+		delitem 7828,450;
+	}
+
+	mes .@name$;
+	mes " ";
+	mes "Apunta muy bien";
+	next;
+	mes .@name$; mes " ";
+	mes "^F60509 Medio kilo de chupsui seco ^000000";
+	next;
+	mes .@name$; mes " ";
+	mes "^F60509 Mondongo en salsa de espinaca ^000000";
+	next;
+	mes .@name$; mes " ";
+	mes "^F60509 Y caldo de marisco encebollado ^000000";
+	
+	next;
+	set #NPCENBATROOM , 1;
+	mes .@name$; mes " ";
+	mes "Gracias y suerte :D";
+	close;
+
+}

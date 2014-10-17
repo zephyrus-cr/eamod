@@ -1,0 +1,595 @@
+//===== eAthena Script ======================================= 
+//= Aldebaran Village - Housing for Rent
+//===== By: ================================================== 
+//= Zephyrus
+//===== Current Version: ===================================== 
+//= 1.0 10399
+//===== Compatible With: ===================================== 
+//= eAthena SVN Stable 
+//===== Description: ========================================= 
+//= Script que contiene el código para los mapas rent_mg.
+//= rentg1 y renting1 correspondientes a Aldebaran.
+//===== Additional Comments: ================================= 
+//= 1.0 Versión Inicial
+//============================================================ 
+
+//============================================================ 
+//= Warp de Acceso Principal
+//============================================================ 
+
+rent_mg,49,96,0	warp	rentgm1		1,1,mjolnir_12,374,379
+mjolnir_12,375,383,0	warp	rentgm2		1,1,rent_mg,49,92
+
+//============================================================ 
+//= Propietario, Letreros y Kafra
+//============================================================ 
+
+rent_mg,55,20,1	duplicate(BRent_Propietario)	Propietario#g	833
+mjolnir_12,371,382,3	duplicate(BRent_SignA)	Villas Aldebaran#g	837
+rent_mg,56,92,1	duplicate(BRent_SignB)	Letrero#g	835
+rent_mg,41,26,1	duplicate(BRent_Kafra)	Kafra Service#g	721
+
+//============================================================ 
+//= Accesos a Propiedades
+//============================================================ 
+
+rent_mg,36,35,1	duplicate(BRent_SignC)	Casa g1#g1	835
+rent_mg,65,35,1	duplicate(BRent_SignC)	Casa g2#g2	835
+rent_mg,36,40,1	duplicate(BRent_SignC)	Casa g3#g3	835
+rent_mg,65,40,1	duplicate(BRent_SignC)	Casa g4#g4	835
+rent_mg,36,45,1	duplicate(BRent_SignC)	Casa g5#g5	835
+rent_mg,65,45,1	duplicate(BRent_SignC)	Casa g6#g6	835
+rent_mg,36,50,1	duplicate(BRent_SignC)	Casa g7#g7	835
+rent_mg,65,50,1	duplicate(BRent_SignC)	Casa g8#g8	835
+rent_mg,36,55,1	duplicate(BRent_SignC)	Casa g9#g9	835
+rent_mg,65,55,1	duplicate(BRent_SignC)	Casa g10#g10	835
+rent_mg,36,60,1	duplicate(BRent_SignC)	Casa g11#g11	835
+rent_mg,65,60,1	duplicate(BRent_SignC)	Casa g12#g12	835
+rent_mg,36,65,1	duplicate(BRent_SignC)	Casa g13#g13	835
+rent_mg,65,65,1	duplicate(BRent_SignC)	Casa g14#g14	835
+rent_mg,36,70,1	duplicate(BRent_SignC)	Casa g15#g15	835
+rent_mg,65,70,1	duplicate(BRent_SignC)	Casa g16#g16	835
+rent_mg,36,75,1	duplicate(BRent_SignC)	Casa g17#g17	835
+rent_mg,65,75,1	duplicate(BRent_SignC)	Casa g18#g18	835
+rent_mg,36,80,1	duplicate(BRent_SignC)	Casa g19#g19	835
+rent_mg,65,80,1	duplicate(BRent_SignC)	Casa g20#g20	835
+rent_mg,36,85,1	duplicate(BRent_SignC)	Casa g21#g21	835
+rent_mg,65,85,1	duplicate(BRent_SignC)	Casa g22#g22	835
+
+//============================================================ 
+//= Warps rentb -> rent_mb (Salida a la Ciudad)
+//============================================================ 
+
+rentg1,20,2,0	warp	rentg101	1,1,rent_mg,50,27
+rentg2,20,2,0	warp	rentg201	1,1,rent_mg,50,27
+rentg3,20,2,0	warp	rentg301	1,1,rent_mg,50,27
+rentg4,20,2,0	warp	rentg401	1,1,rent_mg,50,27
+rentg5,20,2,0	warp	rentg501	1,1,rent_mg,50,27
+rentg6,20,2,0	warp	rentg601	1,1,rent_mg,50,27
+rentg7,20,2,0	warp	rentg701	1,1,rent_mg,50,27
+rentg8,20,2,0	warp	rentg801	1,1,rent_mg,50,27
+rentg9,20,2,0	warp	rentg901	1,1,rent_mg,50,27
+rentg10,20,2,0	warp	rentg1001	1,1,rent_mg,50,27
+rentg11,20,2,0	warp	rentg1101	1,1,rent_mg,50,27
+rentg12,20,2,0	warp	rentg1201	1,1,rent_mg,50,27
+rentg13,20,2,0	warp	rentg1301	1,1,rent_mg,50,27
+rentg14,20,2,0	warp	rentg1401	1,1,rent_mg,50,27
+rentg15,20,2,0	warp	rentg1501	1,1,rent_mg,50,27
+rentg16,20,2,0	warp	rentg1601	1,1,rent_mg,50,27
+rentg17,20,2,0	warp	rentg1701	1,1,rent_mg,50,27
+rentg18,20,2,0	warp	rentg1801	1,1,rent_mg,50,27
+rentg19,20,2,0	warp	rentg1901	1,1,rent_mg,50,27
+rentg20,20,2,0	warp	rentg2001	1,1,rent_mg,50,27
+rentg21,20,2,0	warp	rentg2101	1,1,rent_mg,50,27
+rentg22,20,2,0	warp	rentg2201	1,1,rent_mg,50,27
+
+//============================================================ 
+//= Warps rentb -> rentinb (Entrada a Indoors)
+//============================================================ 
+
+rentg1,26,19,0	warp	rentg102	1,1,renting1,15,7
+rentg2,26,19,0	warp	rentg202	1,1,renting2,15,7
+rentg3,26,19,0	warp	rentg302	1,1,renting3,15,7
+rentg4,26,19,0	warp	rentg402	1,1,renting4,15,7
+rentg5,26,19,0	warp	rentg502	1,1,renting5,15,7
+rentg6,26,19,0	warp	rentg602	1,1,renting6,15,7
+rentg7,26,19,0	warp	rentg702	1,1,renting7,15,7
+rentg8,26,19,0	warp	rentg802	1,1,renting8,15,7
+rentg9,26,19,0	warp	rentg902	1,1,renting9,15,7
+rentg10,26,19,0	warp	rentg1002	1,1,renting10,15,7
+rentg11,26,19,0	warp	rentg1102	1,1,renting11,15,7
+rentg12,26,19,0	warp	rentg1202	1,1,renting12,15,7
+rentg13,26,19,0	warp	rentg1302	1,1,renting13,15,7
+rentg14,26,19,0	warp	rentg1402	1,1,renting14,15,7
+rentg15,26,19,0	warp	rentg1502	1,1,renting15,15,7
+rentg16,26,19,0	warp	rentg1602	1,1,renting16,15,7
+rentg17,26,19,0	warp	rentg1702	1,1,renting17,15,7
+rentg18,26,19,0	warp	rentg1802	1,1,renting18,15,7
+rentg19,26,19,0	warp	rentg1902	1,1,renting19,15,7
+rentg20,26,19,0	warp	rentg2002	1,1,renting20,15,7
+rentg21,26,19,0	warp	rentg2102	1,1,renting21,15,7
+rentg22,26,19,0	warp	rentg2202	1,1,renting22,15,7
+
+//============================================================ 
+//= Warps rentinb -> rentb (Salida de Indoors)
+//============================================================ 
+
+renting1,16,4,0	warp	renting1	1,1,rentg1,26,15
+renting2,16,4,0	warp	renting2	1,1,rentg2,26,15
+renting3,16,4,0	warp	renting3	1,1,rentg3,26,15
+renting4,16,4,0	warp	renting4	1,1,rentg4,26,15
+renting5,16,4,0	warp	renting5	1,1,rentg5,26,15
+renting6,16,4,0	warp	renting6	1,1,rentg6,26,15
+renting7,16,4,0	warp	renting7	1,1,rentg7,26,15
+renting8,16,4,0	warp	renting8	1,1,rentg8,26,15
+renting9,16,4,0	warp	renting9	1,1,rentg9,26,15
+renting10,16,4,0	warp	renting10	1,1,rentg10,26,15
+renting11,16,4,0	warp	renting11	1,1,rentg11,26,15
+renting12,16,4,0	warp	renting12	1,1,rentg12,26,15
+renting13,16,4,0	warp	renting13	1,1,rentg13,26,15
+renting14,16,4,0	warp	renting14	1,1,rentg14,26,15
+renting15,16,4,0	warp	renting15	1,1,rentg15,26,15
+renting16,16,4,0	warp	renting16	1,1,rentg16,26,15
+renting17,16,4,0	warp	renting17	1,1,rentg17,26,15
+renting18,16,4,0	warp	renting18	1,1,rentg18,26,15
+renting19,16,4,0	warp	renting19	1,1,rentg19,26,15
+renting20,16,4,0	warp	renting20	1,1,rentg20,26,15
+renting21,16,4,0	warp	renting21	1,1,rentg21,26,15
+renting22,16,4,0	warp	renting22	1,1,rentg22,26,15
+
+//============================================================ 
+//= NPCs de OutDoor
+//============================================================ 
+
+//============================================================ 
+//= Manzano
+//============================================================ 
+
+rentg1,13,33,0	duplicate(BRent_AppleTree)	Manzano#g1	111
+rentg2,13,33,0	duplicate(BRent_AppleTree)	Manzano#g2	111
+rentg3,13,33,0	duplicate(BRent_AppleTree)	Manzano#g3	111
+rentg4,13,33,0	duplicate(BRent_AppleTree)	Manzano#g4	111
+rentg5,13,33,0	duplicate(BRent_AppleTree)	Manzano#g5	111
+rentg6,13,33,0	duplicate(BRent_AppleTree)	Manzano#g6	111
+rentg7,13,33,0	duplicate(BRent_AppleTree)	Manzano#g7	111
+rentg8,13,33,0	duplicate(BRent_AppleTree)	Manzano#g8	111
+rentg9,13,33,0	duplicate(BRent_AppleTree)	Manzano#g9	111
+rentg10,13,33,0	duplicate(BRent_AppleTree)	Manzano#g10	111
+rentg11,13,33,0	duplicate(BRent_AppleTree)	Manzano#g11	111
+rentg12,13,33,0	duplicate(BRent_AppleTree)	Manzano#g12	111
+rentg13,13,33,0	duplicate(BRent_AppleTree)	Manzano#g13	111
+rentg14,13,33,0	duplicate(BRent_AppleTree)	Manzano#g14	111
+rentg15,13,33,0	duplicate(BRent_AppleTree)	Manzano#g15	111
+rentg16,13,33,0	duplicate(BRent_AppleTree)	Manzano#g16	111
+rentg17,13,33,0	duplicate(BRent_AppleTree)	Manzano#g17	111
+rentg18,13,33,0	duplicate(BRent_AppleTree)	Manzano#g18	111
+rentg19,13,33,0	duplicate(BRent_AppleTree)	Manzano#g19	111
+rentg20,13,33,0	duplicate(BRent_AppleTree)	Manzano#g20	111
+rentg21,13,33,0	duplicate(BRent_AppleTree)	Manzano#g21	111
+rentg22,13,33,0	duplicate(BRent_AppleTree)	Manzano#g22	111
+
+//============================================================ 
+//= Activador de PVP en Mapa Outdoor
+//============================================================ 
+
+rentg1,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g1	837
+rentg2,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g2	837
+rentg3,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g3	837
+rentg4,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g4	837
+rentg5,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g5	837
+rentg6,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g6	837
+rentg7,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g7	837
+rentg8,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g8	837
+rentg9,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g9	837
+rentg10,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g10	837
+rentg11,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g11	837
+rentg12,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g12	837
+rentg13,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g13	837
+rentg14,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g14	837
+rentg15,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g15	837
+rentg16,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g16	837
+rentg17,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g17	837
+rentg18,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g18	837
+rentg19,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g19	837
+rentg20,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g20	837
+rentg21,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g21	837
+rentg22,9,20,3	duplicate(BRent_PVPSwitch)	Switch#g22	837
+
+//============================================================ 
+//= Mobs en el Outdoor
+//============================================================ 
+
+rentg1,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg2,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg3,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg4,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg5,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg6,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg7,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg8,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg9,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg10,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg11,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg12,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg13,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg14,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg15,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg16,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg17,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg18,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg19,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg20,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg21,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+rentg22,0,0,0,0	monster	Marse	1144,3,1800000,900000,0
+
+//============================================================ 
+//= Jardín
+//============================================================ 
+
+rentg1,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg1,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg1,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg1,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg1,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg2,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg2,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg2,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg2,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg2,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg3,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg3,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg3,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg3,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg3,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg4,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg4,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg4,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg4,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg4,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg5,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg5,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg5,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg5,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg5,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg6,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg6,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg6,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg6,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg6,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg7,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg7,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg7,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg7,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg7,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg8,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg8,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg8,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg8,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg8,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg9,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg9,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg9,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg9,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg9,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg10,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg10,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg10,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg10,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg10,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg11,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg11,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg11,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg11,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg11,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg12,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg12,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg12,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg12,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg12,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg13,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg13,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg13,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg13,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg13,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg14,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg14,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg14,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg14,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg14,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg15,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg15,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg15,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg15,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg15,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg16,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg16,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg16,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg16,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg16,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg17,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg17,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg17,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg17,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg17,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg18,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg18,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg18,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg18,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg18,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg19,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg19,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg19,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg19,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg19,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg20,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg20,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg20,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg20,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg20,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg21,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg21,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg21,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg21,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg21,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentg22,5,27,1,8	monster	Blue Plant	1079,5,39600000,39000000,0
+rentg22,5,27,1,8	monster	White Plant	1082,5,39600000,39000000,0
+rentg22,34,27,1,8	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentg22,34,27,1,8	monster	Green Plant	1080,5,39600000,39000000,0
+rentg22,19,34,12,1	monster	Red Plant	1078,5,39600000,39000000,0
+
+//============================================================ 
+//= NPCs de Indoor
+//============================================================ 
+
+//============================================================ 
+//= Camas
+//============================================================ 
+
+renting1,34,33,0	duplicate(BRent_Bed)	Descansar#gx1	111
+renting1,34,28,0	duplicate(BRent_Bed)	Descansar#gy1	111
+renting2,34,33,0	duplicate(BRent_Bed)	Descansar#gx2	111
+renting2,34,28,0	duplicate(BRent_Bed)	Descansar#gy2	111
+renting3,34,33,0	duplicate(BRent_Bed)	Descansar#gx3	111
+renting3,34,28,0	duplicate(BRent_Bed)	Descansar#gy3	111
+renting4,34,33,0	duplicate(BRent_Bed)	Descansar#gx4	111
+renting4,34,28,0	duplicate(BRent_Bed)	Descansar#gy4	111
+renting5,34,33,0	duplicate(BRent_Bed)	Descansar#gx5	111
+renting5,34,28,0	duplicate(BRent_Bed)	Descansar#gy5	111
+renting6,34,33,0	duplicate(BRent_Bed)	Descansar#gx6	111
+renting6,34,28,0	duplicate(BRent_Bed)	Descansar#gy6	111
+renting7,34,33,0	duplicate(BRent_Bed)	Descansar#gx7	111
+renting7,34,28,0	duplicate(BRent_Bed)	Descansar#gy7	111
+renting8,34,33,0	duplicate(BRent_Bed)	Descansar#gx8	111
+renting8,34,28,0	duplicate(BRent_Bed)	Descansar#gy8	111
+renting9,34,33,0	duplicate(BRent_Bed)	Descansar#gx9	111
+renting9,34,28,0	duplicate(BRent_Bed)	Descansar#gy9	111
+renting10,34,33,0	duplicate(BRent_Bed)	Descansar#gx10	111
+renting10,34,28,0	duplicate(BRent_Bed)	Descansar#gy10	111
+renting11,34,33,0	duplicate(BRent_Bed)	Descansar#gx11	111
+renting11,34,28,0	duplicate(BRent_Bed)	Descansar#gy11	111
+renting12,34,33,0	duplicate(BRent_Bed)	Descansar#gx12	111
+renting12,34,28,0	duplicate(BRent_Bed)	Descansar#gy12	111
+renting13,34,33,0	duplicate(BRent_Bed)	Descansar#gx13	111
+renting13,34,28,0	duplicate(BRent_Bed)	Descansar#gy13	111
+renting14,34,33,0	duplicate(BRent_Bed)	Descansar#gx14	111
+renting14,34,28,0	duplicate(BRent_Bed)	Descansar#gy14	111
+renting15,34,33,0	duplicate(BRent_Bed)	Descansar#gx15	111
+renting15,34,28,0	duplicate(BRent_Bed)	Descansar#gy15	111
+renting16,34,33,0	duplicate(BRent_Bed)	Descansar#gx16	111
+renting16,34,28,0	duplicate(BRent_Bed)	Descansar#gy16	111
+renting17,34,33,0	duplicate(BRent_Bed)	Descansar#gx17	111
+renting17,34,28,0	duplicate(BRent_Bed)	Descansar#gy17	111
+renting18,34,33,0	duplicate(BRent_Bed)	Descansar#gx18	111
+renting18,34,28,0	duplicate(BRent_Bed)	Descansar#gy18	111
+renting19,34,33,0	duplicate(BRent_Bed)	Descansar#gx19	111
+renting19,34,28,0	duplicate(BRent_Bed)	Descansar#gy19	111
+renting20,34,33,0	duplicate(BRent_Bed)	Descansar#gx20	111
+renting20,34,28,0	duplicate(BRent_Bed)	Descansar#gy20	111
+renting21,34,33,0	duplicate(BRent_Bed)	Descansar#gx21	111
+renting21,34,28,0	duplicate(BRent_Bed)	Descansar#gy21	111
+renting22,34,33,0	duplicate(BRent_Bed)	Descansar#gx22	111
+renting22,34,28,0	duplicate(BRent_Bed)	Descansar#gy22	111
+
+renting1,34,6,0	duplicate(BRent_Bed)	Descansar#gz1	111
+renting2,34,6,0	duplicate(BRent_Bed)	Descansar#gz2	111
+renting3,34,6,0	duplicate(BRent_Bed)	Descansar#gz3	111
+renting4,34,6,0	duplicate(BRent_Bed)	Descansar#gz4	111
+renting5,34,6,0	duplicate(BRent_Bed)	Descansar#gz5	111
+renting6,34,6,0	duplicate(BRent_Bed)	Descansar#gz6	111
+renting7,34,6,0	duplicate(BRent_Bed)	Descansar#gz7	111
+renting8,34,6,0	duplicate(BRent_Bed)	Descansar#gz8	111
+renting9,34,6,0	duplicate(BRent_Bed)	Descansar#gz9	111
+renting10,34,6,0	duplicate(BRent_Bed)	Descansar#gz10	111
+renting11,34,6,0	duplicate(BRent_Bed)	Descansar#gz11	111
+renting12,34,6,0	duplicate(BRent_Bed)	Descansar#gz12	111
+renting13,34,6,0	duplicate(BRent_Bed)	Descansar#gz13	111
+renting14,34,6,0	duplicate(BRent_Bed)	Descansar#gz14	111
+renting15,34,6,0	duplicate(BRent_Bed)	Descansar#gz15	111
+renting16,34,6,0	duplicate(BRent_Bed)	Descansar#gz16	111
+renting17,34,6,0	duplicate(BRent_Bed)	Descansar#gz17	111
+renting18,34,6,0	duplicate(BRent_Bed)	Descansar#gz18	111
+renting19,34,6,0	duplicate(BRent_Bed)	Descansar#gz19	111
+renting20,34,6,0	duplicate(BRent_Bed)	Descansar#gz20	111
+renting21,34,6,0	duplicate(BRent_Bed)	Descansar#gz21	111
+renting22,34,6,0	duplicate(BRent_Bed)	Descansar#gz22	111
+
+//============================================================ 
+//= Piano
+//============================================================ 
+
+renting1,16,11,0	duplicate(BRent_Piano)	Piano#g1	111
+renting2,16,11,0	duplicate(BRent_Piano)	Piano#g2	111
+renting3,16,11,0	duplicate(BRent_Piano)	Piano#g3	111
+renting4,16,11,0	duplicate(BRent_Piano)	Piano#g4	111
+renting5,16,11,0	duplicate(BRent_Piano)	Piano#g5	111
+renting6,16,11,0	duplicate(BRent_Piano)	Piano#g6	111
+renting7,16,11,0	duplicate(BRent_Piano)	Piano#g7	111
+renting8,16,11,0	duplicate(BRent_Piano)	Piano#g8	111
+renting9,16,11,0	duplicate(BRent_Piano)	Piano#g9	111
+renting10,16,11,0	duplicate(BRent_Piano)	Piano#g10	111
+renting11,16,11,0	duplicate(BRent_Piano)	Piano#g11	111
+renting12,16,11,0	duplicate(BRent_Piano)	Piano#g12	111
+renting13,16,11,0	duplicate(BRent_Piano)	Piano#g13	111
+renting14,16,11,0	duplicate(BRent_Piano)	Piano#g14	111
+renting15,16,11,0	duplicate(BRent_Piano)	Piano#g15	111
+renting16,16,11,0	duplicate(BRent_Piano)	Piano#g16	111
+renting17,16,11,0	duplicate(BRent_Piano)	Piano#g17	111
+renting18,16,11,0	duplicate(BRent_Piano)	Piano#g18	111
+renting19,16,11,0	duplicate(BRent_Piano)	Piano#g19	111
+renting20,16,11,0	duplicate(BRent_Piano)	Piano#g20	111
+renting21,16,11,0	duplicate(BRent_Piano)	Piano#g21	111
+renting22,16,11,0	duplicate(BRent_Piano)	Piano#g22	111
+
+//============================================================ 
+//= Armarios
+//============================================================ 
+
+renting1,26,26,0	duplicate(BRent_Storage)	Armario#gx1	111
+renting2,26,26,0	duplicate(BRent_Storage)	Armario#gx2	111
+renting3,26,26,0	duplicate(BRent_Storage)	Armario#gx3	111
+renting4,26,26,0	duplicate(BRent_Storage)	Armario#gx4	111
+renting5,26,26,0	duplicate(BRent_Storage)	Armario#gx5	111
+renting6,26,26,0	duplicate(BRent_Storage)	Armario#gx6	111
+renting7,26,26,0	duplicate(BRent_Storage)	Armario#gx7	111
+renting8,26,26,0	duplicate(BRent_Storage)	Armario#gx8	111
+renting9,26,26,0	duplicate(BRent_Storage)	Armario#gx9	111
+renting10,26,26,0	duplicate(BRent_Storage)	Armario#gx10	111
+renting11,26,26,0	duplicate(BRent_Storage)	Armario#gx11	111
+renting12,26,26,0	duplicate(BRent_Storage)	Armario#gx12	111
+renting13,26,26,0	duplicate(BRent_Storage)	Armario#gx13	111
+renting14,26,26,0	duplicate(BRent_Storage)	Armario#gx14	111
+renting15,26,26,0	duplicate(BRent_Storage)	Armario#gx15	111
+renting16,26,26,0	duplicate(BRent_Storage)	Armario#gx16	111
+renting17,26,26,0	duplicate(BRent_Storage)	Armario#gx17	111
+renting18,26,26,0	duplicate(BRent_Storage)	Armario#gx18	111
+renting19,26,26,0	duplicate(BRent_Storage)	Armario#gx19	111
+renting20,26,26,0	duplicate(BRent_Storage)	Armario#gx20	111
+renting21,26,26,0	duplicate(BRent_Storage)	Armario#gx21	111
+renting22,26,26,0	duplicate(BRent_Storage)	Armario#gx22	111
+
+renting1,24,4,0	duplicate(BRent_Storage)	Armario#gy1	111
+renting2,24,4,0	duplicate(BRent_Storage)	Armario#gy2	111
+renting3,24,4,0	duplicate(BRent_Storage)	Armario#gy3	111
+renting4,24,4,0	duplicate(BRent_Storage)	Armario#gy4	111
+renting5,24,4,0	duplicate(BRent_Storage)	Armario#gy5	111
+renting6,24,4,0	duplicate(BRent_Storage)	Armario#gy6	111
+renting7,24,4,0	duplicate(BRent_Storage)	Armario#gy7	111
+renting8,24,4,0	duplicate(BRent_Storage)	Armario#gy8	111
+renting9,24,4,0	duplicate(BRent_Storage)	Armario#gy9	111
+renting10,24,4,0	duplicate(BRent_Storage)	Armario#gy10	111
+renting11,24,4,0	duplicate(BRent_Storage)	Armario#gy11	111
+renting12,24,4,0	duplicate(BRent_Storage)	Armario#gy12	111
+renting13,24,4,0	duplicate(BRent_Storage)	Armario#gy13	111
+renting14,24,4,0	duplicate(BRent_Storage)	Armario#gy14	111
+renting15,24,4,0	duplicate(BRent_Storage)	Armario#gy15	111
+renting16,24,4,0	duplicate(BRent_Storage)	Armario#gy16	111
+renting17,24,4,0	duplicate(BRent_Storage)	Armario#gy17	111
+renting18,24,4,0	duplicate(BRent_Storage)	Armario#gy18	111
+renting19,24,4,0	duplicate(BRent_Storage)	Armario#gy19	111
+renting20,24,4,0	duplicate(BRent_Storage)	Armario#gy20	111
+renting21,24,4,0	duplicate(BRent_Storage)	Armario#gy21	111
+renting22,24,4,0	duplicate(BRent_Storage)	Armario#gy22	111
+
+//============================================================ 
+//= Teléfono Servicio
+//============================================================ 
+
+renting1,17,14,3	duplicate(BRent_Call)	Servicios#g1	858
+renting2,17,14,3	duplicate(BRent_Call)	Servicios#g2	858
+renting3,17,14,3	duplicate(BRent_Call)	Servicios#g3	858
+renting4,17,14,3	duplicate(BRent_Call)	Servicios#g4	858
+renting5,17,14,3	duplicate(BRent_Call)	Servicios#g5	858
+renting6,17,14,3	duplicate(BRent_Call)	Servicios#g6	858
+renting7,17,14,3	duplicate(BRent_Call)	Servicios#g7	858
+renting8,17,14,3	duplicate(BRent_Call)	Servicios#g8	858
+renting9,17,14,3	duplicate(BRent_Call)	Servicios#g9	858
+renting10,17,14,3	duplicate(BRent_Call)	Servicios#g10	858
+renting11,17,14,3	duplicate(BRent_Call)	Servicios#g11	858
+renting12,17,14,3	duplicate(BRent_Call)	Servicios#g12	858
+renting13,17,14,3	duplicate(BRent_Call)	Servicios#g13	858
+renting14,17,14,3	duplicate(BRent_Call)	Servicios#g14	858
+renting15,17,14,3	duplicate(BRent_Call)	Servicios#g15	858
+renting16,17,14,3	duplicate(BRent_Call)	Servicios#g16	858
+renting17,17,14,3	duplicate(BRent_Call)	Servicios#g17	858
+renting18,17,14,3	duplicate(BRent_Call)	Servicios#g18	858
+renting19,17,14,3	duplicate(BRent_Call)	Servicios#g19	858
+renting20,17,14,3	duplicate(BRent_Call)	Servicios#g20	858
+renting21,17,14,3	duplicate(BRent_Call)	Servicios#g21	858
+renting22,17,14,3	duplicate(BRent_Call)	Servicios#g22	858
+
+//============================================================ 
+//= Alice Limpieza
+//============================================================ 
+
+renting1,14,22,3	duplicate(BRent_Alice)	Alice#g1	1275
+renting2,14,22,3	duplicate(BRent_Alice)	Alice#g2	1275
+renting3,14,22,3	duplicate(BRent_Alice)	Alice#g3	1275
+renting4,14,22,3	duplicate(BRent_Alice)	Alice#g4	1275
+renting5,14,22,3	duplicate(BRent_Alice)	Alice#g5	1275
+renting6,14,22,3	duplicate(BRent_Alice)	Alice#g6	1275
+renting7,14,22,3	duplicate(BRent_Alice)	Alice#g7	1275
+renting8,14,22,3	duplicate(BRent_Alice)	Alice#g8	1275
+renting9,14,22,3	duplicate(BRent_Alice)	Alice#g9	1275
+renting10,14,22,3	duplicate(BRent_Alice)	Alice#g10	1275
+renting11,14,22,3	duplicate(BRent_Alice)	Alice#g11	1275
+renting12,14,22,3	duplicate(BRent_Alice)	Alice#g12	1275
+renting13,14,22,3	duplicate(BRent_Alice)	Alice#g13	1275
+renting14,14,22,3	duplicate(BRent_Alice)	Alice#g14	1275
+renting15,14,22,3	duplicate(BRent_Alice)	Alice#g15	1275
+renting16,14,22,3	duplicate(BRent_Alice)	Alice#g16	1275
+renting17,14,22,3	duplicate(BRent_Alice)	Alice#g17	1275
+renting18,14,22,3	duplicate(BRent_Alice)	Alice#g18	1275
+renting19,14,22,3	duplicate(BRent_Alice)	Alice#g19	1275
+renting20,14,22,3	duplicate(BRent_Alice)	Alice#g20	1275
+renting21,14,22,3	duplicate(BRent_Alice)	Alice#g21	1275
+renting22,14,22,3	duplicate(BRent_Alice)	Alice#g22	1275
+
+//============================================================ 
+//= Cambio de Ropa
+//============================================================ 
+
+renting1,27,34,0	duplicate(BRent_Closet)	Closet#gx1	111
+renting2,27,34,0	duplicate(BRent_Closet)	Closet#gx2	111
+renting3,27,34,0	duplicate(BRent_Closet)	Closet#gx3	111
+renting4,27,34,0	duplicate(BRent_Closet)	Closet#gx4	111
+renting5,27,34,0	duplicate(BRent_Closet)	Closet#gx5	111
+renting6,27,34,0	duplicate(BRent_Closet)	Closet#gx6	111
+renting7,27,34,0	duplicate(BRent_Closet)	Closet#gx7	111
+renting8,27,34,0	duplicate(BRent_Closet)	Closet#gx8	111
+renting9,27,34,0	duplicate(BRent_Closet)	Closet#gx9	111
+renting10,27,34,0	duplicate(BRent_Closet)	Closet#gx10	111
+renting11,27,34,0	duplicate(BRent_Closet)	Closet#gx11	111
+renting12,27,34,0	duplicate(BRent_Closet)	Closet#gx12	111
+renting13,27,34,0	duplicate(BRent_Closet)	Closet#gx13	111
+renting14,27,34,0	duplicate(BRent_Closet)	Closet#gx14	111
+renting15,27,34,0	duplicate(BRent_Closet)	Closet#gx15	111
+renting16,27,34,0	duplicate(BRent_Closet)	Closet#gx16	111
+renting17,27,34,0	duplicate(BRent_Closet)	Closet#gx17	111
+renting18,27,34,0	duplicate(BRent_Closet)	Closet#gx18	111
+renting19,27,34,0	duplicate(BRent_Closet)	Closet#gx19	111
+renting20,27,34,0	duplicate(BRent_Closet)	Closet#gx20	111
+renting21,27,34,0	duplicate(BRent_Closet)	Closet#gx21	111
+renting22,27,34,0	duplicate(BRent_Closet)	Closet#gx22	111
+
+renting1,34,10,0	duplicate(BRent_Closet)	Closet#gy1	111
+renting2,34,10,0	duplicate(BRent_Closet)	Closet#gy2	111
+renting3,34,10,0	duplicate(BRent_Closet)	Closet#gy3	111
+renting4,34,10,0	duplicate(BRent_Closet)	Closet#gy4	111
+renting5,34,10,0	duplicate(BRent_Closet)	Closet#gy5	111
+renting6,34,10,0	duplicate(BRent_Closet)	Closet#gy6	111
+renting7,34,10,0	duplicate(BRent_Closet)	Closet#gy7	111
+renting8,34,10,0	duplicate(BRent_Closet)	Closet#gy8	111
+renting9,34,10,0	duplicate(BRent_Closet)	Closet#gy9	111
+renting10,34,10,0	duplicate(BRent_Closet)	Closet#gy10	111
+renting11,34,10,0	duplicate(BRent_Closet)	Closet#gy11	111
+renting12,34,10,0	duplicate(BRent_Closet)	Closet#gy12	111
+renting13,34,10,0	duplicate(BRent_Closet)	Closet#gy13	111
+renting14,34,10,0	duplicate(BRent_Closet)	Closet#gy14	111
+renting15,34,10,0	duplicate(BRent_Closet)	Closet#gy15	111
+renting16,34,10,0	duplicate(BRent_Closet)	Closet#gy16	111
+renting17,34,10,0	duplicate(BRent_Closet)	Closet#gy17	111
+renting18,34,10,0	duplicate(BRent_Closet)	Closet#gy18	111
+renting19,34,10,0	duplicate(BRent_Closet)	Closet#gy19	111
+renting20,34,10,0	duplicate(BRent_Closet)	Closet#gy20	111
+renting21,34,10,0	duplicate(BRent_Closet)	Closet#gy21	111
+renting22,34,10,0	duplicate(BRent_Closet)	Closet#gy22	111

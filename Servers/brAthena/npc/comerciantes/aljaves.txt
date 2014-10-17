@@ -1,0 +1,138 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Negociador de Aljaves de Flechas       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Troca Flechas por Aljaves.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Mark]                              |
+//   | 1.2 Otimização [Mark & Clare]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+payon_in01,5,134,5	script	Inventor Jaax	89,{
+	mes "[Inventor Jaax]";
+	if (checkweight(1201,1) == 0 || (MaxWeight-Weight) < 2000) {
+		mes "Ei, você está carregando muitas coisas.";
+		mes "Por que você não guarda suas coisas no Armazém da Kafra? Podemos conversar após você ter feito isso, certo?";
+		close;
+	}
+	mes "Meu nome é Jaxx.";
+	mes "Sem dúvidas, posso dizer que sou o ^663300maior inventor dos últimos tempos^000000.";
+	next;
+	mes "[Inventor Jaxx]";
+	mes "Atualmente, eu tenho criado algo verdadeiramente extraordinário.";
+	mes "Eu os chamo de... ^663300Aljaves Mágicos^000000 !!";
+	mes "Isto será lembrado na história por uma Revolução das Flechas!";
+	Emotion e_no1;
+	next;
+	mes "[Inventor Jaax]";
+	mes "Eu estudei magia e aljaves durante anos, trabalhando noite e dia até que finalmente descobri como condensar flechas com magia! Com Aljaves Mágicos, você estará transportando mais flechas, mas com menos peso!";
+	next;
+	mes "[Inventor Jaax]";
+	mes "Você gostaria de tentar usar um dos meu Aljaves Mágicos? Não tenho dúvidas que alguém como você pode apreciar minha geniosidade!";
+	next;
+	switch(select("Aljave de Flechas:Aljave de Flechas de Ferro:Aljave de Flechas de Aço:Aljave de Flechas de Oridecon:Aljave de Flechas de Fogo:Aljave de Flechas de Prata:Aljave de Flechas de Vento:Aljave de Flechas de Pedra:Aljave de Flechas de Cristal:Aljave de Flechas Sombrias:Aljave de Flechas Incorpóreas:Aljave de Flechas Enferrujadas")) {
+		case 1: callsub S_BuyQuiver,1750,12004;
+		case 2: callsub S_BuyQuiver,1770,12005;
+		case 3: callsub S_BuyQuiver,1753,12006;
+		case 4: callsub S_BuyQuiver,1765,12007;
+		case 5: callsub S_BuyQuiver,1752,12008;
+		case 6: callsub S_BuyQuiver,1751,12009;
+		case 7: callsub S_BuyQuiver,1755,12010;
+		case 8: callsub S_BuyQuiver,1756,12011;
+		case 9: callsub S_BuyQuiver,1754,12012;
+		case 10: callsub S_BuyQuiver,1767,12013;
+		case 11: callsub S_BuyQuiver,1757,12014;
+		case 12: callsub S_BuyQuiver,1762,12015;
+	}
+
+S_BuyQuiver:
+	mes "[Inventor Jaax]";
+	if (countitem(getarg(0)) > 499) {
+		mes "Excelente!";
+		mes "As flechas estão com você! Irei lhe providenciar um Aljave que pode carregar 500 de suas "+getitemname(getarg(0))+" por apenas^FF3131 500 Zeny^000000.";
+		next;
+		switch(select("Guardar quantas Flechas possíveis em Aljaves:Comprar 1 Aljave:Cancelar")) {
+		case 1:
+			set .@arrows,countitem(getarg(0));
+			set .@quiver,.@arrows / 500;
+			set .@arrows_used,.@quiver * 500;
+			set .@arrow_zeny01,.@quiver * 500;
+			mes "Número de";
+			mes "Flechas: ^3131FF"+.@arrows+" ^000000";
+			mes "Número máximo que pode ser comprado de";
+			mes "Aljaves: ^3131FF"+.@quiver+" ^000000";
+			mes "Zeny requerido: ^3131FF"+.@arrow_zeny01+" Zeny^000000";
+			next;
+			mes "[Inventor Jaax]";
+			mes "Você gostaria de comprar quantos Aljaves possíveis para as Flechas que você está carregando?";
+			next;
+			if (select("Sim:Cancelar") == 1) {
+				mes "[Inventor Jaax]";
+				if (.@arrow_zeny01 < Zeny) {
+					mes "Aqui estão!";
+					mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
+					set zeny,zeny-.@arrow_zeny01;
+					delitem getarg(0),.@arrows_used; //Flechas
+					getitem getarg(1),.@quiver; //Aljaves
+					next;
+					mes "[Inventor Jaax]";
+					mes "Então...";
+					mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
+					close;
+				}
+					mes "Me desculpe, mas você não tem Zeny o suficiente.";
+					mes "Eu não posso dá-las por nada depois de anos de trabalho para criar essa tecnologia revolucionária!";
+					close;
+			}
+			mes "[Inventor Jaax]";
+			mes "Você mudou de idéia?";
+			mes "Logo agora que a glória de possuir um Aljave estava tão perto?";
+			close;
+		case 2:
+			mes "[Inventor Jaax]";
+			if (zeny > 500) {
+				mes "Aqui está!";
+				mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
+				set zeny,zeny-500;
+				delitem getarg(0),500; // Flecha
+				getitem getarg(1),1; // Aljave
+				next;
+				mes "[Inventor Jaax]";
+				mes "Então...";
+				mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
+				close;
+			}
+				mes "Você não tem nem 500 Zeny?";
+				mes "Me desculpe. Eu não tinha idéia que você era tão...";
+				mes "^333333Desprovido^000000.";
+				close;
+		case 3:
+			mes "[Inventor Jaax]";
+			mes "O que...?";
+			mes "Você não viu que essa invenção pode mudar para sempre a forma que as Flechas são carregadas?! O Futuro é agora!";
+			close;
+		}
+	}
+	mes "Você pode carregar no máximo 500 Flechas dentro deste Aljave. Isso foi feito usando meu método secreto,";
+	mes "para que o peso total de Flechas e Aljaves juntos é menor do que se carregasse apenas Flechas.";
+	next;
+	mes "[Inventor Jaax]";
+	mes "Isso é um Milagre da Ciência! Você mesmo pode experimentar se você me trazer no mínimo 500 Flechas e 500 Zeny para cada Aljave.";
+	close;
+}

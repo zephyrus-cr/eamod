@@ -1,0 +1,46 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: status_dos_selos.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Status de selo dos Item dos Deuses.         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,113,294,3	script	Selos	837,{
+	mes "======== Condição dos Selos ========";
+	setarray .@n$[1], "Sleipnir","Megingjard","Brisingamen","Mjolnir";
+	for(set .@i,1; .@i<5; set .@i,.@i+1) {
+		if (getd("$god"+.@i) == 0) mes .@n$[.@i]+" Selo: Fechado";
+		else if (getd("$god"+.@i) < 50) mes .@n$[.@i]+" Selo: Disponível";
+		else if (getd("$god"+.@i) < 100) mes .@n$[.@i]+" Selo: Apareceu";
+		else mes .@n$[.@i]+" Selo: Liberado";
+	}
+	mes " ";
+	mes "======= Seu Status dos Selos ========";
+	if (god_sl_1 < 51) mes "^ff0000Selo de Sleipnir: Incompleto^000000";
+		else mes "^00ff00Selo de Sleipnir: Completo^000000";
+	if (god_eremes < 28) mes "^ff0000Selo de Megingjard: Incompleto^000000";
+		else mes "^00ff00Selo de Megingjard: Completo^000000";
+	if (god_brising < 50) mes "^ff0000Selo de Brisingamen: Incompleto^000000";
+		else mes "^00ff00Selo de Brisingamen: Completo^000000";
+	if (god_mjo_0 < 11) mes "^ff0000Selo de Mjolnir: Incompleto^000000";
+		else mes "^00ff00Selo de Mjolnir: Completo^000000";
+	close;
+}

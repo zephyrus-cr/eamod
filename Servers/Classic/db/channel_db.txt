@@ -1,0 +1,32 @@
+// Channel Database
+// =====================================================
+// Structure:
+// <channel name>,<channel password>,<type>,<color>,<operator id>
+// =====================================================
+// Channel Name: unique, and need to start with #
+// =====================================================
+// Type:
+// 0 = Main Channel (unique)
+// 1 = Vending Channel (unique) - display announces about vending openings, card drops, refine events and more.
+// 2 = Battleground Channel (unique) - display announces about battleground events
+// 3 = Game Master Channel (unique) - reserved for gamemasters only and allow to invite normal players using .invite
+// 4 = User Channel (reserved, cannot create here) Only available with @create
+// 5 = Server Channel
+// =====================================================
+// Color: value from 0 to 38
+//  0 = 0x8B0000,  1 = 0xFF0000,  2 = 0xFF00FF,  3 = 0xFFC0CB,
+//  4 = 0xA0522D,  5 = 0xFF8C00,  6 = 0xF4A460,  7 = 0xFFA500,  8 = 0xF5DEB3,
+//  9 = 0x556B2F, 10 = 0x808000, 11 = 0x9ACD32, 12 = 0xFFFF00, 13 = 0xFFFACD,
+// 14 = 0x006400, 15 = 0x008000, 16 = 0x2E8B57, 17 = 0x00FF00, 18 = 0x98FB98,
+// 19 = 0x483D8B, 20 = 0x008080, 21 = 0x48D1CC, 22 = 0x00FFFF, 23 = 0xAFEEEE,
+// 24 = 0x000080, 25 = 0x0000FF, 26 = 0x4169E1, 27 = 0x00BFFF, 28 = 0xADD8E6,
+// 29 = 0x4B0082, 30 = 0x708090, 31 = 0x800080, 32 = 0x9932CC, 33 = 0xDDA0DD,
+// 34 = 0x2F4F4F, 35 = 0x696969, 36 = 0x808080, 37 = 0xC0C0C0, 38 = 0xFFFFFF
+// =====================================================
+// Operator ID: Usable only for Server channels. The account ID of the channel operator.
+
+#main,,0,38,0
+#vending,,1,38,0
+#bg,,2,38,0
+#gm,,3,38,0
+// #sampleguild,qwerty,5,4,2000025

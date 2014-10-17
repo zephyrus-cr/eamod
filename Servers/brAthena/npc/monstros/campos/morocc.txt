@@ -1,0 +1,495 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: morocc.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.7/1.7/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros dos Campos de Morocc.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] moc_fild01 - Deserto de Sograt
+//==================================================
+moc_fild01,0,0,0,0	monster#pre	Filhote de Lobo do Deserto	1107,70,0,0,0
+moc_fild01,0,0,0,0	monster#pre	Ovo de Andre	1097,20,0,0,0
+moc_fild01,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,20,0,0,0
+moc_fild01,0,0,0,0	monster#pre	Picky	1049,10,0,0,0
+moc_fild01,0,0,0,0	monster#pre	Drops	1113,30,0,0,0
+moc_fild01,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
+moc_fild01,194,51,10,10	monster#pre	Planta Amarela	1081,10,900000,450000,1,{}
+
+//==================================================
+// [Renovação] moc_fild01 - Deserto Sograt 
+//==================================================
+moc_fild01,0,0,0,0	monster#re	Peco Peco	1019,130,5000,0,0
+moc_fild01,0,0,0,0	monster#re	Muka	1055,50,5000,0,0
+moc_fild01,0,0,0,0	monster#re	Ovo de Peco Peco	1047,20,5000,0,0
+moc_fild01,194,51,10,10	monster#re	Planta Amarela	1081,10,900000,450000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild02 - Deserto de Sograt
+//==================================================
+moc_fild02,0,0,0,0	monster#pre	Peco Peco	1019,70,0,0,0
+moc_fild02,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+moc_fild02,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,40,0,0,0
+moc_fild02,0,0,0,0	monster#pre	Picky	1049,10,0,0,0
+moc_fild02,0,0,0,0	monster#pre	Drops	1113,30,0,0,0
+moc_fild02,89,315,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,99,261,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,94,195,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,139,222,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,132,307,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,194,294,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,275,241,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,342,267,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,359,215,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,313,149,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,230,62,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,299,61,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,353,103,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+moc_fild02,337,35,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild02 - Deserto Sograt 
+//==================================================
+moc_fild02,0,0,0,0	monster#re	Muka	1055,130,5000,0,0
+moc_fild02,0,0,0,0	monster#re	Peco Peco	1019,60,5000,0,0
+moc_fild02,0,0,0,0	monster#re	Ovo de Peco Peco	1047,10,5000,0,0
+moc_fild02,89,315,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,99,261,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,94,195,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,139,222,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,132,307,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,194,294,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,275,241,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild02,342,267,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,359,215,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,313,149,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,230,62,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,299,61,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,353,103,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+moc_fild02,337,35,0,0	monster#re	Planta Verde	1080,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild03 - Deserto de Sograt
+//==================================================
+moc_fild03,0,0,0,0	monster#pre	Salgueiro Ancião	1033,70,0,0,0
+moc_fild03,0,0,0,0	monster#pre	Guardião da Floresta	1277,30,0,0,0
+moc_fild03,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
+moc_fild03,0,0,0,0	monster#pre	Eggyra	1116,10,0,0,0
+moc_fild03,0,0,0,0	monster#pre	Salgueiro	1010,20,0,0,0
+moc_fild03,0,0,0,0	monster#pre	Lobo Errante	1092,1,1800000,1200000,0
+moc_fild03,77,311,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,108,199,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,96,65,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,216,69,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,261,161,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,213,201,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1
+moc_fild03,200,263,5,5	monster#pre	Planta Verde	1080,2,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild03 - Deserto Sograt
+//==================================================
+moc_fild03,0,0,0,0	monster#re	Lobo	1013,140,5000,0,0
+moc_fild03,0,0,0,0	monster#re	Argos	1100,20,5000,0,0
+moc_fild03,0,0,0,0	monster#re	Chonchon de Aço	1042,20,5000,0,0
+moc_fild03,77,311,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,108,199,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,96,65,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,216,69,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,261,161,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,213,201,5,5	monster#re	Planta Verde	1080,2,180000,90000,1
+moc_fild03,200,263,5,5	monster#re	Planta Verde	1080,2,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild04 - Deserto de Sograt
+//==================================================
+//moc_fild04,0,0,0,0	monster#pre	Lobo do Deserto	1106,20,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Escorpião	1001,30,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Metaller	1058,20,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Magnolia	1138,40,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Andre	1095,20,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Deniro	1105,20,0,0,0
+//moc_fild04,0,0,0,0	monster#pre	Piere	1160,20,0,0,0
+//moc_fild04,313,84,10,10	monster#pre	Planta Amarela	1081,10,900000,450000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild05 - Deserto de Sograt
+//==================================================
+//moc_fild05,0,0,0,0	monster#pre	Magnolia	1138,30,0,0,0
+//moc_fild05,0,0,0,0	monster#pre	Metaller	1058,20,0,0,0
+//moc_fild05,0,0,0,0	monster#pre	Golem	1040,70,0,0,0
+//moc_fild05,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild05,208,233,10,10	monster#pre	Planta Amarela	1081,5,360000,180000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild06 - Deserto de Sograt
+//==================================================
+//moc_fild06,0,0,0,0	monster#pre	Peco Peco	1019,85,0,0,0
+//moc_fild06,0,0,0,0	monster#pre	Muka	1055,30,0,0,0
+//moc_fild06,0,0,0,0	monster#pre	Condor	1009,50,0,0,0
+//moc_fild06,0,0,0,0	monster#pre	Magnolia	1138,10,0,0,0
+//moc_fild06,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild06,193,203,10,10	monster#pre	Planta Amarela	1081,10,900000,450000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild07 - Deserto de Sograt
+//==================================================
+moc_fild07,0,0,0,0	monster#pre	Drops	1113,70,0,0,0
+moc_fild07,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,50,0,0,0
+moc_fild07,0,0,0,0	monster#pre	Picky	1050,30,0,0,0
+moc_fild07,0,0,0,0	monster#pre	Picky	1049,30,0,0,0
+moc_fild07,162,333,12,12	monster#pre	Planta Amarela	1081,5,360000,180000,1,{}
+
+//==================================================
+// [Renovação] moc_fild07 - Deserto Sograt
+//==================================================
+moc_fild07,0,0,0,0	monster#re	Drops	1113,140,5000,0,0
+moc_fild07,0,0,0,0	monster#re	Chonchon	1011,30,5000,0,0
+moc_fild07,0,0,0,0	monster#re	Picky	1050,15,5000,0,0
+moc_fild07,0,0,0,0	monster#re	Ovo de Peco Peco	1047,10,5000,0,0
+moc_fild07,0,0,0,0	monster#re	Picky	1049,10,5000,0,0
+moc_fild07,162,333,12,12	monster#re	Planta Amarela	1081,5,360000,180000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild08 - Deserto de Sograt
+//==================================================
+//moc_fild08,0,0,0,0	monster#pre	Magnolia	1138,30,0,0,0
+//moc_fild08,0,0,0,0	monster#pre	Escorpião	1001,80,0,0,0
+//moc_fild08,0,0,0,0	monster#pre	Lobo do Deserto	1106,30,0,0,0
+//moc_fild08,0,0,0,0	monster#pre	Anacondaq	1030,30,0,0,0
+//moc_fild08,0,0,0,0	monster#pre	Filhote de Lobo do Deserto	1107,10,0,0,0,{}
+//moc_fild08,0,0,0,0	monster#pre	Drops	1113,10,0,0,0
+
+//==================================================
+// [Pré-Renovação] moc_fild09 - Deserto de Sograt
+//==================================================
+//moc_fild09,0,0,0,0	monster#pre	Lobo do Deserto	1106,10,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Metaller	1058,70,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Magnolia	1138,50,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Andre	1095,5,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Deniro	1105,5,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Piere	1160,5,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild09,0,0,0,0	monster#pre	Frilldora	1119,6,0,0,0
+//moc_fild09,332,341,5,5	monster#pre	Planta Amarela	1081,2,180000,90000,1
+//moc_fild09,240,313,5,5	monster#pre	Planta Amarela	1081,2,180000,90000,1
+//moc_fild09,305,62,5,5	monster#pre	Planta Amarela	1081,2,180000,90000,1
+//moc_fild09,64,78,5,5	monster#pre	Planta Amarela	1081,2,180000,90000,1
+//moc_fild09,54,325,5,5	monster#pre	Planta Amarela	1081,2,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild10 - Deserto de Sograt
+//==================================================
+//moc_fild10,0,0,0,0	monster#pre	Drops	1113,30,0,0,0
+//moc_fild10,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,70,0,0,0
+//moc_fild10,0,0,0,0	monster#pre	Picky	1049,50,0,0,0
+//moc_fild10,0,0,0,0	monster#pre	Picky	1050,50,0,0,0
+//moc_fild10,0,0,0,0	monster#pre	Magnolia	1138,1,0,0,0
+//moc_fild10,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild10,198,150,40,30	monster#pre	Planta Amarela	1081,10,180000,90000,1
+//moc_fild10,198,150,40,30	monster#pre	Planta Verde	1080,5,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild11 - Deserto de Sograt
+//==================================================
+moc_fild11,0,0,0,0	monster#pre	Hode	1127,10,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Golem	1040,70,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Andre	1095,10,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Deniro	1105,10,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Piere	1160,10,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Magnolia	1138,20,0,0,0
+moc_fild11,0,0,0,0	monster#pre	Muka	1055,20,0,0,0
+moc_fild11,197,216,0,0	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
+
+//==================================================
+// [Renovação] moc_fild11 - Deserto Sograt
+//==================================================
+moc_fild11,0,0,0,0	monster#re	Filhote de Lobo	1107,140,5000,0,0
+moc_fild11,0,0,0,0	monster#re	Condor	1009,30,5000,0,0
+moc_fild11,0,0,0,0	monster#re	Escorpião	1001,30,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild12 - Deserto de Sograt
+//==================================================
+moc_fild12,0,0,0,0	monster#pre	Picky	1050,50,0,0,0
+moc_fild12,0,0,0,0	monster#pre	Picky	1049,50,0,0,0
+moc_fild12,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,35,0,0,0
+moc_fild12,0,0,0,0	monster#pre	Drops	1113,35,0,0,0
+moc_fild12,181,336,40,20	monster#pre	Planta Amarela	1081,10,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild12 - Deserto Sograt 
+//==================================================
+moc_fild12,0,0,0,0	monster#re	Picky	1049,50,5000,0,0
+moc_fild12,0,0,0,0	monster#re	Picky	1050,50,5000,0,0
+moc_fild12,0,0,0,0	monster#re	Ovo de Peco Peco	1047,35,5000,0,0
+moc_fild12,0,0,0,0	monster#re	Drops	1113,30,5000,0,0
+moc_fild12,0,0,0,0	monster#re	Condor	1009,30,5000,0,0
+moc_fild12,181,336,40,20	monster#re	Planta Amarela	1081,10,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild13 - Deserto de Sograt
+//==================================================
+moc_fild13,0,0,0,0	monster#pre	Lobo do Deserto	1106,30,0,0,0
+moc_fild13,0,0,0,0	monster#pre	Anaconda	1030,75,0,0,0
+moc_fild13,0,0,0,0	monster#pre	Jibóia	1025,30,0,0,0
+moc_fild13,0,0,0,0	monster#pre	Sorrateiro	1037,5,0,0,0
+moc_fild13,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
+moc_fild13,0,0,0,0	monster#pre	Drops	1113,10,0,0,0
+moc_fild13,280,99,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,64,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,305,91,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,136,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,282,155,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,265,197,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,284,227,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,244,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,266,289,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,307,307,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,281,333,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,333,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,295,358,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,84,329,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,93,301,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,101,297,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,89,92,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,108,150,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,109,168,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,101,185,5,5	monster#pre	Planta Amarela	1081,3,180000,90000,1
+moc_fild13,106,258,5,5	monster#pre	Planta Amarela	1081,3,180000,90000,1
+moc_fild13,161,273,5,5	monster#pre	Planta Amarela	1081,3,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild13 - Deserto Sograt 
+//==================================================
+moc_fild13,0,0,0,0	monster#re	Chonchon de Aço	1042,140,5000,0,0
+moc_fild13,0,0,0,0	monster#re	Lobo	1013,15,5000,0,0
+moc_fild13,0,0,0,0	monster#re	Argos	1100,15,5000,0,0
+moc_fild13,0,0,0,0	monster#re	Metaller	1058,15,5000,0,0
+moc_fild13,0,0,0,0	monster#re	Magnólia	1138,15,5000,0,0
+moc_fild13,280,99,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,64,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,305,91,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,136,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,282,155,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,265,197,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,284,227,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,244,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,266,289,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,307,307,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,281,333,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,333,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,295,358,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,84,329,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,93,301,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,101,297,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,89,92,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,108,150,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,109,168,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild13,101,185,5,5	monster#re	Planta Amarela	1081,3,180000,90000,1
+moc_fild13,106,258,5,5	monster#re	Planta Amarela	1081,3,180000,90000,1
+moc_fild13,161,273,5,5	monster#re	Planta Amarela	1081,3,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild14 - Deserto de Sograt
+//==================================================
+//moc_fild14,0,0,0,0	monster#pre	Lobo do Deserto	1106,80,0,0,0
+//moc_fild14,0,0,0,0	monster#pre	Sorrateiro	1037,20,0,0,0
+//moc_fild14,0,0,0,0	monster#pre	Filhote de Lobo do Deserto	1107,40,0,0,0
+//moc_fild14,0,0,0,0	monster#pre	Magnolia	1138,25,0,0,0
+//moc_fild14,124,93,5,5	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
+//moc_fild14,85,271,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild14,165,282,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild14,149,333,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild14,64,342,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild14,160,366,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild15 - Deserto de Sograt
+//==================================================
+//moc_fild15,0,0,0,0	monster#pre	Hode	1127,30,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Escorpião	1001,10,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Lobo do Deserto	1106,10,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Magnolia	1138,25,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Andre	1095,40,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+//moc_fild15,0,0,0,0	monster#pre	Freeoni	1159,1,7200000,600000,1
+//moc_fild15,40,126,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,57,39,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,46,250,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,104,347,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,195,373,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,341,365,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,353,230,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,341,164,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,370,85,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,158,144,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,232,126,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+//moc_fild15,294,74,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild16 - Deserto de Sograt
+//==================================================
+moc_fild16,0,0,0,0	monster#pre	Arenoso	1165,70,0,0,0
+moc_fild16,0,0,0,0	monster#pre	Hode	1127,30,0,0,0
+moc_fild16,0,0,0,0	monster#pre	Magnolia	1138,25,0,0,0
+moc_fild16,0,0,0,0	monster#pre	Andre	1095,10,0,0,0
+moc_fild16,0,0,0,0	monster#pre	Deniro	1105,20,0,0,0
+moc_fild16,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0,{}
+
+//==================================================
+// [Renovação] moc_fild16 - Deserto Sograt
+//==================================================
+moc_fild16,0,0,0,0	monster#re	Arenoso	1165,130,5000,0,0
+moc_fild16,0,0,0,0	monster#re	Hode	1127,30,5000,0,0
+moc_fild16,0,0,0,0	monster#re	Frilldora	1119,10,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild17 - Deserto de Sograt
+//==================================================
+moc_fild17,0,0,0,0	monster#pre	Hode	1127,100,0,0,0
+moc_fild17,0,0,0,0	monster#pre	Chonchon de Aço	1042,30,0,0,0
+moc_fild17,0,0,0,0	monster#pre	Magnolia	1138,15,0,0,0
+moc_fild17,0,0,0,0	monster#pre	Frilldora	1119,25,0,0,0
+moc_fild17,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+moc_fild17,0,0,0,0	monster#pre	Escorpião	1001,5,0,0,0
+moc_fild17,0,0,0,0	boss_monster#pre	Freeoni	1159,1,7200000,600000,1
+moc_fild17,40,258,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,144,151,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,243,138,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,270,106,0,0	monster#pre	Planta Azul	1079,1,180000,90000,1
+moc_fild17,335,191,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,347,224,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,359,258,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild17 - Deserto Sograt 
+//==================================================
+moc_fild17,0,0,0,0	monster#re	Hode	1127,130,5000,0,0
+moc_fild17,0,0,0,0	monster#re	Arenoso	1165,30,5000,0,0
+moc_fild17,0,0,0,0	monster#re	Frilldora	1119,10,5000,0,0
+moc_fild17,0,0,0,0	boss_monster#re	Freeoni	1159,1,7200000,600000,1
+moc_fild17,40,258,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,144,151,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,243,138,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,270,106,0,0	monster#re	Planta Azul	1079,1,180000,90000,1
+moc_fild17,335,191,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,347,224,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild17,359,258,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild18 - Deserto de Sograt
+//==================================================
+moc_fild18,0,0,0,0	monster#pre	Chonchon de Aço	1042,70,0,0,0
+moc_fild18,0,0,0,0	monster#pre	Chonchon	1011,40,0,0,0
+moc_fild18,0,0,0,0	monster#pre	Muka	1055,80,0,0,0
+moc_fild18,0,0,0,0	monster#pre	Metaller	1058,10,0,0,0
+moc_fild18,0,0,0,0	monster#pre	Ovo de Andre	1097,5,0,0,0
+moc_fild18,0,0,0,0	monster#pre	Libélula	1091,1,3600000,1800000,1
+moc_fild18,0,0,0,0	monster#pre	Mosca Caçadora	1035,1,7200000,3600000,1
+moc_fild18,143,352,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,72,333,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,119,285,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,71,210,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,135,119,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,230,144,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,325,207,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,325,272,0,0	monster#pre	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Renovação] moc_fild18 - Deserto Sograt
+//==================================================
+moc_fild18,0,0,0,0	monster#re	Escorpião	1001,140,5000,0,0
+moc_fild18,0,0,0,0	monster#re	Condor	1009,30,5000,0,0
+moc_fild18,0,0,0,0	monster#re	Filhote de Lobo	1107,30,5000,0,0
+moc_fild18,0,0,0,0	monster#re	Libélula	1091,1,3600000,1800000,1
+moc_fild18,143,352,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,72,333,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,119,285,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,71,210,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,135,119,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,230,144,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,325,207,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1
+moc_fild18,325,272,0,0	monster#re	Planta Amarela	1081,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild20 - Ruptura Dimensional
+//==================================================
+moc_fild20,0,0,0,0	monster#pre	Ovo de Andre	1097,10,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Andre	1095,20,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Deniro	1105,20,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Piere	1160,20,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Metaller	1058,20,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Drops	1113,30,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Escorpião	1001,70,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Picky	1050,50,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Picky	1049,50,0,0,0
+moc_fild20,0,0,0,0	monster#pre	Sombra da Inveja	1918,1,30000,0,0
+moc_fild20,0,0,0,0	monster#pre	Saombra da Gula	1919,1,30000,0,0
+moc_fild20,0,0,0,0	monster#pre	Sombra da Vaidade	1920,1,30000,0,0
+moc_fild20,0,0,0,0	monster#pre	Sombra da Ira	1921,1,30000,0,0,{}
+
+//==================================================
+// [Renovação] moc_fild20 - Ruptura Dimensional 
+//==================================================
+moc_fild20,0,0,0,0	monster#re	Sombra da Inveja	1918,1,30000,0,0
+moc_fild20,0,0,0,0	monster#re	Sombra da Gula	1919,1,30000,0,0
+moc_fild20,0,0,0,0	monster#re	Sombra da Vaidade	1920,1,30000,0,0
+moc_fild20,0,0,0,0	monster#re	Sombra da Ira	1921,1,30000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild21 - Ruptura Dimensional
+//==================================================
+moc_fild21,0,0,0,0	monster#pre	Golem	1040,61,0,0,0
+moc_fild21,0,0,0,0	monster#pre	Golem Estalactitico	1278,46,0,0,0
+moc_fild21,0,0,0,0	monster#pre	Golem de Lava	1366,46,0,0,0
+moc_fild21,0,0,0,0	monster#pre	Sombra da Inveja	1918,46,30000,0,0
+moc_fild21,0,0,0,0	monster#pre	Sombra da Gula	1919,46,30000,0,0
+moc_fild21,0,0,0,0	monster#pre	Sombra da Vaidade	1920,46,30000,0,0
+moc_fild21,0,0,0,0	monster#pre	Sombra da Ira	1921,34,30000,0,0,{}
+
+//==================================================
+// [Renovação] moc_fild21 - Ruptura Dimensional 
+//==================================================
+moc_fild21,0,0,0,0	monster#re	Sombra da Inveja	1918,46,30000,0,0
+moc_fild21,0,0,0,0	monster#re	Sombra da Gula	1919,46,30000,0,0
+moc_fild21,0,0,0,0	monster#re	Sombra da Vaidade	1920,46,30000,0,0
+moc_fild21,0,0,0,0	monster#re	Sombra da Ira	1921,34,30000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] moc_fild22 - Ruptura Dimensional
+//==================================================
+moc_fild22,0,0,0,0	monster#pre	Sombra da Inveja	1918,60,30000,0,0
+moc_fild22,0,0,0,0	monster#pre	Sombra da Gula	1919,60,30000,0,0
+moc_fild22,0,0,0,0	monster#pre	Sombra da Vaidade	1920,60,30000,0,0
+moc_fild22,0,0,0,0	monster#pre	Sombra da Ira	1921,25,30000,0,0
+moc_fild22,0,0,0,0	monster#pre	Morroc Ferido	1917,1,43200000,3600000,1,{}
+
+//==================================================
+// [Renovação] moc_fild22 - Ruptura Dimensional 
+//==================================================
+moc_fild22,0,0,0,0	monster#re	Sombra da Inveja	1918,60,30000,0,0
+moc_fild22,0,0,0,0	monster#re	Sombra da Gula	1919,60,30000,0,0
+moc_fild22,0,0,0,0	monster#re	Sombra da Vaidade	1920,60,30000,0,0
+moc_fild22,0,0,0,0	monster#re	Sombra da Ira	1921,25,10000,0,0
+moc_fild22,0,0,0,0	boss_monster#re	Morroc Ferido	1917,1,43200000,600000,0,{}

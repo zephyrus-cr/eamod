@@ -1,0 +1,56 @@
+itemmall,180,63,5	script	Costume Premium	861,{
+
+	set .@PRECIO , 500;
+
+	mes name$; mes "";
+	if( isPremium() != 1 ) { 
+		mes "Este es un servicio solo para cuentas premium"; 
+		close; 
+	}
+	mes name2$ + "Sistema propio de costume";
+	mes "Precio: " + .@PRECIO + " Cash C/U";
+
+	if ( select ( "^10B2D2 [ > ] ^000000Mirar los hats :^10B2D2 [ > ] ^000000 Salir ") == 2 ) close;
+	switch ( select ( " ^10B2D2 [ > ] ^000000 Low : ^10B2D2 [ > ] ^000000 Mid : ^10B2D2 [ > ] ^000000 Top " )) {
+		case 2: setarray .@HAT$[0],"Angel Wing Ears","Angled Glasses","Binoculars","Black Glasses","Blank Eyes","Blinker","Blush","Blush of Groom","Censor Bar","Cyclop's Eye","Dark Blinder","Diver Goggles","Ears Of Ifrit","Elven Blinker","Elven Ears","Elven Sunglasses","Evil Wing Ears","Evolved Small Ribbons","Eye Of Darkness","Eye Patch","Father's Sunglasses","Fin Helm","Geek Glasses","Glasses","Hairband Of Reginleif","Human Blinker","Machoman's Glasses","Mask Of Goddess","Masquerade","Mini Glasses","Monocle","Naughty Fairy","Observer","Odin Mask","Opera Phantom Mask","Pecopeco Ears","Pirate Eye Bandage","Purple Glasses","Red Glasses","Refined Dark Blinder","Refined Elven Ears","Refined Masquerade","Robo Eye","Robot Blinker","Robot Ear","Scuba Gear","Small Ribbons","Sunglasses","Takius's Blindfold","Zorro Masque"; break;
+		case 1: setarray .@HAT$[0],"Angry Snarl","Assassin Mask","Baby Pacifier","Bandit Beard","Beard","Captain's Pipe","Cigarette","Clown Nose","Crunch Toast","Emperor Wreath","Evolved Pipe","Father's Mask","Father's White Beard","Fish Mouth","Flu Mask","Gangster Mask","Ganster Scarf","Gentleman's Pipe","Grandpa Beard","Iron Cain","Leaves Of Grass","Lollipop","Ninja's Scroll","Oxygen Mask","Pipe","Pirate Dagger","Pussy Cat Bell","Rainbow Scarf","Refined Romantic Flower","Romantic Flower","Romantic Leaf","Rudolf's Red Nose","Santa Beard","Spiked Scarf","Sweet Candy"; break;
+		case 3:
+			switch(select(" ^10B2D2 [ > ] ^000000 [ HATS 1 ] : ^10B2D2 [ > ] ^000000 [ HATS 2 ] : ^10B2D2 [ > ] ^000000 [ HATS 3 ] : ^10B2D2 [ > ] ^000000 [ HATS 4 ] : ^10B2D2 [ > ] ^000000 [ HATS 5 ] : ^10B2D2 [ > ] ^000000 [ HATS 6 ] : ^10B2D2 [ > ] ^000000 [ HATS 7 ]: ^10B2D2 [ > ] ^000000 [ HATS 8 ]") ) {
+				case 1: setarray .@HAT$[0],"4 Years Anniversary Hat","Academy Completion Hat","Academy Freshman Hat","Advanced Mini Propeller","Aerial","Alice Doll","Angel Blessing","Angel Helm","Angel Wing","Angel's Kiss","Angeling Hat","Angeling Pin","Anniversary Hat","Antenna","Antlers","Anubis Helm","Apple of Archer","Army Cap","Australian Flag Hat","Autumn Leaves","Ayam","Ayothaya King's Hat","Balloon Hat","Banana Hat","Bandana","Bandana Merah Putih","Bandit Hat","Bao Bao","Baphomet Horns","Baseball Cap","Beanie","Beer Hat","Bell Ribbon","Beret","Big Ribbon","Bird Nest","Biretta","Black Cat Ears","Black Ribbon","Black Tea Kochakaden Hat","Blue Beanie","Blue Bird","Blue Drooping Cat","Blue Fish","Blue Hairband","Blue Mage Hat","Blue Ribbon","Blue Ribbon","Bogy Cap","Bomb Wick","Bone Head","Bone Helm"; break;
+				case 2: setarray .@HAT$[0],"Bongun Hat","Boyfriend Hat","Boys Cap","Brazil Event Hat","Brazil National Flag Hat","Brazilian Flag Hat","Bride Mask","Bride's Flower Crown","Brown Paper Bag Hat","Bucket Hat","Bulb Band","Bullock Helm","Bunny Band","Bunny Top Hat","Cake Hat","Camp Fire Hat","Candle","Cap","Captain's Hat","Carmen Miranda's Hat","Carnival Jester","Cat Helm","Cat's Footprint Hairpin","Chef Hat","Cherub Hat","Chick Hat","Chicken Hat","Circlet","Clarice Doll Hat","Classic Hat","Close Helmet","Coca Cola Can Hat","Coif","Coif","Cookie Hat","Coppola","Coronet","Corsair","Cowboy Hat","Cowboy Hat","Crescent Helm","Cresent Hairpin","Cross Hat","Crown","Crown of Ancient Queen","Crown of Mistress","Crown Parrots","Cute Ribbon","Dark Bacilium","Dark Knight Mask","Dark Randgris Helm"; break;
+				case 3: setarray .@HAT$[0],"Dark Wing","Darkness Helm","Decorative Geographer","Decorative Golden Bell","Decorative Mushroom","Deporte Doll Hat","Deviling Hat","Deviruchi Hat","Diadem","Dice Hat","Doctor Band","Dokebi's Wig","Dragon Skull","Dragoon Helm","Drooping Bunny","Drooping Cat","Drooping Lif","Drooping Nine Tail","Drooping Ninetails","Drooping_Bunny","Ear Muffs","Egg Shell","Elephant Hat","Emperor's Laurel Crown","Europe Baseball Cap","Evil Helm","Evil Snake Lord Hat","Evil Wing","Evolved Angel Wing","Evolved Blue Fish","Evolved Bunny Band","Evolved Evil Wing","Evolved Helmet of Orc Hero","Evolved Majestic Goat","Evolved Whisper Mask","Executioner Hood","Fancy Flower","Fanta Grape Can Hat","Fanta Orange Can Hat","Fanta Zero Lemon Hat"; break;
+				case 4: setarray .@HAT$[0],"Fantastic Wig","Feather Beret","Flower Hairpin","Flower Hat","Flower Lily","Flying Angel","Flying Angeling","Flying Evil Wing","Fox Mask","France Holiday Hat","Friend Hat","Frigg's Circlet","Frog Hat","Frozen Twin Pompom","Fruit of Love","Funeral Hat","Galapago Cap","Gemmed Sallet","Geographer Decoration","Ghost Bandana","Giant Band Aid","Goibne's Helm","Golden Bandana","Golden Gear","Golden Laurel","Golden Tiara","Grand Circlet","Grand Peco Hairband","Gray Beanie","Gray Deviruchi Hat","Gray Drooping Cat","Gray Mage Hat","Green Feeler","Green Ribbon","Green Ribbon","Grief for Greed","Guild Recruiting Hat","Hair Band","Hair Brush","Halo","Happy Wig","Hat","Hat of the Sun God","Headset","Heart Hairpin","Heaven Maiden's Flower","Hello Mother Hat","Helm","Helm Of Abyss","Helm of Angel","Helm of Darkness","Helmet of Orc Hero","Jasper Crest","Jewel Crown","Joker Jester","Judge Cap"; break;
+				case 5: setarray .@HAT$[0],"Kabuki Mask","Kafra Band","Karada Meguricha Hat","Kawaii Ribbon","Kettle Hat","King Frog Hat","Kitty Band","Koneko Hat","Lady Tanee Doll","Large Hibiscus","Laurel Crown","Lazy Smokie","Legionnaire Hat","Linguistic Book Hat","Lion Mask","Little Angel Doll","Louyang NewYear Hat","Love Dad Bandana","Love Daddy Hat","Love Flower Hat","Love Valentine's Hat","Lunatic Hat","Mage Hat","Magic Eyes","Magician Hat","Magistrate Hat","Magni's Cap","Magnolia Hat","Majestic Goat","Mandragora Cap","Marionette Doll","Marvelous Wig","Mask Of Ifrit","Mine Hat","Mini Propeller","Misstrance Crown","Model Training Hat","Monk Hat","Morpheus's Hood","Morrigane's Helm","Munak Hat","Mythical Lion Mask","Necromencer's Hood","Neko Mimi","Nekomimi Kafra Headband","Nest Hat","New Year Suit Hat","Nipper Crab Hairpin","Noble Hat","Note Headphones"; break;
+				case 6: setarray .@HAT$[0],"October Fest Cap","Old Bandana","Orange Ribbon","Orc Helm","Orc Hero Headdress","Orchid Hairband","Pagdayaw","Panda Hat","Parcel Hat","Party Hat","Phoenix Crown","Pink Beanie","Pink Drooping Cat","Pink Ribbon","Pinwheel Cap","Pirate Bandana","Poo Poo Hat","Pop Corn Hat","Poporing Hat","Poring Cake Hat","Poring Hat","Poring Party Hat","Poring Tower","Power Of Thor","Puppy Headband","Puppy Love","Purple Cowboy Hat","Rabbit Earplugs","Rabbit Ears","Raccoon Hat","Rainbow Eggshell","Ramen Hat","Red Bandana","Red Bonnet","Red Deviruchi Hat","Red Mage Hat","Red Marcher Hat","Red Minstrel Hat","Red Ribbon","Red Ribbon","Red Tailed Ribbon","Red White Hat","Refined Apple of Archer","I Love China","Incubus Horn","Independence Memorial Hat","Indian Fillet"; break;
+				case 7: setarray .@HAT$[0],"Selendang","Shafka","Shaman's Hair Ornament","Shark Hat","Sheep Hat","Shining Electric Bulb","Shiny Wig","Ship Captain's Hat","Silver Tiara","Sky Hat","Smokie Leaf","Snake Head Hat","Solar Hat","Sphinx Hat","Spiky Band","Spore Hat","Spring Rabbit Hat","Squatting Poring","Ribbon","Ribbon Hat","Rideword Hat","Romantic Gent","Safety Helmet","Sakkat","Sakura Mist Hat","Sales Banner","SantaPoring Cap","Refined Grand Circlet","Refined Helmet of Orc Hero","Refined Majestic Goat","Refined Sakkat","Refined Wing of Diablo","Renown Detective's Cap","Refined Bunny Band","Refined Corsair","Refined Deviruchi Hat","Refined Drooping Cat","Helmet of Orc Hero","Hermose Cap","Holidays Hat","Holy Marcher Hat","Hot-blooded Headband","Hukke's Blackcat Ears","Hunter Cap","Hyegun Hat"; break;
+				case 8: setarray .@HAT$[0],"Wonder Nutshell","Wool Mask","X Hairpin","Yellow Bandana","Yellow Drooping Cat","Yellow Mage Hat","Yellow Ribbon","Yellow Ribbon","Yoyo Hat","Zaha Doll Hat","Zherlthsh Mask","Stellar","Stop Post","Straw Hat","Striped Hairband","Succubus Horn","Summer Hat","Sunday Hat","Sunflower","Super Novice Hat","Sweet Gent","Tailring Doll Hat","Teddybear Hat","Tiara","Tiara Samambaia","Tiger Face","Tiger Mask","Twin Santa hat","Ulle's Cap","Umbrella Hat","Upgraded Elephant Hat","Valkyrie Feather Band","Valkyrie Helm","Vinit Doll Hat","W Doll Hat","Wandering Minstrel Hat","Wandering Wolf Hat","Water Lily Crown","Wedding Veil","Western Grace","Whisper Mask","White Deviruchi Hat","White Drooping Cat","White Mage Hat","White Ribbon","White Ribbon","White Snake Hat","White Wing","Wind Milestone","Wings of Diablo","Winter Hat","Wizard Hat"; break;
+			}
+	}
+	
+	set .@Menu$, "";
+	for ( set .@i,0; .@i < getarraysize(.@HAT$); set .@i , .@i + 1 ) 
+		set .@Menu$, .@Menu$ + "^10B2D2 [ > ] ^000000 " + .@HAT$[.@i] + ":";
+	set .@ELECCION , select( .@Menu$ ) - 1;
+
+	next;
+	mes name$;
+	mes "";	
+	if ( #CASHPOINTS <= .@PRECIO ) { 
+		mes " No tienes suficiente plata..."; 
+		close; 
+	}
+	query_sql("SELECT `id`  FROM `item_db` WHERE `name_japanese` = '"+.@HAT$[.@ELECCION]+"'",.@nameID);
+	if ( !.@nameID ) {
+		mes " Este hat esta no esta implementado, no se le quitó cash";
+		mes "adios";
+		close;
+	}
+	set .@HAT_REAL$ , ""+.@HAT$[.@ELECCION]+"";
+	set .@HAT_REAL$ , replacestr(.@HAT_REAL$, " " , "_");
+	mes " Costume : " + .@HAT$[.@ELECCION] +" ";
+	mes " Costume DB : \"" + .@HAT_REAL$+"\"";
+	next;
+	set #CASHPOINTS , #CASHPOINTS - .@PRECIO;			
+	atcommand "@costumeitem \"" +.@HAT$[.@ELECCION] + "\"";
+	close;
+}

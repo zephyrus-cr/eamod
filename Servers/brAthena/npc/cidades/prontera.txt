@@ -1,0 +1,727 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: prontera.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.1/2.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Prontera.                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Architect]                             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Prontera
+//============================================================
+prontera,160,330,0	script	Guarda#pront::prtguarda	105,{
+	mes "[Guarda de Prontera]";
+	mes "Bem vindo a Prontera.";
+	close;
+}
+
+prontera,223,99,1	duplicate(prtguarda)	Guarda#2pront	105
+prontera,229,104,5	duplicate(prtguarda)	Guarda#3pront	105
+prontera,47,339,5	duplicate(prtguarda)	Guarda#4pront	105
+
+prontera,101,288,3	script	Shuger#pront	98,{
+	mes "[Shuger]";
+	mes "Fora da segurança da cidade,tem um monstro rosa  conhecido como ^000077Poring^000000";
+	next;
+	mes "[Shuger]";
+	mes "Embora seja bonito na aparência e aparentemente não prejudique as pessoas, o Poring é conhecido por absorver os itens que estão no terreno em seu próprio corpo. Contudo ... Porings são muito fracos ...";
+	next;
+	mes "[Shuger]";
+	mes "Portanto, se há algo no chão que você quiser pegar, tome cuidado para que não seja consumido por um Poring. Então repito novamente... Porings são muito fracos ...";
+	next;
+	mes "[Shuger]";
+	mes "O que possui a cor verde ^000077Poporing^000000 é mais resistente que o Poring. Iniciantes geralmente cometem o erro de atacá-lo sem estar consciente do seu poder ... Então, cuidado!";
+	close;
+}
+
+prontera,54,240,6	script	Tono#pront	97,{
+	mes "[Tono]";
+	mes "Você sabia?";
+	next;
+	mes "[Tono]";
+	mes "A larva cremosa é Fabre. Então, essas coisinhas verdes na verdade são filhotes daquelas borboletas roxas que você vê ao redor.";
+	next;
+	mes "[Tono]";
+	mes "Mas antes Fabres podem tornar-se Creamys, eles entram em uma fase de pupa. Quando isso acontece, eles se transformam em casulos esses roxo escuro que chamamos de Pupa. Simples, né?";
+	next;
+	mes "[Tono]";
+	mes "Há um outro monstro que passa por uma mudança muito grande ... Os  Pickys.";
+	next;
+	mes "[Tono]";
+	mes "Os Pickys são tão fofinhos quando jovens, mas  quando crescem transformam-se nesses grandes e desengonçados bichos chamados de Peco Pecos. Entretanto essa conversa sobre a puberdade é inadequada.";
+	close;
+}
+
+prontera,106,116,6	script	Merideth#pront	91,{
+	mes "[Merideth]";
+	mes "O tempo estava agradável no meu dia de folga. A minha família e eu fomos para um piquenique. Optamos por ir para uma área um pouco isolada onde eu vi algo muito interessante ...";
+	next;
+	mes "[Merideth]";
+	mes "Foi um grande grupo de Giant Hornets! O que foi mais estranho ainda era que todos eram controlados por uma Abelha Rainha, e eles seguiam todos  os seus comandos.";
+	next;
+	mes "[Merideth]";
+	mes "Eles podem apenas ser insetos, mas eu acho que eles possuem uma idéia certa. Os homens realmente deveriam ser comandos por nós, mulheres ... Nós fazemos as coisas direito!";
+	close;
+}
+
+prontera,160,133,2	script	YuPi#pront	102,{
+	mes "[YuPi]";
+	mes "Embora muitos monstros possam ter a mesma aparência, cuidado! Há variações entre os monstros que têm a mesma forma básica.";
+	next;
+	mes "[YuPi]";
+	mes "Um monstro, que você já tenha encontrado e que se parece ser da  paz e fraco, pode ser realmente selvagem e feroz!";
+	next;
+	mes "[YuPi]";
+	mes "Você pode observar que alguns tipos de monstros são separados pela cor do corpo. Wilder é um dos monstros mais poderosos e ele possui variados tipos de cores sendo que os mais  perigosos são aqueles que possuem cores  chamativas.";
+	close;
+}
+
+prontera,149,202,2	script	YuNa#pront	700,{
+	mes "[YuNa]";
+	mes "Behold...";
+	mes "Poderoso Odin!";
+	mes "Deus da sabedoria!";
+	mes "Deus da  Guerra.";
+	next;
+	mes "[YuNa]";
+	mes "Aqui, em Rune-Midgard, nós servimos a Odin, o deus terrível que sacrificou um dos seus olhos, a fim de adquirir sabedoria.";
+	next;
+	mes "[YuNa]";
+	mes "A estátua que você vê por trás de mim é uma escultura de Odin poderoso. Mas, é uma pena que a escultura está  um pouco  ruim.";
+	next;
+	mes "[YuNa]";
+	mes "Quer dizer, esta estátua é totalmente diferente da imagem de Odin. Acho que o escultor teve muitas liberdades artísticas.";
+	next;
+	mes "[YuNa]";
+	mes "Aposto que a primeira vez que você viu esta estátua, você pensou, '^3355FFOh, Este homem musculoso está mais para um cavalo! ^000000";
+	next;
+	mes "[YuNA]";
+	mes "Mas essa estatua obviamente não está musculosa o bastante, nem bonita o bastante para representar um deus! Talvez se ele tivesse uma aureola?";
+	close;
+}
+
+prontera,216,70,2	script	Strife#pront	48,{
+			mes "[Strife]";
+	if (Class == Job_Novice) {
+		if (event_prt_nov_dreamtalk == 0) {
+			mes "Ufa!";
+			mes "Homem oh homem...";
+			mes "Eu vou ser como";
+			mes "Um cavaleiro impressionante!";
+			next;
+			mes "[Strife]";
+			mes "Eu sei, eu sei ...";
+			mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie impressionante. E, depois que ...";
+			next;
+			mes "[Strife]";
+			mes "Eu vou ser o mais";
+			mes "Impressionante  cavaleiro dos arredores!";
+			mes "É...  É o meu sonho mais precioso.";
+			next;
+			mes "[Strife]";
+			mes "MAGNUM BREAK!";
+			next;
+			if (select("Eu quero ser forte demais!: Um ... Faça o melhor que você.") == 1) {
+				set event_prt_nov_dreamtalk,1;
+				mes "[Strife]";
+				mes "Uau...";
+				mes "Isso é tão impressionante!";
+				mes "Nós  compartilhamos";
+				mes "do mesmo sonho!";
+				next;
+				mes "[Strife]";
+				mes "Ei, se você quiser se tornar um Swordie, você tem que ir para Izlude. Lá, você pode ir em frente e fazer o teste para  o  emprego de Swordman. A primeira vez, eu, falhei miseravelmente. Mas eu não vou deixar isso acontecer  de novo!";
+				next;
+				mes "[Strife]";
+				mes "Treinamento! Treinamento! Tenho que continuar o treinamento! Você precisa ser forte demais! Uma vez que nós ficamos mais forte, vamos nos encontrar de novo!";
+				close;
+			}
+			mes "[Strife]";
+			mes "Heh! Eu vou com certeza! 'Strife, o cavaleiro corajoso. Soa legal, não é?";
+			close;
+      }
+			mes "Lute...!";
+			mes "lute, lute...LUTE!!";
+			close;
+	} else if (Class != Job_Novice) {
+		if (event_prt_nov_dreamtalk == 1) {
+			mes "Ei...!";
+			mes "é assim *Gasp* Como você ficou ^993333forte^000000! Uau, isso é tão legaaal!";
+			next;
+			mes "[Strife]";
+			mes "Estou com tanta inveja";
+			mes "Acho que  isso significa,";
+			mes "que, agora, ";
+			mes "tenho que treinar ainda mais duro!";
+			next;
+			set event_prt_nov_dreamtalk,2;
+			getitem 2501,1; //Hood
+			mes "[Strife]";
+			mes "Bom, isto é pra você para te ajudar a ficar ainda mais forte. Acho que devo lhe agradecer por ser um bom exemplo";
+			close;
+		} else if (event_prt_nov_dreamtalk == 2) {
+			mes "Lute! Lute!";
+			close;
+		}
+		mes "[Strife]";
+		mes "Ufa!";
+		mes "Homem  oh homem...";
+		mes "Eu vou ser como";
+		mes "um Cavaleiro incrível !";
+		next;
+		mes "[Strife]";
+		mes "Eu sei, eu sei ...";
+		mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie incrível.E depois disso...";
+		next;
+		mes "[Strife]";
+		mes "eu vou ser o mais";
+		mes "Incrível dos cavaleiros dos arredores.";
+		mes "É... É o meu sonho mais precioso.";
+		next;
+		if (select("Faça o seu melhor.:Para com isso, garoto.") == 1) {
+			mes "[Strife]";
+			mes "Sim, sim, claro! Algum dia, eu vou mesmo ser tão forte como você! Quando esse dia chegar, espero que possamos treinar juntos!";
+			close;
+		}
+		mes "[Strife]";
+		mes "Como?";
+		mes "Agradável! Mas eu vou continuar a formação, e vamos ver quem rir  por  último rir  melhor!";
+		close;
+	}
+}
+
+prontera,78,150,3	script	Dairenne#pront	90,{
+	mes "[Moradora Dairenne]";
+	mes "Ahh...";
+	mes "As ruas estão muito lotados nestes dias. * Cough Cough * Olhe para toda a poeira presente, nem tudo sobre a vida na capital é bom. De qualquer forma, posso ajudá-lo?";
+	next;
+	if (select("Discussão: Cancel") == 1) {
+		mes "[Moradora Dairenne]";
+		mes "Gostaria de saber se você está interessado em calças ou vestidos. Hehehe. Estes dias, o tema quente é definitivamente o colorido, extravagante, vestidos magníficos que  você poderá vestir.";
+		next;
+		mes "[Moradora Dairenne]";
+		mes "Para obter essas cores deslumbrantes, ieu  ouvi que você tem que usar uma tinta que você só pode conseguir em Morroc. Mas eu também ouvi dizer que o preço está além da imaginação.";
+		next;
+		mes "[Moradora Dairenne]";
+		mes "Aahhhh ~ Eu gostaria de poder usar tal vestido. Mesmo que seja apenas uma vez ...";
+		close;
+	}
+	mes "[Moradora Dairenne]";
+	mes "Eh ~? Por que falar de mim em primeiro lugar? Porque eu sou  uma  pessoa estranha.";
+	close;
+}
+
+prt_in,175,50,0	script	Garota da Biblioteca#pront	71,{
+	mes "[Garota da Biblioteca Ellen]";
+	mes "Aqui no ramo oriental da Biblioteca de Prontera, nós fornecemos Enciclopedias de  monstros, no qual as criaturas são organizados por suas propriedades. Temos também livros sobre Mercante e habilidades do ferreiro.";
+	mes "Ooh ~! O outro ramo da nossa biblioteca também tem muitas coisas interessantes para ler! Portanto, se você receber uma chance, você tem que  visitar.";
+	close;
+}
+
+prt_in,47,141,0	script	Um Velho Homem#pront	56,{
+	mes "[Velho Homem]";
+	mes "Os esgotos de Prontera Culvert foram abandonados por muito tempo. Agora aquele lugar é infestado de insetos  ^000077Besouro Ladrão^000000!";
+	next;
+	mes "[Velho Homem]";
+	mes "Estes Besouro Ladrão parecem pegar rapidamente os itens caem no chão, e depois fugir com eles ... Eles estão ainda mais irritante do que as baratas!";
+	close;
+}
+
+prt_in,26,31,0	script	Um Velho Homem#2pront	54,{
+	mes "[Velho Homem]";
+	mes "Não sei se você vai acreditar em mim, mas eu vi a coisa mais estranha no ^000077Esgotos de Culvert^000000 ...";
+	next;
+	mes "[Velho Homem]";
+	mes "Eu tenho treinado no nível 3 por tanto tempo que não há nada que eu não saiba daquela área. Mas quando eu finalmente fui para o nível 4 ...";
+	next;
+	mes "[Velho Homem]";
+	mes "Lá, eu vi uma luz trêmula. Eu estava completamente cativado e fui abordá-la. Deve ter sido algum tipo de fada bela ...";
+	next;
+	mes "[Velho Homem]";
+	mes "Mas quando eu cheguei";
+	mes "perto o suficiente";
+	mes "eu vi que era";
+	mes "um ^000077Besouro Ladrão^000000!";
+	next;
+	mes "[Velho Homem]";
+	mes "Eu nunca vi um Besouro Ladrão brilhando com uma luz antes! As vezes o você pensa que já viu de tudo... ";
+	close;
+}
+
+prt_in,180,20,2	script	Garçon#pront	61,{
+	mes "[Garçon]";
+	mes "Suspiro ... as pessoas que moram  próximos de Prontera";
+	mes "tornou-se  o meu melhor  negócio atualmente...Mas...";
+	mes "Bem, eu estou tendo um momento difícil e não estou consiguindo manter um bom estoque de ingredientes alimentares.";
+	next;
+	mes "[Garçon]";
+	mes "Como você vê, os números dos monstros fora da cidade tem sido muito maior, e eles têm causado problemas aos meus fornecedores para me oferecerem os produtos em um momento certo.";
+	mes "Eu não posso fazer o meu ultra menu agradável, com ingredientes comuns porque ele é  super especial!";
+	next;
+	mes "[Garçon]";
+	mes "Então, eu tenho contato com caçadores campeões que trazem bastante ingredientes frescos e especiais";
+	mes "Mas a demanda tem excedido a oferta nestes dias.";
+	next;
+	mes "[Garçon]";
+	mes "Eu não posso manter o meu negócio equilibrado  sem o meu menu especial 'Crunch Crunch Savory Sour 'e' Yum Yum'...* Sigh *";
+	next;
+	set .@drink,1;
+	while(.@drink) {
+		switch(select("'Cunch Crunch Sour'?:'Savory Yum Yum'?:Cancelar.")) {
+		case 1:
+			mes "[Garçon]";
+			mes "Os ingredientes básicos do meu Crunch Crunch Sour são as formigas que  ficam dentro do inferno das  formigas lá  no deserto.";
+			mes "Há rumores de que os números das formigas têm sido muito maior, e elas se tornaram mais violentas, de modo que ninguém quer ficar no lugar.";
+			next;
+			mes "[Garçon]";
+			mes "* Sigh *... Tenho medo de que meus dias estejam contados no ramo do negócio agora.";
+			next;
+			break;
+		case 2:
+			mes "[Garçon]";
+			mes "Ingredientes básicos para  fazer  o  Savory Yum Yum são os gafanhotos que brincam em um lugar sobre a floresta situada a oeste. Sim, é o menu mais vendido de sempre.";
+			mes "Dizem que eles se tornaram muito violentos e abelhas construíram seu habitat, naquele  lugar, de modo que ninguém quer entrar ali.";
+			next;
+			mes "[Garçon]";
+			mes "* Sigh *... Tenho medo de que meus dias estão contados no ramo do negócio agora.";
+			next;
+			break;
+		case 3:
+			mes "[Garçon]";
+			mes "Tome cuidado!";
+			close2;
+			set .@drink,0;
+			break;
+		}
+	}
+	end;
+
+}
+
+prt_in,173,24,2	script	Shevild#pront	85,{
+	mes "[Shevild]";
+	mes "Ei, venham aqui vamos beber! Tenho muitas histórias interessantes para contar! ";
+	mes "Sei muitas coisas sobre Prontera. Tenho visto muitas belas vistas e também tenho explorado alguns esconderijo de monstros em torno desta cidade.";
+	next;
+	if (select("Pode me contar mais?:Cancelar") == 1) {
+		mes "[Shevild]";
+		mes "Eu posso parecer um homem embriagado, mas eu sou mais do que possam ver.";
+		mes "Bem, aconteceu que quando eu entrei em alguns  lugares para transportar armas para caçadores ou para a entrega de animais ";
+		mes "Você pode me encarar  como um simples entregador,";
+		next;
+		mes "[Shevild]";
+		mes "Mas estou muito orgulhoso do meu trabalho. Você sabe o quão duro o mundo se tornou? ";
+		mes "Não importa o quanto uma obra é, eu não tenho medo de fazer isso.";
+		next;
+		mes "[Shevild]";
+		mes "De qualquer forma, é assim que eu ter explorado alguns lugares estranhos como tocas monstro ... ";
+		mes "Essa é também uma razão para eu manter o meu trabalho.";
+		mes "Ah, eu só lembro de ter ido para  dentro do labirinto de  uma floresta asustadora!";
+		next;
+		switch(select("Labirinto?:Floresta assutadora?:Cancelar")) {
+		case 1:
+			mes "[Shevild]";
+			mes "Sim. Poucos dias atrás, eu entrei num labirinto misterioso seguindo a sequência de um grupo de caçadores no norte de Prontera.";
+			next;
+			mes "[Shevild]";
+			mes "Eles disseram que eles poderiam obter lotes e lotes de itens raros do labirinto, mesmo que o labirinto fosse preenchido por  monstros  terrivelmente fortes.";
+			mes "Então fomos lá, mas assim que entramos, estávamos apenas preso dentro do labirinto ainda, você sabe.";
+			next;
+			mes "[Shevild]";
+			mes "Nós estávamos apenas andando em circulos  e então decidimos deixar o lugar. Aquilo  era um inferno em forma  de  labirinto.";
+			mes "Mas eu pus minha cabeça que eu iria explorar com sucesso aquele  labirinto um dia.";
+			next;
+			if (select("Agora eu posso entrar aqui?:Cancelar") == 1) {
+				mes "[Shevild]";
+				mes "Err?Você  ainda não passeou fora de Prontera? ";
+				mes "O labirinto pode ser encontrado dentro de uma floresta ao norte de Prontera. No  lado noroeste da floresta.";
+				close;
+			}
+			mes "[Shevild]";
+			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
+			close;
+
+		case 2:
+			mes "[Shevild]";
+			mes "Quando você vai para fora do Prontrea mais ou menos  na  direção nordeste, chega-se as ruínas pacíficas. Eu estive lá há um tempo atrás, para entregar algo a um padre.";
+			mes "Eu tive que passar por uma floresta no caminho para as ruínas, ea floresta estava cheia de macacos e guaxinins.";
+			next;
+			mes "[Shevild]";
+			mes "Esteja avisado que a floresta não é um lugar para ir a um piquenique. Se algo cair no chão, os macacos saem do nada e tirarão  todas as suas posses.";
+			next;
+			if (select("Agora eu posso ir?:Cancelar") == 1) {
+				mes "[Shevild]";
+				mes "Não existe um caminho que conduz diretamente ao ruínas. Mas se você vai para o norte e manter a posição para o leste, você vai chegar lá.";
+				mes "Oh, tenha cuidado no seu caminho para as ruínas porque há algumas plantas estranhas s que atacam sem motivo.";
+				close;
+			}
+			mes "[Shevild]";
+			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
+			close;
+
+		case 3:
+			mes "[Shevild]";
+			mes "Yeap, seja cuidadoso quando for se aventurar sozinho ~";
+			close;
+		}
+	}
+	mes "[Shevild]";
+	mes "Volte qualquer hora ~";
+	close;
+}
+
+prt_in,177,20,2	script	TenSue#pront	97,{
+		mes "[TenSue]";
+	switch(rand(3)) {
+	case 1:
+		mes "O que...?";
+		mes "Você já está doente e cansado de matar monstros nos campos e nas masmorras? Vamos lá ...";
+		next;
+		mes "[TenSue]";
+		mes "Hahaha, parece que você está muito confiante da sua força, hein? Hmm ... Por que você não vai juntar-se a um clã? Quer dizer, todos os caras durões  estão indo.";
+		next;
+		mes "[TenSue]";
+		mes "Pessoalmente, porém, eu não conheço nenhum clã, assim você terá que pedir ao redor. Faça alguns contatos, conexões, você sabe, trabalho em rede.";
+		next;
+		mes "[TenSue]";
+		mes "Eu não sei mesmo se você não gosta de receber ordens, mas se esse for o caso, por que você não faz seu próprio clã?";
+		close;
+	case 2:
+		mes "Uma vez  eu andei todo o caminho para Al de Baran, em vez de tomar um portal . Foi muito perigoso com todos aqueles monstros!";
+		next;
+		mes "[TenSue]";
+		mes "Eu quase morri! Alguns desses monstros não paravam de me seguir e tentar me matar, mesmo que eu não tivesse feito  nada para eles! Foi muito louco!";
+		next;
+		mes "[TenSue]";
+		mes "Bem, ainda assim, sinto que tomar a rota cênica valeu a pena. Havia alguns pontos turísticos  magníficos pelo o caminho.";
+		next;
+		mes "[TenSue]";
+		mes "Até Mesmo a cidade de Al de Baran é uma visão esplêndida para os olhos, com sua arquitetura elegante e romântico canal.";
+		next;
+		mes "[TenSue]";
+		mes "A sede Corporação  da Kafra  também está localizada em Al de Baran. Você realmente deve parar para checar tudo.";
+		close;
+	default:
+		mes "O reino de";
+		mes "Rune-Midgarts é governado ";
+		mes "pelo benevolente ";
+		mes "Rei Tristram III.";
+		next;
+		mes "[TenSue]";
+		mes "Nós realmente devemos a prosperidade de Rune-Midgard para ele. Ele foi capaz de convencer o povo a acolher estrangeiros em Prontera, bem como estabelecer o comércio em terras estrangeiras, como Amatsu e Kunlun.";
+		next;
+		mes "[TenSue]";
+		mes "Mas às vezes ... ";
+		mes "Pode ser difícil acreditar que ele é um líder brilhante e capaz.";
+		next;
+		mes "[TenSue]";
+		mes "Afinal, a única vez que eu o vejo é quando ele está conduzindo casamentos. Mesmo que um casamento não esteja acontecendo, ele ainda é o tipo de pessoa que fica  andando em torno da igreja Prontera! ";
+		next;
+		mes "[TenSue]";
+		mes "Mas...";
+		mes "Eu acho que você pode sair com um monte de coisas quando tiver que ser senhor e governante de uma nação inteira.";
+		close;
+	}
+}
+
+prt_in,177,18,2	script	Marvin#pront	80,{
+	mes "[Marvin]";
+	mes "Seja  um membro do sexo oposto, ou lutador contra monstros, o que  eu tenho que dizer, é tudo sobre ^333399habilidades^000000.";
+	next;
+	mes "[Marvin]";
+	mes (Sex ? "Eu não posso te ajudar muito quando se trata  de falar com mulheres atraentes, como eu, mas Posso dizer-lhe competências um pouco mais sobre o que pode te  ajudar na batalha.":"Eu realmente não tenho nenhum conselho para as competências quando se trata de falar com um rapaz bonito, mas eu posso deixá-lo em relação ao que eu sei sobre as habilidades que ajudam em uma batalha.");
+	next;
+	mes "[Marvin]";
+	mes "Para a maioria das habilidades, o nível máximo é o nível 10. É fácil de compreender , pois tem tantos pontos para dominar completamente uma habilidade. Que habilidades você deve escolher?!";
+	next;
+	mes "[Marvin]";
+	mes "Afinal, se você gasta pontos de perícia demais em uma habilidade, você pode não ser capaz de aprender outra. Então, há um limite para o número total de pontos de habilidade que você pode ganhar. ";
+	next;
+	mes "[Marvin]";
+	mes "Mas você sabe o quê? Não é dominada cada habilidade no nível 10. Você pode dominar algumas competências a nível de apenas 5. E melhor ainda, algumas habilidades já são dominados no nível 1 ou 2.";
+	next;
+	mes "[Marvin]";
+	mes "Portanto, relaxe e planeje com antecedência, para que possa dominar todas as habilidades que você realmente quer dominar mais. Além disso, não basta colocar pontos de habilidade em qualquer coisa. Lembre-se de utilizar os seus pontos de habilidade com sabedoria.";
+	close;
+}
+
+prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
+	mes "[Alfaiate Ginedin Rephere]";
+	mes "11...";
+	mes "12...";
+	mes "Hum, que bom. Acho que vou ser capaz de terminar antes da festa desta noite.";
+	next;
+	mes "[Alfaiate Ginedin Rephere]";
+	mes "Oh! Eu não sabia que eu tinha um convidado. Como posso ajudá-lo?";
+	next;
+	switch(select("Conversar:Tingir roupas:Cancelar")) {
+	case 1:
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "A vida pode ter começado um pouco melhor, mas você recebe todas essas ordens? * Ufa! Senhoras *  Estes dias devem ser muito puxados, por isso os meus serviços não são um luxo.";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Bem, pessoas como eles, provavelmente,buscam  ainda mais a beleza e a moda. Mas, é claro, isso é apenas a minha opinião.";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Creio que para nós seres humanos, as roupas são uma das poucas maneiras de mostrar a nossa personalidade, estilo e beleza.";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Considerando isso,  pessoalmente eu acho que meu trabalho é muito útil e bastante extravagante. Isso por si só já faz tudo valer a pena. Tecido grosseiro e estouro de couro bruto de energia e vida em cor ...";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "É um processo muito difícil e tedioso, mas a felicidade é o prazer que você sente quando suas roupas são feitas. Isso  compensa todo o trabalho duro.";
+		close;
+	case 2:
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Ah...!";
+		mes "Você veio para tingir ";
+		mes "suas roupas também.";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Mas... Me desculpe.";
+		mes "Eu não tenho tempo suficiente para tingir suas roupas agora. Eu tenho tantas encomendas que ainda estão esperando para serem feitas.";
+		next;
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Desculpe pelo transtorno, mas você poderia voltar na próxima vez?";
+		close;
+	case 3:
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Sinta-se livre para tomar o seu tempo e relaxar aqui. Peço desculpas que não tenho nada para servir-lhe, neste momento.";
+		close;
+	}
+}
+
+// Igreja de Prontera
+//============================================================
+prt_church,103,76,0	script	Garnet#pront	67,{
+	mes "[Garnet]";
+	mes "Olá  olá ~";
+	mes "Você está interessado em aprender mais sobre como ajudar e apoiar outras pessoas?";
+	next;
+	mes "[Garnet]";
+	mes "Os noviços  e Sacerdotes formados nesta igreja podem curar as pessoas, curá-los de certas condições, e ainda despertar o potencial de batalha de outros aventureiros.";
+	next;
+	mes "[Garnet]";
+	mes "Vá e frente e pergunte se você tem alguma dúvida sobre as habilidades para Noviços e Sacerdotes.";
+	next;
+	set .@habilidadeChat,1;
+	while(.@habilidadeChat) {
+		switch(select("Sobre Curar:Sobre Medicar:Sobre Aumentar Agiidade:Sobre Angelus:Sobre Benção:Sobre Portal:Fim da conversa")) {
+		case 1:
+			mes "[Garnet]";
+			mes "Você pode recuperar seu próprio HP com o ^6666CCCurar^000000 . A cura é uma das formas mais importantes que você pode ajudar seus amigos em uma batalha.";
+			next;
+			mes "[Garnet]";
+			mes "Mesmo que os  nossos poderes sejam normalmente utilizados para curar os outros, você pode realmente usar o ^6666CCCurar^000000  para machucar monstros mortos-vivos";
+			next;
+			mes "[Garnet]";
+			mes "Basta lembrar que mantenha a ^6666CCShift^000000  quando você usar Curar ou Medicar em monstros mortos-vivos. Só não se esqueça de ferir os monstros e não usá-lo para ajudar os monstros. ";
+			next;
+			mes "[Garnet]";
+			mes "Mais tarde, se você aprendeu ^6666CCCurar^000000 como um Noviço, você pode aprendera  usar ^6666CCSanctuario^000000 se você se tornar um Sacerdote.";
+			next;
+			mes "[Garnet]";
+			mes "Sacerdotes usam  ^6666CCSantuário^000000 para criar uma área que vai recuperar o seu HP  e dos seus amigos se você descansar na área do Santuário. ";
+			next;
+			break;
+		case 2:
+			mes "[Garnet]";
+			mes "Quando chegar ^6666CCCurar Level 2^000000 como um noviço, você pode aprender a  utilizar a  habilidade ^6666CCMedicar^000000, que pode ser usado para tratar os status anormais.";
+			next;
+			mes "[Garnet]";
+			mes "Esta habilidade pode ser uma proteção de uma vida, uma vez que quase todos os status anormais podem ser curadas com a habilidade de cura. Basta lembrar que você precisa de  ^6666CCCurar Level 2^000000 antes de você pode aprender a  utilizar a  habilidade Medicar. ";
+			next;
+			break;
+		case 3:
+			mes "[Garnet]";
+			mes "Agora, a habilidade ^6666CCAumentar AGI^000000 pode ser usada em você ou em  seus amigos. Durante algum tempo o seu estado  AGI é aumentado, fazendo com que você ataque mais rápido e evitar ataques dos  monstros com mais facilidade.";
+			next;
+			mes "[Garnet]";
+			mes "Se você é um Noviço  que queira aprender a  usar  ^6666CCAumentar AGI ^000000, você precisa aprender ^6666CCCurar Level 3^000000 primeiro.";
+			next;
+			break;
+		case 4:
+			mes "[Garnet]";
+			mes "Você pode usar ^6666CCAngelus^000000 para aumentar sua defesa, bem como a Defesa dos outros membros do grupo. Lembre-se, porém, você só pode usar ^6666CCAngelus^000000 em outras pessoas se elas estiverem  em seu grupo.";
+			next;
+			mes "[Garnet]";
+			mes "Antes que você possa aprender Angelus, você precisa ter ^6666CCDivina proteção Level 3^000000.";
+			next;
+			mes "[Garnet]";
+			mes "Além disso, se você continuar aprendendo Angelus, irá eventualmente ser capaz de aprender ^6666CCKyrie Eleison ^000000. Essa habilidade o ajuda a escapar dos ataques iniciais automaticamente.";
+			next;
+			break;
+		case 5:
+			mes "[Garnet]";
+			mes "A habilidade ^6666CCBenção^000000, aumenta temporariamente STR, DEX e INT. Esta habilidade vai dar a você e a seus amigos uma grande vantagem na batalha! ";
+			next;
+			mes "[Garnet]";
+			mes "Antes que você possa aprender Bênção, você deve primeiramente aprender ^6666CCLevel 5 Proteção Divina ^000000.";
+			next;
+			break;
+		case 6:
+			mes "[Garnet]";
+			mes " ^6666CCPortal ^000000 é uma habilidade muito complexa, e que você precisa saber algumas outras habilidades antes de aprendê-la. ";
+			next;
+			mes "[Garnet]";
+			mes "Primeiro, você precisa aprender ^6666CCRevelação^000000 que lhe permite ver monstros invisíveis. Após Ruwach, você precisa aprender a habilidade  ^6666CCTeleportar^000000 .";
+			next;
+			mes "[Garnet]";
+			mes "Depois que você aprender  ^6666CCPortal^000000, o nível da habilidade Portal irá determinar como muitos destinos de  portais , ou Pontos de Portal, você pode memorizar.";
+			next;
+			mes "[Garnet]";
+			mes "Se você dominar a habilidade Portal, você pode ter um máximo de 4 diferentes Warp Points. Mas pelo menos um Pontos de Portal é designado como um Portal Salvo que você fez com um Empregado Kafra.";
+			next;
+			mes "[Garnet]";
+			mes "Bem, é um pouco incômodo, mas se você quiser salvar um determinado local  você precisa estar fisicamente lá primeiro. Em seguida, digite ^6666CC/memo^000000 para o prompt de comando.";
+			next;
+			mes "[Garnet]";
+			mes "Só para você saber, você não pode salvar um ponto de  portal  dentro de uma masmorra. Ah, e não se esqueça, cada vez que você fizer um portal, você deve usar ^6666CC1 Gema azul^000000 como um catalisador.";
+			next;
+			break;
+		case 7:
+			mes "["+ strcharinfo(0) +"]";
+			mes "Tudo bem, ";
+			mes "Eu já  ouvi  o suficiente.";
+			close2;
+			set .@habilidadeChat,0;
+			break;
+		}
+	}
+	end;
+}
+
+prt_church,103,71,0	script	Henson#pront	120,{
+	mes "[Henson]";
+	mes "Nós, Sacerdotes e Noviços não somos limitados apenas para aliviar o sofrimento de nossos semelhantes ... ";
+	next;
+	mes "[Henson]";
+	mes "Nós também metemos rápida e impiedosa punição para as forças do mal. Bem, purificar as pobres almas que podem ter sido transformada em mortos-vivos também é um outro dever.";
+	next;
+	mes "[Henson]";
+	mes "Você tem alguma dúvida sobre Noviço e habilidades Sacerdote?";
+	next;
+	set .@habilidadeChat,1;
+	while(.@habilidadechat) {
+		switch(select("Sobre Divina Proteção:Sobre Flagelo do Mal:Sobre Diminuir AGI:Sobre Signum Crusis :Sobre Escudo Sagrado:Sobre Revelação:Sobre Teleportar:Fim da conversa.")) {
+		case 1:
+			mes "[Henson]";
+			mes "Se você quer melhorar permanentemente a sua defesa contra a mortos vivos você terá que aprender sobre ^6666CCDivina Proteção^000000.";
+			next;
+			mes "[Henson]";
+			mes "Aprendizagem sobre Proteção Divina para determinados níveis também permitirá que você para aprender outras habilidades, como ^6666CCAngelus^000000 e ^6666CCBenção^000000, que Garnet pode explicar.";
+			next;
+			mes "[Henson]";
+			mes "Quando você aprende ^6666CCDivina Proteção level 3^000000, então você vai ser capaz de aprender a ^6666CCFlagelo do Mal^000000 .";
+			next;
+			break;
+		case 2:
+			mes "[Henson]";
+			mes "^6666CCFlagelo do Mal^000000, o dano de seus ataques contra os mortos vivos será aumentada permanentemente.";
+			next;
+			mes "[Henson]";
+			mes "Primeiro, você precisa aprender ^6666CCProteção Divina Level 3^000000 para ser capaz de aprender Demon Bane, de modo manter isso em mente.";
+			next;
+			mes "[Henson]";
+			mes "Quando você aprende ^6666CCFlagelo do Mal Level 3^000000, você será capaz de aprender  ^6666CCSignum Crusis ^000000, o que reduz a Defesa dos monstros, assim como os monstros com a propriedade das Trevas. ";
+			next;
+			break;
+		case 3:
+			mes "[Henson]";
+			mes "Usando ^6666CCDiminuir AGI^000000 em monstros vai abrandar seu movimento, velocidade de ataque, e a taxa na qual eles podem escapar seus ataques próprios.";
+			next;
+			mes "[Henson]";
+			mes "Dessa forma, você pode mutilar-los adequadamente. Lembre-se, primeiro você deve aprender ^6666CCAgi Level 2^000000 Se você quiser ser capaz de aprender a habilidade Diminuir AGI.";
+			next;
+			break;
+		case 4:
+			mes "[Henson]";
+			mes "O ^6666CCSignum Crusis^000000 é uma habilidade que reduz a Defesa de monstros mortos-vivos ou propriedades das Trevas. Tem um amploe poder e é  bastante poderoso.";
+			next;
+			mes "[Henson]";
+			mes "Entanto, é uma habilidade muito difícil de usar, e tem uma taxa de sucesso relativamente baixo. Mas, não se desespere se esta habilidade não for  é bem sucedida o tempo todo.";
+			next;
+			mes "[Henson]";
+			mes " Quando ela não funciona, ele lhe dará uma vantagem grande batalha.Lembre-se, você vai usar ^6666CCFlagelo do Mal Level 3^000000 para adquirir esta habilidade ..";
+			next;
+			break;
+		case 5:
+			mes "[Henson]";
+			mes "A  ^6666CCEscudo Sagrado^000000 permite-lhe gerar uma barreira que irá bloquear todos os ataques de longo alcance em um certo intervalo, a criação de uma zona que irá protegê-lo dos monstros que atacam à distância. ";
+			next;
+			mes "[Henson]";
+			mes "Para tornar-se pronto para aprender Pneuma, você deve primeiro dominar completamente o  ^6666CCPortal^000000 .";
+			next;
+			break;
+		case 6:
+			mes "[Henson]";
+			mes "Nada escapa aos olhos do Santo! ^6666CCRevelação^000000 permite-lhe ver monstros, assim como outros aventureiros, que estão escondidos ou invisíveis.";
+			next;
+			mes "[Henson]";
+			mes "Uma vez que você aprende a usar Revelação , você será capaz de aprender o ^6666CCTeleporte^000000 .";
+			next;
+			break;
+		case 7:
+			mes "[Henson]";
+			mes "Primeiro, você deve aprender ^6666CCRevelação^000000  para aprender o Teleporte. ";
+			next;
+			mes "[Henson]";
+			mes "O ^6666CCTeleporte^000000 é uma habilidade que serve para teleporta-lo para um local aleatório no campo ou na cidade que você está atualmente. O Teleporte será útil para o escape rápido, mas onde você pode acabar caindo ... é imprevisíveis. ";
+			next;
+			mes "[Henson]";
+			mes "Quando a habilidade Teleporte é dominada, você pode usar teleport como último portal salvo que você fez com uma Funcionária Kafra. Eu não sei porque é dessa maneira, mas o Senhor trabalha de maneiras misteriosas.";
+			next;
+			mes "[Henson]";
+			mes "Quando Teleporte é dominado, você também pode aprender a usar o ^6666CCPortal^000000 . ";
+			next;
+			break;
+		case 8:
+			mes "[Henson]";
+			mes "Se você quiser entender mais sobre as habilidades de um Noviço ou Sacerdote, você está convidado a visitar-me a qualquer momento.";
+			close2;
+			set .@habilidadeChat,0;
+			break;
+		}
+	}
+	end;
+}
+
+// Labirinto Perdido
+//============================================================
+prt_maze02,100,69,0	script	Soldado#pront	105,{
+	mes "[Soldado]";
+	mes "Ei..";
+	mes "O que você está fazendo aqui?! ";
+	mes "Você não sabe que há um demônio que vivem na floresta?! ";
+	next;
+	mes "[Soldador]";
+	mes "Eu não posso garantir sua segurança";
+	mes " se você for  para dentro!";
+	close;
+}
+
+prt_maze02,110,69,0	script	Soldado#2pront	105,{
+	mes "[Soldado]";
+	mes "* Sigh ...* O último cara que entrou neste lugar não voltou mais. Ele não me deu ouvidos e foi pegar ervas ou algo burro do tipo...";
+	next;
+	mes "[Soldado]";
+	mes "Que cara estúpido! Por que alguém iria querer jogar sua vida fora apenas para recolher algumas Ervas bobas?";
+	close;
+}

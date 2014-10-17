@@ -1,0 +1,1442 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: aldebaran.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.3/2.3/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Alberta.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Dani]                              |
+//   | 1.2 Otimização [Hold & Holy]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Al De Baran
+//============================================================
+aldebaran,113,70,4	script	Refinador#alde	48,{
+	mes "[Munster]";
+	mes "Minha família morava em Geffen. Então eu achei que era natural aprender a forjar e eventualmente nos tornamos ferreiros. Então nós finalmente nos mudamos para esta cidade,";
+	mes "Aldebaran.";
+	next;
+	if (select("Sobre ^3355FFForjar Equipamentos^000000:Sair") == 1) {
+		mes "[Munster]";
+		mes "Meu pai era uma ferreiro famoso em Geffen, e ele me ensinou muito sobre forjar equipamentos.";
+		next;
+		mes "[Munster]";
+		mes "Um dos fundamentos é que a probabilidade de sucesso ao refinar o item depende do nível da arma.";
+		next;
+		mes "[Munster]";
+		mes "Para armas de nível 1, você pode refinar até +7 sem o risco de quebrar a arma. Armas nível 2 podem ser refinadas até +6. Armas nível 3 podem ser refinadas até +5 com segurança.";
+		next;
+		mes "[Munster]";
+		mes "Para armas nível 4, você pode refinar +4 sem risco. Quanto a armaduras, você pode refiná-las até +4. Se o refinamento falhar, o equipamento será destruido!";
+		close;
+	}
+	mes "[Munster]";
+	mes "Hum...";
+	mes "Se puder, visite a loja do meu pai aqui em Aldebaran. Se me permite dizer, ele é bem talentoso como ferreiro.";
+	close;
+}
+
+aldebaran,64,104,4	script	Ferreiro#alde	55,{
+	mes "[Quatro]";
+	mes "Você já ouviu falar naqueles ferreiros talentosos que se mudaram de Geffen?";
+	next;
+	if (select("Ferreiros famosos?:Encerrar conversa") == 1) {
+		mes "[Quatro]";
+		mes "Pelo que eu ouvi, ele é um daqueles ferreiros que podem refinar suas armas e armaduras. Quando refina uma arma, a sua força de ataque é aumentada.";
+		next;
+		mes "[Quatro]";
+		mes "Para cada nível, a força de ataque aumenta 2 pontos por refinamento em armas nível 1. Em refinamento de armas nível 2, aumenta 3 pontos.";
+		next;
+		mes "[Quatro]";
+		mes "Em armas nível 3, aumenta 5 pontos de força de ataque, e em armas nível 4 aumenta 7 pontos na força de ataque.";
+		close;
+	}
+	mes "[Quatro]";
+	mes "A família desse ferreiro mora aqui, desde que a sua esposa ficou doente e fraca. Por conta de sua condição, ela precisa de medicamentos a base de ervas, que nascem perto de Aldebaran.";
+	next;
+	mes "[Quatro]";
+	mes "Eles também tem um filho obediente que sempre ajuda a família nos negócios. Estou certo de que o garoto vai crescer e se tornar um grande ferreiro como o seu pai.";
+	close;
+}
+
+aldebaran,49,93,4	script	Young Man#alde	83,{
+	mes "[Miller]";
+	mes "Armas nível 4 são legais!";
+	mes "Nem posso acreditar que essas armas";
+	mes "tão poderosas existem!";
+	next;
+	mes "[Miguel]";
+	mes "Bem, é raro encontrar em mercados, mas monstros deixam cair com uma chance muito baixa e você tem que ter capacidade para matá-los.";
+	close;
+}
+
+aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
+	mes "[Joanne]";
+	mes "Gosto de recolher conchas no mar. É realmente divertido e relaxante.";
+	next;
+	if (select("Pegar conchas?:Fim de conversa") == 1) {
+		mes "[Joanne]";
+		mes "Quando você ver bolhas saindo da areia, tente cavar um pouco o solo, você pode encontrar algumas conchas embaixo da areia.";
+		next;
+		mes "[Joanne]";
+		mes "Já ouviu falar";
+		mes "de Ambernite?";
+		mes "Aquele monstro que tem uma concha.";
+		mes "Eu acho ele lindo~";
+		next;
+		mes "[Joanne]";
+		mes "É geralmente visto na praia perto da província oeste de Prontera. Se você tentar atacá-lo sem estar preparado, você pode se meter em apuros.";
+		next;
+		mes "[Joanne]";
+		mes "Ambernite é";
+		mes "bem forte!";
+		mes "Portanto fique atento!";
+		close;
+	}
+	mes "[Joanne]";
+	mes "Ambernite é";
+	mes "bem forte!";
+	mes "Portanto fique atento!";
+	close;
+}
+
+aldebaran,46,129,4	script	Canal Guy#alde	97,{
+	mes "[Panama]";
+	mes "Aldebaran é conhecida no mundo inteiro como a cidade dos canais. As vias são realmente sofisticadas, toque romântico à nossa cidade justa.";
+	next;
+	if (select("Sobre os canais:Encerrar conversa") == 1) {
+		mes "[Panama]";
+		mes "Bem, um canal é uma via fluvial artificial utilizada para a viagem,";
+		mes "com transporte marítimo, ou irrigação.";
+		next;
+		mes "[Panama]";
+		mes "No entanto, os canais por aqui são apenas artificiais. Se necessário para o transporte de qualquer coisa, só usar o serviço de teleporte da Corporação Kafra!";
+		close;
+	}
+	mes "[Panama]";
+	mes "Sei que vai aproveitar a sua estadia em Aldebaran.";
+	close;
+}
+
+aldebaran,67,154,4	script	Forest Guy#alde	98,{
+	mes "[Isenberg]";
+	mes "Monte Mjolnir e Floresta de Payon.";
+	mes "Ambos locais são dificeis";
+	mes "de viajar.";
+	next;
+	switch(select("Monte de Mjolnir?:Floresta de Payon...?:Encerrar conversa")) {
+	case 1:
+		mes "[Isenberg]";
+		mes "Para chegar aqui a partir de Prontera ou Geffen, você tem que atravessar as Montanhas de Mjolnir.";
+		next;
+		mes "[Isenberg]";
+		mes "Se você tiver que chegar aqui a pé sem usar o serviço de teleporte que as Kafras oferecem,";
+		mes "te desejo boa sorte";
+		next;
+		mes "[Isenberg]";
+		mes "As Montanhas de Mjolnir são realmente íngrimes, e são cheias de monstros agressivos e hostis. Portanto, é sempre um risco viajar sozinho por lá.";
+		close;
+	case 2:
+		mes "[Isenberg]";
+		mes "Se você deseja visitar a cidade de Alberta ou de Payon, você primeiro terá que viajar pela Floresta de Payon.";
+		next;
+		mes "[Isenberg]";
+		mes "A Floresta de Payon é enrolada, cheia de labirintos onde é fácil ficar perdido. A menos que você se concentre em seu caminho, você pode ficar preso vagando naquele lugar perigoso.";
+		next;
+		mes "[Isenberg]";
+		mes "Payon, a Vila dos Arqueiros, foi construída no meio da floresta, para se proteger de invasores. Então eu acho que foi uma boa decisão deles.";
+		close;
+	case 3:
+		mes "[Isenberg]";
+		mes "As enormes Montanhas em torno desta cidade";
+		mes "bloqueiam pessoas de fora entrar.";
+		mes "Isso pode ser uma parte da razão de como";
+		mes "temos sido capazes de manter este canal belo";
+		mes "e misterioso com sua alquimia sem qualquer influência do exterior.";
+		close;
+	}
+}
+
+aldebaran,90,170,4	script	Epthiel#alde	47,{
+	mes "[Epthiel]";
+	mes "Algumas armas ou armaduras tem Slots, onde você pode inserir algumas cartas que caem de monstros.";
+	next;
+	switch(select("Sobre números de slots:Relação entre cartas e slot:Encerrar conversa")) {
+	case 1:
+		mes "[Epthiel]";
+		mes "Itens que caem de monstros possuem mais slots do que itens vendidos em NPCs.";
+		next;
+		mes "[Epthiel]";
+		mes "Então podemos supor que um item com mais slots é mais valioso do que um item com menos slots.";
+		close;
+	case 2:
+		mes "[Epthiel]";
+		mes "Quando inserido uma carta em um slot, é impossivel removê-lo. Por favor, tenha cuidado quando você inserir cartas em armas ou armaduras.";
+		next;
+		mes "[Epthiel]";
+		mes "Além disso, quando você passar o mouse sobre o equipamento, o nome do item será seguido pelo número de slots entre parênteses.";
+		next;
+		mes "[Epthiel]";
+		mes "Por exemplo, um escudo com 1 slot, quando você passar o mouse, irá mostrar o nome 'Escudo [1].'";
+		next;
+		mes "[Epthiel]";
+		mes "Você também pode clicar com o botão direito do mouse no item, e verificar a carta no slot embaixo da janela de descrição.";
+		close;
+	case 3:
+		mes "[Epthiel]";
+		mes "Alguma vez você já obteve uma carta de um monstro?";
+		close;
+	}
+}
+
+aldebaran,117,181,4	script	Phracon Guy#alde	48,{
+	mes "[Joy]";
+	mes "Armas nível 1, que é o menor nível, precisa de um metal chamado ^3355FFFracon^000000 para ser refinado.";
+	next;
+	switch(select("Sobre Fracon:Dicas sobre fracon:Fim de conversa")) {
+	case 1:
+		mes "[Joy]";
+		mes "Fracon é um metal comum que pode ser encontrado facilmente em Rune-Midgard.";
+		next;
+		mes "[Joy]";
+		mes "Lhe falta a força de outros metais. É fácil de encontrar e obter. Você pode obter Fracons matando monstros ou comprando em lojas de forja nas cidades.";
+		next;
+		mes "[Joy]";
+		mes "Quando você não precisar mais dos fracons por utilizar uma arma de nível superior, você pode vendê-los por algum dinheiro!";
+		close;
+	case 2:
+		mes "[Joy]";
+		mes "Bem, eu já ouvi falar de muitos monstros que deixam cair Fracon, por que não vai caçá-los?";
+		next;
+		mes "[Joy]";
+		mes "Não deverá ser muito difícil. Uma vez eu encontrei um Fracon que caiu depois de matar um Bebê Selvagem! Mas se você está desesperado, você sempre pode comprá-los em uma loja de forja.";
+		close;
+	case 3:
+		mes "[Joy]";
+		mes "Boa sorte ao encontrar fracons!";
+		close;
+	}
+}
+
+aldebaran,121,231,4	script	Estudante#alde	49,{
+	mes "[Chemirre]";
+	mes "Alquimistas, uma das duas classes capazes de criar itens diversos através de materiais, utilizando o conhecimento antigo de Aldebaran.";
+	next;
+	switch(select("Sobre alquimia em Payon:Definição de Alquimia:. . . . .:Encerrar conversa")) {
+	case 1:
+		mes "[Chemirre]";
+		mes "A maioria das pessoas não sabe que houve uma forma de Alquimia oriental que se desenvolveu em Payon.";
+		next;
+		mes "[Chemirre]";
+		mes "Estes alquimistas de Payon foram capazes de criar ouro a partir de diferentes materiais. No entanto, a alquimia de Payon não conseguiu se desenvolver tanto quanto a de Aldebaran.";
+		next;
+		mes "[Chemirre]";
+		mes "Os materiais para a Alquimia de Payon eram escassos e o interesse nessa área acabou diminuindo. Agora, você só pode estudar alquimia aqui em Aldebaran.";
+		next;
+		mes "[Chemirre]";
+		mes "Ainda assim, não posso ajudar sobre os segredos que foram perdidos após o desaparecimento da arte da alquimia de Payon da face da Terra...";
+		close;
+	case 2:
+		mes "[Chemirre]";
+		mes "Alquimistas são especializados na investigação da quimica, de forma útil para criar várias coisas.";
+		next;
+		mes "[Chemirre]";
+		mes "Eu também ouvi dizer que eles criam todos os tipos de poções, e pode ainda convocar alguns monstros! Parece que os seus estudos têm todos os tipos de aplicações.";
+		close;
+	case 3:
+		mes "[Chemirre]";
+		mes "Você está aborrecido, não é mesmo?";
+		mes "Muito bem, então, vou te contar uma história sobre o monstro cartas e itens com slot.";
+		mes "Como você já sabe, se você nunca tiver obtido uma carta de monstro antes,";
+		next;
+		mes "[Chemirre]";
+		mes "você só pode inserir uma carta de monstro no item";
+		mes "que seja compatível com a carta.";
+		mes "Por exemplo, vamos dizer, você tem obtido uma carta Poring.";
+		next;
+		mes "[Chemirre]";
+		mes "Quando você clicar com o botão direito do mouse, você verá";
+		mes "que ela habilita +2 de SOR e +1 de Esquiva Perfeita";
+		mes "e a sua localização é 'armadura'. ";
+		next;
+		mes "[Chemirre]";
+		mes "Se você tentar inserir esta carta em uma faca com muitos slots,";
+		mes "não vai funcionar por que esta carta está destinada apenas para";
+		mes "armaduras.";
+		next;
+		mes "[Chemirre]";
+		mes "Quase todas armaduras vendidas nas";
+		mes "lojas não possuem slots.";
+		mes "Isso significa, que você só consegue";
+		mes "armaduras com slots caçando monstros.";
+		next;
+		mes "[Chemirre]";
+		mes "Ah, deixa eu lhe dizer como você pode colocar uma carta em um item.";
+		mes "Se você deseja equipar a carta na sua armadura,";
+		mes "você deve desequipar a armadura primeiro.";
+		mes "Em seguida, clique duas vezes em uma carta que pretende utilizar.";
+		mes "Após isso, aparecerá uma lista de armadura, para você escolher onde inserir a carta.";
+		next;
+		mes "[Chemirre]";
+		mes "Não é complicado, é?";
+		close;
+	case 4:
+		mes "[Chemirre]";
+		mes "Você não pode falar da alquimia de Rune-Midgard";
+		mes "sem falar da guilda dos alquimistas de Aldebaran!";
+		mes "Vida longa aos alquimistas!";
+		close;
+	}
+}
+
+aldebaran,86,228,4	script	Criança#alde	62,{
+	mes "[Bebe]";
+	mes "Um tempo atrás eu saí para um passeio a pé em direção ao Monte Mjolnir, com meu animal de estimação Bebê Selvagem, seu nome é NukNuk!";
+	mes "Nós fomos atacados, mas por sorte não nos machucamos.";
+	next;
+	switch(select("Atacados?:Sobre Monte Mjolnir:Encerrar conversa")) {
+	case 1:
+		mes "[Bebe]";
+		mes "Eu estava caminhando para cima de um caminho estreito, e de repente, um gigante feio e plantas começaram a me atacar e atacar o NukNuk!";
+		next;
+		mes "[Bebe]";
+		mes "Eu estava tão surpreso, que eu e o NukNuk tivemos que fugir. Eu joguei pedras neles, mas acho que eles não se machucaram. Devem ser muito fortes!";
+		next;
+		mes "[Bebe]";
+		mes "O que realmente me surpreendeu foi a planta ter me atacado, parecia uma flor enorme com o rosto de uma pessoa! Então eu olhei para o rosto. Parecia ser perigoso!";
+		close;
+	case 2:
+		mes "[Bebe]";
+		mes "Mesmo que as pessoas estejam fascinadas pela beleza do Monte Mjolnir, lá é cheio de monstros perigosos!";
+		next;
+		mes "[Bebe]";
+		mes "Há flores, insetos, abelhas, borboletas e mariposas que são grandes o suficiente para matá-lo se não tiver cuidado!";
+		next;
+		mes "[Bebe]";
+		mes "Então, a maioria desses monstros não vai machucá-lo se você não atacar primeiro. Mas alguns deles irá atacar assim que ver você!";
+		close;
+	case 3:
+		mes "[Bebe]";
+		mes "Falando nisso, cadê o NukNuk?";
+		mes "NukNuk! Não fuja!";
+		close;
+	}
+}
+
+aldebaran,159,242,4	script	Tio Inseto#alde	119,{
+	mes "[Stromme]";
+	mes "Mesmo com os fortes espadachins, os insetos do Monte de Mjolnir representam uma ameaça considerável. Você tem que conhecer o inimigo antes de batalhar com ele!";
+	next;
+	if (select("Sobre Insetos:Encerrar conversa") == 1) {
+		mes "[Stellone]";
+		mes "Moscas, borboletas e mariposas parecem simples criaturas, mas isso não significa que você deva subestimá-los.";
+		next;
+		mes "[Stromme]";
+		mes "Esses insetos têm se desenvolvido ao longo do tempo, e pode preparar ataques contra vocês, aventureiros!";
+		next;
+		mes "[Stromme]";
+		mes "Existem também insetos carnívoros, como aranhas, Louva-a-deus, bem como a centopéia Argiope.";
+		next;
+		mes "[Stromme]";
+		mes "Estes monstros tem mudado e ficado muito fortes comparados a uma pessoa. Você deve tomar um cuidado especial com os Argiopes.";
+		next;
+		mes "[Stromme]";
+		mes "Felizmente, a sua visão é muito ruim, por isso não irá detectar você caso ande a longa distância.";
+		close;
+	}
+	mes "[Stromme]";
+	mes "Não importa o quão bonito e inofensivo parece ser um inseto.";
+	mes "Ande sem tocá-los.";
+	mes "Eles são extremamente fortes diferentemente de seu olhar inocente.";
+	mes "Não subestime os monstros do Monte Mjolnir.";
+	close;
+}
+
+aldebaran,60,70,4	script	Sylvia#alde	69,{
+	mes "[Sylvia]";
+	mes "Vim de Prontera até aqui em Al De Baran, porque eu ouvi dizer que a Central das Kafras fica em algum lugar por aqui.";
+	next;
+	mes "[Sylvia]";
+	mes "Não deve ser tão difícil de encontrar, mas sou péssima em seguir instruções. Eu sempre me perco, não importa quantos mapas eu traga!";
+	next;
+	mes "[Sylvia]";
+	mes "Se não fosse tão longe... Eu deixei minhas lupas em Prontera, agora tenho que encontrar alguém para me ajudar com essas armas que eu não posso usar!";
+	next;
+	if (select("Por que não pode usar?:Isso é muito bonito.") == 1) {
+		mes "[Sylvia]";
+		mes "Equipamentos que caem de monstros não podem ser equipados imediatamente.";
+		next;
+		mes "[Sylvia]";
+		mes "Se você clicar com o botão direito no equipamento que está no inventário, você verá que não está identificado, o que é necessário fazer?";
+		next;
+		mes "[Sylvia]";
+		mes "Bem, nesse caso, você tem que usar uma ^3355FFLupa^000000!";
+		next;
+		mes "[Sylvia]";
+		mes "Mesmo sem Ferreiro, Alquimista ou Mercador no seu grupo, você pode identificar seus equipamentos! Evidentemente, uma lupa é consumida cada item que você idetificar.";
+		close;
+	}
+	mes "[Sylvia]";
+	mes "Ei...";
+	mes "Você está se expressando com sarcasmo ao dizer isso?";
+	close;
+}
+
+aldebaran,93,80,4	script	Issei#alde	48,{
+	mes "[Issei]";
+	mes "Al De Baran é um lugar maravilhoso com os seus românticos canais e arquitetura clássica. Eu amo passear por esta cidade com a minha linda namorada.";
+	next;
+	if (select("Você tem uma namorada?:Encerrar conversa.") == 1) {
+		mes "[Issei]";
+		mes "Hey...";
+		mes "É tão dificil assim acreditar? Sim, pode perguntar para qualquer um! Ela existe! Só que de vez em quando, só de vez em quando, ela se anima com armas e armaduras.";
+		next;
+		mes "[Issei]";
+		mes "Invés de desfrutar de um jantar romântico, ela fala sobre equipamentos que caem de monstros, que eles tem mais qualidades do que os vendidos em lojas.";
+		next;
+		mes "[Issei]";
+		mes "Quer dizer, por que me importar se equipamentos que cairam de monstros tem mais slots? Eu não posso mesmo matar nem um Poring!";
+		next;
+		mes "[Issei]";
+		mes "Como você pode ver,";
+		mes "eu sou um apaixonado,";
+		mes "não um lutador.";
+		close;
+	}
+	mes "[Issei]";
+	mes "Então, você não pensa que sou um estúpido, não é?";
+	close;
+}
+
+aldebaran,180,46,4	script	Joo Jahk#alde	88,{
+	mes "[Joo Jahk]";
+	mes "Eu sou um turista";
+	mes "vindo de Payon,";
+	mes "a cidade Floresta.";
+	next;
+	mes "[Joo Jahk]";
+	mes "O temperatura aqui em Al De Baran é muito agradável, provavelmente devido às vias navegáveis. Você acha que a água dos canais é potável?";
+	next;
+	mes "[Joo Jahk]";
+	mes "Bem, é tarde demais para mim, pois eu já bebi. Ainda assim, estou um pouco preocupado...";
+	next;
+	if (select("Continuar.:Encerrar Conversa.") == 1) {
+		mes "[Joo Jahk]";
+		mes "Eu tenho viajado por vários lugares de Rune-Midgard. Eu ouvi isso de um Feiticeiro poderoso logo antes de chegar a Al De Baran: Se você lutar contra monstros do tipo Fantasma que não tem corpo físico, não é possível causar dano neles com armas ou magias normais, somente com ataques ou armas elementais";
+		next;
+		mes "[Joo Jahk]";
+		mes "Talvez esse conselho venha a calhar. Agora que você sabe disso, sempre lembre da importância das propriedades de suas habilidades e armas quando batalhar com monstros.";
+		close;
+	}
+	mes "[Joo Jahk]";
+	mes "Por outro lado, a água que bebi é muito boa. Espero que não aconteça nada comigo...";
+	close;
+}
+
+aldebaran,212,122,4	script	Citizen#alde	97,{
+	mes "[Gavin]";
+	mes "Bem-vindo!";
+	mes "Esta é a Torre";
+	mes "de Al De Baran.";
+	mes "Estamos feliz com a sua visita!";
+	next;
+	mes "[Gavin]";
+	mes "Bem, isso pode ser um exagero. Eu não sou importante, eu só gosto de receber visitantes.";
+	mes "Olá!";
+	next;
+	if (select("Agora, me fale sobre monstros.:Fim de conversa.") == 1) {
+		mes "[Gavin]";
+		mes "Monstros...?";
+		mes "Não acha que saímos um pouco do assunto da conversa? Ah, você deve ser um desses aventureiros!";
+		next;
+		mes "[Gavin]";
+		mes "Você não  consegue tirar sua mente do trabalho, né? Muito bem, eu vi algum monstro há pouco tempo...";
+		next;
+		mes "[Gavin]";
+		mes "Ah, agora me lembro! Alguns dias atrás, eu vi um monstro interessante! Foi um Poring com asas de anjos!";
+		next;
+		mes "[Gavin]";
+		mes "Juro! Ele estava pulando em torno de algum lugar perto de Monte Mjolnir com alguns Porings ordinários. Acho que ele era o líder.";
+		close;
+	}
+	mes "[Gavin]";
+	mes "Awww...";
+	mes "Não fique muito desapontado por que apenas uma pessoa te deu boas vindas!";
+	close;
+}
+
+aldebaran,146,124,4	script	Menina#alde	101,{
+	mes "[Nastasia]";
+	mes "Em algum lugar do mundo tem uma ^3355FFGuilda dos Assassinos^000000, onde eles ensinam as pessoas a arte do assassinato.";
+	next;
+	mes "[Nastasia]";
+	mes "Mas matar não é ilegal? E eles ainda ensinam isso~";
+	next;
+	if (select("Continuar Conversa.:Encerrar Conversa.") == 1) {
+		mes "[Nastasia]";
+		mes "Embora assassinos tenham a vantagem de ser rápidos e com muita Agilidade, eles deveriam ter um pouco mais de destreza.";
+		next;
+		mes "[Nastasia]";
+		mes "Destreza é muito importante se você quiser acertar monstros com asas. Esses monstros são rapidos se movendo e atacando.";
+		next;
+		mes "[Nastasia]";
+		mes "Em geral, se você quiser acertar monstros que são rápidos, ou ainda mais rápido do que você é, você vai precisar de destreza.";
+		close;
+	}
+	mes "[Nastasia]";
+	mes "É, geralmente é dito que nada é de graça neste mundo. Ainda assim, se não tiver dinheiro para pagar, pode aprender um pouco sobre assassinos comigo...";
+	close;
+}
+
+aldebaran,143,136,4	script	Guardião do Relógio#A	89,{
+	mes "[Bell Keeper]";
+	mes "Fui escolhido pelo comitê do 'Paraíso na Terra' para ser o guarda da entrada da Torre do Relógio.";
+	next;
+	if (select("Sobre a Torre do Relógio.:Sair.") == 1) {
+		mes "[Guardião do Relógio]";
+		mes "Cada andar da torre está ligado entre si por um certo dispositivo que gostamos de chamar de engrenagem.";
+		next;
+		mes "[Guardião do Relógio]";
+		mes "Mesmo que os lugares estejam interconctados por toda parte da torre, você pode acabar indo para um lugar aleatório.";
+		next;
+		mes "[Guardião do Relógio]";
+		mes "O portal aleatório irá transportá-lo para um local desconhecido. Sendo assim você pode acabar repentinamente se separando do seu grupo....";
+		next;
+		mes "[Guardião do Relógio]";
+		mes "Lembre-se, os portais aleatórios são mostrados em verde no mini-mapa. Portanto, matenha os olhos abertos para que você não acabe encontrando coisas perigosas no Relógio.";
+		close;
+	}
+	mes "[Guardião do Relógio]";
+	mes "Tenha cuidado, a Torre do Relógio é cheia de armadilhas e monstros perigosos.";
+	close;
+}
+
+// Dentro de Al De Baran
+//============================================================
+aldeba_in,232,241,4	script	RS125#alde	48,{
+	mes "[RS125]";
+	mes "Eu posso parecer um robô.";
+	mes "Mas, espero que você não tenha medo de mim. Eu sou tão humano quanto você.";
+	next;
+	mes "[RS125]";
+	mes "Eu tenho um coração robótico, e talvez eu possa encomodá-lo com os altos ruídos do coração.";
+	mes "Mas nada vai fazer eu parar de correr no futuro de Aldebaran.";
+	next;
+	if (select("Ouça a história.:Encerrar Conversa") == 1) {
+		mes "[RS125]";
+		mes "Há três anos atrás,";
+		mes "Meu irmão 996 era atleta de uma equipe aqui na cidade Al De Baran.";
+		mes "Naquela época, as pessoas lhe deram um apelido de Peco Peco de Al De Baran,";
+		mes "por ser impressionantemente rápido...";
+		next;
+		mes "[RS125]";
+		mes "Ele se tornou popular por suas corridas emocionantes.";
+		mes "Quando a 'Aldebaran Turbo Track' é realizada, uma vez a cada 4 anos,";
+		mes "muitas pessoas de todo o continente vinham até aqui só para ver o meu irmão.";
+		mes "Eu era seu empresário, e ficava muito estressado por causa dos seus fãs.";
+		next;
+		mes "[RS125]";
+		mes "Porém, nada dura para sempre...";
+		mes "Um dia, uma menina de Payon venceu meu irmão em uma partida.";
+		next;
+		mes "[RS125]";
+		mes "Meu irmão não aceitava o fato de ter perdido.";
+		mes "Então ele começou a praticar pesado e teve um grave ataque cardíaco.";
+		mes "Ele ainda está de cama.";
+		next;
+		mes "[RS125]";
+		mes "Eu sou a única esperança do meu irmão e o futuro de Al De Baran!";
+		mes "Por favor, me deseje sorte, eu vou vencer a brisa de Payon!";
+		close;
+	}
+	mes "[RS125]";
+	mes "Eu quero viajar em torno do mundo.";
+	mes "Eu quero ver o mar a partir do porto de Alberta, deve ser maravilhoso.";
+	mes "Depois desses anos de competição atlética, vou fazer uma turnê e dar voltas pelo mundo com meu irmão.";
+	close;
+}
+
+aldeba_in,223,121,4	script	Homem Louco	63,{
+	mes "[Homem Louco]";
+	mes "Ei, você não pode entrar na casa de alguém sem permissão.";
+	mes "Isso é ridículo!";
+	mes "Como você se atreve a entrar dentro da minha casa e falar comigo como se isso fosse normal?";
+	next;
+	mes "[Homem Louco]";
+	mes "Hahahaha...fica calmo, eu estava só brincando.";
+	next;
+	if (select("Continuar:Sair") == 1) {
+		mes "[Homem Louco]";
+		mes "Você pode até já saber, mas";
+		mes "nós temos um sistema chamado 'Sistema dos Mercenários' neste mundo.";
+		mes "Sim, eu sou um soldado mercenário.";
+		next;
+		mes "[Homem Louco]";
+		mes "É simples. Só você pagar para alguém ajudá-lo a lutar.";
+		mes "Quanto mais dinheiro pagar, melhor será o mercenário que você vai contratar, sabe?";
+		next;
+		mes "[Homem Louco]";
+		mes "Vamos parar de falar sobre isso.";
+		mes "Vou dizer-lhe como você pode encontrar um bom soldado mercenário.";
+		next;
+		mes "[Homem Louco]";
+		mes "Verifique se seu nariz está limpo e úmido.";
+		mes "Um bom soldado mercenário tem que ter o nariz molhado";
+		mes "porque mostra que o soldado está em bom estado de saúde.";
+		mes "Se o nariz tiver seco, significa que ele está resfriado.";
+		next;
+		mes "[Homem Louco]";
+		mes "E não esqueça de verificar o tornozelo do soldado.";
+		mes "O melhor soldado mercenário tem tornozelos finos e um pescoço branco!";
+		mes "Se ele tiver cabelo comprido, é melhor! Se o cabelo for ondulado, é perfeito!";
+		next;
+		mes "[Homem Louco]";
+		mes "Por último você tem que verificar se ele está disposto a atendê-lo com qualidade.";
+		mes "Isso significa, que ele deve fazer o seu melhor quando for ajudar você em uma luta!";
+		close;
+	}
+	mes "[Homem Louco]";
+	mes "Agora, saia!";
+	mes "se for um policial, mostre-me a sua carteira,";
+	mes "se for um membro da minha família, prove com a marca do seu nascimento!";
+	close;
+}
+
+aldeba_in,219,61,4	script	Homem Gentil#ald	109,{
+	mes "[Friendly-Looking Man]";
+	mes "Não dê ouvidos ao rapaz que fica perto do meu quarto.";
+	mes "Dois anos atrás, ele estava se formando como mercenário e caiu de uma árvore";
+	mes "enquanto tentava recolher nóz.";
+	next;
+	mes "[Homem Gentil]";
+	mes "Ele fica falando alto e consigo mesmo, me dá dor de cabeça...";
+	mes "Saco!";
+	close;
+}
+
+aldeba_in,152,47,4	script	Homem Agitado#alde	97,{
+	mes "[Homem Agitado]";
+	mes "Aaaaarrrggghhh...ESTOU COM PROBLEMAS!";
+	mes "Minha linda galinha me abandonou!";
+	mes "Oh, meu deus! Oh, meu deus!";
+	next;
+	if (select("Como se chama sua galinha?:. . . . .") == 1) {
+		mes "[Homem Agitado]";
+		mes "Eu a chamava de 'Incrível Picky'...";
+		mes "*choro* O que devo fazer! Como isso pode acontecer!";
+		mes "Por favor, por favor me ajude a encontrar minha doce galinha!";
+		next;
+		if (select("Que? Esse nome aborrece!:. . . . .") == 1) {
+			mes "[Homem Agitado]";
+			mes "Não seja tão ridículo!";
+			mes "'Incrível Picky' é o nome mais maravilhoso";
+			mes "do mundo, minha galinha merece esse nome!";
+			close;
+		}
+		mes "[Homem Agitado]";
+		mes "Você não se importa, não é?";
+		mes "Sou filho único na minha família, eu tratava minha galinha como irmã!";
+		mes "Eu quero o minha galinha de volta... *choro*";
+		close;
+	}
+	mes "[Homem Agitado]";
+	mes "Você não se importa, não é?";
+	mes "Sou filho único na minha família, eu tratava minha galinha como irmã!";
+	mes "Eu quero o minha galinha de volta... *choro*";
+	close;
+}
+
+aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
+	mes "[Master]";
+	mes "a Sede da Corporação Kafra está localizada aqui em Al De Baran.";
+	mes "Sabe o que isso";
+	mes "significa?";
+	next;
+	mes "[Gerente do Bar]";
+	mes "Isso significa que aquelas lindas funcionárias vêm aqui para almoçar, não é maravilhoso?!";
+	next;
+	mes "[Gerente do Bar]";
+	mes "Muito bem!";
+	mes "Está na hora das perguntas!";
+	mes "Qual sua Kafra";
+	mes "favorita?";
+	next;
+	if (sex == 0) {
+		mes "[Gerente do Bar]";
+		mes "Ah, não se preocupe. Eu sei que as meninas têm alguma opinião sobre as outras meninas.";
+		next;
+	}
+	if (select("Impressionante!:De jeito nenhum, eu não sou pevertido.") == 1) {
+		mes "[Gerente do Bar]";
+		mes "Muito bem, aqui vamos nós!";
+		mes "Escolha a sua Fafra favorita!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "A Kafra original, com seus lindos cabelos azuis! Candidata número um: ^3355FFDenise^000000!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "Ela é graciosa usa o cabelo com rabo-de-cavalo, tira o fôlego dos homens, e é a favorita entre os adolescentes! Candidata número dois: ^5533FFTatiana^000000!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "Seus cabelos longos e lisos, é o ponto do seu charme. Ela veio de Payon. Candidata número três: ^555555Marianne^000000!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "Ela tem um jeito sorridente, cabelo curto cor alaranjado. Candidata número quatro: ^1133DDBianca^000000!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "Inteligente, sofisticada e nunca vista sem seus óculos luxuosos. Candidata número cinco: ^33FF55Sofia^000000!";
+		next;
+		mes "[Gerente do Bar]";
+		mes "Linda, fofa e novata. Ela parece jovem e imatura, mas é a melhor da equipe!";
+		mes "Candidata número seis ^AAAA00Deborah^000000 !!";
+		next;
+		switch(select("(1) Denise:(2) Tatiana:(3) Marianne:(4) Bianca:(5) Sofia:(6) Deborah")) {
+		case 1:
+			mes "[Gerente do Bar]";
+			mes "Oh~";
+			mes "Então você gosta das clássicas né! Eu respeito isso.";
+			next;
+			mes "[Gerente do Bar]";
+			mes "Eu suponho que você gosta de filmes originais, e não gosta de se beneficiar com más imitações. Estou certo?";
+			close;
+		case 2:
+			mes "[Gerente do Bar]";
+			mes "Humm...";
+			mes "Tatiana, Parece-me que esta garota está atraindo muitos por aí, hein?";
+			close;
+		case 3:
+			mes "[Gerente do Bar]";
+			mes "Então...";
+			mes "Cabelos compridos e luxuosos é importante para você, hein? Suponho que esse tipo de cabelo dá as mulheres um olhar elegante.";
+			close;
+		case 4:
+			mes "[Gerente do Bar]";
+			mes "Ah, então você gosta das agitadas, e espontâneas. Eu entendo perfeitamente...";
+			next;
+			mes "[Gerente do Bar]";
+			mes "Bianca não é exatamente o tipo dona de casa, você provavelmente tem a mente aberta quando se trata de definir feminilidade, certo?";
+			close;
+		case 5:
+			mes "[Gerente do Bar]";
+			mes "Ah, então você gosta do tipo intelectual. Isso é bom, isso é bom.";
+			next;
+			mes "[Gerente do Bar]";
+			mes "Bem, Sofia pode ser fria como uma pedra às vezes. Mas eu já vi ela balançando o coração de muitos por ai!";
+			close;
+		case 6:
+			mes "[Gerente do Bar]";
+			mes "Massss o que?!";
+			mes "Ela é jovem demais!";
+			close;
+		}
+	}
+	mes "[Gerente do Bar]";
+	mes "Mas eu trabalhei duro nessas deliciosas perguntas! Venha, leve na esportiva! Admirar uma bela mulher é como apreciar uma arte.";
+	close;
+}
+
+aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
+	cutin "kafra_01",2;
+	mes "[Kafra Denise]";
+	mes "Bem vindo! Eu sou a Denise,";
+	mes "Nós, Funcionárias Kafra, estamos trabalhando para a Corporação Kafra, tentando satisfazer 100% nossos clientes.";
+	next;
+	mes "[Kafra Denise]";
+	mes "Devido a mudança feita ao cliente, não podemos aceitar Bilhetes de Kafra. Entretanto, estamos oferecendo restituições para os nossos clientes que ainda possuem esses bilhetes.";
+	next;
+	if (select("Vender Bilhete de Kafra:Ok, até mais~") == 1) {
+		if (countitem(1084) == 0) {
+			mes "[Kafra Denise]";
+			mes "Me desculpe,";
+			mes "mas você não tem";
+			mes "nenhum Bilhete de Kafra.";
+			close2;
+			cutin "",255;
+			end;
+		} else {
+			set .@kafrapassmoney,countitem(1084)*2000;
+			mes "[Kafra Denise]";
+			mes "Vamos ver...";
+			if (countitem(1084) == 1) {
+				mes "Você tem 1 bilhete de kafra.";
+				mes "Você pode nos vender por 2000 zeny. Você gostaria de revender esse Bilhete de Kafra para a Corporação Kafra?";
+			} else {
+				mes "Você tem "+ countitem(1084) +" Bilhetes de Kafra.";
+				mes "se você quiser nos vender, você receberá "+ .@kafrapassmoney +" zenys. Você gostaria de vender estes de volta para a Corporação Kafra?";
+			}
+			next;
+			if (select("Sim:Não") == 1) {
+				if (countitem(1084) == 0) {
+					mes "[Kafra Denise]";
+					mes "Me desculpe, você não tem Bilhetes de Kafra.";
+					close2;
+					cutin "",255;
+					end;
+				}
+				delitem 1084,countitem(1084); //Bilhete de Kafra
+				set Zeny,Zeny+.@kafrapassmoney;
+				mes "[Kafra Denise]";
+				mes "Obrigada.";
+			}
+			close2;
+			cutin "",255;
+			end;
+		}
+	}
+	mes "[Kafra Denise]";
+	mes "Obrigada,";
+	mes "Tenha um bom dia.";
+	close2;
+	cutin "",255;
+	end;
+}
+
+aldeba_in,83,245,4	script	Kafra Tatiana#2alde	116,{
+	cutin "kafra_02",2;
+	mes "[Kafra Tatiana]";
+	mes "Bem vindo à";
+	mes "Corporação kafra.";
+	mes "As Funcionárias Kafra estão";
+	mes "sempre aqui para serví-lo.";
+	next;
+	mes "[Kafra Tatiana]";
+	mes "Continue fazendo uso dos Serviços Kafra. Sinta-se livre para perguntar caso tenha alguma dúvida.";
+	next;
+	switch(select("Como funciona o Armazém das Kafras?:Como você teleporta as pessoas?")) {
+	case 1:
+		mes "[Kafra Tatiana]";
+		mes "Bem, aventureiros podem colocar seus itens no Armazém da Kafra, de modo que assim não será preciso levar todas as suas coisas.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Agora, o armazém tem três janelas separadas, os itens são automaticamente ordenados.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Os separadores ^3355FFItem^000000, ^3355FFEquip^000000, e ^3355FFEtc^000000 assim como as abas do seu inventário.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Vários itens do mesmo tipo ocuparão um slot no Item e Etc. Por exemplo, 324 Jellopies irão ocupar apenas um slot, e 22 Poções Vermelhas ocuparão outro slot.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Entretanto, na guia Equip, cada item tem o seu próprio slot, mesmo que seja igual. Acho que é porque cada equipamento pode ser atualizado por forja singularmente ou através de cartas.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Há um total de 600 slots úteis para as três categorias no Armazém da Kafra.";
+		next;
+		break;
+	case 2:
+		mes "[Kafra Tatiana]";
+		mes "Ah, eu recebo essa pergunta o tempo todo. '^CC0066Oh Tatiana, como você faz isso?^000000'...";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Bem, eu realmente não posso entrar em detalhes, claro. Isso é informação confidencial. Mas posso dizer-lhe que o nosso teletransporte funciona através de uma mistura de magia e tecnologia.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Além disso, as Kafras não podem fazer por si só o telepote aos clientes. Nós processamos o pedido de teleporte.";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Nos bastidores, profissionais especializados e técnicos estão trabalhando 24 horas por dia para garantir que você teleporte com rapidez e eficiência até o seu destino.";
+		next;
+		break;
+	}
+	mes "[Kafra Tatiana]";
+	mes "De qualquer forma, eu espero que você goste da sua visita aqui na Sede da Corporação Kafra.";
+	if (rand(1,11) == 9) {
+		next;
+		mes "[Kafra Tatiana]";
+		mes "...";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Kafra Tatiana]";
+		mes "Oh bem...";
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+aldeba_in,24,245,4	script	Kafra Marianne#alde	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra Marianne]";
+	mes "Bem-vindo!";
+	mes "O serviço da Kafra";
+	mes "está sempre do seu lado.";
+	next;
+	mes "[Kafra Marianne]";
+	mes "Obrigada por vir de longe para visitar a Sede da Corporação Kafra de Al De Baran!";
+	next;
+	mes "[Kafra Marianne]";
+	mes "Os Serviços Kafra está sempre atrás de nossos clientes com uma reputação confiável que foi estabelecida ao longo de cinco mil e oitocentos anos...";
+	next;
+	switch(select("O quê? Eu não posso acreditar!:Ahh fala sério!:O serviço é ótimo!")) {
+	case 1:
+		mes "["+ strcharinfo(0) +"]";
+		mes "Que?!";
+		mes "Eu não posso";
+		mes "acreditar nisso!!!";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "CINCO MIL E OITOCENTOS ANOS? ISSO É INSANO!";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Arrrrghh! Cale a boca e ouça! Levei uma semana para memorizar tudo isto! Minha memória não é tão boa como o das Funcionárias Kafras...!";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Agora, hm...";
+		mes "Como eu dizia, a Corporação Kafra foi fundada a oito mil e quinhetos anos atrás, por Emilio Alexander Kafra... Inventor do termo Kafra.";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Ele...";
+		mes "Ele era um grande homem. Ele ... Argh! Não me lembro!";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Oh não...!";
+		mes "Isso só pode está errado! Cinco milhões e oitocentos mil anos? É impossível!";
+		break;
+	case 2:
+		mes "[Kafra Marianne]";
+		mes "Ouça...";
+		mes "garoto.";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Eu era um membro da guarnição de Kafra antes de juntar-se a equipe do Serviço Kafra. Minha especialidade era ^990000Impacto Explosivo^000000, portanto nem pense em se meter comigo.";
+		next;
+		mes "[Kafra Marianne]";
+		mes "Estou tentando dar o meu melhor para viver calmamente com feminilidade, por isso não me faça usar um soco inglês! Entendeu!?!";
+		break;
+	case 3:
+		mes "[Kafra Marianne]";
+		mes "Viva!";
+		mes "Isso é uma grande notícia para ouvir. Estamos sempre trabalhando duro para ter certeza de que nossos clientes estão satisfeitos com os serviços que fornecemos.";
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+aldeba_in,142,238,4	script	Kafra Bianca#3alde	114,{
+	cutin "kafra_04",2;
+	mes "[Kafra Bianca]";
+	mes "Bem vindo~!";
+	mes "A Corporação Kafra estará sempre apoiando os aventureiros de Rune Midgard com os nossos excelentes serviços.";
+	next;
+	mes "[Kafra Bianca]";
+	mes "Meu nome é Bianca!";
+	mes "Espero que você goste";
+	mes "da sua visita";
+	mes "à Sede da Corporação";
+	mes "Kafra.";
+	next;
+	mes "[Kafra Bianca]";
+	mes "Eu estou aqui para responder qualquer pergunta relacionada a sociedade política das Kafras, tenho conhecimento para qualquer uma das suas perguntas.";
+	next;
+	switch(select("Politica das Kafras:Eu amo Kafra!")) {
+	case 1:
+		mes "[Kafra Bianca]";
+		mes "Hum, você gostaria de saber mais detalhes sobre nossas politicas e eficiência dos nossos serviços? O que você gostaria que eu te explicasse?";
+		next;
+		switch(select("Armazém das Kafras:Carrinho de mão:No momento, nada")) {
+		case 1:
+			mes "[Kafra Bianca]";
+			mes "Como você provavelmente já sabe, nossos clientes devem ter pelo menos nível 6 de Habilidades Básicas para poder usar o Armazém da Kafra.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "Quanto à razão para essa determinada política: nós tivemos problemas com jovens iniciantes que colocavam coisas sem utilidades no seu armazém.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "Agora lembre-se dos seus dias como iniciante. Tudo era novo e excitante, mas zeny era um fracasso. Muitos aprendizes colocavam suas armas e armaduras no Armazém da Kafra.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "E então, nessa altura, eles já tinham poucos zenys par abrir seu armazém. O que dificultava eles terem acesso ao armazém novamente!";
+			next;
+			mes "[Kafra Bianca]";
+			mes "Assim, eles acabam desarmados, e os aprendizes acabaram tendo que lutar com suas mãos até arrecadar novamente os zenys para abrir o seu armazém novamente!";
+			next;
+			mes "[Kafra Bianca]";
+			mes "É um erro bobo, mas nós da Corporação Kafra valorizamos a vida humana, e decidimos colocar nível 6 de Habilidades Básicas para evitar esse tipo de acidente.";
+			break;
+		case 2:
+			mes "[Kafra Bianca]";
+			mes "Como você deve saber, a Corporação Kafra tem uma relação especial com a guilda dos mercadores, bem como a guilda dos ferreiros e alquimistas em Rune-Midgard.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "A Corporação Kafra aluga carrinhos apenas para Mercadores, Ferreiros e Alquimistas, pois temos um contrato para fazer este trabalho especial para eles.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "Além do mais, seria realmente fora do normal alugar carrinhos para pessoas que não podem vender ou criar bens.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "Quanto aos Super Aprendizes... bem... eles não podem alugar carrinhos conosco, até por que a Sociedade de Super Aprendizes em Al De Baran não tem contrato conosco.";
+			next;
+			mes "[Kafra Bianca]";
+			mes "A Kafra que for vista alugando carrinhos para Super Aprendizes, com certeza estará em apuros com a Sofia...";
+			break;
+		case 3:
+			mes "[Kafra Bianca]";
+			mes "Ah, tudo bem!";
+			mes "Se você tiver alguma dúvida,";
+			mes "por favor avise!";
+			break;
+		}
+		break;
+	case 2:
+		mes "[Kafra Bianca]";
+		mes "Obrigada!";
+		mes "É ótimo saber que somos apreciadas pelos nossos clientes! Todas estamos trabalhando duro para ter certeza que o nosso serviço cumpre o seu nível de excelência.";
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+aldeba_in,91,244,4	script	Kafra Deborah#4alde	112,{
+	cutin "kafra_06",2;
+	mes "[Kafra Deborah]";
+	mes "Olá, olá!";
+	mes "Eu sou a Deborah,";
+	mes "sou a mais nova";
+	mes "do grupo das Kafras!";
+	next;
+	mes "[Kafra Deborah]";
+	mes "Eu ainda poderei aprender mais sobre as necessidades dos nossos clientes, mas estou sempre a fazer o meu melhor!";
+	next;
+	if (select("Onde está a sua mãe, criança?:Terminar conversa.") == 1) {
+		mes "[Kafra Deborah]";
+		mes "Waaaaaaah~!";
+		mes "Eu não sou uma criança!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	mes "[Kafra Deborah]";
+	mes "Aqui na Corporação Kafra, todos nós estamos fazendo nosso melhor para dar-lhe o excelente serviço que esperam de nós.";
+	close2;
+	cutin "",255;
+	end;
+}
+
+// NPCs dos Pontos de Reserva Especial Kafra
+//============================================================
+//------------------- Reserva Especial -------------------
+aldeba_in,79,161,6	script	Kafra#04	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra]";
+	mes "Bem vindo, ^6666FF" + strcharinfo(0) + "^000000. Aqui é onde você pode trocar seus pontos especiais por alguns itens usáveis, por ótimos preços.";
+	next;
+	mes "[Kafra]";
+	mes "Cada Kafra irá permitir a troca de seus pontos por vários itens. Eu posso permitir a troca de pontos começando por ^2222FF100 pts até 3000 pts^000000.";
+	next;
+	mes "[Kafra]";
+	mes "A quantidade de pontos que você tem é: ^FF0000"+RESRVPTS+"^000000 pontos.  Por favor, faça uma escolha com base na sua pontuação total.";
+	freeloop(1);
+	while(1) {
+		next;
+		switch(select("100- Batata Doce 7 ea:200- Batata Doce 15 ea:300- Batata Doce 25 ea:400- Batata Doce 35 ea:500- Batata Doce 50 ea:600- Batata Doce 60 ea:700- Batata Doce 75 ea:800- Batata Doce 85 ea:900- Batata Doce 100 ea:1000- 1ª chance da loteria!:Mais Itens:Cancelar")) {
+			set .@id, 516;
+		case 1:
+			set .@price, 100;
+			set .@qt, 7;
+			break;
+		case 2:
+			set .@price, 200;
+			set .@qt, 15;
+			break;
+		case 3:
+			set .@price, 300;
+			set .@qt, 25;
+			break;
+		case 4:
+			set .@price, 400;
+			set .@qt, 35;
+			break;
+		case 5:
+			set .@price, 500;
+			set .@qt, 50;
+			break;
+		case 6:
+			set .@price, 600;
+			set .@qt, 60;
+			break;
+		case 7:
+			set .@price, 700;
+			set .@qt, 75;
+			break;
+		case 8:
+			set .@price, 800;
+			set .@qt, 85;
+			break;
+		case 9:
+			set .@price, 900;
+			set .@qt, 100;
+			break;
+		case 10:
+			if(RESRVPTS < 1000) {
+				mes "[Kafra]";
+				mes "Me desculpe mas você não possui pontos de reservas suficientes para este item.";
+				continue;
+			}
+			set RESRVPTS, RESRVPTS - 1000;
+			mes "[Kafra]";
+			mes "^0000FF1ª Oportunidade da loteria!!^000000";
+			set @Lotto, 1;
+			next;
+			callfunc "F_Lottery";
+			mes "[Kafra]";
+			mes "Volte novamente se tiver mais pontos de reservas.";
+			cutin "",255;
+			close;
+		case 12:
+			mes "[Kafra]";
+			mes "Sinto muito, mas você não tem reserva suficiente em pontos para uma opção.";
+			cutin "",255;
+			close;
+		case 11:
+			switch(select("1100- Poção Vermelha 7 ea:1300- Poção Vermelha 15 ea:1500- Poção Vermelha 25 ea:1700- Poção Vermelha 35 ea:1900- Poção Vermelha 50 ea:2100- Poção Vermelha 60 ea:2300- Poção Vermelha 75 ea:2500- Poção Vermelha 85 ea:2800- Poção Vermelha 100 ea:3000- 2ª Chance da Loteria!Próxima lista:Cancelar")) {
+				set .@id, 501;
+			case 1:
+				set .@price, 1100;
+				set .@qt, 7;
+				break;
+			case 2:
+				set .@price, 1300;
+				set .@qt, 15;
+				break;
+			case 3:
+				set .@price, 1500;
+				set .@qt, 25;
+				break;
+			case 4:
+				set .@price, 1700;
+				set .@qt, 35;
+				break;
+			case 5:
+				set .@price, 1900;
+				set .@qt, 50;
+				break;
+			case 6:
+				set .@price, 2100;
+				set .@qt, 60;
+				break;
+			case 7:
+				set .@price, 2300;
+				set .@qt, 75;
+				break;
+			case 8:
+				set .@price, 2500;
+				set .@qt, 85;
+				break;
+			case 9:
+				set .@price, 2800;
+				set .@qt, 100;
+				break;
+			case 10:
+				if(RESRVPTS < 3000) {
+					mes "[Kafra]";
+					mes "Me desculpe mas você não possui pontos de reservas suficientes para este item.";
+					continue;
+				}
+				set RESRVPTS, RESRVPTS - 3000;
+				mes "[Kafra]";
+				mes "^0000FF2ª Oportunidade da Loteria!!^000000";
+				set @Lotto, 2;
+				next;
+				callfunc "F_Lottery";
+				next;
+			case 11:
+				mes "[Kafra]";
+				mes "Volte quando você tiver mais pontos de reserva.";
+				close2;
+				cutin "",255;
+				end;
+			case 12:
+				mes "[Kafra]";
+				mes "Sinto muito, mas você não tem pontos para uma opção.";
+				cutin "",255;
+				close;
+			}
+			break;
+		}
+		if(RESRVPTS < .@price) {
+			mes "[Kafra]";
+			mes "Me desculpe mas você não possui pontos de reservas suficientes para este item.";
+			continue;
+		}
+		mes "[Kafra]";
+		mes "Aqui estão.";
+		getitem .@id, .@qt;
+		set RESRVPTS, RESRVPTS - .@price;
+		cutin "",255;
+		close;
+	}
+}
+
+// Reserva Especial 2 ----------------------------------------------
+aldeba_in,88,161,3	script	Kafra#05	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra]";
+	mes "Bem vindo ^5577FF"+strcharinfo(0)+"^000000. Atualmente estamos com um evento especial para os nossos clientes.";
+	mes "Você pode adquirir presentes gratuitos utilizando ^FF5533Pontos de Reservas Especiais^000000 no ^3355FFEvento Especial Presente da Kafra^000000!!";
+	next;
+	mes "[Kafra]";
+	mes "Gostaria de usar os seus pontos?";
+	next;
+	if(select("Sim quero.:vou deixar para uma próxima") == 1) {	
+		mes "[Kafra]";
+		mes "Você tem a seguinte quantidade de pontos reservas especiais: ^5544FF"+RESRVPTS+"^000000.";
+		mes "Faça uma escolha e tenha sorte!!";
+		next;
+		switch(select("5000pts = 1ª Chance da loteria!:7000pts = 2ª Chance da loteria!:10000pts = 3ª Chance da loteria!:Cancelar")) {
+		case 1:
+			set .@price, 5000;
+			set @Lotto, 3;
+			break;
+		case 2:
+			set .@price, 7000;
+			set @Lotto, 4;
+			break;
+		case 3:
+			set .@price, 10000;
+			set @Lotto, 5;
+			break;
+		case 4:
+			mes "[Kafra]";
+			mes "Sem problema. Consiga mais e mais pontos de reservas especiais utilizando os serviços Kafra por toda Rune Midgard.";
+			mes "Obrigada por utilizar os serviços da Corp. Kafra.";
+			cutin "",255;
+			close;
+		}
+		if(RESRVPTS < .@price) {
+			mes "[Kafra]";
+			mes "Sinto muito querido, mas você não tem pontos suficientes para esta seleção.";
+			cutin "",255;
+			close;
+		}
+		set RESRVPTS, RESRVPTS - .@price;
+		callfunc "F_Lottery";
+		mes "[Kafra]";
+		mes "Sem problema. Consiga mais e mais pontos de reservas especiais utilizando os serviços Kafra por toda Rune Midgard.";
+		mes "Obrigada por utilizar os serviços da Corp. Kafra.";
+		cutin "",255;
+		close;
+	}
+}
+
+// Função Loteria ------------------------------------------------------------------------------------------
+function	script	F_Lottery	{
+	mes "[Kafra]";
+	mes "Você tem a oportunidade única para ganhar prêmios maravilhosos!!";
+	next;
+	mes "[Kafra]";
+	mes "Não perca esta oportunidade! Você está pronto?";
+	next;
+	mes "[Kafra]";
+	mes "Quantas vezes você deseja girar a Máquina da Loteria? Você pode escolher até 5 vezes.";
+	next;
+	input @input;
+	if(@input < 1 || @input > 5)
+		set @input, rand(1,5); //Lupus's fix
+	while(@input > 0) {
+		mes "[Máquina de Loteria]";
+		mes "Número de rodadas restantes: "+@input;
+		next;
+		mes "[Máquina de Loteria]";
+		mes "(estrondo~estrondo~estrondo~)...";
+		next;
+		set @temp, rand(10);
+		set @input, @input -1;
+	}
+	mes "[Kafra]";
+	mes "Ok, vou verificar os resultados. Adivinha o que é?";
+	next;
+	mes "[Kafra]";
+	mes "^FF0000Vamos ver .... Isto é ...!!^000000";
+	next;
+	if(@temp <  1) set .@prize, 1;
+	else if(@temp <  2) set .@prize, 2;
+	else if(@temp <  3) set .@prize, 3;
+	else if(@temp <= 4) set .@prize, 4;
+	else if(@temp >= 5) set .@prize, 5;
+	switch(.@prize) {
+	case 1:
+		mes "[Kafra]";
+		mes "Uau!..... Você venceu! 1ª Prêmio! Parabéns pelo 1ª Prêmio.";
+		if(@Lotto == 1) getitem 2328,1;// Armadura de Madeira,
+		if(@Lotto == 2) getitem 2307,1;// Capote,
+		if(@Lotto == 3) getitem 657,10;// Poção da Fúria Selvagem,
+		if(@Lotto == 4) {
+			getitem 607,2;// Fruto de Yggdrasil
+			getitem 608,1;// Semente de Yggdrasil
+		}
+		if(@Lotto == 5) getitem 607,3;// Fruto de Yggdrasil,
+		return;
+	case 2:
+		mes "[Kafra]";
+		mes "Oh! UAU! Você ganhou o 3º prêmio!!";
+		if(@Lotto == 1) getitem 2403,1;// Sapatos,
+		if(@Lotto == 2) getitem 2226,1;// Barrete,
+		if(@Lotto == 3) getitem 2201,1;// Óculos Escuros,
+		if(@Lotto == 4) getitem 526,3;// Geléia Real,
+		if(@Lotto == 5) {
+			getitem 608,1;// Fruto de Yggdrasil
+			getitem 526,10;// Geléia Real,
+		}
+		return;
+	case 3:
+		mes "[Kafra]";
+		mes "Parabéns! Você ganhou o 3º prêmio.";
+		if(@Lotto == 1) getitem 602,4;// Asa de Borboleta,
+		if(@Lotto == 2) getitem 505,3;// Poção Azul,
+		if(@Lotto == 3) getitem 2203,1;// Óculos,
+		if(@Lotto == 4) getitem 504,15;// Poção Branca,
+		if(@Lotto == 5) getitem 504,30;// Poção Branca,
+		return;
+	case 4:
+		mes "[Kafra]";
+		mes "Você ganhou o 4º prêmio.";
+		if(@Lotto == 1) getitem 516,100;// Batata Doce,
+		if(@Lotto == 2) getitem 501,150;// Poção Vermelha,
+		if(@Lotto == 3) getitem 502,150;// Poção Laranja,
+		if(@Lotto == 4) getitem 505,5;// Poção Azul,
+		if(@Lotto == 5) getitem 505,10;// Poção Azul,
+		return;
+	case 5:
+		mes "[Kafra]";
+		mes "Você ganhou o 5º prêmio.";
+		if(@Lotto == 1) getitem 516,50;// Batata Doce,
+		if(@Lotto == 2) getitem 501,100;// Poção Vermelha,
+		if(@Lotto == 3) getitem 501,200;// Poção Vermelha,
+		if(@Lotto == 4) getitem 501,250;// Poção Vermelha,
+		if(@Lotto == 5) getitem 501,300;// Poção Vermelha,
+		return;
+	}
+}
+
+// Dentro da Torre do Relógio
+//============================================================
+c_tower3,10,249,4	script	Guardião do Portal#ct	84,{
+	//Chave da Torre do Relógio
+	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44; 
+}
+
+alde_dun03,264,16,4	script	Gatekeeper#ct1	101,{
+	//Chave do Subterrâneo
+	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267; 
+}
+
+function	script	F_ClockTowerGate	{
+	mes "[Gatekeeper Boy]";
+	mes "Bem vindo à";
+	mes "Kinase - Gallino Azul";
+	mes "O único lugar de especialidades em Aldebaran.";
+	mes "Você não pode ir através do "+getarg(0)+" nível,";
+	mes "volte.";
+	next;
+	switch(select("Sobre Torre do Relógio:Sobre o "+getarg(0)+" nível:Mover para o "+getarg(0)+" nível:Encerrar Diálogo")) {
+	case 1:
+		mes "[Guardião do Portal]";
+		mes "A guilda de Alquimia de Aldebaran!";
+		mes "A muito tempo atrás, tinha";
+		mes "3 Alquimistas Lendários...eram eles";
+		mes "Bruke Seimer";
+		mes "Philip Warisez";
+		mes "e...";
+		next;
+		mes "[Guardião do Portal]";
+		mes "Romero Specialre!";
+		mes "Esta magnífica arquitetura";
+		mes "é uma obra deles.";
+		mes "Presumo que se você sentir algo incomum";
+		mes "andando por este chão,";
+		mes "e característico da Torre do Relógio.";
+		next;
+		mes "[Guardião do Portal]";
+		mes "Consiste em misteriosas magias ancestrais.";
+		mes "Se você simplesmente passear por aqui,";
+		mes "sem qualquer intenção,";
+		next;
+		mes "[Guardião do Portal]";
+		mes "de qualquer maneira,";
+		mes "você encontrará acidentalmente";
+		mes "uma criatura.";
+		mes "Por favor, cuide-se...";
+		close;
+	case 2:
+		mes "[Guardião do Portal]";
+		mes "Alquimistas ancestrais";
+		mes "selaram o portão do 4ª andar usando um dispositivo de alquimia";
+		mes "para manter longe";
+		mes "criaturas como demônios e inimigos dos humanos.";
+		mes "Para passar por este portal";
+		next;
+		mes "[Guardião do Portal]";
+		mes "precisa de uma chave.";
+		mes "Esta chave tem rumores de ser adquirido pela porta detentora de criaturas";
+		mes "por uma donzela em torno daqui.";
+		next;
+		mes "[Guardião do Portal]";
+		mes "A chave é a intensidade da alquimia antiga,";
+		mes "segundo boatos,";
+		mes "será liberada a partir de dígitos";
+		mes "e desaparecerá.";
+		next;
+		mes "[Guardião do Portal]";
+		mes "Se essa chave";
+		mes "for adquirida por você,";
+		mes "por favor, mostre-me.";
+		mes "A pessoa que possui a chave";
+		mes "terá acesso";
+		mes "a esta porta livremente!";
+		next;
+		mes "[Guardião do Portal]";
+		mes "Eu vou te dar uma chance.";
+		mes ". . . . .";
+		close;
+	case 3:
+		if (countitem(getarg(1)) > 0) {
+			mes "[Guardião do Portal]";
+			mes "Hmm! Já sinto que você não é uma pessoa normal,";
+			mes "parece que você foi bem sucedido na especulação.";
+			mes "Por favor, você pode entrar.";
+			mes "Que Deus o abençoe ..";
+			close2;
+			delitem getarg(1),1;
+			warp getarg(2),getarg(3),getarg(4);
+			end;
+		} else {
+			mes "[Guardião do Portal]";
+			mes ". . . . . .";
+			mes "Infelizmente você não tem um privilégio";
+			mes "Para entrar nesta porta ..";
+			mes "Você não será capaz de passar pelos";
+			mes "Alquimistas Ancestrais.";
+			mes "Não vou deixar você ir.";
+			close;
+		}
+	case 4:
+		mes "[Guardião do Portal]";
+		mes "Esta Torre do Relógio";
+		mes "é o lugar onde três Lendários Alquimistas";
+		mes "treinavam suas habilidades espirituais.";
+		mes "Por favor, não danifique nada aqui.";
+		close;
+	}
+}

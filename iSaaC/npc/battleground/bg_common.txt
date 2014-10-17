@@ -1,0 +1,246 @@
+/*[=================================] iSaaC Battleground System [=================================]*/
+
+bat_room,180,121,1	script	Free BG Slot#15	418,{
+}
+
+bat_room,183,121,1	script	Free BG Slot#16	414,{
+}	
+
+-	script	Guillaume camp#bat	973,{ end; }
+-	script	Croix camp#bat	974,{ end; }
+
+bat_room	mapflag	nomemo
+//bat_room	mapflag	nowarpto
+bat_room	mapflag	nobranch
+bat_room	mapflag	nopenalty
+bat_room	mapflag	noteleport
+bat_room	mapflag	nosave	SavePoint
+bat_room	mapflag	allow_bg_items
+
+// BattleGround Warper - Entrance
+// *********************************************************************
+bat_room,163,154,2	script	Battleground Info Board	837,{
+	if( $@FlaviusCTF == 1 )
+		mes "^A0522DFlavious CTF^000000 * ^FF0000(" + bg_get_data($@FlaviusCTF_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@FlaviusCTF_id1, 0) + ")^000000";
+	else
+		mes "^A0522DFlavious CTF^000000 * ^808080Libre^000000";
+	if( $@FlaviusTD == 1 )
+		mes "^808000Flavious TD^000000 * ^FF0000(" + bg_get_data($@FlaviusTD_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@FlaviusTD_id1, 0) + ")^000000";
+	else
+		mes "^808000Flavious TD^000000 * ^808080Libre^000000";
+	if( $@FlaviusSC == 1 )
+		mes "^9ACD32Flavious SC^000000 * ^FF0000(" + bg_get_data($@FlaviusSC_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@FlaviusSC_id1, 0) + ")^000000";
+	else
+		mes "^9ACD32Flavious SC^000000 * ^808080Libre^000000";
+	if( $@TierraEOS == 1 )
+		mes "^4169E1Tierra EoS^000000 * ^FF0000(" + bg_get_data($@TierraEOS_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@TierraEOS_id1, 0) + ")^000000";
+	else
+		mes "^4169E1Tierra EoS^000000 * ^808080Libre^000000";
+	if( $@TierraBoss == 1 )
+		mes "^483D8BTierra Boss^000000 * ^FF0000(" + bg_get_data($@TierraBoss_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@TierraBoss_id1, 0) + ")^000000";
+	else
+		mes "^483D8BTierra Boss^000000 * ^808080Libre^000000";
+	if( $@TierraTI == 1 )
+		mes "^696969Tierra TI^000000 * ^008000(" + bg_get_data($@TierraTI_id3, 0) + ")^000000 vs ^FF0000(" + bg_get_data($@TierraTI_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@TierraTI_id1, 0) + ")^000000";
+	else
+		mes "^696969Tierra TI^000000 * ^808080Libre^000000";
+	if( $@Conquest == 1 )
+		mes "^FFA500Conquest^000000 * ^FF0000(" + bg_get_data($@Conquest_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@Conquest_id1, 0) + ")^000000";
+	else
+		mes "^FFA500Conquest^000000 * ^808080Libre^000000";
+	if( $@Rush == 1 )
+		mes "^DDA0DDRush^000000 * ^FF0000(" + bg_get_data($@Rush_id2, 0) + ")^000000 vs ^0000FF(" + bg_get_data($@Rush_id1, 0) + ")^000000";
+	else
+		mes "^DDA0DDRush^000000 * ^808080Libre^000000";
+	close;
+
+OnFri0600:
+	rankreset 1; // Ranking Reset
+	end;
+
+// BattleGround Happy Hour
+OnInit:
+OnClock1400:
+OnClock1500:
+OnClock1600:
+OnClock1800:
+	switch( gettime(4) )
+	{
+	case 1:
+	case 3:
+	case 5:
+		if( gettime(3) >= 20 && gettime(3) < 22 )
+		{
+			announce "-- Battleground Happy Hour comenzó | 20% Mas medallas --",0,0x00FF00;
+			setbattleflag "bg_reward_rates",120; // +20% Reward Rates
+			setbattleflag "bg_ranked_mode",1;
+			end;
+		}
+		
+		if( gettime(3) == 22 )
+		{
+			announce "-- Battleground Happy Hour terminó | Medallas vuelven a la Normalidad --",0,0x00BFFF;
+			setbattleflag "bg_reward_rates",100; // Normal Rates
+			setbattleflag "bg_ranked_mode",0;
+			end;
+		}
+		break;
+	case 2:
+	case 4:
+	case 6:
+		if( gettime(3) >= 16 && gettime(3) < 18 )
+		{
+			announce "-- Battleground Happy Hour has begun | 20% Mas medallas --",0,0x00FF00;
+			setbattleflag "bg_reward_rates",120; // +20% Reward Rates
+			setbattleflag "bg_ranked_mode",1;
+			end;
+		}
+		
+		if( gettime(3) == 18 )
+		{
+			announce "-- Battleground Happy Hour is over | Medallas vuelven a la Normalidad --",0,0x00BFFF;
+			setbattleflag "bg_reward_rates",100; // Normal Rates
+			setbattleflag "bg_ranked_mode",0;
+			end;
+		}
+		break;
+	}
+	end;
+}
+
+
+bat_room,156,178,5	script	Tierra Valley Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra Valley","bat_room",85,224 ); }
+bat_room,159,178,5	script	Tierra Valley Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra Valley","bat_room",85,208 ); }
+		
+bat_room,159,121,1	script	Flavius CTF Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius CTF","bat_room",57,77 ); }
+bat_room,156,121,1	script	Flavius CTF Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius CTF","bat_room",57,94 ); }
+		
+bat_room,167,178,5	script	Tierra EoS Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra EoS","bat_room",85,77 ); }
+bat_room,164,178,5	script	Tierra EoS Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra EoS","bat_room",85,94 ); }
+
+bat_room,167,121,1	script	Flavius Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius","bat_room",253,77 ); }
+bat_room,164,121,1	script	Flavius Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius","bat_room",253,94 ); }
+		
+bat_room,175,178,5	script	KVM-A [80-99] Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-A","bat_room",253,224 ); }
+bat_room,172,178,5	script	KVM-A [80-99] Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-A","bat_room",253,208 ); }
+		
+bat_room,175,121,1	script	KVM-B [80-99] Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-B","bat_room",225,224 ); }
+bat_room,172,121,1	script	KVM-B [80-99] Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-B","bat_room",225,208 ); }
+
+bat_room,151,178,5	script	KVM-C [80-99] Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-C","bat_room",197,224 ); }
+bat_room,148,178,5	script	KVM-C [80-99] Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"KVM-C","bat_room",197,208 ); }
+
+bat_room,151,121,1	script	Duel [80-99] Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Duel","bat_room",113,224 ); }
+bat_room,148,121,1	script	Duel [80-99] Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Duel","bat_room",103,208 ); }
+
+bat_room,143,178,5	script	Tierra Boss Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra Boss","bat_room",57,223 ); }		
+bat_room,140,178,5	script	Tierra Boss Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra Boss","bat_room",57,208 ); }
+
+bat_room,143,121,1	script	Flavius TD Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius TD","bat_room",113,78 ); }
+bat_room,140,121,1	script	Flavius TD Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius TD","bat_room",113,93 ); }
+
+bat_room,135,178,5	script	Conquest Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Conquest","bat_room",169,77 ); }
+bat_room,132,178,5	script	Conquest Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Conquest","bat_room",169,94 ); }
+
+bat_room,135,121,1	script	Flavius SC Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius SC","bat_room",141,77 ); }
+bat_room,132,121,1	script	Flavius SC Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Flavius SC","bat_room",141,94 ); }
+
+bat_room,127,178,5	script	Tierra TI Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra TI","bat_room",197,77 ); }
+bat_room,124,178,5	script	Tierra TI Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra TI","bat_room",197,94 ); }
+
+bat_room,127,121,1	script	Rush Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Rush","bat_room",169,223 ); }
+bat_room,124,121,1	script	Rush Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Rush","bat_room",169,208 ); }
+
+bat_room,180,178,5	script	Tierra DOM Officer#1	418,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra DOM","bat_room",141,223 ); }
+bat_room,183,178,5	script	Tierra DOM Officer#2	414,{ callfunc("requisito",Upper,BaseLevel,JobLevel,Class,"Tierra DOM","bat_room",141,208 ); }	
+
+
+// Flavius CTF
+bat_room,57,81,0	warp	bat1	1,1,bat_room,154,149
+bat_room,57,90,0	warp	bat2	1,1,bat_room,154,149
+// Tierra Boss
+bat_room,57,220,0	warp	bat3	1,1,bat_room,154,149
+bat_room,57,211,0	warp	bat4	1,1,bat_room,154,149
+// Tierra EOS
+bat_room,85,81,0	warp	bat5	1,1,bat_room,154,149
+bat_room,85,90,0	warp	bat6	1,1,bat_room,154,149
+// Tierra Valley
+bat_room,85,220,0	warp	bat7	1,1,bat_room,154,149
+bat_room,85,211,0	warp	bat8	1,1,bat_room,154,149
+// Flavius TD
+bat_room,113,81,0	warp	bat9	1,1,bat_room,154,149
+bat_room,113,90,0	warp	bat10	1,1,bat_room,154,149
+// KvM
+bat_room,113,220,0	warp	bat11	1,1,bat_room,154,149
+bat_room,113,211,0	warp	bat12	1,1,bat_room,154,149
+// Flavius SC
+bat_room,141,81,0	warp	bat13	1,1,bat_room,154,149
+bat_room,141,90,0	warp	bat14	1,1,bat_room,154,149
+// Tierra Domination
+bat_room,141,220,0	warp	bat15	1,1,bat_room,154,149
+bat_room,141,211,0	warp	bat16	1,1,bat_room,154,149
+// Castle Conquest
+bat_room,169,81,0	warp	bat17	1,1,bat_room,154,149
+bat_room,169,90,0	warp	bat18	1,1,bat_room,154,149
+// Castle Rush
+bat_room,169,220,0	warp	bat19	1,1,bat_room,154,149
+bat_room,169,211,0	warp	bat20	1,1,bat_room,154,149
+// Tierra Triple Infierno
+bat_room,197,81,0	warp	bat21	1,1,bat_room,154,149
+bat_room,197,90,0	warp	bat22	1,1,bat_room,154,149
+bat_room,225,81,0	warp	bat25	1,1,bat_room,154,149
+// KvM
+bat_room,197,220,0	warp	bat23	1,1,bat_room,154,149
+bat_room,197,211,0	warp	bat24	1,1,bat_room,154,149
+// Free BG
+bat_room,225,90,0	warp	bat26	1,1,bat_room,154,149
+// KvM
+bat_room,225,220,0	warp	bat27	1,1,bat_room,154,149
+bat_room,225,211,0	warp	bat28	1,1,bat_room,154,149
+// Flavius
+bat_room,253,81,0	warp	bat29	1,1,bat_room,154,149
+bat_room,253,90,0	warp	bat30	1,1,bat_room,154,149
+// KvM
+bat_room,253,220,0	warp	bat31	1,1,bat_room,154,149
+bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
+
+function	script	requisito	{
+	mes name$; mes " ";
+	
+		setarray .Classes[0],Job_Novice,
+		Job_Swordman,Job_Mage,Job_Archer,Job_Acolyte,Job_Merchant,Job_Thief,
+		Job_Knight,Job_Priest,Job_Wizard,Job_Blacksmith,Job_Hunter,Job_Assassin,
+		Job_Crusader,Job_Monk,Job_Sage,Job_Rogue,Job_Alchem,Job_Bard,Job_Dancer,
+		Job_Novice_High,
+		Job_Swordman_High,
+		Job_Mage_High,Job_Archer_High,Job_Taekwon,Job_Acolyte_High,Job_Merchant_High,Job_Thief_High;
+	
+	if ( select( "^10B2D2 [ > ] ^000000 Entrar a " + getarg(4) + " :^10B2D2 [ > ] ^000000 Salir ") == 2 ) 
+		close;
+	/*
+	for( set .@i, 0; .@i < getarraysize(.Classes); set .@i, .@i + 1 ) {
+		if ( getarg(3) ==  .Classes[.@i] ) {  			next; mes .@name$; mes ""; mes "Necesitas :"; mes "1. Ser renacido"; mes "2. Ser nivel 80 o mas"; mes "3. Ser job 50 o mas"; mes "4. no se permite entrada de High Classes"; close; }
+	}*/
+	if ( getarg(1) < 80 || getarg(2) < 40 ) {	next; mes .@name$; mes ""; mes "2. Ser nivel 80 o mas"; mes "3. Ser job 40 o mas"; mes "4. no se permite entrada de High Classes"; close; }
+		close2;
+	warp getarg(5),getarg(6),getarg(7);
+	end;
+}
+
+bat_room,1,1,3,7828	sshop	BraveryExchanger	111,13036:100,13411:100,1425:100,1632:100,1634:100,1543:100,1924:100,1978:100,1574:100,1824:100,1183:100,1380:100,13305:100,1279:100,1739:100,13108:100,13172:100,2538:50,2539:50,2540:50,2435:50,2436:50,2437:50,2376:80,2377:80,2378:80,2379:80,2380:80,2381:80,2382:80,2720:500,2721:500,2722:500,2723:500,2724:500,2725:500,2733:500
+bat_room,1,1,3,7829	sshop	ValorExchanger	111,13037:100,13410:100,1633:100,1635:100,1542:100,1923:100,1977:100,1575:100,1823:100,1184:100,1482:100,1379:100,13306:100,1280:100,1738:100,13171:100,13173:100,13174:100,2538:50,2539:50,2540:50,2435:50,2436:50,2437:50,2376:80,2377:80,2378:80,2379:80,2380:80,2381:80,2382:80,2720:500,2721:500,2722:500,2723:500,2724:500,2725:500,2733:500
+bat_room,1,1,3,7773	sshop	HeroismExchanger	111,1187:2000,1281:2000,1282:2000,1310:2000,1382:2000,1426:2000,1486:2000,1546:2000,1576:2000,1577:2000,1640:2000,1641:2000,1743:2000,1826:2000,1827:2000,1927:2000,1981:2000,2002:2000,13042:2000,13110:2000,13176:2000,13177:2000,13178:2000,13179:2000,13307:2000,13416:2000,13417:2000,13418:2000,2394:840,2395:170,2396:25,2444:580,2445:70,2446:15,2549:630,2772:1200,2773:280,2774:40
+
+bat_room,160,150,3	script	Equipo BG	109,{
+	mes 	name$; mes "";
+	mes "Que medallas quieres cambiar";
+	next;
+	switch( select("^10B2D2 [ > ] ^000000Bravery","^10B2D2 [ > ] ^000000Valor","^10B2D2 [ > ] ^000000Battles","^10B2D2 [ > ] ^000000Nada") )
+	{
+		case 4: close;
+		case 1: mes .@name$; mes ""; close2; callshop "BraveryExchanger",0; end;
+		case 2: mes .@name$; mes ""; close2; callshop "ValorExchanger",0; end;
+		case 3: mes .@name$; mes ""; close2; callshop "HeroismExchanger",0; end;
+	}
+}
+

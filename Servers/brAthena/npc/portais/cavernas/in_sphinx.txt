@@ -1,0 +1,45 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: in_sphinx.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais da Esfinge de Morroc.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+in_sphinx1,288,6,0	warp	esf001	5,1,moc_fild19,100,99
+in_sphinx1,80,191,0	warp	esf01	2,1,in_sphinx2,149,81
+in_sphinx2,149,77,0	warp	esf01-1	3,2,in_sphinx1,80,189
+in_sphinx2,276,272,0	warp	esf02	1,3,in_sphinx3,210,54
+in_sphinx3,210,57,0	warp	esf02-1	4,1,in_sphinx2,274,272
+in_sphinx3,35,227,0	warp	esf03	2,4,in_sphinx3,62,227
+in_sphinx3,60,227,0	warp	esf03-1	1,4,in_sphinx3,32,227
+in_sphinx3,70,111,0	warp	esf04	1,1,in_sphinx3,70,81
+in_sphinx3,70,83,0	warp	esf04-1	4,1,in_sphinx3,70,113
+in_sphinx3,12,69,0	warp	esf05	4,1,in_sphinx4,10,222
+in_sphinx4,10,224,0	warp	esf05-1	2,1,in_sphinx3,12,71
+in_sphinx4,120,113,0	warp	esf06	4,2,in_sphinx5,100,99
+in_sphinx5,100,96,0	warp	esf06-1	4,2,in_sphinx4,120,116
+in_sphinx5,11,16,0	warp	esf07	3,1,in_sphinx5,189,181
+in_sphinx5,11,183,0	warp	esf07-1	3,1,in_sphinx5,11,18
+in_sphinx5,189,16,0	warp	esf08-1	3,1,in_sphinx5,11,181
+in_sphinx5,16,188,0	warp	esf08-2	1,3,in_sphinx5,181,188
+in_sphinx5,16,10,0	warp	esf08-3	1,3,in_sphinx5,181,10
+in_sphinx5,183,10,0	warp	esf08-4	1,3,in_sphinx5,18,188
+in_sphinx5,183,188,0	warp	esf08-5	1,3,in_sphinx5,18,10
+in_sphinx5,189,183,0	warp	esf08-6	3,1,in_sphinx5,189,18

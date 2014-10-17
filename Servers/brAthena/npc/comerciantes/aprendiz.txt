@@ -1,0 +1,152 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: aprendiz.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Negociador de Poções Vermelhas.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Mark e Holy]                       |
+//   | 1.2 Otimização [Mark & Clare]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,123,102,5	script	Mercador#pron	85,{
+	if(strnpcinfo(0) == "Mercador#pron")
+	callsub TrocaPocao,935,5,914,10;
+	else if(strnpcinfo(0) == "Mercador#morroc")
+	callsub TrocaPocao,935,5,916,7;
+	else if(strnpcinfo(0) == "Mercador#pay")
+	callsub TrocaPocao,902,6,916,7;
+	else if(strnpcinfo(0) == "Mercador#alde")
+	callsub TrocaPocao,955,1,916,7;
+	else if(strnpcinfo(0) == "Mercador#gef")
+	callsub TrocaPocao,935,5,915,6;
+
+TrocaPocao:
+	set .@now_weight,MaxWeight-Weight;
+	mes "[Mercador]";
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "Haha!";
+		mes "O que você é, o Super-Homem?";
+		mes "Você está carregando muitos itens!";
+		mes "Melhor deixar algumas coisas no Armazém da Kafra~";
+		close;
+	}
+	mes "Bom dia!";
+	mes "Você tem algum";
+	mes getitemname(getarg(0))+" ou "+getitemname(getarg(2))+"?";
+	mes "Que tal Jellopies? Ah sim,";
+	mes "preciso deles para algumas coisas.";
+	next;
+	mes "[Mercador]";
+	mes "É claro, não vou pedir para me dar esses itens por nada.";
+	mes "Que tal se eu trocar 5 Poções Vermelhas por "+getarg(1)+" "+getitemname(getarg(0))+", "+getarg(3)+" "+getitemname(getarg(2))+"";
+	mes "ou 10 Jellopies?";
+	next;
+	switch(select("Claro!:Acho que está me passando a perna!:Não, obrigado.")) {
+	case 1:
+		mes "[Mercador]";
+		mes "Então qual item você vai me trazer?";
+		mes getitemname(getarg(0))+", "+getitemname(getarg(2))+",";
+		mes "ou Jellopies?";
+		next;
+		switch(select(getitemname(getarg(0))+":"+getitemname(getarg(2))+":Jellopy:Cancelar")) {
+		case 1: callsub TrocaPocao2,getarg(0),getarg(1);
+		case 2: callsub TrocaPocao2,getarg(2),getarg(3);
+		case 3: callsub TrocaPocao2,909,10;
+		case 4:
+			mes "[Mercador]";
+			mes "Tudo bem~";
+			mes "Sem problemas.";
+			close;
+		}
+	case 2:
+		mes "[Mercador]";
+		mes "Passando a perna...?";
+		mes "Se você olhar o valor de mercado dos itens que estou pedindo, verá quem está passando a perna em quem...";
+		close;
+	case 3:
+		mes "[Mercador]";
+		mes "Certo, sem problemas.";
+		mes "Se mudar de idéia volte até mim.";
+		close;
+	}
+
+TrocaPocao2:
+	mes "[Mercador]";
+	if (countitem(getarg(0)) < getarg(1)) {
+		mes "Ei, onde estão todos os "+getitemname(getarg(0))+" que você prometeu?";
+		mes "Me dê "+getitemname(getarg(0))+"!";
+		close;
+	}
+		mes "Certo, deixe-me ver quantos "+getitemname(getarg(0))+" você tem. Humm...";
+		next;
+		mes "[Mercador]";
+		mes "Você tem um total de "+countitem(getarg(0))+" "+getitemname(getarg(0))+".";
+		mes "Eu posso lhe dar um total de "+(countitem(getarg(0))/getarg(1))+" Poções Vermelhas por isso.";
+		next;
+		mes "[Mercador]";
+		mes "O que você me diz?";
+		mes "Temos um negócio?";
+		next;
+		mes "[Mercador]";
+		if (select("Negociar.:Cancelar.") == 1) {
+			mes "Você sabe quantas Poções Vermelhas vai receber por estes "+getitemname(getarg(0))+", não sabe?";
+			next;
+			mes "[Mercador]";
+			mes "Eu posso trocar no mínimo 1 Poção Vermelha e no máximo 100 Poções Vermelhas por vez.";
+			mes "Se você mudar de idéia digite '0' para cancelar.";
+			next;
+			while(1) {
+				input .@input,0,101;
+				mes "[Mercador]";
+				if (.@input == 0) {
+					mes "Que...?";
+					mes "Por que você ainda está falando comigo?";
+					mes "Bem indeciso, você né?";
+					close;
+				} else if (.@input > 100) {
+					mes "Não posso lhe dar mais que 100 Poções Vermelhas por vez.";
+					mes "Vamos tentar novamente.";
+					next;
+				}
+					break;
+			}
+			set .@put_out_item,.@input * getarg(1);
+			mes "[Mercador]";
+			if (countitem(getarg(0)) < .@put_out_item) {
+				mes "Uh oh, o número que você digitou parece incorreto. Melhor checar novamente o número de poções que posso lhe dar.";
+				close;
+			}
+			mes "Aqui está!";
+			mes "Olhe quantas Poções Vermelhas eu lhe dei, isso deve ser bom.";
+			mes "Obrigado, foi uma boa negociação~";
+			delitem getarg(0),.@put_out_item;
+			getitem 501,.@input; // Poção Vermelha
+			close;
+		}
+		mes "Huh~";
+		mes "Tudo bem.";
+		mes "Poções Vermelhas não seriam melhores para um aventureiro como você?";
+		close;
+	
+}
+
+morocc,180,259,3	duplicate(Mercador#pron)	Mercador#morroc	85
+payon,200,134,5	duplicate(Mercador#pron)	Mercador#pay	85
+aldebaran,152,63,5	duplicate(Mercador#pron)	Mercador#alde	85
+geffen,173,88,5	duplicate(Mercador#pron)	Mercador#geff	85

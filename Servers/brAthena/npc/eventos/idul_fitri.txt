@@ -1,0 +1,82 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: idul_fitri.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPC Oficial do servidor idRO.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,146,92,3	script	Cellerb	58,{
+	mes "[Membro da Equipe Idul Fitri]";
+	if((gettime(6)==10 && (gettime(5)==24 || gettime(5)==25))==0) {
+		mes "Parabéns! Comemore a Festa do dia de Idul Filtri 1427 H.";
+		specialeffect EF_SANDMAN;
+		close;
+	}
+	mes "Ei......^FF8800"+strcharinfo(0)+"^000000!!";
+	mes "O primeiro dia de Idul Fitri começou.";
+	mes "Vamos celebrar a data.";
+	mes "Hoje existe um evento especial.";
+	next;
+	mes "[Membro da Equipe Idul Fitri]";
+	mes "Evento do dia.....^009500Quest Idul Fitri!^000000";
+	next;
+	mes "[Membro da Equipe Idul Fitri]";
+	mes "Se você tem interesse em participar desse evento, eu vou cozinhar para você.";
+	next;
+	if(select("Certo. Eu gostaria!!:Numa próxima.... Obrigado.") == 1) {
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Eu tenho algo que lhe interessa.";
+		mes "Preciso de todos os seguintes itens:";
+		mes "^D5A500Ingredientes:^000000";
+		mes "^00B6FF~5 Ketupat, 5 Cenoura~,^000000";
+		mes "^CC6633~5 Batatas Doces, 10 Carne~,^000000";
+		mes "^000088~2 Ervas Verde, 5 Caule~.^000000";
+		next;
+		mes "[Membro da Equipe Idul Fitri]";
+		if ( (countitem(552) < 5 || countitem(515) < 5 ||countitem(516) < 5 || countitem(517) < 10 || countitem(511) < 2 || countitem(905) < 5) ) { 
+			mes "Você não possui todos os itens necessários.";
+			mes "Volte quando possuir todos.";
+			close;
+		}
+		delitem 552,5;
+		delitem 515,5;
+		delitem 516,2;
+		delitem 517,10;
+		delitem 511,2;
+		delitem 905,5;
+		mes "Eu vejo que você está com todos os itens necessários.";
+		mes "Espere um momento, por favor!!";
+		next;
+		mes "^009500-Mexendo estalando borbulhando~^000000";
+		mes "^009500-Mexendo rápido~^000000";
+		mes "^009500-Barulho~^000000";
+		getitem 583,1;
+		next;
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Nós agradecemos a sua participação nesse evento especial.";
+		emotion e_thx;
+		close;
+		}
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Bem, talvez você possa participar da quest de amanhã.";
+		emotion e_hmm;
+		close;
+}

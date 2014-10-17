@@ -1,0 +1,89 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest para se tornar Sumo-Sacerdote    |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Sumo-Sacerdote.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+valkyrie,44,42,5	script	Sumo-Sacerdote#Valquíria	60,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Sumo-Sacerdote]";
+			mes "Parabéns.";
+			mes "Honre os guerreiros!";
+			close;
+		}
+		mes "[Sumo-Sacerdote]";
+		mes "Através do poder";
+		mes "da santidade, nós podemos";
+		mes "encontrar paz, força";
+		mes "e proteção. Livra-nos";
+		mes "das forças do mal...";
+		close;
+	} else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
+		mes "[Sumo-Sacerdote]";
+		mes "Nosso mundo está";
+		mes "precisando de pessoas com";
+		mes "talento e convicção.";
+		mes "Por favor continue com";
+		mes "seu bom trabalho assim como um";
+		mes "grande herói da santidade...";
+		next;
+		mes "[Sumo-Sacerdote]";
+		mes "Você deseja se";
+		mes "tornar um Sumo-Sacerdote?";
+		next;
+		if (select("Não.:Sim.") == 1) {
+			mes "[Sumo-Sacerdote]";
+			mes "Quando estiver pronto,";
+			mes "sinta-se a vontade para voltar.";
+			mes "Honre os guerreiros!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Sumo-Sacerdote]";
+			mes "Ainda é possível que você aprenda mais habilidades. Por favor, use";
+			mes "todos os seus Pontos de Habilidades antes de voltar a falar comigo.";
+			close;
+		}
+		jobchange Job_High_Priest;
+		set ADVJOB,0;
+		mes "[Sumo-Sacerdote]";
+		mes "Parabéns.";
+		mes "Como um Sumo-Sacerdote,";
+		mes "eu acredito que você irá guiar";
+		mes "outros para o caminho";
+		mes "da santidade...";
+		close;
+	}
+	mes "[Sumo-Sacerdote]";
+	mes "Bem-vindo";
+	mes "a Valhalla,";
+	mes "o Salão de Honras.";
+	next;
+	mes "[Sumo-Sacerdote]";
+	mes "Por favor, sinta-se";
+	mes "confortável enquanto";
+	mes "você estiver aqui.";
+	mes "Honre os guerreiros.";
+	close;
+}

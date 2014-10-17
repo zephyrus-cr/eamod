@@ -1,0 +1,664 @@
+//===== eAthena Script ======================================= 
+//= Alberta Village - Housing for Rent
+//===== By: ================================================== 
+//= Zephyrus
+//===== Current Version: ===================================== 
+//= 1.0 10399
+//===== Compatible With: ===================================== 
+//= eAthena SVN Stable 
+//===== Description: ========================================= 
+//= Script que contiene el código para los mapas rent_me.
+//= rente1 y rentine1 correspondientes a Alberta.
+//===== Additional Comments: ================================= 
+//= 1.0 Versión Inicial
+//============================================================ 
+
+//============================================================ 
+//= Warp de Acceso Principal
+//============================================================ 
+
+rent_me,49,96,0	warp	rentem1		1,1,pay_fild03,368,119
+pay_fild03,369,124,0	warp	rentem2		1,1,rent_me,49,92
+
+//============================================================ 
+//= Propietario, Letreros y Kafra
+//============================================================ 
+
+rent_me,55,20,1	duplicate(BRent_Propietario)	Propietario#e	833
+pay_fild03,372,121,3	duplicate(BRent_SignA)	Villas Alberta#e	837
+rent_me,56,92,1	duplicate(BRent_SignB)	Letrero#e	835
+rent_me,41,26,1	duplicate(BRent_Kafra)	Kafra Service#e	721
+
+//============================================================ 
+//= Accesos a Propiedades
+//============================================================ 
+
+rent_me,36,35,1	duplicate(BRent_SignC)	Casa e1#e1	835
+rent_me,65,35,1	duplicate(BRent_SignC)	Casa e2#e2	835
+rent_me,36,40,1	duplicate(BRent_SignC)	Casa e3#e3	835
+rent_me,65,40,1	duplicate(BRent_SignC)	Casa e4#e4	835
+rent_me,36,45,1	duplicate(BRent_SignC)	Casa e5#e5	835
+rent_me,65,45,1	duplicate(BRent_SignC)	Casa e6#e6	835
+rent_me,36,50,1	duplicate(BRent_SignC)	Casa e7#e7	835
+rent_me,65,50,1	duplicate(BRent_SignC)	Casa e8#e8	835
+rent_me,36,55,1	duplicate(BRent_SignC)	Casa e9#e9	835
+rent_me,65,55,1	duplicate(BRent_SignC)	Casa e10#e10	835
+rent_me,36,60,1	duplicate(BRent_SignC)	Casa e11#e11	835
+rent_me,65,60,1	duplicate(BRent_SignC)	Casa e12#e12	835
+rent_me,36,65,1	duplicate(BRent_SignC)	Casa e13#e13	835
+rent_me,65,65,1	duplicate(BRent_SignC)	Casa e14#e14	835
+rent_me,36,70,1	duplicate(BRent_SignC)	Casa e15#e15	835
+rent_me,65,70,1	duplicate(BRent_SignC)	Casa e16#e16	835
+rent_me,36,75,1	duplicate(BRent_SignC)	Casa e17#e17	835
+rent_me,65,75,1	duplicate(BRent_SignC)	Casa e18#e18	835
+rent_me,36,80,1	duplicate(BRent_SignC)	Casa e19#e19	835
+rent_me,65,80,1	duplicate(BRent_SignC)	Casa e20#e20	835
+rent_me,36,85,1	duplicate(BRent_SignC)	Casa e21#e21	835
+rent_me,65,85,1	duplicate(BRent_SignC)	Casa e22#e22	835
+
+//============================================================ 
+//= Warps rentb -> rent_mb (Salida a la Ciudad)
+//============================================================ 
+
+rente1,35,19,0	warp	rente101	1,1,rent_me,50,27
+rente2,35,19,0	warp	rente201	1,1,rent_me,50,27
+rente3,35,19,0	warp	rente301	1,1,rent_me,50,27
+rente4,35,19,0	warp	rente401	1,1,rent_me,50,27
+rente5,35,19,0	warp	rente501	1,1,rent_me,50,27
+rente6,35,19,0	warp	rente601	1,1,rent_me,50,27
+rente7,35,19,0	warp	rente701	1,1,rent_me,50,27
+rente8,35,19,0	warp	rente801	1,1,rent_me,50,27
+rente9,35,19,0	warp	rente901	1,1,rent_me,50,27
+rente10,35,19,0	warp	rente1001	1,1,rent_me,50,27
+rente11,35,19,0	warp	rente1101	1,1,rent_me,50,27
+rente12,35,19,0	warp	rente1201	1,1,rent_me,50,27
+rente13,35,19,0	warp	rente1301	1,1,rent_me,50,27
+rente14,35,19,0	warp	rente1401	1,1,rent_me,50,27
+rente15,35,19,0	warp	rente1501	1,1,rent_me,50,27
+rente16,35,19,0	warp	rente1601	1,1,rent_me,50,27
+rente17,35,19,0	warp	rente1701	1,1,rent_me,50,27
+rente18,35,19,0	warp	rente1801	1,1,rent_me,50,27
+rente19,35,19,0	warp	rente1901	1,1,rent_me,50,27
+rente20,35,19,0	warp	rente2001	1,1,rent_me,50,27
+rente21,35,19,0	warp	rente2101	1,1,rent_me,50,27
+rente22,35,19,0	warp	rente2201	1,1,rent_me,50,27
+
+//============================================================ 
+//= Warps rentb -> rentinb (Entrada a Indoors)
+//============================================================ 
+
+rente1,9,19,0	warp	rente102a	1,1,rentine1,20,7
+rente2,9,19,0	warp	rente202a	1,1,rentine2,20,7
+rente3,9,19,0	warp	rente302a	1,1,rentine3,20,7
+rente4,9,19,0	warp	rente402a	1,1,rentine4,20,7
+rente5,9,19,0	warp	rente502a	1,1,rentine5,20,7
+rente6,9,19,0	warp	rente602a	1,1,rentine6,20,7
+rente7,9,19,0	warp	rente702a	1,1,rentine7,20,7
+rente8,9,19,0	warp	rente802a	1,1,rentine8,20,7
+rente9,9,19,0	warp	rente902a	1,1,rentine9,20,7
+rente10,9,19,0	warp	rente1002a	1,1,rentine10,20,7
+rente11,9,19,0	warp	rente1102a	1,1,rentine11,20,7
+rente12,9,19,0	warp	rente1202a	1,1,rentine12,20,7
+rente13,9,19,0	warp	rente1302a	1,1,rentine13,20,7
+rente14,9,19,0	warp	rente1402a	1,1,rentine14,20,7
+rente15,9,19,0	warp	rente1502a	1,1,rentine15,20,7
+rente16,9,19,0	warp	rente1602a	1,1,rentine16,20,7
+rente17,9,19,0	warp	rente1702a	1,1,rentine17,20,7
+rente18,9,19,0	warp	rente1802a	1,1,rentine18,20,7
+rente19,9,19,0	warp	rente1902a	1,1,rentine19,20,7
+rente20,9,19,0	warp	rente2002a	1,1,rentine20,20,7
+rente21,9,19,0	warp	rente2102a	1,1,rentine21,20,7
+rente22,9,19,0	warp	rente2202a	1,1,rentine22,20,7
+
+rente1,13,32,0	warp	rente102b	1,1,rentine1,32,8
+rente2,13,32,0	warp	rente202b	1,1,rentine2,32,8
+rente3,13,32,0	warp	rente302b	1,1,rentine3,32,8
+rente4,13,32,0	warp	rente402b	1,1,rentine4,32,8
+rente5,13,32,0	warp	rente502b	1,1,rentine5,32,8
+rente6,13,32,0	warp	rente602b	1,1,rentine6,32,8
+rente7,13,32,0	warp	rente702b	1,1,rentine7,32,8
+rente8,13,32,0	warp	rente802b	1,1,rentine8,32,8
+rente9,13,32,0	warp	rente902b	1,1,rentine9,32,8
+rente10,13,32,0	warp	rente1002b	1,1,rentine10,32,8
+rente11,13,32,0	warp	rente1102b	1,1,rentine11,32,8
+rente12,13,32,0	warp	rente1202b	1,1,rentine12,32,8
+rente13,13,32,0	warp	rente1302b	1,1,rentine13,32,8
+rente14,13,32,0	warp	rente1402b	1,1,rentine14,32,8
+rente15,13,32,0	warp	rente1502b	1,1,rentine15,32,8
+rente16,13,32,0	warp	rente1602b	1,1,rentine16,32,8
+rente17,13,32,0	warp	rente1702b	1,1,rentine17,32,8
+rente18,13,32,0	warp	rente1802b	1,1,rentine18,32,8
+rente19,13,32,0	warp	rente1902b	1,1,rentine19,32,8
+rente20,13,32,0	warp	rente2002b	1,1,rentine20,32,8
+rente21,13,32,0	warp	rente2102b	1,1,rentine21,32,8
+rente22,13,32,0	warp	rente2202b	1,1,rentine22,32,8
+
+rente1,13,8,0	warp	rente102c	1,1,rentine1,8,8
+rente2,13,8,0	warp	rente202c	1,1,rentine2,8,8
+rente3,13,8,0	warp	rente302c	1,1,rentine3,8,8
+rente4,13,8,0	warp	rente402c	1,1,rentine4,8,8
+rente5,13,8,0	warp	rente502c	1,1,rentine5,8,8
+rente6,13,8,0	warp	rente602c	1,1,rentine6,8,8
+rente7,13,8,0	warp	rente702c	1,1,rentine7,8,8
+rente8,13,8,0	warp	rente802c	1,1,rentine8,8,8
+rente9,13,8,0	warp	rente902c	1,1,rentine9,8,8
+rente10,13,8,0	warp	rente1002c	1,1,rentine10,8,8
+rente11,13,8,0	warp	rente1102c	1,1,rentine11,8,8
+rente12,13,8,0	warp	rente1202c	1,1,rentine12,8,8
+rente13,13,8,0	warp	rente1302c	1,1,rentine13,8,8
+rente14,13,8,0	warp	rente1402c	1,1,rentine14,8,8
+rente15,13,8,0	warp	rente1502c	1,1,rentine15,8,8
+rente16,13,8,0	warp	rente1602c	1,1,rentine16,8,8
+rente17,13,8,0	warp	rente1702c	1,1,rentine17,8,8
+rente18,13,8,0	warp	rente1802c	1,1,rentine18,8,8
+rente19,13,8,0	warp	rente1902c	1,1,rentine19,8,8
+rente20,13,8,0	warp	rente2002c	1,1,rentine20,8,8
+rente21,13,8,0	warp	rente2102c	1,1,rentine21,8,8
+rente22,13,8,0	warp	rente2202c	1,1,rentine22,8,8
+
+//============================================================ 
+//= Warps rentinb -> rentb (Salida de Indoors)
+//============================================================ 
+
+rentine1,20,4,0	warp	rentine1a	1,1,rente1,13,19
+rentine2,20,4,0	warp	rentine2a	1,1,rente2,13,19
+rentine3,20,4,0	warp	rentine3a	1,1,rente3,13,19
+rentine4,20,4,0	warp	rentine4a	1,1,rente4,13,19
+rentine5,20,4,0	warp	rentine5a	1,1,rente5,13,19
+rentine6,20,4,0	warp	rentine6a	1,1,rente6,13,19
+rentine7,20,4,0	warp	rentine7a	1,1,rente7,13,19
+rentine8,20,4,0	warp	rentine8a	1,1,rente8,13,19
+rentine9,20,4,0	warp	rentine9a	1,1,rente9,13,19
+rentine10,20,4,0	warp	rentine10a	1,1,rente10,13,19
+rentine11,20,4,0	warp	rentine11a	1,1,rente11,13,19
+rentine12,20,4,0	warp	rentine12a	1,1,rente12,13,19
+rentine13,20,4,0	warp	rentine13a	1,1,rente13,13,19
+rentine14,20,4,0	warp	rentine14a	1,1,rente14,13,19
+rentine15,20,4,0	warp	rentine15a	1,1,rente15,13,19
+rentine16,20,4,0	warp	rentine16a	1,1,rente16,13,19
+rentine17,20,4,0	warp	rentine17a	1,1,rente17,13,19
+rentine18,20,4,0	warp	rentine18a	1,1,rente18,13,19
+rentine19,20,4,0	warp	rentine19a	1,1,rente19,13,19
+rentine20,20,4,0	warp	rentine20a	1,1,rente20,13,19
+rentine21,20,4,0	warp	rentine21a	1,1,rente21,13,19
+rentine22,20,4,0	warp	rentine22a	1,1,rente22,13,19
+
+rentine1,32,4,0	warp	rentine1b	1,1,rente1,18,32
+rentine2,32,4,0	warp	rentine2b	1,1,rente2,18,32
+rentine3,32,4,0	warp	rentine3b	1,1,rente3,18,32
+rentine4,32,4,0	warp	rentine4b	1,1,rente4,18,32
+rentine5,32,4,0	warp	rentine5b	1,1,rente5,18,32
+rentine6,32,4,0	warp	rentine6b	1,1,rente6,18,32
+rentine7,32,4,0	warp	rentine7b	1,1,rente7,18,32
+rentine8,32,4,0	warp	rentine8b	1,1,rente8,18,32
+rentine9,32,4,0	warp	rentine9b	1,1,rente9,18,32
+rentine10,32,4,0	warp	rentine10b	1,1,rente10,18,32
+rentine11,32,4,0	warp	rentine11b	1,1,rente11,18,32
+rentine12,32,4,0	warp	rentine12b	1,1,rente12,18,32
+rentine13,32,4,0	warp	rentine13b	1,1,rente13,18,32
+rentine14,32,4,0	warp	rentine14b	1,1,rente14,18,32
+rentine15,32,4,0	warp	rentine15b	1,1,rente15,18,32
+rentine16,32,4,0	warp	rentine16b	1,1,rente16,18,32
+rentine17,32,4,0	warp	rentine17b	1,1,rente17,18,32
+rentine18,32,4,0	warp	rentine18b	1,1,rente18,18,32
+rentine19,32,4,0	warp	rentine19b	1,1,rente19,18,32
+rentine20,32,4,0	warp	rentine20b	1,1,rente20,18,32
+rentine21,32,4,0	warp	rentine21b	1,1,rente21,18,32
+rentine22,32,4,0	warp	rentine22b	1,1,rente22,18,32
+
+rentine1,8,4,0	warp	rentine1c	1,1,rente1,18,8
+rentine2,8,4,0	warp	rentine2c	1,1,rente2,18,8
+rentine3,8,4,0	warp	rentine3c	1,1,rente3,18,8
+rentine4,8,4,0	warp	rentine4c	1,1,rente4,18,8
+rentine5,8,4,0	warp	rentine5c	1,1,rente5,18,8
+rentine6,8,4,0	warp	rentine6c	1,1,rente6,18,8
+rentine7,8,4,0	warp	rentine7c	1,1,rente7,18,8
+rentine8,8,4,0	warp	rentine8c	1,1,rente8,18,8
+rentine9,8,4,0	warp	rentine9c	1,1,rente9,18,8
+rentine10,8,4,0	warp	rentine10c	1,1,rente10,18,8
+rentine11,8,4,0	warp	rentine11c	1,1,rente11,18,8
+rentine12,8,4,0	warp	rentine12c	1,1,rente12,18,8
+rentine13,8,4,0	warp	rentine13c	1,1,rente13,18,8
+rentine14,8,4,0	warp	rentine14c	1,1,rente14,18,8
+rentine15,8,4,0	warp	rentine15c	1,1,rente15,18,8
+rentine16,8,4,0	warp	rentine16c	1,1,rente16,18,8
+rentine17,8,4,0	warp	rentine17c	1,1,rente17,18,8
+rentine18,8,4,0	warp	rentine18c	1,1,rente18,18,8
+rentine19,8,4,0	warp	rentine19c	1,1,rente19,18,8
+rentine20,8,4,0	warp	rentine20c	1,1,rente20,18,8
+rentine21,8,4,0	warp	rentine21c	1,1,rente21,18,8
+rentine22,8,4,0	warp	rentine22c	1,1,rente22,18,8
+
+//============================================================ 
+//= NPCs de OutDoor
+//============================================================ 
+
+//============================================================ 
+//= Manzano
+//============================================================ 
+
+rente1,25,30,0	duplicate(BRent_AppleTree)	Manzano#e1	111
+rente2,25,30,0	duplicate(BRent_AppleTree)	Manzano#e2	111
+rente3,25,30,0	duplicate(BRent_AppleTree)	Manzano#e3	111
+rente4,25,30,0	duplicate(BRent_AppleTree)	Manzano#e4	111
+rente5,25,30,0	duplicate(BRent_AppleTree)	Manzano#e5	111
+rente6,25,30,0	duplicate(BRent_AppleTree)	Manzano#e6	111
+rente7,25,30,0	duplicate(BRent_AppleTree)	Manzano#e7	111
+rente8,25,30,0	duplicate(BRent_AppleTree)	Manzano#e8	111
+rente9,25,30,0	duplicate(BRent_AppleTree)	Manzano#e9	111
+rente10,25,30,0	duplicate(BRent_AppleTree)	Manzano#e10	111
+rente11,25,30,0	duplicate(BRent_AppleTree)	Manzano#e11	111
+rente12,25,30,0	duplicate(BRent_AppleTree)	Manzano#e12	111
+rente13,25,30,0	duplicate(BRent_AppleTree)	Manzano#e13	111
+rente14,25,30,0	duplicate(BRent_AppleTree)	Manzano#e14	111
+rente15,25,30,0	duplicate(BRent_AppleTree)	Manzano#e15	111
+rente16,25,30,0	duplicate(BRent_AppleTree)	Manzano#e16	111
+rente17,25,30,0	duplicate(BRent_AppleTree)	Manzano#e17	111
+rente18,25,30,0	duplicate(BRent_AppleTree)	Manzano#e18	111
+rente19,25,30,0	duplicate(BRent_AppleTree)	Manzano#e19	111
+rente20,25,30,0	duplicate(BRent_AppleTree)	Manzano#e20	111
+rente21,25,30,0	duplicate(BRent_AppleTree)	Manzano#e21	111
+rente22,25,30,0	duplicate(BRent_AppleTree)	Manzano#e22	111
+
+//============================================================ 
+//= Activador de PVP en Mapa Outdoor
+//============================================================ 
+
+rente1,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e1	837
+rente2,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e2	837
+rente3,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e3	837
+rente4,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e4	837
+rente5,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e5	837
+rente6,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e6	837
+rente7,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e7	837
+rente8,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e8	837
+rente9,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e9	837
+rente10,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e10	837
+rente11,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e11	837
+rente12,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e12	837
+rente13,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e13	837
+rente14,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e14	837
+rente15,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e15	837
+rente16,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e16	837
+rente17,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e17	837
+rente18,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e18	837
+rente19,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e19	837
+rente20,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e20	837
+rente21,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e21	837
+rente22,24,28,3	duplicate(BRent_PVPSwitch)	Switch#e22	837
+
+//============================================================ 
+//= Mobs en el Outdoor
+//============================================================ 
+
+rente1,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente2,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente3,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente4,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente5,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente6,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente7,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente8,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente9,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente10,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente11,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente12,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente13,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente14,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente15,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente16,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente17,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente18,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente19,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente20,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente21,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+rente22,0,0,0,0	monster	Lunatic	1063,3,1800000,900000,0
+
+//============================================================ 
+//= Jardín
+//============================================================ 
+
+rente1,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente1,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente1,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente1,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente1,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente1,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente2,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente2,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente2,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente2,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente2,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente2,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente3,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente3,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente3,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente3,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente3,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente3,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente4,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente4,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente4,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente4,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente4,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente4,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente5,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente5,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente5,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente5,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente5,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente5,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente6,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente6,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente6,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente6,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente6,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente6,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente7,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente7,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente7,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente7,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente7,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente7,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente8,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente8,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente8,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente8,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente8,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente8,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente9,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente9,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente9,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente9,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente9,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente9,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente10,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente10,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente10,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente10,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente10,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente10,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente11,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente11,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente11,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente11,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente11,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente11,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente12,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente12,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente12,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente12,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente12,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente12,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente13,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente13,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente13,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente13,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente13,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente13,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente14,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente14,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente14,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente14,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente14,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente14,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente15,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente15,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente15,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente15,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente15,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente15,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente16,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente16,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente16,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente16,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente16,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente16,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente17,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente17,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente17,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente17,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente17,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente17,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente18,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente18,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente18,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente18,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente18,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente18,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente19,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente19,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente19,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente19,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente19,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente19,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente20,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente20,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente20,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente20,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente20,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente20,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente21,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente21,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente21,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente21,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente21,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente21,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+rente22,28,31,4,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rente22,28,31,4,2	monster	White Plant	1082,5,39600000,39000000,0
+rente22,28,31,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente22,28,8,4,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rente22,28,8,4,2	monster	Green Plant	1080,5,39600000,39000000,0
+rente22,28,8,4,2	monster	Red Plant	1078,5,39600000,39000000,0
+
+//============================================================ 
+//= NPCs de Indoor
+//============================================================ 
+
+//============================================================ 
+//= Camas
+//============================================================ 
+
+rentine1,33,34,0	duplicate(BRent_Bed)	Descansar#ex1	111
+rentine2,33,34,0	duplicate(BRent_Bed)	Descansar#ex2	111
+rentine3,33,34,0	duplicate(BRent_Bed)	Descansar#ex3	111
+rentine4,33,34,0	duplicate(BRent_Bed)	Descansar#ex4	111
+rentine5,33,34,0	duplicate(BRent_Bed)	Descansar#ex5	111
+rentine6,33,34,0	duplicate(BRent_Bed)	Descansar#ex6	111
+rentine7,33,34,0	duplicate(BRent_Bed)	Descansar#ex7	111
+rentine8,33,34,0	duplicate(BRent_Bed)	Descansar#ex8	111
+rentine9,33,34,0	duplicate(BRent_Bed)	Descansar#ex9	111
+rentine10,33,34,0	duplicate(BRent_Bed)	Descansar#ex10	111
+rentine11,33,34,0	duplicate(BRent_Bed)	Descansar#ex11	111
+rentine12,33,34,0	duplicate(BRent_Bed)	Descansar#ex12	111
+rentine13,33,34,0	duplicate(BRent_Bed)	Descansar#ex13	111
+rentine14,33,34,0	duplicate(BRent_Bed)	Descansar#ex14	111
+rentine15,33,34,0	duplicate(BRent_Bed)	Descansar#ex15	111
+rentine16,33,34,0	duplicate(BRent_Bed)	Descansar#ex16	111
+rentine17,33,34,0	duplicate(BRent_Bed)	Descansar#ex17	111
+rentine18,33,34,0	duplicate(BRent_Bed)	Descansar#ex18	111
+rentine19,33,34,0	duplicate(BRent_Bed)	Descansar#ex19	111
+rentine20,33,34,0	duplicate(BRent_Bed)	Descansar#ex20	111
+rentine21,33,34,0	duplicate(BRent_Bed)	Descansar#ex21	111
+rentine22,33,34,0	duplicate(BRent_Bed)	Descansar#ex22	111
+
+rentine1,5,34,0	duplicate(BRent_Bed)	Descansar#ey1	111
+rentine2,5,34,0	duplicate(BRent_Bed)	Descansar#ey2	111
+rentine3,5,34,0	duplicate(BRent_Bed)	Descansar#ey3	111
+rentine4,5,34,0	duplicate(BRent_Bed)	Descansar#ey4	111
+rentine5,5,34,0	duplicate(BRent_Bed)	Descansar#ey5	111
+rentine6,5,34,0	duplicate(BRent_Bed)	Descansar#ey6	111
+rentine7,5,34,0	duplicate(BRent_Bed)	Descansar#ey7	111
+rentine8,5,34,0	duplicate(BRent_Bed)	Descansar#ey8	111
+rentine9,5,34,0	duplicate(BRent_Bed)	Descansar#ey9	111
+rentine10,5,34,0	duplicate(BRent_Bed)	Descansar#ey10	111
+rentine11,5,34,0	duplicate(BRent_Bed)	Descansar#ey11	111
+rentine12,5,34,0	duplicate(BRent_Bed)	Descansar#ey12	111
+rentine13,5,34,0	duplicate(BRent_Bed)	Descansar#ey13	111
+rentine14,5,34,0	duplicate(BRent_Bed)	Descansar#ey14	111
+rentine15,5,34,0	duplicate(BRent_Bed)	Descansar#ey15	111
+rentine16,5,34,0	duplicate(BRent_Bed)	Descansar#ey16	111
+rentine17,5,34,0	duplicate(BRent_Bed)	Descansar#ey17	111
+rentine18,5,34,0	duplicate(BRent_Bed)	Descansar#ey18	111
+rentine19,5,34,0	duplicate(BRent_Bed)	Descansar#ey19	111
+rentine20,5,34,0	duplicate(BRent_Bed)	Descansar#ey20	111
+rentine21,5,34,0	duplicate(BRent_Bed)	Descansar#ey21	111
+rentine22,5,34,0	duplicate(BRent_Bed)	Descansar#ey22	111
+
+rentine1,12,34,0	duplicate(BRent_Bed)	Descansar#ez1	111
+rentine2,12,34,0	duplicate(BRent_Bed)	Descansar#ez2	111
+rentine3,12,34,0	duplicate(BRent_Bed)	Descansar#ez3	111
+rentine4,12,34,0	duplicate(BRent_Bed)	Descansar#ez4	111
+rentine5,12,34,0	duplicate(BRent_Bed)	Descansar#ez5	111
+rentine6,12,34,0	duplicate(BRent_Bed)	Descansar#ez6	111
+rentine7,12,34,0	duplicate(BRent_Bed)	Descansar#ez7	111
+rentine8,12,34,0	duplicate(BRent_Bed)	Descansar#ez8	111
+rentine9,12,34,0	duplicate(BRent_Bed)	Descansar#ez9	111
+rentine10,12,34,0	duplicate(BRent_Bed)	Descansar#ez10	111
+rentine11,12,34,0	duplicate(BRent_Bed)	Descansar#ez11	111
+rentine12,12,34,0	duplicate(BRent_Bed)	Descansar#ez12	111
+rentine13,12,34,0	duplicate(BRent_Bed)	Descansar#ez13	111
+rentine14,12,34,0	duplicate(BRent_Bed)	Descansar#ez14	111
+rentine15,12,34,0	duplicate(BRent_Bed)	Descansar#ez15	111
+rentine16,12,34,0	duplicate(BRent_Bed)	Descansar#ez16	111
+rentine17,12,34,0	duplicate(BRent_Bed)	Descansar#ez17	111
+rentine18,12,34,0	duplicate(BRent_Bed)	Descansar#ez18	111
+rentine19,12,34,0	duplicate(BRent_Bed)	Descansar#ez19	111
+rentine20,12,34,0	duplicate(BRent_Bed)	Descansar#ez20	111
+rentine21,12,34,0	duplicate(BRent_Bed)	Descansar#ez21	111
+rentine22,12,34,0	duplicate(BRent_Bed)	Descansar#ez22	111
+
+//============================================================ 
+//= Piano
+//============================================================ 
+
+rentine1,5,27,0	duplicate(BRent_Piano)	Piano#e1	111
+rentine2,5,27,0	duplicate(BRent_Piano)	Piano#e2	111
+rentine3,5,27,0	duplicate(BRent_Piano)	Piano#e3	111
+rentine4,5,27,0	duplicate(BRent_Piano)	Piano#e4	111
+rentine5,5,27,0	duplicate(BRent_Piano)	Piano#e5	111
+rentine6,5,27,0	duplicate(BRent_Piano)	Piano#e6	111
+rentine7,5,27,0	duplicate(BRent_Piano)	Piano#e7	111
+rentine8,5,27,0	duplicate(BRent_Piano)	Piano#e8	111
+rentine9,5,27,0	duplicate(BRent_Piano)	Piano#e9	111
+rentine10,5,27,0	duplicate(BRent_Piano)	Piano#e10	111
+rentine11,5,27,0	duplicate(BRent_Piano)	Piano#e11	111
+rentine12,5,27,0	duplicate(BRent_Piano)	Piano#e12	111
+rentine13,5,27,0	duplicate(BRent_Piano)	Piano#e13	111
+rentine14,5,27,0	duplicate(BRent_Piano)	Piano#e14	111
+rentine15,5,27,0	duplicate(BRent_Piano)	Piano#e15	111
+rentine16,5,27,0	duplicate(BRent_Piano)	Piano#e16	111
+rentine17,5,27,0	duplicate(BRent_Piano)	Piano#e17	111
+rentine18,5,27,0	duplicate(BRent_Piano)	Piano#e18	111
+rentine19,5,27,0	duplicate(BRent_Piano)	Piano#e19	111
+rentine20,5,27,0	duplicate(BRent_Piano)	Piano#e20	111
+rentine21,5,27,0	duplicate(BRent_Piano)	Piano#e21	111
+rentine22,5,27,0	duplicate(BRent_Piano)	Piano#e22	111
+
+//============================================================ 
+//= Armarios
+//============================================================ 
+
+rentine1,34,25,0	duplicate(BRent_Storage)	Armario#e1	111
+rentine2,34,25,0	duplicate(BRent_Storage)	Armario#e2	111
+rentine3,34,25,0	duplicate(BRent_Storage)	Armario#e3	111
+rentine4,34,25,0	duplicate(BRent_Storage)	Armario#e4	111
+rentine5,34,25,0	duplicate(BRent_Storage)	Armario#e5	111
+rentine6,34,25,0	duplicate(BRent_Storage)	Armario#e6	111
+rentine7,34,25,0	duplicate(BRent_Storage)	Armario#e7	111
+rentine8,34,25,0	duplicate(BRent_Storage)	Armario#e8	111
+rentine9,34,25,0	duplicate(BRent_Storage)	Armario#e9	111
+rentine10,34,25,0	duplicate(BRent_Storage)	Armario#e10	111
+rentine11,34,25,0	duplicate(BRent_Storage)	Armario#e11	111
+rentine12,34,25,0	duplicate(BRent_Storage)	Armario#e12	111
+rentine13,34,25,0	duplicate(BRent_Storage)	Armario#e13	111
+rentine14,34,25,0	duplicate(BRent_Storage)	Armario#e14	111
+rentine15,34,25,0	duplicate(BRent_Storage)	Armario#e15	111
+rentine16,34,25,0	duplicate(BRent_Storage)	Armario#e16	111
+rentine17,34,25,0	duplicate(BRent_Storage)	Armario#e17	111
+rentine18,34,25,0	duplicate(BRent_Storage)	Armario#e18	111
+rentine19,34,25,0	duplicate(BRent_Storage)	Armario#e19	111
+rentine20,34,25,0	duplicate(BRent_Storage)	Armario#e20	111
+rentine21,34,25,0	duplicate(BRent_Storage)	Armario#e21	111
+rentine22,34,25,0	duplicate(BRent_Storage)	Armario#e22	111
+
+//============================================================ 
+//= Teléfono Servicio
+//============================================================ 
+
+rentine1,35,17,3	duplicate(BRent_Call)	Servicios#e1	858
+rentine2,35,17,3	duplicate(BRent_Call)	Servicios#e2	858
+rentine3,35,17,3	duplicate(BRent_Call)	Servicios#e3	858
+rentine4,35,17,3	duplicate(BRent_Call)	Servicios#e4	858
+rentine5,35,17,3	duplicate(BRent_Call)	Servicios#e5	858
+rentine6,35,17,3	duplicate(BRent_Call)	Servicios#e6	858
+rentine7,35,17,3	duplicate(BRent_Call)	Servicios#e7	858
+rentine8,35,17,3	duplicate(BRent_Call)	Servicios#e8	858
+rentine9,35,17,3	duplicate(BRent_Call)	Servicios#e9	858
+rentine10,35,17,3	duplicate(BRent_Call)	Servicios#e10	858
+rentine11,35,17,3	duplicate(BRent_Call)	Servicios#e11	858
+rentine12,35,17,3	duplicate(BRent_Call)	Servicios#e12	858
+rentine13,35,17,3	duplicate(BRent_Call)	Servicios#e13	858
+rentine14,35,17,3	duplicate(BRent_Call)	Servicios#e14	858
+rentine15,35,17,3	duplicate(BRent_Call)	Servicios#e15	858
+rentine16,35,17,3	duplicate(BRent_Call)	Servicios#e16	858
+rentine17,35,17,3	duplicate(BRent_Call)	Servicios#e17	858
+rentine18,35,17,3	duplicate(BRent_Call)	Servicios#e18	858
+rentine19,35,17,3	duplicate(BRent_Call)	Servicios#e19	858
+rentine20,35,17,3	duplicate(BRent_Call)	Servicios#e20	858
+rentine21,35,17,3	duplicate(BRent_Call)	Servicios#e21	858
+rentine22,35,17,3	duplicate(BRent_Call)	Servicios#e22	858
+
+//============================================================ 
+//= Alice Limpieza
+//============================================================ 
+
+rentine1,20,22,3	duplicate(BRent_Alice)	Alice#e1	1275
+rentine2,20,22,3	duplicate(BRent_Alice)	Alice#e2	1275
+rentine3,20,22,3	duplicate(BRent_Alice)	Alice#e3	1275
+rentine4,20,22,3	duplicate(BRent_Alice)	Alice#e4	1275
+rentine5,20,22,3	duplicate(BRent_Alice)	Alice#e5	1275
+rentine6,20,22,3	duplicate(BRent_Alice)	Alice#e6	1275
+rentine7,20,22,3	duplicate(BRent_Alice)	Alice#e7	1275
+rentine8,20,22,3	duplicate(BRent_Alice)	Alice#e8	1275
+rentine9,20,22,3	duplicate(BRent_Alice)	Alice#e9	1275
+rentine10,20,22,3	duplicate(BRent_Alice)	Alice#e10	1275
+rentine11,20,22,3	duplicate(BRent_Alice)	Alice#e11	1275
+rentine12,20,22,3	duplicate(BRent_Alice)	Alice#e12	1275
+rentine13,20,22,3	duplicate(BRent_Alice)	Alice#e13	1275
+rentine14,20,22,3	duplicate(BRent_Alice)	Alice#e14	1275
+rentine15,20,22,3	duplicate(BRent_Alice)	Alice#e15	1275
+rentine16,20,22,3	duplicate(BRent_Alice)	Alice#e16	1275
+rentine17,20,22,3	duplicate(BRent_Alice)	Alice#e17	1275
+rentine18,20,22,3	duplicate(BRent_Alice)	Alice#e18	1275
+rentine19,20,22,3	duplicate(BRent_Alice)	Alice#e19	1275
+rentine20,20,22,3	duplicate(BRent_Alice)	Alice#e20	1275
+rentine21,20,22,3	duplicate(BRent_Alice)	Alice#e21	1275
+rentine22,20,22,3	duplicate(BRent_Alice)	Alice#e22	1275
+
+//============================================================ 
+//= Cambio de Ropa
+//============================================================ 
+
+rentine1,9,34,0	duplicate(BRent_Closet)	Closet#e1	111
+rentine2,9,34,0	duplicate(BRent_Closet)	Closet#e2	111
+rentine3,9,34,0	duplicate(BRent_Closet)	Closet#e3	111
+rentine4,9,34,0	duplicate(BRent_Closet)	Closet#e4	111
+rentine5,9,34,0	duplicate(BRent_Closet)	Closet#e5	111
+rentine6,9,34,0	duplicate(BRent_Closet)	Closet#e6	111
+rentine7,9,34,0	duplicate(BRent_Closet)	Closet#e7	111
+rentine8,9,34,0	duplicate(BRent_Closet)	Closet#e8	111
+rentine9,9,34,0	duplicate(BRent_Closet)	Closet#e9	111
+rentine10,9,34,0	duplicate(BRent_Closet)	Closet#e10	111
+rentine11,9,34,0	duplicate(BRent_Closet)	Closet#e11	111
+rentine12,9,34,0	duplicate(BRent_Closet)	Closet#e12	111
+rentine13,9,34,0	duplicate(BRent_Closet)	Closet#e13	111
+rentine14,9,34,0	duplicate(BRent_Closet)	Closet#e14	111
+rentine15,9,34,0	duplicate(BRent_Closet)	Closet#e15	111
+rentine16,9,34,0	duplicate(BRent_Closet)	Closet#e16	111
+rentine17,9,34,0	duplicate(BRent_Closet)	Closet#e17	111
+rentine18,9,34,0	duplicate(BRent_Closet)	Closet#e18	111
+rentine19,9,34,0	duplicate(BRent_Closet)	Closet#e19	111
+rentine20,9,34,0	duplicate(BRent_Closet)	Closet#e20	111
+rentine21,9,34,0	duplicate(BRent_Closet)	Closet#e21	111
+rentine22,9,34,0	duplicate(BRent_Closet)	Closet#e22	111

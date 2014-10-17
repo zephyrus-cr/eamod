@@ -1,0 +1,128 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: 91-99.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.2/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests repetíveis para jogadores entre      |
+//   | Baselevel 91-99.                                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+moc_para01,48,177,3	script	Missão [91 - 99]	857,{
+	if (countitem(6219) < 1) {
+		mes "- Apenas membros do -";
+		mes "- Grupo Eden podem -";
+		mes "- ler este boletim de bordo. -";
+		close;
+	}
+	if (BaseLevel < 91) {
+		mes "- Essa missão só pode ser -";
+		mes "- lida por aqueles que possuem -";
+		mes "- o nível correto. -";
+		mes "- Caso você não tenha o nível exigido -";
+		mes "- deve ir até outro boletin -";
+		mes "- de nível diferente. -";
+		close;
+	}
+	if (BaseLevel > 99) {
+		setarray .@Exp[0],90000,94000,114000,96000,96000,146000,96000,102000,110000,102000,108000,110000,138000,118000,96000,134000;
+		setarray .@Mob$[0],"Soldado","Congelador","Aquecedor","Injustiçado","Rybio","Sacerdote Maldito","Stapo","Roween","Siroma","Shinobi","Ninfa Perversa","Deviruchi","Mineral","Kaho","Nereída","Mascarado";
+		for(set .@i,0; .@i<16; set .@i,.@i+1)
+			if (checkquest(4181+.@i,HUNTING) == 2) {
+				mes "Você caçou todos os 30 "+.@Mob$[.@i]+".";
+				mes "Muito obrigado.";
+				next;
+				mes "Eu sei que não é muito, mas aqui está um pequeno presente.";
+				mes "Espero que ele ajude pelo menos um pouco.";
+				next;
+				erasequest 4181+.@i;
+				getexp .@Exp[.@i],311000;
+				mes "Wooohoo!";
+				mes "Boa sorte.";
+				close;
+			}
+		mes "- Essa missão só pode ser -";
+		mes "- lida por aqueles que possuem -";
+		mes "- o nível correto. -";
+		mes "- Caso você não tenha o nível exigido -";
+		mes "- deve ir até outro boletin -";
+		mes "- de nível diferente. -";
+		close;
+	}
+	mes "- Outras missões de caça -";
+	mes "- estão no boletin de bordo. -";
+	next;
+	switch(select("Area da Ilha da Tartaruga:Area de Glast Heim:Area de Rachel:Area Local:Outra area")) {
+	case 1:
+		switch(select("Soldado:Congelador:Aquecedor")) {
+			case 1: callsub L_Quest,4181,"Soldado",90000;
+			case 2: callsub L_Quest,4182,"Congelador",94000;
+			case 3: callsub L_Quest,4183,"Aquecedor",114000;
+		}
+	case 2:
+		switch(select("Injustiçado:Rybio:Dark Priest")) {
+			case 1: callsub L_Quest,4184,"Injustiçado",96000;
+			case 2: callsub L_Quest,4185,"Rybio",96000;
+			case 3: callsub L_Quest,4186,"Dark Priest",146000;
+		}
+	case 3:
+		switch(select("Stapo:Roween:Siroma")) {
+			case 1: callsub L_Quest,4187,"Stapo",96000;
+			case 2: callsub L_Quest,4188,"Roween",102000;
+			case 3: callsub L_Quest,4189,"Siroma",110000;
+		}
+	case 4:
+		switch(select("Shinobi:Ninfa Perversa")) {
+			case 1: callsub L_Quest,4190,"Shinobi",102000;
+			case 2: callsub L_Quest,4191,"Ninfa Perversa",108000;
+		}
+	case 5:
+		switch(select("Deviruchi:Mineral:Kaho:Nereída:Mascarado")) {
+			case 1: callsub L_Quest,4192,"Deviruchi",110000;
+			case 2: callsub L_Quest,4193,"Mineral",138000;
+			case 3: callsub L_Quest,4194,"Kaho",118000;
+			case 4: callsub L_Quest,4195,"Nereída",96000;
+			case 5: callsub L_Quest,4196,"Mascarado",134000;
+		}
+	}
+	end;
+L_Quest:
+	if (checkquest(getarg(0),HUNTING) == 2) {
+		mes "Você caçou 30 "+getarg(1)+".";
+		mes "Muito obrigado.";
+		next;
+		mes "Eu sei que não é muito, mas aqui está um pequeno presente.";
+		mes "Espero que ele ajude pelo menos um pouco.";
+		next;
+		erasequest getarg(0);
+		getexp getarg(2),311000;
+		mes "Wooohoo!";
+		mes "Boa sorte.";
+		close;
+	}
+	if (checkquest(getarg(0)) == -1) {
+		setquest getarg(0);
+		mes "Por favor cace 30 "+getarg(1)+" e volte aqui.";
+		close;
+	}
+	mes "Hum? Você não caçou";
+	mes "todos os 30 "+getarg(1)+" ainda...";
+	mes "Você pode verificar novamente?";
+	close;
+}

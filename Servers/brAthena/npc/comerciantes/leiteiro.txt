@@ -1,0 +1,63 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Vendedor de Leite                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Troca garrafas por leite.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [insidemybrain]                     |
+//   | 1.2 Otimização [Mark & Clare]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,73,140,0	script	Vendedor de Leite	86,{
+	mes "[Vendedor de Leite]";
+	mes "Ei, ei...";
+	mes "Se você me trouxer 1 Garrafa Vazia e 15 Zenys, poderei trocá-los por 1 Leite.";
+	mes "Isso parece ser bom para você?";
+	next;
+	if (select("Trocar todas minhas Garrafas Vazias.:Cancelar") == 1) {
+		if (!countitem(713)) {
+			mes "[Vendedor de Leite]";
+			mes "Ei...";
+			mes "Você não tem nenhuma Garrafa Vazia.";
+			mes "Eu realmente não posso te dar o leite de outra forma, você sabe...";
+			close;
+		}
+		set .@bottles,countitem(713);
+		set .@total_weight,.@bottles * 50;
+		set .@total_cost,.@bottles * 15;
+		if (zeny < .@Total_cost) {
+			mes "[Vendedor de Leite]";
+			mes "Oh, whoa~!";
+			mes "Você não tem os zenys necessários para esse número de Garrafas Vazias.";
+			mes "Você precisa me trazer um total de " + .@total_cost + " zenys.";
+			close;
+		}
+		if((maxweight-weight < .@total_weight) || (checkweight(1201,1) == 0)){
+			mes "[Vendedor de Leite]";
+			mes "Hmm...";
+			mes "Acho que você deveria abrir mais espaço em seu inventário antes que eu lhe dê todo esse leite...";
+			close;
+		}
+		set zeny,zeny-.@total_cost;
+		delitem 713,.@bottles; //Garrafas Vazias
+		getitem 519,.@bottles; //Leite
+		close;
+	}
+	close;
+}

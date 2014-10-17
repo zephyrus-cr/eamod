@@ -1,0 +1,5 @@
+pt-BR:
+    failed_execution: "Falha na execução do comando"
+    failed_connection: "Falha ao conectar-se"
+    host_info: 'ip','porta'
+    host_auth: 'usuário','senha'

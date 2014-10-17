@@ -1,0 +1,684 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: rachel.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 0.9/0.9a/1.2                        |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Rachel.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Architect]                             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+ice_dun04,33,166,3	script	Garoto Congelado	925,{
+	cutin "ra_sboy.bmp",2;
+	mes "["+strcharinfo(0)+"]";
+	mes "Esse garoto deve ser o que Ktullanux tenta proteger.";
+	next;
+	mes "- O garoto está congelado dentro de uma grande pedra de gelo e parece mais que ele está dormindo do que morto. -";
+	next;
+	mes "- Você se sente congelando ao se aproximar da grande pedra de gelo que prende o garoto,";
+	mes "- mas por alguma razão, você sente uma força misteriosa vindo da pedra. -";
+	next;
+	mes "- O garoto parece ser branco como a neve, e bonito da cabeça aos pés. -";
+	next;
+	mes "- Você se pergunta porquê um jovem garoto teve de ser confinado nesta caverna isolada, -";
+	mes "- você instintivamente sabe que nenhuma magia no mundo seria capaz de libertá-lo desta pedra de gelo. -";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "O que aconteceu com esse garoto?";
+	close2;
+	cutin "",255;
+	end;
+}
+
+ra_san04,137,48,3	script	Loomin-1ª Classe Secreta	111,{
+	mes "^3131FFLoomin, o garoto";
+	mes "preso em uma Caverna de Gelo.^000000";
+	mes "Class: 1ª";
+	mes " ";
+	mes " ";
+	mes " ";
+	mes "^333333A papisa nasceu junto";
+	mes "com um irmão gêmeo, um garoto";
+	mes "branco com pele pálida";
+	mes "e cabelos louros prateados.";
+	mes "Isto nunca aconteceu antes";
+	mes "e apresentou um problema único";
+	mes " ";
+	mes "A Suma-Sacerdotiza Niren agiu como";
+	mes "uma enfermeira da maternidade deles e";
+	mes "veio para Rachel,onde os gêmeos";
+	mes "foram cuidados pelos padres.";
+	mes "Eles todos discutiram sobre";
+	mes "o destino final do garoto...";
+	mes " ";
+	mes "Ninguém duvidava que o menino";
+	mes "era espiritualmente poderoso, mas";
+	mes "ele era um complemento sagrado a";
+	mes "sua irmã, ou um grande mal que";
+	mes "estava diretamente oposto a";
+	mes "ela? Era um debate exaustivo";
+	mes " ";
+	mes "No final, os Sumo-Sacerdotes";
+	mes "decidiram que o garoto apresentava";
+	mes "um grande risco para a sociedade";
+	mes "As pessoas podem não considerar o";
+	mes "nascimento da papisa como divino se eles";
+	mes "souberem que ela teve um irmão gêmeo.";
+	mes " ";
+	mes "Entretanto, não querendo sentir";
+	mes "a ira do deuses, os Sumos Sacerdotes";
+	mes "não mataram o menino. Ao invés";
+	mes "disso, eles trancaram o menino na";
+	mes "Caverna de Gelo.";
+	mes " ";
+	mes "Os Sumo-Sacerdotes fizeram";
+	mes "um contrato com Ktullanux,";
+	mes "um temível monstro de gelo, para";
+	mes "proteger a prisão do garoto, e";
+	mes "para assegurar que ninguém o quebraria.";
+	close;
+}
+
+rachel,124,132,1	script	Morador#1 	921,{
+	mes "[Morador]";
+	mes "Freya te abençoe e";
+	mes "te dê muita saúde,";
+	mes "riqueza, alegria e";
+	mes "felicidade!";
+	next;
+	mes "[Morador]";
+	mes "Freya é a Deusa do";
+	mes "amor e da beleza. Você";
+	mes "acha que se eu rezar";
+	mes "bastante, ela vai me ajudar";
+	mes "a encontrar uma namorada bem bonita?";
+	close;
+}
+
+rachel,74,150,7	script	Garota#1	914,{
+	mes "[Garota]";
+	mes "Eu nunca vi nossa papisa";
+	mes "antes, eu ouvi que ela tem";
+	mes "cabelo louro prateado e";
+	mes "pele muito branca. Papai diz que";
+	mes "apenas uma garota é como aquela";
+	mes "em toda geração.";
+	next;
+	mes "[Garota]";
+	mes "Meu papai diz que a papisa é";
+	mes "muito especial para nós porque";
+	mes "ela é Freya. Eu quero dizer, Freya";
+	mes "é uma deusa, mas ela também";
+	mes "se tranforma em gente como nós para conversar";
+	mes "conosco. Bem, só com os sacerdotes...";
+	next;
+	mes "[Garota]";
+	mes "Eu não sei de tudo,";
+	mes "mas parece que";
+	mes "ela é uma princesa secreta.";
+	mes "Isso não parece tão legal?";
+	mes "Mas quando eu digo isso pro meu pai,";
+	mes "ele fica bravo comigo! Ah, bom.";
+	close;
+}
+
+rachel,144,243,5	script	Guarda de Cheshrumnir	934,{
+	mes "[Guarda de Cheshrumnir]";
+	mes "Você está no Cheshrumnir,";
+	mes "os terrenos santificador ocupados";
+	mes "por nossa papisa, A incarnação mortal";
+	mes "de Freya. Em respeito pela";
+	mes "Excelência dela, eu espero que você";
+	mes "entre com um coração devoto.";
+	close;
+}
+
+rachel,155,243,3	duplicate(Guarda de Cheshrumnir)	Guarda de Cheshrumnir#2	934
+
+rachel,209,198,3	script	Kinos#aru	921,{
+	mes "[Criança]";
+	mes "Se você abrir esta porta, você";
+	mes "pode entrar nesta casa,";
+	mes "e morar em um dos quartos!";
+	mes "Então, você pode colocar seus sofás";
+	mes "e uma cama e todas as suas coisas!";
+	next;
+	mes "[Criança]";
+	mes "Tudo que você tem que fazer é...";
+	mes "Ugh! Virar esta maçaneta";
+	mes "e... Grrrrah! Abrir";
+	mes "esta porta... Mas é";
+	mes "quase impossível...";
+	close;
+}
+
+rachel,260,175,3	script	Anku#aru	914,{
+	mes "[Anku]";
+	mes "Faz tanto tempo já!";
+	mes "Eu não consigo encontrar";
+	mes "Himuhimu! Esconde-esconde";
+	mes "não deveria levar tanto tempo...";
+	next;
+	mes "[Anku]";
+	mes "Ah, já estou co fome...";
+	mes "Himuhimu, saia daí para que";
+	mes "a gente possa ir pra casa e comer!";
+	mes "Himuhimu! Eu desisto!";
+	mes "H-Himuhimu...?";
+	close;
+}
+
+rachel,272,141,3	script	Himuhimu#aru	921,{
+	mes "[Himuhimu]";
+	mes "Zzzz...Zzz...";
+	mes "Anku, você nunca vai";
+	mes "me encontrr... nunca encontrar";
+	mes "eu aqui... Zzzzzz...";
+	mes "... Que fome...";
+	close;
+}
+
+rachel,268,120,1	script	Guarda de Rachel#1aru	934,{
+	mes "[Guarda de Rachel]";
+	mes "Bem-Vindo à Rachel";
+	mes "a capital de Arunafeltz.";
+	mes "Por favor peça ao nosso guia";
+	mes "no centro da cidade";
+	mes "informações e";
+	mes "serviços para visitantes.";
+	close;
+}
+
+rachel,125,33,5	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#2aru	934
+rachel,31,130,3	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#3aru	934
+
+rachel,76,77,3	script	Sacerdote de Rachel	927,{
+	mes "[Sacerdote de Rachel]";
+	mes "Bwahahaha! De alguma forma,";
+	mes "a bebida tem um gosto muito melhor";
+	mes "na hora do serviço!";
+	close;
+}
+
+ra_fild12,45,230,3	script	Guia do Dirigível#Fild	934,{
+	mes "[Guia do Dirigível]";
+	mes "O serviço de Dirigível internacional";
+	mes "da República de Schwaltzvalt";
+	mes "para Arunafeltz só pode ser";
+	mes "acessado em Rachel. Por favor";
+	mes "siga a indicação do seu";
+	mes "Mini-Mapa para encontrar o Aeroporto.";
+	viewpoint 1,293,208,1,0xFF0000;
+	close;
+}
+
+rachel,201,174,3	script	Discípulo de Freya	926,{
+	mes "[Discípulo de Freya]";
+	mes "Todos nós de Arunafeltz acreditamos";
+	mes "na Deusa Freya, mas";
+	mes "há alguns de nós que";
+	mes "estão mais seriamente envolvidos";
+	mes "em adoração e veneração.";
+	next;
+	mes "[Discípulo de Freya]";
+	mes "Primeiro, há 'Discípulos de";
+	mes "Freya,' homens e mulheres";
+	mes "como eu que se vestem com máscaras sagradas";
+	mes "e mantos. Eu percebo que nossa";
+	mes "roupa pode parecer um pouco peculiar";
+	mes "pra você, mas este é o nosso jeito.";
+	next;
+	mes "[Discípulo de Freya]";
+	mes "Então, tem os Sacerdotes";
+	mes "que se vestem em mantos flutuantes";
+	mes "limpos e brancos. Eles trabalham no";
+	mes "templo e servem a";
+	mes "comunidade como líderes religiosos.";
+	next;
+	mes "[Discípulo de Freya]";
+	mes "Entre estes sacerdotes estão";
+	mes "os Sumo Sacerdotes que";
+	mes "diretamente assistem nossa papisa.";
+	mes "Eles usam roupas mais coloridas";
+	mes "em sinal de seu";
+	mes "nível social elevado em Rachel.";
+	next;
+	mes "[Discípulo de Freya]";
+	mes "Todos nós trabalhamos incessantemente";
+	mes "para trazer prosperidade para";
+	mes "Arunafeltz, e efetuar";
+	mes "os ensinamentos de nossa";
+	mes "amada deusa Freya.";
+	close;
+}
+
+rachel,206,30,3	script	Sacerdote de Freya#play	920,{
+	mes "[Sacerdote de Freya]";
+	mes "Isto...";
+	mes "Me aborrece...";
+	next;
+	mes "[Sacerdote de Freya]";
+	mes "Você!";
+	mes "Entrerta-me!";
+	Emotion e_ag;
+	next;
+	if (select("O quê? Você não pode me dizer o que fazer!:Você sabe disto.") == 1) {
+		mes "[Sacerdote de Freya]";
+		mes "Ah. Isto tudo é";
+		mes "verdade, eu suponho.";
+		close;
+	}
+	mes "[Sacerdote de Freya]";
+	mes "Bem, então,";
+	mes "O que você vai";
+	mes "fazer para me entreter?";
+	next;
+	if (select("Aqui está uma história engraçada...:Eu vou fazer o que você quer que eu faça.") == 1) {
+		mes "^3355FF*Você contou a ela a primeira";
+		mes "história engraçada que você";
+		mes "pôde lembrar.*^000000";
+		specialeffect2 EF_TALK_FROSTJOKE;
+		next;
+		mes "[Sacerdote de Freya]";
+		mes "Isto é supostamente";
+		mes "engraçado? Eu suponho";
+		mes "que não entendo";
+		mes "humor popular.";
+		close;
+	}
+	mes "[Sacerdote de Freya]";
+	mes "Bom, bom~";
+	mes "Deixe-me ver o que esses";
+	mes "seus itens podem fazer...";
+	mes "Oh?! Isto é maravilhoso!";
+	close2;
+	switch (rand(4)) {
+	default:
+		consumeitem 12017; //Poção da Lentidão
+		end;
+	case 1:
+		consumeitem 601; //Asa de Mosca
+		end;
+	case 2:
+		consumeitem 12016; //Poção do Vento
+		end;
+	}
+}
+
+rachel,197,137,3	script	Bardo#aru	51,{
+	mes "[Bardo]";
+	mes "Eu vaguei por esta";
+	mes "terra, cantando minha canção~";
+	mes "procurando por alguém";
+	mes "para acalmar meu coração~";
+	next;
+	mes "[Bardo]";
+	mes "Posso eu satisfazer esta esperança~?";
+	mes "Encontrando a garota com";
+	mes "pele branca em um tom,";
+	mes "de lírios na Torre de Pizza~";
+	mes "Sim, Estou falando da papisa~";
+	mes "Papisa, yeah~ Papisa, yeah~";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Você deve estar fora de si";
+	mes "cantando este";
+	mes "tipo de música aqui";
+	mes "em Arunafeltz!";
+	next;
+	mes ".........";
+	mes ".........";
+	mes ".........";
+	Emotion e_sob;
+	close;
+}
+
+ra_temple,148,91,3	script	Discípulo Akarna	916,{
+	mes "[Discípulo Akarna]";
+	mes "Cheshrumnir...";
+	mes "Dizem que um";
+	mes "dia, nossa deusa Freya";
+	mes "vai descer a este lugar";
+	mes "no auge de sua glória. Eu espero";
+	mes "que eu viva pra ver isto.";
+	close;
+}
+
+ra_temple,115,148,7	script	Discípulo Yakum	916,{
+	mes "[Discípulo Yakum]";
+	mes "......";
+	mes ".........";
+	mes "............";
+	next;
+	mes "^3355FFEla está completamente";
+	mes "imersa em profunda,";
+	mes "oração meditativa.";
+	mes "Seria rude";
+	mes "perturbar ela agora.^000000";
+	close;
+}
+
+ra_temin,287,88,7	script	Discípulo Lekua	926,{
+	mes "[Discípulo Lekua]";
+	mes "Veja estas flores.";
+	mes "Elas não são tão lindas?";
+	mes "Eu passei muito tempo";
+	mes "cultivando este jardim.";
+	next;
+	mes "[Discípulo Lekua]";
+	mes "Eu acho que é o de Freya";
+	mes "que vai nos";
+	mes "trazer tanta beleza para";
+	mes "o mundo quanto nós pudemos. O que";
+	mes "você acha disso?";
+	close;
+}
+
+ra_temin,228,303,5	script	Discípulo de Freya#in1	926,{
+	mes "[Discípulo de Freya]";
+	mes "De novo, eu não tirei";
+	mes "nenhuma soneca ontem... Eu estou";
+	mes "orando tão intensamente para a segunda visita";
+	mes "de Freya. Estou exausto,";
+	mes "mas me sinto muito bem sobre";
+	mes "fazer este pequeno sacrifício.";
+	close;
+}
+
+ra_temin,230,303,3	script	Discípulo de Freya#in2	926,{
+	mes "[Discípulo de Freya]";
+	mes "Você fez bem,";
+	mes "meu irmão. Estou certo";
+	mes "que Freya ficaria orgulhosa";
+	mes "de todos os seus esforços.";
+	close;
+}
+
+ra_temin,138,64,5	script	Criança Seguidora#in1	921,{
+	mes "[Criança Seguidora]";
+	mes "Não! Meu Mingming está morto!";
+	next;
+	select("Mingming?");
+	mes "[Criança Seguidora]";
+	mes "Mingming é um pássaro doente.";
+	mes "Eu o encontrei na rua, e";
+	mes "eu realmente queria somente que ele";
+	mes "descançasse e ficasse saudável de novo";
+	mes "mas ele morreu! Waaaaah!";
+	emotion e_sob;
+	next;
+	mes "[Criança Seguidora]";
+	mes "Eu.. Eu vou";
+	mes "tentar pedir à papisa!";
+	mes "T-talvez ela possa trazer";
+	mes "Mingming de volta a vida!";
+	mes "Você sabe como eu posso";
+	mes "encontrar a papisa?";
+	close;
+}
+
+ra_fild12,283,208,3	script	Aprendiz de Monge	914,{
+	if ($rachel_donate < 10000) {
+		mes "[Papaii]";
+		mes "Bem-Vindo a Arunafeltz,";
+		mes "aventureiro! Aproveite sua estadia~";
+		next;
+		if (select("Você é um guia?:Obrigado, tenha um ótimo dia.") == 1) {
+			mes "[Papaii]";
+			mes "Oh, na verdade, se você";
+			mes "quer falar com um guia,";
+			mes "vá para o oeste de Rachel, e";
+			mes "então vá para norte do plaza";
+			mes "no centro da cidade.";
+			mes "Você vai encontrar um por lá.";
+			next;
+			mes "[Papaii]";
+			mes "Meu nome é Papaii,";
+			mes "e eu fui enviado aqui para";
+			mes "promover o festival que está chegando";
+			mes "em honra de Freya. Eu te encorajo";
+			mes "a doar para o nosso festival";
+			mes "se você pode dispor de zeny.";
+			next;
+			mes "[Papaii]";
+			mes "Se você está interessado em";
+			mes "aprender mais, então por favor";
+			mes "visite nosso templo, que estará";
+			mes "aceitando doações e";
+			mes "recebendo o festival, e";
+			mes "converse com a Sacerdotisa Nemma.";
+			next;
+			mes "[Papaii]";
+			mes "Se você doar, você pode";
+			mes "receber tickets de loteria";
+			mes "dos quais você pode retirar";
+			mes "aleatoriamente itens selecionados do";
+			mes "armazém do templo. Que";
+			mes "Freya te abençoe, viajante~";
+			close;
+		}
+		mes "[Papaii]";
+		mes "Que Freya te abençoe.";
+		mes "se você tiver tempo, por favor";
+		mes "visite o nosso templo e faça";
+		mes "uma doação se você puder~";
+		close;
+	}
+	mes "[Papaii]";
+	mes "Bem-vindo a Arunafeltz!";
+	mes "A cidade sobre a trincheira";
+	mes "é Rachel, a capital de";
+	mes "Arunafeltz. Se você gostaria de";
+	mes "descançar de suas viajens, por que";
+	mes "não visita Rachel?";
+	next;
+	if (select("Você é um guia?:Conte-me mais sobre Rachel.") == 1) {
+		mes "[Papaii]";
+		mes "Na verdade, meu nome é";
+		mes "Papaii, e eu estou estacionado";
+		mes "aqui em nome do templo";
+		mes "espalhar a sabedoria desta nossa";
+		mes "religião para os turistas.";
+		next;
+		mes "[Papaii]";
+		mes "A nação inteira de";
+		mes "Arunafeltz venera a";
+		mes "deusa Freya e a maioria";
+		mes "dos aspectos de nossas vidas são";
+		mes "amplamente influenciados pela nossa";
+		mes "religião. Você sabia?";
+		next;
+		mes "[Papaii]";
+		mes "Eu convido você para visitar";
+		mes "nosso templo se você quer";
+		mes "aprender mais sobre a Deusa";
+		mes "Freya. Que Freya guie você";
+		mes "em tudo o que você faça, e que ela";
+		mes "te proteja em suas jornadas!";
+		next;
+		mes "[Papaii]";
+		mes "Bem-vindo a Arunafeltz!";
+		mes "A cidade sobre a trincheira";
+		mes "é Rachel, a capital de";
+		mes "Arunafeltz. Se você gostaria de";
+		mes "descançar de suas viajens, por que";
+		mes "não visita Rachel?";
+		close;
+	}
+	mes "[Papaii]";
+	mes "Bem, Rachel costumou ser";
+	mes "um deserto até que nossa";
+	mes "divindade guiou nossos ancestrais";
+	mes "para esta terra. Eles cultivaram o";
+	mes "deserto com a graça de Freya, e";
+	mes "fizeram esta área habitável.";
+	next;
+	mes "[Papaii]";
+	mes "Tudo que você vê aqui";
+	mes "foi criado artificialmente";
+	mes "pelos humanos. Vê? As bênçãos";
+	mes "de Freya certamente nos habilitou";
+	mes "a fazer coisas miraglosas. Você";
+	mes "verá quando entrar na capital.";
+	close;
+}
+
+rachel,127,117,4	script	Criança Seguidora#2	914,{
+	mes "[Deno]";
+	mes "Apesar de que nós rezamos para";
+	mes "a deusa Freya e";
+	mes "peçamos para ela todo tipo de";
+	mes "coisas, não podemos esperar que";
+	mes "ela faça tudo para nós.";
+	next;
+	mes "[Deno]";
+	mes "Como humanos, é nossa";
+	mes "responsabilidade fazer tudo";
+	mes "que estiver a nosso alcance para conceber";
+	mes "nossa própria felicidade. Nós";
+	mes "acreditamos que se é a vontade de Freya,";
+	mes "então será realizada.";
+	next;
+	emotion e_what;
+	mes "[Deno]";
+	mes "Eu sei que pode parecer";
+	mes "um pouco confuso para";
+	mes "um forasteiro, a ideia de";
+	mes "ser confiante em nossa Deusa";
+	mes "em vez de ser em nós mesmos.";
+	close;
+}
+
+ra_temple,167,155,4	script	Criança Seguidora#3	914,{
+	mes "[Lewei]";
+	mes "Shhh!";
+	mes "Fique quieto.";
+	next;
+	mes "[Lewei]";
+	mes "......";
+	mes ".........";
+	next;
+	mes "[Lewei]";
+	mes "Vá embora! se alguém";
+	mes "ver você, eu vou";
+	mes "ser pego, seu ignorante!";
+	next;
+	if (select("O que você está fazendo?:Certo.") == 1) {
+		mes "[Lewei]";
+		mes "Aloooou~?";
+		mes "Não está vendo?";
+		mes "Isto se chama esconde-esconde";
+		mes "Meu Deus!!!";
+		mes "Rápido, fuja!";
+		close;
+	}
+	mes "[Lewei]";
+	mes "Depressa, cai fora";
+	mes "daqui!";
+	close;
+}
+
+ra_temple,179,161,7	script	Criança Seguidora#4	921,{
+	mes "[Zhikka]";
+	mes "Shh! Estou brincando";
+	mes "de esconde-esconde.";
+	mes "você me deixaria sozinho, por favor?";
+	mes "Eu não quero ser pego de novo!";
+	mes "Talvez porque eu sempre";
+	mes "uso o mesmo esconderijo...";
+	close;
+}
+
+ra_temple,77,114,7	script	Criança Seguidora#5	921,{
+	mes "[Emmet]";
+	mes "Ah minha Freya! Você me assustou!";
+	mes "Pensei que você fosse uma das";
+	mes "crianças bricando de esconde-esconde!";
+	mes "Argh! Saia daqui, saia daqui!";
+	mes "Não deixe me pegarem!";
+	close;
+}
+
+ra_temple,172,113,5	script	Criança Seguidora#6	921,{
+	mes "[Harse]";
+	mes "Onde está vocêeee~";
+	mes "Saia, saia";
+	mes "onde quer que esteja~";
+	next;
+	mes "[Harse]";
+	mes "Que é isso?!";
+	mes "O que um adulto";
+	mes "está fazendo aqui?";
+	mes "Você não vê que estou";
+	mes "brincando de esconde-esconde?";
+	close;
+}
+
+airplane,238,54,7	script	Aventureiro	59,{
+	if ($rachel_donate < 10000) {
+		mes "[Aventureiro]";
+		mes "Você sabia que o templo";
+		mes "em Rachel está aceitando";
+		mes "doações? Eles estão pedindo";
+		mes "um monte de zeny, mas meus amigos";
+		mes "e eu doamos de qualquer forma. Droga, nós";
+		mes "queriamos ver o que nós podiamos ganhar~";
+		next;
+		mes "[Aventureiro]";
+		mes "Um de meus amigos era";
+		mes "um sortudo desgraçado. Ele";
+		mes "ganhou algum tipo de álbum,";
+		mes "abriu e encontrou";
+		mes "um tipo de carta lá dentro.";
+		mes "Coisa muito fina.";
+		next;
+		mes "[Aventureiro]";
+		mes "Outro amigo meu?";
+		mes "Não tão sortudo. Ele ganhou uma";
+		mes "Poção branca compacta...";
+		mes "É, eu não o culpo por";
+		mes "se sentir um pouco enganado, mas ele";
+		mes "doou por uma boa causa, certo?";
+		next;
+		mes "[Aventureiro]";
+		mes "Eu? Eu peguei alguma fruta";
+		mes "amarela em forma de sino, Eu não";
+		mes "queria tanto comer ela,";
+		mes "mas depois que eu dei uma mordida,";
+		mes "era como... urrul!!.";
+		mes "Tão refrescante!";
+		next;
+		mes "[Aventureiro]";
+		mes "De qualquer forma, todas as doações";
+		mes "serão usadas para bancar algum";
+		mes "tipo de festival. Então, eu não";
+		mes "acho que eles vão estar com esta";
+		mes "loteria especial novamente,";
+		mes "eles pegaram dinheiro o bastante, entendeu?";
+		close;
+	}
+	mes "[Aventureiro]";
+	mes "Você sabe, uma das";
+	mes "sacerdotisas do templo";
+	mes "em Rachel parecia estar encrencada";
+	mes "por alguma razão. Eu deveria";
+	mes "perguntar o que estava incomodando ela,";
+	mes "e oferecer a minha ajuda. Hummm, melhor não.";
+	close;
+}

@@ -1,0 +1,349 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: niflheim.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.5/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Niflheim.                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+niflheim,52,147,3	script	Keedz#nif	796,{
+	mes "[Keedz]";
+	mes "Eu não permito que qualquer pessoa viva";
+	mes "venha nesse lugar!";
+	close;
+}
+
+niflheim,195,211,6	script	Gigantia#nif	796,3,3,{
+	if (isequipped(5038) || isequipped(2257) || isequipped(2256)) {
+		mes "[" + strcharinfo(0) + "]";
+		mes "O que está acontecendo?";
+		next;
+		mes "[Gigantia]";
+		mes "Apenas...";
+		mes "Venha por aqui.";
+		mes "Eu tenho algo";
+		mes "Que devo fazer por você;";
+		next;
+		mes "[Gigantia]";
+		mes "Seu chifre é torto.";
+		mes "Sempre certifique-se de seu chifre";
+		mes "é usado em linha reta e pura.";
+		mes "O Senhor da Morte está sempre";
+		mes "olhando para você.";
+		close;
+	}
+	mes "[Gigantia]";
+	mes "O Senhor da Morte sabe";
+	mes "e vê tudo. É inútil";
+	mes "se esconder e fugir";
+	mes "do doce abraço da morte.";
+	close;
+
+OnTouch:
+	if (isequipped(5038) || isequipped(2257) || isequipped(2256)) {
+		mes "[Gigantia]";
+		mes "Hey, espere!";
+		close;
+	}
+	end;
+}
+
+nif_in,16,27,1	script	Frango Morto-Vivo#nif	800,{
+	percentheal -5,0;
+	mes "[Frango Morto-Vivo]";
+	mes "Eu vivi uma vida pacífica como um frango normal. Mas então veio o dia em que fui tragicamente morto e comido por seres humanos. Bem ... Heh ~! Agora é minha vez! * Risada Maléfica *";
+	next;
+	mes "["+ strcharinfo(0) +"]";
+	mes "Ai...!";
+	mes "Um frango...";
+	mes "Ele me mordeu!";
+	next;
+	mes "[Frango Morto-Vivo]";
+	mes "Hoho~!";
+	mes "Eu posso falar de banquete";
+	mes "com seres humanos vivos!";
+	mes "Ser um zumbi é ótimo!";
+	mes "* Risada Maléfica *";
+	close;
+}
+
+nif_in,16,30,4	script	Morcego Morto-Vivo#nif	799,{
+	percentheal -5,0;
+	mes "[Vatoman]";
+	mes "Oooh, como é conveniente, uma vida";
+	mes "Humana ~! Sangue fresco é";
+	mes "sempre gostoso ...! Acho que vou apenas";
+	mes "tomar um golinho.";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "Ow! Minha veia!";
+	mes "Você acabou de";
+	mes "sugar meu sangue ?!";
+	next;
+	mes "[Vatoman]";
+	mes "Mwahahaha~";
+	mes "Mortal tolo!";
+	mes "Cuidado com meus poderes!";
+	close;
+}
+
+nif_in,156,93,5	script	Criança#nifflheim	793,{
+	mes "[Alakina Ann]";
+	mes "Quem ... quem sou eu...?";
+	mes "Eu lembro que eu estava dormindo";
+	mes "e quando eu acordei, eu estava aqui ...";
+	mes "Mamãe, você viu minha mãe?";
+	mes "Eu quero ir para casa ...* choro * ";
+	next;
+	switch(select("Sobre a bruxa:Sobre a maldição:Cancelar.")) {
+	case 1:
+		mes "[Alakina Ann]";
+		mes "Bruxas ...? Eu nunca vi uma bruxa, mas eu tenho lido sobre elas nos livros. Eu não tenho certeza se elas existem ou não, mas seria tão horrível oque elas fizeram ...";
+		next;
+		mes "[Alakina Ann]";
+		mes "Por que é tão frio aqui ...?";
+		mes "Vo-você não está com frio, ou mesmo com medo? Eu quero ir para casa ... Está quente lá. Você poderia me ajudar a voltar ... Por favor ...? Po-pode me ajudar ...";
+		close;
+	case 2:
+		mes "[Alakina Ann]";
+		mes "Uma Ma-maldição?";
+		mes "Minha avó diz que há muitas maldição em todo o mundo. Algumas delas, você pode dizer que é uma maldição. Mas há outras maldições que podem segui-lo por toda a vida ...";
+		next;
+		mes "[Alakina Ann]";
+		mes "Vovó diz que maldições podem tomar outras formas ... Como se alguém está com raiva de você, e não vai perdoá-lo, você pode ver isso como uma maldição também.";
+		next;
+		mes "[Alakina Ann]";
+		mes "Minha avó me disse que só há um feitiço que pode quebrar uma maldição forte que você não pode curar com as bênçãos ...";
+		next;
+		mes "[Alakina Ann]";
+		mes "Klaatu...";
+		mes "Verata.....";
+		mes "Ne...ni...umm...?";
+		mes "What was the last part?";
+		mes "E-eu não me lembro";
+		mes "a útilma parte do feitiço!";
+		next;
+		mes "[Alakina Ann]";
+		mes "Se você repetir a mágica, nessa ordem, ele irá libertá-lo de alguém de raiva e ódio. E se você fizer isso perto de um espírito ruim, eles poderiam começar a maldição em seu lugar.";
+		next;
+		mes "[Alakina Ann]";
+		mes "Por que você está me perguntando sobre este tipo de coisas assustadoras ...? Eu só quero ir para casa ...";
+		close;
+	case 3:
+		mes "[Alakina Ann]";
+		mes "É tão frio aqui ... ";
+		mes "Eu estou congelando ... ";
+		mes "E eu quero ir para casa e ";
+		mes "ficar longe deste lugar assustador ...";
+		next;
+		mes "[Alakina Ann]";
+		mes "Por favor...me ajude.";
+		mes "Você poderia me levar com você ...?";
+		close;
+	}
+}
+
+niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
+	killmonster "niflheim","Espírito Amaldiçoado#nif::OnMyMobDead";
+	mes "[Ashe Bruce]";
+	mes "Eu sinto, você está amaldiçoado ";
+	mes "por um poderoso feitiço ... ";
+	mes "Hmm ... É claro que ";
+	mes "Você deve estar até ....";
+	next;
+	mes "[Ashe Bruce]";
+	mes "Você deseja se";
+	mes "livrar de sua maldição ....";
+	mes "Ao me dar ela!";
+	next;
+	mes "[Ashe Bruce]";
+	mes "Só porque eu sou um maldito espírito, vocês aventureiros acham que podem simplesmente despejar suas maldições sobre mim?!";
+	emotion e_an;
+	next;
+	mes "[Ashe Bruce]";
+	mes "Eu me recuso a deixar";
+	mes "você permanecer aqui .....";
+	mes "Saia agora, ou eu vou";
+	mes "removê-lo à força ....";
+	next;
+	mes "[Ashe Bruce]";
+	mes "....E...";
+	mes ".... Faça o que fizer ... ";
+	mes "... Mas NÃO toque meus livros ...";
+	next;
+	switch(select("Toque no primeiro livro.:Toque no segundo livro.:Toque no terceiro livro.:Okay, eu estou saindo.")) {
+	case 1:
+		monster "niflheim",349,259,"Rideword",1478,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		mes "[Ashe Bruce]";
+		mes "...!...";
+		mes "Como se atreve a tocar os meus livros";
+		mes "quando eu disse especificamente";
+		mes "'Não toque em meus livros!'";
+		next;
+		mes "[Ashe Bruce]";
+		mes "....!...Grrrrr!";
+		mes "I shall tear you apart...!";
+		mes "Be bound by an eternal curse...!";
+		close;
+	case 2:
+		mes "[Ashe Bruce]";
+		mes "...!...";
+		mes "Você ousa tocar os meus livros?!";
+		mes "Logo depois que eu disse";
+		mes "para não tocá-los ...?!";
+		mes "Mortal tolo!";
+		mes "... Vá embora!";
+		close2;
+		warp "niflheim",34,162;
+		end;
+	case 3:
+		mes "[Ashe Bruce]";
+		mes "Muhahahaha....";
+		mes "Mortal Teimoso ~!";
+		mes "Bem! Vou dar-lhe";
+		mes "uma chance de lutar e deixar";
+		mes "você lançar um feitiço.";
+		next;
+		mes "[Ashe Bruce]";
+		mes "Mas Bênçãos não vão";
+		mes "funcionar com a maldição";
+		mes "que você tem ...";
+		mes "E o feitiço para livrar";
+		mes "sua maldição foi";
+		mes "perdido para à eras ~!";
+		emotion e_gg;
+		next;
+		if (select("Clover:Klaatu:Klaytos") == 2)
+			set .@spell,.@spell+1;
+		if (select("Verit:Veritas:Verata") == 3)
+			set .@spell,.@spell+1;
+		if (select("Necktie:Necklace:Nero:^FFFFFFNictu!!!^000000") == 4)
+			set .@spell,.@spell+1;
+		if (.@spell == 3) {
+			switch(rand(1,5)) {
+			case 1:
+				if (morison_meat < 15) {
+					set MISC_QUEST,MISC_QUEST | 1;
+					mes "[Ashe Bruce]";
+					mes "Você... Você quebrou a maldição!";
+					mes "Como você sabia daquele feitiço?!";
+					next;
+					mes "[Ashe Bruce]";
+					mes "Eu suponho que você espera";
+					mes "ver eu derreter em agonia, não é?";
+					mes "Bem... Lamento desapontar";
+					mes "você, mortal, mas eu nunca vou morrer!";
+					close;
+				}
+				mes "[Ashe Bruce]";
+				mes "...! Você lançou o feitiço correto?!";
+				mes "...!...";
+				mes "Mas ... Você ainda está amaldiçoado ...";
+				mes "Umhaaaaaaaaaaaaaaaaa.....!";
+				close;
+			case 2:
+					mes "[Ashe Bruce]";
+					if (thai_head == 1) {
+					set thai_head,2;
+					mes "O que é...";
+					mes "esse sentimento?";
+					next;
+					mes "[Ashe Bruce]";
+					mes "Não...!";
+					mes "NÃÃÃÃÃOOOOOOOOOO!";
+					next;
+					mes "[Ashe Bruce]";
+					mes "Por que seu feitiço tem que funcionar?!";
+					close;
+				}
+				mes "Você...";
+				mes "lançou o feitiço correto?!";
+				next;
+				mes "[Ashe Bruce]";
+				mes "Hoho~";
+				mes "Mas você ainda está almodiçoado...";
+				close;
+			case 3:
+					mes "[Ashe Bruce]";
+          if (thai_head == 8) {
+					set thai_head,7;
+					mes "Você... Você quebrou a maldição!";
+					mes "Quem lhe ensinou esse feitiço?!";
+					next;
+					mes "[Ashe Bruce]";
+					mes "Eu suponho que você espera";
+					mes "ver eu derreter em agonia, não é?";
+					mes "Bem... Lamento despontar você, mortal";
+					mes "mas eu sou imortal!";
+					next;
+					mes "[Ashe Bruce]";
+					mes "Enquanto eu...";
+					mes "ainda estou...";
+					mes "amaldiçoado.";
+					next;
+					mes "[Ashe Bruce]";
+					mes "NÃÃÃOOOOO!";
+					close;
+				}
+				mes "...! Você lançou o feitiço correto?! ";
+				mes "...!...";
+				mes "Mas ... Você ainda está amaldiçoado ...";
+				mes "Umhaaaaaaaaaaaaaaaaa.....!";
+				close;
+			case 4:
+				mes "[Ashe Bruce]";
+				mes "...! Você lançou o feitiço correto?!";
+				mes "...!...";
+				mes "Mas...você ainda está amaldiçoado...";
+				mes "Mwahahahaaaa.....!";
+				close;
+			}
+		}
+		monster "niflheim",345,259,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",347,261,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",344,253,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",346,251,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",349,249,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",350,260,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",353,256,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		mes "[Ashe Bruce]";
+		mes "Muhahahahahaha!";
+		mes "Esse não é o feitiço certo!";
+		mes "Agora, a morte espera por você!";
+		mes "Você está eternamente preso";
+		mes "a maldição ...!";
+		close;
+	case 4:
+		mes "[Ashe Bruce]";
+		mes "...";
+		mes ".....";
+		next;
+		mes "[Ashe Bruce]";
+		mes "Pois então.";
+		mes "Tente não tropeçar em ";
+		mes "seus pés na sua ";
+		mes "pressa para sair.";
+		close;
+	}
+
+OnMyMobDead:
+	end;
+}

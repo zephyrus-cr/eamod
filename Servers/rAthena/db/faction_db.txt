@@ -1,0 +1,35 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// Faction Database
+// =====================================================
+// Factions allow you to create kinds of characters, and overwrite the default Race,Size,Element of a normal character.
+// Factions can fight if fvf mapflag is present, and can be configured to allow or not the party/guild teams between different factions.
+// =====================================================
+// Script Commands:
+// getcharid(5) returns the faction id of the current character.
+// setfaction <value> set the faction id of the current character.
+// =====================================================
+// Structure:
+// <Unique ID>;<name>;<race>;<size>;<element>;<element level>;<chat color>;<language ID>;<Alliance Flag>;<Aura ID>;{ <Script> }
+// =====================================================
+// Race : 0 - Formless, 1 - Undead, 2 - Beast, 3 - Plant, 4 - Insect, 5 - Fish, 6 - Demon, 7 - Demi-Human, 8 - Angel, 9 - Dragon, 10 - Player
+// Size : 0 - Small, 1 - Medium, 2 - Large
+// Element : 0 - Neutral, 1 - Water, 2 - Earth, 3 - Fire, 4 - Wind, 5 - Poison, 6 - Holy, 7 - Dark, 8 - Ghost, 9 - Undead
+// Element Level : 1..4
+// Chat Color : the color other factions members will read your messages. Sample 0xFF0000 for Red.
+// Language ID : from /db/lang_db.txt. The language of this faction. If you use this setting, others faction will read converted messages from this character.
+// Alliance Flag : To control faction alliances. Factions with same alliance flag don't fight on fvf maps. Use 0 to ignore alliances.
+// Aura ID : From aura_db.txt, the default aura for this faction. Use 0 to none.
+// Script : Extra bonus by script code, just like an equipped item for characters under this Faction.
+// =====================================================
+// This is the default setting when no faction is set.
+// 0;Default;10;1;0;1;0xFFFFFF;0;0;0;{ }

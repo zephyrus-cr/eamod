@@ -1,0 +1,108 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: in_sphinx.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros da Esfinge.                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] In_sphinx1 - Esfinge 1
+//==================================================
+in_sphinx1,0,0,0,0	monster#pre	Drainliar	1111,40,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Réquiem	1164,20,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Zerom	1178,20,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Matyr	1146,10,0,0,0,{}
+
+//==================================================
+// in_sphinx1 - Esfinge (1° Andar)
+//==================================================
+in_sphinx1,0,0,0,0	monster#re	Drainliar	1111,40,5000,0,0
+in_sphinx1,0,0,0,0	monster#re	Réquiem	1164,20,5000,0,0
+in_sphinx1,0,0,0,0	monster#re	Zerom	1178,20,5000,0,0
+in_sphinx1,0,0,0,0	monster#re	Matyr	1146,10,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx2 - Esfinge 2
+//==================================================
+in_sphinx2,0,0,0,0	monster#pre	Drainliar	1111,15,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Réquiem	1164,50,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Zerom	1178,50,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Matyr	1146,20,0,0,0,{}
+
+//==================================================
+// in_sphinx2 - Esfinge (2° Andar)
+//==================================================
+in_sphinx2,0,0,0,0	monster#re	Réquiem	1164,50,5000,0,0
+in_sphinx2,0,0,0,0	monster#re	Zerom	1178,50,5000,0,0
+in_sphinx2,0,0,0,0	monster#re	Matyr	1146,20,5000,0,0
+in_sphinx2,0,0,0,0	monster#re	Drainliar	1111,15,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx3 - Esfinge 3
+//==================================================
+in_sphinx3,0,0,0,0	monster#pre	Matyr	1146,15,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Pasana	1154,5,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Marduk	1140,65,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Mímico	1191,5,600000,300000,1,{}
+
+//==================================================
+// in_sphinx3 - Esfinge (3° Andar)
+//==================================================
+in_sphinx3,0,0,0,0	monster#re	Marduk	1140,65,5000,0,0
+in_sphinx3,0,0,0,0	monster#re	Matyr	1146,15,5000,0,0
+in_sphinx3,0,0,0,0	monster#re	Mímico	1191,5,5000,0,0
+in_sphinx3,0,0,0,0	monster#re	Pasana	1154,5,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx4 - Esfinge 4
+//==================================================
+in_sphinx4,0,0,0,0	monster#pre	Minorous	1149,50,0,0,0
+in_sphinx4,0,0,0,0	monster#pre	Anubis	1098,15,0,0,0
+in_sphinx4,0,0,0,0	monster#pre	Mímico	1191,4,600000,300000,1
+in_sphinx4,0,0,0,0	monster#pre	Pasana	1154,20,0,0,0,{}
+
+//==================================================
+// in_sphinx4 - Esfinge (4° Andar)
+//==================================================
+in_sphinx4,0,0,0,0	monster#re	Minorous	1149,50,5000,0,0
+in_sphinx4,0,0,0,0	monster#re	Pasana	1154,20,5000,0,0
+in_sphinx4,0,0,0,0	monster#re	Anubis	1098,15,5000,0,0
+in_sphinx4,0,0,0,0	monster#re	Mímico	1191,4,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx5 - Esfinge 5
+//==================================================
+in_sphinx5,0,0,0,0	monster#pre	Pasana	1154,70,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Matyr	1146,10,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Sorrateiro	1037,20,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Anubis	1098,10,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Mímico	1191,7,600000,300000,1
+in_sphinx5,0,0,0,0	boss_monster#pre	Faraó	1157,1,3600000,600000,1,{}
+
+//==================================================
+// in_sphinx5 - Esfinge (5° Andar)
+//==================================================
+in_sphinx5,0,0,0,0	monster#re	Pasana	1154,70,5000,0,0
+in_sphinx5,0,0,0,0	monster#re	Sorrateiro	1037,20,5000,0,0
+in_sphinx5,0,0,0,0	monster#re	Matyr	1146,10,5000,0,0
+in_sphinx5,0,0,0,0	monster#re	Anubis	1098,10,5000,0,0
+in_sphinx5,0,0,0,0	monster#re	Mímico	1191,7,5000,0,0
+in_sphinx5,0,0,0,0	boss_monster#re	Faraó	1157,1,3600000,600000,1,{}

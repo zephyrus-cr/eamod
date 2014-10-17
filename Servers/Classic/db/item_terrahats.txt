@@ -1,0 +1,7 @@
+// Custom Terra Box (item id 5000) Obtainable Items Database
+// Edit it as you wish, for your server.
+// Structure of Database:
+// GroupID,ItemID,Rate
+
+// Terra Hats Custom
+55,5000,100

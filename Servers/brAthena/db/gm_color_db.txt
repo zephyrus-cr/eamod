@@ -1,0 +1,10 @@
+// Chat color by GM Level
+// =====================================================
+// Structure:
+// <From Min Level>,<To Max Level>,<Color>
+// =====================================================
+// Samples:
+// 0,0,0xFF0000 - This will made normal players (gm level 0) talk in red color.
+// 1,10,0x0000FF - GM from 1 to 10 talk in blue
+// 90,99,0xFFA500 - Admins from 90 to 99 talk in orange
+// =====================================================

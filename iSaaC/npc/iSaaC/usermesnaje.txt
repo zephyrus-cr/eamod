@@ -1,0 +1,153 @@
+/*			INTELIGENT @BROADCAST COMMAND BY iSaaC 	
+		PROX UP-GRADE: PHP TRADING - BUYING INTELIGENT SYSTEM
+
+[ ======================================== ]
+ 	 BROADCAST SYSTEM -> iSaaC SRC
+[ ======================================== ]
+
+int atcommand_broadcast(const int fd, struct map_session_data *sd, const char *command, const char *message)
+{
+	nullpo_retr(-1,sd);
+	if( sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading || sd->state.storage_flag )
+		return -1;
+
+	npc_event(sd,"brzg::OnSettings",0);
+	return 0;
+}
+
+{ "broadcast",           1,1,    0,     atcommand_broadcast },
+
+[ ======================================== ]
+ 	 BROADCAST SYSTEM -> iSaaC SQL
+[ ======================================== ]
+CREATE TABLE `broadcast` (
+`ID__MSJ` int(11) unsigned NOT NULL default '0',
+`name` varchar(30) NOT NULL default '',
+`last__broadcast` varchar(100) NOT NULL default 'no se encontro mensjae'
+);
+ALTER TABLE `login` ADD COLUMN `BLOCK_PJ` varchar(10) NOT NULL Default '0'
+ALTER TABLE `broadcast` MODIFY `ID__MSJ` INT(11) AUTO_INCREMENT PRIMARY KEY
+
+*/
+
+
+-	script	brzg	-1,{
+end;
+OnSettings:
+	set .@costo , 250;
+	mes name$; 
+	mes ""; 
+		
+	if ( getcharid(2) == 204 ) { //Helpers Guild ID
+
+		mes "Helper digita mensaje a mandar, sin costo de cash, o dijite 0 para salir";
+		input .@msj$; 
+
+		if ( .@msj$ == "0" ) 
+		{
+			mes " El mensaje debe contener algo";	
+			close;
+		}
+		close2;
+		setarray .@colores$[0],"ff0000","ff4000","ff8000","ffbf00","ffff00","bfff00","80ff00","40ff00","00ff00","00ff40","00ff80","00ffbf","00ffff";
+		set .@i , rand ( 0 , getarraysize( .@colores$ ) );				
+			announce "[ Helper ~ ] "+strcharinfo(0)+": "+.@msj$,0,"0x"+.@colores$[.@i];
+		end;
+	
+	}
+
+	if (getgmlevel() >= 80 ) {
+		do {
+			set .@s , select ( " ^10B2D2 [ > ] ^000000 Menu GM : ^10B2D2 [ > ] ^000000 Menu User " );
+			if ( .@s == 1 ) 
+			{	
+				while(1) 
+				{
+					set .@menu , select("^10B2D2 [ > ] ^000000 Desblk broad ID [ "+#ACCOUNT__ID+" ] :^10B2D2 [ > ] ^000000 Blk broad ID [ "+#ACCOUNT__ID+" ] :^10B2D2 [ > ] ^000000 Ver una ID ");
+					if ( .@menu == 3 ) 
+					{
+
+						next; 
+						mes name$; 
+						mes ""; 
+						mes "Dijite el nombre que quieres ver ID"; 
+						input .@names$;
+						query_sql("SELECT `account_id` FROM `char` WHERE `name`='"+.@names$+"'",#ACCOUNT__ID);
+						
+						next; 
+						mes name$; 
+						mes ""; 
+						mes " El ID es : ^000000 " + #ACCOUNT__ID + " ^10B2D2.";
+
+					} else if ( .@menu == 1 && #ACCOUNT__ID != 0 ) {	
+						query_sql "UPDATE `login` SET `BLOCK_PJ` = '0' WHERE `account_id` = '"+#ACCOUNT__ID+"'"; break;
+					} else if ( .@menu == 2 && #ACCOUNT__ID != 0 ) {
+						query_sql "UPDATE `login` SET `BLOCK_PJ` = '1' WHERE `account_id` = '"+#ACCOUNT__ID+"'"; break;
+					} else if ( #ACCOUNT__ID == 0 ) { 
+						mes " La id es incorrecta"; 
+						close;
+					}
+				}
+				next;
+				mes name$; 
+				mes ""; 
+				mes "ID "+#ACCOUNT__ID+" desbloquiado"; 
+				break;
+			}
+		} while ( .@s == 1 );
+	}
+
+	query_sql ("SELECT `BLOCK_PJ` FROM `login` WHERE `account_id`='"+getcharid(3)+"'", .@BAN$);
+	if ( .@BAN$ == "1" ) 
+	{ 
+
+			mes "Estas baneado Nose te permite tirar broadcast"; 
+			close; 
+
+	}
+	if (gettimetick(2) < WAITTIME ) 
+	{
+
+		 mes "Solo se puede mandar 1 Broadcast cada 10 segundos"; 
+		close;
+
+	} else if ( #CASHPOINTS < .@costo ) 
+	{ 
+
+		mes "Tienes que tener "+.@costo+" Cashpoint's minimo para poder enviar el mensaje.";
+		close;
+
+	} else {
+		if (select("^10B2D2 [ > ] ^000000Hacer Broadcast :^10B2D2 [ > ] ^000000Ver ultimos Broadcast") == 1 ) 
+		{
+			mes "Costo del Broadcast: " + .@costo + "Cashpoints";
+			mes "";
+			mes " Digite el mensaje que quieres , 0 para salir"; 
+			input .@msj$; 
+			if ( .@msj$ == "0" ) 
+			{
+				mes " El mensaje debe contener algo";	
+				close;
+			}
+			
+			set #CASHPOINTS , #CASHPOINTS - .@costo;
+			set WAITTIME ,gettimetick(2)+10;
+			setarray .@colores$[0],"ff0000","ff4000","ff8000","ffbf00","ffff00","bfff00","80ff00","40ff00","00ff00","00ff40","00ff80","00ffbf","00ffff";
+			set .@i , rand ( 0 , getarraysize( .@colores$ ) );				
+				announce "[ Usuario ~ ] "+strcharinfo(0)+": "+.@msj$,0,"0x"+.@colores$[.@i];
+				query_sql "INSERT INTO `broadcast`(`name`,`last__broadcast`) VALUES ('"+strcharinfo(0)+"','"+.@msj$+"')";
+			close;
+		} next;
+		
+		query_sql ("SELECT `name`,`last__broadcast` FROM `broadcast` ORDER BY `ID__MSJ` DESC LIMIT 10", .@NAMES$[0] , .@MSJS$[0]);
+		for (set .@i , 0; .@i < getarraysize( .@MSJS$ ); set .@i , .@i + 1 ) 
+		{
+		
+			mes name$; 
+			mes ""; 
+			mes .@NAMES$[.@i] + " : " + .@MSJS$[.@i];
+			if ( Select ( "^10B2D2 [ > ] ^000000Continuar:^10B2D2 [ > ] ^000000Salir" ) == 2 ) close;
+		}
+		close;
+	} end;
+}

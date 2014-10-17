@@ -1,0 +1,75 @@
+// Healer By iSaaC ===========================================
+prontera,147,184,5	script	Healer::HL	475,10,10,{
+OnTouch:
+	sc_start 32,  240000, 10;  // Increase Agi
+	sc_start 30, 240000, 10; // Blessing
+	percentheal 105,105; repairall;
+
+	getinventorylist;
+	set @identify, 0;
+	for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1) {
+		if (@inventorylist_identify[@i] == 0) set @identify, @identify + 1;
+	}
+	if (@identify == 0) end;	
+	getinventorylist;
+	set @identified, 0;
+	for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1) {
+		if (@inventorylist_identify[@i] == 0) {
+			if ( zeny > 100 ) set Zeny, Zeny - 100;		
+			delitem2 @inventorylist_id[@i],1,0,0,0,0,0,0,0;
+			security_mod_getitem @inventorylist_id[@i],1;
+			set @identified, @identified + 1;
+		}
+	}
+	end;
+}
+
+//Duplicates
+morocc,150,97,5	duplicate(HL)	Healer#1	971,10,10
+geffen,124,71,2	duplicate(HL)	Healer#2	971,10,10
+payon,168,226,5	duplicate(HL)	Healer#3	971,10,10
+alberta,34,240,5	duplicate(HL)	Healer#4	971,10,10
+izlude,118,217,4	duplicate(HL)	Healer#5	971,10,10
+aldebaran,135,118,6	duplicate(HL)	Healer#6	971,10,10
+xmas,144,135,5	duplicate(HL)	Healer#7	971,10,10
+comodo,195,158,5	duplicate(HL)	Healer#8	971,10,10
+yuno,161,201,5	duplicate(HL)	Healer#9	971,10,10
+amatsu,194,92,6	duplicate(HL)	Healer#10	971,10,10
+gonryun,166,114,2	duplicate(HL)	Healer#11	971,10,10
+umbala,124,137,5	duplicate(HL)	Healer#12	971,10,10
+dicastes01,196,195,4	duplicate(HL)	Healer#13	971,10,10
+louyang,217,110,5	duplicate(HL)	Healer#14	971,10,10
+ayothaya,194,173,0	duplicate(HL)	Healer#15	971,10,10
+einbroch,57,203,5	duplicate(HL)	Healer#16	971,10,10
+lighthalzen,165,93,5	duplicate(HL)	Healer#17	971,10,10
+einbech,67,96,6	duplicate(HL)	Healer#18	971,10,10
+hugel,99,152,5	duplicate(HL)	Healer#19	971,10,10
+rachel,123,115,5	duplicate(HL)	Healer#20	971,10,10
+veins,222,133,5	duplicate(HL)	Healer#21	971,10,10
+moscovia,223,198,5	duplicate(HL)	Healer#22	971,10,10
+mid_camp,223,246,5	duplicate(HL)	Healer#23	971,10,10
+manuk,281,201,2	duplicate(HL)	Healer#24	971,10,10
+splendide,202,153,5	duplicate(HL)	Healer#25	971,10,10
+brasilis,199,222,5	duplicate(HL)	Healer#26	971,10,10
+bat_room,157,146,5	duplicate(HL)	Healer#27	971,10,10
+schg_cas06,299,383,5	duplicate(HL)	Healer#28	971,10,10
+schg_cas07,86,315,5	duplicate(HL)	Healer#29	971,10,10
+schg_cas07,117,315,5	duplicate(HL)	Healer#30	971,10,10
+schg_cas08,23,50,5	duplicate(HL)	Healer#31	971,10,10
+schg_cas08,92,50,5	duplicate(HL)	Healer#32	971,10,10
+arug_cas06,26,385,5	duplicate(HL)	Healer#33	971,10,10
+arug_cas06,122,361,5	duplicate(HL)	Healer#34	971,10,10
+arug_cas07,304,342,3	duplicate(HL)	Healer#35	971,10,10
+arug_cas07,304,305,1	duplicate(HL)	Healer#36	971,10,10
+arug_cas08,310,154,6	duplicate(HL)	Healer#37	971,10,10
+arug_cas08,333,154,4	duplicate(HL)	Healer#38	971,10,10
+rush_cas01,198,230,6	duplicate(HL)	Healer#39	971,10,10
+rush_cas01,198,226,6	duplicate(HL)	Healer#40	971,10,10
+rush_cas02,142,50,6	duplicate(HL)	Healer#41	971,10,10
+rush_cas02,142,46,6	duplicate(HL)	Healer#42	971,10,10
+rush_cas03,60,17,4	duplicate(HL)	Healer#43	971,10,10
+rush_cas03,64,17,4	duplicate(HL)	Healer#44	971,10,10
+rush_cas04,266,292,6	duplicate(HL)	Healer#45	971,10,10
+rush_cas04,266,288,6	duplicate(HL)	Healer#46	971,10,10
+schg_cas06,260,383,5	duplicate(HL)	Healer#47	971,10,10
+goodev_c02,109,121,3	duplicate(HL)	Healer#48	971,10,10

@@ -1,0 +1,17 @@
+- Ranking de Forjas
+- Ranking de Pociones
+- Ranking de MVP kills
+- Ranking de Taekwon Mission
+
+Rankings creados para la comunidad debido a la escases de estos con que viene Ceres en su version original....
+El codigo fuente no es entregado solo porque no quiero...
+
+
+Para agregarlos a tu version de ceres, debes ponerlos en la carpeta de este y modificar el archivo menu.php a gusto.. 
+
+
+
+Para cualquier duda, bugfix, etc etc.. Agrega o escribe a kr105_rulez@hotmail.com ........
+
+
+Atte... kR105

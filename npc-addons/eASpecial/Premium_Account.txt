@@ -1,0 +1,97 @@
+// ************************************************************
+// Premium Account Sample - eAmod
+// ************************************************************
+
+// Users can come to this script to pay for Premium Time. This mode runs only in the current Account, and expires when the Premium Time is over.
+// You can configure bonus experience, discounts in cash shops, and @commands available for Premium Account only.
+
+// Premium Account conf/battle settings ( see eAmod.conf )
+
+// Extra experience Bonus when killing mobs. Value is from 0 to 100, as a Percent. Example 5 = 5%
+// premium_bonusexp: 0
+
+// Discount when using Cash Shops. Value is from 0 to 100, as a Percent. Example 5 = 5%
+// premium_discount: 0
+
+// Drop boost for Premium account users. Value is %, where 5 become 5%.
+// The bonus drop increases the normal drop rate just like Bubble Gum does.
+// If normal drop is 30% and premium_dropboost is 10. The final drop rate will be 33%, not 40%.
+// premium_dropboost: 0
+
+
+// Only for eAthena and 3CeAM Builds. rAthena use group simulation on /conf/battle/eAmod.conf setting premium_group_id and /conf/groups.conf files.
+
+// To give access to @commands to Premium Account users, go to the file /conf/atcommand_athena.conf and add an Extra ,1 to each command setting you want to enable for Premium Users.
+// Example
+// go: 40,80
+// That means, 40 GM level using @go, 80 Gm level using #go
+// To enable @go to Premium Account just do this:
+// go: 40,80,1
+
+prontera,145,171,5	script	Premium Account	864,{
+	// Settings: -----------------------------
+	set .@Cost, 10000; // Cash Points required
+	set .@Time, 4 * 7 * 24 * 60 * 60; // Time in Seconds = 4 weeks, 7 days per week, 24 hours per day, 60 minutes per day, 60 seconds per minute. = 1 month in this sample.
+	set .@Time$, "1 month";
+	// ---------------------------------------
+
+	mes "[Premium Account]";
+	mes "I am the Premium Account seller.";
+	if( isPremium() == 1 )
+		mes "Your Premium Account expires in ^FF0000" + callfunc("Time2Str",#Premium_Tick) + "^000000.";
+	mes "What can I do for you?";
+	next;
+
+	// isPremium() returns 1 if the current user Account is Premium and it have not expired.
+	// It works together with #Premium_Tick, which is a Account Var set with a Unix Time value, representing when the Premium Account expires.
+	// isPremium() is the same as #Premium_Tick > gettimetick(2)
+
+	switch( select("Pay for Premium Time:About Premium Account") )
+	{
+	case 1:
+		mes "[Premium Account]";
+		if( isPremium() == 1 )
+			mes "Do you really want to extend your Premium Time?";
+		else
+			mes "You do really want to convert your account to premium?";
+
+		mes "Premium Time is ^FF0000" + .@Time$ + "^000000";
+		mes "Value is ^FF0000" + .@Cost + "^000000 Cash Points.";
+		next;
+		if( select("Yes:No") == 2 )
+		{
+			mes "[Premium Account]";
+			mes "Come back if you change your mind.";
+			close;
+		}
+
+		if( #CASHPOINTS < .@Cost )
+		{
+			mes "[Premium Account]";
+			mes "You don't have enough Cash Points.";
+			close;
+		}
+
+		if( isPremium() == 1 )
+			set #Premium_Tick, #Premium_Tick + .@Time; // Time Extension
+		else
+			set #Premium_Tick, gettimetick(2) + .@Time; // New Premium Account
+		set #CASHPOINTS, #CASHPOINTS - .@Cost;
+
+		mes "[Premium Account]";
+		mes "Congratulations!!..";
+		mes "Remember your Premium Account expires in ^FF0000" + callfunc("Time2Str",#Premium_Tick) + "^000000.";
+		close;
+
+	case 2:
+	
+		// Edit this messages to explain your Users about the Premium Account in your server.
+		// ----------------------------------------------------------------------------------
+
+		mes "[Premium Account]";
+		mes "";
+		mes "";
+		mes "";
+		close;
+	}
+}

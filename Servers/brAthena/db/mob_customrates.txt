@@ -1,0 +1,6 @@
+// Mob Rates
+//
+// Structure of Database:
+// MobID,Base Exp Rate,Job Exp Rate,Item Rate Common,Item Rate Heal,Item Rate Card,Item Rate Use,Item Rate Equip,Spawn Rate,Free For All (ignore @noks)
+
+// 1002,0,0,0,0,0,0,0,100,0

@@ -1,0 +1,40 @@
+-	script	invacion	-1,{
+	OnWhisperGlobal:
+		if ( getgmlevel() > 90 )
+			if ( @whispervar0$ != "activar" ) 
+				end;
+	OnClock0035:
+		set .mobs , 20;
+		announce "[ Steady ] La invación comenzó en prontera",0;
+		sleep 10000;
+		setarray $@MOB__EVENTIDINV[0],1098,1867,1831,1835;
+		mobevent "prontera", 156, 176,"Invacion Mob", $@MOB__EVENTIDINV[rand(0,getarraysize($@MOB__EVENTIDINV))], 0, .mobs, 0, 0, 200000, 0, 0, 1, 0, 0, 0, 0, 0, "invacion::OnEventDead";
+	end;
+
+	OnClock0050:
+		killmonsterall "prontera",2;
+		announce "[ Steady ] La invación fue cerrada",0;
+	end;
+
+
+	OnEventDead:
+		setarray $@MOB__EVENTIDINV[0],1098,1867,1831,1835;
+		set .mobs, .mobs - 1;
+		getmapxy .@m$, .@x, .@y, 0;
+		set .@x, @killedx;
+		set .@y, @killedy;
+		flooritem2xy .@m$,.@x,.@y,7539,5;
+		if ( .mobs > 0 && ( .mobs == 5 || .mobs == 10 || .mobs == 15 ) ) 
+		{
+			switch( rand(1,4) ) {
+				case 1 : announce "[ " + name2$ + " ] Refuersos llegando",0; break;
+				case 2 : announce "[ " + name2$ + " ] Esto se pone mas intenso aun...",0; break;
+				case 3 : announce "[ " + name2$ + " ] Tatarata llamen a los Kazas",0; break;
+				case 4 : announce "[ " + name2$ + " ] Matenlos ya porfa...",0; break;
+			}
+			mobevent "prontera", 156, 176,"Invacion Mob", $@MOB__EVENTIDINV[rand(0,getarraysize($@MOB__EVENTIDINV))], 0, .mobs, 0, 0, 200000, 0, 0, 1, 0, 0, 0, 0, 0, "invacion::OnEventDead";
+		} else if ( .mobs == 0 )
+			announce "[ " + name2$ + " ] Termino el evento",0;
+		 
+	end;
+}

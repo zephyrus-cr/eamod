@@ -1,0 +1,105 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ice_dun.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros da Caverna de Gelo.               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] ice_dun01 - Caverna de Gelo
+//==================================================
+ice_dun01,0,0,0,0	monster#pre#pre	Siroma	1776,75,0,0,0
+ice_dun01,0,0,0,0	monster#pre	Roween	1782,5,0,0,0
+ice_dun01,0,0,0,0	monster#pre	Gazeti	1778,2,0,0,0
+ice_dun01,0,0,0,0	monster#pre	Muscipular	1780,5,0,0,0,{}
+
+//==================================================
+// [Renovação] ice_dun01 - Caverna de Gelo
+//==================================================
+ice_dun01,0,0,0,0	monster#re	Siroma	1776,75,5000,0,0
+ice_dun01,0,0,0,0	monster#re	Roween	1782,5,5000,0,0
+ice_dun01,0,0,0,0	monster#re	Muscipular	1780,5,5000,0,0
+ice_dun01,0,0,0,0	monster#re	Gazeti	1778,2,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] ice_dun02 - Caverna de Gelo
+//==================================================
+ice_dun02,0,0,0,0	monster#pre	Yeti	1775,70,0,0,0
+ice_dun02,0,0,0,0	monster#pre	Siroma	1776,30,0,0,0
+ice_dun02,0,0,0,0	monster#pre	Gazeti	1778,15,240000,0,0
+ice_dun02,0,0,0,0	monster#pre	Titã de Gelo	1777,7,0,0,0
+ice_dun02,33,271,4,4	monster#pre	Estalactitico	1789,1,1320000,300000,0
+ice_dun02,110,242,5,5	monster#pre	Estalactitico	1789,2,1020000,300000,0
+ice_dun02,150,280,4,4	monster#pre	Estalactitico	1789,1,900000,300000,0
+ice_dun02,270,268,4,4	monster#pre	Estalactitico	1789,1,1020000,300000,0
+ice_dun02,46,207,3,3	monster#pre	Estalactitico	1789,1,1080000,300000,0
+ice_dun02,134,214,4,4	monster#pre	Estalactitico	1789,1,840000,300000,0
+ice_dun02,102,178,4,4	monster#pre	Estalactitico	1789,1,1020000,300000,0
+ice_dun02,207,165,5,5	monster#pre	Estalactitico	1789,2,1080000,300000,0
+ice_dun02,206,222,4,4	monster#pre	Estalactitico	1789,1,1020000,300000,0
+ice_dun02,270,136,3,3	monster#pre	Estalactitico	1789,1,960000,300000,0
+ice_dun02,20,150,4,4	monster#pre	Estalactitico	1789,1,960000,300000,0
+ice_dun02,46,103,5,5	monster#pre	Estalactitico	1789,2,1320000,300000,0
+ice_dun02,172,90,3,3	monster#pre	Estalactitico	1789,1,840000,300000,0
+ice_dun02,20,20,5,5	monster#pre	Estalactitico	1789,1,960000,300000,0
+ice_dun02,143,28,3,3	monster#pre	Estalactitico	1789,1,1020000,300000,0
+ice_dun02,280,20,5,5	monster#pre	Estalactitico	1789,1,960000,300000,0,{}
+
+//==================================================
+// [Renovação] ice_dun02 - Caverna de Gelo
+//==================================================
+ice_dun02,0,0,0,0	monster#re	Yeti	1775,70,5000,0,0
+ice_dun02,0,0,0,0	monster#re	Siroma	1776,30,5000,0,0
+ice_dun02,0,0,0,0	monster#re	Estalactitico	1789,19,5000,0,0
+ice_dun02,0,0,0,0	monster#re	Gazeti	1778,15,5000,0,0
+ice_dun02,0,0,0,0	monster#re	Titã de Gelo	1777,7,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] ice_dun03 - Caverna de Gelo
+//==================================================
+ice_dun03,0,0,0,0	monster#pre	Titã de Gelo	1777,12,0,0,0
+ice_dun03,0,0,0,0	monster#pre	Titã de Gelo	1777,10,7200000,3600000,0
+ice_dun03,0,0,0,0	monster#pre	Gazeti	1778,10,120000,0,0
+ice_dun03,0,0,0,0	monster#pre	Yeti	1775,15,0,0,0
+ice_dun03,113,239,85,50	monster#pre	Titã de Gelo	1777,12,180000,0,0
+ice_dun03,113,239,85,50	monster#pre	Gazeti	1778,8,300000,0,0
+ice_dun03,63,110,50,82	monster#pre	Titã de Gelo	1777,12,180000,0,0
+ice_dun03,63,110,50,82	monster#pre	Gazeti	1778,8,300000,0,0
+ice_dun03,189,66,80,40	monster#pre	Titã de Gelo	1777,12,180000,0,0
+ice_dun03,189,66,80,40	monster#pre	Gazeti	1778,8,300000,0,0
+ice_dun03,235,185,44,80	monster#pre	Titã de Gelo	1777,12,180000,0,0
+ice_dun03,235,185,44,80	monster#pre	Gazeti	1778,8,300000,0,0
+ice_dun03,50,243,10,10	monster#pre	Estalactitico	1789,2,720000,300000,0
+ice_dun03,149,247,10,43	monster#pre	Estalactitico	1789,5,1080000,300000,0
+ice_dun03,247,241,24,24	monster#pre	Estalactitico	1789,3,960000,300000,0
+ice_dun03,255,150,25,20	monster#pre	Estalactitico	1789,3,840000,300000,0
+ice_dun03,45,150,25,20	monster#pre	Estalactitico	1789,3,960000,300000,0
+ice_dun03,61,59,33,33	monster#pre	Estalactitico	1789,7,1080000,300000,0
+ice_dun03,150,55,24,36	monster#pre	Estalactitico	1789,6,1080000,300000,0
+ice_dun03,247,54,24,28	monster#pre	Estalactitico	1789,3,840000,300000,0,{}
+
+//==================================================
+// [Renovação] ice_dun03 - Caverna de Gelo
+//==================================================
+ice_dun03,0,0,0,0	monster#re	Titã de Gelo	1777,70,5000,0,0
+ice_dun03,0,0,0,0	monster#re	Gazeti	1778,42,5000,0,0
+ice_dun03,0,0,0,0	monster#re	Estalactitico	1789,32,5000,0,0
+ice_dun03,0,0,0,0	monster#re	Yeti	1775,15,5000,0,0,{}

@@ -1,0 +1,37 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: noloot.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0a/1.0                        |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que desabilita drops   |
+//   | de monstros no mapa.                                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//hunte	mapflag	noloot
+//job_knt	mapflag	noloot
+//job_prist	mapflag	noloot
+//job_wiz	mapflag	noloot
+//job_cru	mapflag	noloot
+//monk_test	mapflag	noloot
+//in_rogue	mapflag	noloot
+//job_sage	mapflag	noloot
+//job_soul	mapflag	noloot
+//job_star	mapflag	noloot
+//que_ng	mapflag	noloot
+//job_thief1	mapflag	noloot

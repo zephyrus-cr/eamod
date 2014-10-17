@@ -1,0 +1,133 @@
+@SET_MAKE@
+
+HAVE_MYSQL=@HAVE_MYSQL@
+ifeq ($(HAVE_MYSQL),yes)
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools import
+	SQL_DEPENDS=common_sql login_sql char_sql map_sql import
+	COMMON_SQL_DEPENDS=mt19937ar libconfig
+	LOGIN_SQL_DEPENDS=mt19937ar libconfig common_sql
+	CHAR_SQL_DEPENDS=mt19937ar libconfig common_sql
+	MAP_SQL_DEPENDS=mt19937ar libconfig common_sql
+	CONVERTERS_DEPENDS=common_sql
+else
+	ALL_DEPENDS=needs_mysql
+	SQL_DEPENDS=needs_mysql
+	COMMON_SQL_DEPENDS=needs_mysql
+	LOGIN_SQL_DEPENDS=needs_mysql
+	CHAR_SQL_DEPENDS=needs_mysql
+	MAP_SQL_DEPENDS=needs_mysql
+endif
+
+
+#####################################################################
+.PHONY: sql  \
+	common_sql \
+	mt19937ar \
+	login_sql \
+	char_sql \
+	map_sql \
+	tools \
+	import \
+	clean help
+
+all: $(ALL_DEPENDS)
+
+sql: $(SQL_DEPENDS)
+
+common_sql: $(COMMON_SQL_DEPENDS)
+	@$(MAKE) -C src/common sql
+
+mt19937ar:
+	@$(MAKE) -C 3rdparty/mt19937ar
+
+libconfig:
+	@$(MAKE) -C 3rdparty/libconfig
+
+login_sql: $(LOGIN_SQL_DEPENDS)
+	@$(MAKE) -C src/login sql
+
+char_sql: $(CHAR_SQL_DEPENDS)
+	@$(MAKE) -C src/char
+
+map_sql: $(MAP_SQL_DEPENDS)
+	@$(MAKE) -C src/map sql
+
+tools:
+	@$(MAKE) -C src/tool
+
+import:
+# 1) create conf/import folder
+# 2) add missing files
+# 3) remove remaining .svn folder
+	@echo "building conf/import folder..."
+	@if test ! -d conf/import ; then mkdir conf/import ; fi
+	@for f in $$(ls conf/import-tmpl) ; do if test ! -e conf/import/$$f ; then cp conf/import-tmpl/$$f conf/import ; fi ; done
+	@rm -rf conf/import/.svn
+
+clean:
+	@$(MAKE) -C src/common $@
+	@$(MAKE) -C 3rdparty/mt19937ar $@
+	@$(MAKE) -C 3rdparty/libconfig $@
+	@$(MAKE) -C src/login $@
+	@$(MAKE) -C src/char $@
+	@$(MAKE) -C src/map $@
+	@$(MAKE) -C src/tool $@
+
+help:
+	@echo "most common targets are 'all' 'sql' 'conf' 'clean' 'help'"
+	@echo "possible targets are:"
+	@echo "'common_sql'  - builds object files used in SQL servers"
+	@echo "'mt19937ar'   - builds object file of Mersenne Twister MT19937"
+	@echo "'libconfig'   - builds object files of libconfig"
+	@echo "'login_sql'   - builds login server (SQL version)"
+	@echo "'char_sql'    - builds char server (SQL version)"
+	@echo "'map_sql'     - builds map server (SQL version)"
+	@echo "'tools'       - builds all the tools in src/tools"
+	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
+	@echo "'all'         - builds all the above targets"
+	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
+	@echo "                'map_sql' and 'import')"
+	@echo "'clean'       - cleans builds and objects"
+	@echo "'help'        - outputs this message"
+
+#####################################################################
+
+needs_mysql:
+	@echo "MySQL not found or disabled by the configure script"
+	@exit 1
+
+#####################################################################
+# TODO
+
+install:	conf/%.conf conf/%.txt
+	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	$(shell mkdir -p /opt/brAthena/bin/)
+	$(shell mkdir -p /opt/brAthena/etc/brAthena/)
+	$(shell mkdir -p /opt/brAthena/var/log/brAthena/)
+	$(shell mv save /opt/brAthena/etc/brAthena/save)
+	$(shell mv db /opt/brAthena/etc/brAthena/db)
+	$(shell mv conf /opt/brAthena/etc/brAthena/conf)
+	$(shell mv npc /opt/brAthena/etc/brAthena/npc)
+	$(shell mv log/* /opt/brAthena/var/log/brAthena/)
+	$(shell cp *-server* /opt/brAthena/bin/)
+	$(shell ln -s /opt/brAthena/etc/brAthena/save/ /opt/brAthena/bin/)
+	$(shell ln -s /opt/brAthena/etc/brAthena/db/ /opt/brAthena/bin/)
+	$(shell ln -s /opt/brAthena/etc/brAthena/conf/ /opt/brAthena/bin/)
+	$(shell ln -s /opt/brAthena/etc/brAthena/npc/ /opt/brAthena/bin/)
+	$(shell ln -s /opt/brAthena/var/log/brAthena/ /opt/brAthena/bin/log)
+
+bin-clean:
+	$(shell rm /opt/brAthena/bin/login-server*)
+	$(shell rm /opt/brAthena/bin/char-server*)
+	$(shell rm /opt/brAthena/bin/map-server*)
+
+uninstall:
+	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	bin-clean
+	$(shell rm /opt/brAthena/bin/save)
+	$(shell rm /opt/brAthena/bin/db)
+	$(shell rm /opt/brAthena/bin/conf)
+	$(shell rm /opt/brAthena/bin/npc)
+	$(shell rm /opt/brAthena/bin/log)
+	$(shell rm -rf /opt/brAthena/etc/brAthena)
+	$(shell rm -rf /opt/brAthena/var/log/brAthena)

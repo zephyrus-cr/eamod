@@ -1,0 +1,162 @@
+izlude,118,214,5	script	MVP Room::MVPR	448,{
+
+
+/*[===================================] Configuracion iSaaC [=============================================]*/
+				
+						set .@zeny,500;
+		setarray $@mapas$[0],"guild_vs1-1","guild_vs1-2","guild_vs1-3","guild_vs2-1","guild_vs2-2";
+
+/*[===================================] Configuracion iSaaC [=============================================]*/ 
+
+	mes name$; 
+	mes "";
+	
+	soundeffect "siroma_move.wav",0;
+	mes "Hola " + strcharinfo(0) + ", Soy encargada de distribuir las partys para que puedan jugar en paz.";
+	for (set .@c, 0; .@c < getarraysize($@mapas$); set .@c, .@c + 1) {
+		if (getmapusers($@mapas$[.@c]) > 0)
+			setarray .msg$[.@c], "^FF0000Sala " + (.@c) + " Ocupada.^000000";
+		else
+			setarray .msg$[.@c], "Sala " + (.@c) +". ^00FF00Libre^000000";	set @rent,0;
+	}
+
+	for( set .@i, 1; .@i < getarraysize(.msg$); set .@i, .@i + 1 )
+		set .@Menu$, .@Menu$ + " ^10B2D2 [ > ] ^000000 " + .msg$[.@i] + ":";
+	set .@ESCOJIDO  , select( .@Menu$ );
+
+	if ( getmapusers( $@mapas$[.@ESCOJIDO] ) == 0 ) 
+	{
+		if ( #CASHPOINTS  < .@zeny || getcharid(1) == 0 ) 
+		{
+			next; 
+			mes name$; 
+			mes " No cumples los requisitos";
+	
+			if ( select("^10B2D2 [ > ] ^000000Ver requisitos:^10B2D2 [ > ] ^000000Salir") == 2 ) close;
+
+			next; 
+			mes name$; 
+			mes ""; 
+			mes "Necesitas :"; 
+			mes " - "+.@zeny+" : de Cashpoint's"; 
+			mes " - Tener una party "; 
+			close;
+		}
+			announce "[ MVP ROOM ]: La sala " + .@ESCOJIDO + " fue alquilada por : "+ strcharinfo(0) + ".",0,0x00BFFF;
+			set #CASHPOINTS , #CASHPOINTS - .@zeny;
+			setd "$SALA" + .@ESCOJIDO, getcharid(1);
+			warp $@mapas$[ .@ESCOJIDO ],50,45;
+	}
+	if ((getd("$SALA" + .@ESCOJIDO) == getcharid(1)) && getcharid(1) != 0 )  
+	{
+
+		soundeffect "siroma_move.wav",0;
+		next; 
+		mes name$; 
+		mes "Serás teletransportado enseguida...";
+		warp $@mapas$[ .@ESCOJIDO ],50,45;
+
+	} else if ( getcharid(1) == 0 ) {
+ 
+		next; 
+		mes name$; 
+		mes "Debes tener una party"; 
+		close; 
+
+	} else if ( getd("$SALA" + .@ESCOJIDO) != getcharid(1) ) { 
+		
+		next; 
+		mes name$; 
+		mes "No perteneces a la party registrada.";
+		close; 
+	}
+
+OnPCDieEvent:
+	getmapxy .@maprfyl$,.@xrfyl,.@yrfyl,0;
+	if (.@maprfyl$ == "guild_vs1-1" || .@maprfyl$ == "guild_vs1-2" || .@maprfyl$ == "guild_vs1-3" || .@maprfyl$ == "guild_vs1-3" || .@maprfyl$ == "guild_vs2-1" || .@maprfyl$ == "guild_vs2-2") {
+		sleep2 100;
+		warp .@maprfyl$,91,49;
+		atcommand "@alive "+ strcharinfo(0);
+		sc_start 32,  240000, 10;
+		sc_start 30, 240000, 10;
+		percentheal 100,100; repairall;
+		end;
+	}
+end;
+}
+
+gonryun,166,126,4	duplicate(MVPR)	MVP Room#1	448
+
+guild_vs1-1	mapflag	nowarp
+guild_vs1-1	mapflag	nowarpto
+guild_vs1-1	mapflag	nomemo
+guild_vs1-1	mapflag	nosave	SavePoint
+guild_vs1-1	mapflag	monster_noteleport
+
+guild_vs1-2	mapflag	nowarp
+guild_vs1-2	mapflag	nowarpto
+guild_vs1-2	mapflag	nomemo
+guild_vs1-2	mapflag	nosave	SavePoint
+guild_vs1-2	mapflag	monster_noteleport
+
+guild_vs1-3	mapflag	nowarp
+guild_vs1-3	mapflag	nowarpto
+guild_vs1-3	mapflag	nomemo
+guild_vs1-3	mapflag	nosave	SavePoint
+guild_vs1-3	mapflag	monster_noteleport
+
+guild_vs2-1	mapflag	nowarp
+guild_vs2-1	mapflag	nowarpto
+guild_vs2-1	mapflag	nomemo
+guild_vs2-1	mapflag	nosave	SavePoint
+guild_vs2-1	mapflag	monster_noteleport
+
+guild_vs2-2	mapflag	nowarp
+guild_vs2-2	mapflag	nowarpto
+guild_vs2-2	mapflag	nomemo
+guild_vs2-2	mapflag	nosave	SavePoint
+guild_vs2-2	mapflag	monster_noteleport
+
+
+guild_vs1-1.gat,88,53,4	script	MVP Killer::MVPK	405,{
+
+set name$,"^0C5DA5MvP RooM^000000";
+
+	mes name$; mes "";
+	if ( #CASHPOINTS < 250 ) { 
+		mes "Ocupas minimo 250 de cash"; 
+		close; 
+	}
+	
+	soundeffect "detale_stand.wav",0;
+	mes "Hola yo puedo matar todos los mounstros en la sala!";
+	mes "Que deseas hacer";
+	next;
+	soundeffect "detale_stand.wav",0;
+	if(select("^10B2D2 [ > ] ^000000Destruir :^10B2D2 [ > ] ^000000Salir") == 2 ) close;
+		if(getpartyleader(getcharid(1),1) == (getcharid(3) ) )	{
+			getmapxy .@map$ , .@x, .@y , 0;
+			killmonsterall .@map$,2;
+			mes name$;
+			mes "";
+			specialeffect 30;
+			mes "Listo!";
+			announce "["+strcharinfo(0)+"] ha destruido todos los mounstros en este mapa.",1;
+			mes "Regresa cuando ocupes de nuevo mi ayuda!";
+			soundeffect "detale_stand.wav",0;
+			close;
+		}
+	soundeffect "detale_stand.wav",0;	
+	mes name$;
+	mes "";	
+	mes "No eres El Party Leader";	
+	close;
+}
+
+guild_vs1-2,88,53,4	duplicate(MVPK)	MVP Killer#1	405
+guild_vs1-3,88,53,4	duplicate(MVPK)	MVP Killer#2	405
+guild_vs2-1,74,53,4	duplicate(MVPK)	MVP Killer#3	405
+guild_vs2-2,74,53,4	duplicate(MVPK)	MVP Killer#4	405
+
+goodev_c02,94,115,5	duplicate(MVPR)	MVP Room#1-1	448
+morocc,159,97,5	duplicate(MVPR)	MVP Room#1-2	448

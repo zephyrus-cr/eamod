@@ -1,0 +1,1042 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: payon.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.1/2.1/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Payon.                    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Architect]                             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Payon
+//============================================================ 
+payon,246,154,0	script	Senhorita#payon	90,{
+	mes "[Senhorita]";
+	mes "Há muito tempo atrás";
+	mes "Payon, quando ainda estava em desenvolvimento,";
+	mes "muitos dos aldeões";
+	mes "viviam na pobreza.";
+	next;
+	mes "[Senhorita]";
+	mes "Muitas famílias tiveram que lutar para sobreviver, e muitas vezes não conseguiam, elas tiveram que lutar para sobreviver, e muitas vezes não conseguiam pagar corretamente o enterro dos seus mortos. Algumas pessoas jogavam seus mortos na caverna perto da aldeia. ";
+	next;
+	mes "[Senhorita]";
+	mes "Então, naquela caverna, é dito que existem muitos zumbis andando.";
+	mes "eles são mortos que não podem descansar em paz e são incapazes de passar para o outro mundo.";
+	next;
+	mes "[Senhorita]";
+	mes "Os Zumbis,após detectarem o calor de um ser humano, começam a atacá-los, mas isso não significa que esses mortos-vivos guardam rancor contra";
+	mes "os vivos";
+	next;
+	mes "[Senhorita]";
+	mes "Seus corpos podres não puderam sair da caverna fria, escura e úmida, por isso é instintivo para eles atacarem o calor que vai acelerar a decomposição de seus corpos.";
+	next;
+	mes "[Senhorita]";
+	mes "Os zumbis na caverna de Payon";
+	mes "podem ser assustadores,mas as suas histórias";
+	mes "também são trágicas.";
+	close;
+}
+
+payon,134,211,4	script	Jovem Homem#payon	59,{
+	mes "[Jovem Homem]";
+	mes "pelo seu rosto";
+	mes "eu posso ver que você";
+	mes "é um estranho aqui.";
+	mes "Bem-vindo a Payon.";
+	next;
+	mes "[Jovem Homem]";
+	mes "Você deve ser um lutador bem experiente, caso contrário você nunca seria capaz de chegar aqui depois de passar por areas íngremes, áreas montanhosas e criaturas perigosas ao redor desta cidade.";
+	next;
+	mes "[Jovem Homem]";
+	mes "Eu não sou nenhum perito em combate, mas alguém me disse uma vez que a força bruta sozinha não será capaz de vencer algumas batalhas";
+	next;
+	mes "[Jovem Homem]";
+	mes "Às vezes, você poderá encontrar criaturas protegidas por uma casca dura que não é danificada por ataques físicos. Só o poder psíquico, como os dos Mágicos, podem facilmente derrotar essas criaturas.";
+	next;
+	mes "[Jovem Homem]";
+	mes "Naturalmente, nem todos podem estudar magia. O ponto é que você deve manter diferentes tipos de amigos e camaradas perto de você, porque você não pode lidar com cada situação por si mesmo.";
+	close;
+}
+
+payon,173,82,0	script	Jovem Homem#2payon	88,{
+	mes "[Jovem Homem]";
+	mes "Lembro-me da história do meu saudoso avô me contou.";
+	next;
+	mes "[Jovem Homem]";
+	mes "É sobre este amuleto, que possui um poder maligno.";
+	mes "Com ele, você pode despertar";
+	mes "os mortos da sepultura.";
+	next;
+	mes "[Jovem Homem]";
+	mes "Bem, eu não tenho certeza se é verdade ou não. Mas, eu pergunto, o que aconteceria se eu o usasse para chamar";
+	mes "meu avô de outro reino ....";
+	next;
+	mes "[?]";
+	mes "^3299CCnunca pense";
+	mes "uma coisa dessas";
+	mes "Meu filho.^000000";
+	next;
+	mes "[Jovem Homem]";
+	mes "EEEEEEK-!";
+	mes "O que foi aquilo?";
+	mes "A-avô...?";
+	next;
+	mes "...";
+	next;
+	mes "...";
+	mes "......";
+	mes "[Jovem Homem]";
+	mes "...";
+	mes "D-Deus...?";
+	close;
+}
+
+payon,158,246,3	script	Guarda#payon	708,3,3,{
+	end;
+
+OnTouch:
+	mes "[Guarda]";
+	mes "Este é o Palácio Central de Payon. Este local é aberto ao público, mas de acordo com nossas leis, você deve se comportar de forma ordenada, uma vez dentro.";
+	next;
+	mes "[Guarda]";
+	mes "No interesse de proteger a paz, vamos desarmar o equipamento uma vez que você entrar.";
+	mes "Sua cooperação é";
+	mes "muito apreciada.";
+	nude;
+	close;
+}
+
+payon,249,156,1	script	Mulher#payon	66,{
+	mes "[Mulher]";
+	mes "Bem vindo a Payon";
+	mes "você deve ter tido";
+	mes "uma certa dificuldade em conseguir";
+	mes "andar através da floresta de payon";
+	mes "como foi a viagem?";
+	next;
+	mes "[Mulher]";
+	mes "Temos recebido menos turistas por causa do aumento de monstros lá fora, por isso está mais quieto hoje.";
+	next;
+	mes "[Mulher]";
+	mes "Para ser honesto, as coisas estão ficando difíceis, por causa de todos esses monstros.^666666*Sigh...*^000000";
+	next;
+	mes "[Mulher]";
+	mes (Sex ? "Whoa ~! Eu notei que seus braços são bastante grossos. Você parece muito forte, cara. Quantos monstros você matou?":"Oooh! Eu não percebi antes, mas você olhar bem forte embaixo de todo esse charme feminino.");
+	next;
+	mes "[Mulher]";
+	mes "Ei, eu sei de um lugar bom para você caçar. Acontece que há uma caverna no meio de Payon.";
+	next;
+	mes "[Mulher]";
+	mes "Se você estiver interessado, vá para o Norte, passe pela floresta, e siga em direção ao noroeste. Você saberá que você chegou quando você estiver num lugar com o o mau cheiro de monstros.";
+	next;
+	switch(select("Parece perigoso!:Melhor eu me preparar ...!:É um belo vestido que você está vestindo ~")) {
+	case 1:
+		mes "[Mulher]";
+		mes "Oh venha, não seja coverde.";
+		mes "É apenas uma simples caverna cheia de monstros normais. É bastante seguro. Temos ainda uma vila de arqueiros perto da caverna para evitar incidentes infelizes. Hohoohoho ~";
+		close;
+	case 2:
+		mes "[Mulher]";
+		mes "ah, não se preocupe com qualquer preparação.Existe uma loja de ferramenta perto da caverna, assim você pode comprar qualquer coisa que você precise com o senhor husban, ~";
+		close;
+	case 3:
+		mes "[Mulher]";
+		mes "Oh hohohoho!";
+		mes "Você soube da mais nova notícia?";
+		mes "Eu ouvi que saiu";
+		mes "umas novas tendências de moda em Prontera ";
+		mes "esses dias.";
+		next;
+		mes "[Mulher]";
+		mes "A maioria das mulheres nesta cidade ainda não sabem nada sobre moda! ";
+		mes "Meu marido comprou esse presente pra mim. Ele faz muito dinheiro, você sabia? Hohohoho ~";
+		close;
+	}
+}
+
+payon,246,158,5	script	Mulher#2payon	66,0,0,{
+	mes "[Mãe de Jim]";
+	mes "Oh Garoto~";
+	mes "Lá vai ela de novo.";
+	mes "está vendo aquela mulher?";
+	mes " É a fofoqueira da cidade.";
+	next;
+	mes "[Mãe de Jim]";
+	mes "Por favor, não julgue o resto";
+	mes "das pessoas que vivem em Payon por seu comportamento. Ela é a única pessoa que grita. Eu acho que ela está muito animada pelo que a cartomante lhe disse.";
+	next;
+	mes "[Mãe de Jim]";
+	if (Sex) {
+		mes "Ooh, garoto...";
+		mes "você tem";
+		mes "ombros largos";
+		mes "você gostaria de sair comigo?";
+		mes "posso te convidar";
+		mes "para um jantar~";
+	} else {
+		mes "Meu, você é uma bela garota!";
+		mes "Tenho certeza que você anda ocupada batendo nos";
+		mes "meninos com um pedaço de pau meninos com um pedaço de pau ";
+		mes "ou com uma piada sem graça.";
+	}
+	next;
+	if (select("Cartomante..?:Bem, eu vejo você mais tarde~") == 1) {
+		mes "[Mãe de Jim]";
+		mes "Oh sim...";
+		mes "Existe uma cartomante extraordinária no Palácio Central de Payon. Quanto mais você paga a ela, mais sorte você vai ganhar!";
+		next;
+		mes "[Mãe de Jim]";
+		mes "Ela me disse que";
+		mes "Gostaria de conhecer";
+		mes "um cara legal este mês.";
+		mes "Hohohoho~ ";
+		close;
+	}
+	mes "[Mãe de Jim]";
+	mes "Mmmm...?";
+	mes "Você não tem";
+	mes "um tempo, para ficar";
+	mes "e bater um papo comigo?";
+	close;
+}
+
+payon,210,110,1	script	Bêbado#payon	120,{
+	if (Class != Job_Archer) {
+		mes "[Bêbado]";
+		mes "Hey...";
+		mes "H-Hey...!";
+		next;
+		mes "[Bêbado]";
+		mes "Eu me pergunto porque esses";
+		mes "estupidos arqueiros vem";
+		mes "me incomodar com o mesmo objetivo sempre!";
+		mes "Você é tão fraco!";
+		mes "eu disse FRAAAAACO!";
+		next;
+		mes "[Bêbado]";
+		mes "Bwahahahaha!";
+		mes "Será que você poderia comprar para mim uma bebida?";
+	} else {
+		mes "[Bêbado]";
+		mes "Opa, um arqueiro!";
+		mes "seja homem ou um garoto";
+		mes "Vocês são os melhores!";
+		next;
+		mes "[Bêbado]";
+		mes "Bwahahahaha!";
+		mes "Será que você poderia comprar para mim uma bebida?";
+	}
+	next;
+	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
+	case 1:
+		set zeny,zeny-100;
+		mes "[Bêbado]";
+		mes "Obrigado...";
+		mes "...Irmão!";
+		next;
+		mes "[Bêbado]";
+		mes "A maioria das pessoas nunca querem ";
+		mes "com prar bebidas para mim! Talvez porque eu era acostumado abrincar demais com as senhoras da minha época!";
+		next;
+		mes "[Bêbado]";
+		mes "Embora, as mulheres que eu costumava brincar estão velhinhas agora! Hahahahaha! Um dia desses elas ainda se enfeitavam e colocavam maquiagem, você acredita nisso?";
+		next;
+		mes "[Bêbado]";
+		mes "Eu sou assim mesmo, um pouco brincalhão...";
+		mes "Vamos lá...";
+		mes "alguns rostos eram";
+		mes "minhas paixões!";
+		mes "Calma, hahaha eu fiz uma piada";
+		mes "Bwahahahahahah!";
+		next;
+		mes "[Bêbado]";
+		mes "^666666*Gulp~ Gulp~*^000000";
+		mes "cara isso é ótimo!";
+		mes "Você é o caraaaa!";
+		mes "Muhahahahaha!";
+		close;
+	case 2:
+		mes "[Bêbado]";
+		mes "Bah!";
+		mes "As crianças de hoje";
+		mes "não respeitam os";
+		mes "mais velhos";
+		mes "Por isso não te cobrarei respeito a mim";
+		close;
+	case 3:
+		mes "[Bêbado]";
+		mes "Tudo bem...";
+		mes "Por mim tudo bem, não preciso do seu respeito por mim!";
+		close;
+	}
+}
+
+payon,132,235,3	script	Escola de Monstros#02	98,{
+	mes "[Escola de Monstros Vuicokk]";
+	mes "É um prazer te conhecer!";
+	mes "Eu sou chamado Vuicokk.";
+	mes "Eu sou um estudioso da organização de Pesquisa de monstros do reino de Rune Midgard. Você tem alguma dúvida sobre monstros?";
+	next;
+	switch(select("Quer saber alguma notícia?:Sobre monstros?:Sobre a Organização de Pesquisas de monstros?")) {
+	case 1:
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Payon fica no fundo da floresta, onde ela pode ser facilmente atacada por monstros. Eles também vêm da caverna perigosa localizada perto da cidade.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Há algum tempo os monstros da caverna de payon tem atraído a atenção da organização de pesquisa de monstros. Meu trabalho principal é estudar as suas caracteristicas.";
+		close;
+	case 2:
+		mes "[Escola de Monstros Vuicokk]";
+		mes "O mais interessante sobre esses monstros é que eles um dia foram cidadãos de payon.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "No entanto, essas almas são incapazes.";
+		mes "de descansar em paz, por isso ainda vagam como mortos-vivos.";
+		mes "neste mundo";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Estes monstros não podem ser classificados como monstros comuns, porque eles foram gerados a partir de seres vivos, então o nosso governante sábio e benevolente, o rei Tristam III, tomou um grande interesse pelos mortos vivos de Payon.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Afinal, algumas desses ";
+		mes "mortos- vivos pertenceram ao";
+		mes "Reino de Rune - Midgard";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "E eram súditos do rei";
+		mes "Então o rei Tristram III";
+		mes "sente-se no dever de";
+		mes "liberar as suas almas.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Vossa Magestade tem vindo nos apoiar";
+		mes " nossas buscas para descobrir como eliminar todos os zumbis no mundo. Vamos tentar alcançar este objetivo,";
+		mes "logo que possível.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Para a segurança do nosso povo,";
+		mes "para o bem das famílias enlutadas, e em concordância com a ordem do rei Tristam III, teremos que ter sucesso!";
+		close;
+	case 3:
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Como você bem sabe";
+		mes "os monstros foram infinitamente desovados neste mundo, e a ameaça dos seus ataques estão crescendo a cada dia.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Em resposta disso";
+		mes "A organização de pesquisa";
+		mes "de monstros foi formada.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Algumas pessoas talentosas de todo o mundo se uniram em um unico propósito: Descobrir a origem dos monstros, e também uma maneira de eliminá-los de uma vez por todas.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Claro que não é";
+		mes "tão fácil como você pode imaginar, muitos já sacrificaram suas vidas em busca desse conhecimento.";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "Em nossas missões, os números de vitimas atacadas por monstros foram incontáveis.Ainda sim, nada vai nos parar.Se o nosso sofrimento poderá salvar a humanidade, que assim seja!";
+		next;
+		mes "[Escola de Monstros Vuicokk]";
+		mes "^666666*Ahem*^000000 Mil desculpas, eu fico muito animado,ás vezes.Mas se você encontrar outros estudiosos, como eu, por favor trate-os bem. Nosso trabalho é memorável, porém muito dificil.";
+		close;
+	}
+}
+
+// Inside Payon
+//============================================================
+payon_in01,180,7,2	script	Garçonete#payon	90,{
+	mes "[Garçonete]";
+	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
+	next;
+	mes "[Garçonete]";
+	mes "Eu já estou ficando cansada e doente de tanto fazer sopa de macarrão. Tenho que tomar diversos banhos ao dia, para me livrar desse cheiro. E acredite não é nada fácil ";
+	mes "livrar-se dele.";
+	next;
+	mes "[Garçonete]";
+	mes "Eu me sinto tão...";
+	mes "intediada";
+	mes "e sozinha...";
+	next;
+	mes "[Garçonete]";
+	if (Sex)
+		mes "Onde posso encontrar a pessoa certa, alguém amável e meiga, para me levar daqui? Hum, Hey! você está me ouvindo?";
+	else {
+		mes "Onde eu posso encontrar a pessoa certa, alguém bonita, mas que seja um pouco dificil de conquistar, para poder me levar daqui?";
+		mes "Hum, heeeeei senhora";
+		mes "você está me ouvindo?";
+	}
+	next;
+	mes "[Garçonete]";
+	mes "A cartomante velha, me disse que eu teria muita sorte em um futuro próximo.Mas o que há de errado comigo? Eu estou vivendo dia após dia e nada... Talvez eu seja um burro e azarado mesmo...";
+	next;
+	mes "[Garçonete]";
+	mes "Sinto muito.";
+	mes "Eu falo demais.";
+	mes "Agora vou apenas ouvir...";
+	mes "Lamento por você ter ouvido ";
+	mes "tantas asneiras.";
+	next;
+	mes "[Garçonete]";
+	mes "então...";
+	mes "Como posso te ajudar?";
+	next;
+	switch(select("Você ja ouviu falar de zumbis?:Bancário...?:Eu preciso de uma bebida.")) {
+	case 1:
+		mes "[Garçonete]";
+		mes "É claro que quero";
+		mes "ouvir sobre zumbis!";
+		mes "Esta é Payon agora.";
+		mes "Você pode encontrar zumbis caminhando";
+		mes "Eles são mortos-vivos, e você pode facilmente";
+		mes "encontra-los aqui.";
+		next;
+		mes "[Garçonete]";
+		mes "Eu Ouvi dizer que eles temem a santidade, por isso eles tem medo de arqueiros ,pois eles preferem usar setas feitas de prata, um metal sagrado, que é infalível contra eles.";
+		next;
+		mes "[Garçonete]";
+		mes "A lenda diz que o chefe desta cidade, usava flechas de prata contra os zumbis, que costumavam ser seus irmãos, afim de liberar suas almas para que pudessem descansar em paz.";
+		next;
+		mes "[Garçonete]";
+		mes "Nós acreditamos que se exorcizarmos os";
+		mes "zumbis, poderemos leválos pacificamente a uma vida após a morte. E que suas almas não precisaram viver angustiadas nunca mais.";
+		next;
+		mes "[Garçonete]";
+		mes "Você pode não acreditar nas nossas crenças,mas meu avô foi um dos mortos-vivos.Acredito que meu chefe era capaz de libertá-lo do mundo dos vivos.";
+		break;
+	case 2:
+		mes "[Garçonete]";
+		mes "Temos uma cartomante, ela é uma pessoa extraordinária.Porém ela não fica mais por aqui, ";
+		mes "como ela fazia antigamente.";
+		next;
+		mes "[Garçonete]";
+		mes "Ela costumava ficar aqui, para nos contar sobre a sorte da nossa vida, só que ela foi reconhecida por ter este talento, e foi levada pelo nosso chefe. Agora ela fica no palácio central, então se quiser vê-la terá que ir até la.";
+		break;
+	case 3:
+		mes "[Garçonete]";
+		mes "Você..";
+		mes "precisa de alguma";
+		mes "bebida?";
+		mes "Não temos nada ao seu gosto?";
+		next;
+		mes "[Garçonete]";
+		mes "Eu sinto muito, não vendemos para fora.";
+		mes "Não podemos nos dar ao luxo de preparar o alcóol, poos há criaturas hostis lá fora. Mas por favor, volte mais tarde.Desculpe-nos pelos transtornos. ";
+		break;
+	}
+	next;
+	mes "[Garçonete]";
+	mes "Tenha um bom dia";
+	mes "querido (a)";
+	next;
+	mes "[Garçonete]";
+	mes "^666666*Sob*^000000";
+	mes "Um dia vou ser cortejada";
+	mes "pelo meu bom comportamento.";
+	mes "Será que ainda encontrarei um homem para mim?";
+	close;
+}
+
+payon_in03,96,116,3	script	Guarda Chefe#payon	708,3,3,{
+	end;
+
+OnTouch:
+	mes "[Guarda Chefe]";
+	mes "O que trás";
+	mes "você aqui?";
+	next;
+	mes "[Guarda Chefe]";
+	mes "Eu posso ver que você não é morador de payon.Eu gostaria apenas de lembrá-lo, que estou aqui para conduzi-lo de forma correta. Lembre-se:";
+	mes "você é nosso convidado.";
+	next;
+	mes "[Guarda Chefe]";
+	mes "No interesse de proteger a paz pública, eu vou desarmar o seu equipamento.Obrigado pela sua cooperação.";
+	nude;
+	close;
+}
+
+payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
+	mes "[Arqueiro Zakk]";
+	mes "Estou ocupado";
+	mes "com um dos meus amigos.";
+	next;
+	mes "[Arqueiro Zakk]";
+	mes "Mesmo que ele seja um perito em tiro com arco, ninguém gosta de pessoas aque falam demais e não tem limites .Até mesmo nosso chefe está ficando farto dele!";
+	next;
+	switch(select("Seu amigo?:Payon tem um chefe?:Boca... motorizada?")) {
+	case 1:
+		mes "[Arqueiro Zakk]";
+		mes "Sim vou te explicar melhor. Este meu amigo é o arqueiro número um de payon.";
+		mes "Ele ensina arqueiros novatos, ao arredores da vila dos arqueiros.Pode ser uma boa ideia falar com ele,não custa nada tentar.";
+		close;
+	case 2:
+		mes "[Arqueiro Zakk]";
+		mes "Nossas vidas dependem do chefe fo pálacio central. ele é o guia espiritual de payon.";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "ele usou seu arco gakkung contra os monstros da floresta de payon, eu me lembro de vê-lo lutar quando eu era apenas uma criança.";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "Mas agora, ele";
+		mes "parece velho e fraco.";
+		mes "ainda assim, seus olhos são tao vivos quanto costumava ser durante seus dias";
+		mes "de batalha, onde ele nunca perdeu";
+		mes "um alvo.";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "Eu admiro o nosso chefe";
+		mes "do fundo";
+		mes "do meu coração.";
+		close;
+	case 3:
+		mes "[Arqueiro Zakk]";
+		mes "Você não sabe";
+		mes "o que é um boca de motorizada ?";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "Boca de motor.";
+		mes "é um substantivo que usamos para alguns tolos";
+		mes "que falam demais coisas que não interessam e não tem limites para parar de falar.";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "Mas assim, meu amigo não é apenas";
+		mes "uma lenda no arco e flecha, ele também ficou conhecido, pela sua sua fama de inconveniente.";
+		next;
+		mes "[Arqueiro Zakk]";
+		mes "Enfim meu amigo Wolt não tem";
+		mes "uma casa própria, ele fica na pousada.Por que você não vai lá encontrá-lo? ele é realmente um cara legal, se você gostar de pessoas que falam muito.";
+		close;
+	}
+}
+
+payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
+	mes "[Arqueiro Wolt]";
+	mes "Arqueiros devem ter";
+	mes "prática tanto";
+	mes "quanto já possuem.Caso contrário,";
+	mes "eles nunca chegarão a ser especialistas na arte de atirar.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Ah, você ai!";
+	mes "Eu sou wolt arqueiro;";
+	mes "mas você pode me ";
+	mes "chamar apenas de Wolt.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Eu sei que farewi uma pergunta um tanto inconveniente ";
+	mes "mas você quer gastar ";
+	mes "seu tempo comigo?";
+	next;
+	if (select("Oh, que inferno! não quero:Sim. eu acho que...")) {
+		mes "[Arqueiro Wolt]";
+		mes "Oh isso é bom, na verdade, isso é ótimo! Se todos nós arqueiros tivessémos essa atitude.Se você tem tempo para sentar e ouvir, você terá tempo para sair e praticar.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Yeah...";
+		mes "Como arqueiros";
+		mes "não vemos com bons olhos";
+		mes "quem não se esforça nos treinamentos.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Se você não trabalhar duro, então você vai acabar sendo um Arqueiro horrível. Ninguém vai poder ser ajudado por você";
+		mes "Eu digo, NINGUÉM!";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Você perguntou como nos preparamos não é mesmo?";
+		mes "Bem, os arqueiros de payon não possuem muito tempo para brincar com os arcos.";
+		mes "Nós saimos atrás";
+		mes "de combates reais.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Nós nos aventuramos e passamos o dia todo á procura de monstros.";
+		mes "Depois de encontrar alguns, nós os matamos,é claro.";
+		next;
+		if (select("Eu acho que você precisa de um bom arco.:Você chama isso de 'prática?'") == 1) {
+			mes "[Arqueiro Wolt]";
+			mes "Isso mesmo!";
+			mes "Um arqueiro depende";
+			mes "principalmenre da força";
+			mes "do seu arco.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Os arcos construídos em payon";
+			mes "são os maiores do continente!Eles são leves e robustos, feitos de troncos de árvores de alta qualidade, retirados da floresta de payon.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "A qualidade da madeira, muitas vezes determina a qualidade do arco,";
+			mes " e na força que ele possue.";
+			next;
+			mes "[Arche Wolt]";
+			mes "Oh,oh!Eu tenho um arco muito elegante.Ele tem uma cor de ébano sofisticada, e acredite ele parece muito legal e heróico quando estou me aventurando matando monstros~";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Falando das arvores de payon, elas são famosas pela qualidade das suas madeiras.Mas então, você deve estar se perguntando:Por que elas viraram monstros?";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "De fato é uma pena porque essas árvores monstros costumavam ser árvores belas e majestosas.Mas, relaxe está tudo bem, se matá-las, você poderá fazer arcos com sua madeira.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "E o ciclo da nossa vida segue assim, nós usamos nossos arcos para matar essas ávores, para conseguir mais madeira, Mwahahahaha! É um ciclo sem fim !";
+			next;
+			select("^666666*Ahem!*^000000 Spe^666666*Ahem!*^000000 esses monstros parecem intermináveis...");
+			mes "[Arqueiro Wolt]";
+			mes "Yeah...";
+			mes "Você está certo.";
+			mes "Os monstros estão por toda a parte.";
+			mes "Você acredita nisso?";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Você entende";
+			mes "por que a vila dos arqueiros";
+			mes "foi construída onde ela está?";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "No ocidente, da vila você verá a caverna de payon. Dentro dela, existe uma enorme quantidade de monstros. Que possuem um constante renascimento , sem mostrar nenhum senão de escassez do nascimento deles.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Nós arqueiros, estamos aqui para proteger o nosso território contra eles, como é ordenado pelo nosso chefe!";
+			next;
+			if (select("Você disse caverna?:Chefe ...? :Cara, eu odeio essa cidade!") == 1) {
+				mes "[Arqueiro Wolt]";
+				mes "Se você for para o norte";
+				mes "da cidade, você irpa encontrar";
+				mes "a caverna de payon.";
+				next;
+				mes "[Arqueiro Wolt]";
+				mes "Uma vez dentro, você encontrará todos os tipos de monstros, como morcegos desagradáveis";
+				mes "e os zumbis...";
+				next;
+				mes "[Arqueiro Wolt]";
+				mes "Mas, o frustante é que esses monstros ficam nascendo constantemente, e ás vezes eu sinto que estamos perdendo nosso tempo e energia em vão.";
+				next;
+				mes "[Arqueiro Wolt]";
+				mes "Mas, o frustante é que esses monstros ficam nascendo constantemente, e ás vezes eu sinto que estamos perdendo nosso tempo e energia em vão.";
+				next;
+				mes "[Arqueiro Wolt]";
+				mes "Whoa...";
+				mes "Tudo bem, eu vou me controlar senão";
+				mes "começo a falar feito alguém correndo uma maratona de novo. É melhor eu deixar você ir.Existem treinamentos para você fazer, e o melhor muitos monstros para matar!";
+				close;
+			}
+			mes "[Arqueiro Wolt]";
+			mes "Ah atens que eu me esqueça, você perguntou sobre nosso chefe correto? Ele é um cara sério. E sempre me repreende por falar demais.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "ele sempre está trabalhando para garantir";
+			mes "que payon é segura e que está protegida de danos.Ultimamente tenho ficado preocupado porque ele não tem saído mais do palácio.Isso pode ser um mal sinal.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Sim um mal sinal, mas eu não tenho muita certeza... Não podemos ter problema em payon, e ultimamnte tem havido mudanças por aqui, até seguranças no quarto dele, colocaram.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Heh heh heh~";
+			mes "eu ficarei em apuros se ele sabe";
+			mes "que disse assuntos pessoais dele a um estranho. Bem já é muito tarde.E como eu já disse não se pode lamentar pelo tempo perdido.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Mas...";
+			mes "Não é tarde demais para mim, preciso apenas calar a boca. e Manter-me quieto.Estou me auto-desligando agora...Irei ficar quietinho como um rato, tenha uma boa tarde ~!";
+			close;
+		}
+		mes "[Arqueiro Wolt]";
+		mes "Hmm...?";
+		mes "Qual é a sua opnião?";
+		mes "O que é melhor ";
+		mes "do que ser realista,honesto";
+		mes "e fazer as coisas para o bem?";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Embora você tenha suas opniões próprias...";
+		mes "Quero te dizer que você tem que ser capaz de praticar tudo na vida sem sofrer consequências graves.";
+		mes "Como a morte.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Mas nós temos que fazer valer";
+		mes "o que temos de melhor!";
+		mes "A vida de um archer, possue";
+		mes "uma formação sem fim!";
+		mes "Sempre acumulando experiências na prática!";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Hm...?";
+		mes "Você está cansado de me ouvir repetir a mesma conversa outra vez?";
+		mes "Ah, tenha paciência comigo.Pense nisso como praticar a sua paciência";
+		close;
+	}
+	mes "[Arqueiro Wolt]";
+	mes "Eh...";
+	mes "eu acho que é importante";
+	mes "reservar um tempo para descansar.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Mas também é uma ótima ideia reservar um tempo, para prática e treinamento.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "E acredite você deve estar alerta, você deveria fazer outra coisa, ao invés de pensar em descansar.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Isso me faz lembrar do tempo...";
+	mes "que atearam fogo na minha casa durante as férias.Foi um acidente, claro,mas o menino matou meus pais de raiva.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Hahahaha~";
+	mes "Tudo começou, quando decidi tomar um banho em payon.Nós usamos a moda antiga nos banhos, precisamos fazer uma fogueira para esquentar a água. Banhos frios são desconfortáveis.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Pois bem, banhos quentes são confortáveis e aquele banho foi o melhor banho que tive em minha vida!Foi tão bom que adormeci.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Mas enquanto eu dormia,";
+	mes "Eu não percebi que o fogo começou a ir para as paredes e o teto!Felizmente eu estava em uma banheira cheia de água.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Eu teria conseguido ajudar, se minhas roupas não tivessem sido queimadas, enquanto eu dormia.E eu não sairia nu correndo pela cidade.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Então...";
+	mes "Eu apenas sentei-me na água por cerca de uma hora, completamente nu e pedindo ajuda, até que alguém pudesse me ouvir.";
+	next;
+	mes "[Arqueiro Wolt]";
+	mes "Porém, eu descobri que ninguém me ouvia.O nosso teto desabou demolindo as paredes ao meu redor.Dessa forma puderam ouvir meus gritos e foi assim que sobrevivi.";
+	next;
+	switch(select("Hum, qual é o ponto mais importante dessa história?:Eu acho que é melhor eu não ficar com preguiça então.:Blah blah blah. See ya.")) {
+	case 1:
+		mes "[Arqueiro Wolt]";
+		mes "Oh...";
+		mes "Umm...";
+		mes "Você quer saber";
+		mes "qual a moral da história?";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Repousar aqui é algo que você pode fazer,porém nem sempre é hora de descansar, esse tipo de comportamento preguiçoso deixa o povo da nossa cidade bastante raivoso.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Nosso chefe é o que mais se irrita com esses tipos de atitude.Eu acho que por aqui só bêbados aprovam esses comportamentos insanos.";
+		next;
+		switch(select("Chefe?:bêbado da cidade?:Cara, você fala demais!")) {
+		case 1:
+			mes "[Arqueiro Wolt]";
+			mes "Nosso chefe? Ah, ele é um cara meio chato. Ele sempre me repreende por eu falar demais.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Ele sempre está trabalhando para garantir";
+			mes "Que payon ficará segura e sem danos.Ultimamente tenho ficado preocupado, pois ele não tem saído do palácio recentemente.Isso pode ser um mal sinal...";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Eu não tenho certeza,mas pode ser um mal sinal.Tudo está muito estranho, até guardas estão de prontidão no seu quarto por algum motivo.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Heh heh heh~";
+			mes "Eu vou ficar em apuros se ele souber";
+			mes "que falei dos assuntos dele a um estranho! Se bem que já é meio tarde para eu dizer isso,Não adianta nem lamentar por isso, eu já disse mesmo!";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Mas";
+			mes "Não é tarde demais, só preciso calar minha boca.Ficar em silêncio, quieto na minha, antes que ";
+			mes "seja tarde.";
+			close;
+		case 2:
+			mes "[Arqueiro Wolt]";
+			mes "Você sabia...";
+			mes "que o cara do bar";
+			mes "sim aquele chamado Loud é derestável?";
+			mes "e acredite ele é irritante por demais.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "hm..";
+			mes "o que você tanto procura?";
+			mes "relaxe eu devo ter";
+			mes "algum dinheiro sobrando, ai eu tento";
+			mes "lhe comprar uma bebida.";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "Se bem que...";
+			mes "não é uma boa ideia";
+			mes "beber muito";
+			mes "não faz muito bem para saúde.";
+			close;
+		case 3:
+			mes "[Arqueiro Wolt]";
+			mes "...!";
+			next;
+			mes "[Arqueiro Wolt]";
+			mes "...";
+			mes "I...";
+			mes "...!";
+			close;
+		}
+	case 2:
+		mes "[Arqueiro Wolt]";
+		mes "Ah, que bom~!";
+		mes "eu acho que chegamos a o ponto final ";
+		mes "da minha historia";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Nós arqueirs, temos que por muita importância na nossa formação e principalmente na prática do que aprendemos";
+		mes "nosso olhar deve ser minucioso";
+		mes "e devemos ser diligentes em tudo que fazemos.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Mas eu...";
+		mes "tenho que admitir do fundo do meu coração que";
+		mes "eu sou uma cara muito preguiçoso.As vezes me pergunto como alguém como eu";
+		mes "pode ser chamado de arqueiro.";
+		next;
+		mes "[Arqueiro Wolt]";
+		mes "Mas apesar de tudo";
+		mes "o que você for fazer";
+		mes "na vida, tem que fazer ";
+		mes "com paixão!";
+		close;
+	case 3:
+		close;
+	}
+}
+
+payon_in03,99,190,4	script	Chefe#payon	107,2,2,{
+	end;
+
+OnTouch:
+	if (BaseLevel < 30) {
+		mes "[Guarda]";
+		mes "Ei...";
+		mes "E...!";
+		mes "Mostre o seu respeito";
+		mes " ao nosso chefe!";
+		close;
+	}
+	if (BaseLevel > 30) {
+		set .@oldman_random,rand(1,2);
+		if (.@oldman_random == 1) {
+			mes "[Guarda]";
+			mes "Ei...";
+			mes "Ei...!";
+			mes "mostre respeito";
+			mes "ao nosso chefe!";
+			next;
+			mes "[Guarda]";
+			mes "Heeeey!";
+			mes "Eu disse...";
+			next;
+			mes "[Chefe]";
+			mes "Tudo bem, tudo bem...";
+			mes "Já se passou muito tempo";
+			mes "desde que falei com";
+			mes "pessoas jovens.";
+			next;
+		}
+		switch(select("Por favor, me fale sobre Payon.:Onde estão os guardas daqui?:Por favor, conte-me sobre a caverna.:O que faz um arqueiro faz?:O que um caçador faz?")) {
+		case 1:
+			mes "[Chefe]";
+			mes "Payon é uma cidade rodeada de montanhas.Nossa cidade até hoje foi auto-suficiente.";
+			next;
+			mes "[Chefe]";
+			mes "Embora nossos antepassados não usufruiam dos beneficios de intercâmbio cultural com o reino de Rune-Midgard, como fazemos hoje, eles sabiam sobreviver sem pedir ";
+			mes "qualquer ajuda.";
+			next;
+			mes "[Chefe]";
+			mes "Payon desenvolveu suas próprias culturas e formas de vida. Nós inventamos nossos próprios meios de nos proteger contra elementos do mal .E treinamos arqueiros e caçadores sejam eles homens ou mulheres.";
+			next;
+			mes "[Chefe]";
+			mes "Já ouvi falar de fracos, covardes";
+			mes "que temem os campos e masmorras cheios de monstros.Mas, para nós a batalha é um meio de vida.";
+			next;
+			mes "[Chefe]";
+			mes "É por isso que sua Majestade o Rei Tristam III desa nos formar como jovens corajosos para aniquilar criaturas do mal.";
+			break;
+		case 2:
+			mes "[Chefe]";
+			mes "Quando eu era jovem";
+			mes "prontera enviou alguns";
+			mes "servos para payon.";
+			next;
+			mes "[Chefe]";
+			mes "Tropas da realeza, Kafras e etc... No início houve um conflito de costumes";
+			mes "e culturas.";
+			next;
+			mes "[Chefe]";
+			mes "No entanto, com o tempo";
+			mes "conseguimos resolver essas diferenças mesquinhas.Além do que não posso negar que, eles nos ajudaram a desenvolver o comércio com as nações estrangeiras.";
+			next;
+			mes "[Chefe]";
+			mes "Agora as pessoas que costumavam esnobar payon, hoje possuem um imenso prazer em visitar a nossa cidade.Quando eu era jovem eu nunca imaginei que isso aconteceria um dia. Hahaha~!";
+			next;
+			mes "[Chefe]";
+			mes "Acredite, hoje eu me agrado em conhecer esses povos.Apesar de terem vindo de outros lugares, eles possuem um amor por payon que é tão sincero quanto o meu.";
+			break;
+		case 3:
+			mes "[Chefe]";
+			mes "Ah...";
+			mes "As vezes eu costumava ir";
+			mes "para a caverna ao norte. Mas agora";
+			mes "é mais difícil que antigamente.";
+			next;
+			mes "[Chefe]";
+			mes "Criaturas do mal nascem em qualquer lugar na caverna de Payon, sendo que são monstros diferentes dos quais nós estamos habituados a lutar";
+			next;
+			mes "[Chefe]";
+			mes "Você chegou a ver os";
+			mes "Zombis...? Alguns zumbis são guerreiros que sairam para proteger essa cidade e nunca mais voltaram.";
+			next;
+			mes "[Chefe]";
+			mes "Apesar desses mortos vivos serem uma ameaça para essa cidade, alguns são vítimas da própria caverna. Estou velho de mais para suportar esse tipo de dor...";
+			next;
+			mes "[Chefe]";
+			mes "Eu preciso fazer algo para libertar as almas dos mortos vivos de sua angústia eterna.";
+			break;
+		case 4:
+			mes "[Chefe]";
+			mes "Ah, aqui existe uma ambudância de arqueiros especialistas em Payon, por causa floresta, possuimos grande suprimento de madeira para criar flechas.";
+			next;
+			mes "[Chefe]";
+			mes "A floresta é um bom lugar para os arqueiros treinarem e aprenderem a usar o ambiente para impedir o avanço de forças inimigas, podendo atacar a uma distância segura.";
+			next;
+			mes "[Chefe]";
+			mes "A floresta pode ser conveniente para surpresas inexperadas. Quando eu era jovem, eu corre com as flechas para lutar contra os monstros da floresta, mas eu acabei deixando as flechas cairem e outro monstro salvou minha vida! Mwahaha!";
+			break;
+		case 5:
+			mes "[Chefe]";
+			mes "Como muitas culturas foram introduzidas em Payon, mudanças tem influênciado nosso estilo de batalha.";
+			next;
+			mes "[Chefe]";
+			mes "Tecnologia, especialmente com explosivos, habilitando novos métodos";
+			mes "de batalha. Nós não ficaremos limitados somente ao uso de arco e flecha.";
+			next;
+			mes "[Chefe]";
+			mes "Habilidade com armadilhas, fazem";
+			mes "caçar monstros com maior facilidade, foram desenvolvidas aqui em Payon. Os especialistas com essa nova habilidade são chamados de 'Caçadores' por nosso Chefe anterior.";
+			next;
+			mes "[Chefe]";
+			mes "Embora altamente efetiva, essa habilidade realmente é um perigo para quem não sabe usar. Por isso nós não aprovamos pessoas experientes para se tornar um Caçador.";
+			next;
+			mes "[Chefe]";
+			mes "Porém, nós damos boas vindas as pessoas";
+			mes "que provam ser capazes de se tornar um Caçador.";
+			break;
+		}
+		next;
+		mes "[Chefe]";
+		mes "Então, cansado...";
+		mes "É melhor descansar um pouco.";
+		mes "Por favor, se";
+		mes "cuide bem.";
+	}
+	close;
+}
+
+payon_in03,102,185,5	script	Guarda#payon2	708,{
+	mes "[Guarda]";
+	if (BaseLevel < 30) {
+		mes "Ei...!";
+		mes "Você não está autorizado";
+		mes "a ficar aqui!";
+		mes "Volte agora!";
+    close;
+    }
+		mes "Eu lamento";
+		mes "mas você não pode";
+		mes "ficar aqui.";
+		mes "Por favor, saia.";
+    close;
+}
+
+// Vilarejo dos Arqueiros - Payon
+//============================================================
+pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
+	mes "[Arqueiro Joe]";
+	mes "Payon!";
+	mes "Esse maravilhoso";
+	mes "lugar! Com arqueiros";
+	mes "Habilidosos!";
+	next;
+	mes "[Arqueiro Joe]";
+	mes "Ei, você~!";
+	mes "Você já ouvir falar";
+	mes "na famosa Payon?";
+	next;
+	switch(select("Sim, é claro~!:Pay...on? :...")) {
+	case 1:
+		mes "[Arqueiro Joe]";
+		mes "Ah, você é o cara!";
+		mes "Você cnhece os arqueiros de Payon!";
+		mes "Nós jamais perderemos nossa meta, mesmo a distância nossos inimigos não estarão seguros.";
+		next;
+		if (select("Então, você gosta desse lugar, ein?:Hahahaha~") == 1) {
+			mes "[Arqueiro Joe]";
+			mes "Sim! Eu amo esse lugar!";
+			mes "Eu amo muito essa cidade.";
+			mes "Eu mesmo estava pesquisando sobre ela. Se existe algo que você queira saber sobre Payon, fale comigo por favor!";
+			next;
+			switch(select("As pessoas usam roupas únicas aqui.:Onde fica o edifício central da Cidade?:Quem é aquele cara bebendo ali?:Conversar outra hora.")) {
+			case 1:
+				mes "[Arqueiro Joe]";
+				mes "Sim, eu concordo.";
+				mes "você precisa conhecer esse lugar, ele cosumava ser isolado por causa das densas florestas e áreas montanhosas.";
+				next;
+				mes "[Arqueiro Joe]";
+				mes "Por isso Payon, desenvolveu uma cultora própria que é diferente do resto de Rune-Midgard.";
+				next;
+				mes "[Arqueiro Joe]";
+				mes "Essa é uma roupa tradicional de Payon! Porque você não tenta usar? Ela é bem confotável~";
+				close;
+			case 2:
+				mes "[Arqueiro Joe]";
+				mes "Quer dizer que no Palácio Central, estranhos não podem entrar? A família real, amigos e conhecidos se reunem ali dentro.";
+				next;
+				mes "[Arqueiro Joe]";
+				mes "Eu gostaria de ver como é lá dentro algum dia.";
+				close;
+			case 3:
+				mes "[Arqueiro Joe]";
+				mes "Ah! Esse cara é famoso!";
+				mes "Tudo o que você deve fazer é não dar";
+				mes "bebidas para ele!";
+				mes "Você vai se arrepender!";
+				close;
+			case 4:
+				mes "[Arqueiro Joe]";
+				mes "Ok!";
+				mes "Tchau!";
+				mes "Até logo!";
+				close;
+			}
+		}
+	case 2:
+		mes "[Arqueiro Joe]";
+		mes "Que vergonha...";
+		mes "Como é que você nunca";
+		mes "ouvir sobre os arqueiros de Payon?";
+		next;
+		mes "[Arqueiro Joe]";
+		mes "Bem, quando você";
+		mes "aprender mais sobre nós";
+		mes "vamos conversar novamente, e eu posso lhe dizer porque os arqueiros de Payon são";
+		mes "tão incríveis!";
+		close;
+	case 3:
+		mes "[Arqueiro Joe]";
+		mes "Porque você";
+		mes "estão tão quieto?";
+		mes "Você não é tímido, certo?";
+		mes "Venha, não existe razão";
+		mes "para que se sinta acanhado perto de mim~";
+		close;
+	}
+}

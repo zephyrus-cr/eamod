@@ -1,0 +1,483 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// ==============================================================================
+// BattleGround System - Tierra Bossnia
+// ==============================================================================
+
+// Registration NPC's
+// *********************************************************************
+
+bat_room,57,227,4	script	Registration::TBR_Guillaume	418,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Tierra_Boss::OnGuillaumeJoin",1;
+	end;
+OnEnterBG:
+	set $@TierraBoss_id1, waitingroom2bg("bat_a03",50,374,0,"Tierra_Boss::OnGuillaumeQuit","");
+	end;
+}
+
+bat_room,57,204,0	script	Registration::TBR_Croix	414,{
+	end;
+OnInit:
+	waitingroom "Battle Station 5 Players",6,"Tierra_Boss::OnCroixJoin",1;
+	end;
+OnEnterBG:
+	set $@TierraBoss_id2, waitingroom2bg("bat_a03",42,16,1,"Tierra_Boss::OnCroixQuit","");
+	end;
+}
+
+// Battleground Engine
+// *********************************************************************
+
+-	script	Tierra_Boss	-1,{
+	end;
+
+OnGuillaumeQuit:
+OnCroixQuit:
+	setquest 8506; // Deserter
+	if( $@TierraBoss != 0 )
+		donpcevent "Tierra_Boss::OnDoBalance";
+	end;
+
+OnGuillaumeJoin:
+OnCroixJoin:
+	if( $@TierraBoss == 0 )
+		donpcevent "Tierra_Boss::OnReadyCheck";
+	else
+		donpcevent "Tierra_Boss::OnDoBalance";
+	end;
+
+OnDoBalance:
+	if( $@TierraBoss != 1 )
+		end;
+
+	set .@Guillaume, bg_get_data($@TierraBoss_id1, 0);
+	set .@Croix, bg_get_data($@TierraBoss_id2, 0);
+
+	if( .@Guillaume < .@Croix )
+		waitingroom2bg_single $@TierraBoss_id1,"bat_a03",353,344,"TBR_Guillaume";
+	else if( .@Guillaume > .@Croix )
+		waitingroom2bg_single $@TierraBoss_id2,"bat_a03",353,52,"TBR_Croix";
+	else
+	{
+		set .@GuillaumeR, getwaitingroomstate(0,"TBR_Guillaume");
+		set .@CroixR, getwaitingroomstate(0,"TBR_Croix");
+
+		if( .@GuillaumeR <= .@CroixR )
+			set .@Limit, .@GuillaumeR;
+		else
+			set .@Limit, .@CroixR;
+		
+		if( .@Limit + .@Guillaume > 35 )
+			set .@Limit, 35 - .@Guillaume;
+		if( .@Limit <= 0 ) end;
+		
+		for( set .@i, 0; .@i < .@Limit; set .@i, .@i + 1 )
+		{
+			waitingroom2bg_single $@TierraBoss_id1,"bat_a03",353,344,"TBR_Guillaume";
+			waitingroom2bg_single $@TierraBoss_id2,"bat_a03",353,52,"TBR_Croix";
+		}
+		
+		set .@Guillaume, .@Guillaume + .@Limit;
+		set .@Croix, .@Croix + .@Limit;
+		mapannounce "bat_room","Battleground -- Tierra Bossnia [80-99] G: " + .@Guillaume + "/35, C: " + .@Croix + "/35 (Playing)",1,0x483D8B;
+	}
+	end;
+
+OnReadyCheck:
+	if( $@TierraBoss )
+		end;
+	set .@Guillaume, getwaitingroomstate(0,"TBR_Guillaume");
+	set .@Croix, getwaitingroomstate(0,"TBR_Croix");
+
+	if( .@Guillaume < 5 || .@Croix < 5 )
+	{
+		if( .@Guillaume > 3 && .@Croix > 3 && !agitcheck() && $@Tierra_Flood < gettimetick(2) )
+		{
+			announce "Battleground -- Tierra Bossnia [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",0,0x483D8B;
+			set $@Tierra_Flood, gettimetick(2) + 15;
+		}
+		else
+			mapannounce "bat_room","Battleground -- Tierra Bossnia [80-99] G: " + .@Guillaume + "/5, C: " + .@Croix + "/5",1,0x483D8B;
+		end;
+	}
+
+	set $@TierraBoss, 1;
+	set .Neutral_Base, 0;
+	set .Guillaume_Boss, 0;
+	set .Croix_Boss, 0;
+	donpcevent "TBR_Croix::OnEnterBG";
+	donpcevent "TBR_Guillaume::OnEnterBG";
+	announce "Battleground -- Tierra Bossnia [80-99] has started!",0,0x483D8B;
+	sleep 2000;
+	bg_warp $@TierraBoss_id1,"bat_a03",353,344;
+	bg_warp $@TierraBoss_id2,"bat_a03",353,52;
+	sleep 3000;
+	donpcevent "#gtb_respawn::OnBGStart";
+	donpcevent "#ctb_respawn::OnBGStart";
+	donpcevent "Balance_Flag::OnBGStart";
+	bg_updatescore "bat_a03",.Croix_Boss,.Guillaume_Boss;
+	donpcevent "Guillaume_Boss::OnSummon";
+	donpcevent "Croix_Boss::OnSummon";
+	initnpctimer;
+	sleep 5000;
+	mapannounce "bat_a03","-- Capture Balance Flag to remove inmunity of Enemy Guardians --",1,0x483D8B;
+	end;
+
+OnNeutralReset:
+	set .Neutral_Base, 0;
+	killmonster "bat_a03","Tierra_Boss::OnNeutralBreak";
+	bg_monster_inmunity getvariableofnpc(.Boss,"Guillaume_Boss"),1;
+	bg_monster_inmunity getvariableofnpc(.Boss,"Croix_Boss"),1;
+	bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	sleep 2000;
+	if( $@TierraBoss != 1 ) end;
+	mapannounce "bat_a03","-- Balance Flag returned to normality --",1,0x483D8B;
+	end;
+
+OnNeutralBreak:
+	if( $@TierraBoss != 1 ) end;
+	set .Neutral_Base, getcharid(4);
+	if( getcharid(4) == $@TierraBoss_id1 )
+	{
+		mapannounce "bat_a03","-- Guillaume captured the Balance Flag. Crox guardian now is vulnerable to attacks!! --",1,0x0000FF;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Guillaume_Boss"),1;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Croix_Boss"),0;
+		bg_monster .Neutral_Base,"bat_a03",273,204,"Guillaume Flag",1912,"Tierra_Boss::OnNeutralBreak";
+	}
+	else if( getcharid(4) == $@TierraBoss_id2 )
+	{
+		mapannounce "bat_a03","-- Croix captured the Balance Flag. Guillaume guardian now is vulnerable to attacks!! --",1,0xFF0000;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Guillaume_Boss"),0;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Croix_Boss"),1;
+		bg_monster .Neutral_Base,"bat_a03",273,204,"Croix Flag",1913,"Tierra_Boss::OnNeutralBreak";
+	}
+	else
+	{
+		set .Neutral_Base, 0;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Guillaume_Boss"),1;
+		bg_monster_inmunity getvariableofnpc(.Boss,"Croix_Boss"),1;
+		bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	}
+	end;
+
+OnTimer600000:
+	mapannounce "bat_a03","Battle of Tierra Bossnia will ends in 5 minutes",1,0x483D8B;
+	end;
+OnTimer840000:
+	mapannounce "bat_a03","Battle of Tierra Bossnia will ends in 1 minute",1,0x483D8B;
+	end;
+
+OnTimer900000:
+	// =======================================================
+	// Team Rewards
+	// =======================================================
+	if( .Guillaume_Boss < .Croix_Boss )
+	{
+		bg_reward $@TierraBoss_id1,7828,15 + getvariableofnpc(.Croix_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,0;
+		bg_reward $@TierraBoss_id2,7828,10 + getvariableofnpc(.Guillaume_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,2;
+		mapannounce "bat_a03","The Guillaume army has won the Battle of Tierra Bossnia!",1,0x0000FF;
+	}
+	else if( .Guillaume_Boss > .Croix_Boss )
+	{
+		bg_reward $@TierraBoss_id1,7828,10 + getvariableofnpc(.Croix_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,2;
+		bg_reward $@TierraBoss_id2,7828,15 + getvariableofnpc(.Guillaume_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,0;
+		mapannounce "bat_a03","The Croix army has won the Battle of Tierra Bossnia!",1,0xFF0000;
+	}
+	else
+	{
+		bg_reward $@TierraBoss_id1,7828,10 + getvariableofnpc(.Croix_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,1;
+		bg_reward $@TierraBoss_id2,7828,10 + getvariableofnpc(.Guillaume_Boss, "Tierra_Boss"),0,8502,"BG_Boss",1,1,1;
+		mapannounce "bat_a03","The battle is over. This is a Tie...!",1,0x483D8B;
+	}
+	// =======================================================
+	donpcevent "Tierra_Boss::OnStop";
+	end;
+
+OnStop:
+	set $@TierraBoss, 2;
+	donpcevent "#gtb_respawn::OnBGStop";
+	donpcevent "#ctb_respawn::OnBGStop";
+	donpcevent "Balance_Flag::OnBGStop";
+	killmonster "bat_a03","Guillaume_Boss::OnBoss";
+	killmonster "bat_a03","Croix_Boss::OnBoss";
+	stopnpctimer "Guillaume_Boss";
+	stopnpctimer "Croix_Boss";
+	stopnpctimer;
+	sleep 2000;
+	bg_warp $@TierraBoss_id1,"bat_a03",50,374;
+	bg_warp $@TierraBoss_id2,"bat_a03",42,16;
+	sleep 3000;
+	mapannounce "bat_a03","Battle of Tierra Bossnia will start in 15 seconds!",1,0x483D8B;
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	if( $@TierraBoss == 2 )
+		mapannounce "bat_a03","Battle of Tierra Bossnia will start in 5 seconds!",1,0x483D8B;
+	end;
+
+OnTimer15000:
+	if( $@TierraBoss != 2 )
+		end;
+OnReset:
+	stopnpctimer;
+	set .Neutral_Base, 0;
+	set .Guillaume_Boss, 0;
+	set .Croix_Boss, 0;
+	donpcevent "#gtb_respawn::OnBGStop";
+	donpcevent "#ctb_respawn::OnBGStop";
+	donpcevent "Balance_Flag::OnBGStop";
+	killmonster "bat_a03","Guillaume_Boss::OnBoss";
+	killmonster "bat_a03","Croix_Boss::OnBoss";
+	stopnpctimer "Guillaume_Boss";
+	stopnpctimer "Croix_Boss";
+	bg_updatescore "bat_a03",.Croix_Boss,.Guillaume_Boss;
+	bg_destroy $@TierraBoss_id1;
+	bg_destroy $@TierraBoss_id2;
+	set $@TierraBoss_id1, 0;
+	set $@TierraBoss_id2, 0;
+	sleep 1000;
+	mapwarp "bat_a03","bat_room",155,150;
+	sleep 1000;
+	maprespawnguildid "bat_a03",0,3; // Just in case someone else
+	set $@TierraBoss, 0;
+	donpcevent "Tierra_Boss::OnReadyCheck";
+	end;
+}
+
+-	script	Guillaume_Boss	-1,{
+	end;
+
+OnSummon:
+	set .@Boss, 2000 + getvariableofnpc(.Guillaume_Boss, "Tierra_Boss");
+	mapannounce "bat_a03","-- Guillaume Guardian [" + strmobinfo(2,.@Boss) + "] entering the battle --",1,0x0000FF;
+	set .Boss, bg_monster($@TierraBoss_id1,"bat_a03",176,345,"Guillaume Guardian",.@Boss,"Guillaume_Boss::OnBoss");
+	bg_monster_inmunity .Boss,1;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Boss )
+	{
+		bg_monster_reveal .Boss,1,0x0000FF;
+		initnpctimer;
+	}
+	end;
+
+OnBoss:
+	stopnpctimer;
+	bg_monster_reveal .Boss,2,0x0000FF; // Hide Spot
+	set getvariableofnpc(.Guillaume_Boss, "Tierra_Boss"), getvariableofnpc(.Guillaume_Boss, "Tierra_Boss") + 1;
+	bg_updatescore "bat_a03",getvariableofnpc(.Croix_Boss,"Tierra_Boss"),getvariableofnpc(.Guillaume_Boss,"Tierra_Boss");
+	set .Boss, 0;
+	if( getvariableofnpc(.Guillaume_Boss, "Tierra_Boss") > 4 )
+		donpcevent "Tierra_Boss::OnTimer900000";
+	else
+	{
+		donpcevent "Tierra_Boss::OnNeutralReset";
+		donpcevent "Guillaume_Boss::OnSummon";
+	}
+	end;
+}
+
+-	script	Croix_Boss	-1,{
+	end;
+
+OnSummon:
+	set .@Boss, 2000 + getvariableofnpc(.Croix_Boss, "Tierra_Boss");
+	mapannounce "bat_a03","-- Croix Guardian [" + strmobinfo(2,.@Boss) + "] entering the battle --",1,0xFF0000;
+	set .Boss, bg_monster($@TierraBoss_id2,"bat_a03",167,50,"Croix Guardian",.@Boss,"Croix_Boss::OnBoss");
+	bg_monster_inmunity .Boss,1;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	stopnpctimer;
+	if( .Boss )
+	{
+		bg_monster_reveal .Boss,1,0xFF0000;
+		initnpctimer;
+	}
+	end;
+
+OnBoss:
+	stopnpctimer;
+	bg_monster_reveal .Boss,2,0xFF0000; // Hide Spot
+	set getvariableofnpc(.Croix_Boss, "Tierra_Boss"), getvariableofnpc(.Croix_Boss, "Tierra_Boss") + 1;
+	bg_updatescore "bat_a03",getvariableofnpc(.Croix_Boss,"Tierra_Boss"),getvariableofnpc(.Guillaume_Boss,"Tierra_Boss");
+	set .Boss, 0;
+	if( getvariableofnpc(.Croix_Boss, "Tierra_Boss") > 4 )
+		donpcevent "Tierra_Boss::OnTimer900000";
+	else
+	{
+		donpcevent "Tierra_Boss::OnNeutralReset";
+		donpcevent "Croix_Boss::OnSummon";
+	}
+	end;
+}
+
+-	script	Balance_Flag	-1,{
+	end;
+
+OnBGStart:
+	viewpointmap "bat_a03",1,273,204,1,0xFFFFFF;
+	bg_monster 0,"bat_a03",273,204,"Balance Flag",1911,"Tierra_Boss::OnNeutralBreak";
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	viewpointmap "bat_a03",2,273,204,1,0xFFFFFF;
+	killmonster "bat_a03","Tierra_Boss::OnNeutralBreak";
+	end;
+
+OnTimer2000:
+	initnpctimer;
+	set .@NB, getvariableofnpc(.Neutral_Base,"Tierra_Boss");
+	if( .@NB == $@TierraBoss_id1 )
+		viewpointmap "bat_a03",1,273,204,1,0x0000FF;
+	else if( .@NB == $@TierraBoss_id2 )
+		viewpointmap "bat_a03",1,273,204,1,0xFF0000;
+	else
+		viewpointmap "bat_a03",1,273,204,1,0xFFFFFF;
+	end;
+}
+
+// MapFlags
+// *********************************************************************
+
+bat_a03	mapflag	battleground	2
+bat_a03	mapflag	nomemo
+bat_a03	mapflag	nosave	SavePoint
+bat_a03	mapflag	noteleport
+bat_a03	mapflag	monster_noteleport
+bat_a03	mapflag	nowarp
+bat_a03	mapflag	nowarpto
+bat_a03	mapflag	noreturn
+bat_a03	mapflag	nobranch
+bat_a03	mapflag	nopenalty
+
+// Other Flags
+// *********************************************************************
+
+bat_a03,148,85,1	duplicate(Croix camp#bat)	Croix camp#tb_1	974
+bat_a03,155,85,1	duplicate(Croix camp#bat)	Croix camp#tb_2	974
+bat_a03,357,75,1	duplicate(Croix camp#bat)	Croix camp#tb_3	974
+bat_a03,348,74,1	duplicate(Croix camp#bat)	Croix camp#tb_4	974
+bat_a03,199,49,1	duplicate(Croix camp#bat)	Croix camp#tb_5	974
+bat_a03,168,16,1	duplicate(Croix camp#bat)	Croix camp#tb_6	974
+bat_a03,138,12,1	duplicate(Croix camp#bat)	Croix camp#tb_7	974
+bat_a03,108,35,1	duplicate(Croix camp#bat)	Croix camp#tb_8	974
+bat_a03,164,308,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_1	973
+bat_a03,157,308,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_2	973
+bat_a03,359,327,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_3	973
+bat_a03,350,326,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_4	973
+bat_a03,209,344,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_5	973
+bat_a03,173,380,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_6	973
+bat_a03,150,380,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_7	973
+bat_a03,118,357,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_8	973
+bat_a03,119,336,1	duplicate(Guillaume camp#bat)	Guillaume camp#tb_9	973
+
+// Battleground Therapist
+// *********************************************************************
+
+bat_a03,53,377,3	script	Therapist in battle#tb1	95,{
+	switch( $@TierraBoss )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+bat_a03,45,18,3	script	Therapist in battle#tb2	95,{
+	switch( $@TierraBoss )
+	{
+	case 2:
+		bg_leave;
+		warp "bat_room",155,150;
+		break;
+	case 1:
+		mes "[Therapist in battle]";
+		mes "Just close your eyes, and take a deep breathe.";
+		mes "You can be free from pain.";
+		specialeffect2 312;
+		percentheal 100,100;
+		repairall;
+		close2;
+		openstorage;
+		break;
+	}
+	end;
+}
+
+// Battleground Respawn
+// *********************************************************************
+
+bat_a03,50,374,0	script	#gtb_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_a03",46,370,54,378,100,100;
+	areawarp "bat_a03",46,370,54,378,"bat_a03",354,340;
+	initnpctimer;
+	end;
+}
+
+bat_a03,42,16,0	script	#ctb_respawn	139,{
+	end;
+
+OnBGStart:
+	initnpctimer;
+	end;
+
+OnBGStop:
+	stopnpctimer;
+	end;
+
+OnTimer24000:
+	misceffect 83;
+	end;
+
+OnTimer25000:
+	areapercentheal "bat_a03",38,12,47,21,100,100;
+	areawarp "bat_a03",38,12,47,21,"bat_a03",354,57;
+	initnpctimer;
+	end;
+}

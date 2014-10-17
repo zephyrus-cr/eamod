@@ -1,0 +1,88 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest da Classe Menestrel              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Menestrel.           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Haseo]                             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+valkyrie,53,54,3	script	Menestrel#Valquiria	741,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Menestrel]";
+			mes "Parabéns.";
+			mes "Honra aos guerreiros!";
+			close;
+		}
+		mes "[Menestrel]";
+		mes "Você quer cantar";
+		mes "uma canção comigo?";
+		mes "Sha lá lá lá lá~";
+		close;
+	} else if (ADVJOB == Job_Clown && Class == Job_Archer_High && JobLevel > 39) {
+		mes "[Menestrel]";
+		mes "O mundo aborrecido dos";
+		mes "mortais está necessitando";
+		mes "de uma canção mais alegre.";
+		mes "você vai trazer isto para";
+		mes "eles e virar a maré na batalha";
+		mes "contra o mal?";
+		next;
+		mes "[Menestrel]";
+		mes "Você faria isso";
+		mes "por Rune-Midgard...";
+		mes "Como um Menestrel?";
+		next;
+		if (select("Não.:Sim.") == 1) {
+			mes "[Menestrel]";
+			mes "Quando você estiver pronto,";
+			mes "Sinta-se livre para voltar.";
+			mes "Honra aos guerreiros!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Menestrel]";
+			mes "It is still possible for you to learn more skills. Please use";
+			mes "all of your remaining Skill Points before returning to me.";
+			close;
+		}
+		jobchange Job_Clown;
+		set ADVJOB,0;
+		mes "[Menestrel]";
+		mes "Parabéns!";
+		mes "Como um Menestrel, suas";
+		mes "canções trarão a";
+		mes "esperança aos seus aliados, e o";
+		mes "desespero aos seus inimigos.";
+		close;
+	}
+	mes "[Menestrel]";
+	mes "Bem-vindo";
+	mes "a Valhalla,";
+	mes "o Salão da Honra.";
+	next;
+	mes "[Menestrel]";
+	mes "Por favor";
+	mes "sinta-se confortável";
+	mes "enquanto estiver aqui.";
+	mes "Honra aos guerreiros!";
+	close;
+}

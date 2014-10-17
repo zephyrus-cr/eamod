@@ -1,0 +1,106 @@
+/*			SOME BUGS YET :: ISAAC			*/
+	
+	
+}geffen,119,114,5	script	EG	45,2,2,{
+
+	set .@zeny , 10000;
+
+	if ( .evento == 0 ) {
+		getpartymember(getcharid( 1 ),0 );
+		if ( getcharid( 1 ) == 0 || getpartyleader( getcharid(1),1 ) != getcharid(3) || $@partymembercount < 1 || zeny < .@zeny ) {
+			mes "^10B2D2 [ > ] ^000000 necesitas :"; mes "^10B2D2 [ > ] ^000000 tener una party"; mes "^10B2D2 [ > ] ^000000 Ser el lider de la party";
+			mes "^10B2D2 [ > ] ^000000 que tenga mas de 10 integrantes"; mes "^10B2D2 [ > ] ^000000" + .@zeny + " Zeny"; close;
+		} else {
+			mes " Muy bien vamos a verificar todo";
+			if ( getd("$PARTYIDINSCRITA" + getcharid( 1 )) == null ) {
+				close2;
+				set zeny , zeny - .@zeny;
+				setd "$PARTYIDINSCRITA" + getcharid( 1 ) , getcharid( 1 );
+				set .evento , 1; announce "[ Geffen Tower comenzo , Party mode activado.",bc_all;
+				set .piso , 1; set $@siguiente , 1; donpcevent "EG::OnStart";
+				end;
+			} else { mes " parece que alguien ya se registro"; close; }
+		}
+	} else if ( .evento == 1 && getd("$PARTYIDINSCRITA" + getcharid( 1 )) == getcharid( 1 ) && getcharid( 1 ) != 0  ) { warp "gef_tower",52,177; close; 
+	} else if ( .evento == 2 ) { warp "gef_tower",52,177; close;
+	} else { mes name$; mes ""; mes "No hay evento o no perteneces a la party registrada"; close; }
+
+	OnWhisperGlobal:
+		if ( getgmlevel() >= 60 ) {
+			if ( @whispervar0$ == "activar" ) {
+				if ( .evento == 1 ) { mes "GM, hay una party jugando al evento, porfavor utilize desactivar"; close; }
+				set .evento , 2; announce "Evento Geffen Tower comenzo",bc_all;
+				set .piso , 1; set $@siguiente , 1; donpcevent "EG::OnStart";
+			} else if ( @whispervar0$ == "desactivar" ) {
+				setd "$PARTYIDINSCRITA" + getcharid( 1 ) , 0; set .evento , 0; announce "Evento Geffen Tower termino",bc_all;
+			} else  dispbottom "activar | desactivar";
+		}
+	end;
+
+	OnStart:
+		setarray .@MAP[0],0,53,162,50,96,51,40,113,167,112,108,116,75;
+		set .cantidad_mob_x_piso , 0;
+			do {
+				setarray $@MOB__EVENTID[0],1098,1098,1098,1098,1867,1867,1867,1974,1974,1974,2133,1294,1294,1098,1098,1294,1867,1867,1098,1867;
+				do {	
+					set $@RNDM__MOB,(rand(0,getarraysize($@MOB__EVENTID)));
+				}while ($@MOB__EVENTID[$@RNDM__MOB] == 0 );
+			
+			query_sql("SELECT `kName`,`HP` FROM `mob_db` WHERE `ID`='"+$@MOB__EVENTID[$@RNDM__MOB]+"'",$@NAME__MOB1$ , $@HP__MOB1);
+		
+			// mobevent <map>,<x>,<y>,<fakename>,<mobid>,<size>,<amount>,<teamid>,<showhp>,<increasehp>,<allied>,<noslaves>,<noexpnodrop>,<poringcoins>,<event>
+			mobevent "gef_tower",.@MAP[ .piso ],.@MAP[.piso + 1 ],$@NAME__MOB1$,$@MOB__EVENTID[$@RNDM__MOB],0,1,0,0,$@HP__MOB1,0,0,1,0,0,0,7539,0,"EG::OnMobDeath";
+			set .cantidad_mob_x_piso , .cantidad_mob_x_piso + 1; sleep 200;
+		} while ( .cantidad_mob_x_piso != 10  );
+	end;
+	
+	OnMobDeath:
+		set .cantidad_mob_x_piso ,.cantidad_mob_x_piso - 1;
+		if ( .cantidad_mob_x_piso == 0 ) {
+			announce "[ Geffen Tower ]: Piso " + $@siguiente + " liberado!!",bc_all;
+			set .piso , .piso + 2; 
+			if ( $@siguiente + 1 == 7 ) {
+				sleep 400; announce " Geffen Tower ah sido liberada",bc_all;			
+				set $@siguiente , $@siguiente + 1;
+				set .evento , 0; announce "Evento Geffen Tower termino vengan a retirar su premio al ultimo piso",bc_all; 
+				end;
+			} else set $@siguiente , $@siguiente + 1; donpcevent "EG::OnStart";
+			end;
+		}
+	end;
+}
+
+gef_tower,116,37,0	script	Enoz#hellion	748,{
+	mes name$; mes "";
+	if ( !@RETIRADO ) {
+		mes "^10B2D2 [ > ] ^000000 1 Cajita BG";
+		mes " Premios al azar";
+		mes "^10B2D2 [ > ] ^0000001 Nivel base/Job";
+		mes "^10B2D2 [ > ] ^000000 60 PC's";
+		mes "^10B2D2 [ > ] ^000000 Nada";
+		next;
+		set @RETIRADO , 1;	set $@siguiente , 0;
+		switch ( rand(1,3) ) {
+			case 1 : atcommand "@blvl 1"; atcommand "@jlvl 1"; break;
+			case 2 : getitem 7539,60; break;
+			case 3 : break;
+		} warp "prontera",150,150;
+		close;
+	} mes " Tu no deverias estar aqui!!! vete"; warp "prontera",150,150;
+}
+
+gef_tower,66,156,5	script	EG2	45,2,2,{ 	if ( $@siguiente >= 2 ) { warp "gef_tower",42,90; close; } else {	mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+gef_tower,62,87,5	script	EG3	45,2,2,{ 	if ( $@siguiente >= 3 ) { warp "gef_tower",60,30; close; } else {	mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+gef_tower,44,36,5	script	EG4	45,2,2,{ 	if ( $@siguiente >= 4 ) { warp "gef_tower",106,162; close; } else {	mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+gef_tower,120,158,5	script	EG5	45,2,2,{ 	if ( $@siguiente >= 5 ) { warp "gef_tower",118,111; close; } else {	mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+gef_tower,106,115,5	script	EG6	45,2,2,{ 	if ( $@siguiente >= 6 ) { warp "gef_tower",106,72; close; } else	{ mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+gef_tower,118,68,5	script	EG7	45,2,2,{ 	if ( $@siguiente >= 7 ) { set @RETIRADO , 0; warp "gef_tower",116,28; close; } else {	mes name$; mes ""; mes "Aun hay mobs!!"; close; } }
+
+gef_tower	mapflag	monster_noteleport
+gef_tower	mapflag	noteleport
+gef_tower	mapflag	noskill
+gef_tower	mapflag	nobranch
+gef_tower	mapflag	nosave
+gef_tower	mapflag	noloot
+gef_tower	mapflag	novending
+gef_tower	mapflag	nowarp

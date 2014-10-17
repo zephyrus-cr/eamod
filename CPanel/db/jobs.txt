@@ -1,0 +1,101 @@
+// Ceres Control Panel
+// 
+// This is a control panel program for eAthena and other Athena SQL based servers
+// Copyright (C) 2005 by Beowulf and Dekamaster
+// 
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+// 
+// To contact any of the authors about special permissions send
+// an e-mail to cerescp@gmail.com
+
+Novice	0
+Swordman	1
+Magician	2
+Archer	3
+Acolyte	4
+Merchant	5
+Thief	6
+Knight	7
+Priest	8
+Wizard	9
+Blacksmith	10
+Hunter	11
+Assassin	12
+Knight	13
+Crusader	14
+Monk	15
+Sage	16
+Rogue	17
+Alchemist	18
+Bard	19
+Dancer	20
+Crusader	21
+Super_Novice	23
+Wedding_Class	22
+Gunslinger	24
+Ninja		25
+Santa_Costume	26
+
+Novice_High	4001
+Swordsman_High	4002
+Mage_High	4003
+Archer_High	4004
+Acolyte_High	4005
+Merchant_High	4006
+Thief_High	4007
+Lord_Knight	4008
+High_Priest	4009
+High_Wizard	4010
+Whitesmith	4011
+Sniper	4012
+Assassin_Cross	4013
+Lord_Knight	4014
+Paladin	4015
+Champion	4016
+Professor	4017
+Stalker	4018
+Creator	4019
+Clown	4020
+Gypsy	4021
+Paladin	4022
+
+Baby_Novice	4023
+Baby_Swordman	4024
+Baby_Magician	4025
+Baby_Archer	4026
+Baby_Acolyte	4027
+Baby_Merchant	4028
+Baby_Thief	4029
+Baby_Knight	4030
+Baby_Priest	4031
+Baby_Wizard	4032
+Baby_Blacksmith	4033
+Baby_Hunter	4034
+Baby_Assassin	4035
+Baby_Knight	4036
+Baby_Crusader	4037
+Baby_Monk	4038
+Baby_Sage	4039
+Baby_Rogue	4040
+Baby_Alchemist	4041
+Baby_Bard	4042
+Baby_Dancer	4043
+Baby_Crusader	4044
+Baby_Super_Novice	4045
+
+Taekwon	4046
+Star_Gladiator	4047
+Star_Gladiator	4048
+Soul_Linker	4049

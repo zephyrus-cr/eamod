@@ -1,0 +1,60 @@
+// Ceres Control Panel
+// 
+// This is a control pannel program for Athena and Freya
+// Copyright (C) 2005 by Beowulf and Nightroad
+// 
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+// 
+// To contact any of the authors about special permissions send
+// an e-mail to cerescp@gmail.com
+
+// Kro Names
+0	Aldebaran_Noisyubantian
+1	Aldebaran_Hohensyubangawoo
+2	Aldebaran_Nyirenverk
+3	Aldebaran_Byirtsburi
+4	Aldebaran_Rotenburk
+5	Geffen_Reprion
+6	Geffen_Yolbriger
+7	Geffen_Isinlife
+8	Geffen_Berigel
+9	Geffen_Melsedetsu
+10	Payon_Mingting
+11	Payon_Tiantan
+12	Payon_Fuying
+13	Payon_Honglou
+14	Payon_Zhulinxian
+15	Prontera_Creamhilt
+16	Prontera_Sbanhealt
+17	Prontera_Lazrigees
+18	Prontera_Squagul
+19	Prontera_Guindull
+
+//Novice Castles
+20	Novice_Castle_1
+21	Novice_Castle_2
+22	Novice_Castle_3
+23	Novice_Castle_4
+
+24	Himinn
+25	Andlangr
+26	Viblainn
+27	Hljod
+28	Skidbladnir
+29	Mardol
+30	Cyr
+31	Horn
+32	Gefn
+33	Bandis

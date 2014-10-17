@@ -1,0 +1,20 @@
+// Manage skill damage [Lilith]
+// Format: Skill ID, Mode, PC damage, Mob Damage, Boss Damage, Other damage
+// Mode
+// 1    - normal maps
+// 2    - PVP
+// 4    - GVG
+// 8    - Battlegrounds
+// 32   - zone 1
+// 64   - zone 2
+// 128  - zone 3
+// 256  - zone 4
+// 512  - zone 5
+// 1024 - zone 6
+// 2048 - zone 7
+
+// Examples:
+// Mammonite: Normal maps, 0% for players, +50% for mobs, -30% for boss monsters, +10% for others
+// 42,1,0,50,-30,10
+// Adoramus: PvP & GvG maps, +50% for players, -50% for mobs, 0% for boss monsters, 0% for others
+// 2040,6,50,-50,0,0

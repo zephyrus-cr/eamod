@@ -1,0 +1,2483 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest Mudança de Classe para Cavaleiro |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 3.3/3.3/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Cavaleiro.           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Revisão [Gordis]                                   |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prt_in,88,101,4	script	Chefe dos Cavaleiros#cav	56,{
+	mes "[Chefe dos Cavaleiros]";
+	if (Upper == 1) {
+		mes "Hm? É você ... O que há contigo? Tenho sido um cavaleiro honrado por um longo tempo, mas eu não consigo entender esse sentimento que estou recebendo de você...";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Que Deus abençoe o seu corpo e alma, guerreiro. Eu espero que você mostre a sua coragem e proteja aqueles que são mais fracos que você.";
+		close;
+	}
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "Ah, um membro da nossa Cavalaria.";
+			mes "Espero que você esteja vivendo às minhas expectativas. Nós prometemos ser fortes para o nosso reino, mesmo que a morte seja uma consequência...";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "Bem-vindo,";
+			mes "esta é a";
+			mes "Cavalaria de Prontera.";
+			mes "O que o traz aqui?";
+			next;
+			switch(select("Eu quero mudar minha classe para Espadachim.:Eu quero mudar minha classe para um Cavaleiro.:Estou apenas visitando.")) {
+			case 1:
+				mes "[Chefe dos Cavaleiros]";
+				mes "Aha~";
+				mes "Você disse, um Espadachim?";
+				mes "Me desculpe "+((Sex)?"rapaz, mas você":"moça, mas você")+"";
+				mes "veio ao lugar errado!";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Esta não é a Guilda de Espadachim, é a Cavalaria de Prontera! Se você deseja se tornar um Espadachim, visite a Guilda de Espadachim localizada em Izlude.";
+				close;
+			case 2:
+				mes "[Chefe dos Cavaleiros]";
+				mes "Ah, vejo que você tem uma grande ambição. Mas você deve primeiro se tornar um Espadachim antes de se tornar";
+				mes "um Cavaleiro. Um passo de cada vez...";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Primeiro, visite a guilda de Espadachim em Izlude. Então, venha visitar-nos mais uma vez e você se tornará um Espadachim bem experiente.";
+				close;
+			case 3:
+				mes "[Chefe dos Cavaleiros]";
+				mes "Aha~";
+				mes "Você deve ter muito tempo livre. Por que você não vai caçar alguns monstros em vez de perambular sem rumo?";
+				close;
+				close;
+			}
+		}
+		else {
+			mes "Bem-vindo. Nós, os cavaleiros orgulhosos da Cavalaria de Prontera, damos a vida pelo rei do nosso país! Por favor, desfrute da sua estadia.";
+			close;
+		}
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Bem-vindo, esta é";
+		mes "a Cavalaria de Prontera.";
+		mes "O que o traz aqui?";
+		next;
+		if (select("Eu quero mudar minha classe para Cavaleiro.:Estou apenas visitando.") == 1) {
+			mes "[Chefe dos Cavaleiros]";
+			mes "Nossa...";
+			mes ""+((Sex)?"Um jovem":"Uma jovem")+"";
+			mes ""+((Sex)?"rapaz":"moça")+" que deseja";
+			mes "se tornar um Cavaleiro!";
+			mes "A Cavalaria de Prontera";
+			mes "irá ajudar você.";
+			next;
+			mes "[Chefe dos Cavaleiros]";
+			mes "Antes de tudo, eu sou o capitão da Cavalaria de Prontera, Herman Phon Efersirsus. Tenho o prazer de conhecer jovens que desejam ingressar na Cavalaria de Prontera.";
+			next;
+			mes "[Chefe dos Cavaleiros]";
+			mes "Nós só aceitamos Espadachins";
+			mes "que tenham, pelo menos, nível de classe 40.";
+			mes "Não podemos considerar os candidatos que ainda não são experientes o suficiente para se tornar cavaleiros.";
+			next;
+			mes "[Chefe dos Cavaleiros]";
+			mes "Uma vez aplicado, analizamos";
+			mes "se você é elegível, e iniciamos o procedimento de mudança de classe. Será que você";
+			mes "gostaria de aplicar-se agora?";
+			next;
+			if (select("Sim, eu gostaria de me aplicar.:Eu prefiro de pensar sobre isso por favor.") == 1) {
+				mes "[Chefe dos Cavaleiros]";
+				if (JobLevel < 40) {
+					mes "Ah, você ainda não está pronto para se tornar um Cavaleiro! Eu não mencionei especificamente o nível de classe 40 como exigência?";
+					next;
+					mes "[Chefe dos Cavaleiros]";
+					mes "Claro que eu entendo o seu forte desejo de se juntar a nós, mas agora não é o momento. Vá para fora e lute contra mais alguns monstros. Nós estaremos aqui esperando.";
+					close;
+				}
+				if (SkillPoint) {
+					mes "Ah...!";
+					mes "Você não pode mudar de classe, se você tem pontos de habilidade restantes não utilizados. Volte quando você tiver usado";
+					mes "todos os seus pontos de habilidade.";
+					close;
+				}
+				set CAVALEIRO_Q,1;
+				setquest 9000;
+				mes "Deixe-me ver...";
+				mes "Seu nome é";
+				mes ""+strcharinfo(0)+"...";
+				mes "É isso mesmo?";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Deixe-me explicar o procedimento de mudança de classe. Você deve visitar uma série de cavaleiros e passar por cada";
+				mes "um de seus testes.";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Uma vez que todos os testes forem concluídos, cada cavaleiro envolvido em seu teste irá se reunir e discutir o seu desempenho.";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Os cavaleiros devem aprová-lo por unanimidade, antes que você participe da Cavalaria de Prontera. Se apenas um pessoa o reprovar, você deve";
+				mes "começar de novo.";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Mas eu acredito que se você persistir com um coração sincero, você será reconhecido pelos cavaleiros e, finalmente será visto como um membro da nossa Cavalaria.";
+				next;
+				mes "[Chefe dos Cavaleiros]";
+				mes "Então, não vamos perder mais tempo falando! Vá falar com esses cavaleiros e comece os testes. Depois de ter completado todos os testes, volte e fale comigo.";
+				close;
+			}
+			mes "[Chefe dos Cavaleiros]";
+			mes "Ah...!";
+			mes "Bem, eu não quero pressioná-lo. Reserve um tempo para pensar sobre isso. Volte quando você estiver pronto para";
+			mes "a mudança de classe, pois estaremos esperando.";
+			close;
+		}
+		mes "[Chefe dos Cavaleiros]";
+		mes "Vamos pensar sobre isso, você não é um espadachim? Parece que você encontrou muitos inimigos no campo de batalha.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Você deveria mudar de classe para um Cavaleiro. Venha e me diga se você está interessado.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Por favor";
+		mes "dedique seu tempo";
+		mes "olhando em volta.";
+		mes "Bom dia.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 1) {
+		mes "Hum?";
+		mes strcharinfo(0) + ",";
+		mes "o que posso fazer por você?";
+		mes "Ah, você não sabe";
+		mes "quem visitar?";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Eu acredito que os cavaleiros encarregados do teste criaram uma ordem na qual você deve visitá-los. Acho que isso ajuda o processo de testes.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Primeiro, vá visitar";
+		mes "o Cavaleiro Dedicado para o seu primeiro teste. Não fique muito nervoso, ele vai explicar tudo quando você falar com ele.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 2) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 3) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 4) {
+		callsub L_Mission,1;
+		mes "Parece que você terminou um teste. Vamos ver. Cavaleiro Dedicado, quem é o próximo que o Espadachim deve visitar?";
+		next;
+		mes "[Cavaleiro Dedicado]";
+		mes "Eu disse para";
+		mes "visitar o Cavaleiro Honroso.";
+		mes "Engraçado, eu pensei ter dito";
+		mes "a você. Será que eu esqueci...?";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Você ouviu?";
+		mes "Vá até Cavaleiro Honroso e faça seu teste. Depois de concluir o teste, não se esqueça que você deveria visitar a próxima pessoa.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 5) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 6) {
+		callsub L_Mission,1;
+		mes "Vejamos...";
+		mes "Você completou dois testes.";
+		mes "Cavaleiro Honroso, quem será o próximo que este Espadachim deve visitar?";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Oh...!";
+		mes "Hum, quem será o próximo...?";
+		mes "Certo! O Cavaleiro das Lutas!";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Vá até o";
+		mes "Senhor Windsor Bento o Cavaleiro das Lutas para o seu próximo teste. Ouça com atenção os Cavaleiros encarregados dos testes para que você não se sinta perdido, certo?";
+		close;
+	}
+	else if (CAVALEIRO_Q == 7) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 8) {
+		callsub L_Mission,1;
+		mes "Cavaleiro das Lutas...?";
+		mes "Quem este";
+		mes "Espadachim deve visitar";
+		mes "agora?";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Ana Beatriz.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Ah, vá visitar a";
+		mes "Cavaleira Educada e faça seu teste. Certifique-se de prestar atenção em quem você deve ir para o próximo teste.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 9) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 10) {
+		callsub L_Mission,1;
+	  mes "Vamos ver...";
+		mes "Ana Beatriz, quem";
+		mes "este Espadachim";
+		mes "deve visitar agora?";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Ah...";
+		mes "Eu disse para visitar";
+		mes "o Cavaleiro Devotado!";
+		mes "Hehee~";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Agora, vá falar";
+		mes "com o Cavaleiro Devotado. Ele irá";
+		mes "ser responsável pelo seu";
+		mes "próximo teste.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 11) callsub L_Mission,0;
+	else if (CAVALEIRO_Q == 12) {
+		callsub L_Mission,1;
+	  mes "Você só tem que visitar mais uma pessoa! O Cavaleiro";
+		mes "encarregado do teste final";
+		mes "é o Senhor Gray Próspero o Cavaleiro Modesto.";
+		next;
+		mes "[Cavaleiro Devotado]";
+		mes "Este mundo opera de acordo";
+		mes "a lei de causa e efeito.";
+		mes "Tudo será revelado no final.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Esteja alerta e faça";
+		mes "seu melhor, por que";
+		mes "é seu último teste.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Retorne até mim";
+		mes "depois de ter";
+		mes "completado o";
+		mes "teste final.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 13) {
+		mes "Termine o último teste.";
+		mes "Uma vez que seja completo, todos os cavaleiros envolvidos em seu ensaio devem se reunir, e vamos avaliar o seu desempenho.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 14) {
+		if (SkillPoint) {
+			mes "Nossa...!";
+			mes "Você não pode mudar de classe, se você tem pontos de habilidade restantes não utilizados. Volte depois de ter distribuído todos os seus pontos de habilidade.";
+			close;
+		}
+		mes "Nossa, você já completou todos os testes? Mas nem todos os que terminaram os testes podem";
+		mes "se tornar um Cavaleiro.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Durante o teste, veja se você foi leal, honrado e se você é forte. Também veja se você foi cortês e se você sabe o valor da modéstia e reverência.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Através deste processo, eu também observarei suas ações. Todas as sete de nossas opiniões serão refletidas na decisão de sua mudança de classe.";
+	  next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Então...";
+		mes "Ouviremos";
+		mes "os pensamentos de todos!";
+		mes "Andrew, o que você acha?";
+		next;
+		mes "[Cavaleiro Dedicado]";
+		if (JobLevel == 50) {
+			mes "O que posso dizer?";
+			mes "Eu aprovo!";
+			mes "Tendo vivido como";
+			mes "Espadachim até";
+			mes "agora";
+			mes "é suficiente.";
+		}
+		else {
+			mes "Ele tem";
+			mes "juntado itens";
+			mes "que são difíceis";
+			mes "de conseguir. Eu aprovo!";
+			mes "Eu acredito "+((Sex)?"ele vai ":" ela vai")+"  continue a ser fiel depois de se tornar um Cavaleiro.";
+		}
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Hum.";
+		mes "Que revisão interessante.";
+		mes "Cavaleiro Honroso, qual foi sua avaliação?";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Hehe, muito bem. Não é bem o que";
+		mes "eu gostaria, mas espero que se torne melhor no futuro.";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Depois de se tornar um Cavaleiro, você deve construir uma boa reputação através da honra. Ehh ... eu aprovo.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Ok...";
+		mes "Windsor,";
+		mes "o que você acha?";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "....Aprovado.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Eu acho que";
+		mes "ele não será desaprovado.";
+		mes "Então, vamos ouvir";
+		mes "a opinião da Ana.";
+		next;
+		mes "[Cavaleira Educada]";
+		if (sex) {
+			mes "Hum ~ Ele é tão educado!";
+			mes "Ele vai crescer para ser um cavaleiro maravilhoso.!";
+		}
+		else {
+			mes "Hum~ Ela deve ser famosa!";
+			mes "Ela é muito simpática e também muito bonita, assim ganha mais alguns pontos! heh~";
+			mes "Eu não deveria estar dizendo essas coisas!";
+		}
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Bem...";
+		mes "Uma avaliação estranha,";
+		mes "mas eu acredito";
+		mes "que ela aprove.";
+		mes "Edmond, diga";
+		mes "sua opinião.";
+		next;
+		mes "[Cavaleiro Devotado]";
+		if (sex) {
+			mes "Ele parece um pouco bruto, mas algo brilha dentro dele. Com um polimento, seu verdadeiro valor vai brilhar";
+			mes "como o sol.";
+		}
+		else {
+			mes "É difícil ver, mas há uma beleza espiritual dentro dela. Com um polimento, seu verdadeiro valor vai brilhar como o resplendor";
+			mes "da lua.";
+		}
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Por fim...";
+		mes "Gray. Eu gostaria";
+		mes "de ouvir sua avaliação.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Jovem  "+((Sex)?"cavalheiro":"dama")+" vindo aqui com a determinação de se tornar um Cavaleiro é o suficiente...";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Todos";
+		mes "o aprovaram.";
+		mes "Ninguém se opôs.";
+		mes "Então eu direi";
+		mes "a minha opinião.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Minha decisão é...";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Eu aprovo.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "você pode não ter terminado todos os testes perfeitamente, mas você tem todas as qualidades necessárias para se tornar";
+		mes "um Cavaleiro.";
+		next;
+		completequest 9012;
+		callfunc "Job_Change",Job_Knight;
+		callfunc "F_ClearJobVar"; // Limpa todas as variáveis de classe para o atual jogador
+		mes "[Chefe dos Cavaleiros]";
+		mes "Declaro";
+		mes "você um membro";
+		mes "da Cavalaria de Prontera.";
+		mes "Proteja os fracos e";
+		mes "viva com honra.";
+		next;
+		getitem 656,7; //Poção_do_Despertar
+		mes "[Chefe dos Cavaleiros]";
+		mes "Ei...";
+		mes "Nós preparamos um pequeno presente para parabenizá-lo por sua mudança de classe. Por favor use-o quando você estiver em batalha enquanto você estiver honradamente protegendo os outros.";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		mes "Vá em frente!";
+		mes "O futuro de";
+		mes "Rune-Midgard";
+		mes "será carregado em seus";
+		mes "ombros!";
+		close;
+	}
+L_Mission:
+		mes "Hum?";
+		mes "Espadachim "+strcharinfo(0)+".";
+		mes "Como estão os testes?";
+	if (getarg(0)) {
+	  mes "Ah~ Você não sabe";
+		mes "quem visitar agora?";
+		next;
+		mes "[Chefe dos Cavaleiros]";
+		return;
+	} else {
+		mes "Mesmo sendo difícil,";
+		mes "faça seu melhor.";
+		close;
+	}
+}
+
+prt_in,75,107,4	script	Cavaleiro Dedicado#cav	65,{
+	mes "[Cavaleiro Dedicado]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "Você deve ser";
+			mes "um membro";
+			mes "da Cavalaria.";
+			mes "Como você está?";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Você deve trabalhar arduamente para recolher alimentos, bem como juntar zeny para comprar equipamentos. Guarde tudo o que você";
+			mes "encontrar em batalha, mesmo um pequeno Jellopy.";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Mas não é bom";
+			mes "ser muito guloso.";
+			mes "Afinal, somos cavaleiros.";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "Olá,";
+			mes "pequeno Aprendiz.";
+			mes "Bem vindo a";
+			mes "Cavalaria de Prontera.";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Você talvez esteja";
+			mes "fraco agora, mas algum dia";
+			mes "você vai se tornar mais forte.";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Sonhe em um futuro brilhante, olhe para a frente no caminho que você escolher tomar.";
+			close;
+		}
+		else {
+			mes "Nós, os membros da";
+			mes "Cavalaria de Prontera, estamos dando o nosso melhor para proteger a paz neste mundo.";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Mesmo durante as batalhas que enfrentamos a cada dia, sonhamos com";
+			mes "um futuro brilhante que está por vir.";
+			close;
+		}
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Nós, os membros da";
+		mes "Cavalaria de Prontera, estamos dando o nosso melhor para proteger a paz neste mundo.";
+		next;
+		mes "[Cavaleiro Dedicado]";
+		mes "Mesmo durante as batalhas que enfrentamos a cada dia, sonhamos com";
+		mes "um futuro brilhante que está por vir.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 1) {
+		mes "Bom dia.";
+		mes "Posso ajudá-lo";
+		mes "em algo?";
+		next;
+		if (select("Eu gostaria de fazer o teste.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Dedicado]";
+			mes "Ah...";
+			mes "deseja";
+			mes "se tornar um Cavaleiro.";
+			mes "Seu nome é";
+			mes ""+strcharinfo(0)+",";
+			mes "correto?";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Eu sou um Cavaleiro";
+			mes "da Cavalaria de Prontera,";
+			mes "Andrew Shylock.";
+			mes "Eu sou responsável por";
+			mes "seu primeiro teste.";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Eu vou estar testando o seu sentido de lealdade. Cada cavaleiro deve possuir esta virtude. Para este exame, você estará recolhendo prêmios do";
+			mes "campo de batalha.";
+			next;
+			if (JobLevel == 50) {
+				mes "[Cavaleiro Dedicado]";
+				mes "Hum...?";
+				mes "Espere aí.";
+				mes "Você parece ter dominado";
+				mes "totalmente as habilidades";
+				mes "de um Espadachim.";
+				next;
+				mes "[Cavaleiro Dedicado]";
+				mes "Impressionante...!";
+				mes "Pensando bem,";
+				mes "Eu não acho que a sua lealdade";
+				mes "não precisa";
+				mes "ser testada.";
+				next;
+				mes "[Cavaleiro Dedicado]";
+				mes "Por favor, vá até o meu colega Cavaleiro Honroso, ele lhe dará o seu próximo teste. Ótimo trabalho dominando as habilidades de Espadachim.";
+				set CAVALEIRO_Q,4;
+				changequest 9000,9003;
+				close;
+			}
+			mes "[Cavaleiro Dedicado]";
+			mes "Sem";
+			mes "mais delongas,";
+			mes "vamos começar!";
+			mes "Vá e reuna os";
+			mes "seguintes itens...";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			switch(rand(1,2)) {
+			//Bigode de Anão Ancião, Asa de Morcego Vermelho, Asa de Morcego Vermelho, Asa de Morcego 
+			case 1: setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 2; break;
+			//Pata de Inseto, Coração de Sereia, Flor de Planta Carnívora, Carne de Ostra, Frigideira Velha, Casco de Caramujo.
+			case 2: setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 3; break;
+			}
+			set CAVALEIRO_Q,.@items[12];
+			if (CAVALEIRO_Q == 2) changequest 9000,9001;
+			else changequest 9000,9002;
+			mes "^236B8E"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+			mes "^236B8E"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+			mes "^236B8E"+.@items[5]+" "+getitemname(.@items[4])+"^000000,";
+			mes "^236B8E"+.@items[7]+" "+getitemname(.@items[6])+"^000000,";
+			mes "^236B8E"+.@items[9]+" "+getitemname(.@items[8])+"^000000 e";
+			mes "^236B8E"+.@items[11]+" "+getitemname(.@items[10])+"^000000,";
+			next;
+			mes "[Cavaleiro Dedicado]";
+			mes "Estarei";
+			mes "esperando aqui";
+			mes "você trazer os";
+			mes "os itens listados.";
+			mes "Até breve~";
+			close;
+		}
+		else {
+			mes "[Cavaleiro Dedicado]";
+			mes "Bem, então...";
+			mes "Bom dia.";
+			close;
+		}
+	}
+	else if (CAVALEIRO_Q == 2 || CAVALEIRO_Q == 3) {
+		mes "Bem-vindo de volta~";
+		mes "Você reúniu";
+		mes "todos os itens?";
+		mes "Vamos checar...";
+		next;
+		switch(CAVALEIRO_Q) {
+		//Bigode de Anão Ancião, Asa de Morcego Vermelho, Asa de Morcego Vermelho, Asa de Morcego Vermelho, Língua de Réptil, Crina.
+		case 2: setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 0; break;
+		//Pata de Inseto, Coração de Sereia, Flor de Planta Carnívora, Carne de Ostra, Frigideira Velha, Casco de Caramujo.
+		case 3: setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 0; break;
+		}
+		if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5] && countitem(.@items[6]) >= .@items[7] && countitem(.@items[8]) >= .@items[9] && countitem(.@items[10]) >= .@items[11]) {
+			mes "[Cavaleiro Dedicado]";
+			mes "Perfeito! Nós apreciamos o seu esforço em reunir esses itens. Estes serão utilizados para apoiar as finanças da Cavalaria.";
+			next;
+			delitem .@items[0],.@items[1];
+			delitem .@items[2],.@items[3];
+			delitem .@items[4],.@items[5];
+			delitem .@items[6],.@items[7];
+			delitem .@items[8],.@items[9];
+			delitem .@items[10],.@items[11];
+			if (CAVALEIRO_Q == 2) changequest 9001,9003;
+			else changequest 9002,9003;
+			set CAVALEIRO_Q,4;
+			mes "[Cavaleiro Dedicado]";
+			mes "Por favor, visite o meu colega Cavaleiro Honroso, e continue os testes com a dedicação e lealdade que você mostrou para mim hoje.";
+			close;
+		}
+		mes "[Cavaleiro Dedicado]";
+		mes "Espere, espere...";
+		mes "Acho que ainda estão";
+		mes "faltando alguns";
+		mes "itens. No caso de você";
+		mes "esquecer, deixe-me";
+		mes "lembrá-lo...";
+		next;
+		mes "[Cavaleiro Dedicado]";
+		mes "^236B8E"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+		mes "^236B8E"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+		mes "^236B8E"+.@items[5]+" "+getitemname(.@items[4])+"^000000,";
+		mes "^236B8E"+.@items[7]+" "+getitemname(.@items[6])+"^000000,";
+		mes "^236B8E"+.@items[9]+" "+getitemname(.@items[8])+"^000000 e";
+		mes "^236B8E"+.@items[11]+" "+getitemname(.@items[10])+"^000000,";
+		next;
+		mes "[Cavaleiro Dedicado]";
+		mes "Por favor, faça este teste a sério e com sinceridade.";
+		mes "Agora, eu estarei esperando por você";
+		mes "para concluir esta tarefa.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 4) {
+		mes "Você tem algo para me perguntar? Você deve ir e fazer o teste seguinte. Depressa, o Cavaleiro Honroso está esperando por você~";
+		close;
+	}
+	else if (CAVALEIRO_Q == 14) {
+		mes "Você deve ter terminado todos os testes. Bom trabalho! Você deve ir ver o nosso capitão, para que todos nós possanos dar a nossa avaliação.";
+		close;
+	}
+	else {
+		mes "Você tem algo que você precisa me perguntar? Você deve ir e fazer o teste seguinte. Dê o seu melhor.";
+		mes "Eu sei que você pode conseguir!";
+		close;
+	}
+}
+
+prt_in,71,91,0	script	Cavaleiro Honroso#cav	65,{
+	mes "[Cavaleiro Honroso]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "Olá!";
+			mes "Como você está?";
+			mes "A Cavalaria tem estado";
+			mes "muito bem.";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Nós estivemos";
+			mes "testando novos membros,";
+			mes "mas nem todos eles";
+			mes "são promissores";
+			mes "como você.";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Espero que todos estes novos recrutas se comportem, e não";
+			mes "tragam vergonha para a Cavalaria.";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Se você pegar qualquer um dos novos recrutas agindo de forma imprópria para um cavaleiro, repreenda-os para mim por favor?";
+			close;
+		}
+		else if (Baseclass == Job_Novice) {
+			mes "Opa?";
+			mes "O que um aprendiz";
+			mes "faz aqui?";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Você está interessado em se tornar um Cavaleiro? Você simplesmente não pode se transformar de um Aprendiz para um Cavaleiro, você sabe.";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Primeiro, você deve";
+			mes "se tornar e adquirir";
+			mes "experiência como Espadachim";
+			mes "antes que você possa se tornar";
+			mes "um Cavaleiro.";
+			close;
+		}
+		else {
+			mes "Ataque e defesa.";
+			mes "Existe uma maneira de ter ambos sem comprometer um ao outro?";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Armas de duas mãos";
+			mes "pode melhorar o seu ataque, mas diminue suas defesas. Existe algo que possa superar essa fraqueza?";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Uma arma ou algum tipo";
+			mes "de técnica que";
+			mes "ajudasse muito aos Cavaleiros...";
+			close;
+		}
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Ataque e defesa.";
+		mes "Existe uma maneira de ter ambos sem comprometer um ao outro?";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Armas de duas mãos";
+		mes "pode melhorar o seu ataque, mas diminue suas defesas. Existe algo que possa superar essa fraqueza?";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Uma arma ou algum tipo";
+		mes "de técnica que";
+		mes "ajudasse muito aos Cavaleiros...";
+		close;
+	}
+	else if (CAVALEIRO_Q == 1) {
+		mes "Heim?";
+		mes "Você tem";
+		mes "algo para";
+		mes "me perguntar?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Honroso]";
+			mes "Para se tornar";
+			mes "um Cavaleiro?";
+			mes "pense nisso,";
+			mes "você  "+((Sex)?"garoto":"garota")+" tem certeza";
+			mes "que quer fazer isto?";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Vamos ver...";
+			mes "Seu nome é";
+			mes ""+strcharinfo(0)+".";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Mas, antes de vir até mim, você deve visitar os outros.";
+			mes "Ao meu ver, você não têm provado saber o básico. Mas eu vou";
+			mes "reconsiderar uma vez que você";
+			mes "passe no primeiro teste.";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Humm...?";
+		mes "Certo.";
+		mes "É só que...";
+		mes "você tem aquele";
+		mes "olhar em seu";
+		mes "rosto.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 2 || CAVALEIRO_Q == 3) {
+		mes "Heim?";
+		mes "Você tem";
+		mes "algo para";
+		mes "me perguntar?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Honroso]";
+			mes "Hahaha~!";
+			mes "Você não deveria fazer o teste do Cavaleiro Dedicado? Você não pode simplesmente ignorar esta etapa, você sabe! Todos os nossos testes são importantes.";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Fale com o Cavaleiro Dedicado primeiro.";
+			mes "Meu teste virá após você terminar o teste dele.";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Hmmm...?";
+		mes "Certo.";
+		mes "É só que...";
+		mes "você tem aquele";
+		mes "olhar em seu";
+		mes "rosto.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 4 || CAVALEIRO_Q == 5) {
+		if (CAVALEIRO_Q == 4) {
+			mes "Heim?";
+			mes "Você tem";
+			mes "algo para";
+			mes "me perguntar?";
+			next;
+			if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+				mes "[Cavaleiro Honroso]";
+				mes "Eu vejo, você passou no primeiro teste. Muito bem, eu vou dar algum tempo para você. Deixe-me apresentar-me. Meu nome é James Siracusa.";
+				next;
+				mes "[Cavaleiro Honroso]";
+				mes "Este teste vai medir o quanto você sabe sobre Cavalaria. Mais importante, eu quero saber seus pensamentos sobre honra.";
+				next;
+				mes "[Cavaleiro Honroso]";
+				mes "Não fique nervoso, não vou atrasá-lo por muito tempo. Estas serão perguntas rápidas. Além disso, você ainda tem que ver os outros, certo?";
+				next;
+				mes "[Cavaleiro Honroso]";
+				mes "Bem,";
+				mes "vamos começar.";
+				mes "Por favor responda";
+				mes "prontamente.";
+				next;
+			}
+			else {
+				mes "[Cavaleiro Honroso]";
+				mes "Hmmm...?";
+				mes "Certo.";
+				mes "É só que...";
+				mes "você tem aquele";
+				mes "olhar em seu";
+				mes "rosto.";
+				close;
+			}
+		}
+		else if (CAVALEIRO_Q == 5) {
+			mes "O que...";
+			mes "Você denovo?";
+			next;
+			if (select("Gostaria de fazer o teste novamente.:Ah, nada.") == 1) {
+				mes "[Cavaleiro Honroso]";
+				mes "É isso mesmo?";
+				mes "Tem certeza de que está";
+				mes "preparado desta vez?";
+				next;
+				mes "[Cavaleiro Honroso]";
+				mes "Certo, então,";
+				mes "aqui vamos nós outra vez...";
+				next;
+			}
+			else {
+				mes "[Cavaleiro Honroso]";
+				mes "Hmmm...?";
+				mes "Certo.";
+				mes "É só que...";
+				mes "você tem aquele";
+				mes "olhar em seu";
+				mes "rosto.";
+				close;
+			}
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Um Cavaleiro deve possuir grande força, defesa, velocidade e habilidade para manejar uma espada de duas mãos. Qual das seguintes armas não é afetada pela habilidade Velocidade com Espada de 2 Mãos?";
+		next;
+		if (select("Kataná:Espada Matadora:Espada Larga:Flamberge") != 4) {
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Errado!";
+			mes "Essa é uma espada de duas mãos!";
+			mes "Tem certeza de que quer ser um cavaleiro? Você nem sabe o básico...";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Se você não tem certeza sobre alguma coisa, vá para a cidade e pergunte a qualquer Cavaleiro. Você precisa aprender mais sobre Cavaleiros antes de mudar de classe!";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Bom, agora deixe-me perguntar sobre algumas habilidades. Qual das seguintes habilidades não é necessária aprender Impacto de Tyr?";
+		next;
+		if (select("Perícia com Espada de Duas Mãos Lv.5:Impacto Explosivo Lv.3:Provocar Lv.10:Golpe Fulminante Lv.10") != 3) {
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Errado!";
+			mes "Você precisa dela para aprender Impacto de Tyr! Você deve saber mais sobre a classe Cavaleiro antes de mudar de classe para Cavaleiro!";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Cavaleiros também podem usar Lanças, ao contrário de outras classes, e também tem perícia com a Lanças. Quais as habilidades não são necessários para aprender a habilidade Brandir Lança?";
+		next;
+		if (select("Perfurar Lv.5:Estocada Lv.3:Lança Bumerangue Lv.3:Montaria Lv.1") != 3) {
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Errado! Você precisa dela para aprender Brandir Lança! Como pode você não saber sobre cavaleiros e querer se tornar um?";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Se você não tem certeza sobre alguma coisa, vá para a cidade e peça a qualquer Cavaleiro";
+			mes "para ajudá-lo. Volte depois que você aprender mais sobre Cavaleiros.";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Algumas Lanças também têm atributos mágicos, assim como magias. Das seguintes lanças podem atacar um Pesadelo que tem o atributo Fantasma?";
+		next;
+		if (select("Zephyrus:Lança:Guisarme-Bico:Foice") != 1) {
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Errado! Você estará fazendo absolutamente nenhum dano com esse tipo de Lança! Volte depois que você aprender mais sobre Cavaleiros!";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "Se você tiver alguma dúvida, basta perguntar a qualquer cavaleiro na cidade. Este é um conhecimento básico para nós!";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Quando você se torna um Cavaleiro você pode montar um Peco Peco. No entanto, sua velocidade de ataque diminui quando você está montado em um Peco Peco.";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Mas, você pode contrariar esta diminuição da velocidade se você aprender a habilidade Perícia em Montaria. Qual a percentagem de sua velocidade de ataque normal você terá após a aprendizagem de Perícia em Montaria nível 3 ?";
+		next;
+		if (select("70% de velocidade de ataque normal:80% de velocidade de ataque normal:90% de velocidade de ataque normal:100% da velocidade de ataque normal") != 2) {
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Errado!";
+			mes "Não se preocupe em andar de Peco Peco se você não sabe nada sobre Perícia em Montaria!";
+			next;
+			mes "[Cavaleiro Honroso]";
+			mes "É melhor voltar depois que você aprender um pouco mais sobre Cavaleiros!";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Bem, Bem...";
+		mes "Tenho certeza que você sabe bastante sobre Cavaleiros. Agora, deixe-me fazer algumas perguntas pessoais sobre Cavaleiros.";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "O que você deve fazer quando você topar com um Novato pedindo ajuda na cidade?";
+		next;
+		switch(select("Diga um lugar de caça razoável para ele.:Chamo ele para a luta e recebo os danos por ele.: Dou um monte de zeny e itens.")) {
+		case 1:
+			mes "[Cavaleiro Honroso]";
+			mes "Claro, até um novato precisa aprender a ser independente. Dar uma boa orientação para os novatos é uma das melhores coisas que podemos fazer.";
+			next;
+			break;
+		case 2:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Você tem a idéia errada. Você realmente acredita que está ajudando o novato? Dê a um homem um peixe, ele comerá por um dia. Ensine-o a pescar, ele comerá a vida inteira!";
+			close;
+		case 3:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Você realmente acredita que isso vai realmente ajudar um pobre iniciante? É generoso, mas, eles não sabem o verdadeiro valor dos zenys e itens até que eles ganhem por si próprios.";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Certo...";
+		mes "Agora, como deve ser";
+		mes "sua ação dentro";
+		mes "de um grupo?";
+		next;
+		switch(select("Protejo todos que estejam na batalha.:Reúno monstros e os destruo de uma só vez.:Pego o máximo de itens possível, a todo o custo.")) {
+		case 1:
+			mes "[Cavaleiro Honroso]";
+			mes "É isso aí! Nossa força e os ataques são muito importantes em um grupo. Todos os cavaleiros devem se envolver em uma batalha com essa mentalidade.";
+			next;
+			break;
+		case 2:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Você está louco? Você não percebe a falha nesse tipo de pensamento? Você não pode suportar uma grande quantidade de monstros. E se você acabar morrendo? Quem irá proteger os inocentes?";
+			close;
+		case 3:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Eu vejo sua ganância e não temos nada disso aqui! Parece que você não se importa verdadeiramente com os outros!";
+			mes "Perdeu!";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Por fim...";
+		mes "qual é o";
+		mes "valor mais importante";
+		mes "que um Cavaleiro deve possuir?";
+		next;
+		switch(select("Honra:Riqueza:Status")) {
+		case 1:
+			mes "[Cavaleiro Honroso]";
+			mes "Certo, acima de tudo, Cavaleiros devem ser honrados! Nós vivemos e morremos pela honra! Sempre mantenha isso em mente.";
+			next;
+			break;
+		case 2:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Você é a escória! Você se esforça para se tornar um Cavaleiro por riqueza pessoal? Você perdeu! Nós não vamos aceitar alguém como você na nossa Cavalaria!";
+			close;
+		case 3:
+			set CAVALEIRO_Q,5;
+			mes "[Cavaleiro Honroso]";
+			mes "Então você está tentando se tornar famoso através da Cavalaria? Isso é patético. Nós não vamos aceitar alguém como você na nossa Cavalaria!";
+			close;
+		}
+		set CAVALEIRO_Q,6;
+		changequest 9003,9004;
+		mes "[Cavaleiro Honroso]";
+		mes "Bem, então,";
+		mes "este é o";
+		mes "fim do meu teste.";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Para o seu próximo";
+		mes "teste, vá ver o";
+		mes "Cavaleiro das Lutas.";
+		mes "Ele é muito calmo,";
+		mes "mas não deixe que";
+		mes "ele chegue até você.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 6) {
+		mes "Ah?";
+		mes "Você tem algo";
+		mes "para perguntar";
+		mes "a mim?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe:. Ah, nada.") == 1) {
+			mes "[Cavaleiro Honroso]";
+			mes "Ei...";
+			mes "Você já fez o meu teste, não é? Você terminou por aqui. Agora você deve ir visitar o Cavaleiro das Lutas...";
+			close;
+		}
+		mes "[Cavaleiro Honroso]";
+		mes "Hmmm...?";
+		mes "Certo.";
+		mes "É só que...";
+		mes "você tem aquele";
+		mes "olhar em seu";
+		mes "rosto.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 14) {
+		mes "Hmm...?";
+		mes "Você terminou";
+		mes "todos os outros";
+		mes "testes também?";
+		next;
+		mes "[Cavaleiro Honroso]";
+		mes "Pois bem,";
+		mes "vá ver o";
+		mes "capitão. Vamos todos";
+		mes "estar lá para avaliar";
+		mes "o seu desempenho.";
+		close;
+	}
+	else {
+		mes "Oi denovo.";
+		mes "Você precisa de algo?";
+		mes "Desculpe, mas eu estou ocupado no momento. Você deve ir terminar o resto de seus testes.";
+		close;
+	}
+}
+
+prt_in,79,94,4	script	Cavaleiro das Lutas#cav	733,{
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	next;
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[Cavaleiro das Lutas]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) mes "Proteja.";
+		else mes ( BaseClass == Job_Novice ) ? "...Vá brincar lá fora.":"...Hmpf.";
+	}
+		close;
+	if (CAVALEIRO_Q == 0) {
+		mes "...O que?";
+		close;
+	}
+	else if (CAVALEIRO_Q >= 1 && CAVALEIRO_Q <= 5) {
+		mes "...O que?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe:. Ah, nada.") == 1) {
+			mes "[Cavaleiro das Lutas]";
+			mes "...";
+			next;
+			mes "[Cavaleiro das Lutas]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Cavaleiro das Lutas]";
+			mes "...Não é a minha vez.";
+			close;
+		}
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		close;
+	}
+	else if (CAVALEIRO_Q == 6 || CAVALEIRO_Q == 7) {
+		if (CAVALEIRO_Q == 6) {
+			set .@mes$,"O cavaleiro honroso me enviou a você.: Ah, nada,.";
+			mes ".....O que?";
+			next;
+		}
+		else {
+			set .@mes$,"Eu quero tentar novamente!:...";
+			next;
+		}
+		if (select(.@mes$) == 1) {
+			mes "[Cavaleiro das Lutas]";
+			mes "...";
+			next;
+			set CAVALEIRO_Q,7;
+			if (checkquest(9004) != -1) {
+				changequest 9004,9005;
+			}
+			mes "[Cavaleiro das Lutas]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Cavaleiro das Lutas]";
+			if (CAVALEIRO_Q == 6) 
+				mes "...Siga-me.";
+			else {
+				mes "...Bom.";
+				next;
+				mes "[Cavaleiro das Lutas]";
+				mes "...Por aqui.";
+			}
+			close2;
+			if(checkquest(9006) == -1) changequest 9005,9006;
+			warp "job_knt",89,101;
+			end;
+		}
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		close;
+	}
+	else if (CAVALEIRO_Q == 14) {
+		mes "...Fale com";
+		mes "o Capitão.";
+		close;
+	}
+	else {
+		mes "...O que";
+		mes "faz aqui?";
+		close;
+	}
+}
+
+// Teste 2 parte 1
+//==========================================================
+job_knt,89,106,4	script	Windsor#cav	733,{
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	next;
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[Cavaleiro das Lutas]";
+	mes "...Perguntas?";
+	next;
+	set .@i, select("Que tipo de teste é esse?:Como posso fazer o teste?:Eu quero de sair.:Não.");
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	if (.@i == 4) close;
+	next;
+	mes "[Cavaleiro das Lutas]";
+	mes "...";
+	mes "......";
+	switch(.@i) {
+	case 1:
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Você lutará contra monstros.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Mate todos eles.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Três estágios.";
+		mes "Vença todos.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "......3 minutos";
+		mes "para cada estágio.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "..........";
+		close;
+	case 2:
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Vá até";
+		mes "a sala de espera.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Em seguida,";
+		mes "começará.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Você tem que esperar";
+		mes "se alguém estiver sendo testado.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Você pode começar";
+		mes "depois que a pessoa sair.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		close;
+	case 3:
+		close2;
+		warp "prt_in",80,100;
+		end;
+	}
+}
+
+job_knt,89,106,4	script	Windsor Bento#cav	733,{
+	end;
+
+OnInit:
+	disablenpc "Windsor Bento#cav";
+	waitingroom "Sala de Espera",20,"Windsor Bento#cav::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	killmonster "job_knt", "Cavaleiro2::OnMyMobDead";
+	killmonster "job_knt", "Cavaleiro3::OnMyMobDead";
+	warpwaitingpc "job_knt",43,146;
+	donpcevent "Knight1::OnEnable";
+	disablewaitingroomevent;
+	end;
+
+OnStart:
+	enablewaitingroomevent;
+	end;
+}
+
+-	script	Knight1	-1,{
+OnInit:
+	disablenpc "Knight1";
+	end;
+
+OnEnable:
+	enablenpc "Knight1";
+	if (!checkre(0)) {
+		set .MeusMonstros,12;
+		monster "job_knt",39,150,"Poeira",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",47,150,"Poeira",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",39,142,"Poeira",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",47,142,"Poeira",1114,1,"Knight1::OnMyMobDead";
+	}
+	else
+		set .MeusMonstros,8;
+	monster "job_knt",43,137,"Piere",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"Andre",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"Deniro",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Piere",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Andre",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Deniro",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",35,146,"Argos",1100,1,"Knight1::OnMyMobDead";
+	monster "job_knt",52,146,"Argos",1100,1,"Knight1::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	disablenpc "Knight1";
+	end;
+
+OnMyMobDead:
+	set .MeusMonstros,.MeusMonstros-1;
+	if (.MeusMonstros < 1) {
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Agora";
+		mes "para o próximo nível.";
+		close2;
+		warp "job_knt",43,52;
+		donpcevent "Knight1::OnDisable";
+		donpcevent "Cavaleiro2::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight1::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 126, 63, 165, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight1::OnDisable";
+	donpcevent "Windsor Bento#cav::OnStart";
+	end;
+}
+
+// Teste 2 parte 2
+//==========================================================
+-	script	Cavaleiro2	-1,{
+OnInit:
+	disablenpc "Cavaleiro2";
+	end;
+
+OnEnable:
+	enablenpc "Cavaleiro2";
+	if (!checkre(0)) {
+		set .MeusMonstros,12;
+		monster "job_knt",43,42,"Lobo do Deserto",1106,1,"Cavaleiro2::OnMyMobDead";
+		monster "job_knt",43,62,"Lobo do Deserto",1106,1,"Cavaleiro2::OnMyMobDead";
+		monster "job_knt",60,68,"Anaconda",1030,1,"Cavaleiro2::OnMyMobDead";
+		monster "job_knt",27,68,"Anaconda",1030,1,"Cavaleiro2::OnMyMobDead";
+		monster "job_knt",60,35,"Anaconda",1030,1,"Cavaleiro2::OnMyMobDead";
+		monster "job_knt",27,35,"Anaconda",1030,1,"Cavaleiro2::OnMyMobDead";
+	}
+	else
+		set .MeusMonstros,6;
+	monster "job_knt",53,52,"Frilldora",1119,1,"Cavaleiro2::OnMyMobDead";
+	monster "job_knt",34,52,"Frilldora",1119,1,"Cavaleiro2::OnMyMobDead";
+	monster "job_knt",58,52,"Drainliar",1111,1,"Cavaleiro2::OnMyMobDead";
+	monster "job_knt",58,52,"Drainliar",1111,1,"Cavaleiro2::OnMyMobDead";
+	monster "job_knt",29,52,"Drainliar",1111,1,"Cavaleiro2::OnMyMobDead";
+	monster "job_knt",29,52,"Drainliar",1111,1,"Cavaleiro2::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Cavaleiro2::OnMyMobDead";
+	disablenpc "Cavaleiro2";
+	end;
+
+OnMyMobDead:
+	set .MeusMonstros,.MeusMonstros-1;
+	if (.MeusMonstros < 1) {
+		mes "[Cavaleiro das Lutas]";
+		mes "...Hmm.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Para o último estágio.";
+		close2;
+		warp "job_knt",143,152;
+		donpcevent "Cavaleiro2::OnDisable";
+		donpcevent "Cavaleiro3::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Cavaleiro2::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 32, 63, 71, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Cavaleiro2::OnDisable";
+	donpcevent "Windsor Bento#cav::OnStart";
+	end;
+}
+
+// Teste 2 parte 3
+//==========================================================
+-	script	Cavaleiro3	-1,{
+OnInit:
+	disablenpc "Cavaleiro3";
+	end;
+
+OnEnable:
+	enablenpc "Cavaleiro3";
+	if (!checkre(0)) {
+		set .MeusMonstros,7;
+		monster "job_knt",147,167,"Goblin Arqueiro",1258,1,"Cavaleiro3::OnMyMobDead";
+		monster "job_knt",136,158,"Goblin á Vapor",1280,1,"Cavaleiro3::OnMyMobDead";
+	}
+	else
+		set .MeusMonstros,5;
+	monster "job_knt",136,152,"Goblin",1122,1,"Cavaleiro3::OnMyMobDead";
+	monster "job_knt",150,152,"Goblin",1123,1,"Cavaleiro3::OnMyMobDead";
+	monster "job_knt",143,145,"Goblin",1124,1,"Cavaleiro3::OnMyMobDead";
+	monster "job_knt",143,167,"Goblin",1125,1,"Cavaleiro3::OnMyMobDead";
+	monster "job_knt",139,167,"Goblin",1126,1,"Cavaleiro3::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Cavaleiro3::OnMyMobDead";
+	disablenpc "Cavaleiro3";
+	end;
+
+OnMyMobDead:
+	set .MeusMonstros,.MeusMonstros-1;
+	if (.MeusMonstros < 1) {
+		mes "[Cavaleiro das Lutas]";
+		mes "...";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Muito bom.";
+		next;
+		mes "[Cavaleiro das Lutas]";
+		mes "...Vá falar com";
+		mes "a Cavaleira Educada agora.";
+		close2;
+		set CAVALEIRO_Q,8;
+		if(checkquest(9007) == -1) {
+			changequest 9006,9007;
+		}
+		warp "prt_in",80,100;
+		donpcevent "Cavaleiro3::OnDisable";
+		donpcevent "Windsor Bento#cav::OnStart";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Cavaleiro3::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 124, 132, 163, 171, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Cavaleiro3::OnDisable";
+	donpcevent "Windsor Bento#cav::OnStart";
+	end;
+}
+
+// Teste 3 (Maneiras)
+//==========================================================
+prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
+	mes "[Cavaleira Educada]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "Ah...!";
+			mes "Eu me pergunto, por que";
+			mes "você veio";
+			mes "me visitar?";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Você não está tendo";
+			mes "problemas como um Cavaleiro,";
+			mes "está? Bem, eu acho";
+			mes "você está se saindo bem~";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Claro~";
+			mes "Você é um membro";
+			mes "da Cavalaria de Prontera~";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "Ahh~";
+			mes "Que fofo~";
+			mes "um pequeno Aprendiz!";
+			mes "muitoooo fofo!";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Heh heh...";
+			mes "Você está interessado";
+			mes "em se tornar um Cavaleiro";
+			mes "mais tarde? Você será";
+			mes "um grande Cavaleiro~";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Lembre, você vai";
+			mes "se tornar um Cavaleiro,";
+			mes "está bem? promete?";
+			close;
+		}
+		else {
+			mes "Bem-Vindo a";
+			mes "Cavalaria de Prontera~";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Nós somos apenas cavaleiros,";
+			mes "mas espero que gostem";
+			mes "da sua estadia aqui.";
+			mes "Heh heh~";
+			close;
+		}
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Ooh, você é";
+		mes "um Espadachim...?";
+		mes "Você veio";
+		mes "mudar sua classe para";
+		mes "Cavaleiro?";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Para se candidatar, fale";
+		mes "com o Capitão.";
+		close;
+	}
+	else if (CAVALEIRO_Q >= 1 && CAVALEIRO_Q <= 7) {
+		mes "Hmmm?";
+		mes "Por que você";
+		mes "veio até Ana?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+			mes "[Cavaleira Educada]";
+			mes "Hmm~";
+			mes "Você se aplicou para a mudança de classe! Ok! Você irá em breve ser um cavaleiro com esse tipo de determinação!";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Mas...";
+			mes "Você tem que ir";
+			mes "falar com outros cavaleiros";
+			mes "antes de falar comigo.";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Eu adoraria testar";
+			mes "você desde o início,";
+			mes "mas eu não estou autorizada.";
+			mes "Hee hee~";
+			close;
+		}
+		mes "[Cavaleira Educada]";
+		mes "Ahh~";
+		mes "Certo...";
+		close;
+	}
+	else if ((CAVALEIRO_Q == 8) || (CAVALEIRO_Q == 9)){
+		if (CAVALEIRO_Q == 8) {
+			mes "Hmmm?";
+			mes "Por que você";
+			mes "veio até Ana?";
+			next;
+			if (select("Cavaleiro das Lutas me mandou:Ah, nada.") == 1) {
+				if(checkquest(9008) == -1) changequest 9007,9008;
+				mes "[Cavaleira Educada]";
+				mes "Ah!";
+				mes "Não é preciso dizer";
+				mes "mais nada.";
+				mes "Bem-vindo! É hora";
+				mes "de fazer o teste da Ana!";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Meu nome é Ana Beatriz,";
+				mes "uma cavaleira orgulhosa e Senhora da Cavalaria de Prontera. Eu irei testar a sua etiqueta como um Cavaleiro~";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Vou lhe contar uma história e você deve escolher uma resposta, sempre que";
+				mes "eu fizer uma pergunta. Sua etiqueta será julgada em suas respostas.";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Então escute cuidadosamente";
+				mes "e responda como se já fosse";
+				mes "um Cavaleiro, ok?";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Então,";
+				mes "vamos começar!";
+				next;
+			}
+			else {
+				mes "[Cavaleira Educada]";
+				mes "Ahh...";
+				mes "Certo~";
+				close;
+			}
+		}
+		else if (CAVALEIRO_Q == 9) {
+			mes "Hmmm?";
+			mes "Por que você";
+			mes "me visita?";
+			next;
+			if (select("Gostaria de fazer o teste de mudança de classe.: Ah, nada.") == 1) {
+				mes "[Cavaleira Educada]";
+				mes "Hmm~?";
+				mes "Você aprendeu";
+				mes "o que você fez de errado";
+				mes "da última vez? Se você";
+				mes "falhar de novo, eu vou";
+				mes "ficar brava!";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Então escute cuidadosamente";
+				mes "e responda como se você";
+				mes "fosse um Cavaleiro.";
+				mes "Bem, então,";
+				mes "vamos começar!";
+				next;
+				mes "[Cavaleira Educada]";
+				mes "Você é um cavaleiro e você está procurando por um grupo em Morroc.";
+				mes "Como é que você vai fazer para encontrar?";
+				next;
+			}
+			else {
+				mes "[Cavaleira Educada]";
+				mes "Ahh...";
+				mes "Certo~";
+				close;
+			}
+		}
+		mes "Você é um cavaleiro e você está procurando por um grupo em Morroc.";
+		mes "Como é que você vai fazer para encontrar?";
+		next;
+		if (select("Gritar que estou procurando por um grupo.: Abro uma sala de conversa e espero.: Procuro pessoas que procuram Cavaleiros.") != 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Você formou um grupo com jogadores de niveis iguais. Há um Sacerdote, um Bruxo, um Caçador, um Assassino, e um Ferreiro...";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Vocês seis decidiram ir caçar e escolheram ir às Pirâmides.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Vocês chegam até o Nível 4";
+		mes "das Pirâmides";
+		mes "com o seu grupo.";
+		mes "O que você deve fazer?";
+		next;
+		if (select("Checo a área a frente.:Reúno os monstros para os membros do meu grupo.:Lidero o grupo lentamente na frente.") != 2)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Mas alguns jogadores rudes, vieram com um grupo de monstros e desapareceram! O que você deve fazer?";
+		next;
+		if (select("Impesso os monstros de chegarem até o grupo.:Defendo-os enquanto o grupo se retira.:Fujo no meu Peco Peco.") == 2)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Felizmente, todos sobreviveram á crise. Mas enquanto você anda, você encontra uma pessoa que não está no seu grupo, desabada no chão.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "A pessoa está pedindo educadamente por ajuda. O que você deve fazer?";
+		next;
+		if (select("Peço ao Sacerdote do meu grupo para ajudar.:Digo que vou ajudar com Zeny.: Ignoro e sigo em frente.") == 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Você deve despedir-se dos membros de seu grupo porque você deve ir para outro lugar.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Mas você encontra";
+		mes "um item raro durante";
+		mes "a batalha. Qual";
+		mes "sua ação?";
+		next;
+		if(select("Dou a quem mais merecer.:Finjo que nada aconteceu e fico pra mim.:Decido com o grupo quem irá ficar com o item.") != 2)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Você acaba com o item e você vai para Prontera vendê-lo. Há muitas pessoas com lojas e salas abertas procurando vender itens.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "O que você deve";
+		mes "fazer para vender seu item?";
+		next;
+		if (select("Grito bem alto para todos.: Abro uma sala de e espero.:Anuncio perguntando se há alguém que esteja interessado na compra.") == 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Enquanto você está esperando,";
+		mes "alguém vem e implora";
+		mes "por itens e zeny.";
+		mes "O que você faz?";
+		next;
+		if (select("Dou-lhe alguns itens e zenys.:Simplesmente o ignoro.:Dou sugestões de um lugar para caçar.") == 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Agora você decide ir ao Labirinto da Floresta sozinho. Você feliz monta em seu Peco Peco.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Mas você esbarra em";
+		mes "alguém que está perdido.";
+		mes "O que você deve fazer?";
+		next;
+		if(select("Diga a pessoa como faz para alcançar a saída.:Levo a pessoa até a saída.:Dou uma asa de borboleta.") != 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Você está caçando por um bom tempo, e agora você está com pouco HP!";
+		mes "O que é muito perigoso.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Então um sacerdote";
+		mes "caminha próximo a você";
+		mes "Como você pediria";
+		mes "ao Sacerdote uma Cura?";
+		next;
+		if (select("Será que eu poderia ser curado,por favor?:Posso ser curado?:Cura pf!!") == 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Agora você está muito";
+		mes "exausto e é hora";
+		mes "de voltar para a cidade.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Então você encontra";
+		mes "um item raro";
+		mes "no chão.";
+		mes "O que você";
+		mes "faz?";
+		next;
+		if (select("Guardo o item.:Procuro ao redor para encontrar o dono.:Apenas ando por perto.") != 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Cavaleira Educada]";
+		mes "Ok,";
+		mes "este é o";
+		mes "fim do meu teste!";
+		next;
+		mes "[Cavaleira Educada]";
+		if (.@knight_t == 100) {
+			set CAVALEIRO_Q,10;
+			changequest 9008,9009;
+			mes "Bom trabalho, esse tipo de mentalidade é necessária para um Cavaleiro! Para o seu próximo teste, visite o Cavaleiro Devotado, por favor~";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Eu vou farei comentários agradáveis sobre você para o capitão. Saia bem nos testes restantes, ok?";
+			close;
+		}
+		else if (.@knight_t == 90) {
+			set CAVALEIRO_Q,10;
+			changequest 9008,9009;
+			mes "Bem, não foi perfeito,";
+			mes "mas eu acho que você sabe o suficiente";
+			mes "sobre etiqueta para";
+			mes "se tornar um Cavaleiro.";
+			next;
+			mes "[Cavaleira Educada]";
+			mes "Agora, é hora de você ir visitar o Cavaleiro Devotado para o seu próximo teste. Se saia bem no resto de seus testes. É melhor prometer~";
+			close;
+		}
+		set CAVALEIRO_Q,9;
+		mes "Hmm...";
+		mes "Para ser honesta, eu não acho que sua atitude é boa o suficiente para ser um cavaleiro ainda.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Se você realmente agir assim, todo mundo vai pensar que cavaleiros são rudes! Pense em como você respondeu as minhas perguntas e volte mais tarde.";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Se você quiser,";
+		mes "Eu vou deixar você";
+		mes "refazer o teste, ok?";
+		close;
+	}
+	else if (CAVALEIRO_Q == 10) {
+		mes "Hmmm?";
+		mes "Por que você";
+		mes "veio até Ana?";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Você deve visitar";
+		mes "o Cavaleiro Devotado para seu";
+		mes "próximo teste, ok?";
+		close;
+	}
+	else if (CAVALEIRO_Q == 14) {
+		mes "Uau~";
+		mes "Agora é hora de";
+		mes "todos decidirem";
+		mes "sua mudança de classe!";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Vamos falar com o nosso";
+		mes "capitão. Não se preocupe";
+		mes "demais. Deve";
+		mes "dar tudo certo.";
+		close;
+	}
+	else {
+		mes "Hmmm?";
+		mes "Por que você";
+		mes "veio até Ana?";
+		next;
+		mes "[Cavaleira Educada]";
+		mes "Você ainda tem";
+		mes "outros testes para fazer.";
+		mes "Apresse-se e termine~";
+		close;
+	}
+}
+
+// Test Teste 4 (paciência)
+//==========================================================
+prt_in,70,99,6	script	Cavaleiro Devotado#cav	734,{
+	mes "[Cavaleiro Devotado]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "Pense em sua";
+			mes "mente como se houvesse";
+			mes "água corrente.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Água corrente";
+			mes "evita os obstáculos,";
+			mes "que estão no seu caminho...";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Cavaleiros devem ser";
+			mes "capaz de transmitir as coisas,";
+			mes "como a água calma, em";
+			mes "uma situação.";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "Árvores com raízes profundas não balançam com o vento. O fato de que as habilidades poderosas devem ser construídas sobre bases fortes é imutável...";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Seu futuro";
+			mes "pode mesmo ser";
+			mes "decidido agora...";
+			close;
+		}
+		else {
+			mes "Tudo neste mundo existe em harmonia. Viver sem interromper essa harmonia é o caminho certo para viver...";
+			close;
+		}
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Aqueles com pensamentos nefastos só sonham esses pensamentos. É melhor não ter sonhos em tudo do que ter sonhos de tristeza e desespero.";
+		close;
+	}
+	else if (CAVALEIRO_Q >= 1 && CAVALEIRO_Q <= 9) {
+		mes "O que é isso...";
+		mes "Espadachim andarilho?";
+		next;
+		if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Devotado]";
+			mes "A semente primeiro deve ser plantada";
+			mes "na terra antes que a semente possa germinar. Então, o broto deve crescer folhas, antes da flor se transformar em frutos...";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Se não...";
+			mes "O fruto será";
+			mes "incompleto.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Vá até os outros";
+			mes "primeiro, de modo que você";
+			mes "possa encontrar o seu caminho...";
+			close;
+		}
+		mes "[Cavaleiro Devotado]";
+		mes "A vida que você";
+		mes "quer em breve estará";
+		mes "diante de seus olhos.";
+		mes "Tudo";
+		mes "virá em perfeita";
+		mes "ordem.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 10) {
+		mes "O que é isso...";
+		mes "Espadachim andarilho?";
+		next;
+		if (select("A Cavaleira Educada me enviou.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Devotado]";
+			mes "Agora é a vez de fazer o meu teste. Por favor faça o seu melhor, assim como você tem feito nos outros testes.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Meu nome é";
+			mes "Edmond Groster.";
+			mes "Eu sou um membro da";
+			mes "da Cavalaria de Prontera.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Cavaleiros estão sempre em posição para ajudar os outros. Portanto, você deve pensar modestamente sobre o mundo e ter a personalidade para caber ao papel que você vai exercer.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Você não deve tomar decisões precipitadas.Sua vontade deve dobrar-se como palha ou ser firme como pedra quando a situação pedir.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Você não deve matar monstros sem motivo se não têm prazer em fazê-lo.Guarde este tempo para pensar calmamente sobre isso...";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Em seguida, deve";
+			mes "começar o teste.";
+			mes "Tenha em mente";
+			mes "a qualidade de";
+			mes "reverência.";
+			close2;
+			set CAVALEIRO_Q,11;
+			changequest 9009,9010;
+			warp "job_knt",143,57;
+			end;
+		}
+		mes "[Cavaleiro Devotado]";
+		mes "A vida que você quer";
+		mes "em breve estará diante";
+		mes "de seus olhos.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 11) {
+		mes "O que é isso...";
+		mes "Espadachim andarilho?";
+		next;
+		if (select("Sinto muito, eu não pretendia isto ...:Ah, nada.") == 1) {
+			mes "[Cavaleiro Devotado]";
+			mes "Você foi muito descuidado no último teste. Espada do Cavaleiro existe para proteger os outros, não para atormentar os monstros mais fracos.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "Em um mundo onde tudo existe em harmonia, você não pode deixar os seres humanos destruirem tudo continuamente sem propósito. Este princípio se aplica ao mundo real, não apenas para este teste.";
+			next;
+			mes "[Cavaleiro Devotado]";
+			mes "O teste";
+			mes "irá começar.";
+			mes "Me mostre sua";
+			mes "paciencia...";
+			close2;
+			warp "job_knt",143,57;
+			end;
+		}
+		mes "[Cavaleiro Devotado]";
+		mes "A vida que você";
+		mes "deseja em breve estará";
+		mes "diante dos seus olhos.";
+		mes "Tudo vai";
+		mes "vir em perfeita";
+		mes "ordem.";
+		close;
+	}
+	else if (CAVALEIRO_Q == 12 || CAVALEIRO_Q == 13) {
+		mes "Eu vi o seu caráter. Agora é hora de você fazer o teste final. Vá, e fale";
+		mes "com o Cavaleiro Modesto...";
+		close;
+	}
+	else {
+		mes "Vá, e fale";
+		mes "como o Capitão.";
+		mes "Chegou a hora";
+		mes "de todos se reunirem";
+		mes "para avaliar seu";
+		mes "desempenho.";
+		close;
+	}
+}
+
+job_knt,1,1,1	script	Cronômetro#cav	107,{
+OnTimer300000:
+	enablenpc "Teletransporte#cav";
+	end;
+
+OnTimer300500:
+	donpcevent "Cronômetro#cav::OnDisable";
+	disablenpc "Teletransporte#cav";
+	end;
+
+OnTimer301500:
+	stopnpctimer;
+	donpcevent "Cronômetro#cav::OnEnable";
+	end;
+
+OnInit:
+OnEnable:
+	enablenpc "Cronômetro#cav";
+	monster "job_knt",141,57,"Poring",1002,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",145,57,"Poring",1002,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",143,55,"Poring",1002,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",143,59,"Poring",1002,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",141,55,"Lunático",1063,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",141,59,"Lunático",1063,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",145,55,"Lunático",1063,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",145,59,"Lunático",1063,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",139,57,"Chonchon",1011,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",147,57,"Chonchon",1011,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",143,53,"Chonchon",1011,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",143,61,"Chonchon",1011,1,"Cronômetro#cav::OnMyMobDead";
+	//Esses monstros estavam fora dos limites. Ajustado para que fiquem nos seus limites.
+	monster "job_knt",165,54,"Cogumelo",1182,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",165,57,"Cogumelo",1182,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",122,54,"Cogumelo",1182,1,"Cronômetro#cav::OnMyMobDead";
+	monster "job_knt",122,57,"Cogumelo",1182,1,"Cronômetro#cav::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt","Cronômetro#cav::OnMyMobDead";
+	disablenpc "Cronômetro#cav";
+	disablenpc "Teletransporte#cav";
+	end;
+
+OnMyMobDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_knt,145,57,1	script	Teletransporte#cav	107,22,22,{
+OnInit:
+	disablenpc "Teletransporte#cav";
+	end;
+OnTouch:
+	set CAVALEIRO_Q,12;
+	changequest 9010,9011;
+	warp "prt_in",80,100;
+	end;
+}
+
+// Teste 5, Criação de Claymores para cavaleiros
+//==========================================================
+prt_in,87,92,4	script	Cavaleiro Modesto#cav	119,{
+	mes "[Cavaleiro Modesto]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "O brilho da luz";
+			mes "que brilha desta lâmina não pode ser dito em palavras. Esta é a arma que cada cavaleiro deve ter.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Sim...";
+			mes "^3355FFClaymore^000000!";
+			mes "Cada Cavaleiro";
+			mes "gostaria de ter uma!";
+			next;
+			switch(select("Fale sobre a ^3355FFClaymore^000000:Comprar uma Claymore:Fim de Conversa")) {
+			case 1:
+				mes "[Cavaleiro Modesto]";
+				mes "Claymore, uma das melhores entre as famosas espadas que você pode conseguir em Rune-Midgard! Seu valor é inestimável quando usada por um Cavaleiro.";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Agora, a Cavalaria de Prontera está fazendo essas fabulosas Claymores. Para Cavaleiros, elas custam apenas ^3355FF74,000^000000 Zenys.";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Mas não é só isso, você precisa";
+				mes "1 ^3355FFAço^000000 por causa das características da Claymore. Se você quiser, eu posso criar uma para você. Pela honra da Cavalaria de Prontera!";
+				close;
+			case 2:
+				set .@now_weight,MaxWeight-Weight;
+				if (.@now_weight < 1800) {
+					mes "[Cavaleiro Modesto]";
+					mes "Ah não...";
+					mes "Parece que você está carregando coisas demais. Você não tem espaço suficiente para uma Claymore pesada em seu inventário.";
+					next;
+					mes "[Cavaleiro Modesto]";
+					mes "Por que você não";
+					mes "vai e organiza";
+					mes "seus itens primeiro.";
+					close;
+				}
+				else {
+					if ((Zeny > 73999) && (countitem(999) > 0) && (BaseJob == Job_Knight)) {
+						mes "[Cavaleiro Modesto]";
+						mes "Você está pronto!";
+						mes "Você deve saber o";
+						mes "o verdadeiro valor";
+						mes "da Claymore!";
+						mes "Farei";
+						mes "isto agora!!";
+						next;
+						mes "[Cavaleiro Modesto]";
+						mes "Eu sei o básico da";
+						mes "criação da Claymore,";
+						mes "é fácil. Espere~!";
+						next;
+						mes "^3355FF*Agita Agita*^000000";
+						mes "^3355FF*Martela Martela*^000000";
+						next;
+						mes "[Cavaleiro Modesto]";
+						mes "Ok, ela está pronta!";
+						mes "para o orgulho dos Cavaleiros:";
+						mes "uma linda ^3355FFClaymore^000000.";
+						mes "Você ganhou um item confiável.";
+						mes "Será ser uma boa companheira em suas aventuras.";
+						delitem 999,1; //Aço
+						set Zeny, Zeny - 74000;
+						getitem 1163,1; //Claymore
+						close;
+					}
+					mes "[Cavaleiro Modesto]";
+					mes "Eu sei que você realmente quer uma Claymore, mas eu não posso fazer isso sem os materiais.";
+					mes "^3355FF74,000 zeny^000000 e ^3355FF1 Aço!^000000.";
+					next;
+					mes "[Cavaleiro Modesto]";
+					mes "Volte quando";
+					mes "você tiver tudo";
+					mes "pronto. Estarei";
+					mes "esperando...";
+					close;
+				}
+			case 3:
+				mes "[Cavaleiro Modesto]";
+				mes "Qualquer cavaleiro deve ser capaz de empunhar uma Claymore como se fosse uma extensão do seu corpo. Eu costumava olhar para a frente brandindo minha Claymore na batalha...";
+				close;
+			}
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "Acredite se quiser";
+			mes "ou não, eu";
+			mes "já fui um Aprendiz";
+			mes "também.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Eu nunca tinha planejado realmente se tornar um cavaleiro, mas eu decidi me tornar uma pessoa forte. De alguma forma, ao longo de minhas viagens, eu acabei me juntando a Cavalaria de Prontera. Ha ha ha!";
+			close;
+		}
+		mes "Jovem, uma dica,";
+		mes "use o seu tempo";
+		mes "sabiamente.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Não tem sentido";
+		mes "guardar mágoas";
+		mes "uma vez que o tempo já passou.";
+		close;
+	}
+	if (CAVALEIRO_Q == 0) {
+		mes "Jovem, uma dica,";
+		mes "use o seu tempo";
+		mes "sabiamente.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Não tem sentido";
+		mes "guardar mágoas";
+		mes "uma vez que o tempo já passou.";
+		close;
+	}
+	else if ((CAVALEIRO_Q == 12) || (CAVALEIRO_Q == 13)) {
+		if (CAVALEIRO_Q == 12) {
+			mes "Ah...";
+			mes "Um jovem Espadachim.";
+			mes "Sim, o que posso";
+			mes "fazer por você?";
+			next;
+			if (select("Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+				mes "[Cavaleiro Modesto]";
+				mes "Hoho, eu vejo.";
+				mes "Então você terminou";
+				mes "todos os outros";
+				mes "testes?";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Então";
+				mes "começaremos o meu?";
+				mes "Não é realmente";
+				mes "um teste.";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Vamos conversar";
+				mes "casualmente?";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Primeiro...";
+				mes "Por que você";
+				mes "decidiu se tornar";
+				mes "um Cavaleiro?";
+				next;
+			}
+			else {
+				mes "[Cavaleiro Modesto]";
+				mes "Tome cuidado!";
+				close;
+			}
+		}
+		else if (CAVALEIRO_Q == 13) {
+			mes "Ah, você denovo.";
+			mes "O que lhe traz";
+			mes "até mim?";
+			next;
+			if (select("Eu estive pensando muito.:Ah, nada.") == 1) {
+				mes "[Cavaleiro Modesto]";
+				mes "É isso mesmo...";
+				mes "Eu me pergunto se você";
+				mes "realmente tem...";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Então...";
+				mes "Como da última vez,";
+				mes "Vou perguntar de novo...";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Primeiro...";
+				mes "Por que você";
+				mes "decidiu se tornar";
+				mes "um Cavaleiro?";
+				next;
+			}
+			else {
+				mes "[Cavaleiro Modesto]";
+				mes "Tome cuidado!";
+				mes "Saúde é";
+				mes "o tesouro de";
+				mes "cada homem!";
+				close;
+			}
+		}
+		switch(select("Para me tornar mais forte ...:Para ajudar a minha guilda ...:Porque eu estou insatisfeito comigo mesmo...")) {
+		case 1:
+			mes "[Cavaleiro Modesto]";
+			mes "Para se tornar mais forte, você diz?";
+			mes "Sim, os cavaleiros são fortes.";
+			mes "Mas por que adquirir força?";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "É para mostrar aos outros? Para alcançar a fama? Ou você tem uma razão diferente? O que você acha que é tão bom quanto ganhar força como um Cavaleiro?";
+			next;
+			switch(select("Ganhar riqueza e fama.: Poder me proteger.:Poder proteger os outros.")) {
+			case 1:
+				set .@knight_t,.@knight_t+10;
+				mes "[Cavaleiro Modesto]";
+				mes "Claro, a riqueza e a fama têm o seu lugar no mundo. Mas nós, como cavaleiros devemos viver para as virtudes mais elevadas.";
+				next;
+				break;
+			case 2:
+				mes "[Cavaleiro Modesto]";
+				mes "Bom pensamento. Você deve primeiro ser capaz de se proteger, a fim de proteger os outros. Para isto, você deve treinar constantemente, e nunca ceder à preguiça.";
+				next;
+				break;
+			case 3:
+				mes "[Cavaleiro Modesto]";
+				mes "Ah, uma idéia maravilhosa. A força de um Cavaleiro deve ser usada para proteger os fracos e defender a justiça.";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Infelizmente, existem alguns cavaleiros que nos envergonham por esquecer os ideais que deveriam ser básicos para Cavalaria...";
+				next;
+				break;
+			}
+			break;
+		case 2:
+			mes "[Cavaleiro Modesto]";
+			mes "Ah, para ajudar a sua guilda, ou talvez até mesmo seu grupo. Nosso sábio e benevolente Rei Tristram III nos deu estas palavras de ouro...";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "^8B7500Após o rio calmo, existe uma cachoeira perigosa. Portanto, você deve sempre estar preparado para tudo...^000000";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Assim, como você";
+			mes "que pode";
+			mes "ajudar sua guilda?";
+			next;
+			switch(select("Minha guilda precisa de mim.:Eu posso ajudar a recolher fundos para a minha guilda.:Eu posso proteger membros da minha guilda.")) {
+			case 1:
+				mes "[Cavaleiro Modesto]";
+				mes "Qualquer pessoa, em qualquer lugar no mundo,";
+				mes "tem um lugar onde eles são necessários. Nunca seja negligente com alguém que esteja em necessidade, mesmo que ele não seja um membro da guilda.";
+				next;
+				break;
+			case 2:
+				set .@cavaleiro_t,.@cavaleiro_t+10;
+				mes "[Cavaleiro Modesto]";
+				mes "É claro que a riqueza é importante.";
+				mes "Mas nós cavaleiros devemos viver para as virtudes mais elevadas.";
+				next;
+				break;
+			case 3:
+				mes "[Cavaleiro Modesto]";
+				mes "Ah, uma idéia maravilhosa. A força de um Cavaleiro deve ser usada para proteger os fracos e defender a justiça.";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Infelizmente, há alguns cavaleiros que nos envergonham por esquecer os ideais que deveriam ser os básicos para a Cavalaria...";
+				next;
+				break;
+			}
+			break;
+		case 3:
+			set .@knight_t,.@knight_t+5;
+			mes "[Cavaleiro Modesto]";
+			mes "Satisfação, você disse.";
+			mes "Parece que você se tornou";
+			mes "um bom espadacim.";
+			mes "Existe uma razão especial para que você deseje ser um Cavaleiro?";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Eu não sei quanto a";
+			mes "Espadachins, mas Cavaleiros não permitem a auto-indulgência. Há aqueles tão obcecados por ganhar força que eles não conseguem se controlar.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Assim...";
+			mes "Que parte de si mesmo";
+			mes "não te satisfaz";
+			mes "atualmente?";
+			next;
+			switch(select("Habilidades.:Objetivo.:Aparência.")) {
+			case 1:
+				set .@knight_t,.@knight_t+5;
+				mes "[Cavaleiro Modesto]";
+				mes "Habilidade é algo que você ganha com a experiência como um Cavaleiro. Não pode ser seu maior objetivo. Caso contrário, você nunca ficará satisfeito como um Cavaleiro.";
+				next;
+				break;
+			case 2:
+				set .@knight_t,.@knight_t-5;
+				mes "[Cavaleiro Modesto]";
+				mes "Eu vejo...";
+				mes "Sempre ter uma meta é muito importante. Você pode estar cheio de idéias quando se tornar um cavaleiro, mas isso pode mudar com o tempo.";
+				next;
+				break;
+			case 3:
+				set .@knight_t,.@knight_t+5;
+				mes "[Cavaleiro Modesto]";
+				mes "Ah não...";
+				mes "O que você vê não é o que realmente importa. Um espadachim pode ser mais forte do que um Cavaleiro, e até mesmo cavaleiro pode ficar fraco se ele se torna preguiçoso.";
+				next;
+				break;
+			}
+			break;
+		}
+		mes "[Cavaleiro Modesto]";
+		mes "Eu entendo os seus pensamentos,";
+		mes "mas há aqueles que desejam";
+		mes "tornar-se cavaleiros, sem pensar.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Aqueles são os que trazem problemas e envergonham a honra dos Cavaleiros, trazendo resultados irreversíveis.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "O mesmo vale para você. Depois de se tornar um Cavaleiro, você nunca poderá se tornar um Espadachim novamente. Os deveres e responsabilidades de um cavaleiro estarão sempre com você.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Se você se tornar um Cavaleiro, o que você vai fazer primeiro?";
+		next;
+		switch(select("Eu irei direto para a batalha.:Existem pessoas esperando por mim.:Vou aprender mais sobre Cavaleiros.")) {
+		case 1:
+			mes "[Cavaleiro Modesto]";
+			mes "Batalha...?";
+			mes "E, em seguida?";
+			next;
+			switch(select("Eu vou crescer dentro de um curto período de tempo.:Eu gostaria de testar minha capacidade como um Cavaleiro.:Eu gostaria de ir a lugares mais difíceis.")) {
+			case 1:
+				set .@knight_t,.@knight_t+10;
+				mes "[Cavaleiro Modesto]";
+				mes "Não tenha muita pressa para se tornar forte. Mesmo que se torne";
+				mes "um Cavaleiro, você ainda será você mesmo.";
+				next;
+				break;
+			case 2:
+				mes "[Cavaleiro Modesto]";
+				mes "Testar a si mesmo é uma coisa boa. Não há problema em ser feliz quando você mudar, mas não se esqueça sobre as verdadeiras qualidades de ser um Cavaleiro.";
+				next;
+				break;
+			case 3:
+				mes "[Cavaleiro Modesto]";
+				mes "Mesmo se você se tornar um Cavaleiro, você não está alterando o seu eu interior. Não há necessidade de sobrecarregar-se.";
+				mes "Relaxe e leve as coisas passo a passo.";
+				next;
+				break;
+			}
+			break;
+		case 2:
+			mes "[Cavaleiro Modesto]";
+			mes "Quem é";
+			mes "que está esperando por você?";
+			next;
+			switch(select("Meus Amigos.:Os membros do meu Clã.:Meu amor.")) {
+			case 1:
+				mes "[Cavaleiro Modesto]";
+				mes "Eu entendo, eles quetem compartilhar a alegria de suas conquistas. Nunca perca o seu bom coração, e sempre ajude os seus amigos.";
+				next;
+				break;
+			case 2:
+				mes "[Cavaleiro Modesto]";
+				mes "Aqueles que desejam participar na sua felicidade e sofrimento. Como Cavaleiro, você deve sempre proteger.";
+				next;
+				break;
+			case 3:
+				mes "[Cavaleiro Modesto]";
+				mes "Oh, juventude!";
+				mes "Tornando-se um Cavaleiro";
+				mes "para o seu amor!";
+				mes "Sempre proteja "+((Sex)?"ele":"ela")+"";
+				mes "Mesmo com o sacrifício";
+				mes "de sua própria vida!";
+				next;
+				mes "[Cavaleiro Modesto]";
+				mes "Também...";
+				mes "Ame para sempre.";
+				mes "Um sincero afeto";
+				mes "é difícil de encontrar.";
+				next;
+				break;
+			}
+			break;
+		case 3:
+			mes "[Cavaleiro Modesto]";
+			mes "Boa atitude...";
+			mes "O que você planeja";
+			mes "na aprendizagem?";
+			next;
+			switch(select("Lugares confortáveis para cavaleiros irem...:Os caminhos diferentes de um cavaleiro...:Maneiras de obter mais dinheiro como um Cavaleiro...")) {
+			case 1:
+				set .@knight_t,.@knight_t+5;
+				mes "[Cavaleiro Modesto]";
+				mes "Há muitos lugares que são confortáveis ou desconfortáveis neste mundo. No entanto cavaleiros devem";
+				mes "ser capazes de sobreviver em qualquer lugar.";
+				next;
+				break;
+			case 2:
+				mes "[Cavaleiro Modesto]";
+				mes "Há muitos cavaleiros parecidos mundo a fora. Pense neles como veteranos e faça muitas perguntas.";
+				next;
+				break;
+			case 3:
+				set .@knight_t,.@knight_t+15;
+				mes "[Cavaleiro Modesto]";
+				mes "Ah não. Você tem a riqueza como uma prioridade sendo um Cavaleiro? Nós não fomos treinados para ser assim. Venha novamente quando você entender";
+				mes "sobre isto...";
+				next;
+				break;
+			}
+			break;
+		}
+		mes "[Cavaleiro Modesto]";
+		mes "Ah, não, ficamos conversando por muito tempo...";
+		mes "Peço desculpas por";
+		mes "mantê-lo aqui";
+		mes "por tanto tempo.";
+		next;
+		if (.@knight_t == 0) {
+			set CAVALEIRO_Q,14;
+			changequest 9011,9012;
+			mes "[Cavaleiro Modesto]";
+			mes "Eu gosto de conversar com você. Você me faz lembrar de mim como um jovem recruta. Vamos falar com o capitão e decidir sobre a sua";
+			mes "mudança de classe?";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Não se preocupe muito,";
+			mes "eu tenho uma boa";
+			mes "opinião sobre você.";
+			mes "Agora, vá~";
+			close;
+		}
+		else if (.@knight_t == 5) {
+			set CAVALEIRO_Q,14;
+			changequest 9011,9012;
+			mes "[Cavaleiro Modesto]";
+			mes "Eu gosto de falar com você. Você pode pensar mais nos princípios da Cavalaria depois que você se tornar um Cavaleiro.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Em seguida, iremos até o capitão e decidiremos a sua mudança de classe? Não se preocupe. Você é bom o suficiente para ser um Cavaleiro!";
+			close;
+		}
+		else if (.@knight_t == 10) {
+			set CAVALEIRO_Q,14;
+			changequest 9011,9012;
+			mes "[Cavaleiro Modesto]";
+			mes "Eu gosto de conversar com você. Embora, haja algumas";
+			mes "coisas que me incomodam...";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Você deve ir";
+			mes "até o capitão";
+			mes "para que possamos decidir";
+			mes "sua mudança de classe.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Não se preocupe muito, chegando a terminar o meu teste, os outros aceitarão você também.";
+			mes "Agora vá..!";
+			close;
+		}
+		else {
+			set CAVALEIRO_Q,13;
+			mes "[Cavaleiro Modesto]";
+			mes "Conversar";
+			mes "com jovens";
+			mes "é sempre agradável...";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Mas parece que seu sonho está em outro lugar, ou  seu foco é vago. Passe mais tempo como espadachim, e volte";
+			mes "aqui mais tarde.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Se você realmente deseja se tornar um Cavaleiro, primeiro você deve mudar a sua visão. Em seguida, veremos.";
+			close;
+		}
+	}
+	else if (CAVALEIRO_Q == 14) {
+		mes "Eu disse a você";
+		mes "para ir até";
+		mes "o capitão.";
+		next;
+		mes "[Cavaleiro Modesto]";
+		mes "Todo mundo vai";
+		mes "cuidadosamente fazer";
+		mes "sua decisão,";
+		mes "então vá agora!";
+		close;
+	}
+	else {
+		mes "Ah...";
+		mes "Um jovem Espadachim.";
+		mes "O que posso fazer por você?";
+		next;
+		if (select("Eu Gostaria de fazer o teste de mudança de classe.:Ah, nada.") == 1) {
+			mes "[Cavaleiro Modesto]";
+			mes "Hoho~";
+			mes "Há muitos";
+			mes "outros jovens";
+			mes "Cavaleiros aqui.";
+			next;
+			mes "[Cavaleiro Modesto]";
+			mes "Se você falar";
+			mes "com todos eles,";
+			mes "Eu poderei falar com";
+			mes "você também.";
+			close;
+		}
+		mes "[Cavaleiro Modesto]";
+		mes "Tome cuidado!";
+		mes "A saúde";
+		mes "é o tesouro";
+		mes "de cada homem!";
+		close;
+	}
+}

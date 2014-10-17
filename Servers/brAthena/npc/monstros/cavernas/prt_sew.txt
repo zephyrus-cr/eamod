@@ -1,0 +1,106 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: prt_sew.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros do Esgoto de Prontera             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//================================================================
+// [Pré-Renovação] prt_sewb1 - Esgoto de Prontera (Primeiro Andar)
+//================================================================
+prt_sewb1,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,80,0,0,0
+prt_sewb1,0,0,0,0	monster#pre	Besouro-Ladrão	1051,30,0,0,0
+prt_sewb1,0,0,0,0	monster#pre	Familiar	1005,10,0,0,0
+prt_sewb1,0,0,0,0	monster#pre	Tarou	1175,10,0,0,0,{}
+
+//================================================================
+// [Renovação] prt_sewb1 - Esgotos de Prontera (Primeiro Andar)
+//================================================================
+prt_sewb1,0,0,0,0	monster#re	Besouro-Ladrão	1051,30,5000,0,0
+prt_sewb1,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,80,5000,0,0
+prt_sewb1,0,0,0,0	monster#re	Tarou	1175,10,5000,0,0
+prt_sewb1,0,0,0,0	monster#re	Familiar	1005,10,5000,0,0,{}
+
+//================================================================
+// [Pré-Renovação] prt_sewb2 - Esgoto de Prontera (Segundo Andar)
+//================================================================
+prt_sewb2,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,20,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Besouro-Ladrão	1051,70,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Familiar	1005,10,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Esporo	1014,20,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Plankton	1161,30,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Besouro-Ladrão Female	1053,10,0,0,0
+prt_sewb2,0,0,0,0	monster#pre	Tarou	1175,60,0,0,0,{}
+
+//================================================================
+// [Renovação] prt_sewb2 - Esgotos de Prontera (Segundo Andar)
+//================================================================
+prt_sewb2,0,0,0,0	monster#re	Besouro-Ladrão	1051,70,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Tarou	1175,60,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Plâncton	1161,30,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,20,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Esporo	1014,20,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Besouro-Ladrão Fêmea	1053,10,5000,0,0
+prt_sewb2,0,0,0,0	monster#re	Familiar	1005,10,5000,0,0,{}
+
+//================================================================
+// [Pré-Renovação] prt_sewb3 - Esgoto de Prontera (Terceiro Andar)
+//================================================================
+prt_sewb3,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,10,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Besouro-Ladrão	1051,20,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,65,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Besouro-Ladrão Macho	1054,65,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Tarou	1175,15,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Esporo Venenoso	1077,15,0,0,0
+prt_sewb3,0,0,0,0	monster#pre	Familiar	1005,20,0,0,0,{}
+
+//================================================================
+// [Renovação] prt_sewb3 - Esgotos de Prontera (Segundo Andar)
+//================================================================
+prt_sewb3,0,0,0,0	monster#re	Besouro-Ladrão Fêmea	1053,65,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Besouro-Ladrão Macho	1054,65,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Besouro-Ladrão	1051,20,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Familiar	1005,20,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Tarou	1175,15,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Esporo Venenoso	1077,15,5000,0,0
+prt_sewb3,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,10,5000,0,0,{}
+
+//================================================================
+// [Pré-Renovação] prt_sewb4 - Esgoto de Prontera (Quarto Andar)
+//================================================================
+prt_sewb4,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,10,0,0,0
+prt_sewb4,0,0,0,0	monster#pre	Besouro-Ladrão	1051,20,0,0,0
+prt_sewb4,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,20,0,0,0
+prt_sewb4,0,0,0,0	monster#pre	Besouro-Ladrão Macho	1054,70,0,0,0
+prt_sewb4,0,0,0,0	monster#pre	Drainliar	1111,20,0,0,0
+prt_sewb4,0,0,0,0	monster#pre	Cãibra	1209,5,0,0,0
+prt_sewb4,0,0,0,0	boss_monster#pre	Besouro-Ladrão Dourado	1086,1,3600000,600000,1,{}
+
+//================================================================
+// [Renovação] prt_sewb4 - Esgotos de Prontera (Quarto Andar)
+//================================================================
+prt_sewb4,0,0,0,0	monster#re	Besouro-Ladrão Macho	1054,70,5000,0,0
+prt_sewb4,0,0,0,0	monster#re	Besouro-Ladrão	1051,20,5000,0,0
+prt_sewb4,0,0,0,0	monster#re	Besouro-Ladrão Fêmea	1053,20,5000,0,0
+prt_sewb4,0,0,0,0	monster#re	Drainliar	1111,20,5000,0,0
+prt_sewb4,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,10,5000,0,0
+prt_sewb4,0,0,0,0	monster#re	Cãibra	1209,5,5000,0,0
+prt_sewb4,0,0,0,0	boss_monster#re	Besouro-Ladrão Dourado	1086,1,3600000,600000,1,{}

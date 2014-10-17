@@ -1,0 +1,80 @@
+Index: conf/groups.conf
+===================================================================
+--- conf/groups.conf	(revision 176)
++++ conf/groups.conf	(working copy)
+@@ -528,6 +528,12 @@
+ -Command to simulate how others players read you in the current language.
+ say: true
+ 
++-Reloads factiondb
++reloadfactiondb: true
++
++-Reloads langdb
++reloadlangdb: true
++
+    ----------------------------------------------------------------------------------------------
+    eAmod Commands - END
+    ---------------------------------------------------------------------------------------------- */
+Index: src/map/atcommand.c
+===================================================================
+--- src/map/atcommand.c	(revision 176)
++++ src/map/atcommand.c	(working copy)
+@@ -3869,6 +3869,13 @@
+ 	} else if (strstr(command, "instancedb") || strncmp(message, "instancedb", 4) == 0) {
+ 		instance_readdb();
+ 		clif_displaymessage(fd, msg_txt(sd,516)); // Instance database has been reloaded.
++	} else if (strstr(command, "factiondb") || strncmp(message, "factiondb", 4) == 0) {
++		lang_reload();
++		faction_reload();
++		clif_displaymessage(fd, "Faction Database Reloaded");
++	} else if (strstr(command, "langdb") || strncmp(message, "langdb", 4) == 0) {
++		lang_reload();
++		clif_displaymessage(fd, "Language Database Reloaded");
+ 	}
+ 
+ 	return 0;
+@@ -11433,6 +11440,8 @@
+ 		ACMD_DEF2("reloadmsgconf", reload),
+ 		ACMD_DEF2("reloadpacketdb", reload),
+ 		ACMD_DEF2("reloadinstancedb", reload),
++		ACMD_DEF2("reloadfactiondb", reload),
++		ACMD_DEF2("reloadlangdb",reload),
+ 		ACMD_DEF(partysharelvl),
+ 		ACMD_DEF(mapinfo),
+ 		ACMD_DEF(dye),
+Index: src/map/faction.c
+===================================================================
+--- src/map/faction.c	(revision 176)
++++ src/map/faction.c	(working copy)
+@@ -346,6 +346,17 @@
+ 	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n",count,path);
+ }
+ 
++void faction_reload (void)
++{
++	faction_db_load(true);
++}
++
++void lang_reload (void)
++{
++	lang_db->clear(lang_db,lang_db_clear);
++	sv_readdb(db_path, "lang_db.txt", ',', 3, 2 + (LANG_MAX_WORDS * LANG_MAX_CHARS), LANG_SYS_MAX, faction_parse_row_lang, false);
++}
++
+ void do_init_faction(void)
+ {
+ 	make_crc_table();
+Index: src/map/faction.h
+===================================================================
+--- src/map/faction.h	(revision 176)
++++ src/map/faction.h	(working copy)
+@@ -50,6 +50,9 @@
+ struct lang_data* lang_search(int lang_id);
+ char* lang_convert(char* dst, const char* message, size_t size, int lang_id);
+ 
++void faction_reload(void);
++void lang_reload(void);
++
+ void do_init_faction(void);
+ void do_final_faction(void);
+ 

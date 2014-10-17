@@ -1,0 +1,226 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: vovo_farmaceutico.txt                  |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Troca itens por poções.                     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Script Otimizado [Mark]                            |
+//   | 1.2 Otimização [Mark & Clare]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Espere um momento! -";
+		mes "- Você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte depois -";
+		mes "- que colocar alguns no Armazém da Kafra. -";
+		close;
+	}
+	mes "[Vovô Farmacêutico]";
+	mes "Hummmm...";
+	mes "O que o trouxe aqui...?";
+	next;
+	switch(select("Fabricar Poção:Conversar:Instruções para fabricar poções:Cancelar")) {
+	case 1:
+		set .@weight,MaxWeight-Weight;
+		mes "[Vovô Farmacêutico]";
+		if ((.@weight) < 5000) {
+			mes "Por que você está carregando tanta coisa?";
+			mes "Não seja ganancioso, não carregue coisas desnecessárias!";
+			next;
+			mes "[Vovô Farmacêutico]";
+			mes "Você está com peso demais para carregar minhas poções...";
+			mes "Vá ao Armazém antes!";
+			close;
+		}
+			mes "Você tem todos os ingrediantes, certo? Qual poção você deseja?";
+			next;
+			switch(select("Poção Vermelha.","Poção Laranja.","Poção Amarela.","Poção Branca.","Poção Azul.","Poção Verde.","Atualmente, não quero nada.")) {
+			case 1:
+				callsub L_making,507,3,501;
+			case 2:
+				mes "[Vovô Farmacêutico]";
+				if (countitem(507) < countitem(713)) set .@max,countitem(507);
+				else if (countitem(508) < countitem(713)) set .@max,countitem(508);
+				else set .@max,countitem(713);
+
+				if ((countitem(507) < 1) || (countitem(508) < 1) || (countitem(713) == 0) || Zeny < 3) {
+					mes "Safado! O que estava pensando?! Vindo aqui sem nada. Tsk!";
+					mes "Vá embora!";
+					close;
+				}
+				mes "Quantas você deseja?";
+				next;
+				switch(select("Quantas eu puder.","Quero decidir quantas.","Atualmente, não quero nada.")) {
+				case 1:
+					if ((countitem(507) < .@max) || (countitem(508) < .@max) || (countitem(713) < .@max) || (Zeny < .@max*3)) {
+						mes "[Vovô Farmacêutico]";
+						mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
+						close;
+					}
+					set Zeny,Zeny-(.@max*5);
+					delitem 507,.@max;	// Erva Vermelha
+					delitem 508,.@max;	// Erva Amarela
+					delitem 713,.@max;	// Garrafa Vazia
+					getitem 502,.@max;	// Poção Laranja
+					break;
+				case 2:
+					mes "[Vovô Farmacêutico]";
+					mes "Decida uma quantidade menor que 100. Se não quiser nenhuma, digite '0'. Com os materiais você pode fazer até "+.@max+" poções.";
+					input .@amount,0,101;
+					next;
+					mes "[Vovô Farmacêutico]";
+					if (.@amount == 0) {
+						mes "Você vai mudar de idéia?!";
+						close;
+					}
+					if (.@amount > 100) {
+						mes "Você é surdo? Eu disse menor que 100!";
+						close;
+					}
+					if ((countitem(507) < .@amount) || (countitem(508) < .@amount) || (countitem(713) < .@amount) || (Zeny < .@amount*3)) {
+						mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
+						close;
+					}
+					set Zeny,Zeny-(.@amount*5);
+					delitem 507,.@amount;	  // Erva Vermelha
+					delitem 508,.@amount;	  // Erva Amarela
+					delitem 713,.@amount;	  // Garrafa Vazia
+					getitem 502,.@amount; 	// Poção Laranja
+					mes "Pode ir. Está tudo pronto, pode pegar. Mas lembre! Medicamentos demais não é bom.";
+					close;
+				case 3:
+					next;
+					mes "[Vovô Farmacêutico]";
+					mes "Hã?!";
+					mes "Grrr...";
+					mes "Bleh!";
+					mes "Vá embora!";
+					close;
+				}
+			case 3:
+				callsub L_making,508,10,503;
+			case 4:
+				callsub L_making,509,20,504;
+			case 5:
+				callsub L_making,510,30,505;
+			case 6:
+				callsub L_making,511,3,506;
+			case 7:
+				mes "[Vovô Farmacêutico]";
+				mes "Hã?!";
+				mes "Grrr...";
+				mes "Bleh!";
+				mes "Vá embora!";
+				close;
+			}
+	case 2:
+		mes "[Vovô Farmacêutico]";
+		mes "Com medicamentos, você pode aumentar sua capacidade de regeneração. Porém, isto é bom até certo ponto. *Sigh* Estou começando a pensar nos dias que eu era jovem. Devo estar ficando velho.";
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "De qualquer maneira, uma poção é apenas uma poção. Nada mais, nada menos.";
+		close;
+	case 3:
+		mes "[Vovô Farmacêutico]";
+		mes "Hrrrmm...";
+		mes "Vocês jovens são bastante irritantes. Mas, se você pediu, vou explicar.";
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Ervas naturais são muito boas, mas se você usar minhas técnicas especiais e habilidades para fazer poções, sem dúvida, o efeito é muito melhor.";
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Se você pedir educadamente, posso fazê-las para você. Mas, não é de graça... Não se preocupe, é uma pequena taxa, não é nada caro.";
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Poção Vermelha - ^0098E52 Erva Vermelha, 1 Garrafa Vazia, 2 zeny.^000000";
+		mes "Poção Laranja - ^0098E51 Erva Vermelha, 1 Erva Amarela, 1 Garrafa Vazia, 5 zeny.^000000";
+		mes "Poção Amarela - ^0098E52 Erva Amarela, 1 Garrafa Vazia, 10 zeny.^000000";
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Poção Branca - ^0098E52 Erva Branca, 1 Garrafa Vazia, 20 zeny.^000000";
+		mes "Poção Azul - ^0098E52 Erva Azul, 1 Garrafa Vazia, 30 zeny.^000000";
+		mes "Poção Verde - ^0098E52 Erva Verde, 1 Garrafa Vazia, 3 zeny.^000000";
+		close;
+	case 4:
+		mes "[Vovô Farmacêutico]";
+		mes "Como você é chato. Se tem algo a dizer, porque você não diz logo?!";
+		close;
+	}
+
+L_making:
+	mes "[Vovô Farmacêutico]";
+	if ((countitem(getarg(0))/2) < countitem(713)) set .@max,countitem(getarg(0))/2;
+	else  set .@max,countitem(713);
+
+	if ((countitem(getarg(0)) < 2) || (countitem(713) == 0) || Zeny < 3) {
+		mes "Safado! O que estava pensando?! Vindo aqui sem nada. Tsk!";
+		mes "Vá embora!";
+		close;
+	}
+	mes "Quantas você deseja?";
+	next;
+	switch(select("Quantas eu puder.","Quero decidir quantas.","Atualmente, não quero nada.")) {
+	case 1:
+		if ((countitem(getarg(0)) < .@max*2) || (countitem(713) < .@max) || (Zeny < .@max*getarg(1))) {
+			mes "[Vovô Farmacêutico]";
+			mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
+			close;
+		}
+		set Zeny,Zeny-(.@max*getarg(1));
+		delitem getarg(0),.@max*2;
+		delitem 713,.@max;	// Garrafa Vazia
+		getitem getarg(2),.@max;
+		close;
+	case 2:
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Decida uma quantidade menor que 100. Se não quiser nenhuma, digite '0'. Com os materiais você pode fazer até "+.@max+" poções.";
+		input .@amount;
+		next;
+		mes "[Vovô Farmacêutico]";
+		if (.@amount == 0) {
+			mes "Você vai mudar de idéia?!";
+			close;
+		}
+		if (.@amount > 100) {
+			mes "Você é surdo? Eu disse menor que 100!";
+			close;
+		}
+		if ((countitem(getarg(0)) < .@amount*2) || (countitem(713) < .@amount) || (Zeny < .@amount*getarg(1))) {
+			mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
+			close;
+		}
+		set Zeny,Zeny-(.@amount*getarg(1));
+		delitem getarg(0),.@amount*2;
+		delitem 713,.@amount;	// Garrafa Vazia
+		getitem getarg(2),.@amount;
+		mes "Pode ir. Está tudo pronto, pode pegar. Mas lembre! Medicamentos demais não é bom.";
+		close;
+	case 3:
+		next;
+		mes "[Vovô Farmacêutico]";
+		mes "Hã?!";
+		mes "Grrr...";
+		mes "Bleh!";
+		mes "Vá embora!";
+		close;
+	}
+}

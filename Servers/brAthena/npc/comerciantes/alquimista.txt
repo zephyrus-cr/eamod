@@ -1,0 +1,256 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: alquimista.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.7/1.2/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Vende materiais e manuais de Alquimia.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy e Mark]                       |
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alde_alche,31,186,3	script	Vendedor de Livros de Alquímia#alde	883,{
+
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Bem-vindo.";
+	mes "Eu sou o Vendedor de";
+	mes "^0000FFlivros artesanais especiais^000000 para Genéticos.";
+	next;
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Os Genéticos possuem algumas habilidades";
+	mes "que necessitam de livros artesanais para ativá-las.";
+	next;
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Quanto mais livros artesanais você tiver,";
+	mes "mais habilidades você poderá usar.";
+	next;
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Por favor entenda,";
+	mes "eu me especializei na venda destes livros especiais";
+	mes "e eu ^FF0000não vendo outros itens^000000.";
+	next;
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Certo então, aqui está a lista de livros artesanais disponíveis.";
+	next;
+	switch(select("[Livro de Bombas de Maçã] 100,000 zeny:[Livro de Bombas de Abacaxi] 100,000 zeny:[Livro de Bombas de Coco] 100,000 zeny:[Livro de Bombas de Melão] 100,000 zeny:[Livro de Bombas de Banana] 100,000 zeny:[Livro de Genética Vegetal] 100,000 zeny:[Livro de Farmacologia] 100,000 zeny:[Livro de Culinária Avançada] 100,000 zeny:[Como Aumentar sua Força] 100,000 zeny:[Como Aumentar sua Energia] 100,000 zeny:Fechar")){
+	case 1:
+		callsub Venda_Manual,6279,100000;  // Livro de Bombas de Maçã
+		break;
+	case 2:
+		callsub Venda_Manual,6280,100000;  // Livro de Bombas de Abacaxi
+		break;
+	case 3:
+		callsub Venda_Manual,6281,100000;  // Livro de Bombas de Coco
+		break;
+	case 4:
+		callsub Venda_Manual,6282,100000;  // Livro de Bombas de Melão
+		break;
+	case 5:
+		callsub Venda_Manual,6283,100000;  // Livro de Bombas de Banana
+		break;
+	case 6:
+		callsub Venda_Manual,6284,100000;  // Livro de Genética Vegetal
+		break;
+	case 7:
+		callsub Venda_Manual,6285,100000;  // Livro de Farmacologia
+		break;
+	case 8:
+		callsub Venda_Manual,11022,100000; // Livro de Culinária Avançada
+		break;
+	case 9:
+		callsub Venda_Manual,11023,100000; // Como Aumentar sua Força
+		break;
+	case 10:
+		callsub Venda_Manual,11024,100000; // Como Aumentar sua Energia
+		break;
+	case 11:
+		mes "[Vendedor de Livros de Alquímia]";
+		mes "Obrigado por sua ajuda.";
+		mes "Por favor volte novamente.";
+		close;
+	}
+
+Venda_Manual:
+	mes "[Vendedor de Livros de Alquímia]";
+	mes ""+getitemname(getarg(0))+"?";
+	mes "Custará "+getarg(1)+" zeny cada.";
+	mes "Quantos desse livro você gostaria de comprar?";
+	next;
+	mes "[Vendedor de Livros de Alquímia]";
+	input .@amount;
+	if (.@amount == 0) {
+		mes "Você gostaria de ver alguns livros diferentes? Tudo bem.";
+		close;
+	}
+	if (.@amount < 1 || .@amount > 99 ){
+		mes "Você não pode comprar mais de 100 Livros de uma só vez.";
+		close;
+	}
+	mes "Você escolheu "+.@amount+"x "+getitemname(getarg(0))+".";
+	mes "Que custarão "+getarg(1) * .@amount+" Zeny.";
+	mes "Você deseja continuar?";
+	next;
+	if (select("Sim:Não") == 1) {
+		if (Zeny < getarg(1) * .@amount) {
+			mes "[Vendedor de Livros de Alquímia]";
+			mes "Você não possui";
+			mes "zenys suficientes.";
+			mes "Verifique quanto você possui";
+			mes "em zeny primeiramente.";
+			close;
+		}
+		if (checkweight(getarg(0),.@amount) == 0){
+			mes "[Vendedor de Livros de Alquímia]";
+			mes "Parece que você não pode carregar nada.";
+			mes "Por favor verifique seu inventário.";
+			close;
+		}
+		mes "[Vendedor de Livros de Alquímia]";
+		mes "Obrigado pela ajuda.";
+		set Zeny,Zeny - getarg(1) * .@amount;
+		getitem getarg(0),.@amount;
+		close;
+	}
+	mes "[Vendedor de Livros de Alquímia]";
+	mes "Por favor, pense um pouco";
+	mes "antes de tomar sua decisão.";
+	close;
+}
+
+alde_alche,24,188,3	script	Comerciante da Guilda	740,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Espere um pouco! -";
+		mes "- Você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- depois que você guardar alguns itens no Armazém da Kafra. -";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Bem-vindo à União dos Alquimistas.";
+	mes "Como posso ajudá-lo hoje?";
+	next;
+	switch(select("Comprar materiais.:Comprar manuais de produção.:Sair.")) {
+	case 1:
+		mes "[Gever Al Sharp]";	
+		mes "O que você gostaria de comprar?";
+		next;
+		if (select("Vasilha de Mistura - 8 Zeny:Cancelar.") == 1) {
+			mes "[Gever Al Sharp]";
+			mes "De quantas você precisa?";
+			mes "Digite '0' se você deseja cancelar.";
+			next;
+			while(1) {
+				input .@input,0,2001;
+				mes "[Gever Al Sharp]";
+				if (.@input == 0) {
+					mes "A negociação foi cancelada.";
+					mes "Volte sempre.";
+					close;
+				} else if (.@input < 1 || .@input > 2000) {
+					mes "O número deve";
+					mes "ser menor que 2000.";
+					next;
+				}
+					break;
+			}
+			set .@sell,.@input * 8;
+			set .@item_weight,.@input * 10;
+			mes "[Gever Al Sharp]";
+			if (Zeny < .@sell) {
+				mes "Você não possui zeny o suficiente.";
+				mes "Cheque quanto de Zeny você possui primeiramente.";
+				close;
+			}
+			if ((MaxWeight - Weight) < .@item_weight) {
+				mes "Me parece que você não pode carregar tudo.";
+				mes "Por favor, verifique o espaço em seu inventário.";
+				close;
+			}
+			set zeny,zeny-.@sell;
+			getitem 7134,.@input; // Vasilha de Mistura
+			mes "Obrigado.";
+			mes "Volte Sempre.";
+			close;
+		}
+		mes "[Gever Al Sharp]";
+		mes "Pois bem, volte novamente quando precisar comprar mais materiais relacionados a Alquimia, certo?";
+		close;
+	case 2:
+		mes "[Gever Al Sharp]";
+		mes "Do que você precisa?";
+		mes "Os manuais custam geralmente 100.000 zeny. Mas há alguns outros manuais que custarão bem mais caro.";
+		next;
+		switch(select("Manual de Criação de Poções:Manual de Criação de Álcool:Manual de Criação de Fogo Grego:Manual de Criação de Frasco de Ácido:Manual de Criação de Plantas:Manual de Criação de Esferas-Marinhas:Manual de Criação de Revestimentos:Manual de Criação de Poções Condensadas:Cancelar Negociação.")) {
+		case 1:
+			callsub Venda_Manual,7144,100000; // Manual de Criação: Vol. 1 Poções Comuns
+			break;
+		case 2:
+			callsub Venda_Manual,7127,100000; // Manual de Criação: Vol. 2 Álcool
+			break;
+		case 3:
+			callsub Venda_Manual,7128,100000; // Manual de Criação: Vol. 3 Fogo Grego
+			break;
+		case 4:
+			callsub Venda_Manual,7129,100000; // Manual de Criação: Vol. 4 Ácidos
+			break;
+		case 5:
+			callsub Venda_Manual,7130,100000; // Manual de Criação: Vol. 5 Plantas
+			break;
+		case 6:
+			callsub Venda_Manual,7131,100000; // Manual de Criação: Vol. 6 Explosivos
+			break;
+		case 7:
+			callsub Venda_Manual,7132,100000; // Manual de Criação: Vol. 7 Revestimentos
+			break;
+		case 8:
+			callsub Venda_Manual,7133,240000; // Manual de Criação: Vol. 8 Poções Compactas
+			break;
+		case 9:
+			mes "[Gever Al Sharp]";
+			mes "Pois bem...";
+			mes "Volte caso você tenha nescessidade de comprar um manual de produção.";
+			close;
+		}
+	case 3:
+		mes "[Gever Al Sharp]";
+		mes "Certo, então tenha um bom dia.";
+		close;
+	}
+
+Venda_Manual:
+	mes "[Gever Al Sharp]";
+	if (Zeny < getarg(1)) {
+		mes "Você não possui zeny o suficiente.";
+		mes "Cheque quanto de zeny você possui primeiramente.";
+		close;
+	}
+	mes getitemname(getarg(0))+"?";
+	mes "Isso vai custar "+getarg(1)+" zeny.";
+	next;
+	if (select("Comprar.:Sair.") == 1) {
+		mes "[Gever Al Sharp]";
+		set zeny,zeny-getarg(1);
+		getitem getarg(0),1;
+		mes "Obrigado pela sua fidelidade.";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Volte Sempre!";
+	close;
+}

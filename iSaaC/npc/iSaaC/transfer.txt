@@ -1,0 +1,200 @@
+/*
+[============================================================================]
+
+		       -----   ----   .     .     .----
+			  |	'---.  /_\   /_\    |
+                     -----  ----' /   \ /   \   |____
+
+CREATE TABLE `item_transfer` (
+	`id_transfer` int(100) AUTO_INCREMENT PRIMARY KEY,
+	`char_name` varchar(50) NOT NULL,
+	`char_id` int(100) NOT NULL,
+	`item_id` int(100) NOT NULL,
+	`guild` varchar(75) NULL DEFAULT "no encontrada"
+);
+
+[============================================================================]*/
+
+goodev_c02,94,118,4	script	G.Pack!::GP	415,{
+
+/*[ ================================= ] Configure [ ======================== ]*/
+
+			set .@cantidadSETS_1_GP , 1;
+			set .@catidadHAT_1_GP , 1;
+			set .@low_1_GP,2;
+			set .@cashpoint_1,6000;
+
+			set .@cantidadSETS_2_GP , 3;
+			set .@catidadHAT_2_GP , 2;
+			set .@low_2_GP,4;
+			set .@cashpoint_2,10000;
+
+			set .@cantidadSETS_3_GP , 4;
+			set .@catidadHAT_3_GP , 3;
+			set .@low_3_GP,6;
+			set .@cashpoint_3,14000;
+	
+			set .TREBOL,0;
+
+/*[ ================================= ] Configure [ ======================== ]*/
+
+	mes name$; mes " ";
+	mes "El Gl solo puede retirar 1 GP y 1 Pack";
+	mes "";
+	if(select(" ^10B2D2 [ > ] ^000000 Claro"," ^10B2D2 [ > ] ^000000 No, luego") == 2 ) close; 
+	if ( ( countitem(7280) == 0 && countitem(7281) == 0 && countitem(7282) == 0 && countitem(7283) == 0 )  || getcharid(2) == 0  ) {
+			 next; mes name$; mes " "; mes "ERROR";
+			 mes " ^10B2D2 [ - ] ^000000 No tienes item de GP";
+			 mes " ^10B2D2 [ - ] ^000000 No tienes guild"; close;
+		}
+	if ( countitem(7280) > 1 || countitem(7281) > 1 || countitem(7282) > 1 || countitem(7283) > 1 ) {	
+		if ( countitem(7280) > 1 ) set .@reset,7280;
+		if ( countitem(7281) > 1 ) set .@reset,7281;
+		if ( countitem(7282) > 1 ) set .@reset,7282;	
+		if ( countitem(7283) > 1 ) set .@reset,7283;	
+		
+		delitem .@reset,countitem(.@reset) - 1;
+		npctalk "" + strcharinfo(0) + " trata de hacer doble transfer";
+		close;
+	}
+	     if ( countitem( 7280 ) == 1 && #GPINDIVIDUAL1 == 0 ) 
+			callfunc "TRANSFER__PERSONAL";
+	else if ( countitem( 7281 ) == 1 && #GUILDTRANSFER == 0 && getguildmasterid(getcharid(2)) == getcharid(0) ) 
+			callfunc ("TRANSFER__MVPSET" , name$ , .@cantidadSETS_2_GP , .@catidadHAT_2_GP , .@low_2_GP , 7281, .@cashpoint_2 );	 	
+	else if ( countitem( 7282 ) == 1 && #GUILDTRANSFER == 0 && getguildmasterid(getcharid(2)) == getcharid(0) ) 
+			callfunc ("TRANSFER__MVPSET" , name$ , .@cantidadSETS_3_GP , .@catidadHAT_3_GP , .@low_3_GP , 7282, .@cashpoint_3 ); 
+	else if ( countitem( 7283 ) == 1 && #GUILDTRANSFER == 0 && getguildmasterid(getcharid(2)) == getcharid(0) ) 
+			callfunc ("TRANSFER__MVPSET" , name$ , .@cantidadSETS_1_GP , .@catidadHAT_1_GP , .@low_1_GP , 7283, .@cashpoint_1 ); 
+	else { 
+		next; 
+		mes name$; 
+		mes ""; 
+		mes " ^10B2D2 [ - ] ^000000 Ya retiraste el GP"; 
+		close; 
+	}
+			
+}
+
+function	script	TRANSFER__MVPSET	{
+	delitem getarg(4),1;
+	set #GUILDTRANSFER , #GUILDTRANSFER + 1;
+	next; mes getarg(0); mes ""; mes " Tienes derecho a: " + getarg(1) + " Mvp's set";
+	
+	do {
+		switch ( select ( "^10B2D2 [ > ] ^000000 Valk Set :^10B2D2 [ > ] ^000000 Satan Set :^10B2D2 [ > ] ^000000 Belze Set " ) ) {
+			case 1: 
+				getitem 2357,1; 
+				getitem 2524,1; 
+				getitem 2421,1; 
+				callfunc ("item_to_db",getcharid(3),2357,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2524,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2421,strcharinfo(0),strcharinfo(2));
+				break;
+			case 2: 
+				getitem 2375,1; 
+				getitem 2433,1; 
+				getitem 2537,1; 
+				getitem 2374,1;
+				callfunc ("item_to_db",getcharid(3),2375,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2433,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2537,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2374,strcharinfo(0),strcharinfo(2));
+
+				break;
+			case 3: 
+				getitem 2702,1;
+				getitem 2423,1; 
+				getitem 2000,1; 
+				callfunc ("item_to_db",getcharid(3),2702,strcharinfo(0),strcharinfo(2)); 
+				callfunc ("item_to_db",getcharid(3),2423,strcharinfo(0),strcharinfo(2));
+				callfunc ("item_to_db",getcharid(3),2000,strcharinfo(0),strcharinfo(2));
+				break;
+		}
+		set .@gp__CANTIDAD , .@gp__CANTIDAD + 1;
+		next; mes getarg( 0 ); mes ""; mes " Acabas de recivir tu set numero [  "+ .@gp__CANTIDAD + " ] ";
+	} while ( .@gp__CANTIDAD != getarg( 1 ) );
+	
+	next; mes getarg( 0 ); mes ""; mes " muy bien ahora escoje tus [ " + getarg( 2 ) + " ] hats de donacion";
+	
+	do {
+		switch ( select ("^10B2D2 [ > ] ^000000 RWC Gold :^10B2D2 [ > ] ^000000 Love Dad Bandana :^10B2D2 [ > ] ^000000 Bapho Def :^10B2D2 [ > ] ^000000 Blush of Groom :^10B2D2 [ > ] ^000000 Bubblegum " ) ) {
+			case 1: 
+				getitem 5451,1; 
+				callfunc ("item_to_db",getcharid(3),5451,strcharinfo(0),strcharinfo(2));
+				break;
+			case 2: 
+				getitem 5366,1;
+				callfunc ("item_to_db",getcharid(3),5366,strcharinfo(0),strcharinfo(2));
+				break;	
+			case 3: 
+				getitem 5518,1;
+				callfunc ("item_to_db",getcharid(3),5518,strcharinfo(0),strcharinfo(2));
+				break;
+			case 4: 
+				getitem 5800,1; 
+				callfunc ("item_to_db",getcharid(3),5580,strcharinfo(0),strcharinfo(2));
+				break;
+			case 5: 
+				getitem 5597,1; 
+				callfunc ("item_to_db",getcharid(3),5597,strcharinfo(0),strcharinfo(2));
+				break;
+		}
+		set .@hats , .@hats + 1;
+		next; mes getarg( 0 ); mes ""; mes " Acabas de recivir tu hat numero [  "+ .@hats + " ] ";
+	} while ( .@hats != getarg( 2 ) );		
+	
+	next; mes getarg( 0 ); mes ""; mes " muy bien ahora escoje tus [ " + getarg( 3 ) + " ] lows a eleccion";
+	do {
+		switch ( select ( " ^10B2D2 [ > ] ^000000 Chicle : ^10B2D2 [ > ] ^000000 4 Leaf ") ) {
+			case 1: 
+				getitem 5597,1;
+				atcommand "@storeall"; 
+				callfunc ("item_to_db",getcharid(3),5597,strcharinfo(0),strcharinfo(2));
+				break;
+			case 2:
+				getitem 5596,1;
+				callfunc ("item_to_db",getcharid(3),5596,strcharinfo(0),strcharinfo(2));
+				break;
+		}
+		set .@lower , .@lower + 1;
+		next; mes getarg( 0 ); mes ""; mes " Acabas de recivir tu low numero [  "+ .@lower + " ] ";	
+	} while ( .@lower != getarg( 3 ) );  
+
+		setarray .@ITEM__GUILDPAK[0],2554,1228,5518,5293,5225,5423,7829,7828,7773,4368,4429;
+	if ( getarg(4) == 7283 )
+	 	setarray .@ITEM__CANTIDAD[0], 1  , 1  ,  1 , 2  , 2  , 0  ,500 ,500 ,400 , 6  , 0  ;
+	else if ( getarg(4) == 7281 )
+	 	setarray .@ITEM__CANTIDAD[0], 2  , 2  ,  2 , 3  , 3  , 1  ,1000,1000,800 , 12 ,  1 ;
+	else if ( getarg(4) == 7282 )
+		setarray .@ITEM__CANTIDAD[0], 4  , 3  ,  3 , 4  , 4  , 2  ,2000,2000,1500, 15 ,  3 ;
+
+	for ( set .@item,0; .@item < getarraysize(.@ITEM__GUILDPAK); set .@item , .@item + 1 ) {
+		if ( .@ITEM__CANTIDAD[.@item] == 0 ) {
+			continue;
+		}
+		getitem2 .@ITEM__GUILDPAK[.@item],.@ITEM__CANTIDAD[.@item],1,0,0,0,0,0,0;
+		atcommand "@storeall";
+	}	set zeny , zeny + 30000000;
+		set #CASHPOINTS , #CASHPOINTS + getarg(5);
+		mes " Transfer completado."; close;
+}
+
+function	script	item_to_db	{
+	atcommand "@storeall"; 
+	sleep2 900;
+	query_sql("SELECT `id` FROM `storage` WHERE `account_id`='"+getarg(0)+"' AND `nameid`='"+getarg(1)+"'",.@ITEMTODB ); // se crea un array de cantidad de items
+	query_sql "INSERT INTO `item_transfer`(`char_name`,`char_id`,`item_id`,`guild`) VALUES ('"+getarg(2)+"','"+getarg(0)+"','"+.@ITEMTODB+"','"+getarg(3)+"')";
+	return;
+}
+
+function	script	TRANSFER__PERSONAL	{
+	setarray .@ITEM__PERSONAL[0],2115,5170,2424,2528,2202,2701,2729,4334,4133,4064,4252,4044,4141,4105,4381,4097,4058,4045,4439,7828,7829,7773,5123;
+	setarray .@ITEM_PERSONALR[0], 7  , 5  ,  7 , 7  , 0  , 0  , 0  , 0  , 0  , 0  , 0  ,  0 ,  0 , 0  ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 , 0  , 0  ;
+ 	setarray .@ITEM_PERSONALC[0], 1  , 1  ,  1 , 1  , 1  , 2  , 2  , 1  , 1  , 2  , 1  ,  1 ,  1 , 1  ,  1 ,  1 ,  1 ,  1 ,  1 , 500, 500, 200, 1  ;
+	delitem 7280,1;
+	for ( set .@item,0; .@item < getarraysize(.@ITEM__PERSONAL); set .@item , .@item + 1 )
+		getitem2 .@ITEM__PERSONAL[.@item],.@ITEM_PERSONALC[.@item],1,.@ITEM_PERSONALR[.@item],0,0,0,0,0;
+	atcommand "@storeall";	set zeny , zeny + 2000000;
+	set #GPINDIVIDUAL1 , #GPINDIVIDUAL1  + 1;
+	mes " Transfer completado."; close;
+}

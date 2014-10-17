@@ -1,0 +1,655 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest do Mago                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.9/1.0/1.3                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Mago.                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy e Protimus]                   |
+//   | 1.2 Correção em algumas concatenações de funções [Dani]|
+//   | - strcharinfo(), sex() e getitemname()                 |
+//   | - Correções ortográficas                               |
+//   | 1.3 Otimização [Holy & Hold]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
+	mes "[Maga Guardiã]";
+	if (Upper == 1) {
+		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {
+			if (Class == Job_Novice_High) {
+				mes "Olá, faz bastante tempo que não nos vemos! Mas você não deveria estar morto?";
+				next;
+				mes "[Maga Guardiã]";
+				mes "Ah, você deve ter sido renascido. Bem, eu estou contente em vê-lo novamente.";
+				next;
+				mes "[Maga Guardiã]";
+				if (getskilllv("NV_BASIC") < 9) {
+					mes "Sinto muito, mas eu acho que você ainda não está pronto para se tornar um Mago. Por que você não termina de aprender as habilidades básicas primeiro?";
+					next;
+					mes "[Maga Guardiã]";
+					mes "Fique à vontade. Quanto mais você aprende, mais você estará pronto para aprender magia.";
+					close;
+				}
+				mes "Bem, já que que você passou no teste de Mago uma vez, eu não vou questionar a sua qualificação. Você quer ter suas habilidades mágicas de volta imediatamente, não é?";
+				next;
+				skill 143,0,0;
+				jobchange Job_Mage_High;
+				skill 157,1,0;
+				mes "[Maga Guardiã]";
+				mes "Uau, por alguma razão você está bem melhor do que antes. De qualquer forma, eu acredito que você irá fazer um trabalho melhor sendo um Arquimago.";
+				close;
+				}
+				mes "[Maga Guardiã]";
+				mes "Há algo mais que eu possa ajudá-lo? Se não, por que você não vai testar suas habilidades? O mundo está esperando por você~!";
+				close;
+				}
+			mes "O que, você está interessado na Guilda dos Magos? Eu não queria dizer isso, mas você não pertence a ela.";
+			next;
+			mes "[Maga Guardiã]";
+			mes "Eu não sei por que você ainda está na minha frente, mas eu posso dizer que você não está destinado a ser um Mago.";
+			close;
+	}
+	if(BaseJob != Job_Novice) {
+		if(BaseJob == Job_Mage) {
+			mes "Ei, o que faz aqui? Você já é um Mago, bobo!";
+			mes "Um dia você irá perceber o poder que existe dentro de você quando puder fazer fogo com sua mente!";
+		} else {
+			mes "Ei~ Vamos. Pare de bricadeiras. Você não pode ser um Mago porque você já possui outra classe.";
+		}
+		close;
+    }
+		mes "Hum?";
+		next;
+			switch(select("Quero ser Mago!:O que é preciso para ser um Mago?:Nada.")) {
+
+		case 1:
+		mes "[Maga Guardiã]";
+		mes "Quer ser um Mago? É...";
+		next;
+		mes "[Maga Guardiã]";
+		if( !checkre(0) ) {
+		if (job_magician_q == 0) {
+			mes "Você, "+((Sex)?"é mesmo uma gracinha. Definitivamente, meu tipo...":"até que você é bonitinha, deve fazer um grande sucesso...")+"";
+			next;
+			mes "[Maga Guardiã]";
+			mes "Aham... Como eu ia dizendo, você quer ser Mago?";
+			mes "Então, preencha a ficha de inscrição, por favor.";
+			next;
+			if (select("Se inscrever para o teste.:Desistir.") == 1) {
+				mes "[Maga Guardiã]";
+				mes "Certo. Assine aqui mesmo. Oh, você é muito bom para escrever. Certo. seu nome é... "+strcharinfo(0)+".";
+				next;
+				mes "[Maga Guardiã]";
+				mes "Agora é a hora que";
+				mes "que vou te dar o teste.";
+				set .@rand,rand(1,4);
+				mes "Me faça uma ^3355FFMistura de Solução No. "+.@rand+" ^000000";
+				mes "e a traga pra mim.";
+				set job_magician_q,.@rand;
+				setquest 1004+.@rand;
+				next;
+				getitem 1092,1; // Tubo de Ensaio
+				mes "[Maga Guardiã]";
+				mes "Você pode achar os ingredientes nos livros da guilda. Então acho melhor dar uma olhada antes de ir embora.";
+				next;
+				mes "[Maga Guardiã]";
+				mes "Assim que coletar todos os itens, use na máquina do centro para misturar eles e fazer a solução. Boa sorte!";
+				close;
+			}
+			mes "[Maga Guardiã]";
+			mes "O QUE~?! Mesmo após me dizer que queria ser um mago, você mudou de idéia?! Seja um pouco mais decisivo!";
+			close;
+     }
+		mes "Certo? Pronto...?";
+		next;
+		mes "[Maga Guardiã]";	
+		if (getskilllv("NV_BASIC") < 9) {
+			mes "Oh, mas que bobalhão. Você não tem os requerimentos para fazer o teste.";
+			next;
+			mes "[Maga Guardiã]";
+			mes "Volte e alcance level 9 de Classe primeiro. Não esqueça de que você também precisa aprender todas as Habilidades Básicas antes de voltar.";
+			close;
+		}
+		mes strcharinfo(0)+" o que eu posso fazer por você?";
+		if (job_magician_q == 1) mes "Prepare a Poção Mágica número 1 e traga aqui para mim.";
+		else if (job_magician_q == 2) mes "Prepare a Poção Mágica número 2 e traga aqui para mim.";
+		else if (job_magician_q == 3) mes "Prepare a Poção Mágica número 3 e traga aqui para mim.";
+		else mes "Prepare a Poção Mágica número 4 e traga aqui para mim.";
+		next;
+		mes "[Maga Guardiã]";
+		mes "Ok, agora vou verificar se está tudo certo.";
+		next;
+		mes "[Maga Guardiã]";
+		if (!countitem(1071) && !countitem(1085) && !countitem(1086) && !countitem(1087) && !countitem(1090)) {
+			mes "Onde está a Poção Mágica que eu pedi? Não posso saber se você fez certo se não me mostrar.";
+			close;
+			}
+			if ((job_magician_q == 1 && !countitem(1071)) || (job_magician_q == 2 && !countitem(1085)) || (job_magician_q == 3 && !countitem(1086)) || (job_magician_q == 4 && !countitem(1087))) {
+				mes "... Não, não foi isso que eu pedi.";
+				next;
+				mes "[Maga Guardiã]";
+        mes "Você deve fazer a Mistura de Solução No. "+(job_magician_q == 1) ? "1" : (job_magician_q == 2) ? "2" : (job_magician_q == 3) ? "3" : "4"+" e trazê-la de volta para mim. Agora vá e tente novamente.";
+				delitem ((countitem(1071) != 0) ? 1071 : (countitem(1085) != 0) ? 1085 : (countitem(1086) != 0) ? 1086 : (countitem(1087) != 0) ? 1087 : 1090),1;      // Tubo de Ensaio com Líquido Desconhecido
+				close;
+				}
+		delitem ((countitem(1071) != 0) ? 1071 : (countitem(1085) != 0) ? 1085 : (countitem(1086) != 0) ? 1086 : (countitem(1087) != 0) ? 1087 : 1090),1;      // Tubo de Ensaio com Líquido Desconhecido
+		mes "Hum... Eu vejo que você tentou bastante. Para um iniciante, está muito bom.";
+		mes "Grande trabalho!";
+		next;
+		mes "[Maga Guardiã]";
+		mes "Isso ai! Eu tenho o prazer de lhe parabenizar e dizer que você passou no teste.!";
+		next;
+		mes "[Maga Guardiã]";
+		mes "*Que bom*";
+		mes "Parabéns!";
+		mes "Você é um mago agora!";
+		next;
+		callfunc "Job_Change",Job_Mage;
+		callfunc "F_ClearJobVar";
+		set Zeny,Zeny+50;
+		completequest (checkquest(1005) != -1) ? 1005 : (checkquest(1006) != -1) ? 1006 : (checkquest(1007) != -1) ? 1007 : 1008;
+		mes "[Maga Guardiã]";
+		mes "'Bem vindo ao meu mundo~'";
+		mes "Heh heh, Eu sempre quis dizer isso. Você sabe, é como um filme já visto.";
+		next;
+		mes "[Maga Guardiã]";
+		mes "Agora que você é um mago como nós, vamos ser amigos, ok?";
+		close;
+		}
+			mes ""+(Sex) ? "Ei, olhe para você! Você é bonitinho~! Embora não faça meu tipo..." : "Aaah, você é uma garota tão linda~! Eu gosto de garotas como você~"+"";
+			mes "Certo, você disse que quer ser um Mago?";
+			next;
+			if(select("Eu quero me tornar um Mago.:Não, obrigado.") == 2) {
+				mes "[Maga Guardiã]";
+				mes "Oquuuuue~?! Logo depois que você me diz que quer se tornar um Mago você muda de idéia?! Tenha certeza no que faz!";
+				close;
+			}
+			mes "[Maga Guardiã]";
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "Ah, seu nível de Habilidades Básicas não atinge o nível suficiente para se tornar um Mago.";
+				mes "Volte e atinga o seu nível de habilidades básicas no máximo.";
+				close;
+			}
+			mes "Tudo bem... assine o formulário.... Uau ~ você tem boa caligrafia! Ahh, tudo bem. Basta.";
+			mes "Você é... "+strcharinfo(0)+".";
+			next;
+			mes "[Maga Guardiã]";
+			mes "Hum vejo que você se esforçou, embora pareça ser um pouco desajeitado, mas bem eu acho que está tudo certo!";
+			mes "Bom! Sempre adquira aos princípios básicos é o melhor! Vou transformá-lo imediatamente.";
+			next;
+			mes "[Maga Guardiã]";
+			mes "Haha..! Você agora é um mago, um dos nossos colegas!";
+			mes "Recrutamos você para a Guilda dos Magos, nosso novo amigo!";
+			next;
+			mes "[Maga Guardiã]";
+			mes "'Bem-vindo a Guilda de Magos~'";
+			mes "Parabéns por se tornar um Membro da Guilda de Magos!";
+			callfunc "Job_Change",Job_Mage;
+			getitem	1639,1; // Cajado de Iniciantes
+			close;
+
+	case 2:
+		mes "[Maga Guardiã]";
+		mes "Quer ser um mago, huh?";
+		mes ((Sex)?"Para uma gracinha como você ficarei feliz em explicar!":"Eu ficaria feliz de explicar para uma garotinha tão bonita como você!");
+		next;
+		mes "[Maga Guardiã]";
+		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. "+((!checkre(0)) ? "E então passar pelo teste de mago":"")+"";
+		next;
+		mes "[Maga Guardiã]";
+		if(!checkre(0)) {
+		if (job_magician_q != 0) {
+			mes "O seu teste é";
+			switch(job_magician_q) {
+			case 1:
+				mes "Fazer uma";
+				mes "^3355FFMistura de Solução No. 1^000000";
+				mes "e trazer para mim.";
+				break;
+			case 2:
+				mes "Fazer uma";
+				mes "^3355FFMistura de Solução No. 2^000000";
+				mes "e trazer para mim.";
+				break;
+			case 3:
+				mes "Fazer uma";
+				mes "^3355FFMistura de Solução No. 3^000000";
+				mes "e trazer para mim.";
+				break;
+			default:
+				mes "Fazer uma";
+				mes "^3355FFMistura de Solução No. 4^000000";
+				mes "e trazer para mim.";
+			}
+			next;
+			mes "[Maga Guardiã]";
+			mes "Você pode olhar os ingredientes para a solução nos livros de magia aqui dentro da Guilda.";
+		} else {
+			mes "Você será informado sobre que solução deve fazer antes de ler os livros sobre elas.";
+		}
+		next;
+		mes "[Maga Guardiã]";
+		mes "Me diga quando estiver pronto para ser um mago, tudo bem?";
+		} else {
+		mes "No passado, vimos que esse teste estava um pouco complicado. Por causa disso, perdemos mais candidatos.";
+		mes "Então, decidimos aceitar todos os candidatos que preencham os requisitos básicos.";
+		next;
+		mes "[Maga Guardiã]";
+		mes "Não hesite. Torne-se um Mago!";
+		}
+		close;
+	case 3:
+		mes "[Maga Guardiã]";
+		mes "Nada...?";
+		close;
+    }
+}
+
+geffen_in,164,112,4	script#pre	Máquina de Mistura	111,{
+	mes "[Máquina de Mistura]";
+	mes "Esta máquina é propriedade da Guilda dos Magos de Geffen e só pode ser utilizada para soluções e propósitos mágicos.";
+	next;
+	if (select("Usar a máquina.:Cancelar.") == 1) {
+		mes "[Máquina de Mistura]";
+		mes "Escolha o";
+		mes "Solventee para";
+		mes "a Solução.";
+		next;
+		switch(select("Solução de Payon.:Solução de Morroc.:Nenhum Solvente.")) {
+		case 1:
+			if (!countitem(1089)) {
+				mes "Erro.";
+				mes "Item não encontrado.";
+				mes "Por favor, verifique novamente.";
+				mes "Processo cancelado.";
+				close;
+			}
+			set .@mixitem2,1;
+			break;
+		case 2:
+			if (!countitem(1088)) {
+				mes "[Máquina de Mistura]";
+				mes "Erro.";
+				mes "Item não encontado.";
+				mes "Por favor, verifique novamente.";
+				mes "Processo Cancelado.";
+				close;
+			}
+			set .@mixitem2,2;
+			break;
+		case 3:
+			set .@mixitem2,0;
+			break;
+		}
+		while (1) {
+			if (.@progress == 2) {
+				mes "[Máquina de Mistura]";
+				if (.@mixitem1_1 != 0) mes getitemname(909)+": "+.@mixitem1_1+" unidades.";
+				if (.@mixitem1_2 != 0) mes getitemname(914)+": "+.@mixitem1_2+" unidades.";
+				if (.@mixitem1_3 != 0) mes getitemname(519)+": "+.@mixitem1_3+" unidades.";
+				mes "Solvente: "+(!.@mixitem2) ? "Nenhum" : (.@mixitem2 == 1) ? "getitemname(1089)" : "getitemname(1088)"+".";
+				next;
+				mes "[Máquina de Mistura]";
+				mes "Por favor escolha o que você deseja começar a misturar, ou reponha os itens que deseja usar.";
+				next;
+				switch(select("Começar a misturar.:Repor o número de itens.:Resetar.")) {
+				case 1:
+					mes "[Máquina de Mistura]";
+					mes "Por favor coloque os itens no recipiente. Tenha certeza que eles estão colocados na quantidade correta.";
+					next;
+					mes "[Máquina de Mistura]";
+					mes "Você não pode adicionar ou restaurar os itens que forem colocados no recipiente.";
+					next;
+					mes "[Máquina de Mistura]";
+					mes "Se está tudo correto, aperte o botão 'misturar'. Caso contrário, aperte 'cancelar'.";
+					next;
+					if (select("Misturar.:Cancelar.") == 1) {
+						mes "[Máquina de Mistura]";
+						mes "Colocando os itens no recipiente. Por favor, aguarde.";
+						next;
+						mes "[Máquina de Mistura]";
+						if(countitem(909) < .@mixitem1_1) mes getitemname(909)+" insuficiente";
+						else if(countitem(914) < .@mixitem1_2) mes getitemname(914)+" insuficiente."; 
+						else if(countitem(519) < .@mixitem1_3) mes getitemname(519)+" insuficiente.";
+						else if (.@mixitem2 == 1 || .@mixitem2 == 2) {
+						if (!countitem(1089) && !countitem(1088)) {
+						mes "Solução não encontrada.";
+						mes "Por favor, verifique novamente.";
+						mes "Processo interrompido.";
+						mes "Por favor, verifique novamente.";
+						mes "Processo interrompido.";
+						close;
+						}
+						}
+						if (.@mixitem1_1 != 0) delitem 909,.@mixitem1_1; // Jellopy
+						if (.@mixitem1_2 != 0) delitem 914,.@mixitem1_2; // Felpa
+						if (.@mixitem1_3 != 0) delitem 519,.@mixitem1_3; // Leite
+						if (.@mixitem2 == 1) delitem 1089,1; // Solução de Payon
+						if (.@mixitem2 == 2) delitem 1088,1; // Solução de Morroc
+						mes "Itens estão prontos.";
+						mes "Fechando a porta.";
+						set .@progress,3;
+						next;
+					}
+					break;
+				case 2:
+					set .@continue,0;
+					next;
+					break;
+				case 3:
+					set .@mixitem1_1,0;
+					set .@mixitem1_2,0;
+					set .@mixitem1_3,0;
+					set .@progress,0;
+					set .@continue,0;
+					mes "[Máquina de Mistura]";
+					mes "Processo resetado.";
+					mes "Começar novamente?";
+					next;
+					if (select("Sim.:Não.") == 1)
+						break;
+					mes "[Máquina de Mistura]";
+					mes "Processo interrompido.";
+					mes "Obrigado.";
+					close;
+				}
+				if (.@progress == 3) break;
+				} else if (.@progress == 1) {
+				mes "[Máquina de Mistura]";
+				mes "Nada encontrado.";
+				next;
+			}
+			mes "[Máquina de Mistura]";
+			mes "Selecione os itens para a mistura.";
+			while(1) {
+				switch(select(""+getitemname(909)+".:"+getitemname(914)+".:"+getitemname(519)+".:Pronto para misturar.")) {
+				case 1:
+					while(1) {
+						input .@input;
+						if (.@input > 10000) {
+							next;
+							mes "[Máquina de Mistura]";
+              mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							next;
+						}
+						else {
+							if (countitem(909)) set .@mixitem1_1,.@mixitem1_1 + .@input;
+							set .@progress,2;
+							break;
+						}
+					}
+					break;
+				case 2:
+					while(1) {
+						input .@input;
+						if (.@input > 10000) {
+							next;
+							mes "[Máquina de Mistura]";
+							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							next;
+						}
+						else {
+							if (countitem(914) > 0) set .@mixitem1_2,.@mixitem1_2 + .@input;
+							set .@progress,2;
+							break;
+						}
+					}
+					break;
+				case 3:
+					while(1) {
+						input .@input;
+						if (.@input > 10000) {
+							next;
+							mes "[Máquina de Mistura]";
+							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							next;
+						}
+						else {
+						if (countitem(519) > 0) set .@mixitem1_3,.@mixitem1_3 + .@input;
+							set .@progress,2;
+							break;
+						}
+					}
+					break;
+
+				case 4:
+					if (.@progress != 2)
+					set .@progress,1;
+					set .@continue,1;
+					next;
+				}
+				if (.@continue) break;
+			}
+		}
+		mes "[Máquina de Mistura]";
+		mes "Por favor digite o  ";
+		mes "número de série do";
+		mes "Pó mágico.";
+		next;
+		while(1) {
+			input .@input;
+			if (.@input < 1000 || .@input > 9999) {
+				mes "[Máquina de Mistura]";
+				if (.@input == 0) {
+					mes "Deseja pular este menu?";
+					next;
+					if (select("Sim.:Não.") == 1) {
+						break;
+					}
+				} else {
+					mes "Número inválido.";
+					mes "Por favor, tente novamente.";
+					next;
+				}
+			} else {
+				mes "[Máquina de Mistura]";
+				mes "O numero de série é  #" + .@input + ", correto?";
+				next;
+				if (select("Confirmar.:Cancelar.") == 1) {
+				set .@magic_powder,(.@input == 8472) ? 1 : (.@input == 3735) ? 2 : (.@input == 2750) ? 3 : (.@input == 5429) ? 4 : 5;
+				}
+				break;
+			}
+		}
+		mes "[Máquina de Mistura]";
+		mes "Escolha uma pedra";
+		mes "Catalisadora.";
+		next;
+    switch(select(""+getitemname(715)+".:"+getitemname(716)+".:"+getitemname(717)+".:"+getitemname(730)+".:Pular a etapa.")) {
+		case 1: set .@mixitem3,1; break;
+		case 2: set .@mixitem3,2; break;
+		case 3: set .@mixitem3,3; break;
+		case 4: set .@mixitem3,4; break;
+		case 5: break;
+		}
+		mes "[Máquina de Mistura]";
+		mes "Tudo pronto.";
+		mes "Iniciando";
+		mes "Processo de Mistura.";
+		mes "Por favor, aguarde.";
+		next;
+		mes "[Máquina de Mistura]";
+		mes "- Provérbio do dia -";
+		switch(rand(1,5)) {
+		case 1:
+			mes "Olho por olho: Quando tira de uma pessoa, você deve retribuí-lo de alguma forma.";
+			break;
+		case 2:
+			mes "O valor da confiança não pode ser medido ou muito menos comprado.";
+			break;
+		case 3:
+			mes "Não tratar os outros da maneira que você não gostaria que te tratariam.";
+			mes "Ou seja, quando você machuca alguém você será ferido mais ainda.";
+			break;
+		case 4:
+			mes "Um bom vizinho é melhor do que um irmão distante: quando precisar de ajuda, conte sempre com quem esta perto de você.";
+			break;
+		default:
+			mes "Rebanho de aves plumadas: Você pode definir o caráter de alguém através dos seus amigos.";
+		}
+		next;
+			mes "[Máquina de Mistura]";
+		if (.@mixitem1_1 == 2 && .@mixitem1_2 == 3 && .@mixitem1_3 == 1 && .@mixitem2 == 1 && .@mixitem3 == 1 && .@magic_powder == 1) {
+			mes getitemname(1071);
+			getitem 1071,1; // Tubo de Ensaio com Líquido Desconhecido
+			next;
+		} else if (.@mixitem1_1 == 3 && .@mixitem1_2 == 1 && .@mixitem1_3 == 1 && .@mixitem2 == 0 && .@mixitem3 == 2 && .@magic_powder == 2) {
+			mes getitemname(1085);
+			getitem 1085,1; // Tubo de Ensaio com Líquido Desconhecido
+			next;
+		} else if (.@mixitem1_1 == 6 && .@mixitem1_2 == 1 && .@mixitem1_3 == 0 && .@mixitem2 == 1 && .@mixitem3 == 3 && .@magic_powder == 3) {
+			mes getitemname(1086);
+			getitem 1086,1; // Tubo de Ensaio com Líquido Desconhecido
+			next;
+		} else if (.@mixitem1_1 == 2 && .@mixitem1_2 == 3 && .@mixitem1_3 == 0 && .@mixitem2 == 2 && .@mixitem3 == 4 && .@magic_powder == 4) {
+			mes getitemname(1087);
+			getitem 1087,1; // Tubo de Ensaio com Líquido Desconhecido
+			next;
+		} else {
+			mes "[Máquina de Mistura]";
+			mes "Erro inesperado";
+			mes "ocorrido.";
+			getitem 1090,1; // Tubo de Ensaio com Líquido Desconhecido
+			next;
+		}
+		mes "Mistura completa.";
+		mes "Obrigado.";
+		close;
+    }
+    close;
+}
+
+pay_arche,122,100,0	script#pre	Dollshoi	88,{
+	mes "[Dollshoi]";
+	mes "Você quer uma solução? Hum, me dê 50z e um "+getitemname(1092)+".";
+	next;
+	if (select("Negócio Fechado.:Não, esquece.") == 1) {
+		mes "[Dollshoi]";
+		if (Zeny < 50) {
+      mes "ei! Você não possui 50 zenys.";
+			close;
+		}
+		if (!countitem(1092)) {
+      mes "Você não pode carregar as soluções! Me traga um tubo.";
+			close;
+		}
+		delitem 1092,1; // Tubo de Ensaio
+		set zeny,zeny-50;
+		getitem (strnpcinfo(0) == "Dollshoi") ? 1089 : 1088,1; // Solução de Payon e Solução de Morroc
+	}
+	close;
+}
+
+moc_ruins,91,150,0	duplicatp(Dollshoi)	Ponka-Hontas	93
+
+geffen_in,177,112,4	script#pre	Estante de Livros	111,{
+	mes "[Livro Guia]";
+	mes "Este guia é propriedade da Guilda dos Magos de Geffen.";
+	next;
+	switch(select("Solução No. 1.:Solução No. 2.:Solução No. 3.:Solução No. 4.:Sair.")) {
+	case 1:
+		mes "["+getitemname(1071)+"]";
+		mes "* Lista de ingredientes *";
+		mes "2 "+getitemname(909);
+		mes "3 "+getitemname(914);
+		mes "1 "+getitemname(519);
+		next;
+		mes "["+getitemname(1071)+"]";
+		mes "*Solventee *";
+		mes getitemname(1089);
+		mes "Onde encontrá-la:";
+		mes "Perto de uma lagoa na vila dos arqueiros.";
+		next;
+		mes "["+getitemname(1071)+"]";
+		mes "* Código de série do pó mágico *";
+		mes "8472";
+		next;
+		mes "["+getitemname(1071)+"]";
+		mes "* Catalisador *";
+		mes getitemname(715);
+		mes "(Provida pela";
+		mes "Máquina de mistura)";
+		close;
+	case 2:
+		mes "["+getitemname(1085)+"]";
+		mes "* Lista de ingredientes *";
+		mes "3 "+getitemname(909);
+		mes "1 "+getitemname(914);
+		mes "1 "+getitemname(519);
+		next;
+		mes "["+getitemname(1085)+"]";
+		mes "*Solventee *";
+		mes "Nenhum";
+		next;
+		mes "["+getitemname(1085)+"]";
+		mes "* Código de série do pó mágico *";
+		mes "3735";
+		next;
+		mes "["+getitemname(1085)+"]";
+		mes "* Catalisador *";
+		mes getitemname(716);
+		mes "(Provida pela";
+		mes "Máquina de mistura)";
+		close;
+	case 3:
+		mes "["+getitemname(1086)+"]";
+		mes "* Lista de ingredientes *";
+		mes "6 "+getitemname(909);
+		mes "1 "+getitemname(914);
+		next;
+		mes "["+getitemname(1086)+"]";
+		mes "*Solventee *";
+		mes getitemname(1089);
+		mes "Onde encontrá-la:";
+		mes "Perto de uma lagoa na vila dos arqueiros.";
+		next;
+		mes "["+getitemname(1086)+"]";
+		mes "* Código de série do pó mágico *";
+		mes "2750";
+		next;
+		mes "["+getitemname(1086)+"]";
+		mes "* Catalisador *";
+		mes getitemname(717);
+		mes "(Provida pela";
+		mes "Máquina de mistura)";
+		close;
+	case 4:
+		mes "["+getitemname(1087)+"]";
+		mes "* Lista de ingredientes *";
+		mes "2 "+getitemname(909);
+		mes "3 "+getitemname(914);
+		next;
+		mes "["+getitemname(1087)+"]";
+		mes "*Solventee *";
+		mes getitemname(1088);
+		mes "Aonde encontrar:";
+		mes "Em uma lagoa perto da Pirâmide de Morroc.";
+		next;
+		mes "["+getitemname(1087)+"]";
+		mes "* Código de série do pó mágico *";
+		mes "5429";
+		next;
+		mes "["+getitemname(1087)+"]";
+		mes "* Catalisador *";
+		mes getitemname(730);
+		mes "(Provida pela";
+		mes "Máquina de mistura)";
+		close;
+	}
+	close;
+}

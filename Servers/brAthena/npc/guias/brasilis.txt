@@ -1,0 +1,90 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_brasilis.txt                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Brasilis.                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução (PT-BR) [Hold]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+brasilis,219,97,3	script	Guia de Brasilis	478,{
+	mes "[Guia de Brasilis]";
+	mes "Bem-vindo à ^8B4513Brasilis^000000, um país apaixonado pelo sol.";
+	mes "Se tiver qualquer dúvida, por favor pergunte-me.";
+	next;
+	mes "[Guia de Brasilis]";
+	mes "Para onde posso lhe guiar?";
+	while (1){
+		next;
+		switch(select("[ Hotel ]:[ Teleférico ]:[ Museu de Arte ]:[ Mercado ]:[ Monumento Verass ]:Remover marcadores do mini-mapa:Cancelar")) {
+		case 1:
+			mes "[Guia de Brasilis]";
+			mes "O Hotel de Brasilis está localizado logo acima, ^FF3355+^000000.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 1,274,151,2,0xFF3355;
+			next;
+			break;
+		case 2:
+			mes "[Guia de Brasilis]";
+			mes "Você deseja entrar na floresta selvagem? Você pode pegar o Teleférico aqui ^CE6300+^000000.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 1,308,335,3,0xCE6300;
+			next;
+			break;
+		case 3:
+			mes "[Guia de Brasilis]";
+			mes "O orgulho de Brasilis, o Museu de Arte de escala mundial é ^A5BAAD+^000000.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 1,137,167,4,0x00FF00;
+			next;
+			break;
+		case 4:
+			mes "[Guia de Brasilis]";
+			mes "Você pode comprar items para caça no Mercado aqui ^55FF33+^000000.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 1,254,248,5,0x55FF33;
+			next;
+			break;
+		case 5:
+			mes "[Guia de Brasilis]";
+			mes "O importante monumento de Brasilis, o Monumento Verass está em ^3355FF+^000000.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 1,195,235,6,0x3355FF;
+			next;
+			break;
+		case 6:
+			mes "[Guia de Brasilis]";
+			mes "Removerei os marcadores do seu mini-mapa.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 0,274,151,2,0x00FF00;
+			viewpoint 0,308,335,3,0x00FF00;
+			viewpoint 0,137,167,4,0x00FF00;
+			viewpoint 0,254,248,5,0x00FF00;
+			viewpoint 0,195,235,6,0x00FF00;
+			next;
+			break;
+		case 7:
+			mes "[Guia de Brasilis]";
+			mes "Viajar sozinho é a melhor maneira para explorar. Enfim, tome cuidado.";
+			close;
+		}
+		close;
+		break;
+	}
+}

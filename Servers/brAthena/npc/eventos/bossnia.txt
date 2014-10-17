@@ -1,0 +1,98 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: bossnia.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Npc's de Teleporte para Bossnia.            |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,132,125,4	script	Membro da Equipe Bossnia::bsw	908,{
+
+	mes "[Riss]";
+	mes "Olá?";
+	mes "Eu encontrei alguns lugares bonitos";
+	mes "enquanto viajava por todo o mundo.";
+	mes "Eu sou um aventureiro.";
+	mes "Haha~";
+	next;
+	mes "[Riss]";
+	mes "O quê? Meu nome é...";
+	mes "'Membro da Equipe Bossnia'?? Não não...";
+	mes "Bem, meu nome não é tão importante.";
+	mes "As vezes, você deve ser generoso.";
+	mes "Não há tempo para perder com esse tipo de coisa";
+	mes "quando você tem que se concentrar em coisas mais importantes.";
+	next;
+	mes "[Riss]";
+	mes "Hum... de qualquer forma eu quero dizer... algo..";
+	mes "Enquanto eu estava viajando por alguns lugares,";
+	mes "Eu encontrei um lugar realmente perigoso e apavorante.";
+	next;
+	mes "[Riss]";
+	mes "Na maioria das vezes quando você vem para um lugar,";
+	mes "há um monstro forte e temível.";
+	mes "Não é?";
+	next;
+	mes "[Riss]";
+	mes "Mas... mas... lá...";
+	mes "Há lotes de monstros terríveis e fortes...";
+	mes "Isso foi realmente assustador para mim.";
+	next;
+	mes "[Riss]";
+	mes "Se eu tivesse demorado um pouco mais para reagir... mais alguns segundos...";
+	mes "Eu poderia ter sido morto.";
+	next;
+	mes "[Riss]";
+	mes "O quê?";
+	mes "Você procura vindo até aqui?";
+	mes "Ah~ você quer fazer o mesmo que eu.";
+	mes "Indo até lá.......";
+	next;
+	mes "[Riss]";
+	mes "Hum... você já sabe?";
+	mes "Apesar de não conhecer o lugar, você quer ir...";
+	mes "Bom, vou te enviar até lá.";
+	mes "Mas depois que você foi lá, não fique";
+	mes "chateado comigo. Também irá custar 5,000 zeny.";
+	next;
+	if (Zeny > 4999) {
+		mes "[Riss]";
+		mes "Será que você realmente gostaria de aceitar o desafio??";
+		mes "Ok, basta escolher o curso.";
+		next;
+		set .@i, select("Primeiro","Segundo","Terceiro","Quarto");
+		mes "[Riss]";
+		mes "Tome cuidado~";
+		mes "Não guarde rancor de mim.";
+		set Zeny, Zeny - 5000;
+		warp "bossnia_0"+.@i,rand(202,204),rand(202,204);
+		close;
+	}
+	mes "[Riss]";
+	mes "Você não tem dinheiro suficiente...";
+	mes "Volte quando você possuir pelo menos 5,000 zeny.";
+	close;
+}
+
+geffen,124,169,4	duplicate(bsw)	Membro da Equipe Bossnia#2	908
+payon,165,150,4	duplicate(bsw)	Membro da Equipe Bossnia#3	908
+morocc,142,100,4	duplicate(bsw)	Membro da Equipe Bossnia#4	908
+lighthalzen,203,140,4	duplicate(bsw)	Membro da Equipe Bossnia#5	908
+rachel,132,144,4	duplicate(bsw)	Membro da Equipe Bossnia#6	908

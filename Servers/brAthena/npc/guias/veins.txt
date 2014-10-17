@@ -1,0 +1,219 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_veins.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Veins.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Otimização [Holy & Hold]                           |
+//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+veins,210,345,5	script	Guia#veins01	934,{
+	mes "[Guia]";
+	if(checkre(0)) {
+		mes "Thank you for coming through the rough sand storms. Welcome to ^8B4513Veins^000000, the Canyon Village.";
+		mes "If this is the first time for you to use the guide services, why don't you check the \"Notice\" menu first?";
+		next;
+		while (1) {
+			switch(select("[ Temple ]:[ Inn ]:[ Pub ]:[ Weapon Shop ]:[ Tool Shop ]:[ Airport ]:[ Geological Research Institute ]:[ Cool Event Corp. Staff ]:Remove Marks from Mini-Map:Cancel")) {
+			case 1:
+				mes "[Guia]";
+				mes "The Temple is always filled with praying the faithful of the incarnation of goddess Freya.";
+				mes "It's located on the North side of Veins.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,197,256,0,0xFF0000;
+				next;
+				break;
+			case 2:
+				mes "[Guia]";
+				mes "You can rest your fatigue of the journey in the Inn. The Inn is located on the North-West side of Veins.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,110,278,1,0xFF4500;
+				next;
+				break;
+			case 3:
+				mes "[Guia]";
+				mes "If you want to talk to the Veins Towners, visit the Veins Pub.";
+				mes "The pub is located on the west side of Veins.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,150,215,2,0xDAA520;
+				next;
+				break;
+			case 4:
+				mes "[Guia]";
+				mes "You have to be able to protect your own body.";
+				mes "The Weapon Shop in Veins is selling the good weapons at a reasonable price..";
+				mes "It is located on the West side of Veins.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,150,175,3,0x008000;
+				next;
+				break;
+			case 5:
+				mes "[Guia]";
+				mes "The essential items! Check out the Veins Tool Shop in the center of town..";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,230,161,4,0x0000FF;
+				next;
+				break;
+			case 6:
+				mes "[Guia]";
+				mes "The Airport of Veins is currently only used for Cargo.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,273,287,5,0x000080;
+				next;
+				break;
+			case 7:
+				mes "[Guia]";
+				mes "Are you interested in Geology?";
+				mes "If so, please visit the Geological Research Institute at the second floor of Weapon Shop.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,150,175,6,0x800080;
+				next;
+				break;
+			case 8:
+				mes "[Guia]";
+				mes "I will mark the location";
+				mes "of the ^808080Cool Event Corp. Staff^000000";
+				mes "on your mini map.";
+				mes "Would you like to check any other locations?";
+				viewpoint 1,209,127,7,0x808080;
+				next;
+				break;
+			case 9:
+				mes "[Guia]";
+				mes "Sure, I'll remove all marks from your mini-map.";
+				mes "Is there anything else I can do for you?";
+				viewpoint 2,197,256,0,0xFFFFFF;
+				viewpoint 2,110,278,1,0xFFFFFF;
+				viewpoint 2,150,215,2,0xFFFFFF;
+				viewpoint 2,150,175,3,0xFFFFFF;
+				viewpoint 2,230,161,4,0xFFFFFF;
+				viewpoint 2,273,287,5,0xFFFFFF;
+				viewpoint 2,150,175,6,0xFFFFFF;
+				viewpoint 2,209,127,7,0xFFFFFF;
+				next;
+				break;
+			case 10:
+				mes "[Guia]";
+				mes "Have a safe journey!";
+				close;
+			}
+		}
+	} else {
+		mes "A Cidade Desértica de Veins dá as boas-vindas aos aventureiros que buscam abrigo das terríveis tempestades de areia.";
+		mes "Se essa é a primeira vez que você usa nossos Serviços de guia, por que não consulta antes o menu ''Aviso''?";
+		set .@loop1,1;
+		while(.@loop1) {
+			next;
+			switch(select("Indicações:Limpar as indicações do minimapa:Aviso:Cancelar")) {
+			case 1:
+				mes "[Guia]";
+				mes "Eu posso dizer a você onde fica cada edifício que procura, desde que ele fique em Veins.";
+				mes "E então, aonde você gostaria de ir?";
+				if (.@compass_check == 0) {
+					mes "Você gostaria que eu";
+					mes "indicasse os locais";
+					mes "em seu Minimapa?";
+					next;
+					if (select("Sim.:Não") == 1) set .@compass_check,1;
+				}
+				set .@loop2,1;
+				while(.@loop2) {
+					if (.@wait_button_chk == 0) set .@wait_button_chk,1;
+					else next;
+		
+					switch(select("Templo.:Pousada.:Loja de Armas.:Loja de Utilidades.:Aeroplano.:Taverna.:Instituto de Pesquisas Geológicas.:Cancelar")) {
+					case 1:
+						mes "[Guia]";
+  					mes "Nosso templo fica ao norte, e está sempre lotado com seguidores fiéis da Deusa Freya.";
+						if (.@compass_check == 1) viewpoint 1,196,258,1,0xFF0000;
+						break;
+					case 2:
+						mes "[Guia]";
+						mes "Você pode descansar de sua viagem na Pousada. O edifício à minha esquerda é a Pousada de Rachel.";
+						if (.@compass_check == 1) viewpoint 1,128,266,2,0xFF00FF;
+						break;
+					case 3:
+						mes "[Guia]";
+  					mes "Sim, você precisa se proteger do perigo, não é?";
+  					mes "Compre armas de alta qualidade a preços acessíveis na Loja de Armas de Veins, a oeste.";
+						if (.@compass_check == 1) viewpoint 1,150,175,3,0x99FFFF;
+						break;
+					case 4:
+						mes "[Guia]";
+						mes "Você tem tudo o que precisa para suas aventuras?";
+						mes "Se não tem, sugiro que você veja o que a Loja de Utilidades de Veins, no centro, tem a oferecer.";
+						if (.@compass_check == 1) viewpoint 1,230,161,4,0x0000FF;
+						break;
+					case 5:
+						mes "[Guia]";
+						mes "Lembre-se que Veins só opera com aeroplanos de carga.";
+						if (.@compass_check == 1) viewpoint 1,273,285,5,0x00FF00;
+						break;
+					case 6:
+						mes "[Guia]";
+  					mes "Se quiser fazer amizade com o povo daqui, sugiro que você vá tomar uma bebida na taverna a oeste.";
+						if (.@compass_check == 1) viewpoint 1,150,217,6,0x00FF00;
+						break;
+					case 7:
+						mes "[Guia]";
+  					mes "Está interessado em estudar geologia?";
+  					mes "Então você deve ir ao instituto de pesquisas geológicas, no segundo andar da Loja de Armas.";
+						if (.@compass_check == 1) viewpoint 1,150,175,7,0x00FF00;
+						break;
+					case 8:
+						mes "[Guia]";
+						mes "Se você quiser remover todas essas marcas de localização de seu mapa, é só falar comigo de novo, e escolher 'Limpar as indicações do Minimapa'.";
+						set .@loop2,0;
+						break;
+					}
+				}
+				break;
+		
+			case 2:
+				viewpoint 2,196,258,1,0xFF0000;
+				viewpoint 2,128,266,2,0xFF00FF;
+				viewpoint 2,150,175,3,0x99FFFF;
+				viewpoint 2,230,161,4,0x0000FF;
+				viewpoint 2,273,285,5,0x00FF00;
+				viewpoint 2,150,217,6,0x00FF00;
+				viewpoint 2,150,175,7,0x00FF00;
+				mes "[Guia]";
+				mes "Pronto, elas já sumiram. Se você quiser informações sobre outros lugares, é só falar comigo.";
+				mes "Aproveite sua estada em Veins.";
+				break;
+			case 3:
+				mes "[Guia]";
+				mes "Quando usar o menu 'Guia da Vila', lembre-se que a posição dos lugares que você procura será marcada em seu mapa, no canto superior direito da tela.";
+				mes "Se você não estiver vendo seu mapa, use a tecla de atalho ''ctrl+tab'' ou pressione o botão ''mapa'' em sua janela de informações básicas, tudo bem?";
+				mes "E você também pode aproximar a visão de seu mapa usando o botão '-' caso você não consiga visualizar o mapa da vila inteiro.";
+				break;
+			case 4:
+				mes "[Guia]";
+				mes "Aproveite sua estada em Veins.";
+				close2;
+				set .@loop1,0;
+				break;
+			}
+		}
+		close;
+	}
+}
+
+veins,189,101,5	duplicate(Guia#veins01)	Guia#veins02	934

@@ -1,0 +1,284 @@
+//    ____________________________________________________________ 
+//   /                                                            \
+//   |       _           _   _   _                                |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _           |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |          |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |          |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|          |
+//   |                                                            |
+//   |                    brAthena Script                         |
+//   |------------------------------------------------------------|
+//   | Nome do Script: lunar_2008.txt                             |
+//   |------------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                            |
+//   |------------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                             |
+//   |------------------------------------------------------------|
+//   | Descrição: Evento de ano novo Lunar iRO; Ano do rato.(2008)|
+//   | - Matar: Cãibra, Tarou e Martin para recuperar             |
+//   | "Bolsas de arroz" em troca de alimentos com arroz outros   |
+//   | alimentos, envelopes e um ovo de "boneca de ano novo".     |
+//   |------------------------------------------------------------|
+//   | Changelog:                                                 |
+//   | 1.0 Criado Cabeçalho [Megasantos]                          |
+//   | 1.1 Tradução PT-BR [Heyric]                                |
+//   |------------------------------------------------------------|
+//   | - Anotações                                                |
+//   \____________________________________________________________/
+
+payon_in01,193,30,4	script	Vovó Moedora de Arroz#rat	78,{
+	mes "[Vovó Moedora de Arroz]";
+	if (!lunar_rat) {
+		mes "Essas criaturas";
+		mes "nojentas! Desnorteadas, ";
+		mes "tirando as coisas de";
+		mes "mim! Se eles não";
+		mes "fossem tão rápidos...";
+		next;
+		select("Qual o problema?");
+		mes "[Vovó Moedora de Arroz]";
+		mes "Ah, eu só estava preparando";
+		mes "alguns bolos de arroz e produtos";
+		mes "de docerias para comemorar";
+		mes "o ano novo, mas esses animais";
+		mes "roubaram os sacos de arroz";
+		mes "que eu tinha preparado.";
+		next;
+		select("Sacos de Arroz?");
+		mes "[Vovó Moedora de Arroz]";
+		mes "Sim, meu filho tem os";
+		mes "sacos de arroz para";
+		mes "bater no pilão, mas eu não";
+		mes "posso fazer pra qualquer doceria,";
+		mes "se eu nem se quer tenho o arroz. Você";
+		mes "acha que pode me ajudar?";
+		next;
+		if (select("Claro que sim.:Eu nem te conheço.") == 1) {
+			set lunar_rat,1;
+			mes "[" + strcharinfo(0)+"]";
+			mes "Claro que sim.";
+			mes "O que posso fazer?";
+			next;
+			mes "[Vovó Moedora de Arroz]";
+			mes "Bem, você acha que você";
+			mes "pode pegar os animais que";
+			mes "roubaram meus sacos de arroz?";
+			mes "São essas ratos azuis";
+			mes "e brancos, esses";
+			mes "ratos molengos desagradáveis.";
+			next;
+			select("Sem problema.");
+			mes "[" + strcharinfo(0)+"]";
+			mes "Não tem problema algum.";
+			mes "Vou pegar esses ratos,";
+			mes "e pegar de volta todos os";
+			mes "sacos de arroz que eu encontrar.";
+			next;
+			mes "[Vovó Moedora de Arroz]";
+			mes "Ah, obrigado!";
+			mes "Boa sorte para";
+			mes "pegar minhas coisas~";
+			close;
+		}
+		mes "[Vovó Moedora de Arroz]";
+		mes "Eu... Bem...";
+		mes "Isso é verdade,";
+		mes "mas eu estava pensando";
+		mes "em te dar algo bom em troca";
+		mes "de sua ajuda. Eu sei que você";
+		mes "não é uma pessoa má, então...";
+		close;
+	}
+	else if ((lunar_rat >= 1 && lunar_rat <= 2) || lunar_rat == 4) {
+		if (countitem(7770) >= 1 && lunar_rat == 2) {
+			mes "Ah, e você tem o arroz";
+			mes "doce que meu filho fez?";
+			mes "Será que você tem?";
+			mes "Por favor, espere um momento,";
+			mes "e eu vou fazer-lhe alguns pastéis.";
+			delitem 7770,1; //Sweet_rice
+			set lunar_rat,3;
+			close;
+		}
+		else if (lunar_rat == 4) {
+			if (countitem(7770) >= 1) {
+				mes "Ah, e você tem o arroz";
+				mes "doce que meu filho fez?";
+				mes "Será que você tem?";
+				mes "Por favor, espere um momento,";
+				mes "e eu vou fazer-lhe alguns pastéis.";
+				delitem 7770,1; //Sweet_rice
+				set lunar_rat,5;
+				close;
+			}
+			mes "Ah, aonde estão os";
+			mes "sacos de arroz? Precisamos dele";
+			mes "para fazermos mais bolos de arroz...";
+			close;
+		}
+		else if (countitem(7869) < 1 && lunar_rat <= 2) {
+			mes "Aah, aqueles ratos brancos e";
+			mes "devem ter arrancando";
+			mes "meus sacos de arroz, ";
+			mes "aqueles molengos, provavelmente";
+			mes "eles o levaram também. Esses ratos";
+			mes "são desagradáveis, né?";
+			close;
+		}
+		mes "Ah, é um dos meus";
+		mes "sacos de arroz? Me desculpe,";
+		mes "mas eu sinto dor nos quadris..";
+		mes "Você se importaria de";
+		mes "levar esses sacos de arroz";
+		mes "para o meu filho?";
+		set lunar_rat,2;
+		close;
+	}
+	else if (lunar_rat == 3 || lunar_rat == 5) {
+		set .@reward,rand(1,100);
+		if (.@reward <= 5) {
+			if (lunar_rat == 3) {
+				getitem 9038,1; // New_Year_Doll_Egg
+				set lunar_rat,4;
+			}
+			else if (lunar_rat == 5) {
+				getitem 668,1; // Red_Envelope
+			}
+		}
+		else if (.@reward >= 6 && .@reward <= 10) getitem 12198,2; // Lucky_Rice_Cake
+		else if (.@reward >= 11 && .@reward <= 30) getitem 12195,3; // Plain_Rice_Cake
+		else if (.@reward >= 31 && .@reward <= 40) getitem 12196,2; // Hearty_Rice_Cake
+		else if (.@reward >= 41 && .@reward <= 55) getitem 12123,2; // Honey_Pastry
+		else if (.@reward >= 56 && .@reward <= 70) getitem 12122,2; // Sesame_Pastry
+		else if (.@reward >= 71 && .@reward <= 80) getitem 12124,2; // Rainbow_Cake
+		else if (.@reward >= 81 && .@reward <= 90) getitem 12198,2; // Korean_Rice_Cake
+		else if (.@reward >= 91 && .@reward <= 100) getitem 12197,3; // Salty_Rice_Cake
+		// After getting the egg there is a chance to get an envelope with each turn in
+		if (rand(1,20) <= 5 && lunar_rat == 4) getitem 668,1; // Red_Envelope
+		// Set the quest accordingly for repeat turn-ins.
+		if (lunar_rat == 3) set lunar_rat,2;
+		else if (lunar_rat == 5) set lunar_rat,4;
+		mes "Eu sei que não é o suficiente";
+		mes "para pagar o que você tem";
+		mes "feito por mim, mas eu gostaria que";
+		mes "você comesse esse bolinho que";
+		mes "acabei de fazer. Por favor, aprecie-o ~";
+		next;
+		mes "[Vovó Moedora de Arroz]";
+		mes "Obrigado pelo";
+		mes "arroz doce! Tenha certeza";
+		mes "que eu farei mais coisas";
+		mes "deliciosas para você, se";
+		mes "você me trazer mais, ok?";
+		close;
+	}
+}
+
+payon,215,127,4	script	Homem Moedor de Arroz#rat	54,{
+	mes "[Homem Moedor de Arroz]";
+	if (!lunar_rat) {
+		mes "Quebrou meu coração...";
+		mes "Minha mãe passa o";
+		mes "tempo todo preparando o arroz";
+		mes "para o ano novo, e é tudo";
+		mes "roubado pelos ratos e insetos!";
+		close;
+	}
+	else if (lunar_rat == 1) {
+		mes "Eu ouço de minha mãe";
+		mes "que você está ajudando ela.";
+		mes "Ela é uma velhinha amorosa, né?";
+		mes "Se você encontrar os sacos de arroz,";
+		mes "você provavelmente vai querer que";
+		mes "ela os examine-os primeiro.";
+		close;
+	}
+	else if (lunar_rat >= 2) {
+		if (countitem(7869) < 1) {
+			mes "Se você me trouxer alguns";
+			mes "sacos de arroz doce,";
+			mes "poderei fazer arroz doce.";
+			mes "Você está aqui para ajudar";
+			mes "minha mãe, né? Obrigado,";
+			mes "eu realmente aprecio isso.";
+			close;
+		}
+		mes "Ah, você me trouxe alguns";
+		mes "sacos de arroz de minha mãe?";
+		mes "Me dê um segundo, eu vou";
+		mes "moer esse arroz até virar";
+		mes "massa, rapidinho.";
+		next;
+		mes "[Homem Moedor de Arroz]";
+		mes "Hoo! Haa! Hi-yah!";
+		mes "Woosha! Whoosha!";
+		mes "Ka-taaaaaaaaaa!";
+		mes "WOOOSHA!";
+		next;
+		mes "[Homem Moedor de Arroz]";
+		mes "Está feito. Aqui, o";
+		mes "arroz doce está pronto";
+		mes "para ser levado à doceria,";
+		mes "você pode levar paar";
+		mes "minha mãe?";
+		delitem 7869,1; //Rice_Pouch
+		getitem 7770,1; //Sweet_Rice
+		close;
+	}
+}
+
+payon,126,113,4	script	Senhorita Lunar#rat	719,{
+	mes "[Lunar]";
+	if ((MaxWeight-Weight) < 3000 || checkweight(1201,1) == 0) {
+		mes "Ah, me desculpe, mas";
+		mes "não podemos fazer negócio";
+		mes "se você estiver com muito peso.";
+		mes "Você se importaria de armazenar algumas";
+		mes "de suas coisas com o Serviço Kafra?";
+		close;
+	}
+	if (lunar_rat < 4) {
+		mes "Eu quero ganhar";
+		mes "dinhero para comprar o grande";
+		mes "pin crescente de prata.";
+		mes "Eu tenho que vender quanto";
+		mes "Moji eu poder!";
+		close;
+	}
+	else if (lunar_rat >= 4) {
+		mes "Ah, Olá! Estou vendendo";
+		mes "especiais bolos de arroz";
+		mes "feito com arroz doce. Você";
+		mes "mesmo pode comer, ou pode dar";
+		mes "para sua Boneca do Ano,";
+		mes "se você tiver uma.";
+		next;
+		mes "[Lunar]";
+		mes "Enfim, eu estou vendendo";
+		mes "10 Mojji por 3,000 zeny";
+		mes "Gostaria de experimentar?";
+		next;
+		if (select("Sim:Não") == 1) {
+			if (Zeny >= 3000) {
+				set Zeny,Zeny-3000;
+				getitem 554,10; // Mojji
+				mes "[Lunar]";
+				mes "Obrigado, e espero que";
+				mes "tenha um feliz ano novo!";
+				mes "Por favor, volte ~";
+				close;
+			}
+			mes "[Lunar]";
+			mes "Ah, me desculpe, mas você";
+			mes "não tem a quantidade de";
+			mes "zeny agora....";
+			close;
+		}
+		mes "[Lunar]";
+		mes "Ah, tudo bem. Bem, eu";
+		mes "estarei aqui caso você ou seus";
+		mes "amigos quererem alguns Mojji";
+		mes "depois, certo? Adeus~";
+		close;
+	}
+}

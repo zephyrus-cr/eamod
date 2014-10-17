@@ -1,0 +1,42 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: eclage.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais de Eclage.                          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+bif_fild02,292,351,0	warp	eclage_campo0001	1,1,ecl_fild01,205,74
+ecl_fild01,207,72,0	warp	eclage_campo0002	1,1,bif_fild02,294,349
+ecl_fild01,97,320,0	warp	eclage_campo0003	1,1,eclage,100,28
+eclage,98,26,0	warp	eclage_campo0004	1,1,ecl_fild01,97,317
+eclage,299,309,0	warp	eclage_campo0005	1,1,ecl_in01,47,11
+ecl_in01,47,8,0	warp	eclage_campo0006	1,1,eclage,297,307
+ecl_in01,8,67,0	warp	eclage_campo0007	1,1,ecl_hub01,38,94
+ecl_hub01,40,95,0	warp	eclage_campo0008	1,1,ecl_in01,11,67
+ecl_hub01,22,109,0	warp	eclage_campo0009	1,1,ecl_in02,98,7
+ecl_in02,98,4,0	warp	eclage_campo0010	1,1,ecl_hub01,23,107
+ecl_in02,81,18,0	warp	eclage_campo0011	1,1,ecl_in02,157,65
+ecl_in02,157,68,0	warp	eclage_campo0012	1,1,ecl_in02,83,18
+ecl_in01,84,68,0	warp	eclage_campo0013	1,1,ecl_hub01,107,107
+ecl_hub01,107,110,0	warp	eclage_campo0014	1,1,ecl_in01,81,68
+ecl_hub01,127,95,0	warp	eclage_campo0015	1,1,ecl_hub01,18,31
+ecl_hub01,18,34,0	warp	eclage_campo0016	1,1,ecl_hub01,124,95
+ecl_hub01,40,14,0	warp	eclage_campo0017	1,1,ecl_in03,144,17
+ecl_in03,144,14,0	warp	eclage_campo0018	1,1,ecl_hub01,40,11

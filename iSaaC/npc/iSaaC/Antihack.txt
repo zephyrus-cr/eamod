@@ -1,0 +1,100 @@
+/*[=====================================]iSaac AntiHack Sv_iMod [=========================================]
+							
+						 Vercion : 1.4		 	
+					CREATE TABLE `controlgm` (
+					`id_gm` int NOT NULL auto_increment,
+					`gm_name` varchar(30) NOT NULL default '0',
+					`ip` varchar(60) NOT NULL default '*.*.*',
+					`mac` varchar(50) NOT NULL default '*.*.*',
+					PRIMARY KEY(`id_gm`)
+					)ENGINE=MyISAM;		
+
+
+					ACMD_FUNC(mnh) {
+						nullpo_retr(-1,sd);
+						if( sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading || sd->state.storage_flag )
+							return -1;
+
+						npc_event(sd,"MNH::OnSettings",0);
+						return 0;
+					}
+					{ "mnh",           	  99,99,   0,     atcommand_mnh },
+
+
+[=====================================]iSaac AntiHack Sv_iMod [=========================================] */
+
+-	script	MNH	-1,{
+end;
+	OnSettings:
+		setarray .@gm_claves$[0],"1324","252134","2341234"; // claves
+		
+		setarray .@isaac[0],2000001,2000002,2000003; // numeros
+		setarray .@isaacip$[0],"68:5d:43:fa:54:6","0:13:d4:78:a2:2c","0:1c:c0:dc:c0:e2"; //macs antes se trabajaba con ips
+		setarray .@niveles[0],100,90,60; // nivel
+
+		query_sql("SELECT `last_mac` FROM `login` WHERE `account_id` = '" + getcharid(3) + "'", .@mac_ip$);	
+		query_sql("SELECT `last_ip`,`last_mac` FROM `login` WHERE `account_id`='"+getcharid(3)+"'",.@lastip$ ,.@mac_ip$ ); 
+		query_sql("SELECT `mac` FROM `controlgm` WHERE `gm_name`='"+strcharinfo(0)+"'",.@nuevogm$ );
+		query_sql("SELECT `account_id`,`userid` FROM `login` WHERE `userid` = '"+escape_sql(.@userid$)+"'", .@account_id,.@userid$);
+		
+		set .@intentos , 0;
+		for (set .@i,0; .@i < getarraysize( .@isaac ); set .@i , .@i + 1 ) {
+			if (  getcharid(3) == .@isaac[.@i] && getgmlevel() >= 1 && .@mac_ip$ == .@isaacip$[.@i] ) {
+				if ( .@nuevogm$ == "" ) {
+					mes name$;
+					query_sql "INSERT INTO `controlgm`(`gm_name`,`ip`,`mac`) VALUES('"+strcharinfo(0)+"','"+.@lastip$+"','"+.@mac_ip$+"')";
+					atcommand "@kick "+ strcharinfo(0);
+				} else {
+					do {
+						mes name$;
+						mes "Hola GM Digite Su Clave para ingresar";
+						input .@clave$;
+						for ( set .@i , 0; .@i < getarraysize( .@gm_claves$ ); set .@i , .@i + 1 ) {
+								next;
+							if ( .@clave$ == .@gm_claves$[ .@i ] && getcharid(3) == .@isaac[.@i] ) {
+								next;
+								mes name$;
+								mes "Bienvendio Gm disculpe las molestias ^.^";
+								atcommand "@adjgmlvl "+ .@niveles[ .@i ] + " " + strcharinfo(0);
+								close;
+								end;
+							}
+						} set .@intentos , .@intentos + 1; 
+					} while ( .@intentos != 3 );
+					next;
+					mes name$;
+					mes "has fallado 3 veces el login  seras Baneado.";
+					set .@userid$ , getcharid(3);
+	
+					set .@reason$, "[ iSaaC ] : Alguien trato de entrar en la cuenta gm";
+					set .@account_id,getcharid(3);
+					query_sql "UPDATE `login` SET `state`=5 WHERE `account_id`="+.@account_id;
+					query_sql "INSERT INTO `ipbanlist`(`list`,`btime`,`rtime`,`reason`) VALUES('"+.@ip$+"',NOW(),'2099-12-31 00:00:00','("+.@name$+.@userid$+") "+.@reason$+"')";
+					atcommand "@kick "+ strcharinfo(0) + "";
+					close;
+					end;
+				}
+			}
+		}
+	end;	
+
+	OnPCLoginEvent:
+		set var$ , " ";
+		set name$ , "^10B2D2 Server Name" + var$ + "^000000";
+		set name2$ , " Server Name ";
+	
+		if ( getgmlevel() >= 1 ) 
+		{
+	
+			atcommand "@adjgmlvl 1 "+ strcharinfo(0) + "";
+			announce " [ GM ] " + strcharinfo(0) + " entro al server",bc_all;
+			end;
+
+		} else {
+			announce "Bienvenido a " + name2$ + " recuerda votar por el server",bc_blue|bc_self;
+			end;
+		}
+			
+	end;
+
+}

@@ -1,0 +1,732 @@
+/*		WARPER BY ISAAC::BATTLE RAGNAROK SCRIPT		*/
+
+prontera,147,166,4	script	Ultimate Warper::Warper	803,{
+
+	mes name$;
+	mes " ";
+	setarray .@warpciud$[1],"prontera","mora","moscovia","alberta","aldebaran","amatsu","ayothaya","brasilis","einbroch","dicastes01","dewata","einbech","einbroch","geffen","gonryun","hugel","izlude","jawaii","lighthalzen","louyang","xmas","malangdo","morocc","niflheim","payon","rachel","thor_camp","veins","yuno","umbala","manuk","splendide";
+	setarray .@ciudades$[1],"Prontera","Mora","Moscovia","Alberta","Aldebaran","Amatsu","Ayothaya","Brasilis","Einbroch","Dicastes","Dewata","Einbech","Einbroch","Geffen","Gonryun","Hugel","Izlude","Jawaii","Lighthalzen","Louyang","Lutie","Malangdo","Morocc","Niflheim","Payon","Rachel","Thor Camp","Veins","Yuno","Umbala","Manuk","Splendide";
+	setarray .@xciudades[1],156	      ,109   ,223       ,192      ,140        ,198     ,151       ,195       ,209       ,0         ,202     ,70       ,64        ,119     ,160      ,96     ,127     ,249     ,158          ,217      ,147    ,0        ,156     ,21        ,162    ,130     ,50         ,216    ,157   ,89      ,287    ,199        ;
+	setarray .@yciudades[1],177       ,104   ,184       ,147      ,131        ,84      ,117       ,216       ,143       ,0	       ,179	   ,95	      ,200       ,66      ,120      ,145    ,215	  ,127      ,92            ,40       ,134    ,0        ,93      ,153       ,233    ,110     ,116        ,123    ,51    ,157     ,234    ,145        ;
+
+	mes "New! warper, porfavor reporta bugs de mapas, si encontras.";
+	if ( compare ( lastmap$ , ".gat" ) ) {
+		set lastmap2$ , replacestr(lastmap$, "_" , " ");
+		set lastmap2$ , setchar(lastmap2$,strtoupper(substr(lastmap2$,0,0)),0);
+		set lastmap2$ , substr(lastmap2$,0,getstrlen(lastmap2$) - 5 );
+	} else set lastmap2$ , lastmap$;
+	Switch ( select ( " ^10B2D2 [ > ] " + lastmap2$ + " ^000000 : ^10B2D2 [ > ] ^000000 Ciudades : ^10B2D2 [ > ] ^000000 Dungeons : ^10B2D2 [ > ] ^000000 Campos : ^10B2D2 [ > ] ^000000 Especiales " ) ) {
+		case 1:
+			 if(lastmap$ == "" ) {
+				mes name$; 
+				mes "";
+				mes "No has ido a ningun lado todavia!"; 
+				close; 
+			}	
+				 warp lastmap$,lastx,lasty; break;
+		case 2:
+			set .@Menu$ , " ";
+			for ( set .@i , 1; .@i < getarraysize(.@ciudades$); set .@i , .@i + 1 ) 
+				set .@Menu$ , .@Menu$ + "^10B2D2 [ " + getmapusers(.@warpciud$[.@i]) + " ] ^000000 " + .@ciudades$[ .@i ] + " : ";
+			set .@ESCOJER , select ( .@Menu$ );
+			
+			callfunc ("Lastmap",.@warpciud$[ .@ESCOJER ] , .@xciudades[ .@ESCOJER ] , .@yciudades[ .@ESCOJER ] );
+			break;
+			
+		case 5:
+			switch( Select ( " ^10B2D2 [ > ] ^000000 Game Room : ^10B2D2 [ > ] ^000000 Castillos de WoE : ^10B2D2 [ > ] ^000000 Mercado" ) ) {
+				case 1: 
+					switch (select (" ^10B2D2 [ > ] ^000000 Empe Breaker : ^10B2D2 [ > ] ^000000 Mini Empe Repare") ) {
+						case 1: callfunc ("Lastmap","quiz_02",249,384); break;
+						case 2: callfunc ("Lastmap","quiz_02",45,383); break;
+					}
+				break;
+				case 2:
+					switch ( select ( " ^10B2D2 [ > ] ^000000 Domingo : ^10B2D2 [ > ] ^000000 Sabado : ^10B2D2 [ > ] ^000000 Martes Y Jueves" ) ) {
+						case 1: callfunc ("Lastmap","sch_gld",98,197); break;
+						case 2: callfunc ("Lastmap","aru_gld",298,351); break;
+						case 3: callfunc ("Lastmap","alde_gld",96,243); break;
+					}
+				break;
+				case 3:	callfunc ("Lastmap","ayothaya",151,161); break;	
+			}
+		break;
+
+		case 4:
+			switch ( select (" ^10B2D2 [ > ] ^000000 Amatsu : ^10B2D2 [ > ] ^000000 Ayothaya : ^10B2D2 [ > ] ^000000 Comodo : ^10B2D2 [ > ] ^000000 Einbroch : ^10B2D2 [ > ] ^000000 Geffen : ^10B2D2 [ > ] ^000000 Gonryun : ^10B2D2 [ > ] ^000000 Hugel : ^10B2D2 [ > ] ^000000 Lighthalzen : ^10B2D2 [ > ] ^000000 Louyang : ^10B2D2 [ > ] ^000000 Lutie : ^10B2D2 [ > ] ^000000 Manuk : ^10B2D2 [ > ] ^000000 Mjolnir : ^10B2D2 [ > ] ^000000 Moscovia : ^10B2D2 [ > ] ^000000 Niflheim : ^10B2D2 [ > ] ^000000 Odin Temple : ^10B2D2 [ > ] ^000000 Payon : ^10B2D2 [ > ] ^000000 Prontera : ^10B2D2 [ > ] ^000000 Rachel : ^10B2D2 [ > ] ^000000 Sograt Deserts : ^10B2D2 [ > ] ^000000 Umbala : ^10B2D2 [ > ] ^000000 Veins : ^10B2D2 [ > ] ^000000 Yuno" )  ) {
+				case 1:	callfunc ("Lastmap","ama_fild01.gat",190,197); break;
+				
+				case 2:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Ayothaya 1 : ^10B2D2 [ > ] ^000000 Ayothaya 2 ") ) {
+						case 1: callfunc("Lastmap","ayo_fild01.gat",173,134); break;
+						case 2: callfunc("Lastmap","ayo_fild02.gat",212,150); break;
+					}
+				break;
+				
+				case 3:	  
+					switch ( select (" ^10B2D2 [ > ] ^000000 Comodo 1 : ^10B2D2 [ > ] ^000000 Comodo 2 : ^10B2D2 [ > ] ^000000 Comodo 3 : ^10B2D2 [ > ] ^000000 Comodo 4 : ^10B2D2 [ > ] ^000000 Comod 5 : ^10B2D2 [ > ] ^000000 Comodo 6 : ^10B2D2 [ > ] ^000000 Comodo 7 : ^10B2D2 [ > ] ^000000 Comodo 8 : ^10B2D2 [ > ] ^000000 Comodo 9 " ) ) {
+						case 1: callfunc("Lastmap","cmd_fild01.gat",180,178); break;
+						case 2: callfunc("Lastmap","cmd_fild02.gat",231,160); break;
+						case 3: callfunc("Lastmap","cmd_fild03.gat",191,172); break;
+						case 4: callfunc("Lastmap","cmd_fild04.gat",228,194); break;
+						case 5: callfunc("Lastmap","cmd_fild05.gat",224,203); break;
+						case 6: callfunc("Lastmap","cmd_fild06.gat",190,223); break;
+						case 7: callfunc("Lastmap","cmd_fild07.gat",234,177); break;
+						case 8: callfunc("Lastmap","cmd_fild08.gat",194,175); break;
+						case 9: callfunc("Lastmap","cmd_fild09.gat",172,172); break;
+						
+					}
+				break;
+				
+				case 4:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Einbroch 1 : ^10B2D2 [ > ] ^000000 Einbroch 2 : ^10B2D2 [ > ] ^000000 Einbroch 3 : ^10B2D2 [ > ] ^000000 Einbroch 4 : ^10B2D2 [ > ] ^000000 Einbroch 5 : ^10B2D2 [ > ] ^000000 Einbroch 6 : ^10B2D2 [ > ] ^000000 Einbroch 7 : ^10B2D2 [ > ] ^000000 Einbroch 8 : ^10B2D2 [ > ] ^000000 Einbroch 9 : ^10B2D2 [ > ] ^000000 Einbroch 10 " ) ) {
+						case 1: callfunc("Lastmap","ein_fild01.gat",142,225); break;
+						case 2: callfunc("Lastmap","ein_fild02.gat",182,141); break;
+						case 3: callfunc("Lastmap","ein_fild03.gat",187,228); break;
+						case 4: callfunc("Lastmap","ein_fild04.gat",185,173); break;
+						case 5: callfunc("Lastmap","ein_fild05.gat",216,173); break;
+						case 6: callfunc("Lastmap","ein_fild06.gat",195,148); break;
+						case 7: callfunc("Lastmap","ein_fild07.gat",272,220); break;
+						case 8: callfunc("Lastmap","ein_fild08.gat",173,214); break;
+						case 9: callfunc("Lastmap","ein_fild09.gat",207,174); break;
+						case 10: callfunc("Lastmap","ein_fild10.gat",196,200); break;
+						
+					}		
+				break;
+				
+				case 5:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Geffen 1 : ^10B2D2 [ > ] ^000000 Geffen 2 : ^10B2D2 [ > ] ^000000 Geffen 3 : ^10B2D2 [ > ] ^000000 Geffen 4 : ^10B2D2 [ > ] ^000000 Geffen 5 : ^10B2D2 [ > ] ^000000 Geffen 6 : ^10B2D2 [ > ] ^000000 Geffen 7 : ^10B2D2 [ > ] ^000000 Geffen 8 : ^10B2D2 [ > ] ^000000 Geffen 9 : ^10B2D2 [ > ] ^000000 Geffen 10 : ^10B2D2 [ > ] ^000000 Geffen 11 : ^10B2D2 [ > ] ^000000 Geffen 12 : ^10B2D2 [ > ] ^000000 Geffen 13 : ^10B2D2 [ > ] ^000000 Geffen 14 : ^10B2D2 [ > ] ^000000 Geffen 00" ) ) {
+						case 1: callfunc("Lastmap","gef_fild01.gat",213,204); break;
+						case 2: callfunc("Lastmap","gef_fild02.gat",195,212); break;
+						case 3: callfunc("Lastmap","gef_fild03.gat",257,192); break;
+						case 4: callfunc("Lastmap","gef_fild04.gat",188,171); break;
+						case 5: callfunc("Lastmap","gef_fild05.gat",166,263); break;
+						case 6: callfunc("Lastmap","gef_fild06.gat",248,158); break;
+						case 7: callfunc("Lastmap","gef_fild07.gat",195,191); break;
+						case 8: callfunc("Lastmap","gef_fild08.gat",186,183); break;
+						case 9: callfunc("Lastmap","gef_fild09.gat",221,117); break;
+						case 10: callfunc("Lastmap","gef_fild10.gat",178,218); break;
+						case 11: callfunc("Lastmap","gef_fild11.gat",136,328); break;
+						case 12: callfunc("Lastmap","gef_fild12.gat",240,181); break;
+						case 13: callfunc("Lastmap","gef_fild13.gat",235,235); break;
+						case 14: callfunc("Lastmap","gef_fild14.gat",211,185); break;
+						case 15: callfunc("Lastmap","gef_fild00.gat",46,199); break;
+					}		
+				break;	
+				
+				case 6:  callfunc("Lastmap","gon_fild01.gat",220,227); break;
+				
+				case 7:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Hugel 1 : ^10B2D2 [ > ] ^000000 Hugel 2 : ^10B2D2 [ > ] ^000000 Hugel 3 : ^10B2D2 [ > ] ^000000 Hugel 4 : ^10B2D2 [ > ] ^000000 Comod 5 : ^10B2D2 [ > ] ^000000 Hugel 6 : ^10B2D2 [ > ] ^000000 Hugel 7 " ) ) {
+						case 1: callfunc("Lastmap","hu_fild01.gat",268,101); break;
+						case 2: callfunc("Lastmap","hu_fild02.gat",222,193); break;
+						case 3: callfunc("Lastmap","hu_fild03.gat",232,185); break;
+						case 4: callfunc("Lastmap","hu_fild04.gat",252,189); break;
+						case 5: callfunc("Lastmap","hu_fild05.gat",196,106); break;
+						case 6: callfunc("Lastmap","hu_fild06.gat",216,220); break;
+						case 7: callfunc("Lastmap","hu_fild07.gat",227,197); break;
+						
+					}		
+				break;
+				case 8:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Lighthalzen 1 : ^10B2D2 [ > ] ^000000 Lighthalzen 2 : ^10B2D2 [ > ] ^000000 Lighthalzen 3") ) {
+						case 1: callfunc("Lastmap","lhz_fild01.gat",240,179); break;
+						case 2: callfunc("Lastmap","lhz_fild02.gat",185,235); break;
+						case 3: callfunc("Lastmap","lhz_fild03.gat",240,226); break;						
+					}
+				break;											
+				
+				case 9: callfunc("Lastmap","lou_fild01.gat",229,187); break;
+				case 10: callfunc("Lastmap","xmas_fild01.gat",115,145); break;
+				
+				case 11:
+					switch ( select ( " ^10B2D2 [ > ] ^000000  Manuk 1 : ^10B2D2 [ > ] ^000000  Manuk 2 : ^10B2D2 [ > ] ^000000 Manuk 3" ) ) {
+						case 1: callfunc("Lastmap","man_fild01.gat",36,238); break;
+						case 2: callfunc("Lastmap","man_fild02.gat",124,47); break;
+						case 3: callfunc("Lastmap","man_fild03.gat",79,363); break; 	
+					}
+				break;
+				
+				case 12:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Mjolnir 1 : ^10B2D2 [ > ] ^000000 Mjolnir 2 : ^10B2D2 [ > ] ^000000 Mjolnir 3 : ^10B2D2 [ > ] ^000000 Mjolnir 4 : ^10B2D2 [ > ] ^000000 Mjolnir 5 : ^10B2D2 [ > ] ^000000 Mjolnir 6 : ^10B2D2 [ > ] ^000000 Mjolnir 7 : ^10B2D2 [ > ] ^000000 Mjolnir 8 : ^10B2D2 [ > ] ^000000 Mjolnir 9 : ^10B2D2 [ > ] ^000000 Mjolnir 10 : ^10B2D2 [ > ] ^000000 Mjolnir 11 : ^10B2D2 [ > ] ^000000 Mjolnir 12" ) ) {
+						case 1: callfunc("Lastmap","mjolnir_01.gat",204,120); break;
+						case 2: callfunc("Lastmap","mjolnir_02.gat",175,193); break;
+						case 3: callfunc("Lastmap","mjolnir_03.gat",208,213); break;
+						case 4: callfunc("Lastmap","mjolnir_04.gat",179,180); break;
+						case 5: callfunc("Lastmap","mjolnir_05.gat",181,240); break;
+						case 6: callfunc("Lastmap","mjolnir_06.gat",195,270); break;
+						case 7: callfunc("Lastmap","mjolnir_07.gat",235,202); break;
+						case 8: callfunc("Lastmap","mjolnir_08.gat",188,215); break;
+						case 9: callfunc("Lastmap","mjolnir_09.gat",205,144); break;
+						case 10: callfunc("Lastmap","mjolnir_10.gat",245,223); break;
+						case 11: callfunc("Lastmap","mjolnir_11.gat",180,206); break;
+						case 12: callfunc("Lastmap","mjolnir_12.gat",196,208); break;
+					}		
+				break;
+				
+				case 13:
+					switch ( select (" ^10B2D2 [ > ] ^000000  Moscovia 1 : ^10B2D2 [ > ] ^000000  Moscovia 2 " ) ) {
+						case 1: callfunc("Lastmap","mosk_fild01.gat",99,105); break;
+						case 2: callfunc("Lastmap","mosk_fild02.gat",204,59); break; 	
+					}
+				break;
+					
+				case 14:
+					switch ( select ( " ^10B2D2 [ > ] ^000000  Niflheim 1 : ^10B2D2 [ > ] ^000000  Niflheim 2" ) ) {
+						case 1: callfunc("Lastmap","nif_fild01.gat",215,229); break;
+						case 2: callfunc("Lastmap","nif_fild02.gat",167,234); break; 	
+					}
+				break;	
+				
+				case 15:
+					switch ( select ( " ^10B2D2 [ > ] ^000000  Odin Temple 1 : ^10B2D2 [ > ] ^000000  Odin Temple 2 : ^10B2D2 [ > ] ^000000 Odin Temple 3" ) ) {
+						case 1: callfunc("Lastmap","odin_tem01.gat",97,146); break;
+						case 2: callfunc("Lastmap","odin_tem02.gat",224,149); break;
+						case 3: callfunc("Lastmap","odin_tem03.gat",266,281); break; 	
+					}
+				break;		
+				
+				case 16:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Payon Forest 1 : ^10B2D2 [ > ] ^000000 Payon Forest 2 : ^10B2D2 [ > ] ^000000 Payon Forest 3 : ^10B2D2 [ > ] ^000000 Payon Forest 4 : ^10B2D2 [ > ] ^000000 Payon Forest 5 : ^10B2D2 [ > ] ^000000 Payon Forest 6 : ^10B2D2 [ > ] ^000000 Payon Forest 7 : ^10B2D2 [ > ] ^000000 Payon Forest 8 : ^10B2D2 [ > ] ^000000 Payon Forest 9 : ^10B2D2 [ > ] ^000000 Payon Forest 10 : ^10B2D2 [ > ] ^000000 Payon Forest 11" ) ) {
+						case 1: callfunc("Lastmap","pay_fild01.gat",158,206); break;
+						case 2: callfunc("Lastmap","pay_fild02.gat",151,219); break;
+						case 3: callfunc("Lastmap","pay_fild03.gat",205,148); break;
+						case 4: callfunc("Lastmap","pay_fild04.gat",186,247); break;
+						case 5: callfunc("Lastmap","pay_fild05.gat",134,204); break;
+						case 6: callfunc("Lastmap","pay_fild06.gat",193,235); break;
+						case 7: callfunc("Lastmap","pay_fild07.gat",200,177); break;
+						case 8: callfunc("Lastmap","pay_fild08.gat",137,189); break;
+						case 9: callfunc("Lastmap","pay_fild09.gat",201,224); break;
+						case 10: callfunc("Lastmap","pay_fild10.gat",160,205); break;
+						case 11: callfunc("Lastmap","pay_fild11.gat",194,150); break;
+					}		
+				break;												
+					
+				case 17:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Prontera 1 : ^10B2D2 [ > ] ^000000 Prontera 2 : ^10B2D2 [ > ] ^000000 Prontera 3 : ^10B2D2 [ > ] ^000000 Prontera 4 : ^10B2D2 [ > ] ^000000 Prontera 5 : ^10B2D2 [ > ] ^000000 Prontera 6 : ^10B2D2 [ > ] ^000000 Prontera 7 : ^10B2D2 [ > ] ^000000 Prontera 8 : ^10B2D2 [ > ] ^000000 Prontera 9 : ^10B2D2 [ > ] ^000000 Prontera 10 : ^10B2D2 [ > ] ^000000 Prontera 11" ) ) {
+						case 1: callfunc("Lastmap","prt_fild01.gat",190,206); break;
+						case 2: callfunc("Lastmap","prt_fild02.gat",240,206); break;
+						case 3: callfunc("Lastmap","prt_fild03.gat",190,143); break;
+						case 4: callfunc("Lastmap","prt_fild04.gat",307,252); break;
+						case 5: callfunc("Lastmap","prt_fild05.gat",239,213); break;
+						case 6: callfunc("Lastmap","prt_fild06.gat",185,188); break;
+						case 7: callfunc("Lastmap","prt_fild07.gat",193,194); break;
+						case 8: callfunc("Lastmap","prt_fild08.gat",187,218); break;
+						case 9: callfunc("Lastmap","prt_fild09.gat",210,183); break;
+						case 10: callfunc("Lastmap","prt_fild10.gat",195,149); break;
+						case 11: callfunc("Lastmap","prt_fild11.gat",198,164); break;
+					}		
+				break;
+				
+				case 18:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Rachel 1 : ^10B2D2 [ > ] ^000000 Rachel 2 : ^10B2D2 [ > ] ^000000 Rachel 3 : ^10B2D2 [ > ] ^000000 Rachel 4 : ^10B2D2 [ > ] ^000000 Rachel 5 : ^10B2D2 [ > ] ^000000 Rachel 6 : ^10B2D2 [ > ] ^000000 Rachel 7 : ^10B2D2 [ > ] ^000000 Rachel 8 : ^10B2D2 [ > ] ^000000 Rachel 9 : ^10B2D2 [ > ] ^000000 Rachel 10 : ^10B2D2 [ > ] ^000000 Rachel 11 : ^10B2D2 [ > ] ^000000 Rachel 12 : ^10B2D2 [ > ] ^000000 Rachel 13" ) ) {
+						case 1: callfunc("Lastmap","ra_fild01.gat",192,162); break;
+						case 2: callfunc("Lastmap","ra_fild02.gat",235,166); break;
+						case 3: callfunc("Lastmap","ra_fild03.gat",202,206); break;
+						case 4: callfunc("Lastmap","ra_fild04.gat",202,208); break;
+						case 5: callfunc("Lastmap","ra_fild05.gat",225,202); break;
+						case 6: callfunc("Lastmap","ra_fild06.gat",202,214); break;
+						case 7: callfunc("Lastmap","ra_fild07.gat",263,196); break;
+						case 8: callfunc("Lastmap","ra_fild08.gat",217,201); break;
+						case 9: callfunc("Lastmap","ra_fild09.gat",87,121); break;
+						case 10: callfunc("Lastmap","ra_fild10.gat",277,181); break;
+						case 11: callfunc("Lastmap","ra_fild11.gat",221,185); break;
+						case 12: callfunc("Lastmap","ra_fild12.gat",175,200); break;
+						case 13: callfunc("Lastmap","ra_fild13.gat",174,197); break;
+					}		
+				break;	
+				
+				case 19:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Sograt Desert 1 : ^10B2D2 [ > ] ^000000 Sograt Desert 2 : ^10B2D2 [ > ] ^000000 Sograt Desert 3 : ^10B2D2 [ > ] ^000000 Sograt Desert 4 : ^10B2D2 [ > ] ^000000 Sograt Desert 5 : ^10B2D2 [ > ] ^000000 Sograt Desert 6 : ^10B2D2 [ > ] ^000000 Sograt Desert 7 : ^10B2D2 [ > ] ^000000 Sograt Desert 8 : ^10B2D2 [ > ] ^000000 Sograt Desert 9 : ^10B2D2 [ > ] ^000000 Sograt Desert 10 : ^10B2D2 [ > ] ^000000 Sograt Desert 11 : ^10B2D2 [ > ] ^000000 Sograt Desert 12 : ^10B2D2 [ > ] ^000000 Sograt Desert 13 : ^10B2D2 [ > ] ^000000 Sograt Desert 14 : ^10B2D2 [ > ] ^000000 Sograt Desert 15 : ^10B2D2 [ > ] ^000000 Sograt Desert 16 : ^10B2D2 [ > ] ^000000 Sograt Desert 17 : ^10B2D2 [ > ] ^000000 Sograt Desert 18 : ^10B2D2 [ > ] ^000000 Sograt Desert 19" ) ) {
+						case 1: callfunc("Lastmap","moc_fild01.gat",219,205); break;
+						case 2: callfunc("Lastmap","moc_fild02.gat",177,206); break;
+						case 3: callfunc("Lastmap","moc_fild03.gat",194,182); break;
+						case 4: callfunc("Lastmap","moc_fild04.gat",184,217); break;
+						case 5: callfunc("Lastmap","moc_fild05.gat",203,213); break;
+						case 6: callfunc("Lastmap","moc_fild06.gat",213,208); break;
+						case 7: callfunc("Lastmap","moc_fild07.gat",224,170); break;
+						case 8: callfunc("Lastmap","moc_fild08.gat",229,177); break;
+						case 9: callfunc("Lastmap","moc_fild09.gat",195,198); break;
+						case 10: callfunc("Lastmap","moc_fild10.gat",209,168); break;
+						case 11: callfunc("Lastmap","moc_fild11.gat",198,216); break;
+						case 12: callfunc("Lastmap","moc_fild12.gat",156,187); break;
+						case 13: callfunc("Lastmap","moc_fild13.gat",185,263); break;
+						case 14: callfunc("Lastmap","moc_fild14.gat",209,219); break;
+						case 15: callfunc("Lastmap","moc_fild15.gat",223,188); break;
+						case 16: callfunc("Lastmap","moc_fild16.gat",206,228); break;
+						case 17: callfunc("Lastmap","moc_fild17.gat",208,238); break;
+						case 18: callfunc("Lastmap","moc_fild18.gat",209,223); break;
+						case 19: callfunc("Lastmap","moc_fild19.gat",85,97); break;											
+					}		
+				break;	
+				
+				case 20:
+					switch ( select ( " ^10B2D2 [ > ] ^000000  Umbala 1 : ^10B2D2 [ > ] ^000000  Umbala 2 : ^10B2D2 [ > ] ^000000 Umbala 3 : ^10B2D2 [ > ] ^000000 Umbala 4" ) ) {
+						case 1: callfunc("Lastmap","um_fild01.gat",217,206); break;
+						case 2: callfunc("Lastmap","um_fild02.gat",223,221); break;
+						case 3: callfunc("Lastmap","um_fild03.gat",237,215); break; 	
+					}
+				break;				
+				case 21:		
+					switch ( select (" ^10B2D2 [ > ] ^000000 Veins 1 : ^10B2D2 [ > ] ^000000 Veins 2 : ^10B2D2 [ > ] ^000000 Veins 3 : ^10B2D2 [ > ] ^000000 Veins 4 : ^10B2D2 [ > ] ^000000 Comod 5 : ^10B2D2 [ > ] ^000000 Veins 6 : ^10B2D2 [ > ] ^000000 Veins 7 " ) ) {
+						case 1: callfunc("Lastmap","ve_fild01.gat",186,175); break;
+						case 2: callfunc("Lastmap","ve_fild02.gat",196,370); break;
+						case 3: callfunc("Lastmap","ve_fild03.gat",222,45); break;
+						case 4: callfunc("Lastmap","ve_fild04.gat",51,250); break;
+						case 5: callfunc("Lastmap","ve_fild05.gat",202,324); break;
+						case 6: callfunc("Lastmap","ve_fild06.gat",150,223); break;
+						case 7: callfunc("Lastmap","ve_fild07.gat",149,307); break;
+						
+					}		
+				break;
+				
+				case 22:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Yuno 1 : ^10B2D2 [ > ] ^000000 Yuno 2 : ^10B2D2 [ > ] ^000000 Yuno 3 : ^10B2D2 [ > ] ^000000 Yuno 4 : ^10B2D2 [ > ] ^000000 Yuno 5 : ^10B2D2 [ > ] ^000000 Yuno 6 : ^10B2D2 [ > ] ^000000 Yuno 7 : ^10B2D2 [ > ] ^000000 Yuno 8 : ^10B2D2 [ > ] ^000000 Yuno 9 : ^10B2D2 [ > ] ^000000 Yuno 10 : ^10B2D2 [ > ] ^000000 Yuno 11 : ^10B2D2 [ > ] ^000000 Yuno 12 " ) ) {
+						case 1: callfunc("Lastmap","yuno_fild01.gat",189,224); break;
+						case 2: callfunc("Lastmap","yuno_fild02.gat",192,207); break;
+						case 3: callfunc("Lastmap","yuno_fild03.gat",221,157); break;
+						case 4: callfunc("Lastmap","yuno_fild04.gat",226,199); break;
+						case 5: callfunc("Lastmap","yuno_fild05.gat",223,177); break;
+						case 6: callfunc("Lastmap","yuno_fild06.gat",187,232); break;
+						case 7: callfunc("Lastmap","yuno_fild07.gat",231,174); break;
+						case 8: callfunc("Lastmap","yuno_fild08.gat",196,203); break;
+						case 9: callfunc("Lastmap","yuno_fild09.gat",183,214); break;
+						case 10: callfunc("Lastmap","yuno_fild10.gat",200,124); break;
+						case 11: callfunc("Lastmap","yuno_fild11.gat",195,226); break;
+						case 12: callfunc("Lastmap","yuno_fild12.gat",210,304); break;
+					}	
+				}	
+			break;	
+				
+				
+			case 3:
+				switch ( select (" ^10B2D2 [ > ] ^000000 Abbey, Cursed Monastery : ^10B2D2 [ > ] ^000000 Abyss Lakes : ^10B2D2 [ > ] ^000000 Amatsu Dungeon : ^10B2D2 [ > ] ^000000 Anthell : ^10B2D2 [ > ] ^000000 Ayothaya Dungeons : ^10B2D2 [ > ] ^000000 Beach Dungeon : ^10B2D2 [ > ] ^000000 Byalan Dungeon : ^10B2D2 [ > ] ^000000 Brasilis Dungeon : ^10B2D2 [ > ] ^000000 Bifrost Dungeon : ^10B2D2 [ > ] ^000000 Clock Tower : ^10B2D2 [ > ] ^000000 Coal Mines : ^10B2D2 [ > ] ^000000 Culverts : ^10B2D2 [ > ] ^000000 Dewata : ^10B2D2 [ > ] ^000000 Discastes : ^10B2D2 [ > ] ^000000 Dimensional Gorge : ^10B2D2 [ > ] ^000000 Einbech Dungeons : ^10B2D2 [ > ] ^000000 Geffen Dungeon : ^10B2D2 [ > ] ^000000 Gefenia Dungeon : ^10B2D2 [ > ] ^000000 Glast Heim : ^10B2D2 [ > ] ^000000 Gonryun Dungeon : ^10B2D2 [ > ] ^000000 Hidden Dungeon : ^10B2D2 [ > ] ^000000 Ice Dungeon : ^10B2D2 [ > ] ^000000 Juperos Dungeons : ^10B2D2 [ > ] ^000000 Kiel Dungeons : ^10B2D2 [ > ] ^000000 Bio Laboratory : ^10B2D2 [ > ] ^000000 Louyang Dungeons : ^10B2D2 [ > ] ^000000 Magma Dungeon : ^10B2D2 [ > ] ^000000 Moscovia Dungeon : ^10B2D2 [ > ] ^000000Nidhogg's Dungeons : ^10B2D2 [ > ] ^000000 Orc Dungeon : ^10B2D2 [ > ] ^000000 Payon Dungeon : ^10B2D2 [ > ] ^000000 Pyramids : ^10B2D2 [ > ] ^000000 Rachel Sanctuary : ^10B2D2 [ > ] ^000000 Sphinx : ^10B2D2 [ > ] ^000000 Sunken Ship : ^10B2D2 [ > ] ^000000 Splendide Dungeons : ^10B2D2 [ > ] ^000000 Thanatos Tower : ^10B2D2 [ > ] ^000000 Thor Volcano : ^10B2D2 [ > ] ^000000 Toy Factory : ^10B2D2 [ > ] ^000000 Turtle Dungeon : ^10B2D2 [ > ] ^000000 Umbala Dungeons" ) ) {
+					case 1:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","abbey01.gat",51,14); break;
+							case 2: callfunc("Lastmap","abbey02.gat",150,11); break;
+							case 3: callfunc("Lastmap","abbey03.gat",120,10); break;
+						}
+					break;
+					
+					case 2:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","abyss_01.gat",263,270); break;
+							case 2: callfunc("Lastmap","abyss_02.gat",275,270); break;
+							case 3: callfunc("Lastmap","abyss_03.gat",116,27); break;
+						}
+					break;
+					
+					case 3:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","ama_dun01.gat",228,11); break;
+							case 2: callfunc("Lastmap","ama_dun02.gat",34,41); break;
+							case 3: callfunc("Lastmap","ama_dun03.gat",119,14); break;
+						}
+					break;
+					
+					case 4:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","anthell01.gat",35,262); break;
+							case 2: callfunc("Lastmap","anthell02.gat",168,170); break;
+						}
+					break;
+					
+					case 5:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","ayo_dun01.gat",244,145); break;
+							case 2: callfunc("Lastmap","ayo_dun02.gat",24,26); break;
+						}
+					break;
+					
+					case 6:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4") ) {
+							case 1: callfunc("Lastmap","beach_dun.gat",266,67); break;
+							case 2: callfunc("Lastmap","beach_dun2.gat",255,244); break;
+							case 3: callfunc("Lastmap","beach_dun3.gat",22,262); break;
+							case 4: callfunc("Lastmap","cmd_fild02.gat",252,170); break;
+						}
+					break;
+					
+					case 7:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Level 5") ) {
+							case 1: callfunc("Lastmap","iz_dun00.gat",168,168); break;
+							case 2: callfunc("Lastmap","iz_dun01.gat",253,252); break;
+							case 3: callfunc("Lastmap","iz_dun02.gat",236,204); break;
+							case 4: callfunc("Lastmap","iz_dun03.gat",32,63); break;
+							case 5: callfunc("Lastmap","iz_dun04.gat",26,27); break;
+						}
+					break;
+					
+					case 8:
+						switch (select(" ^10B2D2 [ > ] ^000000 Brasilis Field : ^10B2D2 [ > ] ^000000 Brasilis Dungeon 1 : ^10B2D2 [ > ] ^000000 Brasilis Dungeon 2") ) {
+							case 1: callfunc("Lastmap","bra_fild01",77,33); break;
+							case 2: callfunc("Lastmap","bra_dun01",200,42); break;
+							case 3: callfunc("Lastmap","bra_dun02",262,260); break;
+						}
+					break;
+					
+					case 9:
+						switch (select(" ^10B2D2 [ > ] ^000000 Bifrost Dungeon 1 : ^10B2D2 [ > ] ^000000 Bifrost Dungeon 2 : ^10B2D2 [ > ] ^000000 Mora Dungeon") ) {
+							case 1: callfunc("Lastmap","bif_fild01",160,345); break;
+							case 2: callfunc("Lastmap","bif_fild02",299,336); break;
+							case 3: callfunc("Lastmap","1@mist",60,284); break;
+						}
+					break;
+					
+					case 10:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Basement 1 : ^10B2D2 [ > ] ^000000 Basement 2 : ^10B2D2 [ > ] ^000000 Basement 3 : ^10B2D2 [ > ] ^000000 Basement 4") ) {
+							case 1: callfunc("Lastmap","c_tower1.gat",199,159); break;
+							case 2: callfunc("Lastmap","c_tower2.gat",148,283); break;
+							case 3: callfunc("Lastmap","c_tower3.gat",65,147); break;
+							case 4: callfunc("Lastmap","c_tower4.gat",56,155); break;
+							case 5: callfunc("Lastmap","alde_dun01.gat",297,25); break;
+							case 6: callfunc("Lastmap","alde_dun02.gat",127,169); break;
+							case 7: callfunc("Lastmap","alde_dun03.gat",277,178); break;
+							case 8: callfunc("Lastmap","alde_dun04.gat",268,74); break;
+						}
+					break;
+					
+					case 11:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","mjo_dun01.gat",52,17); break;
+							case 2: callfunc("Lastmap","mjo_dun02.gat",381,343); break;
+							case 3: callfunc("Lastmap","mjo_dun03.gat",302,262); break;
+						}
+					break;
+					
+					case 12:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4") ) {
+							case 1: callfunc("Lastmap","prt_sewb1.gat",131,247); break;
+							case 2: callfunc("Lastmap","prt_sewb2.gat",19,19); break;
+							case 3: callfunc("Lastmap","prt_sewb3.gat",180,169); break;
+							case 4: callfunc("Lastmap","prt_sewb4.gat",100,92); break;
+						}
+					break;
+					
+					case 13:
+						switch (select(" ^10B2D2 [ > ] ^000000 Field : ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","dew_fild01",369,213); break;
+							case 2: callfunc("Lastmap","dew_dun01",291,161); break;
+							case 3: callfunc("Lastmap","dew_dun02",291,30); break;
+						}
+					break;
+					
+					case 14:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Field 1 : ^10B2D2 [ > ] ^000000 Field 2") ) {
+							case 1: callfunc("Lastmap","dic_dun01",366,44); break;
+							case 2: callfunc("Lastmap","dic_dun02",102,140); break;
+							case 3: callfunc("Lastmap","dic_fild01",151,274); break;
+							case 4: callfunc("Lastmap","dic_fild02",71,368); break;
+						}
+					break;
+					
+					case 15:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","moc_fild20.gat",207,340); break;
+							case 2: callfunc("Lastmap","moc_fild21.gat",30,195); break;
+							case 3: callfunc("Lastmap","moc_fild22.gat",364,332); break;
+						}
+					break;
+					
+					case 16:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","ein_dun01.gat",22,14); break;
+							case 2: callfunc("Lastmap","ein_dun02.gat",292,290); break;
+						}
+					break;
+					
+					case 17:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2") ) {
+							case 1: callfunc("Lastmap","gef_dun00.gat",104,99); break;
+							case 2: callfunc("Lastmap","gef_dun01.gat",115,236); break;
+							case 3: callfunc("Lastmap","gef_dun02.gat",106,132); break;
+							case 4: callfunc("Lastmap","gef_dun03.gat",203,200); break;
+						}
+					break;
+					
+					case 18:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2") ) {
+							case 1: callfunc("Lastmap","gefenia01.gat",40,103); break;
+							case 2: callfunc("Lastmap","gefenia02.gat",203,34); break;
+							case 3: callfunc("Lastmap","gefenia03.gat",266,168); break;
+							case 4: callfunc("Lastmap","gefenia04.gat",130,272); break;
+						}
+					break;
+					
+					case 19:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Entrance : ^10B2D2 [ > ] ^000000 Inside : ^10B2D2 [ > ] ^000000 Catle 1 : ^10B2D2 [ > ] ^000000 Castle 2 : ^10B2D2 [ > ] ^000000 Chivalry 1 : ^10B2D2 [ > ] ^000000 Chivalry 2 : ^10B2D2 [ > ] ^000000 Churchyard : ^10B2D2 [ > ] ^000000 Culvert 1 : ^10B2D2 [ > ] ^000000 Culvert 2 : ^10B2D2 [ > ] ^000000 Culvert 3 : ^10B2D2 [ > ] ^000000 Culvert 4 : ^10B2D2 [ > ] ^000000 St.Abbey : ^10B2D2 [ > ] ^000000 Staircase Dungeon : ^10B2D2 [ > ] ^000000 Underground Cave 1 : ^10B2D2 [ > ] ^000000 Underground Cave 2 : ^10B2D2 [ > ] ^000000 Underground Prision 1 : ^10B2D2 [ > ] ^000000 Underground Prision 2" ) ) {
+						case 1: callfunc("Lastmap","glast_01.gat",370,304); break;
+						case 2: callfunc("Lastmap","gl_in01.gat",122,59); break;
+						case 3: callfunc("Lastmap","gl_cas01.gat",199,29); break;
+						case 4: callfunc("Lastmap","gl_cas02.gat",104,25); break;
+						case 5: callfunc("Lastmap","gl_knt01.gat",150,15); break;
+						case 6: callfunc("Lastmap","gl_knt02.gat",157,287); break;
+						case 7: callfunc("Lastmap","gl_chyard.gat",147,15); break;
+						case 8: callfunc("Lastmap","gl_sew01.gat",258,255); break;
+						case 9: callfunc("Lastmap","gl_sew02.gat",108,291); break;
+						case 10: callfunc("Lastmap","gl_sew03.gat",171,283); break;
+						case 11: callfunc("Lastmap","gl_sew04.gat",68,277); break;
+						case 12: callfunc("Lastmap","gl_church.gat",156,7); break;
+						case 13: callfunc("Lastmap","gl_step.gat",12,7); break;
+						case 14: callfunc("Lastmap","gl_dun01.gat",133,271); break;
+						case 15: callfunc("Lastmap","gl_dun02.gat",224,274); break;
+						case 16: callfunc("Lastmap","gl_prison.gat",14,70); break;
+						case 17: callfunc("Lastmap","gl_prison1.gat",150,14); break;
+					}		
+				break;	
+				
+				case 20: callfunc("Lastmap","gon_fild01.gat",220,227); break;
+				
+				case 21:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","prt_maze01.gat",176,7); break;
+							case 2: callfunc("Lastmap","prt_maze02.gat",92,20); break;
+							case 3: callfunc("Lastmap","prt_maze03.gat",23,8); break;
+						}
+					break;
+					
+				case 22:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Field 1 : ^10B2D2 [ > ] ^000000 Field 2") ) {
+							case 1: callfunc("Lastmap","ice_dun01.gat",157,14); break;
+							case 2: callfunc("Lastmap","ice_dun02.gat",151,155); break;
+							case 3: callfunc("Lastmap","ice_dun03.gat",149,22); break;
+							case 4: callfunc("Lastmap","ice_dun04.gat",33,158); break;
+						}
+					break;
+					
+				case 23:
+						switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Core ") ) {
+							case 1: callfunc("Lastmap","juperos_01.gat",53,247); break;
+							case 2: callfunc("Lastmap","juperos_02.gat",37,63); break;
+							case 3: callfunc("Lastmap","jupe_core.gat",150,285); break;
+						}
+					break;
+					
+				case 24:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","kh_dun01.gat",28,226); break;
+							case 2: callfunc("Lastmap","kh_dun02.gat",41,198); break;
+						}
+					break;
+					
+				case 25:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","lhz_dun01.gat",150,228); break;
+							case 2: callfunc("Lastmap","lhz_dun02.gat",150,18); break;
+							case 3: callfunc("Lastmap","lhz_dun03.gat",139,133); break;
+						}
+					break;
+				
+				case 26:
+					switch (select(" ^10B2D2 [ > ] ^000000 The Royal Tomb : ^10B2D2 [ > ] ^000000 Inside the Royal Tomb : ^10B2D2 [ > ] ^000000 Suei Long Gon ") ) {
+							case 1: callfunc("Lastmap","lou_dun01.gat",218,196); break;
+							case 2: callfunc("Lastmap","lou_dun02.gat",282,20); break;
+							case 3: callfunc("Lastmap","lou_dun03.gat",165,38); break;
+						}
+					break;
+				
+				case 27:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","mag_dun01.gat",126,68); break;
+							case 2: callfunc("Lastmap","mag_dun02.gat",47,30); break;
+						}
+					break;
+				
+				case 28:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","mosk_dun01.gat",189,46); break;
+							case 2: callfunc("Lastmap","mosk_dun02.gat",163,33); break;
+							case 3: callfunc("Lastmap","mosk_dun03.gat",33,136); break;
+						}
+					break;
+				
+				case 29:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Nest level 1 : ^10B2D2 [ > ] ^000000 Nest level 2") ) {
+						case 1: callfunc("Lastmap","nyd_dun01.gat",57,222); break;
+						case 2: callfunc("Lastmap","nyd_dun02.gat",59,266); break;
+						case 3: callfunc("Lastmap","1@nyd",129,240); break;
+						case 4: callfunc("Lastmap","2@nyd",383,179); break;
+					}
+					break;
+				case 30:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","orcsdun01.gat",32,170); break;
+							case 2: callfunc("Lastmap","orcsdun02.gat",21,185); break;
+						}
+					break;
+				
+				case 31:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Level 5") ) {
+						case 1: callfunc("Lastmap","pay_dun00.gat",21,183); break;
+						case 2: callfunc("Lastmap","pay_dun01.gat",19,33); break;
+						case 3: callfunc("Lastmap","pay_dun02.gat",19,63); break;
+						case 4: callfunc("Lastmap","pay_dun03.gat",155,159); break;
+						case 5: callfunc("Lastmap","pay_dun04.gat",201,204); break;
+					}
+					break;		
+				
+				case 32:			
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Basement 1 : ^10B2D2 [ > ] ^000000 Basement 2") ) {
+						case 1: callfunc("Lastmap","moc_pryd01.gat",192,9); break;
+						case 2: callfunc("Lastmap","moc_pryd02.gat",10,192); break;
+						case 3: callfunc("Lastmap","moc_pryd03.gat",100,92); break;
+						case 4: callfunc("Lastmap","moc_pryd04.gat",181,11); break;
+						case 5: callfunc("Lastmap","moc_pryd05.gat",94,96); break;
+						case 6: callfunc("Lastmap","moc_pryd06.gat",192,8); break;
+					}
+					break;		
+				
+				case 33:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Level 5") ) {
+						case 1: callfunc("Lastmap","ra_san01.gat",140,11); break;
+						case 2: callfunc("Lastmap","ra_san02.gat",32,21); break;
+						case 3: callfunc("Lastmap","ra_san03.gat",4,149); break;
+						case 4: callfunc("Lastmap","ra_san04.gat",204,218); break;
+						case 5: callfunc("Lastmap","ra_san05.gat",150,9); break;
+					}
+					break;
+				
+				case 34:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Level 5") ) {
+						case 1: callfunc("Lastmap","in_sphinx1.gat",288,9); break;
+						case 2: callfunc("Lastmap","in_sphinx2.gat",149,81); break;
+						case 3: callfunc("Lastmap","in_sphinx3.gat",210,54); break;
+						case 4: callfunc("Lastmap","in_sphinx4.gat",10,222); break;
+						case 5: callfunc("Lastmap","in_sphinx5.gat",100,99); break;
+					}
+					break;
+				
+				case 35:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","treasure01.gat",69,24); break;
+							case 2: callfunc("Lastmap","treasure02.gat",102,27); break;
+						}
+					break;
+
+				case 36:	
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","spl_fild01.gat",20,331); break;
+							case 2: callfunc("Lastmap","spl_fild02.gat",20,242); break;
+							case 3: callfunc("Lastmap","spl_fild03.gat",102,370); break;
+						}
+					break;
+
+				case 37:
+					switch ( select (" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 : ^10B2D2 [ > ] ^000000 Level 4 : ^10B2D2 [ > ] ^000000 Level 5 : ^10B2D2 [ > ] ^000000 Level 6 : ^10B2D2 [ > ] ^000000 Level 7 : ^10B2D2 [ > ] ^000000 Level 8 : ^10B2D2 [ > ] ^000000 Level 9 : ^10B2D2 [ > ] ^000000 Level 10 : ^10B2D2 [ > ] ^000000 Level 11 : ^10B2D2 [ > ] ^000000 Level 12 " ) ) {
+						case 1: callfunc("Lastmap","tha_t01.gat",150,39); break;
+						case 2: callfunc("Lastmap","tha_t02.gat",150,136); break;
+						case 3: callfunc("Lastmap","tha_t03.gat",220,158); break;
+						case 4: callfunc("Lastmap","tha_t04.gat",59,143); break;
+						case 5: callfunc("Lastmap","tha_t05.gat",62,11); break;
+						case 6: callfunc("Lastmap","tha_t06.gat",89,221); break;
+						case 7: callfunc("Lastmap","tha_t07.gat",35,166); break;
+						case 8: callfunc("Lastmap","tha_t08.gat",93,148); break;
+						case 9: callfunc("Lastmap","tha_t09.gat",29,107); break;
+						case 10: callfunc("Lastmap","tha_t10.gat",159,138); break;
+						case 11: callfunc("Lastmap","tha_t11.gat",19,20); break;
+						case 12: callfunc("Lastmap","tha_t12.gat",130,52); break;
+					}		
+				break;	
+			
+				case 38:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3 ") ) {
+							case 1: callfunc("Lastmap","thor_v01.gat",21,228); break;
+							case 2: callfunc("Lastmap","thor_v02.gat",75,205); break;
+							case 3: callfunc("Lastmap","thor_v03.gat",34,272); break;
+						}
+					break;
+				
+				case 39:
+					switch (select(" ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 ") ) {
+							case 1: callfunc("Lastmap","xmas_dun01.gat",205,15); break;
+							case 2: callfunc("Lastmap","xmas_dun02.gat",129,133); break;
+						}
+					break;
+				
+				case 40:
+					switch (select(" ^10B2D2 [ > ] ^000000 Entrada : ^10B2D2 [ > ] ^000000 Level 1 : ^10B2D2 [ > ] ^000000 Level 2 : ^10B2D2 [ > ] ^000000 Level 3") ) {
+						case 1: callfunc("Lastmap","tur_dun01.gat",154,49); break;
+						case 2: callfunc("Lastmap","tur_dun02.gat",148,261); break;
+						case 3: callfunc("Lastmap","tur_dun03.gat",132,189); break;
+						case 4: callfunc("Lastmap","tur_dun04.gat",100,192); break;
+					}
+					break;
+				
+				case 41:
+					switch (select(" ^10B2D2 [ > ] ^000000 Carpenter's Shop in the Tree : ^10B2D2 [ > ] ^000000 Passage to a Foreign World : ^10B2D2 [ > ] ^000000 Hvergermil's Fountain ") ) {
+							case 1: callfunc("Lastmap","um_dun01.gat",42,31); break;
+							case 2: callfunc("Lastmap","um_dun02.gat",51,25); break;
+							case 3: callfunc("Lastmap","yggdrasil01.gat",204,78); break;
+						}
+				break;
+			} break;
+		} close;
+	}
+	
+function	script	Lastmap	{
+	close2;
+	set lastmap$ , getarg(0);
+	set lastx , getarg(1);
+	set lasty , getarg(2);
+	warp lastmap$,lastx,lasty;
+	end;
+}
+
+rachel.gat,122,148,4	duplicate(Warper)	Warper#2-2	803
+alberta,110,137,4	duplicate(Warper)	Warper#3-1	803
+aldebaran,147,117,4	duplicate(Warper)	Warper#4-1	803
+amatsu,192,90,4	duplicate(Warper)	Warper#5-1	803
+ayothaya,194,179,6	duplicate(Warper)	Warper#6-1	803
+comodo,206,77,4	duplicate(Warper)	Warper#7-1	803
+einbech,196,83,4	duplicate(Warper)	Warper#8-1	803
+einbroch,182,172,4	duplicate(Warper)	Warper#9-1	803
+einbroch,243,189,2	duplicate(Warper)	Warper#42-1	803
+hugel,88,151,5	duplicate(Warper)	Warper#10-1	803
+lighthalzen,165,96,6	duplicate(Warper)	Warper#11-1	803
+geffen,119,59,0	duplicate(Warper)	Warper#12-1	803
+izlude,118,220,3	duplicate(Warper)	Warper#13-1	803
+xmas,149,136,4	duplicate(Warper)	Warper#14-1	803
+morocc,156,97,4	duplicate(Warper)	Warper#15-1	803
+payon,166,233,4	duplicate(Warper)	Warper#16-1	803
+yuno,160,170,4	duplicate(Warper)	Warper#17-1	803
+moc_fild04.gat,207,331,4	duplicate(Warper)	Warper#18-1	803
+izlu2dun.gat,104,82,4	duplicate(Warper)	Warper#19-1	803
+mjolnir_02.gat,85,363,4	duplicate(Warper)	Warper#20-1	803
+prt_fild05.gat,273,215,4	duplicate(Warper)	Warper#21-1	803
+glast_01.gat,370,308,4	duplicate(Warper)	Warper#22-1	803
+yuno_fild03.gat,37,135,4	duplicate(Warper)	Warper#23-1	803
+gef_fild10.gat,71,339,4	duplicate(Warper)	Warper#24-1	803
+pay_arche.gat,39,135,4	duplicate(Warper)	Warper#25-1	803
+moc_ruins.gat,64,166,4	duplicate(Warper)	Warper#26-1	803
+moc_fild19.gat,106,97,4	duplicate(Warper)	Warper#27-1	803
+alb2trea.gat,73,101,4	duplicate(Warper)	Warper#28-1	803
+tur_dun01.gat,148,239,4	duplicate(Warper)	Warper#29-1	803
+gonryun,162,122,4	duplicate(Warper)	Warper#30-1	803
+louyang,211,107,4	duplicate(Warper)	Warper#31-1	803
+umbala,95,164,4	duplicate(Warper)	Warper#32-1	803
+moscovia,220,198,4	duplicate(Warper)	Warper#33-1	803
+veins,211,133,4	duplicate(Warper)	Warper#34-1	803
+rachel,133,115,4	duplicate(Warper)	Warper#35-1	803
+ayothaya,151,157,4	duplicate(Warper)	Warper#36-1	803
+einbroch,64,203,5	duplicate(Warper)	Warper#37-1	803
+mid_camp,233,239,5	duplicate(Warper)	Warper#39-1	803
+moc_ruins,99,123,5	duplicate(Warper)	Warper#43-1	803
+splendide,205,152,5	duplicate(Warper)	Warper#41-1	803
+quiz_02,243,383,4	duplicate(Warper)	Warper#44-1	803
+manuk,288,241,4	duplicate(Warper)	Warper#46-1	803		
+brasilis,199,210,4	duplicate(Warper)	Warper#47-1	803
+dicastes01,201,184,4	duplicate(Warper)	Warper#48-1	803
+mora,121,171,4	duplicate(Warper)	Warper#49-1	803
+quiz_00,68,19,6	duplicate(Warper)	Warper#50-1	803
+alberta,34,240,4	duplicate(Warper)	Warper#51-1	803
+comodo,191,162,4	duplicate(Warper)	Warper#52-1	803
+einbech,75,100,4	duplicate(Warper)	Warper#53-1	803
+prt_in,120,121,4	duplicate(Warper)	Warper#54-1	803	
+lhz_in03,266,265,4	duplicate(Warper)	Warper#55-1	803
+dewata,196,184,4	duplicate(Warper)	Warper#56-1	803
+malangdo,172,140,6	duplicate(Warper)	Warper#57-1	803
+jawaii,254,129,4	duplicate(Warper)	Warper#58-1	803
+moscovia,173,85,4	duplicate(Warper)	Warper#59-1	803
+new_1-2,94,109,4	duplicate(Warper)	Warper#60-1	803
+goodev_c02,109,112,3	duplicate(Warper)	Warper#61-1	803

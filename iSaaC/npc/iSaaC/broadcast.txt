@@ -1,0 +1,35 @@
+-	script	automensaje	-1,{
+
+	OnInit:
+	OnClock0100:
+	OnClock0300:
+	OnClock0431:
+	OnClock0500:
+	OnClock0600:
+	OnClock0800:
+	OnClock0900:
+	OnClock1101:
+	OnClock1200:
+	OnClock1300:
+	OnClock1401:
+	OnClock1500:
+	OnClock1600:
+	OnClock1800:
+	OnClock1900:
+	OnClock2001:
+	OnClock2200:
+	OnClock2300:
+
+		setarray	$mensajeAUTO$[0],	"server Ragnarok Online 400x 400x 200x Pre-Renewall Anticustom",
+							"Recuerda invitar a tus amigos a jugar y vota por el server para crecer!",
+							"Recuerda reportar cualquier bug, tambien recuerda que el abuso de uno es motivo de sanción",
+							"Guild Pack's transferencias abiertas +12 -26 y +26, que esperas trae a tu guild!!",
+							"Recuerden que la zona merchant es go 17 y los costume no tienen efecto!";
+	
+		setarray $colores$[0],"ff0000","ff4000","ff8000","ffbf00","ffff00","bfff00","80ff00","40ff00","00ff00","00ff40","00ff80","00ffbf","00ffff";
+	
+		announce "[ server Broadcast ]: " + $mensajeAUTO$[rand(0,getarraysize( $mensajeAUTO$ ))] + ".",bc_all,"0x" + $colores$[rand(0,getarraysize($colores$))];
+		
+	end;
+
+}

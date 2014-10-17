@@ -1,0 +1,126 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome: Gerenciador da Guerra do Emperium                |
+// |--------------------------------------------------------|
+// | Criado por: brA Dev.Team                               |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Cabeçalho & Script [Shiraz]                        |
+// |--------------------------------------------------------|
+// | Estrutura da mapflag:                                  |
+// | 0: Castelo desabilitado.                               |
+// | 1: Castelo habilitado para todas as Classes.           |
+// | 2: Castelo habilitado para Classes bebês.              |
+// | 3: Castelo habilitado para Classes 2-1 e 2-2.          |
+// | 4: Castelo habilitado para Transclasses 2-1 e 2-2.     |
+// | 5: Castelo habilitado para Classes 3.                  |
+// |________________________________________________________|
+
+// -> Feudo de Prontera
+prtg_cas01	mapflag	set_castle	1  // Kriemhild
+prtg_cas02	mapflag	set_castle	1  // Hrist
+prtg_cas03	mapflag	set_castle	1  // Brynhildr
+prtg_cas04	mapflag	set_castle	1  // Skoegul
+prtg_cas05	mapflag	set_castle	1  // Gondul
+// -> Feudo de Payon
+payg_cas01	mapflag	set_castle	1  // Palácio do Sol
+payg_cas02	mapflag	set_castle	1  // Palácio do Lago Sagrado
+payg_cas03	mapflag	set_castle	1  // Palácio da Sombra
+payg_cas04	mapflag	set_castle	1  // Palácio Escarlate
+payg_cas05	mapflag	set_castle	1  // Palácio da Colina
+// -> Feudo de Geffen
+gefg_cas01	mapflag	set_castle	1  // Arsulf
+gefg_cas02	mapflag	set_castle	1  // Trapesac
+gefg_cas03	mapflag	set_castle	1  // Ruaden
+gefg_cas04	mapflag	set_castle	1  // Saffran
+gefg_cas05	mapflag	set_castle	1  // Arima
+// -> Feudo de Al de Baran
+aldeg_cas01	mapflag	set_castle	1  // Sirius
+aldeg_cas02	mapflag	set_castle	1  // Astrum
+aldeg_cas03	mapflag	set_castle	1  // Canopus
+aldeg_cas04	mapflag	set_castle	1  // Rigel
+aldeg_cas05	mapflag	set_castle	1  // Acrux
+// -> Feudo de Schwaltzvalt 2.0
+schg_cas01	mapflag	set_castle	1  // Himinn
+schg_cas02	mapflag	set_castle	1  // Andlangr
+schg_cas03	mapflag	set_castle	1  // Vidblainn
+schg_cas04	mapflag	set_castle	1  // Hljod
+schg_cas05	mapflag	set_castle	1  // Skatyrnir
+// -> Feudo de Arunafeltz 2.0
+arug_cas01	mapflag	set_castle	1  // Mardol
+arug_cas02	mapflag	set_castle	1  // Syr
+arug_cas03	mapflag	set_castle	1  // Horn
+arug_cas04	mapflag	set_castle	1  // Gefn
+arug_cas05	mapflag	set_castle	1  // Vanadis
+
+//  ___________________________________________
+// |                                           |
+// | Script que gerencia o horário da GDE 1.0  |
+// |___________________________________________|
+
+-	script	set_agit_1_0	-1,{
+	end();
+	
+	OnMinute00:
+
+    // Hora de inicio da guerra, separado por vírgula na seguinte ordem: domingo,segunda,terça,quarta,quinta,sexta,sabado. Colocando -1 desativa a GDE no dia correspondente.
+		setarray(.inicio_hora[0],  16,-1,18,-1,20,-1,22);
+		// Hora de término da guerra, separado por vírgula na seguinte ordem: domingo,segunda,terça,quarta,quinta,sexta,sabado. Colocando -1 desativa a GDE no dia correspondente.
+		setarray(.fim_hora[0],     17,-1,19,-1,21,-1,23);
+
+		// No exemplo acima a GDE vai ocorrer nos seguintes dias:  domingo 16h às 17h, terça 18h às 19h, quinta 20h às 21h e sabado 22h às 23h.
+		
+		if(!agitcheck() && gettime(3) == .inicio_hora[gettime(4)])
+		{
+			announce("A guerra do Empérium Começou.",bc_all);
+			agitstart();
+		}
+		else if(agitcheck() && gettime(3) == .fim_hora[gettime(4)])
+		{
+			announce("A guerra do Empérium Terminou.",bc_all);
+			agitend();
+		}
+
+		end();
+}
+
+//  ___________________________________________
+// |                                           |
+// | Script que gerencia o horário da GDE 2.0  |
+// |___________________________________________|
+
+-	script	set_agit_2_0	-1,{
+	end();
+	
+	OnMinute00:
+
+ // Hora de inicio da guerra, separado por vírgula na seguinte ordem: domingo,segunda,terça,quarta,quinta,sexta,sabado. Colocando -1 desativa a GDE no dia correspondente.
+		setarray(.inicio_hora2[0],  14,-1,16,-1,18,-1,20);
+ // Hora de término da guerra, separado por vírgula na seguinte ordem: domingo,segunda,terça,quarta,quinta,sexta,sabado. Colocando -1 desativa a GDE no dia correspondente.
+		setarray(.fim_hora2[0],     15,-1,17,-1,19,-1,21);
+
+		// No exemplo acima a GDE 2.0 vai ocorrer nos seguintes dias:  domingo 14h às 15h, terça 16h às 17h, quinta 18h às 19h e sabado 20h às 21h.
+		
+		if(!agitcheck2() && gettime(3) == .inicio_hora2[gettime(4)])
+		{
+			announce("Começou a guerra do emperium 2.0.",bc_all);
+			agitstart2();
+		}
+		else if(agitcheck2() && gettime(3) == .fim_hora2[gettime(4)])
+		{
+			announce("Terminou a guerra do emperium 2.0.",bc_all);
+			agitend2();
+ 		}
+		
+		end();
+}

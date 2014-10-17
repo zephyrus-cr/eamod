@@ -1,0 +1,152 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Hipnotizadora                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Reseta pontos de habilidades somente        |
+//   | de primeira classe e Classes expandidas                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR    [cleyton]                        |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,146,232,4	script	Hipnotizador#2	124,{
+	mes "[Hipnotizador]";
+	mes "Saudações aventureiro!";
+	mes "Eu sou um membro da academia";
+	mes "de Hipnotizadores e fui enviado à Prontera";
+	mes "para prestar serviços de redefinição de pontos de habilidade";
+	mes "para alguns personagens de Primeira Classe, por um preço muito bom...  De graça!";
+	next;
+	mes "[Hipnotizador]";
+	mes "Embora meu serviço seja ilimitado";
+	mes "para redefinir suas habilidades, é ncessário seguir";
+	mes "duas condições que devem ser cumpridas.";
+	mes "Primeiro, você não pode ser";
+	mes "superior a ^FF0000Nível de base 40^000000.";
+	next;
+	mes "[Hipnotizador]";
+	mes "Segundo, você deve ser as seguintes profissões:";
+	mes "^FF0000Espadachim, Noviço, Mago,";
+	mes "Gatuno, Arqueiro, Mercador,";
+	mes "Taekwon, Justiceiro e Ninja^000000";
+	mes "para estar qualificado.";
+	mes "Agora você tem mais alguma dúvida?";
+	next;
+	switch(select("Redefinir Habilidades?:Eu quero Redefinir minhas habilidades:Nada")) {
+
+	case 1:
+		mes "[Hipnotizador]";
+		mes "Redefinição de pontos de habilidade, são para aventureiros";
+		mes "que usaram seus pontos";
+		mes "de forma inadequada";
+		mes "e estão infelizes com suas habilidades atuais.";
+		next;
+		mes "[Hipnotizador]";
+		mes "Antes de prosseguir com o processo";
+		mes "para redefinir seus pontos, você precisa";
+		mes "reduzir todo seu peso";
+		mes "e remover todos seus itens até";
+		mes "seu personagem chegar ao peso 0. Você pode guardar";
+		mes "seus itens no armazém da Kafra.";
+		next;
+		mes "[Hipnotizador]";
+		mes "Ah, o mais importante,";
+		mes "remova seu  ^FF0000Carrinho de mão^000000";
+		mes "se possui um equipado.";
+		mes "Caso contrário, meus poderes hipinóticos não";
+		mes "funcionarão e o tiro sairá pela culatra...";
+		close;
+
+	case 2:
+		mes "[Hipnotizador]";
+		mes "Você tem certeza que ";
+		mes "deseja prosseguir com o";
+		mes "meu serviço de ^FF0000Redefinição de habilidades^000000 ?";
+		next;
+		if (select("Sim:Cancelar") == 1) {
+			if (BaseLevel > 40) {
+				mes "[Hipnotizador]";
+				mes "Eu sinto muito, mas personagens";
+				mes "com Nível superior";
+				mes "ao 40, não estão aptos para receberem";
+				mes "serviço de redefinição de habilidades.";
+				close;
+			}
+			if ((Class > 0 && Class < 7 && Upper == 0) || (Class == Job_Gunslinger) || (Class == Job_Ninja) || (Class == Job_Taekwon)) {
+				if (checkcart()) {
+					mes "[Hipnotizador]";
+					mes "Opa! Por favor, remova seu";
+					mes "carrinho de mão para continuar";
+					mes "com o serviço de redefinição de habilidade.";
+					mes "Obribado por sua cooperação.";
+					close;
+				}
+				if (Weight) {
+					mes "[Hipnotizador]";
+					mes "Se você usar meus serviços";
+					mes "de redefinção de habilidades, por favor";
+					mes "lembre-se, que para poder usar ";
+					mes "o serviço, você deverá";
+					mes "^FF0000remover todos os itens do seu inventário";
+					mes "até seu peso chegar a  0^000000.";
+					next;
+					mes "[Hipnotizador]";
+					mes "Porque você não esvazia";
+					mes "seu inventário usando o Armazém da Kafra";
+					mes "agora? Fazendo isso você pode";
+					mes "guardar todos seus itens valiosos.";
+					close;
+				}
+				mes "[Hipnotizador]";
+				mes "Muito obrigado por usar o";
+				mes "meu serviço de redefinição de";
+				mes "habilidades. Ah,  e boa sorte";
+				mes "em suas viagens";
+				mes "aventureiro.";
+				ResetSkill;
+				close;
+			}
+			mes "[Hipnotizador]";
+			mes "Eu lamento, mas sua";
+			mes "profissão não está qualificada";
+			mes "para usar o serviço de Redefinição de habilidades";
+			mes "que estou oferecendo. Eu só posso";
+			mes "oferecer esse serviço para";
+			mes "as seguintes profissões...";
+			next;
+			mes "[Hipnotizador]";
+			mes "^FF0000Espadachim, Noviço,";
+			mes "Mago, Gatuno, Arqueiro,";
+			mes "Mercador, Taekwon,";
+			mes "Justiceiro e Ninja^000000.";
+			close;
+		}
+		mes "[Hipnotizador]";
+		mes "Muito obrigado e tenha";
+		mes "boa sorte em suas aventuras.";
+		mes "Por favor, viagem em segurança!";
+		close;
+
+	case 3:
+		mes "[Hipnotizador]";
+		mes "Muito obrigado e tenha";
+		mes "boa sorte em suas aventuras.";
+		mes "Por favor, viagem em segurança!";
+		close;
+	}
+}

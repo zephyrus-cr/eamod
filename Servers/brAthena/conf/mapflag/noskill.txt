@@ -1,0 +1,43 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: noskill.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que desabilita o       |
+//   | uso de habilidades.                                    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// ============ Arena de Prontera ============
+prt_are_in	mapflag	noskill
+
+// ============= Quest o Sinal =============
+himinn	mapflag	noskill
+
+// ============== Mapas Quiz ==============
+quiz_00	mapflag	noskill
+quiz_01	mapflag	noskill
+quiz_02	mapflag	noskill
+quiz_test	mapflag	noskill
+
+// ============ Mini jogos de Hugel ============
+que_bingo	mapflag	noskill
+p_track01	mapflag	noskill
+p_track02	mapflag	noskill
+
+//evt_zombie	mapflag	noskill

@@ -1,0 +1,105 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest - Máscara Feliz                  |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4a/1.4a/1.1                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest para obter o Item Máscara Feliz.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Script Traduzido (PT-BR) [Hold & Holy]             |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+izlude,125,175,4	script	Dona Risadinha#iz	92,{
+	mes "[Dona Risadinha]";
+	mes "Olá ~ Olá ~";
+	mes "Eu sou a Dona Risadinha";
+	mes "Como posso te ajudar?";
+	next;
+	switch(select("O que é uma ^3355FFMáscara Feliz^000000?:Eu quero fazer uma ^3355FFMáscara Feliz^000000.:Por que você tem esse nome")) {
+	case 1:
+		mes "[Dona Risadinha]";
+		mes "A Máscara Feliz é um item que instantaneamente te deixa sorrindo!";
+		mes "E se todos usarem Máscaras Feliz, o mundo de Ragnarök será um mundo mais feliz!";
+		mes "A Máscara Feliz ajuda a lembrar a todos que sempre devemos estar de bom-humor.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Usamos materiais básicos que qualquer Aprendiz pode conseguir.";
+		mes "Irei lhe dizer quais são, preste atenção e anote!";
+		next;
+		mes "[Dona Risadinha]";
+		mes "^3355FF10 Jellopys^000000";
+		mes "^3355FF10 Felpas^000000";
+		mes "^3355FF10 Trevos^000000";
+		next;
+		mes "[Dona Risadinha]";
+		mes "É só você me trazer esses itens que eu farei para você uma Máscara feliz!";
+		mes "Agora apresse-se...";
+		close;
+	case 2:
+			mes "[Dona Risadinha]";
+		if (countitem(909) > 9 && countitem(914) > 9 && countitem(705) > 9) {
+			mes "Parabéns!";
+			mes "Por favor aceite esta Máscara Feliz.";
+			next;
+			delitem 909,10; // Jellopy
+			delitem 914,10; // Felpa
+			delitem 705,10; // Trevo
+			getitem 2278,1; // Máscara Feliz
+			mes "[Dona Risadinha]";
+			mes "Vossa majestade, Tristam III";
+			mes "prometeu dar seu melhor para tornar";
+			mes "Ragnarok um jogo melhor e mais agradável.";
+			next;
+			mes "O fato mencionado anteriormente";
+			mes "foi anunciado pelo";
+			mes "Serviço de Informações do Reino de Rune-Midgarts.";
+			close;
+		}
+			mes "Ah, mas que pena!";
+			mes "Você ainda não possui todos os itens necessários para";
+			mes "fazer uma Máscara Feliz!";
+			mes "^3355FF10 Jellopys^000000";
+			mes "^3355FF10 Felpas^000000";
+			mes "^3355FF10 Trevos^000000";
+			mes "Por favor veja os requerimentos acima e volte após coletá-los.";
+			close;
+	case 3:
+		mes "[Dona Risadinha]";
+		mes "Hihihihihihi";
+		mes "Por que eu tenho esse nome?";
+		mes "É por que eu adoro rir!";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Adoro Máscaras Felizes e Piadas. Vou te contar uma piada:";
+    next;
+		mes "[Dona Risadinha]";
+		mes "Dois porings estavam pulando nos arredores de prontera...";
+		mes "Primeiro Poring: Cuidado com o Apren... *BLOSH*!";
+		mes " ";
+		mes "Segundo Poring: Que Apren... *BLOSH*!";
+		mes "Hahahahahahahahaha.";
+		close;
+	}
+}
+
+// Duplicatas: Dona Risadinha
+alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	92
+aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	92
+geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	92
+moc_ruins,59,154,3	duplicate(Dona Risadinha#iz)	Dona Risadinha#moc	92
+payon,186,104,5	duplicate(Dona Risadinha#iz)	Dona Risadinha#pay	92
+prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	92

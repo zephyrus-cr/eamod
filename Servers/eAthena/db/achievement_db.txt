@@ -1,0 +1,100 @@
+// (c) 2008 - 2012 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+
+// Achievement Database
+// =====================================================
+// Structure:
+// <Unique ID>,<Type>,<name>,<cutin>,<reward bexp>,<reward jexp>,<reward itemid>,<reward amount>,<npc event>,<parameter1>,<count1>,...,<parameter5>,<count5>
+// =====================================================
+// Name (Max 32 characters)
+// Cutin (Max 64 characters). The cutin bmp image on client side to show when the user get the achievement.
+// Type:
+// 0  = Script Achievement. No source checks, only given by script command "achievement_get". No parameters required.
+// 1  = Exploration. Received by visiting the given times (count), the given maps names (parameter). Use 1 for just count the first time.
+// ------ Mob Goals ------
+// 2  = Mob Kill by Class. Received by killing the given monster id the given number of times (count). You can input a max of 5 monsters per achievement.
+// 3  = Mob Kill by Race, where parameter : 0 - Formless, 1 - Undead, 2 - Beast, 3 - Plant, 4 - Insect, 5 - Fish, 6 - Demon, 7 - Demi-Human, 8 - Angel, 9 - Dragon
+// 4  = Mob Kill by Element, where parameter : 0 - Neutral, 1 - Water, 2 - Earth, 3 - Fire, 4 - Wind, 5 - Poison, 6 - Holy, 7 - Dark, 8 - Ghost, 9 - Undead
+// 5  = Mob Kill by Size, where parameter : 0 - Small, 1 - Medium, 2 - Large
+// 6  = Mob Kill by Class on Castles only, usefull for WoE Achievements.
+// ------ Kill and Damage Goals ------
+// 7  = PC Kill. Received by killing players, where parameter : 0 - PVP, 1 - WoE, 2 - BG, 3 - PvPmode (@pvpmode), 4 - Everywhere
+// 8  = PC Damage Done (to players only), where parameter : 0 - PVP, 1 - WoE, 2 - BG, 3 - PvPmode (@pvpmode), 4 - Everywhere
+// ------ Objective Goals ------
+// 9  = Quest, using the quest ID as parameter. Count will be 1.
+// 10 = Achievement Set. This is received when you complete other achievement groups. Count will be 1.
+// ------ Zeny Goals ------
+// 11 = Zeny where count is the required amount of Zeny and parameter : 0 - Hold it, 1 - Expend it on Shops, 2 - Win it from Vending, 3 - Expend it on Vendings, 4 - Expend it on Skills
+// ------ Item Goals ------
+// NOTE : parameter could be the item ID or item type. Remember item id start from 500, while item types is a value from 0 to 18
+// 12 = Find Item. Only works from monster drops. For example, find a Poring Card 10 times.
+// 13 = Item Have, where the player requires to have the given amount in it's inventory. Do not abuse and remember the limits of weight and max amount.
+// 14 = Item Equip, where the player must equip the given item id/type.
+// 15 = Item Use, where it counts when you use the item, like potions.
+// 16 = Item Consume, counting when you use item for skills only.
+// ** MORE IDEAS TO COME!! **
+// =====================================================
+// Some Samples:
+// ---------------------------------------------------------------------------------------------------
+// Visit Geffen, Payon, Aldebaran, Morroc and Comodo
+// 1,1,Visiting Midgard,,500,500,0,0,,geffen,1,payon,1,aldebaran,1,morocc,1,comodo,1
+// ---------------------------------------------------------------------------------------------------
+// Kill 1000 Porings
+// 2,2,Poring Slayer,,1000,1000,0,0,,1002,1000
+// ---------------------------------------------------------------------------------------------------
+// Kill Thanatos one time. Alone or in Party.
+// 3,2,I Defeated Thanatos,,0,0,0,0,,1708,1
+// ---------------------------------------------------------------------------------------------------
+// Kill 1000 monsters of Fish race.
+// 4,3,Fishing,,0,0,0,0,,5,1000
+// ---------------------------------------------------------------------------------------------------
+// Kill 250 monsters of Water, Earth, Fire and Wind each.
+// 5,4,Elemental Master,,0,0,0,0,,1,250,2,250,3,250,4,250
+// ---------------------------------------------------------------------------------------------------
+// Kill 500 undead monsters
+// 6,3,Welcome to Racon City,,0,0,0,0,,1,500
+// ---------------------------------------------------------------------------------------------------
+// Kill 100 small, medium and large monsters each.
+// 7,5,The size doesn't matter,,0,0,0,0,,0,100,1,100,2,100
+// ---------------------------------------------------------------------------------------------------
+// Take down one Emperium on WoE
+// 8,6,My First Emperium,,0,0,0,0,,1288,1
+// ---------------------------------------------------------------------------------------------------
+// Take down 100 Emperium on WoE
+// 8,6,Emperium Master,,0,0,0,0,,1288,100
+// ---------------------------------------------------------------------------------------------------
+// Kill 100 Players on PVP
+// 9,7,PvP Lover,,0,0,0,0,,0,100
+// ---------------------------------------------------------------------------------------------------
+// Kill 100 Players on WoE
+// 10,7,WoE Lover,,0,0,0,0,,1,100
+// ---------------------------------------------------------------------------------------------------
+// Kill 100 Players on BG
+// 11,7,BG Lover,,0,0,0,0,,2,100
+// ---------------------------------------------------------------------------------------------------
+// Kill 100 Players on PvPmode
+// 12,7,PK Lover,,0,0,0,0,,3,100
+// ---------------------------------------------------------------------------------------------------
+// Kill 250 Players on PVP, WoE, BG and PvPmode each.
+// 13,7,The Most Wanted,,0,0,0,0,,0,250,1,250,2,250,3,250
+// ---------------------------------------------------------------------------------------------------
+// Do 10.000.000 damage to players, everywhere
+// 14,8,I want blood,,0,0,0,0,,4,10000000
+// ---------------------------------------------------------------------------------------------------
+// Hold 500.000.000 zeny with your character
+// 15,11,Magnate,,0,0,0,0,,0,500000000
+// ---------------------------------------------------------------------------------------------------
+// Purchase and Sells a value of 1.000.000 Zeny from/by Vending
+// 16,11,The Merchant,,0,0,0,0,,2,1000000,3,1000000
+// ---------------------------------------------------------------------------------------------------
+// Purchase a total of 1.000.000.000 from NPC shops.
+// 17,11,For everything else MasterCard,,0,0,0,0,,1,1000000000
+// ---------------------------------------------------------------------------------------------------

@@ -1,0 +1,58 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: limpeza_cidades.txt                    |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Spawns de mostros para limpar a cidade.     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução [Megasantos]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// Spawns de Rosa Selvagem em cidades
+//==================================================
+prontera,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+morocc,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+alberta,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+aldebaran,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+geffen,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+payon,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+comodo,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+yuno,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+einbroch,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+lighthalzen,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+hugel,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+umbala,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+louyang,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+ayothaya,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+moscovia,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+brasilis,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+
+//==================================================
+// einbech - Einbech, a vila mineradora
+//==================================================
+einbech,0,0,0,0	monster	Rosa Selvagem	1261,1,3600000,3000000,0
+einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0
+
+//==================================================
+// payon_in02 - Casa em Payon (2° Andar)
+//==================================================
+payon_in02,23,68,5,5	monster	Ovo de Besouro-Ladrão	1048,7,1200000,600000,0

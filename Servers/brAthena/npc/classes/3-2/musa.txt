@@ -1,0 +1,1043 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: musa.txt                               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.4/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Musa.                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Script Traduzido & Revisado [Clare & Hold]         |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+xmas,162,209,5	script	Musa Aprendiz, Soy	714,{
+	if (job_wan == 0) {
+		mes "[Soy]";
+		mes "Mimi, o que devo fazer?";
+		mes "Meu coração está batendo tão rápido. Ahhh~";
+		next;
+		mes "[Mimi]";
+		mes "Porque você está tão vermelha? Ha ha ha.";
+		next;
+		mes "[Soy]";
+		mes "Não ria de mim Mimi~";
+		mes "Eu sonhei em dançar nos palcos com Kim por muito tempo!";
+		emotion e_shy,0,"Musa Aprendiz, Soy";
+		next;
+		mes "[Soy]";
+		mes "Eu posso acabar perdendo meus sentidos se eu realmente vê-la dançando como um lindo anjo enviado dos céus.";
+		next;
+		mes "[Mimi]";
+		mes "Acalme-se, Soy.";
+		mes "Você vai acabar desmaiando antes mesmo da apresentação começar. Ha ha.";
+		next;
+		mes "[Mimi]";
+		mes "Mas eu entendo você.";
+		mes "Muitas pessoas estão anciosas para encontrar a melhor Musa do mundo.";
+		if (BaseJob != Job_Dancer || BaseLevel < 99) close;
+		next;
+		select("Dançarina Kim?:Musa?");
+		emotion e_omg,0,"Musa Aprendiz, Soy";
+		mes "[Soy]";
+		mes "O quê? Você não conhece a famosa Musa, dançarina Kim?";
+		mes "Oh meu Deus, oh meu Deus!!!";
+		mes "Você parece saber a arte de dançar, mas como você pode não conhecê-la?";
+		mes "Oh, não!";
+		next;
+		mes "[Mimi]";
+		mes "Uma Musa é uma pessoa de pouca-espiritualidade que vaga sobre o mundo com o vento e as estrelas.";
+		mes "O ritmo e a música as acompanham onde quer que elas vão.";
+		next;
+		mes "[Mimi]";
+		mes "A dançarina Kim é uma famosa Musa que viaja pelo mundo com o Trovador Guitar Song como a equipe <Nollio>.";
+		next;
+		mes "[Mimi]";
+		mes "Soy e eu somos Musas aspirantes, e haverá uma apresentação de <Nollio> na cidade, por isso estamos esperando anciosamente para vê-lo.";
+		next;
+		mes "[Soy]";
+		mes "Se você é uma dançarina de verdade, você ficará impressionada com a dança dela!";
+		mes "Será que vamos encontrar um Trovador como o Guitar Song algum dia, Mimi?";
+		next;
+		emotion e_heh,0,"Musa Aprendiz, Soy";
+		mes "[Mimi]";
+		mes "Basta procura-lós, Soy. Ha ha.";
+		next;
+		switch(select("Onde será a apresentação?:Terminar a conversa.")) {
+		case 1:
+			mes "[Soy]";
+			mes "Bem na frente da Arvore de Natal!";
+			mes "Neve Branca, uma bela melodia, e uma dança cativante.";
+			mes "Você não acha que será uma grande apresentação?";
+			set job_wan,1;
+			close;
+		case 2:
+			mes "[Mimi]";
+			mes "Se você estiver interessado em se tornar uma Musa, apenas volte a falar comigo quando quiser. Eu não sou perfeita, mas eu farei meu melhor para lhe ajudar.";
+			close;
+		}
+	} else if (job_wan == 1) {
+		if (strnpcinfo(0) == "Musa Aprendiz, Soy") {
+			mes "[Soy]";
+			mes "A apresentação será realizada em frente à árvore de Natal aqui em Lutie.";
+			mes "Eu mal posso esperar! Ah~ eu estou perdendo meus sentidos, Mimi.";
+		} else {
+			mes "[Mimi]";
+			mes "O encanto na dança de uma Musa é maior do que o de uma cigana ou dançarina, todos vão perder suas almas quando virem a apresentação.";
+			next;
+			mes "[Mimi]";
+			mes "Eu quero me tornar uma Musa, mas eu ainda sou uma dançarina.";
+			mes "Mas eu acho melhor^3131FF aprender as habilidades únicas de Cigana primeiro, e só depois me tornar uma Musa^000000. Soy mal pode esperar para tornar-se uma Musa.";
+		}
+		close;
+	} else if (job_wan == 10) {
+		mes "[Soy]";
+		mes "<Nollio> é o melhor!!";
+		close;
+	} else {
+		if (strnpcinfo(0) == "Musa Aprendiz, Soy") {
+			mes "[Soy]";
+			mes "Eu quero me tornar uma famosa Musa também, Mimi.";
+		} else {
+			mes "[Mimi]";
+			mes "Não tenho certeza se eu sou ganânciosa, mas eu quero aprender todas as habilidades de Dançarina e Cigana antes de me tornar uma Musa.";
+		}
+		close;
+	}
+}
+xmas,163,209,3	duplicate(Musa Aprendiz, Soy)	Musa Aprendiz, Mimi	714
+
+xmas,132,143,5	script	Gerente da Apresentação#wnd	713,{
+	mes "[Gerente da Apresentação]";
+	if (job_wan == 0) {
+		mes "Oh, o que eu devo fazer?";
+		close;
+	} else if (job_wan == 1) {
+		mes "Oh, o que eu devo fazer?";
+		mes "Porque eles fizeram isso?";
+		next;
+		emotion e_shy,0,"Musa Aprendiz, Soy";
+		mes "[Gerente da Apresentação]";
+		mes "Ei, você ai!";
+		mes "Porfavor ouça minha história.";
+		mes "Na verdade, eu não deveria contar a ninguém.";
+		mes "Mas eu estou tão desesperado que eu poderia enlouquecer. Ahhhh~~!";
+		next;
+		while (1) {
+			set .@loop,0;
+			switch(select("Desculpe, eu não ligo.:Qual é o problema?:Porque você está me dizendo isso?")) {
+			case 1:
+				mes "[Gerente da Apresentação]";
+				mes "Ah! Que mundo cruel!";
+				close;
+			case 2:
+				mes "[Gerente da Apresentação]";
+				mes "A apresentação será feita em breve.";
+				next;
+				mes "[Gerente da Apresentação]";
+				mes "Essas pessoas não tem nenhuma responsabilidade...";
+				mes "Estamos todos esperando por eles e eu estive divulgando muito eles.";
+				next;
+				set .@loop,1;
+				break;
+			case 3:
+				emotion e_ag;
+				mes "[Gerente da Apresentação]";
+				mes "Eu disse a você que estou desesperado!";
+				mes "você não me entende!";
+				next;
+				break;
+			}
+			if (.@loop) break;
+		}
+		while (1) {
+			set .@loop,0;
+			switch(select("Esse é o problema?:De quem você está falando?:Isso não tem nada a ver comigo.")) {
+			case 1:
+				mes "[Gerente da Apresentação]";
+				mes "Como puderam fazer isso?";
+				mes "As pessoas vão jogar bolas de neve!";
+				mes "Talvez elas joguem até mesmo um grande boneco de neve, não!";
+				next;
+				emotion e_wah;
+				mes "[Gerente da Apresentação]";
+				mes "As pessoas podem me agarrar pelo colarinho!!";
+				mes "Swing swing, banlançando pedurando!!";
+				mes "Isso é horrível.";
+				next;
+				set .@loop,1;
+				break;
+			case 2:
+				mes "[Gerente da Apresentação]";
+				mes "<Nollio>!";
+				mes "Quem mais!";
+				mes "Você conhece?";
+				mes "Eles são o pior grupo do mundo.";
+				next;
+				break;
+			case 3:
+				mes "[Gerente da Apresentação]";
+				mes "Isso é demais para mim!";
+				close;
+			}
+			if (.@loop) break;
+		}
+		while (1) {
+			set .@loop,0;
+			switch(select("Você está com medo das pessoas?:Os artistas causaram algum problema?:Ignorá-lo.")) {
+			case 1:
+				mes "[Gerente da Apresentação]";
+				mes "Se fosse você, não iria ficar com medo?";
+				mes "Eu sou o gerente da apresentação! Você têm ideia do quanto custa para fazer essas cenas? Eu preciso cumprir as expectativas de todas essas pessoas!";
+				next;
+				break;
+			case 2:
+				mes "[Gerente da Apresentação]";
+				mes "Sim!";
+				mes "<Nollio> cancelou sua apresentação!";
+				next;
+				mes "[Gerente da Apresentação]";
+				mes "E eles não me deram nenhuma explicação!";
+				next;
+				mes "[Gerente da Apresentação]";
+				mes "Além do dinheiro que eu gastei para promover essa apresentação...";
+				mes "Como eu posso lidar com todas essas pessoas bravas?";
+				next;
+				set .@loop,1;
+				break;
+			case 3:
+				mes "[Gerente da Apresentação]";
+				mes "Ei, onde você está indo!";
+				close;
+			}
+			if (.@loop) break;
+		}
+		mes "[" + strcharinfo(0) + "]";
+		mes "Eu vejo que você está preocupado porque a apresentação está indo para o ralo.";
+		mes "Você queria fazer uma boa apresentação para cumprir as expectativas dos fãs.";
+		next;
+		mes "[Gerente da Apresentação]";
+		mes "Eu realmente não sei como lidar com isso.";
+		mes "Porque eles derrepente cancelaram a apresentação?";
+		mes "Você sabe de algo?";
+		next;
+		mes "[Gerente da Apresentação]";
+		mes "Porque <Nollio> tomou esse tipo de atitude comigo?";
+		mes "Será que eu cometi algum erro? Depois de assinarem contrato comigo, eu fiz tudo que eles me pediram!";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "É porque...";
+		input .@inputstr$;
+		mes "^3131FF" + .@inputstr$ + "^000000";
+		mes "......";
+		next;
+		emotion e_ag;
+		mes "[Gerente da Apresentação]";
+		mes "O que diabos você está falando?";
+		mes "Você está brincando comigo porque eu estou emocionalmente abalado?";
+		next;
+		mes "[Gerente da Apresentação]";
+		mes "Oh, eu estou tão preoucpado que estou começando a sentir meu coração bater rápido, estou começando a me sentir tonto!";
+		next;
+		mes "[Gerente da Apresentação]";
+		mes "Ei! Você poderia sair e procurar um músico Trovador Guitar?";
+		next;
+		switch(select("Sim, claro.:Por que eu deveria fazer isso?:Não vou!")) {
+		case 1:
+			break;
+		case 2:
+			emotion e_an;
+			mes "[Gerente da Apresentação]";
+			mes "Você está me perguntando o porquê!?";
+			mes "Ahh, não.....";
+			mes "É porque você também é semelhante a um artista.";
+			mes "você também queria ver a apresentação, não é?";
+			next;
+			break;
+		case 3:
+			mes "[Gerente da Apresentação]";
+			mes "Você está me deixando em meu limite...";
+			close;
+		}
+		mes "[Gerente da Apresentação]";
+		mes "Gostaria de agarrá-los pelo colarinho se pudese!";
+		mes "Gostaria de perguntar porque eles estão estragando a apresentação? Mas por agora, lidar com os patrocinadores raivosos é bastante difícil... Ah, não!";
+		next;
+		mes "[Gerente da Apresentação]";
+		mes "Eu não sei onde encontrar o Trovador Guitar Song, mas é claro que ele gosta de visitar o cassino de Comodo!";
+		mes "Ah, apresse-se!! Ah, eu realmente sinto tonturas! Guitar Song!!!";
+		set job_wan,2;
+		setquest 2218;
+		close;
+	} else if (job_wan == 2) {
+		mes "Eu não tenho certeza que o Guitar Song está em Comodo, você deve ir lá procurá-lo!";
+		close;
+	} else if (job_wan == 9) {
+		mes "Eles voltaram!!";
+		close;
+	} else if (job_wan == 10) {
+		mes "Obrigado, graças a você a apresentação foi um sucesso.";
+		mes "Você é realmente um bom amigo!";
+		mes "Como prova do meu apreço, eu vou fazer uma apresentação apenas para você quando tiver uma chance.";
+		close;
+	}
+	mes "Ah~ Que confusão, ah!";
+	close;
+}
+
+comodo,140,86,5	script	Trovador Triste	479,{
+	if (job_wan < 2) {
+		mes "[Trovador Triste]";
+		mes "Você pode dançar ~";
+		mes "você pode fazer seu trabalho ~";
+		mes "você é a rainha da dança ~";
+		mes "e eu sou o rei do pandeiro ~";
+		next;
+		mes "[Trovador Triste]";
+		mes "Ufa...";
+		close;
+	} else if (job_wan == 2) {
+		mes "[Trovador Triste]";
+		mes "Você pode dançar ~";
+		mes "você pode fazer seu trabalho ~";
+		mes "você é a rainha da dança ~";
+		mes "e eu sou o rei do pandeiro ~";
+		next;
+		mes "*Você encontrou um Trovador*";
+		mes "*cantando uma música estranha*";
+		next;
+		if(select("Isso é uma música estranha.:Ignorá-lo.") == 2) {
+			mes "- É apenas uma pessoa estranha, é melhor eu ficar longe. -";
+			close;
+		}
+		emotion e_omg;
+		mes "[Trovador Triste]";
+		mes "O quê?!";
+		mes "Você está ignorando minha imortal obra prima <Rei do Pandeiro>? Você é a primeira pessoa que me deu esse tapa na cara.";
+		next;
+		select("Eu não te dei um tapa.");
+		emotion e_gasp;
+		mes "[Trovador Triste]";
+		mes "Oh! Dama, olhando para suas roupas você deve ser uma dançarina, certo?";
+		next;
+		mes "[Trovador Triste]";
+		mes "Você tem um Bardo ou Trovador viajado com você?";
+		mes "Se você não tiver, que tal montar uma dupla e viajar comigo?";
+		next;
+		mes "[Trovador Triste]";
+		mes "O nome do grupo é <Agonia do Guitar Song>.";
+		mes "Esse nome expressa a dor excruciante que é preciso para criar obras de arte.";
+		next;
+		mes "[Trovador Triste]";
+		mes "Tem um tipo de nome nervoso, então eu acho que vai ser um grupo muito popular.";
+		next;
+		select("Você é o Guitar Song?");
+		emotion e_shy;
+		mes "[Guitar Song]";
+		mes "Huh... Estou um pouco desapontado que só tenha me reconhecido agora.";
+		mes "Sim, Eu sou o Guitar Song do famoso grupo <Nollio>.";
+		mes "Ha ha ha!";
+		next;
+		mes "[Guitar Song]";
+		mes "E então que tal, não é uma oferta tentadora para você?";
+		mes "Eu sou um Trovador muito famoso no auge da minha popularidade. As pessoas estão morrendo de vontade de trabalhar comigo, mas você é indiferente a mim, minha dama.";
+		next;
+		select("Onde está a dançarina Kim?:Por que você cancelou a apresentação?");
+		mes "[Guitar Song]";
+		mes "Porque você está me perguntando isso derrepente?";
+		mes "Vamos lá, vamos falar de coisas agradáveis.";
+		mes "A dançarina Kim e a apresentação não tem nada a ver comigo.";
+		next;
+		select("O que você quer dizer?");
+		mes "[Guitar Song]";
+		mes "Ei, eu disse para você parar de falar sobre esse assunto...";
+		mes "Eu não quero pensar sobre isso, pois só fere meus sentimentos.";
+		next;
+		mes "- O Guitar Song é inflexível recusando-se a falar, o que devo fazer para ouvir sobre <Nollio>? -";
+		set job_wan,3;
+		close;
+	} else if (job_wan == 3) {
+		mes "[" + strcharinfo(0) + "]";
+		mes "(Seria possível para mim fazer ele dizer o que aconteceu com Nollio?)";
+		next;
+		switch(select("Usar Escândalo:Usar Cantiga de Ninar:Usar Beijo da Sorte")) {
+		case 1:
+			if (getskilllv("DC_UGLYDANCE") == 5 || rand(100) >= 80) {
+				mes "- Você fica mais próxima a orelha do artista. -";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "Ok-";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "Oi-!!!!!";
+				specialeffect EF_STUNATTACK;
+				next;
+				mes "[Guitar Song]";
+				mes "O..o que!! O que pensa que está fazendo?!?";
+				mes "você quase danificou meus tímpanos.";
+				emotion e_an;
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "Ei, anime-se!!!";
+				next;
+				mes "[Guitar Song]";
+				mes "Sobre o que você está falando?";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "Você sabia que, as pessoas são viciadas em sua música?";
+				mes "Então muitas pessoas estão apoiando-o com atencipação.";
+				mes "Você vai mesmo quebrar sua promessa e deixar as pessoas para baixo? Sem dar nenhuma explicação?";
+				next;
+			} else {
+				mes "[" + strcharinfo(0) + "]";
+				mes "Ok-";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "Aaaaahhh!!!!!";
+				next;
+				mes "[Guitar Song]";
+				mes "O que.. O que você está fazendo?!! O que há de errado com você!";
+				mes "Segurança!!!";
+				next;
+				mes "[Guarda de Terno Preto]";
+				mes "Porfavor pare com isso.";
+				close2;
+				warp "comodo",117,98;
+				end;
+			}
+			break;
+		case 2:
+			if (getskilllv("BD_LULLABY") == 0) {
+				mes "- Você não pode usar essa habilidade, pois você ainda não aprendeu isso. -";
+				close;
+			}
+			mes "[" + strcharinfo(0) + "]";
+			mes "Parece que você não obteve respostas, mesmo forçando ele a dizer.";
+			close;
+		case 3:
+			if (getskilllv("DC_FORTUNEKISS") == 0) {
+				mes "- Você não pode usar essa habilidade, pois você ainda não aprendeu isso. -";
+				close;
+			}
+			emotion e_what,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Ah, ah meu Guitar Song~";
+			next;
+			mes "[Guitar Song]";
+			mes "O quê? Isso me causou arrepios.";
+			next;
+			emotion e_what,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Eu estive observando <Nollio> por anos.";
+			next;
+			mes "[Guitar Song]";
+			mes "Eu sei que somos muito populares! Ha ha ha!";
+			next;
+			emotion e_what,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Eu já vi apresentações de outros Trovadores, mas não há outro melhor que você Guitar Song.";
+			next;
+			mes "[Guitar Song]";
+			mes "He he he! Sim, eu sei eu sou super ótimo!";
+			next;
+			emotion e_no1,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Oh... Quando vi sua apresentação como Guitar Song pela primeira vez tive imediatamente uma queda por você.";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Foi como ouvir a canção de ninar da mamãe ~ Era tão bela e comovente... Você é o melhor artista de todos os tempos.";
+			next;
+			specialeffect 18;
+			mes "[Guitar Song]";
+			mes "Ha ha ha. Eu sei muito bem, mas é bom ouvir um elogio de você!";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Por isso eu estava anciosa para ver a sua apresentação em Lutie neste momento.";
+			mes "Mas depois que soube que a apresentação foi cancelada, eu fiquei tão triste.";
+			next;
+			emotion e_sob,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Agora eu não posso ouvir a melodia do Guitar Song~~";
+			mes "Eu queria dançar a sua música como uma linda borboleta.";
+			mes "Não há nenhuma maneira de realizar meu sonho agora? Sob sob...";
+			next;
+			mes "[Guitar Song]";
+			mes "Huh huh! Não, não há...";
+			next;
+			emotion e_sob,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Eu estou muito feliz em conhecê-lo pessoalmente, mas eu esperava poder ver a sua apresentação na bela cidade da neve, Lutie.. Sob sob...";
+			next;
+			emotion e_sob,1;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Porque você não mostra ao mundo sua apresentação, Guitar Song?";
+			mes "Você não gosta de mim? Sob sob..";
+			next;
+			emotion e_omg;
+			mes "[Guitar Song]";
+			mes "Não, não é por isso!";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Então porfavor me diga, eu realmente amo sua música... mas agora eu me sinto tão triste...";
+			emotion e_what;
+			next;
+			break;
+		}
+		mes "[Guitar Song]";
+		mes "Oh, não! Você sabe...";
+		mes "Eu quero fazer a apresentação, também!";
+		mes "Mas eu não posso fazer tudo sozinho!";
+		next;
+		emotion e_ag;
+		mes "[Guitar Song]";
+		mes "É tudo por causa da Dançarina Kim!";
+		mes "Um dia, derrepente ela ficou nervosa e disse que iria deixar o <Nollio>!";
+		mes "Eu estou cansado desses sentimentos imprevisíveis, também!";
+		next;
+		mes "[Guitar Song]";
+		mes "Pshaw.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Porque ela ficou brava tão de repente?";
+		next;
+		emotion e_swt;
+		mes "[Guitar Song]";
+		mes "Eu não sei! Ela deve está guardando rancor por alguma coisa.";
+		mes "Foi isso que ela fez.";
+		mes "Ela desapareceu e me enviou uma carta dizendo que a equipe estava desfeita.";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Onde está a dançarina Kim agora?";
+		next;
+		mes "[Guitar Song]";
+		mes "Bem, a carta foi enviada a partir de Hugel.";
+		mes "Eu acho que ela pode ter voltado à sua cidade natal.";
+		mes "Lá é onde eu a conheci e vi pela primeira vez.";
+		next;
+		emotion e_dots;
+		mes "[Guitar Song]";
+		mes "Embora ela perca a paciência facilmente, sua dança é tão maravilhosa....";
+		mes "Eu não sei o que fiz de errado.";
+		set job_wan,4;
+		changequest 2218,2219;
+		next;
+		mes "[Guitar Song]";
+		mes "Ela sorriu tão feliz e disse que havia gostado tanto da nova música...";
+		mes "Quem poderia dançar a minha música tão maravilhosamente como ela faz?";
+		mes "Agora a minha música é minha vida e história... (murmurando).";
+		close;
+	} else if (job_wan > 3 && job_wan < 8) {
+		mes "[Guitar Song]";
+		mes "A dançarina Kim provavelmente está viciada na corrida de monstros de Hugel de novo!";
+		mes "Ela está de volta aos dias de vício nas corridas de monstros, quem você acha que a tirou dele?";
+		close;
+	} else if (job_wan == 8) {
+		emotion e_gasp;
+		mes "- Você diz para ele o que aconteceu em Hugel e pede-lhe para voltar para Lutie. -";
+		next;
+		mes "[Guitar Song]";
+		mes "Oh oh~";
+		mes "Você é boba dançarina Kim~";
+		mes "Sem mim, quem mais poderia cuidar de uma dama como você~";
+		next;
+		mes "[Guitar Song]";
+		mes "Eu vou lá imediatamente para encontrá-la.";
+		set job_wan,9;
+		close;
+	} else if (job_wan == 9) {
+		mes "[Guitar Song]";
+		mes "Ok, eu irei para a árvore de natal em Lutie, onde deveria haver a apresentação.";
+		close;
+	}
+	mes "[Trovador Triste]";
+	mes "Onde está minha parceira...";
+	close;
+}
+
+hu_in01,305,251,5	script	Moça Triste#wnd	879,{
+	if (job_wan < 4) {
+		mes "[Moça Triste]";
+		mes "(silêncio...)";
+		close;
+	} else if (job_wan == 4) {
+		mes "[Moça Triste]";
+		mes "soluço... soluço...";
+		next;
+		select("Porque você está chorando?");
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "Eu desisti do meu sonho...";
+		mes "*soluço *soluço.";
+		next;
+		select("O que você fez?");
+		mes "[Moça Triste]";
+		mes "Eu disse adeus ao meu parceiro que esteve trabalhando comigo por um longo tempo.";
+		next;
+		select("Porque você disse adeus?");
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "é porque... soluço... soluço!";
+		next;
+		select("Você pode me contar tudo.");
+		mes "[Moça Triste]";
+		mes "Quando um Trovador e uma Musa ficam juntos, suas habilidades ficam mais fortes.";
+		next;
+		mes "[Moça Triste]";
+		mes "Então quando eles viajam juntos, eles se reúnem e formam duetos.";
+		mes "Tinhamos um bom tempo dançando e tocando músicas juntos.";
+		next;
+		mes "[Moça Triste]";
+		mes "Alguns dias atras, com meu parceiro Guitar Song. Mostrei para várias pessoas uma bela dança ao som de sua música, como costumamos fazer.";
+		next;
+		mes "[Moça Triste]";
+		mes "Fiquei muito orgulhosa por ser uma Musa e muito entusiasmada com todos os aplausos.";
+		mes "Guitar Song também me elogiou.";
+		mes "Eu estava tão feliz naquele dia.";
+		next;
+		mes "[Moça Triste]";
+		mes "Mas...";
+		next;
+		select("O que aconteceu depois?");
+		mes "[Moça Triste]";
+		mes "Na manhã seguinte, Eu levantei, lavei meu rosto e fui atrás de algo para comer em meu quarto...";
+		next;
+		emotion e_omg;
+		mes "[Moça Triste]";
+		mes "Então Guitar Song por alguma razão de repente abriu a porta do meu quarto e disse ^3131FFEi! O que diabos você está fazendo aqui?^000000 e me mandou para fora do quarto!";
+		next;
+		mes "[Moça Triste]";
+		mes "Nós estivemos juntos por muito tempo, mas como ele pôde fazer uma coisa dessas comigo?";
+		mes "No início, eu achei que ele estava brincando comigo! Mas depois que ele me chutou para fora do quarto...";
+		next;
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "Porque ele não me reconheceu?";
+		mes "Você acha que ele não me reconhece sem maquiagem?";
+		mes "Boo hoo hoo!";
+		next;
+		select("E então você desfez a equipe?");
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "Você também está ignorando meu auto-respeito como mulher?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Não! Ele é realmente um homem gentil!";
+		mes "Mas eu não acho que você desfez a sua preciosa equipe só por causa disso.";
+		next;
+		mes "[Moça Triste]";
+		mes "Você está certa.";
+		mes "Não foi só por causa disso.";
+		mes "O verdadeiro motivo de eu ter acabado com a equipe é porque...";
+		next;
+		mes "[Moça Triste]";
+		mes "Depois daquele dia, eu voltei para minha cidade natal, Hugel e só fiquei dentro de casa.";
+		mes "Foi então quando Shide me confortou com bolos doces.";
+		next;
+		emotion e_shy;
+		mes "[Moça Triste]";
+		mes "Os bolos de Shide são tão maravilhosos!";
+		mes "É o bolo mais famoso de Hugel é um bolo esponjoso e macio com frutas frescas e creme de chocolate!";
+		next;
+		mes "[Moça Triste]";
+		mes "Parecia que todos os anjos vieram me confortar quando provei daquele bolo doce.";
+		next;
+		mes "[Moça Triste]";
+		mes "Então eu o comia todas as manhãs e noites.";
+		next;
+		select("Oh, você não...");
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "O anjo da felicidade tomou de volta toda minha tristeza mas em troca me deu um monte de gordura na barriga!";
+		mes "Boo hoo hoo hoo!!";
+		next;
+		mes "[Moça Triste]";
+		mes "Agora eu não posso mais usar minahs roupas de dançarina!";
+		mes "Eu não sou mais uma dançarina que dança como uma linda borboleta!";
+		next;
+		mes "[Moça Triste]";
+		mes "O que é pior, ficou realmente difícil de dobrar minha cintura para frente!";
+		mes "Boo hoo hoo!";
+		next;
+		mes "[Moça Triste]";
+		mes "O dia da apresentação está chegando, mas o anjo da felicidade me trouxe um grande obstáculo.";
+		mes "E agora eu estou caindo em desespero novamente!";
+		mes "Eu não posso deixar que o Guitar Song e os meus fãs me vejam assim";
+		next;
+		mes "[Moça Triste]";
+		mes "<Nollio> está acabado! Boo hoo hoo!";
+		set job_wan,5;
+		close;
+	} else if (job_wan == 5) {
+		emotion e_sob;
+		mes "[Moça Triste]";
+		mes "Á pouco tempo, eu era como um lindo pombo, mas agora eu sou apenas uma galinha gorda.";
+		mes "Sob sob...!";
+		mes "Eu acho que a minha vida de dança como Musa Kim está acabada.";
+		mes "Boo hoo hoo hoo!";
+		next;
+		if(select("Ei, não desista.:Eu sinto pena de você.") == 2) {
+			mes "[Dançarina Kim]";
+			mes "Sinto que minha vida não pode sair do abismo agora......";
+			close;
+		}
+		mes "[Dançarina Kim]";
+		mes "Mas eu já disse ao Guitar Song que está tudo acabado.";
+		mes "E mesmo que não tenha acabado, eu não posso fazer mais nada agora.";
+		next;
+		select("Se você desistir, aí sim estará acabado.");
+		mes "[Dançarina Kim]";
+		mes "Mas nessa situação...";
+		mes "Existe realmente uma maneira de mudar isso?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "O exercício é a melhor maneira!";
+		mes "Se você trabalhar duro, você poderá se sentir mais leve do que antes!";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Mas se eu ficar cansada desistirei facilmente.";
+		mes "Eu acho que o melhor é eu desistir.";
+		next;
+		if(select("Bem, não há nenhuma outra maneira.:Vamos trabalhar juntas?") == 1) {
+			mes "[Dançarina Kim]";
+			mes "Sem sonhos e sem esperança...";
+			close;
+		}
+		emotion e_omg;
+		mes "[Dançarina Kim]";
+		mes "Você vai fazer os exercícios junto a mim?";
+		mes "É sério?";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Eu tenho certeza que ficaria muito mais fácil de tentar se tiver alguém comigo.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Eu me sinto melhor agora!";
+		mes "Eu sinto que estou ganhando forças de novo!";
+		mes "Vamos trabalhar juntas!";
+		next;
+		select("O que devemos fazer primeiro?");
+		mes "[Dançarina Kim]";
+		mes "Eu tenho uma boa idéia!";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Encontre-me no Lago do Abismo.";
+		mes "Estarei te esperando lá.";
+		mes "Basta ir a um campo ao Sul e outro ao Oeste daqui de Hugel.";
+		mes "Te esperarei lá.";
+		set job_wan,6;
+		changequest 2219,2220;
+		close;
+	} else if (job_wan == 6 || job_wan == 7) {
+		mes "[Dançarina Kim]";
+		mes "Eu te encontro no Lago do Abismo.";
+		close;
+	} else if (job_wan == 8) {
+		mes "[Dançarina Kim]";
+		mes "Porfavor diga ao Guitar Song para ir até Lutie";
+		mes "Eu irei para lá depois que terminar de me arrumar!";
+		close;
+	}
+	mes "[Moça Triste]";
+	mes "Onde está o meu parceiro......";
+	close;
+}
+
+hu_fild05,342,130,5	script	Dançarina Kim#fild	879,{
+	if (job_wan == 6) {
+		mes "[Dançarina Kim]";
+		mes "Exercitar-se juntas é bom, mas se competirmos por isso, eu acho que o resultado será melhor!";
+		next;
+		mes "[Dançarina Kim]";
+		mes "A partir de agora, vamos competir para ver quem vence os Novus Amarelos primeiro!";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Você precisa derrotar 50 Novus Amarelos!";
+		mes "Você está pronta?";
+		next;
+		if(select("Não.:Sim.") == 1) {
+			mes "[Dançarina Kim]";
+			mes "Apresse-se antes que eu perca o interesse!";
+			close;
+		}
+		mes "[Dançarina Kim]";
+		mes "Bom! Prontas, preparar~~";
+		mes "Valendo!";
+		set job_wan,7;
+		changequest 2220,2221;
+		close;
+	} else if (job_wan == 7) {
+		if (checkquest(2221,PLAYTIME) == 0 || checkquest(2221,PLAYTIME) == 1) {
+			if (checkquest(2221,HUNTING) == 2) {
+				mes "[Dançarina Kim]";
+				mes "Ufa!";
+				mes "Parece que eu perdi!";
+				next;
+				mes "[Dançarina Kim]";
+				mes "Esta sensação me lembra o passado, onde eu cruzei as fronteiras de vários continentes.";
+				next;
+				mes "[Dançarina Kim]";
+				mes "Ah! Olha isso!";
+				mes "Eu estou ficando mais magra, consegue ver?";
+				next;
+				mes "[Dançarina Kim]";
+				mes "Eu sinto que meu corpo está cheio de energia.";
+				mes "Derrepente senti vontade de ver o meu bom parceiro Guitar Song.";
+				mes "Eu quero começar a dançar de novo.";
+				next;
+				select("O que acha de dançar em Lutie?");
+				emotion e_gasp;
+				mes "[Dançarina Kim]";
+				mes "Ah! o Vilarejo do Natal! Sim! Sim!";
+				mes "Meu sonho de dançar em Lutie vai finalmente tornar-se realidade.";
+				next;
+				mes "[Dançarina Kim]";
+				mes "Eu quero dançar e pular todos os dias e levar felicidade as pessoas!";
+				mes "Então, eu vou para Lutie.";
+				next;
+				mes "[Dançarina Kim]";
+				mes "Ah, preciso te pedir uma coisa, porfavor.";
+				mes "Você poderia pedir para o Guitar Song ir para Lutie?";
+				mes "Diga para ele que a sua parceira está o esperando.";
+				next;
+				select("Sem problema!");
+				mes "[Dançarina Kim]";
+				mes "Você é uma pessoa boa. Estou realmente feliz de ter te conhecido.";
+				mes "Obrigado Deus por ter mandado uma pessoa tão teimosa para mim!";
+				set job_wan,8;
+				changequest 2221,2222;
+				close;
+			} else {
+				mes "[Dançarina Kim]";
+				mes "Isso pareceu bem fácil para você?";
+				mes "Bem eu tenho certeza que terei outra chance para vencer.";
+				close;
+			}
+		} else if (checkquest(2221,PLAYTIME) == 2) {
+			mes "[Dançarina Kim]";
+			mes "Oh, você voltou até mim.";
+			mes "Estou tão cançada. Mas eu não desistirei agora. Isso é um bom exercício para mim. Se eu não conseguir acabarei perdendo <Nollio> para outra Musa, e estará tudo acabado....";
+			next;
+			mes "- Kim cai no chão de dor e fadiga -";
+			set job_wan,6;
+			changequest 2221,2220;
+			close;
+		} else {
+			mes "[Dançarina Kim]";
+			mes "Huh...?";
+			set job_wan,6;
+			close;
+		}
+	} else if (job_wan == 8) {
+		mes "[Dançarina Kim]";
+		mes "Porfavor diga ao Guitar, que eu estarei esperando por ele na árvore de natal.";
+		close;
+	}
+	mes "[Dançarina Kim]";
+	mes "Caçar Novus é o melhor exercício, Eu acho.";
+	close;
+}
+
+-	script	#fildshout00::wandererjcq	-1,{
+OnTouch:
+	if (job_wan == 7) {
+		switch(rand(3)) {
+		case 0:
+			mapannounce "hu_fild05","Dançarina Kim: Ei, como você está indo tão rápido? Agora é que eu derrotei alguns poucos...",bc_map,"0xffff00"; //FW_NORMAL 12 0 0
+			break;
+		case 1:
+			mapannounce "hu_fild05","Dançarina Kim: Errrgghh! Ei Novus! Eu vou te pegar~",bc_map,"0xffff00"; //FW_NORMAL 12 0 0
+			break;
+		case 2:
+			mapannounce "hu_fild05","Dançarina Kim: Oh, você está cansada? A vitória já é minha? Ho ho ho.",bc_map,"0xffff00"; //FW_NORMAL 12 0 0
+			break;
+		}
+	}
+	end;
+}
+hu_fild05,81,111,0	duplicate(wandererjcq)	#fildshout01	139,20,20
+hu_fild05,193,98,0	duplicate(wandererjcq)	#fildshout02	139,20,20
+hu_fild05,252,74,0	duplicate(wandererjcq)	#fildshout03	139,20,20
+hu_fild05,323,175,0	duplicate(wandererjcq)	#fildshout04	139,20,20
+hu_fild05,334,225,0	duplicate(wandererjcq)	#fildshout05	139,20,20
+hu_fild05,301,287,0	duplicate(wandererjcq)	#fildshout06	139,20,20
+hu_fild05,229,315,0	duplicate(wandererjcq)	#fildshout07	139,20,20
+hu_fild05,146,309,0	duplicate(wandererjcq)	#fildshout08	139,20,20
+hu_fild05,80,239,0	duplicate(wandererjcq)	#fildshout09	139,20,20
+hu_fild05,69,147,0	duplicate(wandererjcq)	#fildshout10	139,20,20
+
+xmas,148,131,0	script	#wandergogo	139,3,3,{
+OnTouch:
+	if (job_wan == 9) {
+		enablenpc "Dançarina Kim#xmas";
+		enablenpc "Guitar Song#xmas";
+		enablenpc "Espectador#xmas1";
+		enablenpc "Espectador#xmas2";
+		enablenpc "Espectador#xmas3";
+		enablenpc "Espectador#xmas4";
+		enablenpc "Soy#xmas";
+		enablenpc "Mimi#xmas";
+	}
+	end;
+}
+
+xmas,147,135,5	script	Dançarina Kim#xmas	485,{
+	if (job_wan == 9) {
+		if (BaseJob != Job_Dancer && BaseLevel < 99 && JobLevel < 50) {
+			mes "- Você não atende aos requisitos. -";
+			close;
+		}
+		if (SkillPoint) {
+			mes "- Porfavor use todos os seus pontos de habilidade. -";
+			close;
+		}
+		if (checkweight(1201,2) == 0) {
+			mes "- Você precisa de mais espaço em seu inventário antes de continuar. -";
+			close;
+		}
+		if (ismounting()) {
+			mes "[Dançarina Kim]";
+			mes "Por favor saia de sua montaria.";
+			mes "E fale comigo novamente.";
+			close;
+		}
+		mes "- <Nollio> está se apresentando. -";
+		next;
+		emotion e_ho,0,"Guitar Song#xmas";
+		emotion e_ho;
+		mes "[Guitar Song]";
+		mes "Um! Dois! Três!";
+		mes "Dança do Peixe Azul~";
+		mes "Fã! Fã! Fã! Eu sou seu fã~";
+		mes "Mesmo com sua mente forte e sua força de vontade, Eu te pescarei~";
+		next;
+		emotion e_ho,0,"Espectador#xmas1";
+		emotion e_ho,0,"Espectador#xmas2";
+		emotion e_ho,0,"Espectador#xmas3";
+		emotion e_ho,0,"Espectador#xmas4";
+		emotion e_ho,0,"Soy#xmas";
+		emotion e_ho,0,"Mimi#xmas";
+		mes "[Espectadores]";
+		mes "AAAAhhhhhhhhh - - !!!";
+		mes "Tão legal! Nollio é o melhor!!!";
+		next;
+		mes "[Guitar Song]";
+		mes "Olá, senhoras e senhores!";
+		next;
+		emotion e_lv,0,"Espectador#xmas1";
+		emotion e_lv,0,"Espectador#xmas2";
+		emotion e_lv,0,"Espectador#xmas3";
+		emotion e_lv,0,"Espectador#xmas4";
+		emotion e_lv,0,"Soy#xmas";
+		emotion e_lv,0,"Mimi#xmas";
+		mes "[Espectadores]";
+		mes "Olá!!!!!";
+		next;
+		mes "[Guitar Song]";
+		mes "Nós somos o <Nollio> A equipe romântica que segue pelo mundo espalhando amor aos ventos!";
+		next;
+		emotion e_lv,0,"Espectador#xmas1";
+		emotion e_lv,0,"Espectador#xmas2";
+		emotion e_lv,0,"Espectador#xmas3";
+		emotion e_lv,0,"Espectador#xmas4";
+		emotion e_lv,0,"Soy#xmas";
+		emotion e_lv,0,"Mimi#xmas";
+		mes "[Espectadores]";
+		mes "Uoooouuuu~!";
+		next;
+		emotion e_no1;
+		mes "[Dançarina Kim]";
+		mes "É tão fascinante poder dançar na neve, é um lindo vilarejo,";
+		mes "Estou tão feliz por ter vindo até aqui, em Lutie.";
+		next;
+		mes "[Espectadores]";
+		mes "Yayyyy~";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Na verdade, essa apresentação tão bonita poderia ter sido cancelada pelo meu descuido.";
+		next;
+		mes "[Guitar Song]";
+		mes "Eu não tive a intenção de deixa-lá chateada.";
+		mes "Deixe-me aproveitar essa chance e lhe dizer que sinto muito.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Está tudo bem.";
+		mes "Desculpe pela forma que me conportei.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "De fato, há uma amiga que me ajudou a passar pelas dificuldades que eu passei quando eu estava deprimida na minha cidade natal.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Você pode acabar amando a dança da minha amiga no futuro.";
+		mes "Ela tem um grande talento.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Introdução!";
+		next;
+		mes "[Dançarina Kim]";
+		mapannounce "xmas","Dançarina Kim: Apresentando o renascer da Musa! " + strcharinfo(0) + "!",bc_map,"0xffff00"; //FW_NORMAL 12 0 0
+		mes "Está é a estrela que fez a Musa renascer, " + strcharinfo(0) + "!";
+		jobchange roclass(eaclass()|EAJL_THIRD);
+		set job_wan,10;
+		getitem 2795,1; // Anel de Maçã Verde
+		getitem 5758,1; // Súplica do Cisne
+		completequest 2222;
+		next;
+		mes "[Dançarina Kim]";
+		mes "Ha ha ha, você está supresa?";
+		mes "Não ficou um pouco confusa?";
+		mes "Você me trouxe até aqui, você merece.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "Oh! Você é como um belo cisne!";
+		mes "As deusas devem estar com ciúmes de ver sua beleza.";
+		next;
+		mes "[Dançarina Kim]";
+		mes "" + strcharinfo(0) + "! Espero ver suas belas façanhas no futuro.";
+		mes "Além disso, eu espero que você encontre o seu precioso Trovador.";
+		mes "Vamos dançar juntar mais tarde, vamos? Ha ha.";
+		next;
+		mes "[Guitar Song]";
+		mes "Muito obrigado, graças a você eu não perdi minha preciosa parceira.";
+		mes "Obrigado mesmo.";
+		mes "Em breve vou fazer uma música para você, pode esperar por isso.";
+		close2;
+		disablenpc "Dançarina Kim#xmas";
+		disablenpc "Guitar Song#xmas";
+		disablenpc "Espectador#xmas1";
+		disablenpc "Espectador#xmas2";
+		disablenpc "Espectador#xmas3";
+		disablenpc "Espectador#xmas4";
+		disablenpc "Soy#xmas";
+		disablenpc "Mimi#xmas";
+		end;
+	}
+OnInit:
+	disablenpc "Dançarina Kim#xmas";
+	end;
+}
+
+-	script	#wander_xmas	-1,{
+	end;
+OnInit:
+	disablenpc strnpcinfo(0);
+	end;
+}
+xmas,149,135,3	duplicate(#wander_xmas)	Guitar Song#xmas	479
+xmas,142,130,7	duplicate(#wander_xmas)	Espectador#xmas1	711
+xmas,145,127,7	duplicate(#wander_xmas)	Espectador#xmas2	712
+xmas,148,127,7	duplicate(#wander_xmas)	Soy#xmas	714
+xmas,149,127,1	duplicate(#wander_xmas)	Mimi#xmas	714
+xmas,151,127,1	duplicate(#wander_xmas)	Espectador#xmas3	716
+xmas,154,129,1	duplicate(#wander_xmas)	Espectador#xmas4	797

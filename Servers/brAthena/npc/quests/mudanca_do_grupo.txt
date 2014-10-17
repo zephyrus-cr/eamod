@@ -1,0 +1,3514 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest Mudança do Grupo                 |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest designada para múltiplos jogadores    |
+//   | simultâneamente.                                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Script Traduzido (PT-BR) [Clare & Hold]            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+payon,103,113,3	script	Ledrion#payon::RelayLedrion	109,{
+	getpartymember(getcharid(1));
+	set .@partymembercount,$@partymembercount;
+	set .@partyleader,getpartyleader(getcharid(1),2);
+	if (checkweight(907,300) == 0) {
+		mes "^3355FFEspere um pouco! Você está";
+		mes "carregando muitos itens!";
+		mes "Você deve depositar algumas";
+		mes "de suas coisas extras com uma";
+		mes "Kafra, e voltar em seguida.^000000";
+		close;
+	}
+	if ((countitem(7731) > 0) || (countitem(7732) > 0) || (countitem(7735) > 0) || (countitem(7736) > 0) || (countitem(7739) > 0) || (countitem(7740) > 0)) {
+		mes "[Ledrion]";
+		mes "Hm? Acho que talvez você não";
+		mes "tenha me entendido mais cedo...";
+		mes "Você não está pronto para ver";
+		mes "até que você traga membros";
+		mes "do grupo o suficiente com você.";
+		close;
+	}
+	if ((countitem(7741) > 0) && (.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5)) {
+		mes "[Ledrion]";
+		mes "Ah, você trouxe o";
+		mes "último bilhete de Rospii.";
+		mes "Agora eu estou convencido de que";
+		mes "você e seu grupo realmente";
+		mes "trabalham bem juntos. Bom";
+		mes "trabalho em passar nos testes!";
+		next;
+		mes "[Ledrion]";
+		mes "Seu grupo deve realmente";
+		mes "entender o valor do trabalho";
+		mes "em equipe. E graças a você,";
+		mes "Eu ganhei a aposta! Er, mas";
+		mes "o mais importante é que você";
+		mes "correspondeu a minha fé em vocês.";
+		next;
+		mes "[Ledrion]";
+		mes "Eu estou muito orgulhoso";
+		mes "do grande feito de vocês.";
+		mes "Aqui...";
+		mes "Você merece uma recompensa de verdade!";
+		next;
+		set .@present,rand(1,7);
+		delitem 7741,1; // Certificado de Missão 12
+		set party_relay,0;
+		getitem 644,6; // Caixa de Presente
+		getitem 603,3; // Velha Caixa Azul
+		if (.@present == 2) {
+			getitem 1365,1; // Sabbath
+		}
+		else if (.@present == 4) {
+			getitem 1367,1; // Carniceiro
+		}
+		else if (.@present == 6) {
+			getitem 1527,1; // Quatrilho
+		}
+		else {
+			getitem 617,3; // Velha Caixa Roxa
+		}
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 19560,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Ledrion]";
+		mes "Então, eu espero que tenha gostado!";
+		mes "Se você não pode usar ele, então";
+		mes "você pode compartilhar ele com";
+		mes "alguém do seu clã? Bom, sinta-se";
+		mes "livre para voltar quando quiser e";
+		mes "participar de novo dos meus desafios, ok?";
+		next;
+		mes "[Ledrion]";
+		mes "Mais uma vez, eu gostaria de";
+		mes "agradecê-lo. Eu não tenho certeza";
+		mes "se nós vamos nos encontrar novamente,";
+		mes "mas eu vou estar orando por";
+		mes "você em suas aventuras.";
+		close;
+	}
+	if (countitem(7741) > 0) {
+		mes "[Ledrion]";
+		mes "Hum? Porque seus camaradas";
+		mes "não estão aqui junto com você?";
+		mes "Você deve trazer os membros";
+		mes "do seu do grupo aqui para";
+		mes "proceder com este teste.";
+		close;
+	}
+	if (party_relay == 23) {
+		mes "[Ledrion]";
+		mes "Você não deveria";
+		mes "pedir para um membro do";
+		mes "seu grupo da classe Espadachim";
+		mes "ou Mago para trazer um bilhete";
+		mes "sobre a Gatan agora?";
+		close;
+	}
+	if ((countitem(7737) > 0) && (.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5)) {
+		mes "[Ledrion]";
+		mes "Ótimo, você me trouxe";
+		mes "o oitavo bilhete de";
+		mes "Lospii. Seu grupo deve";
+		mes "trabalhar muito bem juntos,";
+		mes "hein? Geralmente não é fácil";
+		mes "reunir pessoas assim...";
+		next;
+		mes "[Ledrion]";
+		mes "Por favor, mantenha o bom";
+		mes "trabalho até que termine todos";
+		mes "os testes, ok? Aqui está";
+		mes "uma pequena recompensa por o seu";
+		mes "esforço até agora, e o";
+		mes "nono bilhete para a sua guild.";
+		delitem 7737,1; // Certificado de Missão 8
+		set party_relay,23;
+		getitem 603,3; // Velha Caixa Azul
+		getitem 617,1; // Velha Caixa Roxa
+		getitem 7738,1; // Certificado de Missão 9
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 19560,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		next;
+		mes "[Ledrion]";
+		mes "Por favor dê este bilhete";
+		mes "para alguém da sua guild";
+		mes "que seja da classe Espadachim";
+		mes "ou Mago, e diga para";
+		mes "ele entregar para Gatan.";
+		mes "Ok? Eu vou esperarar.";
+		close;
+	}
+	if (countitem(7737) > 0) {
+		mes "[Ledrion]";
+		mes "Hum? Porque seus camaradas";
+		mes "não estão aqui junto com você?";
+		mes "Você deve trazer os membros";
+		mes "do seu do grupo aqui para";
+		mes "proceder com este teste.";
+		close;
+	}
+	if (party_relay == 12) {
+		mes "[Ledrion]";
+		mes "Hum? Você não deveria";
+		mes "pedir para uma pessoa da";
+		mes "classe Mago do seu grupo para";
+		mes "entregar o bilhete para Gatan?";
+		close;
+	}
+	if ((countitem(7733) > 0) && (.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5)) {
+		mes "[Ledrion]";
+		mes "Eu vejo que você me trouxe";
+		mes "o quarto bilhete de";
+		mes "Lospii. Bom trabalho, bom trabalho.";
+		mes "Por favor, pendure lá, e";
+		mes "termine todos os testes que temos";
+		mes "defindos para vocês, certo?";
+		next;
+		mes "[Ledrion]";
+		mes "Aqui está uma pequena";
+		mes "recompensa para como agradecimento";
+		mes "pelo seu esforço por hora. Agora, por favor";
+		mes "entregue este bilhete para um personagem";
+		mes "da classe Mago, e diga a";
+		mes "ele para levá-lo para Gatan.";
+		delitem 7733,1; // Cerificado de Missão 4
+		set party_relay,12;
+		getitem 644,3; // Caixa de Presente
+		getitem 603,1; // Velha Caixa Azul
+		getitem 7734,1; //Certificado de Missão 5
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 19560,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		close;
+	}
+	if (countitem(7733) > 0) {
+		mes "[Ledrion]";
+		mes "Hum? Porque seus camaradas";
+		mes "não estão aqui junto com você?";
+		mes "Você deve trazer os membros";
+		mes "do seu do grupo aqui para";
+		mes "proceder com este teste.";
+		close;
+	}
+	if (party_relay == 2) {
+		mes "[Ledrion]";
+		mes "Você não terminou o que";
+		mes "eu pedi para você fazer, você fez?";
+		mes "Ainda não esta na hora de você";
+		mes "voltar até mim, ainda não.";
+		close;
+	}
+	if ((BaseLevel > 39) && (.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5) && (party_relay == 1)) {
+		mes "[Ledrion]";
+		mes "É como eu disse antes,";
+		mes "eu estou testando seus membros";
+		mes "da guild com missões";
+		mes "que requerem ";
+		mes "cooperação entre";
+		mes "os membros do grupo.";
+		next;
+		mes "[Ledrion]";
+		mes "Estes desafios são";
+		mes "como uma prova de revesamento";
+		mes "onde vamos pedir";
+		mes "para um item ser passado";
+		mes "para um membro de uma classe";
+		mes "específica entregar para nós.";
+		next;
+		mes "[Ledrion]";
+		mes "Claro, Nós os";
+		mes "administradores deste";
+		mes "teste, podemos adicionar o nosso";
+		mes "próprio pequeno teste, aqui";
+		mes "para ver o quanto seu";
+		mes "grupo é capaz.";
+		next;
+		mes "[Ledrion]";
+		mes "Por que você não tenta";
+		mes "fazer nossos desafios?";
+		mes "Garanto que você não";
+		mes "vai perder nada em fazê-los.";
+		mes "E ainda sairá recompensado";
+		mes "de nossos pequenos desafios.";
+		next;
+		mes "[Ledrion]";
+		mes "Heh! Vamos começar com você!";
+		mes "Aqui, pegue este bilhete, e";
+		mes "dê para um membro da classe";
+		mes "Espadachim da sua guild, e";
+		mes "peça a ele para entregar a Gatan.";
+		mes "A prova de revesamento começou!";
+		next;
+		set party_relay,2;
+		getitem 7730,1; // Certificado de Missão 1
+		mes "[Ledrion]";
+		mes "Agora, já que você é o primeiro";
+		mes "que começou o revesamento,";
+		mes "uma hora você terá que voltar";
+		mes "até a mim";
+		mes "Não se preocupe, nós iremos avisar";
+		mes "quando for a hora.";
+		close;
+	}
+	if ((.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5) && (party_relay > 0)) {
+		mes "[Ledrion]";
+		mes "Como líder de seu";
+		mes "grupo, você deve";
+		mes "sempre pensar no que";
+		mes "é melhor para todos";
+		mes "os seus parceiros.";
+		close;
+	}
+	if ((.@partyleader != getcharid(0)) && (getcharid(2) > 0)) {
+		mes "[Ledrion]";
+		mes "Sinto muito, mas realmente";
+		mes "não há nada que eu possa oferecer a";
+		mes "você... A menos que você forme";
+		mes "um grupo e se torne o seu";
+		mes "líder, não há absolutamente nada";
+		mes "que eu possa fazer por você...";
+		close;
+	}
+	mes "[Ledrion]";
+	mes "Olá, prazer em conhecê-lo";
+	mes "aventureiro.";
+	mes "Eu sou Ledrion, um homem de grande";
+	mes "inteligência, mistério, e";
+	mes "o mais importante, riquezas.";
+	mes "Sim, Eu sou um filantropo.";
+	next;
+	mes "[Ledrion]";
+	mes "Eu estou sempre trabalhando para";
+	mes "fazer uma contribuição significativa";
+	mes "a toda Rune Midgard, que";
+	mes "foi o que me trouxe aqui.";
+	mes "Há muitos aventureiros como você, mas temos um problema.";
+	next;
+	mes "[Ledrion]";
+	mes "Então muitos aventureiros tem";
+	mes "escolhido os caminhos da ganância,";
+	mes "e se esqueceram de como";
+	mes "trabalhar bem em conjunto com os seus";
+	mes "colegas. Tal egoísmo";
+	mes "me enoja infinitamente! Ugh!";
+	next;
+	mes "[Ledrion]";
+	mes "Eu posso não ser um aventureiro,";
+	mes "mas eu tenho o dinheiro para";
+	mes "fazer algo. Eu estou custeando";
+	mes "meu próprio desafio para";
+	mes "aventureiros, para encorajar";
+	mes "camaradagem e trabalho em equipe.";
+	next;
+	mes "[Ledrion]";
+	mes "Por favor, eu convido você a dar";
+	mes "uma chance se me permitir! com";
+	mes "algumas de minhas condições.";
+	mes "Primeiramente, você deve fazer parte";
+	mes "de um grupo de 6 ou mais membros,";
+	mes "como um grupo ou uma Guild.";
+	next;
+	mes "[Ledrion]";
+	mes "Segundo, apenas o líder";
+	mes "do grupo pode começar";
+	mes "a primeira parte do meu desafio.";
+	mes "Se você não é o líder,";
+	mes "avise-o que ele deve falar";
+	mes "comigo para iniciar o desafio.";
+	next;
+	mes "[Ledrion]";
+	mes "Terceiro, você deve ter";
+	mes "no grupo membros da classe";
+	mes "Espadachim, Mago, Noviço,";
+	mes "Arqueiro, Gatuno, e Mercador";
+	mes "para completar os desafios";
+	mes "que você irá receber.";
+	next;
+	mes "[Ledrion]";
+	mes "Personagens Transcendentais";
+	mes "também servem. Quarto, todos";
+	mes "os membros do grupo devem ter";
+	mes "ao menos Nível de Base 40.";
+	mes "Bem, todo o resto, você vai";
+	mes "aprender ao longo do caminho.";
+	next;
+	mes "[Ledrion]";
+	mes "Não se preocupe, eu não vou fazer";
+	mes "você saltar por aros de fogo não";
+	mes "há razão para isso em tudo o que";
+	mes "eu vou passar e o seu grupo ganhará";
+	mes "muitas recompensas como forma de";
+	mes "incentivo. Você deseja participar?";
+	next;
+	switch(select("Claro!:Não.")) {
+	case 1:
+		if ((BaseLevel > 39) && (.@partyleader == getcharid(0)) && (getcharid(2) > 0) && (.@partymembercount > 5)) {
+			mes "[Ledrion]";
+			mes "Ótimo! Deixe me ver...";
+			mes "então, você possui todos os";
+			mes "requerimentos. Parece que vou";
+			mes "vencer a aposta! Er, quero dizer";
+			mes "Deixe me passar as ";
+			mes "primeiras instruções.";
+			next;
+			set party_relay,1;
+			mes "[Ledrion]";
+			mes "Apenas--^666666*Coff!*^000000";
+			mes "Deixe-me limpar minha";
+			mes "garganta por um instante...";
+			close;
+		}
+		else {
+			mes "[Ledrion]";
+			mes "Isso é ótimo! Mas,";
+			mes "você ainda não está preparado";
+			mes "para o meu pequeno desafio";
+			mes "você deve cumprir todas as";
+			mes "minhas condições. Volte apenas";
+			mes "quando você cumprí-las, está bem?";
+			close;
+		}
+	case 2:
+		mes "[Ledrion]";
+		mes "Sério? Acredite em mim, este";
+		mes "pequeno desafio irá valer";
+		mes "a pena para você, e também";
+		mes "traria um grande senso de";
+		mes "solidariedade e trabalho em equipe";
+		mes "para Rune Midgard. É benéfico à todos!";
+		close;
+	}
+}
+
+payon,83,327,3	script	Gatan#payon::RelayGatan	86,{
+	getpartymember(getcharid(1));
+	set .@partymembercount,$@partymembercount;
+	set .@partyleader,getpartyleader(getcharid(1),2);
+	if (checkweight(907,300) == 0) {
+		mes "^3355FFEspere um pouco! Você está";
+		mes "carregando muitos itens!";
+		mes "Você deve depositar algumas";
+		mes "de suas coisas extras com uma";
+		mes "Kafra, e volte em seguida.^000000";
+	}
+	if ((countitem(7732) > 0) || (countitem(7733) > 0) || (countitem(7736) > 0) || (countitem(7737) > 0) || (countitem(7740) > 0) || (countitem(7741) > 0)) {
+		mes "[Gatan]";
+		mes "Diga, você não está esquecendo";
+		mes "de algo? Tente lembrar...";
+		mes "Mais cedo, você recebeu algumas";
+		mes "instruções, não foi?";
+		close;
+	}
+	set .@relaytime,gettime(3);
+	if (party_relay == 28) {
+		mes "[Gatan]";
+		mes "Diga, eu acho que ainda não";
+		mes "é a sua vez de vir falar comigo.";
+		mes "Eu acho que você tinha que falar";
+		mes "para um membro da classe Gatuno ou";
+		mes "Noviço de seu grupo para entregar";
+		mes "o décimo bilhete para Bafhail.";
+		close;
+	}
+	if (party_relay == 27) {
+		mes "[Gatan]";
+		mes "Isso, muito bom! Por favor";
+		mes "dê este bilhete para um membro";
+		mes "da classe Gatuno ou Noviço";
+		mes "de seu grupo, e peça a ele";
+		mes "para entregar à Bafhail. Ah, e";
+		mes "aqui esta uma pequena recompensa para você!";
+		set party_relay,28;
+		getitem 7739,1; // Certificado de Missão 10
+		getitem 610,2; // Folha de Yggdrasil
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 19560,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		next;
+		mes "[Gatan]";
+		mes "Parabéns por ter conseguido esse feito.";
+		mes "Eu te vejo por aí.";
+		close;
+	}
+	if ((party_relay == 26) && (BaseLevel > (party_relay_lv + 2)) && (.@relaytime >= 14) && (.@relaytime < 17)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,27;
+		close;
+	}
+	else if ((party_relay == 26) && (BaseLevel > (party_relay_lv + 2)) && (.@relaytime >= 18) && (.@relaytime < 21)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere......";
+		set party_relay,27;
+		close;
+	}
+	if (party_relay == 26) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar mais";
+		mes "3 Níveis de Base. Venha me";
+		mes "ver durante meu horário de";
+		mes "serviço apenas quando você";
+		mes "completar essa tarefa, certo?";
+		next;
+		mes "[Gatan]";
+		mes "Eu não sei te dizer exatamente";
+		mes "a que horas eu trabalho, mas meu ";
+		mes "horário de serviço é de tarde...";
+		mes "No horário padrão do pacífico, de qualquer modo.";
+		mes "Eu não vou estar aqui se você";
+		mes "vier para cá muito tarde, Certo?";
+		close;
+	}
+	if ((party_relay == 25) && (BaseLevel > (party_relay_lv + 1)) && (.@relaytime >= 14) && (.@relaytime < 17)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, exatamente como eu pedi.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,27;
+		close;
+	}
+	else if ((party_relay == 25) && (BaseLevel > (party_relay_lv + 1)) && (.@relaytime >= 18) && (.@relaytime < 21)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, exatamente como eu pedi.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,27;
+		close;
+	}
+	if (party_relay == 25) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar mais";
+		mes "2 Níveis de Base. Venha me";
+		mes "ver durante meu horário de";
+		mes "serviço apenas quando você";
+		mes "completar essa tarefa, certo?";
+		next;
+		mes "[Gatan]";
+		mes "Eu não sei te dizer exatamente";
+		mes "a que horas eu trabalho, mas meu ";
+		mes "horário de serviço é de tarde...";
+		mes "No horário padrão do pacífico, de qualquer modo.";
+		mes "Eu não vou estar aqui se você";
+		mes "vier para cá muito tarde, Certo?";
+		close;
+	}
+	if ((party_relay == 24) && (BaseLevel > party_relay_lv) && (.@relaytime >= 14) && (.@relaytime < 17)) {
+		mes "[Gatan]";
+		mes "Ótimo, você aumentou de";
+		mes "nível, exatamente como eu pedi.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,27;
+		close;
+	}
+	else if ((party_relay == 24) && (BaseLevel > party_relay_lv) && (.@relaytime >= 18) && (.@relaytime < 21)) {
+		mes "[Gatan]";
+		mes "Ótimo, você aumentou de";
+		mes "nível, exatamente como eu pedi.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,27;
+		close;
+	}
+	if (party_relay == 24) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar mais";
+		mes "1 Nível de Base. Venha me";
+		mes "ver durante meu horário de";
+		mes "serviço apenas quando você";
+		mes "completar essa tarefa, certo?";
+		next;
+		mes "[Gatan]";
+		mes "Eu não sei te dizer exatamente";
+		mes "a que horas eu trabalho, mas meu ";
+		mes "horário de serviço é de tarde...";
+		mes "No horário padrão do pacífico, de qualquer modo.";
+		mes "Eu não vou estar aqui se você";
+		mes "vier para cá muito tarde, Certo?";
+		close;
+	}
+	if ((countitem(7738) > 0) && ((BaseClass == Job_Swordman) || (BaseClass == Job_Mage))) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Então, agora eu tenho um pequeno";
+		mes "teste para você. Você está pronto?";
+		mes "Seu objetivo é ganhar";
+		mes "mais níveis! Vamos ver...";
+		mes "O que seria justo?";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,27;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê só um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 1 Nível de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,24;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 1 Nível de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,24;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 2 Níveis de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,25;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 2 Níveis de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,25;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,26;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,26;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+	}
+	else if ((countitem(7738) > 0) && ((BaseClass == Job_Swordman) || (BaseClass == Job_Mage))) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Então, agora eu tenho um pequeno";
+		mes "teste para você. Você está pronto?";
+		mes "Seu objetivo é ganhar";
+		mes "mais níveis! Vamos ver...";
+		mes "O que seria justo?";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,27;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 1 Nível de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,24;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 1 Nível de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,24;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 2 Níveis de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,25;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar";
+			mes "mais 2 Níveis de Base.";
+			mes "Vá e faça isso, Certo?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,25;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7738,1; // Certificado de Missão 9
+			set party_relay,26;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7738,1; //Mission_Certificate9
+			set party_relay,26;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+	}
+	if ((countitem(7738) > 0) && ((BaseClass == Job_Swordman) || (BaseClass == Job_Mage))) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh?";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Eu não estou no meu turno agora,";
+		mes "porém, eu preciso mesmo dar um";
+		mes "tempo para evitar ser inundado";
+		mes "de trabalho Volte durante meu";
+		mes "horário de trabalho.";
+		mes "Tudo bem?";
+		next;
+		mes "[Gatan]";
+		mes "Eu não posso te dizer exatamente";
+		mes "Quando vou estar trabalhando (^666666bem,";
+		mes "pra ser comletamente honesto eu só estou";
+		mes "querendo evitar de trabalhar^000000) mas";
+		mes "volte de tarde,";
+		mes "No horário padrão do pacífico, é isso.";
+		close;
+	}
+	if (party_relay == 17) {
+		mes "[Gatan]";
+		mes "Diga, ainda não é o momento";
+		mes "para se encontrar comigo.";
+		mes "Eu achei que você precisava";
+		mes "pedir a um membro da classe Noviço";
+		mes "do seu grupo para levar";
+		mes "o sexto bilhete para Bafhail.";
+		close;
+	}
+	if (party_relay == 16) {
+		mes "[Gatan]";
+		mes "Ah, muito bom! Por favor";
+		mes "dê este bilhete para um";
+		mes "membro de seu grupo da";
+		mes "classe Noviço, e peça a ele";
+		mes "para entregar para Bafhail. Ah, e";
+		mes "aqui esta uma pequena recompensa para você.";
+		set party_relay,17;
+		getitem 7735,1; // Certificado de Missão 6
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 19560,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		next;
+		mes "[Gatan]";
+		mes "Parabéns por ter conseguido esse feito.";
+		mes "Eu te vejo por aí.";
+		close;
+	}
+	if ((party_relay == 15) && (BaseLevel > (party_relay_lv + 2)) && (.@relaytime >= 8) && (.@relaytime < 11)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	else if ((party_relay == 15) && (BaseLevel > (party_relay_lv + 2)) && (.@relaytime >= 21) && (.@relaytime < 1)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	if (party_relay == 15) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar";
+		mes "mais 3 Níveis de Base.";
+		mes "Venha me ver durante meu";
+		mes "horário de serviço apenas se você";
+		mes "completar essa tarefa, tubo bem?";
+		next;
+		mes "[Gatan]";
+		mes "Agora eu trabalho 3 horas";
+		mes "um pouco antes do almoço,";
+		mes "e 3 horas em torno da";
+		mes "meia-noite. Vá e";
+		mes "venha me ver por volta";
+		mes "desse horário. Um pouco confuso, eu sei~";
+		close;
+	}
+	if ((party_relay == 14) && (BaseLevel > (party_relay_lv + 1)) && (.@relaytime >= 8)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	else if ((party_relay == 14) && (BaseLevel > (party_relay_lv + 1)) && (.@relaytime >= 21)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	if (party_relay == 14) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar";
+		mes "mais 2 Níveis de Base.";
+		mes "Venha me ver durante meu";
+		mes "horário de serviço apenas se você";
+		mes "completar essa tarefa, tubo bem?";
+		next;
+		mes "[Gatan]";
+		mes "Agora eu trabalho 3 horas";
+		mes "um pouco antes do almoço,";
+		mes "e 3 horas em torno da";
+		mes "meia-noite. Vá e";
+		mes "venha me ver por volta";
+		mes "desse horário. Um pouco confuso, eu sei~";
+		close;
+	}
+	if ((party_relay == 13) && (BaseLevel > party_relay_lv) && (.@relaytime >= 8) && (.@relaytime < 11)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	else if ((party_relay == 13) && (BaseLevel > party_relay_lv) && (.@relaytime >= 21)) {
+		mes "[Gatan]";
+		mes "Ótimo, você ganhou alguns";
+		mes "níveis, como eu havia pedido.";
+		mes "Deixe me achar a sua próxima--Eu juro";
+		mes "que deixei isso em algum lugar--";
+		mes "eu irei passar as instruções";
+		mes "da próxima etapa. Espere...";
+		set party_relay,16;
+		close;
+	}
+	if (party_relay == 13) {
+		mes "[Gatan]";
+		mes "Sua missão é ganhar";
+		mes "mais 1 Nível de Base.";
+		mes "Venha me ver durante meu";
+		mes "horário de serviço apenas se você";
+		mes "completar essa tarefa, tubo bem?";
+		next;
+		mes "[Gatan]";
+		mes "Agora eu trabalho 3 horas";
+		mes "um pouco antes do almoço,";
+		mes "e 3 horas em torno da";
+		mes "meia-noite. Vá e";
+		mes "venha me ver por volta";
+		mes "desse horário. Um pouco confuso, eu sei~";
+		close;
+	}
+	if ((BaseLevel > 39) && (countitem(7734) > 0) && (.@relaytime >= 8) && (.@relaytime < 11) && (BaseClass == Job_Mage)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Então, agora eu tenho um pequeno";
+		mes "teste para você. Você está pronto?";
+		mes "Seu objetivo é ganhar";
+		mes "mais níveis! Vamos ver...";
+		mes "O que seria justo?";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,16;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,13;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,13;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,14;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,14;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,15;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,15;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+	}
+	else if ((BaseLevel > 39) && (countitem(7734) > 0) && (.@relaytime >= 21) && (BaseClass == Job_Mage)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Então, agora eu tenho um pequeno";
+		mes "teste para você. Você está pronto?";
+		mes "Seu objetivo é ganhar";
+		mes "mais níveis! Vamos ver...";
+		mes "O que seria justo?";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,16;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,13;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,13;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,14;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,14;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,15;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7734,1; // Certificado de Missão 5
+			set party_relay,15;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+	}
+	if ((BaseLevel > 39) && (countitem(7734) > 0) && (BaseClass == Job_Mage)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? Isso é ótimo";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Eu não estou no meu turno agora,";
+		mes "porém, eu preciso mesmo dar um";
+		mes "tempo para evitar ser inundado";
+		mes "de trabalho Volte durante meu";
+		mes "horário de trabalho.";
+		mes "Tudo bem?";
+		next;
+		mes "[Gatan]";
+		mes "Agora eu trabalho 3 horas";
+		mes "um pouco antes do almoço,";
+		mes "e 3 horas em torno da";
+		mes "meia-noite. Vá e";
+		mes "venha me ver por volta";
+		mes "desse horário. Um pouco confuso, eu sei~";
+		close;
+	}
+	if (party_relay == 6) {
+		mes "[Gatan]";
+		mes "Você não devia dar este bilhete";
+		mes "para um membro da classe Gatuno";
+		mes "de seu grupo? ^666666*Bocejo*^000000 Se você";
+		mes "quer terminar todos os desafios,";
+		mes "é isso que você ";
+		mes "vai ter que fazer~";
+		close;
+	}
+	if (party_relay == 5) {
+		mes "[Gatan]";
+		mes "Ah, muito bom!";
+		mes "Agora por favor dê este";
+		mes "bilhete para um membro do";
+		mes "seu grupo da classe Gatuno,";
+		mes "e peça a ele para entregar";
+		mes "isso para Bafhail. Agora, certo?";
+		next;
+		mes "[Gatan]";
+		mes "Aqui está para você...";
+		mes "Apenas um pequeno";
+		mes "brinde pelos";
+		mes "incovenientes~";
+		set party_relay,6;
+		getitem 7731,1; // Certificado de Missão 2
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		next;
+		mes "[Gatan]";
+		mes "Não se esqueça. ";
+		mes "Um membro da classe gatuno";
+		mes "do seu grupo que deve";
+		mes "entregar o bilhete para Bafhail.";
+		mes "Te vejo por aí.";
+		close;
+	}
+	if ((party_relay == 4) && (BaseLevel > (party_relay_lv + 2)) && ((.@relaytime >= 11) && (.@relaytime < 14))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	else if ((party_relay == 4) && (BaseLevel > (party_relay_lv + 2)) && ((.@relaytime >= 0) && (.@relaytime < 3))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	if (party_relay == 4) {
+		mes "[Gatan]";
+		mes "Você não se esqueceu";
+		mes "que você deve ganhar mais 3";
+		mes "Níveis de Base, lembra?";
+		mes "Ah, e voltar durante";
+		mes "meu horario normal de trabalho.";
+		mes "Não me incomode quando estiver na hora vaga";
+		next;
+		mes "[Gatan]";
+		mes "Eu vou dizer quando eu trabalho";
+		mes "mais uma vez: venha das";
+		mes "11 AM até 2 PM, ou 12 AM até";
+		mes "3 AM, No horário padrão do pacífico.";
+		mes "Boa sorte para você, ok?";
+		close;
+	}
+	if ((party_relay == 3) && (BaseLevel > (party_relay_lv + 1)) && ((.@relaytime >= 11) && (.@relaytime < 14))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	else if ((party_relay == 3) && (BaseLevel > (party_relay_lv + 1)) && ((.@relaytime >= 0) && (.@relaytime < 3))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	if (party_relay == 3) {
+		mes "[Gatan]";
+		mes "Você não se esqueceu";
+		mes "que você deve ganhar mais 2";
+		mes "Níveis de Base, lembra?";
+		mes "Ah, e voltar durante";
+		mes "meu horario normal de trabalho.";
+		mes "Não me incomode quando estiver na hora vaga";
+		next;
+		mes "[Gatan]";
+		mes "Eu vou dizer quando eu trabalho";
+		mes "mais uma vez: venha das";
+		mes "11 AM até 2 PM, ou 12 AM até";
+		mes "3 AM, No horário padrão do pacífico.";
+		mes "Boa sorte para você, OK?";
+		close;
+	}
+	if ((party_relay == 99) && (BaseLevel > party_relay_lv) && ((.@relaytime >= 11) && (.@relaytime < 14))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	else if ((party_relay == 99) && (BaseLevel > party_relay_lv) && ((.@relaytime >= 0) && (.@relaytime < 3))) {
+		mes "[Gatan]";
+		mes "Bom trabalho. Eu acho que";
+		mes "Ledrion realmente sabe reconhecer";
+		mes "bons aventureiros quando ele";
+		mes "os vê. Agora, você";
+		mes "se importaria de esperar um pouco? Há algo";
+		mes "que eu tenho para lhe dar...";
+		set party_relay,5;
+		close;
+	}
+	if (party_relay == 99) {
+		mes "[Gatan]";
+		mes "Você não se esqueceu";
+		mes "que você deve ganhar mais 1";
+		mes "Nível de Base, esqueceu?";
+		mes "Ah, e voltar durante";
+		mes "meu horario normal de trabalho.";
+		mes "Não me incomode quando estiver na hora vaga";
+		next;
+		mes "[Gatan]";
+		mes "Eu vou dizer quando eu trabalho";
+		mes "mais uma vez: venha das";
+		mes "11 AM até 2 PM, ou 12 AM até";
+		mes "3 AM, No horário padrão do pacífico.";
+		mes "Boa sorte para você, ok?";
+		close;
+	}
+	if ((BaseLevel > 39) && (countitem(7730) > 0) && (.@relaytime >= 11) && (.@relaytime < 14) && (BaseClass == Job_Swordman)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Ledrion queria que eu desse";
+		mes "um pequeno teste se algum Espadachim";
+		mes "me trouxesse um bilhete,";
+		mes "e estivesse trabalhando em grupo.";
+		mes "Preparado? Aumentar seu Nível";
+		mes "de Base será o meu teste para você.";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,5;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,99;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,99;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,3;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,3;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,4;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,4;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+	}
+	else if ((BaseLevel > 39) && (countitem(7730) > 0) && (.@relaytime >= 0) && (.@relaytime < 3) && (BaseClass == Job_Swordman)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Ledrion queria que eu desse";
+		mes "um pequeno teste se algum Espadachim";
+		mes "me trouxesse um bilhete,";
+		mes "e estivesse trabalhando em grupo.";
+		mes "Preparado? Aumentar seu Nível";
+		mes "de Base será o meu teste para você.";
+		next;
+		if (BaseLevel > 94) {
+			mes "[Gatan]";
+			mes "Na verdade, você já está";
+			mes "bem forte. Eu não sinto";
+			mes "que meu teste possa te ajudar,";
+			mes "então vamos apenas dizer que você";
+			mes "terminou meu teste, certo?";
+			mes "Só não diga a ninguém!";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,5;
+			mes "[Gatan]";
+			mes "Espere um segundo...";
+			mes "Eu acho que tinha algo";
+			mes "para te dizer...";
+			mes "Me dê um minuto, ok?";
+			close;
+		}
+		else if (BaseLevel > 89) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,99;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 79) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 1";
+			mes "Nível de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,99;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 69) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,3;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 59) {
+			mes "[Gatan]";
+			mes "Você é muito forte,";
+			mes "mas eu acho que não ";
+			mes "mataria ninguém aumentar mais 2";
+			mes "Níveis de Base. Vá";
+			mes "e faça isso, Certo?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,3;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 49) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,4;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou indo então, vou";
+			mes "pegar seu bilhete agora. Volte";
+			mes "assim que você terminar o que";
+			mes "eu te pedi, e daí passaremos";
+			mes "para a próxima etapa.";
+			close;
+		}
+		else if (BaseLevel > 39) {
+			mes "[Gatan]";
+			mes "Pensando bem, provavelmente";
+			mes "será melhor se você estiver";
+			mes "um pouco mais forte. Agora";
+			mes "vá e ganhe mais 3 Níveis";
+			mes "de Base para mim, ok?";
+			next;
+			delitem 7730,1; // Certificado de Missão 1
+			set party_relay,4;
+			set party_relay_lv,BaseLevel;
+			mes "[Gatan]";
+			mes "Eu vou ficar com seu bilhete.";
+			mes "Quando você terminar, venha me ver novamente.";
+			close;
+		}
+	}
+	else if ((BaseLevel > 39) && (countitem(7730) > 0) && (BaseClass == Job_Swordman)) {
+		mes "[Gatan]";
+		mes "Oh, um... O que é isso...?";
+		mes "Isso é um bilhete de";
+		mes "Ledrion, huh? (^666666Droga! Eu vou";
+		mes "ter que trabalhar agora?^000000)";
+		mes "Prazer em conhecê-lo. Eu sou Gatan.";
+		next;
+		mes "[Gatan]";
+		mes "Odeio dizer isto, mas";
+		mes "Eu não estou de serviço agora.";
+		mes "Você realmente deve voltar depois";
+		mes "e falar comigo durante meu";
+		mes "horário de trabalho, ok? Eu preciso";
+		mes "do meu descanso do trabalho, você me entende?";
+		next;
+		mes "[Gatan]";
+		mes "Eu vou dizer quando eu trabalho";
+		mes "só não se esqueça: venha das";
+		mes "11 AM até 2 PM, ou 12 AM até";
+		mes "3 AM, No horário padrão do pacífico.";
+		mes "Boa sorte para você, ok?";
+		close;
+	}
+	mes "[Gatan]";
+	mes "Olá, prazer em conhecê-lo.";
+	mes "Eu sou Gatan. Eu não sou lá";
+	mes "grande coisa, só estou ajudando";
+	mes "um amigo. Ele está sobrecarregado, mas";
+	mes "ele realmente é um cara muito bom.";
+	mes "Então, está me fazendo trabalhar muito.";
+	close;
+}
+
+payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
+	getpartymember(getcharid(1));
+	set .@partymembercount,$@partymembercount;
+	set .@partyleader,getpartyleader(getcharid(1),2);
+	if (checkweight(907,300) == 0) {
+		mes "^3355FFEspere um pouco! Você está";
+		mes "carregando muitos itens!";
+		mes "Você deve depositar algumas";
+		mes "de suas coisas extras com uma";
+		mes "Kafra, e voltar em seguida.^000000";
+		close;
+	}
+	if (countitem(7730) > 0) || (countitem(7733) > 0) || (countitem(7734) > 0) || (countitem(7737) > 0) || (countitem(7738) > 0) || (countitem(7741) > 0) {
+		mes "[Bafhail]";
+		mes "Você deve estar confuso...";
+		mes "Não é hora para você";
+		mes "vir me encontrar ainda.";
+		mes "Você tentou encontrar-se";
+		mes "com algum dos outros caras?";
+		close;
+	}
+	set .@relaytime,gettime(3);
+	if (party_relay == 30) {
+		mes "[Bafhail]";
+		mes "Você não devia dar este bilhete";
+		mes "para um membro do grupo";
+		mes "da classe Arqueiro ou Mercador?";
+		mes "Apenas para lembrar no caso";
+		mes "de você ter esquecido.";
+		close;
+	}
+	if ((party_relay == 29) && (.@relaytime >= 0) && (.@relaytime < 3) && (countitem(1012) > 19) && (countitem(1048) > 19) && (countitem(7003) > 19)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1012,20; // Brasão
+		delitem 1048,20; // Cabelo Horrendo
+		delitem 7003,20; // Pele de Anolian
+		set party_relay,30;
+		getitem 7740,1; // Certificado de Missão 1
+		getitem 610,2; // Folha de Yggdrasil
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Certifique-se de entregar";
+		mes "esse bilhete para um membro do grupo";
+		mes "da classe Arqueiro ou Mercador";
+		mes "e fale para ele levar";
+		mes "para um garoto chamado Lospii.";
+		mes "Até mais, e boa sorte~";
+		close;
+	}
+	else if ((party_relay == 29) && (.@relaytime >= 11) && (.@relaytime < 14) && (countitem(1012) > 19) && (countitem(1048) > 19) && (countitem(7003) > 19)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1012,20; // Brasão
+		delitem 1048,20; // Cabelo Horrendo
+		delitem 7003,20; // Pele de Anolian
+		set party_relay,30;
+		getitem 7740,1; //Certificado de Missão 1
+		getitem 610,2; // Folha de Yggdrasil
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Certifique-se de entregar";
+		mes "esse bilhete para um membro do grupo";
+		mes "da classe Arqueiro ou Mercador";
+		mes "e fale para ele levar";
+		mes "para um garoto chamado Lospii.";
+		mes "Até mais, e boa sorte~";
+		close;
+	}
+	if (party_relay == 29) {
+		mes "[Bafhail]";
+		mes "Minha missão para você é";
+		mes "trazer alguns itens para mim";
+		mes "no tempo certo. Eu vou apenas";
+		mes "aceitar seus itens por 3 horas";
+		mes "quando o dia começa, e por 3";
+		mes "horas no meio do dia.";
+		next;
+		mes "[Bafhail]";
+		mes "Eu preciso de";
+		mes "^4D4DFF20 Brasão^000000,";
+		mes "^4D4DFF20 Pele de Anolian^000000, e";
+		mes "^4D4DFF20 Cabelo Horrendo^000000.";
+		mes "Não esqueça agora, certo?";
+		close;
+	}
+	if ((countitem(7739) > 0) && (.@relaytime >= 11) && (.@relaytime < 14) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		mes "Agora, vamos aos negócios.";
+		next;
+		mes "[Bafhail]";
+		mes "Minha missão é";
+		mes "para você coletar";
+		mes "^4D4DFF20 Brasão^000000,";
+		mes "^4D4DFF20 Pele de Anolian^000000, e";
+		mes "^4D4DFF20 Cabelo Horrendo^000000.";
+		next;
+		delitem 7739,1; // Certificado de Missão 10
+		set party_relay,29;
+		mes "[Bafhail]";
+		mes "Entendeu?";
+		mes "Tudo bem então, basta você";
+		mes "me entregar seu bilhete,";
+		mes "para começar a recolher";
+		mes "os itens que eu listei.";
+		mes "Te vejo mais tarde~";
+		close;
+	}
+	else if ((countitem(7739) > 0) && (.@relaytime >= 0) && (.@relaytime < 3) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		mes "Agora, vamos aos negócios.";
+		next;
+		mes "[Bafhail]";
+		mes "Minha missão é";
+		mes "para você coletar estes itens";
+		mes "^4D4DFF20 Brasão^000000,";
+		mes "^4D4DFF20 Pele de Anolian^000000, and";
+		mes "^4D4DFF20 Cabelo Horrendo^000000.";
+		next;
+		delitem 7739,1; // Certificado de Missão 10
+		set party_relay,29;
+		mes "[Bafhail]";
+		mes "Entendeu?";
+		mes "Tudo bem então, basta você";
+		mes "me entregar seu bilhete,";
+		mes "para começar a recolher";
+		mes "os itens que eu listei.";
+		mes "Te vejo mais tarde~";
+		close;
+	}
+	if ((countitem(7739) > 0) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Você se importaria de voltar";
+		mes "mais tarde? Agora";
+		mes "não é a hora certa para falar";
+		mes "comigo. Eu vou estar disponível por 3";
+		mes "horas ao iniciar o dia,";
+		mes "e por 3 horas ao meio dia.";
+		close;
+	}
+	if (party_relay == 20) {
+		mes "[Bafhail]";
+		mes "Você não devia dar este bilhete";
+		mes "para um membro do seu grupo";
+		mes "da classe Arqueiro ou Mercador?";
+		mes "Apenas para lembrar no caso";
+		mes "de você ter esquecido.";
+		close;
+	}
+	if ((party_relay == 19) && (.@relaytime >= 14) && (.@relaytime < 17) && (countitem(1015) > 9) && (countitem(7172) > 9) && (countitem(7155) > 9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1015,10; // Língua
+		delitem 7172,10; // Garras de Leopardo
+		delitem 7155,10; // Pele de Sapo
+		set party_relay,20;
+		getitem 7736,1; // Certificado de Missão 7
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Faça-me um favor e";
+		mes "peça para um personagem";
+		mes "da classe Mercador de";
+		mes "seu grupo, entregar o bilhete";
+		mes "para Lospii. Tudo bem, então";
+		mes "te vejo depois então.";
+		close;
+	}
+	else if ((party_relay == 19) && (.@relaytime >= 18) && (.@relaytime < 21) && (countitem(1015) > 9) && (countitem(7172) > 9) && (countitem(7155) > 9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1015,10; // Língua
+		delitem 7172,10; // Garras de Leopardo
+		delitem 7155,10; // Pele de Sapo
+		set party_relay,20;
+		getitem 7736,1; // Certificado de Missão 7
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Faça-me um favor e";
+		mes "peça para um personagem";
+		mes "da classe Mercador de";
+		mes "seu grupo, entregar o bilhete";
+		mes "para Lospii. Tudo bem, então";
+		mes "Te vejo depois então.";
+		close;
+	}
+	if (party_relay == 19) {
+		mes "[Bafhail]";
+		mes "Lembre-se de me trazer";
+		mes "os itens que eu pedi";
+		mes "no horário certo, durante";
+		mes "as 3 horas de tarde ou";
+		mes "3 horas no início da noite.";
+		mes "Agora, Eu quero que você me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Língua^000000,";
+		mes "^4D4DFF10 Garra de Leopardo^000000, e";
+		mes "^4D4DFF10 Pele de Sapo Venenoso^000000.";
+		mes "Eu estarei te aguardando por aqui";
+		mes "e irei aceitar estes itens";
+		mes "quando for a hora certa.";
+		close;
+	}
+	if ((party_relay == 18) && (.@relaytime >= 14) && (.@relaytime < 17) && (countitem(7157) > 9) && (countitem(1021) > 9) && (countitem(7101) >9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 7157,10; // Máscara de Ninja
+		delitem 1021,10; // Chifre de Dokebi
+		delitem 7101,10; // Pena de Grand Peco
+		set party_relay,20;
+		getitem 7736,1; // Certificado de Missão 7
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Faça-me um favor e";
+		mes "peça para um personagem";
+		mes "da classe Mercador de";
+		mes "seu grupo, entregar o bilhete";
+		mes "para Lospii. Tudo bem, então";
+		mes "Te vejo depois então.";
+		close;
+	}
+	else if ((party_relay == 18) && (.@relaytime >= 18) && (.@relaytime < 21) && (countitem(7157) > 9) && (countitem(1021) > 9) && (countitem(7101) >9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 7157,10; // Máscara de Ninja
+		delitem 1021,10; // Chifre de Dokebi
+		delitem 7101,10; // Pena de Grand Peco
+		set party_relay,20;
+		getitem 7736,1; // Certificado de Missão 7
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Faça-me um favor e";
+		mes "peça para um personagem";
+		mes "da classe Mercador de";
+		mes "seu grupo, entregar o bilhete";
+		mes "para Lospii. Tudo bem, então";
+		mes "Te vejo depois então.";
+		close;
+	}
+	if (party_relay == 18) {
+		mes "[Bafhail]";
+		mes "Lembre-se que";
+		mes "a sua missão comigo é";
+		mes "coletar alguns itens,";
+		mes "e trazê-los até";
+		mes "mim no horário certo.";
+		next;
+		mes "[Bafhail]";
+		mes "Eu só vou aceitar seus";
+		mes "itens por 3 horas depois";
+		mes "do dia iniciar, e por";
+		mes "3 horas durante o meio-dia.";
+		mes "Estes são os itens";
+		mes "que quero que você me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Máscara Ninja^000000,";
+		mes "^4D4DFF10 Chifre de Dokebi^000000, e";
+		mes "^4D4DFF10 Pena de Grand Peco^000000.";
+		mes "Eu estarei aqui aguardando";
+		mes "por você durante as horas";
+		mes "que eu descrevi, ok?";
+		close;
+	}
+	if ((countitem(7735) > 0) && (.@relaytime >= 14) && (.@relaytime < 17) && (BaseClass == Job_Acolyte)) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Tudo bem, vamos começar";
+		mes "o que você veio fazer.";
+		mes "Minha missão é para você";
+		mes "coletar alguns itens, e";
+		mes "você trazê-los até mim";
+		mes "no horário certo. Me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Máscara Ninja^000000,";
+		mes "^4D4DFF10 Chifre de Dokebi^000000, e";
+		mes "^4D4DFF10 Pena de Grand Peco^000000.";
+		next;
+		delitem 7735,1; // Certificado de Missão 6
+		set party_relay,18;
+		mes "[Bafhail]";
+		mes "Entendeu?";
+		mes "Tudo bem então, basta você";
+		mes "me entregar seu bilhete,";
+		mes "para começar a recolher";
+		mes "os itens que eu listei.";
+		mes "Te vejo mais tarde~";
+		close;
+	}
+	else if ((countitem(7735) > 0) && (.@relaytime >= 18) && (.@relaytime < 21) && (BaseClass == Job_Acolyte)) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Tudo bem, vamos começar";
+		mes "o que você veio fazer.";
+		mes "Minha missão é para você";
+		mes "coletar alguns itens, e";
+		mes "você trazê-los até a mim";
+		mes "no horário certo. Me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Língua^000000,";
+		mes "^4D4DFF10 Garra de Leopardo^000000, e";
+		mes "^4D4DFF10 Pele de sapo venenoso^000000.";
+		next;
+		delitem 7735,1; // Certificado de Missão 6
+		set party_relay,19;
+		mes "[Bafhail]";
+		mes "Entendeu?";
+		mes "Tudo bem então, basta você";
+		mes "me entregar seu bilhete,";
+		mes "para começar a recolher";
+		mes "os itens que eu listei.";
+		mes "Te vejo mais tarde~";
+		close;
+	}
+	if ((countitem(7735) > 0) && (BaseClass == Job_Acolyte)) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Você se importaria de voltar";
+		mes "mais tarde? Agora";
+		mes "não é a hora certa para falar";
+		mes "comigo. Eu vou estar disponível por 3";
+		mes "horas ao iniciar o dia,";
+		mes "e por 3 horas ao meio dia.";
+		close;
+	}
+	if (party_relay == 9) {
+		mes "[Bafhail]";
+		mes "Oh, você já ";
+		mes "entregou o bilhete";
+		mes "que eu te dei? Nesse caso,";
+		mes "nós não temos mais";
+		mes "nenhum negócio para tratar";
+		mes "por enquanto, eu acho.";
+		close;
+	}
+	if ((party_relay == 8) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (countitem(7196) > 9) && (countitem(7184) > 9) && (countitem(920) > 9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 7196,10; // Ombreira
+		delitem 7189,10; // Coração de Madeira
+		delitem 920,10; // Garra de Lobo
+		set party_relay,9;
+		getitem 7732,1; // Certificado de Missão 3
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Bafhail]";
+		mes "Por favor dê este";
+		mes "bilhete para um membro";
+		mes "do seu grupo da classe";
+		mes "Arqueiro e peça a ele para";
+		mes "entregar para Lospii, ok?";
+		mes "Boa sorte em suas viagens~";
+		close;
+	}
+	else if ((party_relay == 8) && ((.@relaytime >= 21) && (countitem(7196) > 9) && (countitem(7184) > 9) && (countitem(920) > 9))) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		delitem 7196,10; // Ombreira
+		delitem 7189,10; // Coração de Madeira
+		delitem 920,10; // Garra de Lobo
+		set party_relay,9;
+		getitem 7732,1; // Certificado de Missão 3
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		next;
+		mes "[Bafhail]";
+		mes "Por favor dê este";
+		mes "bilhete para um membro";
+		mes "do seu grupo da classe";
+		mes "Arqueiro e peça a ele para";
+		mes "entregar para Lospii, ok?";
+		mes "Boa sorte em suas viagens~";
+		close;
+	}
+	if (party_relay == 8) {
+		mes "[Bafhail]";
+		mes "Sua missão";
+		mes "é me trazer";
+		mes "^4D4DFF10 Coração de Madeira^000000,";
+		mes "^4D4DFF10 Garras de Lobo^000000, e";
+		mes "^4D4DFF10 Ombreiras^000000";
+		mes "durante as horas que vou aceitar os itens.";
+		next;
+		mes "[Bafhail]";
+		mes "Lembre-se eu só vou";
+		mes "aceitar itens das 8 AM";
+		mes "até 11 AM, e das 9 PM";
+		mes "até 12 AM. No Horário";
+		mes "Padrão do Pacífico. Não se esqueça!";
+		close;
+	}
+	if ((party_relay == 7) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (countitem(1027) > 9) && (countitem(1040) > 9) && (countitem(1023) > 9)) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1027,10; // Espinho de Porco-Espinho
+		delitem 1040,10; // Bigode de Anão Ancião
+		delitem 1023,10; // Cauda de Peixe
+		set party_relay,9;
+		getitem 7732,1; // Certificado de Missão 3
+		mes "[Bafhail]";
+		mes "Por favor dê este";
+		mes "bilhete para um membro";
+		mes "do seu grupo da classe";
+		mes "Arqueiro e peça a ele para";
+		mes "entregar para Lospii, ok?";
+		mes "Boa sorte em suas viagens~";
+		close;
+	}
+	else if ((party_relay == 7) && ((.@relaytime >= 21) && (countitem(1027) > 9) && (countitem(1040) > 9) && (countitem(1023) > 9))) {
+		mes "[Bafhail]";
+		mes "Bem, parece que você veio";
+		mes "no momento certo e trazendo";
+		mes "tudo o que eu pedi. Bom trabalho.";
+		mes "Por favor tome o seu próximo bilhete";
+		mes "e aqui está uma pequena recompensa para você.";
+		next;
+		delitem 1027,10; // Espinho de Porco-Espinho
+		delitem 1040,10; // Bigode de Anão Ancião
+		delitem 1023,10; // Cauda de Peixe
+		set party_relay,9;
+		getitem 7732,1; // Certificado de Missão 3
+		mes "[Bafhail]";
+		mes "Por favor dê este";
+		mes "bilhete para um membro";
+		mes "do seu grupo da classe";
+		mes "Arqueiro e peça a ele para";
+		mes "entregar para Lospii, ok?";
+		mes "Boa sorte em suas viagens~";
+		close;
+	}
+	if (party_relay == 7) {
+		mes "[Bafhail]";
+		mes "Sua missão";
+		mes "é me trazer";
+		mes "^4D4DFF10 Cauda de Peixe^000000,";
+		mes "^4D4DFF10 Espinhos de Porco-Espinho^000000, e";
+		mes "^4D4DFF10 Bigode de Anão Ancião^000000";
+		mes "durante as horas que vou aceitar os itens.";
+		next;
+		mes "[Bafhail]";
+		mes "Lembre-se eu só vou";
+		mes "aceitar itens das 8 AM";
+		mes "até 11 AM, e das 9 PM";
+		mes "até 12 AM. No Horário";
+		mes "Padrão do Pacífico. Não se esqueça!";
+		close;
+	}
+	if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (Baseclass == Job_Thief)) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Tudo bem, vamos começar";
+		mes "o que você veio fazer.";
+		mes "Minha missão para você é";
+		mes "coletar alguns itens, e";
+		mes "você trazê-los até a mim";
+		mes "no horário certo. Me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Coração de Madeira^000000,";
+		mes "^4D4DFF10 Garras de Lobo^000000, e";
+		mes "^4D4DFF10 Ombreiras^000000";
+		next;
+		delitem 7731,1; // Certificado de Missão 2
+		set party_relay,8;
+		mes "[Bafhail]";
+		mes "Lembre-se que eu não vou";
+		mes "aceitar seus itens, mesmo";
+		mes "que você traga todos eles,";
+		mes "se você não vier durante";
+		mes "as horas que eu aceito";
+		mes "os itens da missão, ok?";
+		close;
+	}
+	else if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 21) && (Baseclass == Job_Thief))) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Tudo bem, vamos começar";
+		mes "ao que você veio.";
+		mes "Minha missão é para você";
+		mes "coletar alguns itens, e";
+		mes "você trazê-los até a mim";
+		mes "no horário certo. Me traga...";
+		next;
+		mes "[Bafhail]";
+		mes "^4D4DFF10 Cauda de Peixe^000000,";
+		mes "^4D4DFF10 Espinhos de Porco-Espinho^000000, e";
+		mes "^4D4DFF10 Bigode de Anão Ancião^000000";
+		next;
+		delitem 7731,1; // Certificado de Missão 2
+		set party_relay,7;
+		mes "[Bafhail]";
+		mes "Lembre-se que eu não vou";
+		mes "aceitar seus itens, mesmo";
+		mes "que você traga todos eles,";
+		mes "se você não vier durante";
+		mes "as horas que eu aceito";
+		mes "os itens da missão, ok?";
+		close;
+	}
+	if ((countitem(7731) > 0) && (BaseLevel > 39) && (Baseclass == Job_Thief)) {
+		mes "[Bafhail]";
+		mes "Oh, este não é o bilhete...?";
+		mes "Ah, muito bem. Julgando";
+		mes "pela sua profissão, Gatan deve";
+		mes "ter enviado você, certo? ";
+		mes "prazer em conhecê-lo, Eu sou Bafhail~";
+		next;
+		mes "[Bafhail]";
+		mes "Você não devia vir";
+		mes "mais tarde? Agora";
+		mes "não é o horário certo para";
+		mes "Falar comigo. Eu vou estar disponível";
+		mes "das 8 AM até 11 AM, e";
+		mes "das 9 PM até 12 AM.";
+		close;
+	}
+	mes "[Bafhail]";
+	mes "...Hm? Eu acho que não";
+	mes "temos mais nenhum negócio à tratar";
+	mes "um com o outro. Você poderia";
+	mes "me deixar a só? Eu estou muito";
+	mes "ocupado administrando um monte";
+	mes "destas missões para um amigo.";
+	next;
+	mes "[Bafhail]";
+	mes "Se tivermos sorte, talvez";
+	mes "você vai ser um daqueles";
+	mes "aventureiros que vai carregar";
+	mes "estas pequenas missões divertidas";
+	mes "para meu amigo Ledrion.";
+	close;
+}
+
+payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
+	getpartymember(getcharid(1));
+	set .@partymembercount,$@partymembercount;
+	set .@partyleader,getpartyleader(getcharid(1),2);
+	if (checkweight(907,300) == 0) {
+		mes "^3355FFEspere um pouco! Você está";
+		mes "carregando muitos itens!";
+		mes "Você deve depositar algumas";
+		mes "de suas coisas extras com uma";
+		mes "Kafra, e voltar em seguida.^000000";
+		close;
+	}
+	if (countitem(7730) > 0) || (countitem(7731) > 0) || (countitem(7734) > 0) || (countitem(7735) > 0) || (countitem(7738) > 0) || (countitem(7739) > 0) {
+		mes "[Lospii]";
+		mes "Ei, você não descobriu";
+		mes "o que você precisa fazer?";
+		mes "Você não deveria";
+		mes "falar comigo agora! Hmm...";
+		mes "Eu não sei quem você";
+		mes "deve se encontrar também, mas...";
+		close;
+	}
+	set .@relaytime,gettime(3);
+	getmapxy(.@m$,.@x,.@y,1,strnpcinfo(3));
+	set .@juwi,getareausers(.@m$,.@x-8,.@y-8,.@x+8,.@y+8);
+	if (party_relay == 32) {
+		mes "[Lospii]";
+		mes "Ei! Você não deu";
+		mes "o bilhete para o";
+		mes "líder do seu grupo";
+		mes "ainda? O cara que começou";
+		mes "essa coisa toda de revesamento!";
+		close;
+	}
+	if ((party_relay == 31) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (.@juwi > 13)) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dê muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,32;
+		getitem 7741,1; // Certificado de Missão 12
+		getitem 610,2; // Folha de Yggdrasil
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	else if ((party_relay == 31) && ((.@relaytime >= 21) && (.@juwi > 13))) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dê muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,32;
+		getitem 7741,1; // Certificado de Missão 12
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	if (party_relay == 31) {
+		mes "[Lospii]";
+		mes "Ok, você tem que trazer";
+		mes "10 de seus amigos até aqui quando";
+		mes "eu estiver trabalhando, ok? Isso é,";
+		mes "3 horas antes do meio-dia, e tambem";
+		mes "3 horas depois da meia-noite.";
+		mes "Só nesses horários, certo?";
+		close;
+	}
+	if ((countitem(7740) > 0) && (.@relaytime >= 8) && (.@relaytime < 11) && ((BaseJob == Job_Archer) || (BaseJob == Job_Merchant))) {
+		mes "[Lospii]";
+		mes "Ola, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você sabe";
+		mes "algo sobre trabalho em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "14 deles! Isso, parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7740,1; // Certificado de Missão 11
+		set party_relay,31;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	else if ((countitem(7740) > 0) && (.@relaytime >= 21) && ((BaseClass == Job_Archer) || (BaseClass == Job_Merchant))) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você sabe";
+		mes "algo sobre trabalho em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "14 deles! Isso, parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7740,1; // Certificado de Missão 11
+		set party_relay,31;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	if ((countitem(7740) > 0) && ((Baseclass == Job_Archer) || (BaseClass == Job_Merchant))) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Ops... Eu esqueci";
+		mes "que agora eu não estou";
+		mes "trabalhando. Venha depois";
+		mes "quando eu estiver trabalhando, certo?";
+		next;
+		mes "[Lospii]";
+		mes "Eu... Eu trabalho antes";
+		mes "do meio-dia por 3 horas, e";
+		mes "então... 3 horas depois";
+		mes "da meia-noite? Sim, essas";
+		mes "são as horas que";
+		mes "eu estou trabalhando!";
+		close;
+	}
+	if (party_relay == 22) {
+		mes "[Lospii]";
+		mes "Hum? Não, não, você";
+		mes "não devia estar aqui!";
+		mes "Passe o oitavo bilhete para";
+		mes "seu líder para ele entregar";
+		mes "a Ledrion! Seu líder...";
+		mes "Você sabe quem é, certo?";
+		close;
+	}
+	if ((party_relay == 21) && ((.@relaytime >= 11) && (.@relaytime < 14)) && (.@juwi > 11)) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dê muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,22;
+		getitem 7737,1; // Certificado de Missão 8
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	else if ((party_relay == 21) && ((.@relaytime >= 0) && (.@relaytime < 3)) && (.@juwi > 11)) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dei muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,22;
+		getitem 7737,1; // Certificado de Missão 8
+		getitem 610,2; // Folha de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	if (party_relay == 21) {
+		mes "[Lospii]";
+		mes "Ok, você tem que trazer";
+		mes "aqui 12 de seus amigos quando";
+		mes "eu estiver trabalhando, ok? Isso é,";
+		mes "3 horas antes do meio-dia, e tambem";
+		mes "3 horas depois da meia-noite.";
+		mes "Só nesses horários, ok?";
+		close;
+	}
+	if ((countitem(7736) > 0) && (.@relaytime >= 11) && (.@relaytime < 14) && (BaseClass == Job_Merchant)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio agora em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você";
+		mes "sabe algo sobre trabalhar em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "12 deles! Isso, parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7736,1; // Certificado de Missão 7
+		set party_relay,21;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	else if ((countitem(7736) > 0) && (.@relaytime >= 0) && (.@relaytime < 3) && (BaseClass == Job_Merchant)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você";
+		mes "sabe algo sobre trabalhar em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "12 deles! Isso, parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7736,1; // Certificado de Missão 7
+		set party_relay,21;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	if ((countitem(7736) > 0) && (BaseClass == Job_Merchant)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Ops... Eu esqueci";
+		mes "que agora eu não estou";
+		mes "trabalhando. Venha depois";
+		mes "quando eu estiver trabalhando, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Eu... Eu trabalho antes";
+		mes "do meio-dia por 3 horas, e";
+		mes "então... 3 horas depois";
+		mes "da meia-noite? Sim, essas";
+		mes "são as horas que";
+		mes "eu estou trabalhando!";
+		close;
+	}
+	if (party_relay == 11) {
+		mes "[Lospii]";
+		mes "Umm... Você não entregou";
+		mes "o quarto bilhete para o seu";
+		mes "líder ainda? Você sabe,";
+		mes "o líder do grupo.";
+		mes "O cara que começou toda";
+		mes "essa coisa de revesamento.";
+		close;
+	}
+	if ((party_relay == 10) && ((.@relaytime >= 14) && (.@relaytime < 17)) && (.@juwi > 9)) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dê muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,11;
+		getitem 7733,1; // Certificado de Missão 4
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	else if ((party_relay == 10) && ((.@relaytime >= 18) && (.@relaytime < 21)) && (.@juwi > 9)) {
+		mes "[Lospii]";
+		mes "Oh! Você trouxe muitos";
+		mes "amigos! Um... D-dois...";
+		mes "Você trouxe" + .@juwi + "?! Hmpf.";
+		mes "Talvez eu te dei muitas coisas";
+		mes "para fazer agora. Eu não sabia";
+		mes "que você conhecia tantas pessoas!";
+		next;
+		mes "[Lospii]";
+		mes "Oh bem, obrigado por";
+		mes "trazer todos aqui.";
+		mes "Por isso, você merece ganhar";
+		mes "um presente meu. Legal, não?";
+		next;
+		set party_relay,11;
+		getitem 7733,1; // Certificado de Missão 4
+		getitem 607,2; // Fruto de Yggdrasil
+		if (BaseLevel > 94) {
+			getexp 104760,0;
+		}
+		else if (BaseLevel > 89) {
+			getexp 85920,0;
+		}
+		else if (BaseLevel > 79) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 69) {
+			getexp 38520,0;
+		}
+		else if (BaseLevel > 59) {
+			getexp 67200,0;
+		}
+		else if (BaseLevel > 49) {
+			getexp 28800,0;
+		}
+		else {
+			getexp 1080,0;
+		}
+		mes "[Lospii]";
+		mes "Ok, Agora pegue este";
+		mes "bilhete, e dê para o";
+		mes "seu líder, o cara que";
+		mes "começou essa coisa toda de";
+		mes "revesamento. Ele deve entregar";
+		mes "o bilhete para Ledrion, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Você está quase pronto!";
+		mes "Eu acho... Hum, eu não estou";
+		mes "realmente certo do que vai";
+		mes "acontecer agora. Eu só lembro";
+		mes "da minha parte que eu tinha";
+		mes "que fazer. Ah, vamos! Eu sou só uma criança!";
+		close;
+	}
+	if (party_relay == 10) {
+		mes "[Lospii]";
+		mes "Traga 10 dos seus amigos";
+		mes "aqui para mim enquanto eu estiver,";
+		mes "trabalhando ok? Humm... Eu trabalho daaas...";
+		mes "2 PM até 5 PM, e 6 PM até 9 PM.";
+		mes "Eu acho que eram esses os horários.";
+		mes "Eu... Eu não sei ver as horas...";
+		close;
+	}
+	if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 14) && (.@relaytime < 17)) && (Baseclass == Job_Archer)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio agora em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você";
+		mes "sabe sobre trabalhar em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "10 deles! Sim, isso parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7732,1; // Certificado de Missão 3
+		set party_relay,10;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	else if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 18) && (.@relaytime < 21)) && (Baseclass == Job_Archer)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Eu estou trabalhando agora nessa";
+		mes "missão que você veio fazer, você";
+		mes "veio em uma boa hora! Vamos ver...";
+		mes "Eu tenho que te dar... Alguma";
+		mes "missão para você fazerrrrr...";
+		mes "Ah! Já sei! Lembrei agora!";
+		next;
+		mes "[Lospii]";
+		mes "Nós estávamos vendo se você";
+		mes "sabe algo sobre trabalhar em equipe, certo?";
+		mes "Por que você não me mostra alguns";
+		mes "de seus amigos? Traz pra mim...";
+		mes "10 deles! Sim, isso parece bom!";
+		next;
+		mes "[Lospii]";
+		mes "É que eu preciso mesmo";
+		mes "ver eles, sabe como que é, então";
+		mes "eu sei que você não está mentindo";
+		mes "pra mim. Mas traga eles beeeem perto";
+		mes "para mim saber se eles são seus";
+		mes "amigos mesmo, e não outros caras qualquer.";
+		next;
+		delitem 7732,1; // Certificado de Missão 3
+		set party_relay,10;
+		mes "[Lospii]";
+		mes "Ok, Eu vou estar por";
+		mes "aqui! Ah! Você";
+		mes "tem que trazer seus amigos com você";
+		mes "quando eu estiver trabalhando!";
+		mes "É importante saber disso!";
+		close;
+	}
+	if ((countitem(7732) > 0) && (BaseLevel > 39) && (Baseclass == Job_Archer)) {
+		mes "[Lospii]";
+		mes "Olá, eu sou Lospii! Talvez";
+		mes "Eu seja mais novo do que você, mas";
+		mes "eu sou o encarregado dessa missão!";
+		mes "Então você tem que me ouvir, ok?";
+		mes "Heh heh! Não tenha medo~";
+		next;
+		mes "[Lospii]";
+		mes "Ops... Eu esqueci";
+		mes "que agora eu não estou";
+		mes "trabalhando. Venha depois";
+		mes "quando eu estiver trabalhando, ok?";
+		next;
+		mes "[Lospii]";
+		mes "Eu trabalho daaas... Hum...";
+		mes "2 PM até 5 PM? Ah!";
+		mes "e também das 6 PM até 9 PM.";
+		mes "Eu acho que eram esses os";
+		mes "horários...Quero dizer, relógios";
+		mes "são muito difíceis de ler, cara!";
+		close;
+	}
+	mes "[Lospii]";
+	mes "Olá! Eu sou Lospii!";
+	mes "Ei, não parece que estou ";
+	mes "trabalhando, parece? Ha ha!";
+	mes "Estou trabalhando! Eu estou";
+	mes "ajudando muito meus amigos!";
+	close;
+}
+
+// Comodo
+comodo,71,137,3	duplicate(RelayLedrion)	Ledrion#comodo	109
+comodo,236,197,3	duplicate(RelayGatan)	Gatan#comodo	86
+comodo,152,184,3	duplicate(RelayBafhail)	Bafhail#comodo	731
+comodo,64,219,3	duplicate(RelayLospii)	Lospii#comodo	706
+//=================================================================
+// Einbroch
+einbroch,107,93,3	duplicate(RelayLedrion)	Ledrion#einbroch	109
+einbroch,260,128,3	duplicate(RelayGatan)	Gatan#einbroch	86
+einbroch,251,178,3	duplicate(RelayBafhail)	Bafhail#einbroch	731
+einbroch,173,72,3	duplicate(RelayLospii)	Lospii#einbroch	706
+//=================================================================
+// Hugel
+hugel,102,130,3	duplicate(RelayLedrion)	Ledrion#hugel	109
+hugel,169,139,3	duplicate(RelayGatan)	Gatan#hugel	86
+hugel,55,200,3	duplicate(RelayBafhail)	Bafhail#hugel	731
+hugel,144,201,3	duplicate(RelayLospii)	Lospii#hugel	706
+//=================================================================
+// Rachel
+rachel,215,71,3	duplicate(RelayLedrion)	Ledrion#rachel	109
+rachel,45,163,3	duplicate(RelayGatan)	Gatan#rachel	86
+rachel,245,132,3	duplicate(RelayBafhail)	Bafhail#rachel	731
+rachel,158,215,3	duplicate(RelayLospii)	Lospii#rachel	706
+//=================================================================
+// Veins
+veins,274,188,5	duplicate(RelayLedrion)	Ledrion#veins	109
+veins,138,207,3	duplicate(RelayGatan)	Gatan#veins	86
+veins,202,235,3	duplicate(RelayBafhail)	Bafhail#veins	731
+veins,97,245,5	duplicate(RelayLospii)	Lospii#veins	706

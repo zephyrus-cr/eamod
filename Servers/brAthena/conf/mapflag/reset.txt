@@ -1,0 +1,62 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: reset.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que faz checagens para |
+//   | o neutralizador.                                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta	mapflag	reset
+aldebaran	mapflag	reset
+amatsu	mapflag	reset
+ayothaya	mapflag	reset
+brasilis	mapflag	reset
+comodo	mapflag	reset
+dewata	mapflag	reset
+dicastes01	mapflag	reset
+dicastes02	mapflag	reset
+eclage	mapflag	reset
+einbroch	mapflag	reset
+einbech	mapflag	reset
+geffen	mapflag	reset
+gonryun	mapflag	reset
+izlude	mapflag	reset
+jawaii	mapflag	reset
+hugel	mapflag	reset
+lighthalzen	mapflag	reset
+louyang	mapflag	reset
+malangdo	mapflag	reset
+malaya	mapflag	reset
+manuk	mapflag	reset
+mid_camp	mapflag	reset
+moc_ruins	mapflag	reset
+mora	mapflag	reset
+morocc	mapflag	reset
+moscovia	mapflag	reset
+niflheim	mapflag	reset
+prontera	mapflag	reset
+payon	mapflag	reset
+pay_arche	mapflag	reset
+rachel	mapflag	reset
+splendide	mapflag	reset
+umbala	mapflag	reset
+veins	mapflag	reset
+xmas	mapflag	reset
+yuno	mapflag	reset

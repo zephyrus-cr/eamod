@@ -1,0 +1,240 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: comerciantes_3rd.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.2/1.2                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Comerciantes de itens para 3rd.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
+		mes "- Espere um minuto !! -";
+		mes "- Atualmente você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- após remover um pouco de seu peso. -";
+		close;
+	}
+	mes "[Vendedor de Ervas Tóxicas]";
+	mes "Eu sou um vendedor profissional";
+	mes "de ervas tóxicas.";
+	mes "Qual delas você deseja comprar?";
+	mes "Cada uma irá custar 4,000 zeny!";
+	set .@i, select("Nerium:Rantana:Makulata:Seratum:Scopolia:Amoena:Kit de Veneno")-1;
+	next;
+	if (.@i < 6) {
+		mes "[Vendedor de Ervas Tóxicas]";
+		mes "Quantas você deseja? É possível";
+		mes "comprar até 2000 por vez";
+		mes "e se por acaso quiser cancelar, digite '0'.";
+		next;
+		input .@amount;
+		mes "[Vendedor de Ervas Tóxicas]";
+		if (.@amount == 0) {
+			mes "Você cancelou a negociação.";
+			close;
+		}
+		if (.@amount > 2000) {
+			mes "Por favor verifique a quantidade";
+			mes "máxima e tente novamente.";
+			close;
+		}
+		if (Zeny < .@amount*4000) {
+			mes "Por favor verifique se você possui a quantia necessária.";
+			mes "Me parece que você não possui o dinheiro suficiente.";
+			close;
+		}
+		set Zeny, Zeny-(.@amount*4000);
+		getitem 7932+.@i,.@amount;
+		mes "Obrigado e até mais~!";
+		close;
+    }
+		mes "[Vendedor de Ervas Tóxicas]";
+		mes "Você pode comprar apenas";
+		mes "1 Kit de Veneno e o custo será de 5,000 zeny.";
+		mes "Você deseja comprá-lo?";
+		next;
+		if(select("Sim, desejo.:Não, eu não quero.") == 2) {
+			mes "[Vendedor de Ervas Tóxicas]";
+			mes "Bem então, eu entendo. Até mais~!";
+			close;
+		}
+		mes "[Vendedor de Ervas Tóxicas]";
+		if (Zeny < 5000) {
+			mes "Por favor verifique se você possui a quantia necessária.";
+			mes "Me parece que você não possui o dinheiro suficiente.";
+			close;
+		}
+		set Zeny, Zeny-5000;
+		getitem 7931,1;
+		mes "Obrigado. Até mais~!";
+		close;
+}
+morocc,190,96,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#moc	877
+lhz_in02,16,205,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#lhz	877
+
+job3_rune01,90,62,3	script	Vendedor de Runas	853,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
+		mes "- Espere um minuto !! -";
+		mes "- Atualmente você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- após remover um pouco de seu peso. -";
+		close;
+	}
+	mes "[Vendedor de Runas]";
+	mes "Ei, você precisa de Runas?!";
+	mes "Eu posso te vender todas as Runas!";
+	mes "Qual Runa você procura?";
+	next;
+	set .@i, select("Runa de Alta Qualidade.:Runas Comuns.");
+	mes "[Vendedor de Runas]";
+	if (.@i == 1) {
+		mes "Runas de Alta Qualidade!";
+		mes "Seu custo é de 2,500 zeny cada!";
+		setarray .@rune[0],12734,2500;
+	} else {
+		mes "Runas Comuns?";
+		mes "Seu custo é de 1,000 zeny cada!";
+		setarray .@rune[0],12737,1000;
+	}
+	mes "Me diga quantas você quer comprar";
+	mes "e lembre-se, você pode comprar por vez";
+	mes "no máximo 2000 de cada!";
+	next;
+	input .@amount;
+	mes "[Vendedor de Runas]";
+	if (.@amount == 0) {
+		mes "Você não quer comprar? Então saia!";
+		close;
+	}
+	if (.@amount > 2000) {
+		mes "Por favor verifique a quantidade";
+		mes "máxima e tente novamente.";
+		close;
+	}
+	if (Zeny < .@amount*.@rune[1]) {
+		mes "Dinheiro! Dinheiro!";
+		mes "Você possui pouco dinheiro!";
+		mes "Verifique a quantidade em dinheiro que você possui!!";
+		close;
+	}
+	if (!checkweight(.@rune[0],.@amount)) {
+		mes "Você não conseguirá carregar essa quantidade, então é melhor não comprá-las?!";
+		close;
+	}
+	set Zeny, Zeny-(.@amount*.@rune[1]);
+	getitem .@rune[0],.@amount;
+	mes "Você pode voltar aqui para comprar mais Runas quando quiser.";
+	close;
+}
+prontera,168,228,3	duplicate(Vendedor de Runas)	Vendedor de Runas#1	853
+
+job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
+		mes "- Espere um minuto !! -";
+		mes "- Atualmente você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- após remover um pouco de seu peso. -";
+		close;
+	}
+	mes "[Coletor de Ervas Raras]";
+	if (Class == Job_Guillotine_Cross || Class == Job_Guillotine_Cross_T || Class == Job_Baby_Cross) {
+		mes "Eu ando ao redor do mundo e recolho ervas venenosas raras. Recentemente, estou cuidando especialmente de uma erva chamada Izidor. Se você estiver interessado, você pode comprá-la.";
+		next;
+		set .@i, select("Como posso comprá-la?:Trocá-la por um Sangue de Animal:Trocá-la por uma Erva Amarga:Trocá-la por uma Erva Letal:Trocá-la por uma Rosa de Gelo:Trocá-la por uma Menta:Trocá-la por uma Hinalle")-1;
+		if (.@i == 0) {
+			mes "[Coletor de Ervas Raras]";
+			mes "Você pode comprar um desses itens por 10,000 zeny: Sangue de Animal, Erva Amarga, Erva Letal, Rosa de Gelo, Menat ou Hinalle. ";
+			next;
+			mes "[Coletor de Ervas Raras]";
+			mes "Por que o dinheiro? Ele é apenas um retorno para pagar um grande Colecionador como eu...";
+			close;
+		}
+			setarray .@exchange[1],702,621,631,749,708,703;
+			mes "[Coletor de Ervas Raras]";
+			if (!countitem(.@exchange[.@i]) || Zeny < 10000) {
+				mes "Ei, tente novamente após você conseguir todos os requisitos para a troca.";
+				close;
+				}
+				mes "Obrigado. Eu recebi seu pagamento.";
+				delitem .@exchange[.@i],1;
+				set Zeny, Zeny-10000;
+				getitem 709,1;
+				close;
+	}
+	mes "Eu ando ao redor do mundo e recolho ervas venenosas raras. Mas eu não preciso ter que vender minhas ervas a uma pessoa como você. Hahaha...";
+	close;
+}
+
+gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
+		mes "- Espere um minuto !! -";
+		mes "- Atualmente você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- após remover um pouco de seu peso. -";
+		close;
+	}
+	mes "[Vendedor de Fragmentos]";
+	mes "Olá. Eu sou o Vendedor de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
+	next;
+	set .@i, select("Fragmento Escarlate - 200z:Fragmento Verde - 200z:Fragmento Azul - 200z:Fragmento Amarelo - 200z:Cancelar")-1;
+	mes "[Vendedor de Fragmentos]";
+	if (.@i == 4) {
+		mes "Você não conseguiu encontrar as coisas que você precisa?";
+		close;
+	}
+	setarray .@itemid[0],6360,6363,6361,6362;
+	setarray .@color$[0],"Escarlate","Verde","Azul","Amarelo";
+	mes "Você escolheu o Fragmento "+.@color$[.@i]+".";
+	mes "Quantos dele você deseja?";
+	mes "Se você quiser cancelar, digite 0.";
+	next;
+	input .@amount;
+	mes "[Vendedor de Fragmentos]";
+	if (.@amount == 0) {
+		mes "Você cancelou a negociação.";
+		close;
+	}
+	if (Zeny < .@amount*200) {
+		mes "Você não parece possuir dinheiro suficiente.";
+		close;
+	}
+	if (!checkweight(.@itemid[.@i],.@amount)) {
+		mes "Você não possui dinheiro suficiente para comprar essa quantidade de itens.";
+		close;
+	}
+	set Zeny, Zeny-(.@amount*200);
+	getitem .@itemid[.@i],.@amount;
+	mes "Muito obrigado. Até logo~!";
+	close;
+}
+comodo,241,103,6	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#1	700
+alberta,105,52,7	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#2	700
+veins,202,128,6	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#3	700
+
+einbroch,122,250,4	shop	Mercado Negro#ein	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
+lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	49
+mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	49
+prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	49
+ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	49

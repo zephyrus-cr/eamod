@@ -1,0 +1,112 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Izlude                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests Izlude.                              |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Barsaglini]                        |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Ofertas do Edgar
+//============================================================
+-	script	Edgar#izlude	-1,{
+	if (MISC_QUEST & 16) {
+		mes "[Edgar]";
+		mes "Então, você está indo para Alberta novamente? Assim como da última vez, vou lhe dar o mesmo desconto, e cobrar apenas 250 zenys.";
+		mes "O que você acha?";
+		next;
+		if (select("Legal~!:Por que você está sendo tão bom para mim?!") == 1) {
+			if (Zeny < 250) {
+				mes "[Edgar]";
+				mes "Um...";
+				mes "Isso não é";
+				mes "dinheiro suficiente.";
+				mes "Por que você não vai";
+				mes "conseguir mais dinheiro?";
+				close ;
+			}
+			set zeny,zeny-250;
+			warp "alberta",195,164;
+			end;
+		}
+		mes "[Edgar]";
+		mes "É do jeito que eu sou. Isso, e seu sorriso diabólico, faz-me lembrar o meu amado filho de cabelos loiros que deixou minha casa há anos para se tornar um marinheiro em seu próprio navio. Que os deuses abençoem sua alma, onde ele estiver.";
+		close;
+	}
+	mes "[Edgar]";
+	mes "Minha cidade, Izlude,  está conectada ao porto de Alberta pelo Oeste. Há muito tráfego entre as cidades, eu quase me tornei um 'Albertiano'. Hehehe";
+	next;
+	mes "[Edgar]";
+	mes "Há esse cara que eu conheço muito bem, Felix, que vive em Alberta. Esse cara é muito mesquinho... Ele cobra por tudo!";
+	next;
+	mes "[Edgar]";
+	mes "Mas ele é realmente um cara legal e gosta de ajudar outras pessoas. Ele tem um bom coração e lhe dará apoio, se pagar o seu preço.";
+	next;
+	mes "[Edgar]";
+	mes "Ultimamente, pessoas em Alberta dizem que ele está realmente tentando ajudar a gente e que a sua demanda por Jellopys é apenas uma fachada.  Bem, você deve dar uma olhada no que ele tem a oferecer.";
+	next;
+	if (select("Você pode me dizer como chegar a Alberta?:Fim da conversa.") == 1) {
+		mes "[Edgar]";
+		mes "Huh? Bem, você pode usar os pés e apenas andar.  Mas se você tem dinheiro, eu gostaria de sugerir que você tome um navio.";
+		next;
+		if (select("Tudo bem, entendi.:Mas eu estou cansado de andar e falido!") == 1) {
+			mes "[Edgar]";
+			mes "Tudo bem, tome cuidado!";
+			close;
+		}
+		mes "[Edgar]";
+		mes "Tudo bem...";
+		mes "Você não quer andar e você não tem dinheiro, mas você ainda quer ir para lá? Meu Deus!...";
+		next;
+		mes "[Edgar]";
+		mes "Bem bem. Eu, sendo o capitão do navio, posso te colocar lá por um preço menor. O que acha de 250 zenys?";
+		next;
+		if (select("Legal!:Ah, Que roubo!!!") == 1) {
+			set MISC_QUEST,MISC_QUEST | 16;
+			if (Zeny < 250) {
+				mes "[Edgar]";
+				mes "Um...";
+				mes "Isso não é";
+				mes "dinheiro suficiente.";
+				mes "Vá e pegue";
+				mes "um pouco mais.";
+				close;
+			}
+			set zeny,zeny-250;
+			warp "alberta",195,164;
+			end;
+		}
+		mes "[Edgar]";
+		mes "Garoto, ah garoto,";
+		mes "se você pensa";
+		mes "que isso é um roubo imagina...";
+		close;
+	}
+	mes "[Edgar]";
+	mes "Sim, tudo bem.";
+	mes "Vejo você mais tarde.";
+	close;
+}
+// Renovação
+// ==========================
+izlude,179,219,4	duplicatr(Edgar#izlude)	Edgar#izludere	49,{}
+// ==========================
+// Pré-Renovação
+// ==========================
+izlude,182,186,2	duplicatp(Edgar#izlude)	Edgar#izludepre	49,{}

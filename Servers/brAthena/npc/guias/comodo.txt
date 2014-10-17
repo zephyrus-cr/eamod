@@ -1,0 +1,278 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_comodo.txt                        |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.1/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Comodo.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Protimus]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+comodo,322,178,4	script#re	Comodo Guide#01comodo	700,{
+	mes "[Comodo Guide]";
+	mes "Welcome to ^8B4513Comodo^000000,";
+	mes "the Beach Town of the Rune-Midgarts Kingdom.";
+	mes "Do you need help navigating the town?";
+	next;
+	while (1) {
+		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel:About ^8B4513Comodo^000000")) {
+		case 1:
+			set .@loop,1;
+			while (.@loop) {
+				switch(select("[ Tavern ]:[ Casino ]:[ Weapon & Armor Shop ]:[ Tool Shop ]:[ Campsite ]:[ Souvenir Vendor ]:[ East Cave Mao ]:[ West Cave Karu ]:[ North Cave Ruanda ]:[ Hula Dance Stage ]:[ Kafra Co. Western Branch ]:Previous Menu")) {
+				case 1:
+					callsub L_Mark,"^FF0000Tavern";
+					viewpoint 1,166,298,0,0xFF0000;
+					next;
+					break;
+				case 2:
+					callsub L_Mark,"^FFA500Casino";
+					viewpoint 1,140,98,1,0xFFA500;
+					next;
+					break;
+				case 3:
+					callsub L_Mark,"^FF4500Weapon & Armor Shop";
+					viewpoint 1,266,70,2,0xFF4500;
+					next;
+					break;
+				case 4:
+					callsub L_Mark,"^B8860BTool Shop";
+					viewpoint 1,86,128,3,0xB8860B;
+					next;
+					break;
+				case 5:
+					callsub L_Mark,"^32CD32Campsite";
+					viewpoint 1,210,308,4,0x32CD32;
+					next;
+					break;
+				case 6:
+					callsub L_Mark,"^6B8E23Souvenir Vendor";
+					viewpoint 1,298,124,5,0x6B8E23;
+					next;
+					break;
+				case 7:
+					callsub L_Mark,"^008B8BEast Cave Mao",1;
+					viewpoint 1,333,175,6,0x008B8B;
+					next;
+					break;
+				case 8:
+					callsub L_Mark,"^1E90FFWest Cave Karu",1;
+					viewpoint 1,24,214,7,0x1E90FF;
+					next;
+					break;
+				case 9:
+					callsub L_Mark,"^0000CDNorth Cave Ruanda",1;
+					viewpoint 1,176,358,8,0x0000CD;
+					next;
+					break;
+				case 10:
+					callsub L_Mark,"^C71585Hula Dance Stage";
+					viewpoint 1,188,168,9,0xC71585;
+					next;
+					break;
+				case 11:
+					callsub L_Mark,"^DB7093Kafra Corporation Western Branch";
+					viewpoint 1,136,202,10,0xDB7093;
+					next;
+					break;
+				case 12:
+					set .@loop,0;
+					break;
+				}
+			}
+			break;
+		case 2:
+			set .@loop,1;
+			while (.@loop) {
+				switch(select("[ Chief's House ]:[ Bor Robin ]:[ Kafra Employee ]:[ Roaming Bard ]:Previous Menu")) {
+				case 1:
+					callsub L_Mark,"^6495EDChief's House";
+					viewpoint 1,114,294,11,0x6495ED;
+					next;
+					break;
+				case 2:
+					mes "[Comodo Guide]";
+					mes "^228B22Bor Robin^000000";
+					mes "helps adventurers to become ^228B22Dancers^000000.";
+					mes "Would you like to check any other locations?";
+					viewpoint 1,193,151,12,0x228B22;
+					next;
+					break;
+				case 3:
+					callsub L_Mark,"^1E90FFKafra Employee";
+					viewpoint 1,195,149,13,0x1E90FF;
+					next;
+					break;
+				case 4:
+					mes "[Comodo Guide]";
+					mes "The ^DB7093Roaming Bard^000000";
+					mes "helps adventurers to become ^DB7093Bards^000000.";
+					mes "Would you like to check any other locations?";
+					viewpoint 1,211,155,14,0xDB7093;
+					next;
+					break;
+				case 5:
+					set .@loop,0;
+					break;
+				}
+			}
+			break;
+		case 3:
+			mes "[Comodo Guide]";
+			mes "Sure, I'll remove all marks from your mini-map.";
+			mes "Is there anything else I can do for you?";
+			viewpoint 2,166,298,0,0xFFFFFF;
+			viewpoint 2,140,98,1,0xFFFFFF;
+			viewpoint 2,266,70,2,0xFFFFFF;
+			viewpoint 2,86,128,3,0xFFFFFF;
+			viewpoint 2,210,308,4,0xFFFFFF;
+			viewpoint 2,298,124,5,0xFFFFFF;
+			viewpoint 2,333,175,6,0xFFFFFF;
+			viewpoint 2,24,214,7,0xFFFFFF;
+			viewpoint 2,176,358,8,0xFFFFFF;
+			viewpoint 2,188,168,9,0xFFFFFF;
+			viewpoint 2,136,202,10,0xFFFFFF;
+			viewpoint 2,114,294,11,0xFFFFFF;
+			viewpoint 2,193,151,12,0xFFFFFF;
+			viewpoint 2,195,149,13,0xFFFFFF;
+			viewpoint 2,211,155,14,0xFFFFFF;
+			next;
+			break;
+		case 4:
+			mes "[Comodo Guide]";
+			mes "Enjoy your stay.";
+			close;
+		case 5:
+			mes "[Comodo Guide]";
+			mes "^8B4513Comodo^000000 is";
+			mes "located inside a cave";
+			mes "and can never be reached by natural sunlight.";
+			next;
+			mes "[Comodo Guide]";
+			mes "The villagers of ^8B4513Comodo^000000";
+			mes "have overcome their poor natural surroundings";
+			mes "to create a popular tourist site.";
+			mes "Is there anything else I can do for you?";
+			next;
+			break;
+		}
+	}
+	end;
+L_Mark:
+	mes "[Comodo Guide]";
+	mes "Let me mark the location of";
+	mes ((getarg(1,0))?"":"the ")+getarg(0)+"^000000";
+	mes "on your mini-map.";
+	mes "Would you like to check any other locations?";
+	return;
+}
+
+comodo,181,347,4	duplicatr(Comodo Guide#01comodo)	Comodo Guide#02comodo	700
+comodo,197,149,3	duplicatr(Comodo Guide#01comodo)	Comodo Guide#03comodo	700
+comodo,37,219,4	duplicatr(Comodo Guide#01comodo)	Comodo Guide#04comodo	700
+
+comodo,322,178,4	script#pre	Guia Turístico#cmd	700,{
+	callfunc "F_CmdGuide","Aborígene Nutcoco";
+}
+
+comodo,176,350,4	script#pre	Comodo Guide#2cmd	700,{
+	callfunc "F_CmdGuide","Aborígene Nutcoco";
+}
+
+comodo,37,219,4	script#pre	Guide#2cmd	700,{
+	callfunc "F_CmdGuide","Aborígene Nutcoco";
+}
+
+function	script	F_CmdGuide	{
+	mes "["+getarg(0)+"]";
+	mes "A Cidade da Alegria, Capital da Diversão...";
+	mes "Terra dos Sonhos e Fantasia!";
+	mes "Bem-vindo a Comodo!";
+	mes "Estou ao seu dispor para lhe mostrar a cidade.";
+	mes "Se quiser ir à algum lugar, basta me dizer...";
+	next;
+	switch(select("Cassino.:Show de Hula Hula ^3355FF(Guilda as Odaliscas)^000000.:Loja de Armas.:Loja de Utilidades.:Loja das Conchas.:Filial Oeste das Kafras.:Casa do Prefeito.:Bar.:Acampamento.:Cancelar.")) {
+	case 1:
+		viewpoint 1,140,98,0,0xFF6633;
+		mes "^FF6633+^000000 -> O Cassino...";
+		mes "É o que faz Comodo ser Comodo!";
+		mes "A diversão não para... dia ou noite é diversão no Cassino de Comodo.";
+		close;
+	case 2:
+		viewpoint 1,188,168,1,0x0000FF;
+		mes "^FF6633+^000000 -> Show de Hula Hula.";
+		mes "Quer conhecer as nossas odaliscas?";
+		mes "Elas são umas das grandes atrações de Comodo!";
+		mes "Você tem interesse em Hula Hula?";
+		close;
+	case 3:
+		viewpoint 1,266,70,2,0x00FFFF;
+		mes "^FF6633+^000000 -> Loja de Armas.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais...";
+		mes "Loja de Armas de Comodo!";
+		close;
+	case 4:
+		viewpoint 1,86,128,3,0x515151;
+		mes "^FF6633+^000000 -> Loja de Utilidades.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais...";
+		mes "Loja de Utilidades de Comodo!";
+		close;
+	case 5:
+		viewpoint 1,298,124,4,0x3355FF;
+		mes "^FF6633+^000000 -> Loja das Conchas.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais...";
+		mes "Loja de Souveniers de Comodo!";
+		close;
+	case 6:
+		viewpoint 1,136,202,5,0xFF5555;
+		mes "^FF6633+^000000 -> Filial Oeste das Kafras.";
+		mes "É responsável pela região Oeste de Midgard.";
+		mes "O maior centro de serviços do mundo!";
+		mes "A Filial Oeste da Central Kafra, fica em Comodo!";
+		close;
+	case 7:
+		viewpoint 1,114,294,5,0xFF5555;
+		mes "^FF6633+^000000 -> Casa do Prefeito.";
+		mes "Onde mora o prefeito de Comodo...";
+		mes "Se você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
+		close;
+	case 8:
+		viewpoint 1,166,298,5,0xFF5555;
+		mes "^FF6633+^000000 -> Casa do Prefeito.";
+		mes "Onde mora o prefeito de Comodo...";
+		mes "Se você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
+		close;
+	case 9:
+		viewpoint 1,210,308,5,0xFF5555;
+		mes "^FF6633+^000000 -> Acampamento.";
+		mes "Venha acampe com sua família ou namorada...";
+		mes "Viva momentos para guardar por toda a vida... e delicie-se com nosso Camping Churrasco!";
+		mes "Costelas de porco na brasa são um prato tradicional da culinária de Comodo e só aqui você pode encontrá-la!";
+		close;
+	case 10:
+		mes "["+getarg(0)+"]";
+		mes "Comodo fica em uma caverna...";
+		mes "Então a luz do sol nunca brilha aqui...";
+		mes "O turismo de Comodo se baseia nisso... 24 horas de vida noturna!";
+		mes "É o jeito que ganhamos a vida...";
+		close;
+	}
+}

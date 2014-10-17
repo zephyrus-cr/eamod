@@ -1,0 +1,156 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: umbala.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros dos Campos de Umbala.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] um_fild01 - Floresta de Luluka
+//==================================================
+um_fild01,0,0,0,0	monster#pre	Guerreiro Wootan	1499,10,0,0,0
+um_fild01,0,0,0,0	monster#pre	Talo de Verme	1215,15,0,0,0
+um_fild01,0,0,0,0	monster#pre	Harpia	1376,2,0,0,0
+um_fild01,0,0,0,0	monster#pre	Dríade	1493,65,0,0,0
+um_fild01,0,0,0,0	monster#pre	Poeira	1114,10,0,0,0
+um_fild01,0,0,0,0	monster#pre	Planta Amarela	1080,10,180000,90000,1
+um_fild01,0,0,0,0	monster#pre	Planta Amarela	1081,10,180000,90000,1
+um_fild01,0,0,0,0	monster#pre	Planta Brilhante	1083,6,180000,90000,1,{}
+
+//==================================================
+// [Renovação] um_fild01 - Floresta de Luluka
+//==================================================
+um_fild01,0,0,0,0	monster#re	Dríade	1493,70,5000,0,0
+um_fild01,0,0,0,0	monster#re	Atirador de Pedras	1495,15,5000,0,0
+um_fild01,0,0,0,0	monster#re	Artilheiro Wootan	1498,10,5000,0,0
+um_fild01,0,0,0,0	monster#re	Guerreiro Wootan	1499,10,5000,0,0
+um_fild01,0,0,0,0	monster#re	Golem de Madeira	1497,10,5000,0,0
+um_fild01,0,0,0,0	monster#re	Planta Verde	1080,10,180000,90000,1
+um_fild01,0,0,0,0	monster#re	Planta Amarela	1081,10,180000,90000,1
+um_fild01,0,0,0,0	monster#re	Planta Brilhante	1083,5,180000,90000,1
+um_fild01,0,0,0,0	monster#re	Planta Brilhante	1083,1,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] um_fild02 - Floresta de Hoomga
+//==================================================
+um_fild02,0,0,0,0	monster#pre	Koko	1104,10,0,0,0
+um_fild02,0,0,0,0	monster#pre	Choco	1214,5,0,0,0
+um_fild02,0,0,0,0	monster#pre	Besouro-Rei	1494,30,0,0,0
+um_fild02,0,0,0,0	monster#pre	Poeira	1114,20,0,0,0
+um_fild02,0,0,0,0	monster#pre	Guerreiro Wootan	1499,26,0,0,0
+um_fild02,0,0,0,0	monster#pre	Atirador de Pedras	1495,13,0,0,0
+um_fild02,169,215,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,169,215,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,159,285,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,159,285,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,99,303,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,99,303,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,122,242,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,122,242,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,124,198,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,124,198,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,126,133,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,126,133,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,159,171,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,159,171,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,284,247,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,284,247,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,330,262,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,330,262,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,296,187,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,296,187,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,285,105,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,285,105,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,257,137,10,10	monster#pre	Atirador de Pedras	1495,1,120000,60000,0
+um_fild02,257,137,10,10	monster#pre	Guerreiro Wootan	1499,2,120000,60000,0
+um_fild02,360,320,20,30	monster#pre	Flora	1118,3,180000,120000,0
+um_fild02,0,0,0,0	monster#pre	Planta Vermelha	1078,5,180000,90000,1
+um_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,5,180000,90000,1,{}
+
+//==================================================
+// [Renovação] um_fild02 - Floresta de Hoomga
+//==================================================
+um_fild02,0,0,0,0	monster#re	Guerreiro Wootan	1499,40,5000,0,0
+um_fild02,0,0,0,0	monster#re	Atirador de Pedras	1495,15,5000,0,0
+um_fild02,0,0,0,0	monster#re	Artilheiro Wootan	1498,10,5000,0,0
+um_fild02,0,0,0,0	monster#re	Choco	1214,5,5000,0,0
+um_fild02,0,0,0,0	monster#re	Planta Vermelha	1078,5,180000,90000,1
+um_fild02,0,0,0,0	monster#re	Planta Amarela	1081,5,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] um_fild03 - Pântano de Kalala
+//==================================================
+um_fild03,0,0,0,0	monster#pre	Parasita	1500,95,0,0,0
+um_fild03,0,0,0,0	monster#pre	Lavadeira	1321,20,0,0,0
+um_fild03,0,0,0,0	monster#pre	Crocodilo	1271,10,0,0,0
+um_fild03,0,0,0,0	monster#pre	Grifo	1259,1,3500000,1900000,0
+um_fild03,0,0,0,0	monster#pre	Planta Azul	1079,5,180000,90000,1
+um_fild03,0,0,0,0	monster#pre	Planta Amarela	1080,10,180000,90000,1
+um_fild03,0,0,0,0	monster#pre	Planta Brilhante	1083,2,180000,90000,1,{}
+
+//==================================================
+// [Renovação] um_fild03 - Pântano de Kalala 
+//==================================================
+um_fild03,0,0,0,0	monster#re	Parasita	1500,60,5000,0,0
+um_fild03,0,0,0,0	monster#re	Atirador de Pedras	1495,15,5000,0,0
+um_fild03,0,0,0,0	monster#re	Artilheiro Wootan	1498,10,5000,0,0
+um_fild03,0,0,0,0	monster#re	Guerreiro Wootan	1499,10,5000,0,0
+um_fild03,0,0,0,0	monster#re	Planta Azul	1079,5,180000,90000,1
+um_fild03,0,0,0,0	monster#re	Planta Verde	1080,10,180000,90000,1
+um_fild03,0,0,0,0	monster#re	Planta Brilhante	1083,2,180000,90000,1,{}
+
+//==================================================
+// [Pré-Renovação] um_fild04 - Selva de Hoomga
+//==================================================
+um_fild04,0,0,0,0	monster#pre	Besouro-Rei	1494,30,0,0,0
+um_fild04,0,0,0,0	monster#pre	Besouro-Chifre	1128,15,0,0,0
+um_fild04,0,0,0,0	monster#pre	Choco	1214,2,0,0,0
+um_fild04,0,0,0,0	monster#pre	Atirador Wootan	1498,7,0,0,0
+um_fild04,264,293,10,10	monster#pre	Besouro-Chifre	1128,2,1200000,60000,0
+um_fild04,264,293,10,10	monster#pre	Besouro-Rei	1494,4,120000,60000,0
+um_fild04,121,239,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,91,79,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,244,339,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,295,93,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,118,237,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,118,237,10,10	monster#pre	Besouro-Chifre	1128,1,120000,60000,0
+um_fild04,311,285,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,311,285,10,10	monster#pre	Besouro-Chifre	1128,1,120000,60000,0
+um_fild04,206,188,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,206,188,10,10	monster#pre	Besouro-Chifre	1128,1,120000,60000,0
+um_fild04,239,245,10,10	monster#pre	Besouro-Rei	1494,2,120000,60000,0
+um_fild04,239,245,10,10	monster#pre	Besouro-Chifre	1128,1,120000,60000,0
+um_fild04,239,245,10,10	monster#pre	Atirador Wootan	1498,1,300000,60000,0
+um_fild04,91,79,10,10	monster#pre	Atirador Wootan	1498,1,300000,60000,0
+um_fild04,295,93,10,10	monster#pre	Atirador Wootan	1498,1,300000,60000,0
+um_fild04,0,0,0,0	monster#pre	Planta Vermelha	1078,5,180000,90000,1
+um_fild04,0,0,0,0	monster#pre	Planta Amarela	1081,5,180000,90000,1,{}
+
+//==================================================
+// [Renovação] um_fild04 - Selva de Hoomga 
+//==================================================
+um_fild04,0,0,0,0	monster#re	Rosa Selvagem	1261,30,5000,0,0
+um_fild04,0,0,0,0	monster#re	Atirador de Pedras	1495,10,5000,0,0
+um_fild04,0,0,0,0	monster#re	Artilheiro Wootan	1498,5,5000,0,0
+um_fild04,0,0,0,0	monster#re	Guerreiro Wootan	1499,5,5000,0,0
+um_fild04,0,0,0,0	monster#re	Golem de Madeira	1497,10,5000,0,0
+um_fild04,0,0,0,0	monster#re	Choco	1214,2,5000,0,0
+um_fild04,0,0,0,0	monster#re	Planta Vermelha	1078,5,180000,90000,1,{}

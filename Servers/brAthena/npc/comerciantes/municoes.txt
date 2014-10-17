@@ -1,0 +1,169 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: municoes.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.6/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Negociador de munições.                     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Mark & Clare]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta,118,160,3	script	Negociador de Projéteis Tony#alb	86,{
+	mes "[Tony]";
+	if (BaseJob == Job_Gunslinger) {
+		mes "Eu sou Tony, o negociador de projéteis.";
+		mes "Venha a mim sempre que precisar de munições.";
+		mes "Apenas me traga os materiais, e eu irei lhe fazer os projéteis que precisar.";
+		next;
+		switch(select("Esfera Venenosa:Esfera de Chamas:Esfera de Relâmpagos:Esfera Cegante:Esfera Congelante:Cancelar")) {
+		case 1: callsub Bullet_Trade,937,10,13205; break;
+		case 2: callsub Bullet_Trade,7097,2,13203; break;
+		case 3: callsub Bullet_Trade,7053,3,13204; break;
+		case 4: callsub Bullet_Trade,1024,5,13206; break;
+		case 5: callsub Bullet_Trade,7054,2,13207; break;
+		case 6:
+			mes "[Tony]";
+			mes "Mudou de idéia?";
+			mes "Ok, volte sempre que precisar de projéteis, estarei sempre aqui.";
+			close;
+		}
+	}
+	mes "Ei, sou Tony. Eu sou o responsável pela distribuição e fabricação de projéteis para Justiceiros.";
+	next;
+	mes "[Tony]";
+	mes "Lamento se você veio para comprar munição.";
+	mes "Eu só posso negociar com Justiceiros credenciados.";
+	close;
+
+Bullet_Trade:
+	mes "[Tony]";
+	mes "Para cada 30 "+getitemname(getarg(2))+",";
+	mes "você deve me entregar 1 Emveretarcon, 1 Fracon e "+getarg(1)+" "+getitemname(getarg(0))+".";
+	next;
+	mes "[Tony]";
+	mes "Lembre que só posso entregar um máximo de 500 caixas de 30 projéteis por negociação.";
+	mes "Por favor entre com o número de caixas de projéteis que você gostaria.";
+	mes "Caso queira parar a negociação, apenas digite '0'.";
+	next;
+	input .@amount;
+	mes "[Tony]";
+	if (.@amount < 1 || .@amount > 500) {
+		mes "Ei, não posso lhe dar tantos projéteis.";
+		mes "Não esqueça de digitar um número menor que 500 se você quiser trocar alguns itens por alguns projéteis.";
+		close;
+	}
+	if (countitem(1010) >= .@amount && countitem(1011) >= .@amount && countitem(getarg(0)) >= (.@amount*getarg(1))) {
+		if (checkweight(getarg(2),.@amount * 30) == 0) {
+			mes "Nossa! Seu inventário não possui espaço o suficiente para esta quantia de projéteis.";
+			mes "Volte quando tiver mais espaço no inventário.";
+			mes "Tente guardar algumas coisas no Armazém da Kafra.";
+			close;
+		}
+			mes "Muito bom, tudo parece estar em ordem.";
+			mes "Deixe-me pegar esses materiais, e aqui estão seus projéteis.";
+			mes "Foi um prazer negociar com você~";
+			delitem 1010,.@amount;
+			delitem 1011,.@amount;
+			delitem getarg(0),.@amount * getarg(1);
+			getitem getarg(2),.@amount * 30;
+			close;
+	}
+		mes "Humm. Parace que você não possui os materiais que necessito.";
+		mes "Bem, isso não é problema.";
+		mes "Apenas volte aqui quando pegar tudo que preciso, ok?";
+		close;
+
+}
+
+// Caixa de Munições
+
+alberta,118,157,3	script	Vendedor de Caixas de Munição	83,{
+	set "[Kenny]", compare(strnpcinfo(1),"Tonny")?"[Tonny]":"[Kenny]";
+	mes "[Kenny]";
+	if(BaseJob == Job_Gunslinger) {
+		mes "Bem-vindo à minha loja de carregadores.";
+		mes "Como você sabe, um número maior de projéteis podem ser carregados mais facilmente quando estão em carregadores.";
+		mes "Agora, posso ajudá-lo em algo em particular?";
+		next;
+		switch(select("Pacote de Esferas de Relâmpago:Pacote de Esferas Cegantes:Pacote de Esferas Venenosas:Pacote de Esferas Congelantes:Pacote de Esferas de Chamas:Carregador:Carregador Sanguinário:Carregador de Prata:Cancelar")) {
+		case 1: callsub Func_Casing,13204,12144; break;
+		case 2: callsub Func_Casing,13206,12145; break;
+		case 3: callsub Func_Casing,13205,12146; break;
+		case 4: callsub Func_Casing,13207,12147; break;
+		case 5: callsub Func_Casing,13203,12148; break;
+		case 6: callsub Func_Casing,13200,12149; break;
+		case 7: callsub Func_Casing,13202,12150; break;
+		case 8: callsub Func_Casing,13201,12151; break;
+		case 9:
+			mes "[Kenny]";
+			mes "Bem, se você achar que tem muitos projéteis, venha me encontrar.";
+			mes "É uma boa idéia armazenar projéteis em Carregadores.";
+			close;
+		}
+	}
+	mes "Bem-vindo à minha loja.";
+	mes "Aqui, eu forneço Pacotes e Carregadores para Justiceiros.";
+	mes "Desculpe, mas não parece que meus serviços serão úteis para você, aventureiro.";
+	next;
+	mes "[Kenny]";
+	mes "Heh, mas se você conhecer algum Justiceiro, mande-o para mim.";
+	mes "Ninguém pode carregar tantos projéteis.";
+	close;
+
+Func_Casing:
+	mes "[Kenny]";
+	mes "Agora, você pode trocar";
+	mes "500 "+getitemname(getarg(0));
+	mes "e 500 zeny por 1 "+getitemname(getarg(1))+", tenha certeza";
+	mes "que você tem projéteis o suficiente e zeny para esta troca.";
+	next;
+	mes "[Kenny]";
+	mes "Você pode trocar 500 "+getitemname(getarg(0))+" e 500 zeny por 1 "+getitemname(getarg(1));
+	next;
+	mes "[Kenny]";
+	mes "Lembre-se que não posso lhe dar mais que 50 Carregadores por vez.";
+	mes "Agora digite o número de Carregadores que você quer receber.";
+	mes "Se você deseja cancelar, digite '0'.";
+	next;
+	input .@amount;
+	if(.@amount > 50 || .@amount == 0) {
+		mes "[Kenny]";
+		mes "Ei, não posso lhe dar esse número de Carregadores.";
+		mes "Por favor tente novamente, e digite um número menor que 50.";
+		close;
+		}
+		mes "[Kenny]";
+		if (Zeny >= (500*.@amount) && countitem(getarg(0)) >= (500*.@amount)) {
+			if (checkweight(getarg(1),.@amount) == 0) {
+			mes "Ei, você tem muito lixo no seu inventário.";
+			mes "Libere algum espaço e volte para trocar seus projéteis por alguns Carregadores depois, ok?";
+			close;
+		}
+		mes "Certo, aqui estão seus Carregadores.";
+		mes "Obrigado por visitar minha loja, e espero que use sua munição com sabedoria.";
+		set Zeny,Zeny-500*.@amount;
+		delitem getarg(0),500*.@amount;
+		getitem getarg(1),.@amount;
+		close;
+		}
+		mes ""+(countitem(getarg(0)) < (500*.@amount) ? "Desculpe, mas você não possui projéteis o suficiente para esta troca de Carregadores. Talvez você deveria checar novamente seu inventário, e voltar mais tarde" : "Desculpe, mas você não possui zeny o suficiente para esta troca de Carregadores")+".";
+		close;
+}
+
+izlude,158,130,3	duplicate(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
+izlude,155,132,3	duplicate(Vendedor de Caixas de Munição)	Vendedor de Caixas de Munição#iz	83

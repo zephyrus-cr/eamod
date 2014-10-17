@@ -1,0 +1,549 @@
+//===== eAthena Script ======================================= 
+//= Geffen Village - Housing for Rent
+//===== By: ================================================== 
+//= Zephyrus
+//===== Current Version: ===================================== 
+//= 1.0 10399
+//===== Compatible With: ===================================== 
+//= eAthena SVN Stable 
+//===== Description: ========================================= 
+//= Script que contiene el código para los mapas rent_md.
+//= rentd1 y rentind1 correspondientes a Geffen.
+//===== Additional Comments: ================================= 
+//= 1.0 Versión Inicial
+//============================================================ 
+
+//============================================================ 
+//= Warp de Acceso Principal
+//============================================================ 
+
+rent_md,49,96,0	warp	rentdm1		1,1,gef_fild07,327,326
+gef_fild07,324,332,0	warp	rentdm2		1,1,rent_md,49,92
+
+//============================================================ 
+//= Propietario, Letreros y Kafra
+//============================================================ 
+
+rent_md,55,20,1	duplicate(BRent_Propietario)	Propietario#d	833
+gef_fild07,329,329,3	duplicate(BRent_SignA)	Villas Geffen#d	837
+rent_md,56,92,1	duplicate(BRent_SignB)	Letrero#d	835
+rent_md,41,26,1	duplicate(BRent_Kafra)	Kafra Service#d	721
+
+//============================================================ 
+//= Accesos a Propiedades
+//============================================================ 
+
+rent_md,36,35,1	duplicate(BRent_SignC)	Casa d1#d1	835
+rent_md,65,35,1	duplicate(BRent_SignC)	Casa d2#d2	835
+rent_md,36,40,1	duplicate(BRent_SignC)	Casa d3#d3	835
+rent_md,65,40,1	duplicate(BRent_SignC)	Casa d4#d4	835
+rent_md,36,45,1	duplicate(BRent_SignC)	Casa d5#d5	835
+rent_md,65,45,1	duplicate(BRent_SignC)	Casa d6#d6	835
+rent_md,36,50,1	duplicate(BRent_SignC)	Casa d7#d7	835
+rent_md,65,50,1	duplicate(BRent_SignC)	Casa d8#d8	835
+rent_md,36,55,1	duplicate(BRent_SignC)	Casa d9#d9	835
+rent_md,65,55,1	duplicate(BRent_SignC)	Casa d10#d10	835
+rent_md,36,60,1	duplicate(BRent_SignC)	Casa d11#d11	835
+rent_md,65,60,1	duplicate(BRent_SignC)	Casa d12#d12	835
+rent_md,36,65,1	duplicate(BRent_SignC)	Casa d13#d13	835
+rent_md,65,65,1	duplicate(BRent_SignC)	Casa d14#d14	835
+rent_md,36,70,1	duplicate(BRent_SignC)	Casa d15#d15	835
+rent_md,65,70,1	duplicate(BRent_SignC)	Casa d16#d16	835
+rent_md,36,75,1	duplicate(BRent_SignC)	Casa d17#d17	835
+rent_md,65,75,1	duplicate(BRent_SignC)	Casa d18#d18	835
+rent_md,36,80,1	duplicate(BRent_SignC)	Casa d19#d19	835
+rent_md,65,80,1	duplicate(BRent_SignC)	Casa d20#d20	835
+rent_md,36,85,1	duplicate(BRent_SignC)	Casa d21#d21	835
+rent_md,65,85,1	duplicate(BRent_SignC)	Casa d22#d22	835
+
+//============================================================ 
+//= Warps rentb -> rent_mb (Salida a la Ciudad)
+//============================================================ 
+
+rentd1,20,2,0	warp	rentd101	1,1,rent_md,50,27
+rentd2,20,2,0	warp	rentd201	1,1,rent_md,50,27
+rentd3,20,2,0	warp	rentd301	1,1,rent_md,50,27
+rentd4,20,2,0	warp	rentd401	1,1,rent_md,50,27
+rentd5,20,2,0	warp	rentd501	1,1,rent_md,50,27
+rentd6,20,2,0	warp	rentd601	1,1,rent_md,50,27
+rentd7,20,2,0	warp	rentd701	1,1,rent_md,50,27
+rentd8,20,2,0	warp	rentd801	1,1,rent_md,50,27
+rentd9,20,2,0	warp	rentd901	1,1,rent_md,50,27
+rentd10,20,2,0	warp	rentd1001	1,1,rent_md,50,27
+rentd11,20,2,0	warp	rentd1101	1,1,rent_md,50,27
+rentd12,20,2,0	warp	rentd1201	1,1,rent_md,50,27
+rentd13,20,2,0	warp	rentd1301	1,1,rent_md,50,27
+rentd14,20,2,0	warp	rentd1401	1,1,rent_md,50,27
+rentd15,20,2,0	warp	rentd1501	1,1,rent_md,50,27
+rentd16,20,2,0	warp	rentd1601	1,1,rent_md,50,27
+rentd17,20,2,0	warp	rentd1701	1,1,rent_md,50,27
+rentd18,20,2,0	warp	rentd1801	1,1,rent_md,50,27
+rentd19,20,2,0	warp	rentd1901	1,1,rent_md,50,27
+rentd20,20,2,0	warp	rentd2001	1,1,rent_md,50,27
+rentd21,20,2,0	warp	rentd2101	1,1,rent_md,50,27
+rentd22,20,2,0	warp	rentd2201	1,1,rent_md,50,27
+
+//============================================================ 
+//= Warps rentb -> rentinb (Entrada a Indoors)
+//============================================================ 
+
+rentd1,19,24,0	warp	rentd102	1,1,rentind1,20,8
+rentd2,19,24,0	warp	rentd202	1,1,rentind2,20,8
+rentd3,19,24,0	warp	rentd302	1,1,rentind3,20,8
+rentd4,19,24,0	warp	rentd402	1,1,rentind4,20,8
+rentd5,19,24,0	warp	rentd502	1,1,rentind5,20,8
+rentd6,19,24,0	warp	rentd602	1,1,rentind6,20,8
+rentd7,19,24,0	warp	rentd702	1,1,rentind7,20,8
+rentd8,19,24,0	warp	rentd802	1,1,rentind8,20,8
+rentd9,19,24,0	warp	rentd902	1,1,rentind9,20,8
+rentd10,19,24,0	warp	rentd1002	1,1,rentind10,20,8
+rentd11,19,24,0	warp	rentd1102	1,1,rentind11,20,8
+rentd12,19,24,0	warp	rentd1202	1,1,rentind12,20,8
+rentd13,19,24,0	warp	rentd1302	1,1,rentind13,20,8
+rentd14,19,24,0	warp	rentd1402	1,1,rentind14,20,8
+rentd15,19,24,0	warp	rentd1502	1,1,rentind15,20,8
+rentd16,19,24,0	warp	rentd1602	1,1,rentind16,20,8
+rentd17,19,24,0	warp	rentd1702	1,1,rentind17,20,8
+rentd18,19,24,0	warp	rentd1802	1,1,rentind18,20,8
+rentd19,19,24,0	warp	rentd1902	1,1,rentind19,20,8
+rentd20,19,24,0	warp	rentd2002	1,1,rentind20,20,8
+rentd21,19,24,0	warp	rentd2102	1,1,rentind21,20,8
+rentd22,19,24,0	warp	rentd2202	1,1,rentind22,20,8
+
+//============================================================ 
+//= Warps rentinb -> rentb (Salida de Indoors)
+//============================================================ 
+
+rentind1,20,4,0	warp	rentind1	1,1,rentd1,20,20
+rentind2,20,4,0	warp	rentind2	1,1,rentd2,20,20
+rentind3,20,4,0	warp	rentind3	1,1,rentd3,20,20
+rentind4,20,4,0	warp	rentind4	1,1,rentd4,20,20
+rentind5,20,4,0	warp	rentind5	1,1,rentd5,20,20
+rentind6,20,4,0	warp	rentind6	1,1,rentd6,20,20
+rentind7,20,4,0	warp	rentind7	1,1,rentd7,20,20
+rentind8,20,4,0	warp	rentind8	1,1,rentd8,20,20
+rentind9,20,4,0	warp	rentind9	1,1,rentd9,20,20
+rentind10,20,4,0	warp	rentind10	1,1,rentd10,20,20
+rentind11,20,4,0	warp	rentind11	1,1,rentd11,20,20
+rentind12,20,4,0	warp	rentind12	1,1,rentd12,20,20
+rentind13,20,4,0	warp	rentind13	1,1,rentd13,20,20
+rentind14,20,4,0	warp	rentind14	1,1,rentd14,20,20
+rentind15,20,4,0	warp	rentind15	1,1,rentd15,20,20
+rentind16,20,4,0	warp	rentind16	1,1,rentd16,20,20
+rentind17,20,4,0	warp	rentind17	1,1,rentd17,20,20
+rentind18,20,4,0	warp	rentind18	1,1,rentd18,20,20
+rentind19,20,4,0	warp	rentind19	1,1,rentd19,20,20
+rentind20,20,4,0	warp	rentind20	1,1,rentd20,20,20
+rentind21,20,4,0	warp	rentind21	1,1,rentd21,20,20
+rentind22,20,4,0	warp	rentind22	1,1,rentd22,20,20
+
+//============================================================ 
+//= NPCs de OutDoor
+//============================================================ 
+
+//============================================================ 
+//= Manzano
+//============================================================ 
+
+rentd1,7,7,0	duplicate(BRent_AppleTree)	Manzano#d1	111
+rentd2,7,7,0	duplicate(BRent_AppleTree)	Manzano#d2	111
+rentd3,7,7,0	duplicate(BRent_AppleTree)	Manzano#d3	111
+rentd4,7,7,0	duplicate(BRent_AppleTree)	Manzano#d4	111
+rentd5,7,7,0	duplicate(BRent_AppleTree)	Manzano#d5	111
+rentd6,7,7,0	duplicate(BRent_AppleTree)	Manzano#d6	111
+rentd7,7,7,0	duplicate(BRent_AppleTree)	Manzano#d7	111
+rentd8,7,7,0	duplicate(BRent_AppleTree)	Manzano#d8	111
+rentd9,7,7,0	duplicate(BRent_AppleTree)	Manzano#d9	111
+rentd10,7,7,0	duplicate(BRent_AppleTree)	Manzano#d10	111
+rentd11,7,7,0	duplicate(BRent_AppleTree)	Manzano#d11	111
+rentd12,7,7,0	duplicate(BRent_AppleTree)	Manzano#d12	111
+rentd13,7,7,0	duplicate(BRent_AppleTree)	Manzano#d13	111
+rentd14,7,7,0	duplicate(BRent_AppleTree)	Manzano#d14	111
+rentd15,7,7,0	duplicate(BRent_AppleTree)	Manzano#d15	111
+rentd16,7,7,0	duplicate(BRent_AppleTree)	Manzano#d16	111
+rentd17,7,7,0	duplicate(BRent_AppleTree)	Manzano#d17	111
+rentd18,7,7,0	duplicate(BRent_AppleTree)	Manzano#d18	111
+rentd19,7,7,0	duplicate(BRent_AppleTree)	Manzano#d19	111
+rentd20,7,7,0	duplicate(BRent_AppleTree)	Manzano#d20	111
+rentd21,7,7,0	duplicate(BRent_AppleTree)	Manzano#d21	111
+rentd22,7,7,0	duplicate(BRent_AppleTree)	Manzano#d22	111
+
+//============================================================ 
+//= Activador de PVP en Mapa Outdoor
+//============================================================ 
+
+rentd1,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d1	837
+rentd2,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d2	837
+rentd3,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d3	837
+rentd4,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d4	837
+rentd5,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d5	837
+rentd6,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d6	837
+rentd7,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d7	837
+rentd8,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d8	837
+rentd9,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d9	837
+rentd10,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d10	837
+rentd11,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d11	837
+rentd12,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d12	837
+rentd13,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d13	837
+rentd14,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d14	837
+rentd15,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d15	837
+rentd16,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d16	837
+rentd17,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d17	837
+rentd18,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d18	837
+rentd19,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d19	837
+rentd20,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d20	837
+rentd21,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d21	837
+rentd22,9,19,3	duplicate(BRent_PVPSwitch)	Switch#d22	837
+
+//============================================================ 
+//= Mobs en el Outdoor
+//============================================================ 
+
+rentd1,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd2,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd3,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd4,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd5,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd6,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd7,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd8,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd9,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd10,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd11,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd12,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd13,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd14,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd15,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd16,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd17,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd18,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd19,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd20,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd21,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+rentd22,0,0,0,0	monster	Fabre	1007,3,1800000,900000,0
+
+//============================================================ 
+//= Jardín
+//============================================================ 
+
+rentd1,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd1,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd1,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd1,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd1,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd2,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd2,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd2,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd2,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd2,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd3,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd3,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd3,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd3,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd3,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd4,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd4,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd4,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd4,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd4,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd5,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd5,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd5,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd5,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd5,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd6,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd6,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd6,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd6,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd6,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd7,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd7,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd7,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd7,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd7,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd8,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd8,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd8,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd8,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd8,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd9,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd9,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd9,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd9,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd9,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd10,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd10,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd10,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd10,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd10,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd11,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd11,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd11,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd11,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd11,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd12,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd12,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd12,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd12,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd12,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd13,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd13,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd13,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd13,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd13,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd14,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd14,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd14,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd14,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd14,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd15,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd15,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd15,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd15,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd15,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd16,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd16,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd16,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd16,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd16,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd17,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd17,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd17,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd17,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd17,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd18,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd18,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd18,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd18,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd18,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd19,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd19,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd19,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd19,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd19,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd20,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd20,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd20,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd20,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd20,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd21,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd21,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd21,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd21,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd21,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+rentd22,9,6,5,2	monster	Blue Plant	1079,5,39600000,39000000,0
+rentd22,30,6,5,2	monster	White Plant	1082,5,39600000,39000000,0
+rentd22,6,32,2,2	monster	Yellow Plant	1081,5,39600000,39000000,0
+rentd22,32,32,2,2	monster	Green Plant	1080,5,39600000,39000000,0
+rentd22,20,34,10,1	monster	Red Plant	1078,5,39600000,39000000,0
+
+//============================================================ 
+//= NPCs de Indoor
+//============================================================ 
+
+//============================================================ 
+//= Camas
+//============================================================ 
+
+rentind1,34,33,0	duplicate(BRent_Bed)	Descansar#dx1	111
+rentind1,5,34,0	duplicate(BRent_Bed)	Descansar#dy1	111
+rentind2,34,33,0	duplicate(BRent_Bed)	Descansar#dx2	111
+rentind2,5,34,0	duplicate(BRent_Bed)	Descansar#dy2	111
+rentind3,34,33,0	duplicate(BRent_Bed)	Descansar#dx3	111
+rentind3,5,34,0	duplicate(BRent_Bed)	Descansar#dy3	111
+rentind4,34,33,0	duplicate(BRent_Bed)	Descansar#dx4	111
+rentind4,5,34,0	duplicate(BRent_Bed)	Descansar#dy4	111
+rentind5,34,33,0	duplicate(BRent_Bed)	Descansar#dx5	111
+rentind5,5,34,0	duplicate(BRent_Bed)	Descansar#dy5	111
+rentind6,34,33,0	duplicate(BRent_Bed)	Descansar#dx6	111
+rentind6,5,34,0	duplicate(BRent_Bed)	Descansar#dy6	111
+rentind7,34,33,0	duplicate(BRent_Bed)	Descansar#dx7	111
+rentind7,5,34,0	duplicate(BRent_Bed)	Descansar#dy7	111
+rentind8,34,33,0	duplicate(BRent_Bed)	Descansar#dx8	111
+rentind8,5,34,0	duplicate(BRent_Bed)	Descansar#dy8	111
+rentind9,34,33,0	duplicate(BRent_Bed)	Descansar#dx9	111
+rentind9,5,34,0	duplicate(BRent_Bed)	Descansar#dy9	111
+rentind10,34,33,0	duplicate(BRent_Bed)	Descansar#dx10	111
+rentind10,5,34,0	duplicate(BRent_Bed)	Descansar#dy10	111
+rentind11,34,33,0	duplicate(BRent_Bed)	Descansar#dx11	111
+rentind11,5,34,0	duplicate(BRent_Bed)	Descansar#dy11	111
+rentind12,34,33,0	duplicate(BRent_Bed)	Descansar#dx12	111
+rentind12,5,34,0	duplicate(BRent_Bed)	Descansar#dy12	111
+rentind13,34,33,0	duplicate(BRent_Bed)	Descansar#dx13	111
+rentind13,5,34,0	duplicate(BRent_Bed)	Descansar#dy13	111
+rentind14,34,33,0	duplicate(BRent_Bed)	Descansar#dx14	111
+rentind14,5,34,0	duplicate(BRent_Bed)	Descansar#dy14	111
+rentind15,34,33,0	duplicate(BRent_Bed)	Descansar#dx15	111
+rentind15,5,34,0	duplicate(BRent_Bed)	Descansar#dy15	111
+rentind16,34,33,0	duplicate(BRent_Bed)	Descansar#dx16	111
+rentind16,5,34,0	duplicate(BRent_Bed)	Descansar#dy16	111
+rentind17,34,33,0	duplicate(BRent_Bed)	Descansar#dx17	111
+rentind17,5,34,0	duplicate(BRent_Bed)	Descansar#dy17	111
+rentind18,34,33,0	duplicate(BRent_Bed)	Descansar#dx18	111
+rentind18,5,34,0	duplicate(BRent_Bed)	Descansar#dy18	111
+rentind19,34,33,0	duplicate(BRent_Bed)	Descansar#dx19	111
+rentind19,5,34,0	duplicate(BRent_Bed)	Descansar#dy19	111
+rentind20,34,33,0	duplicate(BRent_Bed)	Descansar#dx20	111
+rentind20,5,34,0	duplicate(BRent_Bed)	Descansar#dy20	111
+rentind21,34,33,0	duplicate(BRent_Bed)	Descansar#dx21	111
+rentind21,5,34,0	duplicate(BRent_Bed)	Descansar#dy21	111
+rentind22,34,33,0	duplicate(BRent_Bed)	Descansar#dx22	111
+rentind22,5,34,0	duplicate(BRent_Bed)	Descansar#dy22	111
+
+//============================================================ 
+//= Piano
+//============================================================ 
+
+rentind1,14,32,0	duplicate(BRent_Piano)	Piano#d1	111
+rentind2,14,32,0	duplicate(BRent_Piano)	Piano#d2	111
+rentind3,14,32,0	duplicate(BRent_Piano)	Piano#d3	111
+rentind4,14,32,0	duplicate(BRent_Piano)	Piano#d4	111
+rentind5,14,32,0	duplicate(BRent_Piano)	Piano#d5	111
+rentind6,14,32,0	duplicate(BRent_Piano)	Piano#d6	111
+rentind7,14,32,0	duplicate(BRent_Piano)	Piano#d7	111
+rentind8,14,32,0	duplicate(BRent_Piano)	Piano#d8	111
+rentind9,14,32,0	duplicate(BRent_Piano)	Piano#d9	111
+rentind10,14,32,0	duplicate(BRent_Piano)	Piano#d10	111
+rentind11,14,32,0	duplicate(BRent_Piano)	Piano#d11	111
+rentind12,14,32,0	duplicate(BRent_Piano)	Piano#d12	111
+rentind13,14,32,0	duplicate(BRent_Piano)	Piano#d13	111
+rentind14,14,32,0	duplicate(BRent_Piano)	Piano#d14	111
+rentind15,14,32,0	duplicate(BRent_Piano)	Piano#d15	111
+rentind16,14,32,0	duplicate(BRent_Piano)	Piano#d16	111
+rentind17,14,32,0	duplicate(BRent_Piano)	Piano#d17	111
+rentind18,14,32,0	duplicate(BRent_Piano)	Piano#d18	111
+rentind19,14,32,0	duplicate(BRent_Piano)	Piano#d19	111
+rentind20,14,32,0	duplicate(BRent_Piano)	Piano#d20	111
+rentind21,14,32,0	duplicate(BRent_Piano)	Piano#d21	111
+rentind22,14,32,0	duplicate(BRent_Piano)	Piano#d22	111
+
+//============================================================ 
+//= Armarios
+//============================================================ 
+
+rentind1,30,5,0	duplicate(BRent_Storage)	Armario#d1	111
+rentind2,30,5,0	duplicate(BRent_Storage)	Armario#d2	111
+rentind3,30,5,0	duplicate(BRent_Storage)	Armario#d3	111
+rentind4,30,5,0	duplicate(BRent_Storage)	Armario#d4	111
+rentind5,30,5,0	duplicate(BRent_Storage)	Armario#d5	111
+rentind6,30,5,0	duplicate(BRent_Storage)	Armario#d6	111
+rentind7,30,5,0	duplicate(BRent_Storage)	Armario#d7	111
+rentind8,30,5,0	duplicate(BRent_Storage)	Armario#d8	111
+rentind9,30,5,0	duplicate(BRent_Storage)	Armario#d9	111
+rentind10,30,5,0	duplicate(BRent_Storage)	Armario#d10	111
+rentind11,30,5,0	duplicate(BRent_Storage)	Armario#d11	111
+rentind12,30,5,0	duplicate(BRent_Storage)	Armario#d12	111
+rentind13,30,5,0	duplicate(BRent_Storage)	Armario#d13	111
+rentind14,30,5,0	duplicate(BRent_Storage)	Armario#d14	111
+rentind15,30,5,0	duplicate(BRent_Storage)	Armario#d15	111
+rentind16,30,5,0	duplicate(BRent_Storage)	Armario#d16	111
+rentind17,30,5,0	duplicate(BRent_Storage)	Armario#d17	111
+rentind18,30,5,0	duplicate(BRent_Storage)	Armario#d18	111
+rentind19,30,5,0	duplicate(BRent_Storage)	Armario#d19	111
+rentind20,30,5,0	duplicate(BRent_Storage)	Armario#d20	111
+rentind21,30,5,0	duplicate(BRent_Storage)	Armario#d21	111
+rentind22,30,5,0	duplicate(BRent_Storage)	Armario#d22	111
+
+//============================================================ 
+//= Teléfono Servicio
+//============================================================ 
+
+rentind1,27,30,3	duplicate(BRent_Call)	Servicios#d1	858
+rentind2,27,30,3	duplicate(BRent_Call)	Servicios#d2	858
+rentind3,27,30,3	duplicate(BRent_Call)	Servicios#d3	858
+rentind4,27,30,3	duplicate(BRent_Call)	Servicios#d4	858
+rentind5,27,30,3	duplicate(BRent_Call)	Servicios#d5	858
+rentind6,27,30,3	duplicate(BRent_Call)	Servicios#d6	858
+rentind7,27,30,3	duplicate(BRent_Call)	Servicios#d7	858
+rentind8,27,30,3	duplicate(BRent_Call)	Servicios#d8	858
+rentind9,27,30,3	duplicate(BRent_Call)	Servicios#d9	858
+rentind10,27,30,3	duplicate(BRent_Call)	Servicios#d10	858
+rentind11,27,30,3	duplicate(BRent_Call)	Servicios#d11	858
+rentind12,27,30,3	duplicate(BRent_Call)	Servicios#d12	858
+rentind13,27,30,3	duplicate(BRent_Call)	Servicios#d13	858
+rentind14,27,30,3	duplicate(BRent_Call)	Servicios#d14	858
+rentind15,27,30,3	duplicate(BRent_Call)	Servicios#d15	858
+rentind16,27,30,3	duplicate(BRent_Call)	Servicios#d16	858
+rentind17,27,30,3	duplicate(BRent_Call)	Servicios#d17	858
+rentind18,27,30,3	duplicate(BRent_Call)	Servicios#d18	858
+rentind19,27,30,3	duplicate(BRent_Call)	Servicios#d19	858
+rentind20,27,30,3	duplicate(BRent_Call)	Servicios#d20	858
+rentind21,27,30,3	duplicate(BRent_Call)	Servicios#d21	858
+rentind22,27,30,3	duplicate(BRent_Call)	Servicios#d22	858
+
+//============================================================ 
+//= Alice Limpieza
+//============================================================ 
+
+rentind1,20,19,3	duplicate(BRent_Alice)	Alice#d1	1275
+rentind2,20,19,3	duplicate(BRent_Alice)	Alice#d2	1275
+rentind3,20,19,3	duplicate(BRent_Alice)	Alice#d3	1275
+rentind4,20,19,3	duplicate(BRent_Alice)	Alice#d4	1275
+rentind5,20,19,3	duplicate(BRent_Alice)	Alice#d5	1275
+rentind6,20,19,3	duplicate(BRent_Alice)	Alice#d6	1275
+rentind7,20,19,3	duplicate(BRent_Alice)	Alice#d7	1275
+rentind8,20,19,3	duplicate(BRent_Alice)	Alice#d8	1275
+rentind9,20,19,3	duplicate(BRent_Alice)	Alice#d9	1275
+rentind10,20,19,3	duplicate(BRent_Alice)	Alice#d10	1275
+rentind11,20,19,3	duplicate(BRent_Alice)	Alice#d11	1275
+rentind12,20,19,3	duplicate(BRent_Alice)	Alice#d12	1275
+rentind13,20,19,3	duplicate(BRent_Alice)	Alice#d13	1275
+rentind14,20,19,3	duplicate(BRent_Alice)	Alice#d14	1275
+rentind15,20,19,3	duplicate(BRent_Alice)	Alice#d15	1275
+rentind16,20,19,3	duplicate(BRent_Alice)	Alice#d16	1275
+rentind17,20,19,3	duplicate(BRent_Alice)	Alice#d17	1275
+rentind18,20,19,3	duplicate(BRent_Alice)	Alice#d18	1275
+rentind19,20,19,3	duplicate(BRent_Alice)	Alice#d19	1275
+rentind20,20,19,3	duplicate(BRent_Alice)	Alice#d20	1275
+rentind21,20,19,3	duplicate(BRent_Alice)	Alice#d21	1275
+rentind22,20,19,3	duplicate(BRent_Alice)	Alice#d22	1275
+
+//============================================================ 
+//= Cambio de Ropa
+//============================================================ 
+
+rentind1,35,30,0	duplicate(BRent_Closet)	Closet#dx1	111
+rentind2,35,30,0	duplicate(BRent_Closet)	Closet#dx2	111
+rentind3,35,30,0	duplicate(BRent_Closet)	Closet#dx3	111
+rentind4,35,30,0	duplicate(BRent_Closet)	Closet#dx4	111
+rentind5,35,30,0	duplicate(BRent_Closet)	Closet#dx5	111
+rentind6,35,30,0	duplicate(BRent_Closet)	Closet#dx6	111
+rentind7,35,30,0	duplicate(BRent_Closet)	Closet#dx7	111
+rentind8,35,30,0	duplicate(BRent_Closet)	Closet#dx8	111
+rentind9,35,30,0	duplicate(BRent_Closet)	Closet#dx9	111
+rentind10,35,30,0	duplicate(BRent_Closet)	Closet#dx10	111
+rentind11,35,30,0	duplicate(BRent_Closet)	Closet#dx11	111
+rentind12,35,30,0	duplicate(BRent_Closet)	Closet#dx12	111
+rentind13,35,30,0	duplicate(BRent_Closet)	Closet#dx13	111
+rentind14,35,30,0	duplicate(BRent_Closet)	Closet#dx14	111
+rentind15,35,30,0	duplicate(BRent_Closet)	Closet#dx15	111
+rentind16,35,30,0	duplicate(BRent_Closet)	Closet#dx16	111
+rentind17,35,30,0	duplicate(BRent_Closet)	Closet#dx17	111
+rentind18,35,30,0	duplicate(BRent_Closet)	Closet#dx18	111
+rentind19,35,30,0	duplicate(BRent_Closet)	Closet#dx19	111
+rentind20,35,30,0	duplicate(BRent_Closet)	Closet#dx20	111
+rentind21,35,30,0	duplicate(BRent_Closet)	Closet#dx21	111
+rentind22,35,30,0	duplicate(BRent_Closet)	Closet#dx22	111
+
+rentind1,9,35,0	duplicate(BRent_Closet)	Closet#dy1	111
+rentind2,9,35,0	duplicate(BRent_Closet)	Closet#dy2	111
+rentind3,9,35,0	duplicate(BRent_Closet)	Closet#dy3	111
+rentind4,9,35,0	duplicate(BRent_Closet)	Closet#dy4	111
+rentind5,9,35,0	duplicate(BRent_Closet)	Closet#dy5	111
+rentind6,9,35,0	duplicate(BRent_Closet)	Closet#dy6	111
+rentind7,9,35,0	duplicate(BRent_Closet)	Closet#dy7	111
+rentind8,9,35,0	duplicate(BRent_Closet)	Closet#dy8	111
+rentind9,9,35,0	duplicate(BRent_Closet)	Closet#dy9	111
+rentind10,9,35,0	duplicate(BRent_Closet)	Closet#dy10	111
+rentind11,9,35,0	duplicate(BRent_Closet)	Closet#dy11	111
+rentind12,9,35,0	duplicate(BRent_Closet)	Closet#dy12	111
+rentind13,9,35,0	duplicate(BRent_Closet)	Closet#dy13	111
+rentind14,9,35,0	duplicate(BRent_Closet)	Closet#dy14	111
+rentind15,9,35,0	duplicate(BRent_Closet)	Closet#dy15	111
+rentind16,9,35,0	duplicate(BRent_Closet)	Closet#dy16	111
+rentind17,9,35,0	duplicate(BRent_Closet)	Closet#dy17	111
+rentind18,9,35,0	duplicate(BRent_Closet)	Closet#dy18	111
+rentind19,9,35,0	duplicate(BRent_Closet)	Closet#dy19	111
+rentind20,9,35,0	duplicate(BRent_Closet)	Closet#dy20	111
+rentind21,9,35,0	duplicate(BRent_Closet)	Closet#dy21	111
+rentind22,9,35,0	duplicate(BRent_Closet)	Closet#dy22	111

@@ -1,0 +1,340 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: lojas_vendas.txt                       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1/1.2                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Compra de Licenças de lojas e Catálogos.    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Yums e brn0]                       |
+//   | 1.2 Otimização [Mark e brn0]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+// Mercado Negro (Compra de Licenças - Classes que não sejam Mercador e Evoluções)
+//============================================================ 
+que_job01,68,84,1	script	Mercado Negro#Compras	881,{
+	if (getskilllv("ALL_BUYING_STORE") == 1) {
+		mes "[Sr. Jass]";
+		mes "Ei, você já fez um contrato com Hugh.";
+		mes "Eu não tenho nenhum negócio com você.";
+		close;
+	}
+	mes "[Sr. Jass]";
+	mes "Você deve precisar muito de alguma coisa para vir me procurar.";
+	mes "O que você precisa?";
+	next;
+	switch(select("Lincença de Grande Comprador de Lojas:Quem é você?:Nada, nada!")) {
+	case 1:
+		mes "[Sr. Jass]";
+		mes "Eu sabia!";
+		mes "Claro, eu posso fazer isso por você.";
+		mes "Mine apenas se parece com os autênticos comerciantes que começa a partir desse canalha Sr. Hugh!";
+		next;
+		mes "[Sr. Jass]";
+		mes "E a minha licença é melhor 'porque você não precisa' aprender todas as habilidades.";
+		mes "Quantas você quer?";
+		next;
+		mes "[Sr. Jass]";
+		mes "Só para você saber, eu só posso fazê-las em pequenas quantidades, até 10 de uma vez.";
+		mes "Vai custar 500 zeny para cada um.";
+		next;
+		while(1) {
+			input .@input;
+			mes "[Sr. Jass]";
+			if (.@input == 0) {
+				mes "Você não precisa dessas licenças?";
+				close;
+			} else if (.@input > 10) {
+				mes "Eu só posso fazer até 10 de cada vez, você sabe.";
+				next;
+			} else {
+				mes "Vai custar "+(.@input*500)+" zeny.";
+				if (Zeny < (.@input*500)) {
+					mes "mas você não tem dinheiro suficiente.";
+					next;
+					mes "[Sr. Jass]";
+					mes "Você não sabe o básico de negócios? Tudo tem um preço.";
+					mes "Se você quer algo, você tem que pagar por isso.";
+				} else {
+					mes "Ha... Ha ha ha!";
+					mes "Sr. Hugh, Eu vou assumir a sua licença comercial. Você vai ver!";
+					mes "*Risos Risos*";
+					getitem 12548,.@input; // Licença Falso Atacado
+					set Zeny,Zeny-(.@input*500);
+				}
+				close;
+			}
+		}
+	case 2:
+		mes "[Sr. Jass]";
+		mes "Deixei minha cidade natal há muito tempo.";
+		mes "Faz sentido perguntar quem eu sou, porque tudo o que eu tive deixado para trás até agora foi meu ódio";
+		next;
+		mes "[Sr. Jass]";
+		mes "...";
+		mes "Hugh é um comerciante corrupto sem nenhum senso de ética nos negócios.";
+		mes "Meu único objetivo na vida é destruir Hugh.";
+		next;
+		mes "[Sr. Jass]";
+		mes "Ah, eu bebi demais... (*Soluço*)";
+		mes "Isso é só o álcool a falar.";
+		mes "Por favor, esqueça tudo o que eu disse.";
+		close;
+		case 3:
+		mes "[Sr. Jass]";
+		mes "Certo, certo! Você não precisa gritar.";
+		mes "Me deixe em paz se você não tem negócio comigo.";
+		close;
+	}
+}
+
+// Equipe de Compras (Aprender Habilidades - Classe Mercadpr)
+//============================================================ 
+alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
+	mes "[Sr. Hugh]";
+	if (BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
+		if (getskilllv("ALL_BUYING_STORE") == 1) {
+			mes "Eu sou Hugh da Equipe de Compras.";
+			mes "Como posso ajudá-lo hoje?";
+			next;
+			if(select("Purchase Bulk Buyer Shop License:Quit") == 2) {
+				mes "[Sr. Hugh]";
+				mes "Por favor, não hesite em perguntar-me, se você precisar de alguma Licença para Loja de Compras em Massa";
+				mes "Volte sempre~";
+				close;
+			}
+			mes "[Sr. Hugh]";
+			mes "São 200 zeny para cada Licença para Loja de Compras em Massa, e você pode comprar até 50 por vez.";
+			mes "Quantas licenças você precisa?";
+			next;
+			while(1) {
+				input .@input;
+				mes "[Sr. Hugh]";
+				if (.@input == 0) {
+					mes "Você cancelou o negócio.";
+					mes "Tenha um bom dia.";
+					close;
+				} else if (.@input > 50) {
+					mes "Por favor insira um valor menor que 51";
+					next;
+				} else {
+					mes "It'll cost "+(.@input*200)+" zeny for "+.@input+" licenses.";
+					if (Zeny < (.@input*200)) {
+						mes "mas você parece não ter dinheiro suficiente.";
+					} else {
+						mes "Obrigado pelo seu patrocínio.";
+						getitem 6377,.@input; // Licença de Atacado
+						set Zeny,Zeny-(.@input*200);
+					}
+					close;
+				}
+			}
+		} else {
+			mes "Eu sou Hugh da Equipe de Compras do Clã dos Mercadores de Alberta.";
+			mes "Você está...";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Você sabia? Nosso Clã tem emitido uma licença que permiti que os indivíduos possa comprar mercadorias de outros.";
+			next;
+			select("Eu nunca tive problemas comprando itens...");
+			mes "[Sr. Hugh]";
+			mes "Você está certo, mas pense comigo:";
+			mes "Você não teve dificuldade de comprar em massa?";
+			mes "Você tem que encontrar e conversar com todo mundo que tem um item que você deseja.";
+			mes "Consideravelmente inconveniente, não é?";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Uma vez que a compra em massa é uma questão importante para nós, comerciantes,";
+			mes "Eu tenho proposto um plano inovador para o nosso Clã, baseado em meus 10 anos de experiência em fazer compras.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "'Vamos Abrir Individualmente";
+			mes "Uma Loja de Muitos Compradores!'";
+			mes "Esse é o título da minha proposta.";
+			mes "Você vai ver, quando você ler isso...";
+			next;
+			mes "[Sr. Hugh]";
+			mes "...";
+			mes "...(Sr. Hugh falou-me muito, nos mínimos detalhes.)";
+			next;
+			select("Certo, onde quer chegar?");
+			mes "[Sr. Hugh]";
+			mes "Ah, sim. Em resumo,";
+			mes "você pode comprar alguns itens em massa através de Lojas.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Para abrir uma Loja de Compra em Massa, você precisa de uma licença emitida pelo Clã Mercador.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Você precisa dela, cada vez que for abrir uma loja. Nós estamos esperando um aumento significativo nos lucros através deste novo tipo de licenciamento.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Esse é o ponto da minha proposta!";
+			mes "Nosso presidente ficou muito feliz em saber que nós vamos fazer muito dinheiro!";
+			next;
+			select("Por favor, vá direto ao ponto!");
+			mes "[Sr. Hugh]";
+			mes "Não seja tão impaciente, certo?";
+			mes "Concluíndo, podemos deixá-lo abrir uma Loja de Compra em Massa, isso se você já aprendeu a vender.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Claro, nós cobramos 10,000 zeny uma única vez por uma taxa de inscrição.";
+			mes "Você vai precisar da ^4A4AFFLicença para Loja de Compras em Massa^000000 cada vez que você abrir uma loja.";
+			next;
+			mes "[Sr. Hugh]";
+			mes "Diga, gostaria de registrar agora?";
+			mes "Se o fizer, eu vou te ensinar como abrir uma Loja de Compras em Massa";
+			next;
+			if(select("Quero abrir uma loja!:Cancelar") == 2) {
+				mes "[Sr. Hugh]";
+				mes "Cara, isso é decepcionante!";
+				mes "Usando esta opção de compra em massa você pode beneficiar o seu negócio em muitas maneiras, mas a decisão é sua.";
+				mes "Estou sempre aberto para consulta!";
+				close;
+			}
+			mes "[Sr. Hugh]";
+			if (Zeny < 10000) {
+				mes "A taxa de inscrição é de um valor único de 10,000 zeny.";
+				mes "Por favor, tenha o dinheiro em mãos.";
+				close;
+			} else {
+				mes "Você fez uma boa decisão.";
+				mes "Por favor me dê a taxa de inscrição e assine aqui mesmo....";
+				next;
+				input .@name$;
+				mes "[Sr. Hugh]";
+				mes .@name$+"....";
+				mes "Eu gosto da sua escrita.";
+				mes "Ok, você agora está aprovado de abrir uma Loja de Compras em Massa.";
+				set Zeny,Zeny-10000;
+				getitem 6377,5; //Buy_Stall_Permit
+				skill "ALL_BUYING_STORE",1,0;
+				next;
+				mes "[Sr. Hugh]";
+				mes "Atualmente, apenas itens normais ^8C2121EXCETO^000000 equipamentos, algumas poções e itens artesanais podem ser adquiridos em massa, mas esta ainda pode ser de muito benéfico para você, dependendo de como usa-la.";
+				next;
+				mes "[Sr. Hugh]";
+				mes "Ah, e você precisa de pelo menos um dos itens que você deseja comprar em seu inventário porque você tem que mostrá-la a outros através de sua loja.";
+				next;
+				mes "[Sr. Hugh]";
+				mes "Sua habilidade agora deve estar registrada em sua janela de habilidades. Se você não pode vê-la, provavelmente deverá minimizar a sua Lista de Habilidades e checar na Tabela das 3rd Classes";
+				next;
+				mes "[Sr. Hugh]";
+				mes "Eu te dei 5 Licença para Loja de Compras em Massa para o seu experimento.";
+				mes "Boas compras!";
+				close;
+			}
+		}
+	}
+	mes "Eu sou Hugh da Equipe de Compras do Clã dos Mercadores de Alberta.";
+	mes "Eu adoraria conversar, mas eu estou muito ocupado no momento.";
+	next;
+	mes "[Sr. Hugh]";
+	mes "Meu tempo é dedicado exclusivamente aos nossos clientes na indústria do comercio.";
+	close;
+}
+
+// Catalogador Mágico
+//============================================================ 
+moc_para01,22,16,5	script#re	Catalogador Mágico#catal01	704,{
+	mes "[Catalogador Mágico]";
+	if (!checkweight(1201,2)) {
+		mes "- Você possui muitos itens. Por favor diminua seu peso. -";
+		close;
+	}
+	set .@ticket_cost, 200;
+	mes "Olha só... A Guilda dos Magos em Geffen";
+	mes "está comercializando diretamente";
+	mes "o novo item, ^007373Catálogo de Vendas Prata^000000!";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "Ele está olhando para as palavras";
+	mes "escritas em sua própria mão.";
+	mes "Parece estar muito ocupado";
+	mes "para olhar para você.";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "Esse novo item";
+	mes "foi lançado recentemente!";
+	mes "Você pode verificar";
+	mes "quais os itens que você poderá comercializar";
+	mes "e quais itens estão à venda";
+	mes "pelas lojas montadas na cidade em que estiver.";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "^007373Catálogo de Vendas Prata^000000";
+	mes "Custa apenas 200z cada!";
+	mes "Você pode comprar apenas 50 de cada vez!";
+	next;
+	switch(select("Comprar ^007373Catálogo de Vendas Prata^000000:Eu não preciso disso!:Você não é vendedor... É?")) {
+	case 1:
+		mes "[Catalogador Mágico]";
+		mes "Você... Quer comprar os 50?";
+		mes "Quantos... Quantos gostaria de comprar?";
+		next;
+		while(input(.@quantidade,0,50)) {
+				mes "[Catalogador Mágico]";
+				mes "Você deve comprar até 50 itens por vez.";
+				next;
+			}
+		mes "[Catalogador Mágico]";
+		if(!.@quantidade) {
+		mes "A negociação não será concluída, mas...";
+		mes "Eu não sei o que fazer...";
+		mes "O que eu deveria fazer agora?";
+		emotion e_swt2,1;
+		close;
+		}
+		mes "O número total de catálogo(s) que";
+		mes "está comprando é de "+.@quantidade+" itens";
+		mes "e vai sair por apenas "+set(.@preco,.@quantidade*200)+" zenys.";
+		if(.@preco > Zeny) {
+		mes "Parece que não possui dinheiro suficiente.";
+		mes "Você pode vender seus equipamentos";
+		mes "para fazer mais dinheiro... o que acha?";
+		close;
+		}
+		mes "Ok, vamos lá.";
+		set Zeny, Zeny - .@preco;
+		getitem 12580,.@quantidade;
+		close;
+	case 2:
+		mes "Argh... você realmente precisará";
+		mes "desses itens...";
+		mes "Você quer que eu lhe explique novamente?";
+		mes "Eu não sei o que devo fazer agora...";
+		mes "O que eu devo fazer?";
+		emotion e_swt2,1;
+		close;
+	case 3:
+		mes "Realmente minha classe é 'Mago'.";
+		mes "Eu fui aprender algumas técnicas de comércio na";
+		mes "Guilda dos Mercadores para poder";
+		mes "vender esse novo item.";
+		mes "É por isso que estou vendendo por conta própria.";
+		next;
+		mes "[Catalogador Mágico]";
+		mes "Existem muitos aventureiros aqui";
+		mes "que sempre vem e vão.";
+		mes "Tenho certeza que venderei todos";
+		mes "esses itens em breve.";
+		mes "Você não acha?";
+		mes "Então, vamos vender! Quer comprar mais alguns?";
+		mes "Por favor?!... POR FAVORRR?!";
+		close;
+	}
+}

@@ -1,0 +1,1680 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |	
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: labirinto_da_neblina.txt               |	
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.2                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Instância do Labirinto da Neblina.          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | 1.1 Criado Script [Protimus]                           |
+//   | 1.2 Adaptações e Otimizações [Hold]                    |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+bif_fild01	mapflag	loadevent
+bif_fild01,158,340,5	script	Soldado Esplêndido#inst	447,{
+	if (ins_bif == 0) {
+		mes "[Soldado Esplêndido]";
+		if (BaseLevel > 69) {
+			set .@party_id, getcharid(1);
+			if (.@party_id > 0) {
+				if(getcharid(0) == getpartyleader(getcharid(1),2)) {
+					mes "Você quer entrar no Labirinto da Neblina?"; 
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Bravo aventureiro! Ninguém ousa passar por aqui. É um grande desafio!";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Se você seguir as minhas instruções, depois de um simples processo de registro conseguirá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Nome do Grupo: "+strcharinfo(1)+" ";
+					mes "Líder do Grupo: "+strcharinfo(0)+" ";
+					mes "Irei anotar isso em meu relatório.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "No topo do mapa você vai encontrar árvores, plantas e um pequeno túnel que dá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Boa sorte!";
+					set ins_bif,1;
+				} else {
+					mes "Você quer entrar no Labirinto da Neblina?"; 
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Bravo aventureiro! Ninguém ousa passar por aqui. É um grande desafio!";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Se você seguir as minhas instruções, depois de um simples processo de registro conseguirá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "No topo do mapa você vai encontrar árvores, plantas e um pequeno túnel que dá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Boa sorte!";
+					set ins_bif,1;
+				}
+			} else
+				mes "Você precisa de um grupo para poder entrar no Labirinto da Neblina.";
+		} else
+			mes "O que um Aprendiz está fazendo aqui?! Esse é um lugar perigoso, vá para casa!";
+	} else if(ins_bif == 1) {
+		mes "[Soldado Esplêndido]";
+		if (BaseLevel > 69) {
+			set .@party_id, getcharid(1);
+			if(.@party_id > 0) {
+				if(getcharid(0) == getpartyleader(getcharid(1),2)) {
+					mes "Você quer entrar no Labirinto da Neblina?"; 
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Bravo aventureiro! Ninguém ousa passar por aqui. É um grande desafio!";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Se você seguir as minhas instruções, depois de um simples processo de registro conseguirá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Nome do Grupo: "+strcharinfo(1)+" ";
+					mes "Líder do Grupo: "+strcharinfo(0)+" ";
+					mes "Irei anotar isso em meu relatório.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "No topo do mapa você vai encontrar árvores, plantas e um pequeno túnel que dá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Boa sorte!";
+				} else {
+					mes "Você quer entrar no Labirinto da Neblina?"; 
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Bravo aventureiro! Ninguém ousa passar por aqui. É um grande desafio!";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Se você seguir as minhas instruções, depois de um simples processo de registro conseguirá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "No topo do mapa você vai encontrar árvores, plantas e um pequeno túnel que dá acesso ao Labirinto da Neblina.";
+					next;
+					mes "[Soldado Esplêndido]";
+					mes "Boa sorte!";
+				}
+			} else
+				mes "Você precisa de um grupo antes de entrar no Labirinto da Neblina.";
+		} else
+			mes "O que um novato está fazendo aqui?! Esse é um lugar perigoso, vá para casa!";
+	}
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="bif_fild01")
+		showevent 1,0;
+	end;
+}
+bif_fild01,161,355,0	script	Túnel	844,{
+	if (ins_bif == 1) {
+		set .@party_id, getcharid(1);
+		set .@ins_mas, getpartyleader(.@party_id,2);
+		set .@p_name$, getpartyname(.@party_id);
+		set .@p_reader$, strcharinfo(0);
+		set .@md_name$, "Labirinto da Neblina";
+
+		getpartymember(.@party_id);
+		set .@partymembercount,$@partymembercount;
+		copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
+
+		set .@miststime,checkquest(7211,PLAYTIME);
+		if ((.@party_id > 0) && ((.@partymembercount > 1))) {
+			if (.@miststime == -1) {
+				if (.@ins_mas == getcharid(0)) {
+					mes "Criação de grupo confirmada. Gostaria de agendar a entrada de " + .@md_name$ + "?";
+					next;
+					switch(select("Reservar o " + .@md_name$ + ".:Entrar no calabouço.:Cancelar.")) {
+					case 1:
+						set .@instance, instance_create(.@md_name$, .@party_id);
+						if (.@instance < 0) {
+							mes "Nome do Grupo: "+.@p_name$+"";
+							mes "Líder do Grupo: "+.@p_reader$+"";
+							mes "^0000ff"+.@md_name$+" ^000000 - Falha ao reservar.";
+							close;
+						} else {
+							mes "^0000ff"+.@md_name$+"^000000 - Aguardando a reserva.";
+							mes "Após fazer a reserva, você deve selecionar no menu a opção 'Entrar no Calabouço' caso deseje entrar no " + .@md_name$ + ".";
+
+							for( set .@i, 1; .@i <= 1; set .@i, .@i + 1 ) {
+								if( instance_attachmap(.@i + "@mist", .@instance) == "" )
+									break;
+							}
+							if( .@i < 1 ) {
+								instance_destroy(.@instance);
+								close;
+							}
+							instance_attach(.@instance);
+							instance_set_timeout 7200,300,.@instance;
+							instance_init(.@instance);
+
+							donpcevent instance_npcname("mist#spawn_mvp", instance_id())+"::OnInstanceInit"; 
+							donpcevent instance_npcname("mist#spawn_aranha", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_angramantis", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_parus", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_fatum", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_miming", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_memoria", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand01", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand02", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand03", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand04", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand05", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand06", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand07", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand08", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand09", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand10", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand11", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand12", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand13", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_rand14", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro1", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro2", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro3", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro4", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro5", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro6", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro10", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro11", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro12", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("mist#warp_jardim_c", instance_id())+"::OnInstanceInit";
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel1", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel2", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel3", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel4", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel5", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel6", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel8", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel10", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel11", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel12", instance_id());
+							disablenpc instance_npcname("Trepadeira#trepadeira_cortavel13", instance_id());
+							disablenpc instance_npcname("Loki#npc_mist2", instance_id());
+							disablenpc instance_npcname("Garota Desmaiada#npc_mist1", instance_id());
+							close;
+						}
+					case 2:
+						if (has_instance("1@mist") == "") {
+							mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+							mes "O líder do grupo não reservou a entrada no calabouço.";
+							next;
+							mes "Após a reserva ser concluída, o calabouço será criado.";
+							mes "Caso o seu calabouço tenha sido destruído deverá esperar 7 dias para entrar novamente.";
+						}
+						else if ((has_instance("1@mist") != "") && (.@partymembercount < 2))
+							mes "Você precisa de no mínimo 2 pessoas no grupo para entrar no calabouço.";
+						else {
+							mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
+							setquest 7211;
+							warp "1@mist",86,27;
+						}
+					case 3:
+						close;
+					}
+				} else {
+					if(select("Entrar no "+.@md_name$+":Cancelar") == 1) {
+						if (has_instance("1@mist") == "") {
+							mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+							mes "O líder do grupo não reservou a entrada no calabouço.";
+						}
+						else if ((has_instance("1@mist") != "") && (.@partymembercount < 2)) {
+							mes "Você precisa de no mínimo 2 pessoas no grupo para entrar no calabouço.";
+						}
+						else {
+							mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
+							setquest 7211;
+							warp "1@mist",86,27;
+						}
+					}
+					close;
+				}
+			}
+			else if ((.@miststime == 0) || (.@miststime == 1)) {
+				mes "Você pode entrar no calabouço se já tiver gerado ele.";
+				next;
+				if(select("Entrar no "+.@md_name$+":Cancelar") == 1) {
+					if (has_instance("1@mist") == "") {
+						mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
+						mes "O líder do grupo não reservou a entrada no calabouço.";
+					}
+					else if ((has_instance("1@mist") != "") && (.@partymembercount < 2))
+						mes "Você precisa de no mínimo 2 pessoas no grupo para entrar no calabouço.";
+					else {
+						mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
+						setquest 7211;
+						warp "1@mist",86,27;
+					}
+				}
+				close;
+			}
+			else if (.@miststime == 2) {
+				set .@delmists_time,checkquest(7211,PLAYTIME);
+				if (.@delmists_time == 2) {
+					mes "^0000ffTodos os efeitos colaterias recebidos no Labirinto da Neblina já foram removidos. Você pode entrar ou gerar novamente um " + .@md_name$ + ".";
+					erasequest 7211;
+					if(ins_bif != 0)
+						set ins_bif,0;
+				} else
+					mes "Você não pode criar outra instância em um intervalo menor que 24 horas.";
+				close;
+			}
+		} else {
+			mes "Para gerar uma instância, você precisa estar em um grupo com dois membros ou mais e ser o líder do mesmo.";
+			close;
+		}
+	} else {
+		mes "Você quer entrar no túnel do Labirinto da Neblina?";
+		next;
+		if(select("Entrar","Não entrar") == 1)
+			mes "No momento você não tem acesso à esta instância.";
+		close;
+	}
+}
+
+// Pétalas de Flores
+bif_fild01,38,374,4	script	Pétalas de Flores	844,{
+	if (countitem(12561) >= 1) {
+		mes "A sua ^0000FFSemente Misteriosa^000000 está reagindo com as pétalas de flores, deseja usá-la?";
+		next;
+		if(select("Sim.","Não, obrigado.") == 1) {
+			delitem 12561,1;
+			mes "-As pétalas de flores estão levando-o até o topo-";
+			close2;
+			warp "bif_fild02",160,230;
+			end;
+		}
+	} else
+		mes "Existem pétalas de flores aqui...";
+	close;
+}
+
+// Trepadeira não-cortável
+1@mist,247,123,0	script	Trepadeira#trepadeira	527,{
+	if(strnpcinfo(0) == "Trepadeira#trepadeira13")
+		instance_announce 0, "Jardineiros: Nós ainda não fomos completamente derrotados!!!",bc_map,"0x008000";
+	else
+		instance_announce 0, "Trepadeira: Eu sou a guardiã deste lugar! Ninguém passará!",bc_map,"0x008000";
+	end;
+}
+
+// Trepadeira cortável
+1@mist,247,123,0	script	Trepadeira#trepadeira_cortavel	527,{
+	mes "Não há mais um Jardineiro protetor desta árvore. Você pode cortá-la.";
+	next;
+	if(select("Cortá-la e continuar","Cancelar" ) == 1) {
+		set .@i, atoi(replacestr(strnpcinfo(2), "trepadeira_cortavel", ""));
+		mes "Você pode continuar seu caminho através deste novo portal. Você destruiu a árvore.";
+		misceffect 16;
+		disablenpc instance_npcname(strnpcinfo(0), instance_id());
+		enablenpc instance_npcname("mist#warp_jardim" + (.@i ? .@i:""), instance_id());
+		close2;
+		switch(.@i) {
+		case 0:
+			instance_announce 0, "A lança de Tom está quebrada! Cuidado, Tomba! Cuidado, Tomba!",bc_map,"0x008000";
+			break;
+		case 1:
+			instance_announce 0, "A árvore do Jardim de Tomba foi cortada. Remi, o que você vai fazer agora?",bc_map,"0x008000";
+			break;
+		case 2:
+			instance_announce 0, "Remi... A Árvore do Jardim de Remi foi cortada... Rem, você é o próximo. Pobre Rem!",bc_map,"0x008000";
+			break;
+		case 3:
+			instance_announce 0, "Argh... Rem vai dormir. Rem vai dormir agora e nunca mais acordar!",bc_map,"0x008000";
+			break;
+		case 4:
+			instance_announce 0, "Não trabalho mais! Não procurem mais por Ron, o segundo jardineiro!!",bc_map,"0x008000";
+			break;
+		case 5:
+			instance_announce 0, "As árvores de Ron e Rover também foram cortadas. Quem está tentando abrir o caminho pela floresta? Quem?",bc_map,"0x008000";
+			break;
+		case 6:
+			instance_announce 0, "A árvore do jardim de Mona, a Catadora de Sementes, se foi! Mona também! Namon vai ficar bem porque é corajoso, não é? Namon, você está bem?",bc_map,"0x008000";
+			break;
+		case 7:
+		case 8:
+			break;
+		case 9:
+			instance_announce 0, "O Corajoso Namon encarou seu destino sem muita coragem... *hi hi hi*",bc_map,"0x008000";
+			break;
+		case 10:
+			instance_announce 0, "*snif* *snif* Tito se foi! Tito já era! Buááááá!!",bc_map,"0x008000";
+			break;
+		case 11:
+			instance_announce 0, "Tito, o Trabalhador, foi derrotado! Pare de brincar e vá trabalhar, Tete! Comece a Trabalhar!",bc_map,"0x008000";
+			break;
+		case 12:
+			instance_announce 0, "Eles são fortes, fortes mesmo. O que vamos fazer agora? Há algum jardineiro sobrando? Há algum?",bc_map,"0x008000";
+			break;
+		case 13:
+			break;
+		}
+		end;
+	}
+	close;
+}
+
+// Placa
+1@mist,251,123,3	script	Placa#mist	858,{
+	mes "[Aviso]";
+	mes "Esta floresta possui uma névoa misteriosa...";
+	mes "As vezes as pessoas podem se perder dentro dela.";
+	next;
+	mes "[Aviso]";
+	mes "Precisa de algo?";
+	next;	
+	if(select("Atualize minha posição:Nada") == 1) {
+		atcommand "@refresh";
+		end;
+	}
+	close;
+}
+
+// Semente Misteriosa
+1@mist,132,179,0	script	Semente Misteriosa#01	844,{
+	getitem 12561,1;
+	misceffect 16;
+	disablenpc instance_npcname(strnpcinfo(0), instance_id());
+	end;
+}
+
+// Spawn do MVP Dragão Púrpura
+1@mist,0,0,0	script	mist#spawn_mvp	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_mvp", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_mvp", instance_id());
+	set .@mob_ran,rand(1,30);
+	if (.@mob_ran < 6)
+		areamonster "1@mist",133,155,144,151,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))
+		areamonster "1@mist",256,180,268,173,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))
+		areamonster "1@mist",54,290,68,278,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))
+		areamonster "1@mist",244,227,258,216,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	if ((.@mob_ran > 20) && (.@mob_ran < 26))
+		areamonster "1@mist",183,267,196,260,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+	if (.@mob_ran > 26)
+		areamonster "1@mist",176,311,189,304,"Dragão Púrpura",2131,1,instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead";
+OnMyMobDead:
+	set .@callnum,1;
+	set .@v_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_mvp", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@v_mob_num;
+	if (.@mob_dead_num > 0) {
+		disablenpc instance_npcname("Jovem Misterioso#npc_mist3", instance_id());
+		enablenpc instance_npcname("Loki#npc_mist2", instance_id());
+		enablenpc instance_npcname("Garota Desmaiada#npc_mist1", instance_id());
+		instance_announce 0, "Dragão Púrpura: Estou sendo punido... por ter abandonado... meu caminho de Guardião?",bc_map,"0xFFFF00";
+		disablenpc instance_npcname("mist#spawn_mvp", instance_id());
+	}
+	end;
+}
+
+//Spawn de mobs fixos
+1@mist,0,0,0	script	mist#spawn_aranha	-1,{	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_aranha", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_aranha", instance_id());
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Aranha Pom",2132,1,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	
+OnMyMobDead:
+	set .@callnum,25;
+	set .@a_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@a_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Aranha Pom",2132,.@mob_dead_num,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Angra Mantis",2133,.@mob_dead_num,instance_npcname("mist#spawn_aranha", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_angramantis	-1,{
+	end;
+	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_angramantis", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_angramantis", instance_id());
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Angra Mantis",2133,1,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	
+OnMyMobDead:
+	set .@callnum,25;
+	set .@b_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@b_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Angra Mantis",2133,.@mob_dead_num,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Aranha Pom",2132,.@mob_dead_num,instance_npcname("mist#spawn_angramantis", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_parus	-1,{	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_parus", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_parus", instance_id());
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Parus",2134,1,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	
+OnMyMobDead:
+	set .@callnum,25;
+	set .@c_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Parus",2134,.@mob_dead_num,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Pequeno Fatum",2136,.@mob_dead_num,instance_npcname("mist#spawn_parus", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_fatum	-1,{	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_fatum", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_fatum", instance_id());
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Pequeno Fatum",2136,1,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	
+OnMyMobDead:
+	set .@callnum,25;
+	set .@c_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Pequeno Fatum",2136,.@mob_dead_num,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Parus",2134,.@mob_dead_num,instance_npcname("mist#spawn_fatum", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_miming	-1,{	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_miming", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_miming", instance_id());
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Miming",2137,1,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	
+OnMyMobDead:
+	set .@callnum,25;
+	set .@d_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@d_mob_num;
+	if (.@mob_dead_num > 0) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Miming",2137,.@mob_dead_num,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Parus",2134,.@mob_dead_num,instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_memoria	-1,{	
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_memoria", instance_id())+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_memoria", instance_id());
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	monster "1@mist",0,0,"Memória de Nidhogg",2138,1,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+
+OnMyMobDead:
+	set .@callnum,12;
+	set .@x_mob_num,mobcount("1@mist",instance_npcname("mist#spawn_miming", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@x_mob_num;
+	if (.@mob_dead_num > 10) {
+		set .@mob_ran,rand(1,25);
+		if (.@mob_ran > 20)
+			monster "1@mist",0,0,"Miming",2137,.@mob_dead_num,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+		else if (.@mob_ran < 21)
+			monster "1@mist",0,0,"Parus",2134,.@mob_dead_num,instance_npcname("mist#spawn_memoria", instance_id())+"::OnMyMobDead";
+	}
+	end;
+}
+
+//Spawn de mobs randômicos
+1@mist,0,0,0	script	mist#spawn_rand01	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand01", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand01", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand01", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",201,65,222,54,"Aranha Pom",2132,2;
+		areamonster "1@mist",201,65,222,54,"Angra Mantis",2133,2;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",201,65,222,54,"Angra Mantis",2133,2;
+		areamonster "1@mist",201,65,222,54,"Parus",2134,2;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",201,65,222,54,"Parus",2134,2;
+		areamonster "1@mist",201,65,222,54,"Pequeno Fatum",2136,2;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",201,65,222,54,"Pequeno Fatum",2136,2;
+		areamonster "1@mist",201,65,222,54,"Miming",2137,2;
+	}
+	if (.@mob_ran > 20) {
+		areamonster "1@mist",201,65,222,54,"Miming",2137,2;
+		areamonster "1@mist",201,65,222,54,"Aranha Pom",2132,2;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand02	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand02", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand02", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand02", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",129,152,151,144,"Aranha Pom",2132,2;
+		areamonster "1@mist",129,152,151,144,"Angra Mantis",2133,2;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",129,152,151,144,"Angra Mantis",2133,2;
+		areamonster "1@mist",129,152,151,144,"Parus",2134,2;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",129,152,151,144,"Parus",2134,2;
+		areamonster "1@mist",129,152,151,144,"Pequeno Fatum",2136,2;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",129,152,151,144,"Pequeno Fatum",2136,2;
+		areamonster "1@mist",129,152,151,144,"Miming",2137,2;
+	}
+	if (.@mob_ran > 20) {
+		areamonster "1@mist",129,152,151,144,"Miming",2137,2;
+		areamonster "1@mist",129,152,151,144,"Aranha Pom",2132,2;
+	}
+	end;
+}
+1@mist,0,0,0	script	mist#spawn_rand03	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand03", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand03", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand03", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6)
+		areamonster "1@mist",48,41,57,35,"Aranha Pom",2132,2;
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))
+		areamonster "1@mist",48,41,57,35,"Angra Mantis",2133,2;
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))
+		areamonster "1@mist",48,41,57,35,"Parus",2134,2;
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))
+		areamonster "1@mist",48,41,57,35,"Pequeno Fatum",2136,2;
+	if (.@mob_ran > 20)
+		areamonster "1@mist",48,41,57,35,"Miming",2137,2;
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand04	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand04", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand04", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand04", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",252,179,272,170,"Aranha Pom",2132,1;
+		areamonster "1@mist",252,179,272,170,"Angra Mantis",2133,2;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",252,179,272,170,"Angra Mantis",2133,1;
+		areamonster "1@mist",252,179,272,170,"Parus",2134,2;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",252,179,272,170,"Parus",2134,1;
+		areamonster "1@mist",252,179,272,170,"Pequeno Fatum",2136,2;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",252,179,272,170,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",252,179,272,170,"Miming",2137,2;
+	}
+	else if (.@mob_ran > 20) {
+		areamonster "1@mist",252,179,272,170,"Miming",2137,1;
+		areamonster "1@mist",252,179,272,170,"Aranha Pom",2132,2;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand05	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand05", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand05", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand05", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6)
+		areamonster "1@mist",217,179,226,174,"Aranha Pom",2132,2;
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))
+		areamonster "1@mist",217,179,226,174,"Angra Mantis",2133,2;
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))
+		areamonster "1@mist",217,179,226,174,"Parus",2134,2;
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))
+		areamonster "1@mist",217,179,226,174,"Pequeno Fatum",2136,2;
+	else if (.@mob_ran > 20)
+		areamonster "1@mist",217,179,226,174,"Miming",2137,2;
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand06	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand06", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand06", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand06", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6)
+		areamonster "1@mist",305,237,310,233,"Aranha Pom",2132,2;
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))
+		areamonster "1@mist",305,237,310,233,"Angra Mantis",2133,2;
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))
+		areamonster "1@mist",305,237,310,233,"Parus",2134,2;
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))
+		areamonster "1@mist",305,237,310,233,"Pequeno Fatum",2136,2;
+	else if (.@mob_ran > 20)
+		areamonster "1@mist",305,237,310,233,"Miming",2137,2;
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand07	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand07", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand07", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand07", instance_id());
+	areamonster "1@mist",312,139,330,124,"Aranha Pom",2132,2;
+	areamonster "1@mist",312,139,330,124,"Angra Mantis",2133,2;
+	areamonster "1@mist",312,139,330,124,"Parus",2134,2;
+	areamonster "1@mist",312,139,330,124,"Pequeno Fatum",2136,2;
+	areamonster "1@mist",312,139,330,124,"Miming",2137,2;
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand08	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand08", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand08", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand08", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",262,267,266,263,"Aranha Pom",2132,1;
+		areamonster "1@mist",272,248,276,243,"Angra Mantis",2133,1;
+		areamonster "1@mist",144,268,154,264,"Parus",2134,1;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",262,267,266,263,"Angra Mantis",2133,1;
+		areamonster "1@mist",272,248,276,243,"Parus",2134,1;
+		areamonster "1@mist",144,268,154,264,"Pequeno Fatum",2136,1;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",262,267,266,263,"Parus",2134,1;
+		areamonster "1@mist",272,248,276,243,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",144,268,154,264,"Miming",2137,1;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",262,267,266,263,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",272,248,276,243,"Miming",2137,1;
+		areamonster "1@mist",144,268,154,264,"Aranha Pom",2132,1;
+	}
+	else if (.@mob_ran > 20) {
+		areamonster "1@mist",262,267,266,263,"Miming",2137,1;
+		areamonster "1@mist",272,248,276,243,"Aranha Pom",2132,1;
+		areamonster "1@mist",144,268,154,264,"Angra Mantis",2133,1;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand09	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand09", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand09", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand09", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6)
+		areamonster "1@mist",210,203,214,198,"Aranha Pom",2132,3;
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))
+		areamonster "1@mist",215,232,219,229,"Angra Mantis",2133,3;
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))
+		areamonster "1@mist",210,203,214,198,"Parus",2134,3;
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))
+		areamonster "1@mist",215,232,219,229,"Pequeno Fatum",2136,3;
+	else if (.@mob_ran > 20)
+		areamonster "1@mist",210,203,214,198,"Miming",2137,3;
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand10	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand10", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand10", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand10", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		monster "1@mist",290,197,"Aranha Pom",2132,1;
+		areamonster "1@mist",241,257,245,253,"Angra Mantis",2133,2;
+		areamonster "1@mist",140,241,146,236,"Parus",2134,1;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		monster "1@mist",291,197,"Angra Mantis",2133,1;
+		areamonster "1@mist",241,257,245,253,"Parus",2134,2;
+		areamonster "1@mist",140,241,146,236,"Pequeno Fatum",2136,1;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		monster "1@mist",291,197,"Parus",2134,1;
+		areamonster "1@mist",241,257,245,253,"Pequeno Fatum",2136,2;
+		areamonster "1@mist",140,241,146,236,"Miming",2137,1;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		monster "1@mist",291,197,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",241,257,245,253,"Miming",2137,2;
+		areamonster "1@mist",140,241,146,236,"Aranha Pom",2132,1;
+	}
+	else if (.@mob_ran > 20) {
+		monster "1@mist",291,197,"Miming",2137,1;
+		areamonster "1@mist",241,257,245,253,"Aranha Pom",2132,2;
+		areamonster "1@mist",140,241,146,236,"Angra Mantis",2133,1;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand11	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand11", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand11", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand11", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",214,268,219,262,"Aranha Pom",2132,1;
+		areamonster "1@mist",181,267,200,260,"Angra Mantis",2133,2;
+		areamonster "1@mist",181,267,200,260,"Parus",2134,2;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",214,268,219,262,"Angra Mantis",2133,1;
+		areamonster "1@mist",181,267,200,260,"Parus",2134,2;
+		areamonster "1@mist",181,267,200,260,"Pequeno Fatum",2136,2;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",214,268,219,262,"Parus",2134,1;
+		areamonster "1@mist",181,267,200,260,"Pequeno Fatum",2136,2;
+		areamonster "1@mist",181,267,200,260,"Miming",2137,2;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",214,268,219,262,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",181,267,200,260,"Miming",2137,2;
+		areamonster "1@mist",181,267,200,260,"Aranha Pom",2132,2;
+	}
+	else if (.@mob_ran > 20) {
+		areamonster "1@mist",214,268,219,262,"Miming",2137,1;
+		areamonster "1@mist",181,267,200,260,"Aranha Pom",2132,2;
+		areamonster "1@mist",181,267,200,260,"Angra Mantis",2133,2;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand12	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand12", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand12", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand12", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",82,311,90,306,"Aranha Pom",2132,1;
+		areamonster "1@mist",286,92,295,88,"Angra Mantis",2133,1;
+		areamonster "1@mist",286,92,295,88,"Parus",2134,1;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",82,311,90,306,"Angra Mantis",2133,1;
+		areamonster "1@mist",286,92,295,88,"Parus",2134,1;
+		areamonster "1@mist",286,92,295,88,"Pequeno Fatum",2136,1;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",82,311,90,306,"Parus",2134,1;
+		areamonster "1@mist",286,92,295,88,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",286,92,295,88,"Miming",2137,1;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",82,311,90,306,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",286,92,295,88,"Miming",2137,1;
+		areamonster "1@mist",286,92,295,88,"Aranha Pom",2132,1;
+	}
+	else if (.@mob_ran > 20) {
+		areamonster "1@mist",82,311,90,306,"Miming",2137,1;
+		areamonster "1@mist",286,92,295,88,"Aranha Pom",2132,1;
+		areamonster "1@mist",286,92,295,88,"Angra Mantis",2133,1;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand13	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand13", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand13", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand13", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		monster "1@mist",290,197,"Aranha Pom",2132,1;
+		areamonster "1@mist",70,329,76,323,"Aranha Pom",2132,1;
+		areamonster "1@mist",304,334,309,331,"Angra Mantis",2133,1;
+		areamonster "1@mist",313,168,321,164,"Parus",2134,1;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		monster "1@mist",159,267,"Angra Mantis",2133,1;
+		areamonster "1@mist",70,329,76,323,"Angra Mantis",2133,1;
+		areamonster "1@mist",304,334,309,331,"Parus",2134,1;
+		areamonster "1@mist",313,168,321,164,"Pequeno Fatum",2136,1;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		monster "1@mist",159,267,"Parus",2134,1;
+		areamonster "1@mist",70,329,76,323,"Parus",2134,1;
+		areamonster "1@mist",304,334,309,331,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",313,168,321,164,"Miming",2137,1;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		monster "1@mist",159,267,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",70,329,76,323,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",304,334,309,331,"Miming",2137,1;
+		areamonster "1@mist",313,168,321,164,"Aranha Pom",2132,1;
+	}
+	else if (.@mob_ran > 20) {
+		monster "1@mist",159,267,"Miming",2137,1;
+		areamonster "1@mist",70,329,76,323,"Miming",2137,1;
+		areamonster "1@mist",304,334,309,331,"Aranha Pom",2132,1;
+		areamonster "1@mist",313,168,321,164,"Angra Mantis",2133,1;
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_rand14	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_rand14", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_rand14", instance_id())+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("mist#spawn_rand14", instance_id());
+	set .@mob_ran,rand(1,25);
+	if (.@mob_ran < 6) {
+		areamonster "1@mist",266,347,272,343,"Aranha Pom",2132,1;
+		areamonster "1@mist",259,316,264,311,"Angra Mantis",2133,1;
+		areamonster "1@mist",259,316,264,311,"Parus",2134,1;
+	}
+	else if ((.@mob_ran > 5) && (.@mob_ran < 11))  {
+		areamonster "1@mist",266,347,272,343,"Angra Mantis",2133,1;
+		areamonster "1@mist",259,316,264,311,"Parus",2134,1;
+		areamonster "1@mist",259,316,264,311,"Pequeno Fatum",2136,1;
+	}
+	else if ((.@mob_ran > 10) && (.@mob_ran < 16))  {
+		areamonster "1@mist",266,347,272,343,"Parus",2134,1;
+		areamonster "1@mist",259,316,264,311,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",259,316,264,311,"Miming",2137,1;
+	}
+	else if ((.@mob_ran > 15) && (.@mob_ran < 21))  {
+		areamonster "1@mist",266,347,272,343,"Pequeno Fatum",2136,1;
+		areamonster "1@mist",259,316,264,311,"Miming",2137,1;
+		areamonster "1@mist",259,316,264,311,"Aranha Pom",2132,1;
+	}
+	else if (.@mob_ran > 20) {
+		areamonster "1@mist",266,347,272,343,"Miming",2137,1;
+		areamonster "1@mist",259,316,264,311,"Aranha Pom",2132,1;
+		areamonster "1@mist",259,316,264,311,"Angra Mantis",2133,1;
+	}
+	end;
+}
+
+// Spawn de Jardineiros
+1@mist,0,0,0	script	mist#spawn_jardineiro	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",242,103,"Tom",2136,1,instance_npcname("mist#spawn_jardineiro", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro1	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro1", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro1", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",214,53,"Tomba",2136,1,instance_npcname("mist#spawn_jardineiro1", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira1", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel1", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro2	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro2", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro2", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",130,152,"Remi",2137,1,instance_npcname("mist#spawn_jardineiro2", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira2", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel2", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro3	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro3", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro3", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",104,102,"Rem",2136,1,instance_npcname("mist#spawn_jardineiro3", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira3", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel3", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro4	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro4", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro4", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",220,175,"Ron",2134,1,instance_npcname("mist#spawn_jardineiro4", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira4", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel4", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro5	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro5", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro5", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",292,215,"Rover",2134,1,instance_npcname("mist#spawn_jardineiro5", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira5", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel5", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro6	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro6", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro6", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",244,250,"Mona",2133,1,instance_npcname("mist#spawn_jardineiro6", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira6", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel6", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro7	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",224,226,"Aracnídeo",2132,1,instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead");
+	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead");
+	if(!.@mc && !.@mc2) {
+		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
+		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
+	}
+	//instance_announce 0, "",bc_map,"0x008000";
+	disablenpc instance_npcname("Trepadeira#trepadeira7", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel7", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro8	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",151,259,"Neo",2137,1,instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead");
+	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead");
+	if(!.@mc && !.@mc2) {
+		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
+		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
+	}
+	//instance_announce 0, "",bc_map,"0x008000";
+	disablenpc instance_npcname("Trepadeira#trepadeira8", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel8", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro9	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",90,175,"Namon",2134,1,instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead");
+	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead");
+	if(!.@mc && !.@mc2) {
+		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
+		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
+	}
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro10	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro10", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro10", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",268,288,"Tito",2133,1,instance_npcname("mist#spawn_jardineiro10", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira10", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel10", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro11	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro11", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro11", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",315,170,"Pumba",2134,1,instance_npcname("mist#spawn_jardineiro11", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira11", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel11", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro12	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro12", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro12", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",276,325,"Tete",2136,1,instance_npcname("mist#spawn_jardineiro12", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	disablenpc instance_npcname("Trepadeira#trepadeira12", instance_id());
+	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel12", instance_id());
+	end;
+}
+
+1@mist,0,0,0	script	mist#spawn_jardineiro13	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnEnable";
+	end;
+OnDisable:
+	killmonster "1@mist",instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	end;
+OnEnable:
+	monster "1@mist",310,130,"Tom",2136,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",312,130,"Tomba",2136,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",314,130,"Remi",2137,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",316,130,"Rem",2136,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",318,130,"Ron",2134,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",320,130,"Rover",2134,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",322,130,"Mona",2133,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",324,130,"Aracnídeo",2132,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",326,130,"Neo",2137,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",328,130,"Namon",2134,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",330,132,"Tito",2133,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",332,130,"Pumba",2134,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	monster "1@mist",333,130,"Tete",2136,1,instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead");
+	if(.@mc <= 0) {
+		//instance_announce 0, "",bc_map,"0x008000";
+		disablenpc instance_npcname("Trepadeira#trepadeira13", instance_id());
+		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel13", instance_id());
+	}
+	end;
+}
+
+// Trepadeiras não-cortáveis
+1@mist,225,98,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira1	527
+1@mist,159,184,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira2	527
+1@mist,61,39,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira3	527
+1@mist,230,179,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira4	527
+1@mist,285,225,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira5	527
+1@mist,161,316,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira6	527
+1@mist,206,200,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira7	527
+1@mist,221,236,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira8	527
+1@mist,204,299,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira9	527
+1@mist,95,287,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira10	527
+1@mist,324,325,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira11	527
+1@mist,280,343,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira12	527
+1@mist,345,186,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira13	527
+
+// Placas
+1@mist,226,94,3	duplicate(Placa#mist)	Placa#mist1	858
+1@mist,156,185,3	duplicate(Placa#mist)	Placa#mist2	858
+1@mist,57,39,3	duplicate(Placa#mist)	Placa#mist3	858
+1@mist,226,179,3	duplicate(Placa#mist)	Placa#mist4	858
+1@mist,288,226,3	duplicate(Placa#mist)	Placa#mist5	858
+1@mist,221,233,3	duplicate(Placa#mist)	Placa#mist6	858
+1@mist,209,201,3	duplicate(Placa#mist)	Placa#mist7	858
+1@mist,157,319,3	duplicate(Placa#mist)	Placa#mist8	858
+1@mist,207,298,3	duplicate(Placa#mist)	Placa#mist9	858
+1@mist,98,285,3	duplicate(Placa#mist)	Placa#mist10	858
+1@mist,323,324,3	duplicate(Placa#mist)	Placa#mist11	858
+1@mist,277,346,3	duplicate(Placa#mist)	Placa#mist12	858
+1@mist,343,185,3	duplicate(Placa#mist)	Placa#mist13	858
+1@mist,179,304,3	duplicate(Placa#mist)	Placa#mist14	858
+
+// Desativador de portais
+1@mist,0,0,0	script	mist#warp_jardim_c	-1,{
+	OnInstanceInit:
+		disablenpc instance_npcname("mist#warp_jardim", instance_id());
+		for(set .@i, 1; .@i < 14; set .@i, .@i+1)
+			disablenpc instance_npcname("mist#warp_jardim"+.@i, instance_id());
+		end;
+}
+
+// Portais dos jardins
+1@mist,247,124,0	warp	mist#warp_jardim	1,1,1@mist,164,66
+1@mist,225,98,0	warp	mist#warp_jardim1	1,1,1@mist,143,194
+1@mist,159,184,0	warp	mist#warp_jardim2	1,1,1@mist,49,38
+1@mist,61,39,0	warp	mist#warp_jardim3	1,1,1@mist,68,113
+1@mist,230,179,0	warp	mist#warp_jardim4	1,1,1@mist,289,170
+1@mist,285,225,0	warp	mist#warp_jardim5	1,1,1@mist,73,273
+1@mist,161,316,0	warp	mist#warp_jardim6	1,1,1@mist,108,203
+1@mist,206,200,0	warp	mist#warp_jardim7	1,1,1@mist,298,141
+1@mist,221,236,0	warp	mist#warp_jardim8	1,1,1@mist,233,324
+1@mist,204,299,0	warp	mist#warp_jardim9	1,1,1@mist,169,314
+1@mist,95,287,0	warp	mist#warp_jardim10	1,1,1@mist,323,276
+1@mist,324,325,0	warp	mist#warp_jardim11	1,1,1@mist,49,316
+1@mist,280,343,0	warp	mist#warp_jardim12	1,1,1@mist,49,316
+1@mist,345,186,0	warp	mist#warp_jardim13	1,1,bif_fild02,249,46
+
+// Trepadeiras cortáveis
+1@mist,225,98,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel1	527
+1@mist,159,184,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel2	527
+1@mist,61,39,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel3	527
+1@mist,230,179,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel4	527
+1@mist,285,225,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel5	527
+1@mist,161,316,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel6	527
+1@mist,206,200,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel7	527
+1@mist,221,236,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel8	527
+1@mist,204,299,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel9	527
+1@mist,95,287,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel10	527
+1@mist,324,325,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel11	527
+1@mist,280,343,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel12	527
+1@mist,345,186,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel13	527
+
+// Coleta de sementes
+1@mist,146,186,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#02	844
+1@mist,142,182,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#03	844
+1@mist,132,180,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#04	844
+1@mist,123,184,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#05	844
+1@mist,118,194,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#06	844
+1@mist,122,204,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#07	844
+1@mist,137,209,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#08	844
+1@mist,144,203,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#09	844
+1@mist,216,103,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#10	844
+1@mist,213,96,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#11	844
+1@mist,205,92,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#12	844
+1@mist,193,94,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#13	844
+1@mist,188,109,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#14	844
+1@mist,194,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#15	844
+1@mist,207,120,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#16	844
+1@mist,212,116,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#17	844
+1@mist,72,276,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#18	844
+1@mist,72,271,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#19	844
+1@mist,61,268,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#20	844
+1@mist,52,270,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#21	844
+1@mist,48,286,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#22	844
+1@mist,54,293,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#23	844
+1@mist,69,295,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#24	844
+1@mist,73,290,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#25	844
+1@mist,54,277,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#26	844
+1@mist,62,291,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#27	844
+1@mist,265,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#28	844
+1@mist,260,214,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#29	844
+1@mist,252,206,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#30	844
+1@mist,244,211,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#31	844
+1@mist,238,224,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#32	844
+1@mist,244,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#33	844
+1@mist,257,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#34	844
+1@mist,262,229,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#35	844
+1@mist,244,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#36	844
+1@mist,252,228,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#37	844
+1@mist,174,318,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#38	844
+1@mist,187,320,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#39	844
+1@mist,192,316,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#40	844
+1@mist,195,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#41	844
+1@mist,191,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#42	844
+1@mist,181,294,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#43	844
+1@mist,172,296,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#44	844
+1@mist,169,310,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#45	844
+1@mist,175,303,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#46	844
+1@mist,182,315,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#47	844
+1@mist,191,306,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#48	844
+1@mist,335,126,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#49	844
+1@mist,331,123,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#50	844
+1@mist,321,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#51	844
+1@mist,314,122,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#52	844
+1@mist,308,136,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#53	844
+1@mist,314,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#54	844
+1@mist,328,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#55	844
+1@mist,332,141,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#56	844
+1@mist,326,125,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#57	844
+1@mist,314,128,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#58	844
+1@mist,322,140,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#59	844
+1@mist,330,131,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#60	844
+1@mist,321,133,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#61	844
+
+// Portais comuns
+1@mist,109,69,0	warp	bif_inst_warp#1	1,1,1@mist,116,40
+1@mist,113,40,0	warp	bif_inst_warp#2	1,1,1@mist,90,81
+1@mist,93,81,0	warp	bif_inst_warp#3	1,1,1@mist,108,152
+1@mist,111,154,0	warp	bif_inst_warp#4	1,1,1@mist,239,110
+1@mist,236,110,0	warp	bif_inst_warp#5	1,1,1@mist,106,69
+1@mist,161,67,0	warp	bif_inst_warp#6	1,1,1@mist,159,85
+1@mist,180,116,0	warp	bif_inst_warp#7	1,1,1@mist,164,66
+1@mist,180,63,0	warp	bif_inst_warp#8	1,1,1@mist,141,90
+1@mist,116,84,0	warp	bif_inst_warp#9	1,1,1@mist,223,133
+1@mist,220,133,0	warp	bif_inst_warp#10	1,1,1@mist,200,64
+1@mist,197,64,0	warp	bif_inst_warp#11	1,1,1@mist,177,116
+1@mist,146,194,0	warp	bif_inst_warp#12	1,1,1@mist,225,95
+1@mist,133,194,0	warp	bif_inst_warp#13	1,1,1@mist,202,110
+1@mist,202,107,0	warp	bif_inst_warp#14	1,1,1@mist,133,191
+1@mist,217,110,0	warp	bif_inst_warp#15	1,1,1@mist,240,57
+1@mist,240,54,0	warp	bif_inst_warp#16	1,1,1@mist,214,110
+1@mist,234,67,0	warp	bif_inst_warp#17	1,1,1@mist,242,80
+1@mist,242,77,0	warp	bif_inst_warp#18	1,1,1@mist,153,136
+1@mist,156,136,0	warp	bif_inst_warp#19	1,1,1@mist,123,54
+1@mist,123,51,0	warp	bif_inst_warp#20	1,1,1@mist,240,57
+1@mist,49,41,0	warp	bif_inst_warp#21	1,1,1@mist,174,165
+1@mist,171,165,0	warp	bif_inst_warp#22	1,1,1@mist,169,144
+1@mist,169,141,0	warp	bif_inst_warp#23	1,1,1@mist,102,107
+1@mist,99,107,0	warp	bif_inst_warp#24	1,1,1@mist,49,38
+1@mist,65,113,0	warp	bif_inst_warp#25	1,1,1@mist,218,151
+1@mist,221,151,0	warp	bif_inst_warp#26	1,1,1@mist,118,126
+1@mist,115,126,0	warp	bif_inst_warp#27	1,1,1@mist,36,62
+1@mist,61,89,0	warp	bif_inst_warp#28	1,1,1@mist,189,140
+1@mist,186,140,0	warp	bif_inst_warp#29	1,1,1@mist,98,126
+1@mist,101,126,0	warp	bif_inst_warp#30	1,1,1@mist,238,152
+1@mist,235,152,0	warp	bif_inst_warp#31	1,1,1@mist,143,194
+1@mist,254,151,0	warp	bif_inst_warp#32	1,1,1@mist,271,164
+1@mist,275,211,0	warp	bif_inst_warp#33	1,1,1@mist,277,112
+1@mist,301,141,0	warp	bif_inst_warp#34	1,1,1@mist,99,232
+1@mist,95,242,0	warp	bif_inst_warp#35	1,1,1@mist,102,256
+1@mist,102,253,0	warp	bif_inst_warp#36	1,1,1@mist,215,177
+1@mist,212,177,0	warp	bif_inst_warp#37	1,1,1@mist,275,208
+1@mist,275,211,0	warp	bif_inst_warp#38	1,1,1@mist,277,112
+1@mist,289,167,0	warp	bif_inst_warp#39	1,1,1@mist,152,219
+1@mist,149,219,0	warp	bif_inst_warp#40	1,1,1@mist,118,227
+1@mist,115,227,0	warp	bif_inst_warp#41	1,1,1@mist,230,353
+1@mist,233,353,0	warp	bif_inst_warp#42	1,1,1@mist,288,225
+1@mist,301,237,0	warp	bif_inst_warp#43	1,1,1@mist,289,170
+1@mist,76,273,0	warp	bif_inst_warp#44	1,1,1@mist,288,225
+1@mist,62,282,0	warp	bif_inst_warp#45	1,1,1@mist,256,220
+1@mist,253,220,0	warp	bif_inst_warp#46	1,1,1@mist,65,282
+1@mist,267,213,0	warp	bif_inst_warp#47	1,1,1@mist,214,267
+1@mist,212,265,0	warp	bif_inst_warp#48	1,1,1@mist,288,266
+1@mist,285,266,0	warp	bif_inst_warp#49	1,1,1@mist,143,234
+1@mist,143,231,0	warp	bif_inst_warp#50	1,1,1@mist,223,282
+1@mist,223,279,0	warp	bif_inst_warp#51	1,1,1@mist,158,316
+1@mist,134,287,0	warp	bif_inst_warp#52	1,1,1@mist,293,195
+1@mist,295,197,0	warp	bif_inst_warp#53	1,1,1@mist,239,253
+1@mist,236,253,0	warp	bif_inst_warp#54	1,1,1@mist,288,266
+1@mist,111,203,0	warp	bif_inst_warp#55	1,1,1@mist,202,333
+1@mist,199,333,0	warp	bif_inst_warp#56	1,1,1@mist,204,251
+1@mist,206,249,0	warp	bif_inst_warp#57	1,1,1@mist,168,239
+1@mist,165,239,0	warp	bif_inst_warp#58	1,1,1@mist,89,173
+1@mist,86,173,0	warp	bif_inst_warp#59	1,1,1@mist,218,313
+1@mist,215,313,0	warp	bif_inst_warp#60	1,1,1@mist,214,267
+1@mist,177,265,0	warp	bif_inst_warp#61	1,1,1@mist,108,152
+1@mist,230,324,0	warp	bif_inst_warp#62	1,1,1@mist,221,233
+1@mist,230,230,0	warp	bif_inst_warp#63	1,1,1@mist,263,261
+1@mist,263,258,0	warp	bif_inst_warp#64	1,1,1@mist,272,246
+1@mist,269,246,0	warp	bif_inst_warp#65	1,1,1@mist,143,265
+1@mist,140,265,0	warp	bif_inst_warp#66	1,1,1@mist,209,200
+1@mist,166,314,0	warp	bif_inst_warp#67	1,1,1@mist,204,296
+1@mist,196,299,0	warp	bif_inst_warp#68	1,1,1@mist,168,200
+1@mist,165,200,0	warp	bif_inst_warp#69	1,1,1@mist,193,299
+1@mist,195,206,0	warp	bif_inst_warp#70	1,1,1@mist,169,341
+1@mist,166,341,0	warp	bif_inst_warp#71	1,1,1@mist,198,354
+1@mist,201,354,0	warp	bif_inst_warp#72	1,1,1@mist,83,224
+1@mist,86,224,0	warp	bif_inst_warp#73	1,1,1@mist,169,314
+1@mist,84,273,0	warp	bif_inst_warp#74	1,1,1@mist,98,287
+1@mist,111,298,0	warp	bif_inst_warp#75	1,1,1@mist,82,307
+1@mist,79,307,0	warp	bif_inst_warp#76	1,1,1@mist,284,89
+1@mist,281,89,0	warp	bif_inst_warp#77	1,1,1@mist,264,291
+1@mist,261,291,0	warp	bif_inst_warp#78	1,1,1@mist,114,298
+1@mist,294,293,0	warp	bif_inst_warp#79	1,1,1@mist,78,330
+1@mist,81,330,0	warp	bif_inst_warp#80	1,1,1@mist,308,330
+1@mist,308,327,0	warp	bif_inst_warp#81	1,1,1@mist,309,165
+1@mist,306,165,0	warp	bif_inst_warp#82	1,1,1@mist,298,293
+1@mist,326,276,0	warp	bif_inst_warp#83	1,1,1@mist,277,112
+1@mist,46,316,0	warp	bif_inst_warp#84	1,1,1@mist,113,328
+1@mist,95,328,0	warp	bif_inst_warp#85	1,1,1@mist,342,157
+1@mist,339,157,0	warp	bif_inst_warp#86	1,1,1@mist,343,328
+1@mist,343,325,0	warp	bif_inst_warp#87	1,1,1@mist,344,120
+1@mist,344,123,0	warp	bif_inst_warp#88	1,1,1@mist,277,343
+1@mist,317,89,0	warp	bif_inst_warp#89	1,1,1@mist,339,284
+1@mist,339,281,0	warp	bif_inst_warp#90	1,1,1@mist,332,171
+1@mist,329,171,0	warp	bif_inst_warp#91	1,1,1@mist,344,120
+1@mist,256,313,0	warp	bif_inst_warp#92	1,1,1@mist,342,308
+1@mist,342,305,0	warp	bif_inst_warp#93	1,1,1@mist,332,120
+1@mist,335,120,0	warp	bif_inst_warp#94	1,1,1@mist,259,313
+1@mist,104,22,0	warp	bif_inst_warp#95	1,1,bif_fild01,161,352

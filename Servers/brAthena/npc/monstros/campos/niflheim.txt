@@ -1,0 +1,354 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: niflheim.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.6/1.6/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros dos Campos de Niflheim.           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] niflheim - Niflheim, o reino dos mortos
+//==================================================
+niflheim,0,0,0,0	monster#pre	Dullahan	1504,5,1800000,1200000,0
+niflheim,0,0,0,0	monster#pre	Árvore Maldita	1503,10,1200000,600000,0
+niflheim,0,0,0,0	monster#pre	Poltergeist	1510,10,1200000,600000,0
+niflheim,0,0,0,0	monster#pre	Quve	1508,20,300000,150000,0
+niflheim,0,0,0,0	monster#pre	Lude	1509,20,300000,150000,0,{}
+
+//==================================================
+// [Renovação] niflheim - Niflheim, O reino dos mortos
+//==================================================
+niflheim,0,0,0,0	monster#re	Lude	1509,20,5000,0,0
+niflheim,0,0,0,0	monster#re	Quve	1508,20,5000,0,0
+niflheim,0,0,0,0	monster#re	Árvore Maldita	1503,10,5000,0,0
+niflheim,0,0,0,0	monster#re	Poltergeist	1510,10,5000,0,0
+niflheim,0,0,0,0	monster#re	Dullahan	1504,5,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] nif_fild01 - Skellington, um Vilarejo Solitário em Niflheim
+//==================================================
+nif_fild01,0,0,0,0	monster#pre	Mascarado	1506,20,0,0,0
+nif_fild01,0,0,0,0	monster#pre	Mascarado	1506,30,300000,120000,0
+nif_fild01,227,253,20,20	monster#pre	Dullahan	1504,7,1800000,1200000,0
+nif_fild01,0,0,0,0	monster#pre	Dullahan	1504,13,0,0,0
+nif_fild01,0,0,0,0	monster#pre	Árvore Maldita	1503,10,0,0,0
+nif_fild01,0,0,0,0	monster#pre	Poltergeist	1510,10,0,0,0
+nif_fild01,0,0,0,0	monster#pre	Quve	1508,30,0,0,0,{}
+
+//==================================================
+// [Renovação] nif_fild01 - Skellington, um Vilarejo Solitário em Niflheim
+//==================================================
+nif_fild01,0,0,0,0	monster#re	Mascarado	1506,50,5000,0,0
+nif_fild01,0,0,0,0	monster#re	Quve	1508,30,5000,0,0
+nif_fild01,0,0,0,0	monster#re	Dullahan	1504,20,5000,0,0
+nif_fild01,0,0,0,0	monster#re	Árvore Maldita	1503,10,5000,0,0
+nif_fild01,0,0,0,0	monster#re	Poltergeist	1510,10,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] nif_fild02 - Vale de Gyoll
+//==================================================
+nif_fild02,366,236,15,15	monster#pre	Lude	1509,10,360000,150000,0
+nif_fild02,356,139,10,10	monster#pre	Serial Killer	1507,1,1200000,600000,0
+nif_fild02,144,232,10,10	monster#pre	Serial Killer	1507,1,1200000,600000,0
+nif_fild02,118,282,15,15	monster#pre	Serial Killer	1507,1,1200000,600000,0
+nif_fild02,62,327,15,15	monster#pre	Serial Killer	1507,1,1200000,600000,0
+nif_fild02,0,0,0,0	monster#pre	Serial Killer	1507,7,0,0,0
+nif_fild02,114,136,15,15	monster#pre	Loli Ruri	1505,2,1200000,600000,0
+nif_fild02,52,115,10,10	monster#pre	Poltergeist	1510,4,1200000,600000,0
+nif_fild02,84,276,15,15	monster#pre	Árvore Maldita	1503,5,1200000,600000,0
+nif_fild02,352,273,15,15	monster#pre	Árvore Maldita	1503,5,300000,150000,0
+nif_fild02,0,0,0,0	monster#pre	Loli Ruri	1505,19,120000,60000,0
+nif_fild02,352,273,15,15	monster#pre	Dullahan	1504,5,600000,300000,0
+nif_fild02,0,0,0,0	monster#pre	Dullahan	1504,5,0,0,0
+nif_fild02,0,0,0,0	monster#pre	Poltergeist	1510,6,0,0,0
+nif_fild02,0,0,0,0	monster#pre	Árvore Maldita	1503,10,0,0,0,{}
+
+//==================================================
+// [Renovação] nif_fild02 - Vale de Gyoll
+//==================================================
+nif_fild02,0,0,0,0	monster#re	Loli Ruri	1505,21,5000,0,0
+nif_fild02,0,0,0,0	monster#re	Árvore Maldita	1503,20,5000,0,0
+nif_fild02,0,0,0,0	monster#re	Serial Killer	1507,11,5000,0,0
+nif_fild02,0,0,0,0	monster#re	Dullahan	1504,10,5000,0,0
+nif_fild02,0,0,0,0	monster#re	Lude	1509,10,5000,0,0
+nif_fild02,0,0,0,0	monster#re	Poltergeist	1510,10,5000,0,0,{}
+
+niflheim,1,1,0	script#pre	NifInvasion	-1,{
+OnInit:
+
+	while(1) {
+	initnpctimer;
+	end;
+
+OnTimer7980000:
+	stopnpctimer;
+    	switch(rand(6)) {
+
+	case 0:
+		monster "niflheim",327,193,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",330,193,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",324,193,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",327,196,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",327,190,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",324,190,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",330,190,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",324,196,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",330,196,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 1:
+		monster "niflheim",337,252,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",337,255,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",337,249,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",334,252,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",340,252,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",334,249,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",340,255,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",340,249,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",334,255,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 2:
+		monster "niflheim",190,185,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",190,188,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",190,182,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",193,185,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",187,185,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",187,182,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",193,182,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",193,188,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",187,188,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 3:
+		monster "niflheim",131,138,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",131,141,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",131,135,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",128,138,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",134,138,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",134,141,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",128,141,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",134,135,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",128,135,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 4:
+		monster "niflheim",311,64,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",311,67,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",311,61,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",308,64,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",314,64,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",314,61,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",314,67,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",308,67,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",308,61,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 5:
+		monster "niflheim",238,131,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",238,134,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",238,128,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",235,131,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",241,131,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",235,128,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",235,134,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",241,128,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",241,134,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	case 6:
+		monster "niflheim",86,219,"Senhor dos Mortos",1373,1,"NifInvasion::OnLoDDead";
+		monster "niflheim",86,222,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",86,216,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",89,219,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",83,219,"Serial Killer",1507,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",89,222,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",89,216,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",83,222,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",83,216,"Loli Ruri",1505,1,"NifInvasion::OnInvasionMonsters";
+	break;
+
+	}
+		monster "niflheim",154,95,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",115,65,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",330,195,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",151,83,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",285,245,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",235,135,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",265,48,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",186,139,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",166,267,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",82,202,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",219,44,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",287,44,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",275,165,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",138,204,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",299,39,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",31,154,"Mascarado",1506,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",154,96,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",116,65,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",151,84,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",286,245,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",330,196,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",236,135,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",165,49,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",167,267,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",82,203,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",220,44,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",287,45,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",287,44,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",276,166,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",139,205,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",300,39,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+		monster "niflheim",31,155,"Dullahan",1504,1,"NifInvasion::OnInvasionMonsters";
+	end;
+
+OnInvasionMonsters:
+	end;
+
+OnLoDDead:
+	killmonster "niflheim","NifInvasion::OnInvasionMonsters";
+	}
+}
+
+niflheim,0,0,0	script#re	mvp_niflheim	-1,{
+OnTimer7980000: // delay1 = 7980000 ms (133 min)
+	stopnpctimer;
+OnInit:
+	switch(rand(6)) {
+	case 0:
+		monster "niflheim",327,193,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",330,193,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",324,193,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",327,196,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",327,190,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",324,190,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",330,190,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",324,196,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",330,196,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 1:
+		monster "niflheim",337,252,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",337,255,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",337,249,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",334,252,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",340,252,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",334,249,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",340,255,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",340,249,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",334,255,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 2:
+		monster "niflheim",190,185,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",190,188,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",190,182,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",193,185,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",187,185,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",187,182,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",193,182,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",193,188,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",187,188,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 3:
+		monster "niflheim",131,138,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",131,141,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",131,135,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",128,138,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",134,138,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",134,141,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",128,141,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",134,135,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",128,135,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 4:
+		monster "niflheim",311,64,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",311,67,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",311,61,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",308,64,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",314,64,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",314,61,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",314,67,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",308,67,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",308,61,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 5:
+		monster "niflheim",238,131,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",238,134,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",238,128,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",235,131,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",241,131,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",235,128,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",235,134,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",241,128,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",241,134,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	case 6:
+		monster "niflheim",86,219,"Senhor dos Mortos",1373,1,strnpcinfo(3)+"::OnLoDDead";
+		monster "niflheim",86,222,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",86,216,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",89,219,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",83,219,"Serial Killer",1507,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",89,222,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",89,216,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",83,222,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		monster "niflheim",83,216,"Loli Ruri",1505,1,strnpcinfo(3)+"::OnInvasionMonsters";
+		break;
+	}
+	
+	monster "niflheim",154,95,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",115,65,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",330,195,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",151,83,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",285,245,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",235,135,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",265,48,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",186,139,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",166,267,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",82,202,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",219,44,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",287,44,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",275,165,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",138,204,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",299,39,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",31,154,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",154,96,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",116,65,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",151,84,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",286,245,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",330,196,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",236,135,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",165,49,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",167,267,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",82,203,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",220,44,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",287,45,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",287,44,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",276,166,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",139,205,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",300,39,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",31,155,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	end;
+
+OnLoDDead:
+	killmonster "niflheim",strnpcinfo(3)+"::OnInvasionMonsters";
+	initnpctimer;
+OnInvasionMonsters:
+	end;
+}

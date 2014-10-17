@@ -1,0 +1,196 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: bossnia.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.0/1.1                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Spawns de boss monstros MvP em Bossnia.     |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução [Megasantos]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// bossnia_01 - Bossnia
+//==================================================
+bossnia_01,0,0,0,0	boss_monster	Hatii	1252,5,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Pesar Noturno	1768,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Senhor das Trevas	1272,3,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Doppelganger	1046,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Drácula	1389,5,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Drake	1112,10,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Detardeurus	1719,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Maya	1147,10,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Abelha-Rainha	1059,1,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Bafomé 	1039,10,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Egnigem Cenia	1658,10,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Amon Ra	1511,1,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Atroce	1785,10,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Vesper	1685,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Eddga	1115,1,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Osíris	1038,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Senhor dos Orcs	1190,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Orc Herói	1087,2,1800000,0,1
+bossnia_01,0,0,0,0	boss_monster	Samurai Encarnado	1492,1,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Flor do Luar	1150,1,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Senhor dos Mortos	1373,1,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Ktullanux	1779,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Kiel-D-01	1734,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Memória de Thanatos	1708,2,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Lady Tanee	1688,1,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Tao Gunka	1583,1,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	General Tartaruga	1312,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Faraó	1157,2,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Bispo Decadente	1871,5,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Freeoni	1159,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Besouro-Ladrão Dourado	1086,10,3600000,0,1
+bossnia_01,0,0,0,0	boss_monster	Serpente Suprema	1418,10,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	RSX-0806	1623,5,7200000,0,1
+bossnia_01,0,0,0,0	boss_monster	Algoz Eremes	1647,1,0,0,1
+bossnia_01,137,118,1,1	boss_monster	Mestre-ferreiro Howard	1648,1,0,0,1
+bossnia_01,122,195,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_01,45,118,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_01,196,122,1,1	boss_monster	Valquíria Randgris	1751,1,0,0,1
+bossnia_01,142,61,1,1	boss_monster	Ifrit	1832,1,0,0,1
+
+//==================================================
+// bossnia_02 - Bossnia
+//==================================================
+bossnia_02,0,0,0,0	boss_monster	Hatii	1252,5,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Pesar Noturno	1768,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Senhor das Trevas	1272,3,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Doppelganger	1046,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Drácula	1389,5,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Drake	1112,10,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Detardeurus	1719,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Maya	1147,10,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Abelha-Rainha	1059,1,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Bafomé 	1039,10,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Egnigem Cenia	1658,10,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Amon Ra	1511,1,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Atroce	1785,10,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Vesper	1685,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Eddga	1115,1,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Osíris	1038,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Senhor dos Orcs	1190,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Orc Herói	1087,2,1800000,0,1
+bossnia_02,0,0,0,0	boss_monster	Samurai Encarnado	1492,1,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Flor do Luar	1150,1,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Senhor dos Mortos	1373,1,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Ktullanux	1779,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Kiel-D-01	1734,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Memória de Thanatos	1708,2,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Lady Tanee	1688,1,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Tao Gunka	1583,1,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	General Tartaruga	1312,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Faraó	1157,2,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Bispo Decadente	1871,5,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Freeoni	1159,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Besouro-Ladrão Dourado	1086,10,3600000,0,1
+bossnia_02,0,0,0,0	boss_monster	Serpente Suprema	1418,10,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	RSX-0806	1623,5,7200000,0,1
+bossnia_02,0,0,0,0	boss_monster	Algoz Eremes	1647,1,0,0,1
+bossnia_02,137,118,1,1	boss_monster	Mestre-ferreiro Howard	1648,1,0,0,1
+bossnia_02,122,195,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_02,45,118,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_02,196,122,1,1	boss_monster	Valquíria Randgris	1751,1,0,0,1
+bossnia_02,142,61,1,1	boss_monster	Ifrit	1832,1,0,0,1
+
+//==================================================
+// bossnia_03 - Bossnia
+//==================================================
+bossnia_03,0,0,0,0	boss_monster	Hatii	1252,5,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Pesar Noturno	1768,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Senhor das Trevas	1272,3,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Doppelganger	1046,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Drácula	1389,5,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Drake	1112,10,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Detardeurus	1719,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Maya	1147,10,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Abelha-Rainha	1059,1,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Bafomé 	1039,10,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Egnigem Cenia	1658,10,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Amon Ra	1511,1,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Atroce	1785,10,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Vesper	1685,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Eddga	1115,1,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Osíris	1038,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Senhor dos Orcs	1190,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Orc Herói	1087,2,1800000,0,1
+bossnia_03,0,0,0,0	boss_monster	Samurai Encarnado	1492,1,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Flor do Luar	1150,1,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Senhor dos Mortos	1373,1,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Ktullanux	1779,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Kiel-D-01	1734,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Memória de Thanatos	1708,2,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Lady Tanee	1688,1,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Tao Gunka	1583,1,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	General Tartaruga	1312,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Faraó	1157,2,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Bispo Decadente	1871,5,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Freeoni	1159,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Besouro-Ladrão Dourado	1086,10,3600000,0,1
+bossnia_03,0,0,0,0	boss_monster	Serpente Suprema	1418,10,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	RSX-0806	1623,5,7200000,0,1
+bossnia_03,0,0,0,0	boss_monster	Algoz Eremes	1647,1,0,0,1
+bossnia_03,137,118,1,1	boss_monster	Mestre-ferreiro Howard	1648,1,0,0,1
+bossnia_03,122,195,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_03,45,118,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_03,196,122,1,1	boss_monster	Valquíria Randgris	1751,1,0,0,1
+bossnia_03,142,61,1,1	boss_monster	Ifrit	1832,1,0,0,1
+
+//==================================================
+// bossnia_04 - Bossnia
+//==================================================
+bossnia_04,0,0,0,0	boss_monster	Hatii	1252,5,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Pesar Noturno	1768,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Senhor das Trevas	1272,3,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Doppelganger	1046,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Drácula	1389,5,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Drake	1112,10,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Detardeurus	1719,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Maya	1147,10,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Abelha-Rainha	1059,1,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Bafomé 	1039,10,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Egnigem Cenia	1658,10,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Amon Ra	1511,1,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Atroce	1785,10,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Vesper	1685,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Eddga	1115,1,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Osíris	1038,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Senhor dos Orcs	1190,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Orc Herói	1087,2,1800000,0,1
+bossnia_04,0,0,0,0	boss_monster	Samurai Encarnado	1492,1,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Flor do Luar	1150,1,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Senhor dos Mortos	1373,1,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Ktullanux	1779,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Kiel-D-01	1734,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Memória de Thanatos	1708,2,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Lady Tanee	1688,1,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Tao Gunka	1583,1,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	General Tartaruga	1312,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Faraó	1157,2,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Bispo Decadente	1871,5,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Freeoni	1159,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Besouro-Ladrão Dourado	1086,10,3600000,0,1
+bossnia_04,0,0,0,0	boss_monster	Serpente Suprema	1418,10,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	RSX-0806	1623,5,7200000,0,1
+bossnia_04,0,0,0,0	boss_monster	Algoz Eremes	1647,1,0,0,1
+bossnia_04,137,118,1,1	boss_monster	Mestre-ferreiro Howard	1648,1,0,0,1
+bossnia_04,122,195,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_04,45,118,1,1	boss_monster	Belzebu	1873,1,0,0,1
+bossnia_04,196,122,1,1	boss_monster	Valquíria Randgris	1751,1,0,0,1
+bossnia_04,142,61,1,1	boss_monster	Ifrit	1832,1,0,0,1

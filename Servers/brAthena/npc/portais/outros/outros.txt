@@ -1,0 +1,45 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: outros.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais para mapas variados.                |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//guild_room,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs1,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs1,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs1,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs1,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs2,50,88,0	warp	warp4	0,0,hoge,0,0
+//guild_vs2,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs2,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs2,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs3,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs3,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs3,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs3,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs4,7,50,0	warp	warp4	0,0,hoge,0,0
+//guild_vs4,50,7,0	warp	warp4	0,0,hoge,0,0
+//guild_vs4,92,50,0	warp	warp4	0,0,hoge,0,0
+//guild_vs4,50,92,0	warp	warp4	0,0,hoge,0,0
+//guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0
+//guild_vs5,0,0,0	warp	warp4	0,0,hoge,0,0

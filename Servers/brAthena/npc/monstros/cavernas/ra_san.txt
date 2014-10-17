@@ -1,0 +1,138 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ra_san.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros do Templo de Rachel               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//===============================================================
+// [Pré-Renovação] ra_san01 - Templo de Rachel (Primeiro Andar)
+//===============================================================
+ra_san01,0,0,0,0	monster#pre	Vanberk	1771,20,180000,0,1
+ra_san01,0,0,0,0	monster#pre	Isilla	1772,10,0,0,1
+ra_san01,61,141,58,98	monster#pre	Vanberk	1771,20,300000,0,1
+ra_san01,61,141,58,98	monster#pre	Isilla	1772,10,180000,0,1
+ra_san01,61,141,58,98	monster#pre	Gremlin	1632,5,60000,0,1
+ra_san01,61,141,58,98	monster#pre	Hodremlin	1773,2,60000,0,1
+ra_san01,218,141,58,98	monster#pre	Vanberk	1771,20,300000,0,1
+ra_san01,218,141,58,98	monster#pre	Isilla	1772,10,180000,0,1
+ra_san01,218,141,58,98	monster#pre	Gremlin	1632,5,60000,0,1
+ra_san01,218,141,58,98	monster#pre	Hodremlin	1773,2,60000,0,1
+ra_san01,140,63,38,59	monster#pre	Vanberk	1771,7,180000,0,1
+ra_san01,140,63,38,59	monster#pre	Isilla	1772,3,180000,0,1
+ra_san01,140,63,38,59	monster#pre	Beholder	1633,3,60000,0,1
+ra_san01,140,63,38,59	monster#pre	Hodremlin	1773,1,60000,0,1
+ra_san01,140,226,50,51	monster#pre	Vanberk	1771,7,180000,0,1
+ra_san01,140,226,50,51	monster#pre	Isilla	1772,3,180000,0,1
+ra_san01,140,226,50,51	monster#pre	Beholder	1633,3,60000,0,1
+ra_san01,140,226,50,51	monster#pre	Hodremlin	1773,1,60000,0,1
+ra_san01,64,215,23,23	monster#pre	Vanberk	1771,2,420000,0,1
+ra_san01,215,215,23,23	monster#pre	Vanberk	1771,2,420000,0,1
+ra_san01,64,65,23,23	monster#pre	Vanberk	1771,2,420000,0,1
+ra_san01,215,65,23,23	monster#pre	Vanberk	1771,2,420000,0,1,{}
+
+//==========================================================
+// [Renovação] ra_san01 - Templo de Rachel (Primeiro Andar)
+//==========================================================
+ra_san01,0,0,0,0	monster#re	Vanberk	1771,82,5000,0,0
+ra_san01,0,0,0,0	monster#re	Isilla	1772,36,5000,0,0
+ra_san01,0,0,0,0	monster#re	Gremlin	1632,10,5000,0,0
+ra_san01,0,0,0,0	monster#re	Beholder	1633,6,5000,0,0
+ra_san01,0,0,0,0	monster#re	Hodremlin	1773,6,5000,0,0,{}
+
+//==============================================================
+// [Pré-Renovação] ra_san02 - Templo de Rachel (Segundo Andar)
+//==============================================================
+ra_san02,0,0,0,0	monster#pre	Isilla	1772,35,0,0,0
+ra_san02,100,150,92,140	monster#pre	Isilla	1772,25,0,0,0
+ra_san02,240,147,50,145	monster#pre	Isilla	1772,25,0,0,0
+ra_san02,0,0,0,0	monster#pre	Vanberk	1771,10,0,0,0
+ra_san02,100,150,92,140	monster#pre	Vanberk	1771,10,0,0,0
+ra_san02,240,147,50,145	monster#pre	Vanberk	1771,10,0,0,0
+ra_san02,0,0,0,0	monster#pre	Gremlin	1632,10,0,0,0
+ra_san02,0,0,0,0	monster#pre	Hodremlin	1773,3,0,0,0
+ra_san02,0,0,0,0	monster#pre	Beholder	1633,10,0,0,0
+ra_san02,0,0,0,0	monster#pre	Rastreador	1774,2,0,0,0,{}
+
+//==========================================================
+// [Renovação] ra_san02 - Templo de Rachel (Segundo Andar)
+//==========================================================
+ra_san02,0,0,0,0	monster#re	Isilla	1772,85,5000,0,0
+ra_san02,0,0,0,0	monster#re	Vanberk	1771,30,5000,0,0
+ra_san02,0,0,0,0	monster#re	Gremlin	1632,10,5000,0,0
+ra_san02,0,0,0,0	monster#re	Beholder	1633,10,5000,0,0
+ra_san02,0,0,0,0	monster#re	Hodremlin	1773,3,5000,0,0
+ra_san02,0,0,0,0	monster#re	Rastreador	1774,2,5000,0,0,{}
+
+//================================================================
+// [Pré-Renovação] ra_san03 - Templo de Rachel (Terceiro Andar)
+//================================================================
+ra_san03,0,0,0,0	monster#pre	Beholder	1633,5,0,0,0
+ra_san03,0,0,0,0	monster#pre	Gremlin	1632,5,0,0,0
+ra_san03,148,221,145,71	monster#pre	Rastreador	1774,40,0,0,0
+ra_san03,0,0,0,0	monster#pre	Hodremlin	1773,20,0,0,0
+ra_san03,148,79,146,71	monster#pre	Hodremlin	1773,40,0,0,0,{}
+
+//==========================================================
+// [Renovação] ra_san03 - Templo de Rachel (Terceiro Andar)
+//==========================================================
+ra_san03,0,0,0,0	monster#re	Hodremlin	1773,60,5000,0,0
+ra_san03,0,0,0,0	monster#re	Rastreador	1774,40,5000,0,0
+ra_san03,0,0,0,0	monster#re	Gremlin	1632,5,5000,0,0
+ra_san03,0,0,0,0	monster#re	Beholder	1633,5,5000,0,0,{}
+
+//===========================================================
+// [Pré-Renovação] ra_san04 - Templo de Rachel (Quarto Andar)
+//===========================================================
+ra_san04,0,0,0,0	monster#pre	Echio	1770,60,0,0,0
+ra_san04,0,0,0,0	monster#pre	Agav	1769,20,0,0,0
+ra_san04,0,0,0,0	monster#pre	Rastreador	1774,10,0,0,0
+ra_san04,0,0,0,0	monster#pre	Hodremlin	1773,10,0,0,0,{}
+
+//=========================================================
+// [Renovação] ra_san04 - Templo de Rachel (Quarto Andar)
+//=========================================================
+ra_san04,0,0,0,0	monster#re	Echio	1770,60,5000,0,0
+ra_san04,0,0,0,0	monster#re	Agav	1769,20,5000,0,0
+ra_san04,0,0,0,0	monster#re	Rastreador	1774,10,5000,0,0
+ra_san04,0,0,0,0	monster#re	Hodremlin	1773,10,5000,0,0,{}
+
+//===========================================================
+// [Pré-Renovação] ra_san05 - Templo de Rachel (Sexto Andar)
+//===========================================================
+ra_san05,0,0,0,0	monster#pre	Agav	1769,70,0,0,0
+ra_san05,0,0,0,0	monster#pre	Echio	1770,20,0,0,0
+ra_san05,0,0,0,0	monster#pre	Isilla	1772,10,0,0,0
+ra_san05,0,0,0,0	monster#pre	Rastreador	1774,20,0,0,0
+ra_san05,0,0,0,0	monster#pre	Hodremlin	1773,20,0,0,0
+ra_san05,0,0,0,0	monster#pre	Agav	1769,10,18000000,14400000,0
+ra_san05,0,0,0,0	monster#pre	Echio	1770,10,18000000,14400000,0
+ra_san05,0,0,0,0	boss_monster#pre	Pesar Noturno	1768,1,18000000,600000,0,{}
+
+//=========================================================
+// [Renovação] ra_san05 - Templo de Rachel (Sexto Andar)
+//=========================================================
+ra_san05,0,0,0,0	monster#re	Agav	1769,80,5000,0,0
+ra_san05,0,0,0,0	monster#re	Echio	1770,30,5000,0,0
+ra_san05,0,0,0,0	monster#re	Rastreador	1774,20,5000,0,0
+ra_san05,0,0,0,0	monster#re	Hodremlin	1773,20,5000,0,0
+ra_san05,0,0,0,0	monster#re	Isilla	1772,10,5000,0,0
+ra_san05,0,0,0,0	boss_monster#re	Pesar Noturno	1768,1,18000000,600000,0,{}

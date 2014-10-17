@@ -1,0 +1,217 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: diamantes.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.5/1.2                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Comerciante de diamantes raros.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
+
+	mes "[Vendedor de Diamantes Raros]";
+	mes "Senhoras e senhores! ! !";
+	mes "Você já ouviu rumores, mas você nunca viu com seus próprios olhos";
+	mes "o mundo dos diamantes raros!";
+	mes "O ^FF82FF'Diamante de 17 Quilates'^000000 está a venda por um preço muito barato!!";
+	mes "Se diamantes valiosos te interessa, então ouça!";
+	next;
+	mes "[Vendedor de Diamantes Raros]";
+	mes "Você pode dar de presente um desses diamantes a sua amada.";
+	mes "Quem ganhar o ^FF82FF'Diamante de 17 Quilates'^000000 será admirado";
+	mes "e terá um tesouro consigo.";
+	emotion e_loud;
+	next;
+	mes "[Vendedor de Diamantes Raros]";
+	mes "O quê? Você não tem um amor?";
+	mes "Você pode utilizá-lo em você mesmo.";
+	mes "A aura encantada do ^FF82FF'Diamante de 17 Quilates'^000000 faz com que";
+	mes "o amor surja em sua vida.";
+	next;
+	mes "[Vendedor de Diamantes Raros]";
+	mes "É conhecido como o diamante sedutor...";
+	mes "Ele é o ^FF82FF'Diamante de 17 Quilates'^000000!";
+	next;
+	set .@menu$, "^FF82FF'Diamante de 17 Quilates'^000000?";
+	if (countitem(6024))
+		set .@menu$, .@menu$ + ":Troque meu Diamante de 17 Quilates por zenys...";
+
+	switch(select(.@menu$)) {
+	case 1:
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Sim!";
+		mes "Hehe, o ^FF82FF'Diamante de 17 Quilates'^000000 que você está vendo agora";
+		mes "é o único Diamante de 17 Quilates em alta qualidade.";
+		mes "Comparado com qualquer coisa, e sem sua cor de pedra";
+		mes "ele é inexplicável!";
+		emotion e_omg;
+		next;
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Alguns afirmam que este é o mesmo diamante";
+		mes "que foi visto por Kachua em Comodo!";
+		next;
+		if (select("Terminar Conversa:Quanto custa?") == 1) {
+			mes "[Vendedor de Diamantes Raros]";
+			mes "É bastante barato!";
+			mes "Se você estiver interessado, basta falar comigo novamente!";
+			close;
+		}
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Claro! O mais importante é o preço!";
+		mes "Como eu disse anteriormente, o ^FF82FF'Diamante de 17 Quilates'^000000 tem sido";
+		mes "avaliado como um Diamante de 17 Quilates.";
+		mes "Não existem muitos como ele no mundo.";
+		next;
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Seu preço é 500 milhões de zenys!";
+		mes "Há também uma taxa de 1,000,000z pelo serviço.";
+		mes "Em comparação com a qualidade do diamante";
+		mes "é um pequeno preço a pagar.";
+		next;
+		if (select("^828282É muito caro.^000000:Irei comprar.") == 1) {
+			mes "[Vendedor de Diamantes Raros]";
+			mes "Sendo que é um";
+			mes "^FF82FF'Diamante de 17 Quilates'^000000, deve ser caro, ";
+			mes "você me deixa sem palavras.";
+			close;
+		}
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Ah! Eu sabia desde o momento que eu vi que você era o legítimo";
+		mes "dono dessa incrível jóia.";
+		mes "Estou feliz por não estar errado!";
+		mes "Creio que o diamante irá te ajudar muito.";
+		mes "Tudo que preciso é que você preencha este contrato.";
+		next;
+		
+		while(1) {
+			if (select("^B9062FAssinar Contrato.^000000:^828282Nem pensar, mudei de idéia.^000000") == 2) {
+				mes "[Vendedor de Diamantes Raros]";
+				mes "Entendo, isso é chato..";
+				close;
+			}
+			
+			mes "[Vendedor de Diamantes Raros]";
+			mes "Qual é o seu nome?";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes "Meu nome é " + strcharinfo(0) + ".";
+			next;
+			mes "[Vendedor de Diamantes Raros]";
+			mes "Certo então, por favor registre-se.";
+			next;
+			input .@charname$;
+			if (.@charname$ == strcharinfo(0)) {
+				mes "[Vendedor de Diamantes Raros]";
+				mes "Ótimo.";
+				mes "Tudo que resta agora é o pagamento.";
+				next;		
+				mes "[Vendedor de Diamantes Raros]";				
+				if (Zeny >= 501000000) {
+					mes ". . . . . .";
+					next;	
+					mes "[Vendedor de Diamantes Raros]";
+					mes "Calculando o preço e o serviço..";
+					mes "501,000,000 zeny.";
+					mes "A quantia exata.";
+					emotion e_loud;
+					set Zeny, Zeny - 501000000;
+					getitem 6024, 1;
+					next;
+					mes "[Vendedor de Diamantes Raros]";
+					mes "Você pode trocar o diamante pelo zeny a qualquer momento.";
+					mes "Porém, isso irá te custar 1,000,000z pelo serviço.";
+					mes "Obrigado pelo serviço.";
+					emotion e_thx;
+					close;
+				}
+					mes "Hum?";
+					mes "Me desculpe, mas você não possui fundos suficientes.";
+					mes "Incluindo o serviço, a quantia total necessária é 501,000,000z.";
+					mes "Por favor verifique seus zenys e tente novamente.";
+					emotion e_hmm;
+					close;
+			}
+				mes "[Vendedor de Diamantes Raros]";
+				mes "Esta é realmente sua assinatura?";
+				mes "Quer assinar novamente para confirmar?";
+				next;
+		}
+	case 2:
+		mes "[Vendedor de Diamantes Raros]";
+		mes "AAH. Você gostaria de trocar seu ^FF82FF'Diamante de 17 Quilates'^000000 por zeny?";
+		emotion e_gasp;
+		next;
+		if (select("Sim:Não") == 2) {
+			mes "[Vendedor de Diamantes Raros]";
+			mes "Então, o que você deseja?..";
+			mes ". . . . . ....";
+			emotion e_dots;
+			close;
+		}
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Entendo. Depois de receber sua assinatura, ";
+		mes "Você deve oferecer sua oferta pelo ^FF82FF'Diamante de 17 Quilates'^000000.";
+		mes "Também não esqueça que há uma taxa de 1,000,000z pelo serviço!";
+		next;
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Qual o seu nome?";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "Meu nome é " + strcharinfo(0) + ".";
+		next;
+		mes "[Vendedor de Diamantes Raros]";
+		mes "Certo então, por favor registre-se.";
+		next;
+		while (1) {
+			if (select("Registrar-se:Não me registrar.") == 2) {
+				mes "[Vendedor de Diamantes Raros]";
+				mes "A negociação não pode ser completada sem sua assinatura.";
+				close;
+			}
+			
+			input .@charname$;
+			mes "[Vendedor de Diamantes Raros]";
+			if (.@charname$ == strcharinfo(0)) {
+				mes "Sua assinatura foi recebida.";
+				mes "Agora irei receber seu ^FF82FF'Diamante de 17 Quilates'^000000..";
+				mes "Você receberá ^0000FF499,000,000z^000000 após isso.";
+				next;
+				mes "[Vendedor de Diamantes Raros]";
+				mes "Obrigado pelo negócio.";
+				mes "Sempre que precisar de um ^FF82FF'Diamante de 17 Quilates'^000000,";
+				mes "basta voltar aqui com 500 milhões de zeny.";
+				emotion e_thx;
+				delitem 6024, 1;
+				set Zeny, Zeny + 499000000;
+				close;
+			}
+				mes "Esta é realmente sua assinatura?";
+				mes "Quer assinar novamente para confirmar?";
+				next;
+		}
+	}
+}
+
+geffen,106,63,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#1	58
+morocc,146,100,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#2	58
+alberta,129,60,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#3	58
+lighthalzen,163,65,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#4	58
+rachel,106,142,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#5	58
+payon,180,130,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#6	58

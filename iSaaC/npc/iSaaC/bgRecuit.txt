@@ -1,0 +1,26 @@
+bat_room.gat,160,152,2	script	Chica Broadcast	838,{
+
+	mes name$;	
+	mes " ";
+	if (Baselevel < 60 || Upper != 1 || #BROADCASTTICK > gettimetick(2) ) 
+	{
+		mes " Requisitos : ";
+		mes "^10B2D2 [ ~ ] ^000000 Base mayor a 60";
+		mes "^10B2D2 [ ~ ] ^000000 Renacido";
+		mes "^10B2D2 [ ~ ] ^000000 " + #BROADCASTTICK + " < " + gettimetick(2);
+		close;
+	}
+
+	mes "Entonces, ¿Deseas anunciar algun BattleGround? Escoje uno de ellos";
+	setarray .@bgescojido$[0],"Conquest","Rush","Flavious CTF","Flavious TD","Flavious SC","Tierra EoS","Tierra Boss","Tierra TI";
+	
+	set .@Menu$, "";
+	for ( set .@i , 0; .@i <  getarraysize(.@bgescojido$); set .@i , .@i + 1 )
+		set .@Menu$ , .@Menu$ + " ^10B2D2 [ > ] ^000000 " + .@bgescojido$[.@i] + ":";
+	set .@ELECCION , select(.@Menu$) - 1;
+
+	set #BROADCASTTICK , gettimetick(2) + 60;
+	close2;
+		announce "[ " +strcharinfo(0) +" ] los invita a participar del BattleGround " + .@bgescojido$[ .@ELECCION ] ,bc_all,0xFF8000;
+	end;
+}

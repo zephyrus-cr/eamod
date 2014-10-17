@@ -1,0 +1,172 @@
+// *******************
+// * Champions Arena *
+// *  Terra Online   *
+// *******************
+
+//============================================================ 
+//= Equipment basket
+//============================================================ 
+
+rentb1,25,34,0	script	Basket Case#1::GuildBasket	723,{
+	mes "^FF0000[Basket Case]^000000";
+	mes "I would like to remove from my equipment...";
+
+	setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+	set .@menu$,"";
+	for( set .@i, 1; .@i <= 10; set .@i,.@i + 1 )
+	{
+		if( getequipisequiped(.@i) )
+			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+
+		set .@menu$, .@menu$ + ":";
+	}
+
+	set .@part, select(.@menu$);
+	set .@nameid, getequipid(.@part);
+
+	if( !getequipisequiped(.@part) )
+	{
+		mes "Nah... i am not going to drop nothing...";
+		close;
+	}
+	
+	if( .@nameid == 1228 || .@nameid == 1224 || .@nameid == 1225 || .@nameid == 1230 )
+	{
+		mes "Should i drop this Guild Item? No...";
+		close;
+	}
+	
+	if( .@nameid == 1201 || .@nameid == 2301 )
+	{
+		mes "This is not a valid item for this event...";
+		close;
+	}
+
+	if( getequipisenableref(.@part) )
+	{ // Refine Points Control
+		set .@refinerycnt, getequiprefinerycnt(.@part);
+		switch( getequipweaponlv(.@part) )
+		{
+			case 0: set .@safe, 4; set .@limit, 7; break;
+			case 1: set .@safe, 7; set .@limit, 9; break;
+			case 2: set .@safe, 6; set .@limit, 8; break;
+			case 3: set .@safe, 5; set .@limit, 7; break;
+			case 4: set .@safe, 4; set .@limit, 5; break;
+			default: set .@safe, 0; set .@limit, 0; break;
+		}
+
+		if( .@refinerycnt > .@limit ) set .@refinerycnt, .@limit;
+
+		if( .@refinerycnt > .@safe )
+		{ // Return back refine points
+			set .@Points, .@refinerycnt - .@safe;
+			set Item_Refines, Item_Refines - .@Points;
+			if( Item_Refines < 0 ) set Item_Refines, 0;
+		}
+	}
+
+	failedrefitem .@part; // Break Item
+
+	switch( .@part )
+	{
+		case 1:
+		case 9:
+		case 10:
+			if( Items_Headgear > 0 )
+				set Items_Headgear, Items_Headgear - 1;
+			break;
+		case 2:
+			if( Items_Armor > 0 )
+				set Items_Armor, Items_Armor - 1;
+			break;
+		case 3:
+		case 4:
+			if( getiteminfo(.@nameid,2) == 4 )
+			{
+				if( Items_Weapon > 0 )
+					set Items_Weapon, Items_Weapon - 1;
+			}
+			else if( getiteminfo(.@nameid,2) == 5 )
+			{
+				if( Items_Shield > 0 )
+					set Items_Shield, Items_Shield - 1;
+			}
+			break;
+		case 5:
+			if( Items_Garment > 0 )
+				set Items_Garment, Items_Garment - 1;
+			break;
+		case 6:
+			if( Items_Footgear > 0 )
+				set Items_Footgear, Items_Footgear - 1;
+			break;
+		case 7:
+		case 8:
+			if( Items_Accesory > 0 )
+				set Items_Accesory, Items_Accesory - 1;
+			break;
+	}
+	
+	mes "I will drop this...";
+	close;
+}
+
+rentb2,25,34,0	duplicate(GuildBasket)	Basket Case#2	723
+rentb3,25,34,0	duplicate(GuildBasket)	Basket Case#3	723
+rentb4,25,34,0	duplicate(GuildBasket)	Basket Case#4	723
+rentb5,25,34,0	duplicate(GuildBasket)	Basket Case#5	723
+rentb6,25,34,0	duplicate(GuildBasket)	Basket Case#6	723
+rentb7,25,34,0	duplicate(GuildBasket)	Basket Case#7	723
+rentb8,25,34,0	duplicate(GuildBasket)	Basket Case#8	723
+rentb9,25,34,0	duplicate(GuildBasket)	Basket Case#9	723
+rentb10,25,34,0	duplicate(GuildBasket)	Basket Case#10	723
+rentb11,25,34,0	duplicate(GuildBasket)	Basket Case#11	723
+rentb12,25,34,0	duplicate(GuildBasket)	Basket Case#12	723
+rentb13,25,34,0	duplicate(GuildBasket)	Basket Case#13	723
+rentb14,25,34,0	duplicate(GuildBasket)	Basket Case#14	723
+rentb15,25,34,0	duplicate(GuildBasket)	Basket Case#15	723
+rentb16,25,34,0	duplicate(GuildBasket)	Basket Case#16	723
+rentb17,25,34,0	duplicate(GuildBasket)	Basket Case#17	723
+rentb18,25,34,0	duplicate(GuildBasket)	Basket Case#18	723
+rentb19,25,34,0	duplicate(GuildBasket)	Basket Case#19	723
+rentb20,25,34,0	duplicate(GuildBasket)	Basket Case#20	723
+rentb21,25,34,0	duplicate(GuildBasket)	Basket Case#21	723
+rentb22,25,34,0	duplicate(GuildBasket)	Basket Case#22	723
+rentb23,25,34,0	duplicate(GuildBasket)	Basket Case#23	723
+rentb24,25,34,0	duplicate(GuildBasket)	Basket Case#24	723
+rentb25,25,34,0	duplicate(GuildBasket)	Basket Case#25	723
+rentb26,25,34,0	duplicate(GuildBasket)	Basket Case#26	723
+rentb27,25,34,0	duplicate(GuildBasket)	Basket Case#27	723
+rentb28,25,34,0	duplicate(GuildBasket)	Basket Case#28	723
+rentb29,25,34,0	duplicate(GuildBasket)	Basket Case#29	723
+rentb30,25,34,0	duplicate(GuildBasket)	Basket Case#30	723
+rentb31,25,34,0	duplicate(GuildBasket)	Basket Case#31	723
+rentb32,25,34,0	duplicate(GuildBasket)	Basket Case#32	723
+rentb33,25,34,0	duplicate(GuildBasket)	Basket Case#33	723
+rentb34,25,34,0	duplicate(GuildBasket)	Basket Case#34	723
+rentb35,25,34,0	duplicate(GuildBasket)	Basket Case#35	723
+rentb36,25,34,0	duplicate(GuildBasket)	Basket Case#36	723
+rentb37,25,34,0	duplicate(GuildBasket)	Basket Case#37	723
+rentb38,25,34,0	duplicate(GuildBasket)	Basket Case#38	723
+rentb39,25,34,0	duplicate(GuildBasket)	Basket Case#39	723
+rentb40,25,34,0	duplicate(GuildBasket)	Basket Case#40	723
+rentb41,25,34,0	duplicate(GuildBasket)	Basket Case#41	723
+rentb42,25,34,0	duplicate(GuildBasket)	Basket Case#42	723
+rentb43,25,34,0	duplicate(GuildBasket)	Basket Case#43	723
+rentb44,25,34,0	duplicate(GuildBasket)	Basket Case#44	723
+rentb45,25,34,0	duplicate(GuildBasket)	Basket Case#45	723
+rentb46,25,34,0	duplicate(GuildBasket)	Basket Case#46	723
+rentb47,25,34,0	duplicate(GuildBasket)	Basket Case#47	723
+rentb48,25,34,0	duplicate(GuildBasket)	Basket Case#48	723
+rentb49,25,34,0	duplicate(GuildBasket)	Basket Case#49	723
+rentb50,25,34,0	duplicate(GuildBasket)	Basket Case#50	723
+rentb51,25,34,0	duplicate(GuildBasket)	Basket Case#51	723
+rentb52,25,34,0	duplicate(GuildBasket)	Basket Case#52	723
+rentb53,25,34,0	duplicate(GuildBasket)	Basket Case#53	723
+rentb54,25,34,0	duplicate(GuildBasket)	Basket Case#54	723
+rentb55,25,34,0	duplicate(GuildBasket)	Basket Case#55	723
+rentb56,25,34,0	duplicate(GuildBasket)	Basket Case#56	723
+rentb57,25,34,0	duplicate(GuildBasket)	Basket Case#57	723
+rentb58,25,34,0	duplicate(GuildBasket)	Basket Case#58	723
+rentb59,25,34,0	duplicate(GuildBasket)	Basket Case#59	723
+rentb60,25,34,0	duplicate(GuildBasket)	Basket Case#60	723

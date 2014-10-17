@@ -1,0 +1,185 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: hugel.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição:  Monstros dos Campos de Hugel.              |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+//==================================================
+// [Pré-Renovação] hu_fild01 - Campo de Hugel
+//==================================================
+hu_fild01,0,0,0,0	monster#pre	Breeze	1692,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Plasma	1697,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Plasma	1695,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Plasma	1696,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Plasma	1694,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Plasma	1693,5,900000,300000,0
+hu_fild01,0,0,0,0	monster#pre	Planta Carnívora	1368,30,300000,0,0
+hu_fild01,0,0,0,0	monster#pre	Demônio Pungus	1378,30,1200000,600000,0,{}
+
+//==================================================
+// [Renovação] hu_fild01 - Campo de Hugel
+//==================================================
+hu_fild01,0,0,0,0	monster#re	Novus	1715,100,5000,0,0
+hu_fild01,0,0,0,0	monster#re	Novus	1718,35,5000,0,0
+hu_fild01,0,0,0,0	monster#re	Planta Carnívora	1368,10,5000,0,0
+hu_fild01,0,0,0,0	monster#re	Ovo de Dragão	1721,10,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild02 - Campo de Hugel
+//==================================================
+hu_fild02,0,0,0,0	monster#pre	Anopheles	1627,30,0,0,0
+hu_fild02,0,0,0,0	monster#pre	Novus	1715,20,0,0,0
+hu_fild02,0,0,0,0	monster#pre	Novus	1718,40,0,0,0
+hu_fild02,0,0,0,0	monster#pre	Breeze	1692,10,0,0,0
+hu_fild02,0,0,0,0	monster#pre	Planta Carnívora	1368,10,600000,120000,0
+hu_fild02,0,0,0,0	monster#pre	Grove	1687,20,600000,120000,0
+hu_fild02,85,85,53,47	monster#pre	Demônio Pungus	1378,3,300000,120000,0
+hu_fild02,85,85,37,47	monster#pre	Novus	1715,1,300000,120000,0
+hu_fild02,85,85,37,47	monster#pre	Novus	1718,1,300000,120000,0,{}
+
+//==================================================
+// [Renovação] hu_fild02 - Campo de Hugel
+//==================================================
+hu_fild02,0,0,0,0	monster#re	Novus	1715,100,5000,0,0
+hu_fild02,0,0,0,0	monster#re	Novus	1718,30,5000,0,0
+hu_fild02,0,0,0,0	monster#re	Planta Carnívora	1368,30,5000,0,0
+hu_fild02,0,0,0,0	monster#re	Ovo de Dragão	1721,20,5000,0,0
+hu_fild02,0,0,0,0	monster#re	Grifo	1259,3,3600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild03 - Campo de Hugel
+//==================================================
+hu_fild03,0,0,0,0	monster#pre	Grove	1687,70,0,0,0
+hu_fild03,0,0,0,0	monster#pre	Novus	1715,30,0,0,0
+hu_fild03,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
+hu_fild03,0,0,0,0	monster#pre	Besouro-Ladrão	1051,10,0,0,0
+hu_fild03,40,157,3,3	monster#pre	Cogumelo Vermelho	1085,2,300000,0,0
+hu_fild03,219,211,7,5	monster#pre	Cogumelo Vermelho	1085,3,300000,0,0
+hu_fild03,285,230,5,4	monster#pre	Cogumelo Vermelho	1085,2,300000,0,0
+hu_fild03,247,118,9,4	monster#pre	Cogumelo Vermelho	1085,3,300000,0,0
+hu_fild03,96,156,5,5	monster#pre	Cogumelo Negro	1084,3,300000,0,0
+hu_fild03,170,220,5,4	monster#pre	Cogumelo Negro	1084,3,300000,0,0
+hu_fild03,212,328,5,4	monster#pre	Cogumelo Negro	1084,2,300000,0,0
+hu_fild03,231,151,3,3	monster#pre	Cogumelo Negro	1084,2,300000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild04 - Campo de Hugel
+//==================================================
+hu_fild04,0,0,0,0	monster#pre	Breeze	1692,20,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Exterminador	1384,10,420000,24000,0
+hu_fild04,0,0,0,0	monster#pre	Deletério	1385,10,420000,240000,0
+hu_fild04,0,0,0,0	monster#pre	Petite	1155,10,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Petite	1156,60,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Novus	1715,20,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Novus	1718,10,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Anopheles	1627,30,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Grove	1687,20,0,0,0
+hu_fild04,60,149,35,122	monster#pre	Rochoso	1386,7,600000,300000,0
+hu_fild04,0,0,0,0	monster#pre	Planta Verde	1080,10,0,0,0
+hu_fild04,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0
+hu_fild04,206,210,30,18	monster#pre	Planta Azul	1079,4,120000,600000,0
+hu_fild04,206,120,10,10	monster#pre	Planta Azul	1079,2,120000,600000,0,{}
+
+//==================================================
+// [Renovação] hu_fild04 - Campo de Hugel
+//==================================================
+hu_fild04,0,0,0,0	monster#re	Novus	1718,100,5000,0,0
+hu_fild04,0,0,0,0	monster#re	Novus	1715,30,5000,0,0
+hu_fild04,0,0,0,0	monster#re	Planta Carnívora	1368,30,5000,0,0
+hu_fild04,0,0,0,0	monster#re	Ovo de Dragão	1721,20,5000,0,0
+hu_fild04,0,0,0,0	monster#re	Planta Verde	1080,10,10000,0,1
+hu_fild04,0,0,0,0	monster#re	Planta Amarela	1081,10,10000,0,1
+hu_fild04,206,210,30,18	monster#re	Planta Azul	1079,4,120000,600000,1
+hu_fild04,206,120,10,10	monster#re	Planta Azul	1079,2,120000,600000,1,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild05 - Campo de Hugel
+//==================================================
+hu_fild05,185,208,15,24	monster#pre	Anopheles	1627,3,42000,30000,0
+hu_fild05,112,272,62,82	monster#pre	Grove	1687,15,0,0,0
+hu_fild05,112,272,62,82	monster#pre	Novus	1715,2,0,0,0
+hu_fild05,112,272,62,82	monster#pre	Novus	1718,2,0,0,0
+hu_fild05,112,272,62,82	monster#pre	Anopheles	1627,10,0,0,0
+hu_fild05,112,272,62,82	monster#pre	Dragão Mutante	1262,1,24000000,1800000,0
+hu_fild05,276,302,93,60	monster#pre	Grove	1687,15,0,0,0
+hu_fild05,276,302,93,60	monster#pre	Novus	1715,2,0,0,0
+hu_fild05,276,302,93,60	monster#pre	Novus	1718,1,0,0,0
+hu_fild05,276,302,93,60	monster#pre	Anopheles	1627,10,0,0,0
+hu_fild05,276,302,93,60	monster#pre	Dragão Mutante	1262,1,24000000,1800000,0
+hu_fild05,286,144,82,90	monster#pre	Grove	1687,15,0,0,0
+hu_fild05,286,144,82,90	monster#pre	Novus	1715,2,0,0,0
+hu_fild05,286,144,82,90	monster#pre	Novus	1718,2,0,0,0
+hu_fild05,286,144,82,90	monster#pre	Anopheles	1627,10,0,0,0
+hu_fild05,286,144,82,90	monster#pre	Dragão Mutante	1262,1,24000000,1800000,0
+hu_fild05,118,106,80,70	monster#pre	Grove	1687,15,0,0,0
+hu_fild05,118,106,80,70	monster#pre	Novus	1715,2,0,0,0
+hu_fild05,118,106,80,70	monster#pre	Novus	1718,1,0,0,0
+hu_fild05,118,106,80,70	monster#pre	Anopheles	1627,10,0,0,0
+hu_fild05,118,106,80,70	monster#pre	Dragão Mutante	1262,1,24000000,1800000,0
+hu_fild05,0,0,0,0	monster#pre	Anopheles	1627,10,0,0,0
+hu_fild05,0,0,0,0	monster#pre	Ovo de Dragão	1721,1,7200000,1800000,0
+hu_fild05,196,196,5,5	monster#pre	Ovo de Dragão	1721,1,7200000,1800000,0
+hu_fild05,340,50,10,10	monster#pre	Ovo de Dragão	1721,1,7200000,1800000,0
+hu_fild05,320,325,5,5	monster#pre	Ovo de Dragão	1721,1,7200000,1800000,0,{}
+
+//==================================================
+// [Renovação] hu_fild05 - O Lago do Abismo
+//==================================================
+hu_fild05,0,0,0,0	monster#re	Novus	1718,130,5000,0,0
+hu_fild05,0,0,0,0	monster#re	Novus	1715,35,5000,0,0
+hu_fild05,0,0,0,0	monster#re	Ovo de Dragão	1721,20,5000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild06 - Campo de Hugel
+//==================================================
+hu_fild06,0,0,0,0	monster#pre	Holden	1628,50,0,0,0
+hu_fild06,0,0,0,0	monster#pre	Caramelo	1103,20,0,0,0
+hu_fild06,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
+hu_fild06,0,0,0,0	monster#pre	Poporing	1031,10,0,0,0
+hu_fild06,0,0,0,0	monster#pre	Metaling	1613,10,0,0,0
+hu_fild06,234,251,14,120	monster#pre	Planta Verde	1080,10,600000,0,0
+hu_fild06,234,251,14,120	monster#pre	Planta Amarela	1081,10,600000,0,0,{}
+
+//==================================================
+// [Renovação] hu_fild06 - Campo de Hugel
+//==================================================
+hu_fild06,0,0,0,0	monster#re	Molusco	1074,50,5000,0,0
+hu_fild06,0,0,0,0	monster#re	Caranguejo	1073,20,5000,0,0
+hu_fild06,0,0,0,0	monster#re	Estrela do Mar	1266,20,5000,0,0
+hu_fild06,234,251,14,120	monster#re	Planta Verde	1080,10,600000,0,1
+hu_fild06,234,251,14,120	monster#re	Planta Amarela	1081,10,600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] hu_fild07 - Campo de Hugel
+//==================================================
+hu_fild07,0,0,0,0	monster#pre	Breeze	1692,10,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Exterminador	1384,10,420000,24000,0
+hu_fild07,0,0,0,0	monster#pre	Deletério	1385,10,420000,240000,0
+hu_fild07,0,0,0,0	monster#pre	Petite	1155,60,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Petite	1156,20,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Novus	1715,10,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Novus	1718,10,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Anopheles	1627,30,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Grove	1687,10,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Planta Carnívora	1368,20,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Demônio Pungus	1378,10,0,0,0
+hu_fild07,0,0,0,0	monster#pre	Planta Amarela	1081,20,0,0,0,{}

@@ -1,0 +1,171 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: portal_do_abismo.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.4/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais do Lago do Abismo.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+hu_fild05,168,304,0	script	Coluna#abismo1	111,{
+
+	mes "^3355FFExistem 3 estranhas";
+	mes "rachaduras na";
+	mes "superfície desta";
+	mes "coluna. Parece";
+	mes "que certas partes do corpo de um dragão";
+	mes "encaixariam perfeitamente";
+	mes "nessas rachaduras.^000000";
+	if((countitem(1035)) && (countitem(1036)) && (countitem(1037))) {
+		next;
+		switch( select( "Inserir partes do Corpo do Dragão","Comer Partes do Corpo do Dragão" ) ) {
+			case 1:
+				mes "^3355FFVocê coloca cuidadosamente o";
+				mes "Canino do Dragão dentro de uma";
+				mes "das rachaduras, e então você";
+				mes "em seguida ouve um estrondo poderoso";
+				mes "vindo de dentro da coluna.^000000";
+				specialeffect EF_WINDHIT;
+				next;
+				mes "^3355FFVocê coloca lentamente";
+				mes "a Escama de Dragão em uma outra";
+				mes "rachadura da coluna,";
+				mes "causando outro pequeno";
+				mes "tremor vindo da coluna.^000000";
+				specialeffect EF_WINDHIT;
+				next;
+				mes "^3355FFVocê cautelosamente insere";
+				mes "a Cauda de Dragão dentro da";
+				mes "rachadura final. Luzes brilhantes";
+				mes "surjem de dentro do";
+				mes "interior das colunas...^000000";
+				specialeffect EF_WINDHIT;
+				next;
+				mes "^3355FFO solo abaixo de";
+				mes "seus pés começa a";
+				mes "tremer violentamente.^000000";
+				specialeffect EF_BOWLINGBASH;
+				donpcevent "Portal do Abismo::OnWarp";
+				specialeffect2 EF_PORTAL;
+				delitem 1035,1;
+				delitem 1036,1;
+				delitem 1037,1;
+				close2;
+				warp "hu_fild05",184,204;
+				end;
+
+			case 2:
+				mes "^3355FFVocê cautelosamente coloca";
+				mes "o Canino de Dragão, a Escama de";
+				mes "Dragão e a Cauda de Dragão";
+				mes "em sua boca e começa a mastigar";
+				mes "lentamente. Nada aconteceu";
+				mes "e o gosto destes itens";
+				mes "é muito ruim.^000000";
+				next;
+				emotion e_rice,1;
+				delitem 1035,1;
+				delitem 1036,1;
+				delitem 1037,1;
+				percentheal -10,0;
+				close;
+		}
+	}
+	close;
+}
+
+hu_fild05,171,211,0	script	Coluna#abismo2	111,1,1,{
+
+	mes "^3355FFEssas colunas são";
+	mes "muito semelhantes com";
+	mes "as que você viu";
+	mes "no lago. Há";
+	mes "encaixe azul na superficíe.^000000";
+	next;
+	switch( select( "Tocar o Encaixe","Tirar item do Encaixe" ) )
+	{
+		case 1:
+			mes "^3355FF*Ruído ruído*^000000";
+			next;
+			mes "^3355FFA luz emitida pelo";
+			mes "encaixe se distorce e";
+			mes "a coluna começa a tremer.";
+			mes "Você ouve um pequeno barulho";
+			mes "que vem de dentro da coluna.^000000";
+			specialeffect EF_WINDHIT;
+			next;
+			mes "*Ggghhhhhzzzz!*";
+			mes "*BAM!*";
+			next;
+			mes "^3355FFA luz vinda do encaixe";
+			mes "da coluna começa a brilhar mais";
+			mes "forte e você sente que o";
+			mes "chão sob seus pés";
+			mes "começa lentamente a afundar...^000000";
+			next;
+			specialeffect EF_BOWLINGBASH;
+			specialeffect2 EF_PORTAL;
+			close2;
+			warp "hu_fild05",169,305;
+			end;
+
+		case 2:
+			mes "^3355FF*Ppppsssh!*";
+			mes "Você acidentalmente";
+			mes "cobre o item.^000000";
+			specialeffect EF_WINDHIT;
+			next;
+			mes "^3355FF*Gggggggghhhhhhhhzzzzzzjjjjhh!*^000000";
+			next;
+			mes "^3355FFA luz emitida pelo";
+			mes "encaixe se distorce e";
+			mes "a coluna começa a tremer.";
+			mes "Os tremores no chão";
+			mes "faz com que se torne dificil ficar de pé";
+			mes "firmemente, mas de repente você é";
+			mes "teleportado para um lugar...^000000";
+			next;
+			specialeffect EF_BOWLINGBASH;
+			specialeffect2 EF_PORTAL;
+			close2;
+			warp "hu_fild05",157,284;
+			end;
+	}
+}
+
+hu_fild05,196,210,1	script	Portal do Abismo	45,2,2,{
+
+OnInit:
+	disablenpc "Portal do Abismo";
+	end;
+
+OnTouch:
+	warp "abyss_01",260,268;
+	end;
+
+OnWarp:
+	initnpctimer;
+	enablenpc "Portal do Abismo";
+	end;
+
+OnTimer30000:
+	stopnpctimer;
+	disablenpc "Portal do Abismo";
+	end;
+}

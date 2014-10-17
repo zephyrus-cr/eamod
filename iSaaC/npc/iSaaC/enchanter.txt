@@ -1,0 +1,151 @@
+// BY ISAAC
+// function NCHNT,<hat/armor>,<Zeny/Medallas>,<precio>,<" Zeny">,<enchant type>;
+
+prontera,151,188,4	script	Ely::Ely	435,{
+
+	mes name$;
+	mes " ";
+	mes " Hola que deseas hacer?";
+
+	set .@precioZENY , 250000;
+	set .@precioMEDALLAS, 50;
+	set .@precioHATMEDALLAS,100;
+
+	set .@hat_armor , select( " ^10B2D2 [ > ] ^000000 Encantar Armor : ^10B2D2 [ > ] ^000000 Encantar Hat ");
+	if ( .@hat_armor == 1 ) 
+	{
+
+		set .@encantar_tipo , select ( "  ^10B2D2 [ > ] ^000000  Encantar Por Zeny ","  ^10B2D2 [ > ] ^000000  Encantar Por Medallas" );
+
+		if ( .@encantar_tipo == 1 )
+			callfunc ("NCHNT",.@hat_armor,.@encantar_tipo,.@precioZENY," Zeny",2 );
+		else if ( .@encantar_tipo == 2 )
+			callfunc ("NCHNT",.@hat_armor,.@encantar_tipo,.@precioMEDALLAS," Medallas de todas",2 );
+	
+	} else if ( .@hat_armor == 2 ) 
+	{
+		callfunc ("NCHNT",.@hat_armor,2,.@precioHATMEDALLAS," Medallas de todas",1 );
+	}
+}
+
+function	script	NCHNT	{
+	if ( getarg(0) == 1 ) 
+	{
+		deletearray .@Armor[0],127;
+		setarray .@Armor[0],2358,2307,2309,2314,2316,2321,2325,2327,2330,2332,2334,2335,2341,2344,2346,2348,2350,2337,2386,2311,2318,2319,2320,2308,2310,2315,2317,2322,2324,2326,2331,2333,2336,2342,2345,2347,2349,2351,2364,2365,2374,2375,2387,2389,2391,2390,2376,2377,2378,2379,2380,2381,2382,2394,2395,2396;
+		set .@Item, getequipid(2);
+		for( set .@i, 0; .@i < getarraysize(.@Armor); set .@i, .@i + 1 )
+			if( .@Armor[.@i] == .@Item )
+				break;	
+		next;
+		mes name$;
+		mes " ";
+
+		if( .@i >= getarraysize(.@Armor) )	
+		{
+			
+			mes "No puedo trabajar en esta armadura , lo siento.";
+			close; 
+		}
+ 
+		if ( countitem(7539) >= 150 && isPremium() == 1 ) 
+		{
+	
+			mes "Tienes 150 poring coin's y tienes una cuenta premium, quieres encantar seguro??";
+			if (select("^10B2D2 [ > ] ^000000Si:^10B2D2 [ > ] ^000000No" ) == 1 ) 
+			{
+			
+				set .@Menu$,"";
+				for( set .@i, 0; .@i < 6; set .@i, .@i + 1 )
+					set .@Menu$, .@Menu$ + getitemname(4702 + (.@i * 10)) + ":";
+				delitem 7539,100;
+				set .@Enchant, 4702 + ((select(.@Menu$) - 1) * 10);
+				successenchant 2,.@Enchant;
+				close;					
+			
+			} 
+		}
+		if ( getarg(1) == 1 ) 
+		{
+			if( getequipisequiped(2) == 0 || getequipid(2) != .@Item || zeny < getarg( 2 ) ) 
+			{
+				 mes "Requisito : " + getarg(2) + getarg(3);
+				 close;
+			 }
+	
+		} else if (getarg(1) == 2 ) 
+		{
+			if( getequipisequiped(2) == 0 || getequipid(2) != .@Item || countitem( 7829 ) < getarg(2) || countitem( 7828 ) < getarg(2) || countitem( 7773 ) < getarg(2) ) 
+			{
+				mes "Requisito : " + getarg(2) + getarg(3); 
+				close;
+			}
+		}
+	} else if ( getarg(0) == 2 ) {
+		if( !getequipisequiped(1) || .@Slot0 == 255 || .@Slot0 == 254 || .@Slot0 < 0 || countitem(7828) < getarg(2) || countitem(7829) < getarg(2) || countitem(7773) < getarg(2) )
+		{
+			mes "Requisito : " + getarg(2) + getarg(3); 
+			close;	
+		}
+	}
+
+	mes "Te costará : " + getarg( 2 ) + getarg ( 3 );
+	next; 
+	mes name$; 
+	mes "";
+	
+	if ( getarg(0) == 1 && isPremium() ) 
+	{	
+		mes "Desearias pagar el Enchant seguro por tan solo : " + getarg(2)/4 + getarg( 3 ) + " mas ? ";
+
+		if ( select("  ^10B2D2 [ > ] ^000000 Continuar sin seguro [ " + getarg(2) + " ] ","  ^10B2D2 [ > ] ^000000 Continuar con seguro [ " + (getarg(2) + getarg(2)/4) + " ]") == 2 ) 
+		{
+
+			set .@seguro , 1;
+			set getarg(2) , (getarg(2) + getarg(2)/4);
+
+		}	
+	}
+
+	mes "Seguro que deseas continuar??";
+	if (select("^10B2D2 [ > ] ^000000 Encantarlo :^10B2D2 [ > ] ^000000 Mejor no " ) == 2 ) close;	
+
+	switch ( getarg( 1 ) ) 
+	{
+		case 2: 
+			delitem 7829 , getarg( 2 ); 
+			delitem 7828 , getarg( 2 ); 
+			delitem 7773 , getarg( 2 ); 
+			break;
+		case 1:
+			set zeny , zeny - getarg( 2 ); 
+			break;
+	}
+	
+	if ( getarg( 4 ) == 2 ) 
+	{
+		set .@Rate, rand(50);
+		if( .@Rate < 14 && .@seguro == 0 ) 
+		{ 
+			next; 
+			mes name$; 
+			mes " Tu armor se quebró, esto no hubiera pasado si tubieras la cuenta premium! :(";
+			failedenchant 2; 
+			close;
+		}
+		else if( .@Rate < 20 ) 
+			set .@Enchant, 4700 + (rand(6) * 10);
+		else if( .@Rate < 40 ) 
+			set .@Enchant, 4701 + (rand(6) * 10);
+		else 
+			set .@Enchant, 4702 + (rand(6) * 10);
+	
+	} else if ( getarg( 4 ) == 1 )
+		set .@Enchant, 4700 + (rand(6) * 10);
+ 
+	successenchant getarg( 4 ) , .@Enchant;
+	mes " Tu item ahora tiene ^0000FF" + getitemname(.@Enchant) + "^000000 de Encatamiento.";
+	close;
+}
+
+izlude,118,211,3	duplicate(Ely)	Ely#1-1	435

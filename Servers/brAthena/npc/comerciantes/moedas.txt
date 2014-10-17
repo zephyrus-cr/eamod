@@ -1,0 +1,76 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Mercadores de Manuk e Esplendido       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs de resgate da moeda.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [insidemybrain]                     |
+//   | 1.2 Otimização [Mark & Clare]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+man_in01,286,16,1	script	Mercador de Manuk	439,{
+	set .@n$, "["+strnpcinfo(1)+"]";
+	mes .@n$;
+	if (isequipped(2782) && ep13_2_rhea == 100) {
+		if (!checkweight(1201,1)) {
+			mes "Parece que você está carregando itens demais.";
+			mes "Por que não os põe no Armazém e depois retorna?";
+			close;
+		}
+		mes "Olá.";
+		mes "O que você está procurando?";
+		next;
+			setarray .@Items[2],12342,12343,12348;
+			set .@Livro,( (strnpcinfo(1) == "Mercador de Manuk") ? 11019 : 11018); // Itens de Esplendor à Venda
+			set .@Moeda,( (strnpcinfo(1) == "Mercador de Manuk") ? 6080 : 6081);  // Moeda Manuk
+			set .@i, select(""+( (strnpcinfo(1) == "Mercador de Manuk") ? "Ver a descrição dos itens:Oportunidade de Manuk:Coragem de Manuk:Fé de Manuk:Cancelar" : "Ver a descrição dos itens:Comprar Geleia de Fruta de Pinguicula:Comprar Geleia de Mel de Vagalume:Lágrimas de Cornus:Nada")+"");
+		mes .@n$;
+		if (.@i == 1) {
+			mes "Aqui está a descrição dos itens.";
+			close2;
+			ReadBook .@Livro,1;
+			end;
+		} else if (.@i < 5) {
+			mes "Eu posso lhe vender 3 "+getitemname(.@Items[.@i])+" por ^3131FF1 moedas^000000.";
+			next;
+			if(select("Comprar:Não comprar") == 1) {
+				mes .@n$;
+				if (countitem(.@Moeda)) {
+					mes "Obrigado pelo bom negócio.";
+					delitem .@Moeda,1; 
+					getitem .@Items[.@i],3;
+					close;
+				}
+					mes "Você não tem moedas o suficente.";
+					close;
+				}	
+				mes .@n$;
+		}
+		mes "Volte caso mude de ideia.";
+		close;
+	}
+		if (strnpcinfo(1) == "Mercador de Manuk") {
+			mes "Rtt od d";
+			mes "Qwo hd is d irr";
+		}
+			mes "BurWehAla";
+			mes "tasnarAndu Ie Ru";
+		close;
+}
+spl_in01,110,326,5	duplicate(Mercador de Manuk)	Mercador de Esplendido	439

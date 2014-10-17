@@ -1,0 +1,42 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: sinal.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.4/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais da Quest do Sinal.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionada condição de revisão [Holy]              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+cmd_in01,17,34,0	warp	sinal01	1,1,comodo,187,164
+geffen,140,99,0	warp	sinal02	1,1,geffen_in,165,50
+geffen_in,165,54,0	warp	sinal02a	1,1,geffen,138,104
+himinn,49,6,0	warp	sinal03	1,1,gef_fild07,179,241
+himinn,49,67,0	warp	sinal04	1,1,himinn,49,75
+himinn,49,72,0	warp	sinal04a	1,1,himinn,49,63
+um_in,33,18,0	warp	sinal05	1,1,um_in,89,11
+um_in,89,9,0	warp	sinal05a	1,1,um_in,33,16
+umbala,107,118,0	warp	sinal06	1,1,um_in,15,20
+um_in,11,18,0	script	sinal06a	45,1,1,{
+if ( checkre(0) ) warp "umbala",111,121;
+else warp "um_dun01",129,90;
+end;
+}
+que_sign01,113,132,0	warp	sinal07	1,1,nif_in,117,173
+que_sign01,45,15,0	warp	sinal08	1,1,niflheim,146,245
+que_sign02,22,313,0	warp	sinal09	1,1,niflheim,30,156

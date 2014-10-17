@@ -1,0 +1,330 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_lighthalzen.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Lighthalzen.             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Otimização [Holy & Hold]                           |
+//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+lighthalzen,207,310,5	script	Guia#lhz01	852,{
+	cutin "ein_soldier",2;
+	mes "[Guia de Lighthalzen]";
+	mes "Bem-vindo à Lighthalzen, a Cidade-Estado da Corporação.";
+	mes "Se você precisar de orientação referente à cidade, sinta-se à vontade para me perguntar, e eu farei o melhor para ajudá-lo.";
+	callsub "Guialhz"+(checkre(0) ? "RE":"PRE");
+	
+  GuialhzRE:
+	next;
+	mes "[Guia de Lighthalzen]";
+	mes "Please be aware that I'm";
+	mes "in charge of providing info";
+	mes "regarding the West District";
+	mes "of ^8B4513Lighthalzen^000000. Now, please";
+	mes "select the location that you'd";
+	mes "like to learn more about.";
+	next;
+	while (1) {
+		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+		case 1:
+			set .@loop,1;
+			while (.@loop) {
+				switch(select("[ Hotel ]:[ Bank ]:[ Airport ]:[ Weapon Shop ]:[ Department Store ]:[ Police Station ]:[ Jewelry Store ]:[ Cool Event Corp. ]:[ Somatology Laboratory ]:[ Alchemist Association ]:Previous Menu")) {
+				case 1:
+					callsub L_Mark,"^FF0000Hotel";
+					viewpoint 1,160,217,0,0xFF0000;
+					next;
+					break;
+				case 2:
+					callsub L_Mark,"^FF4500Bank";
+					viewpoint 1,203,257,1,0xFF4500;
+					next;
+					break;
+				case 3:
+					callsub L_Mark,"^DAA520Airport";
+					viewpoint 1,262,75,2,0xDAA520;
+					next;
+					break;
+				case 4:
+					callsub L_Mark,"^7B68EEWeapon Shop";
+					viewpoint 1,194,35,3,0x7B68EE;
+					next;
+					break;
+				case 5:
+					callsub L_Mark,"^B91A4DDepartment Store";
+					viewpoint 1,202,106,4,0xB91A4D;
+					next;
+					break;
+				case 6:
+					callsub L_Mark,"^008000Police Station";
+					viewpoint 1,234,276,5,0x008000;
+					next;
+					break;
+				case 7:
+					callsub L_Mark,"^0000FFJewelry Store";
+					viewpoint 1,96,110,6,0x0000FF;
+					next;
+					break;
+				case 8:
+					callsub L_Mark,"^000080Cool Event Corp.";
+					viewpoint 1,238,217,7,0x000080;
+					next;
+					break;
+				case 9:
+					callsub L_Mark,"^800080Somatology Laboratory";
+					viewpoint 1,101,243,8,0x800080;
+					next;
+					break;
+				case 10:
+					callsub L_Mark,"^0A9696Alchemist Association";
+					viewpoint 1,54,132,9,0x0A9696;
+					next;
+					break;
+				case 11:
+					set .@loop,0;
+					break;
+				}
+			}
+			break;
+		case 2:
+			set .@loop,1;
+			while (.@loop) {
+				switch(select("[ Armsmith ]:[ Seiayablem ]:[ Pet Groomer ]:[ Kafra Employees ]:[ Cool Event Corp. Staff ]:Previous Menu")) {
+				case 1:
+					mes "[Guia de Lighthalzen]";
+					mes "You may go to Fulerr,";
+					mes "the ^0A9696Armsmith^000000";
+					mes "on the 1st floor of the Weapon Shop.";
+					viewpoint 1,194,35,10,0x0A9696;
+					next;
+					callsub L_Mark,"^0A9696Armsmith";
+					next;
+					break;
+				case 2:
+					mes "[Guia de Lighthalzen]";
+					mes "^4B0082Seiyablem^000000 adds";
+					mes "sockets on your items";
+					mes "on the 1st floor";
+					mes "of the Weapon Shop.";
+					viewpoint 1,194,35,11,0x4B0082;
+					next;
+					callsub L_Mark,"^4B0082Seiyablem",1;
+					next;
+					break;
+				case 3:
+					callsub L_Mark,"^FF4500Pet Groomer";
+					viewpoint 1,222,191,12,0xFF4500;
+					next;
+					break;
+				case 4:
+					callsub L_Mark,"^008080Kafra Employees";
+					viewpoint 1,164,99,13,0x008080;
+					viewpoint 1,164,99,14,0x008080;
+					next;
+					break;
+				case 5:
+					callsub L_Mark,"^FF1493Cool Event Corp. Staff";
+					viewpoint 1,94,247,15,0xFF1493;
+					next;
+					break;
+				case 6:
+					set .@loop,0;
+					break;
+				}
+			}
+			break;
+		case 3:
+			mes "[Guia de Lighthalzen]";
+			mes "Sure, I'll remove all marks from your mini-map.";
+			mes "Is there anything else I can do for you?";
+			viewpoint 2,160,217,0,0xFFFFFF;
+			viewpoint 2,203,257,1,0xFFFFFF;
+			viewpoint 2,262,75,2,0xFFFFFF;
+			viewpoint 2,194,35,3,0xFFFFFF;
+			viewpoint 2,202,106,4,0xFFFFFF;
+			viewpoint 2,234,276,5,0xFFFFFF;
+			viewpoint 2,96,110,6,0xFFFFFF;
+			viewpoint 2,238,217,7,0xFFFFFF;
+			viewpoint 2,101,243,8,0xFFFFFF;
+			viewpoint 2,54,132,9,0xFFFFFF;
+			viewpoint 2,194,35,10,0xFFFFFF;
+			viewpoint 2,194,35,11,0xFFFFFF;
+			viewpoint 2,222,191,12,0xFFFFFF;
+			viewpoint 2,164,99,13,0xFFFFFF;
+			viewpoint 2,164,99,14,0xFFFFFF;
+			viewpoint 2,94,247,15,0xFFFFFF;
+			next;
+			break;
+		case 4:
+			mes "[Guia de Lighthalzen]";
+			mes "Enjoy your adventures!";
+			close2;
+			cutin "ein_soldier",255;
+			end;
+		}
+	}
+	end;
+L_Mark:
+	mes "[Guia de Lighthalzen]";
+	mes "I will mark the location";
+	mes "of "+((getarg(1,0))?"":"the ")+getarg(0)+"^000000";
+	mes "on your mini-map.";
+	mes "Would you like to check any other locations?";
+	return;
+
+  GuialhzPRE:
+	set .@loop1,1;
+	while (.@loop1) {
+		next;
+		switch(select("Indicações:Limpar indicações do minimapa:Tutorial:Cancelar")) {
+		case 1:
+			mes "[Guia de Lighthalzen]";
+			mes "Por favor, esteja ciente que sou o responsável por fornecer informações referentes ao Distrito Oeste de Lighthalzen.";
+			mes "Agora, por favor escolha o local que você deseja saber mais a respeito.";
+			if (.@compass_check == 0) {
+				next;
+				mes "[Guia de Lighthalzen]";
+				mes "Mas antes disso, você gostaria que eu indicasse os locais em seu minimapa?";
+				next;
+				if (select("Sim.:Não.") == 1) set .@compass_check,1;
+			}
+			set .@loop2,1;
+			while(.@loop2) {
+				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
+				else next;
+				switch(select("^FF0000Corporação Rekenber.^000000:Estação de Trem.:Delegacia.:Banco.:Hotel.:Aeroporto.:Guilda dos Mercadores.:Joalheria.:Loja de Armas.:Loja de Departamentos.:Cancelar.")) {
+				case 1:
+					mes "[Guia de Lighthalzen]";
+					mes "A Corporação Rekenber, a maior companhia da";
+					mes "República de Schwaltzvalt, está localizada na parte noroeste de Lighthalzen.";
+					mes "Não tem como não ver o prédio da sede.";
+					if (.@compass_check)
+						viewpoint 1,102,247,2,0xFF0000;
+					break;
+				case 2:
+					mes "[Guia de Lighthalzen]";
+					mes "A Estação de Trem está localizada no centro da cidade, onde nós temos uma linha ferroviária direta para Einbroch.";
+					if (.@compass_check)
+						viewpoint 1,233,164,3,0xFF00FF;
+					break;
+				case 3:
+					mes "[Guia de Lighthalzen]";
+					mes "Nossa Delegacia fica ao norte do centro da cidade.";
+					mes "Por favor, não hesite em relatar quaisquer pessoas e atividades suspeitas, ou qualquer outro problema que tiver.";
+					if (.@compass_check)
+						viewpoint 1,236,276,4,0x99FFFFF;
+					break;
+				case 4:
+					mes "[Guia de Lighthalzen]";
+					mes "O Banco está localizado do lado oposto da Delegacia de Lighthalzen, o que não deixa de ser uma ótima idéia quando pensamos a respeito.";
+					if (.@compass_check)
+						viewpoint 1,198,257,5,0x0000FF;
+					break;
+				case 5:
+					mes "[Guia de Lighthalzen]";
+					mes "Nosso Hotel está localizado no meio da Praça Sul.";
+					mes "Devido aos seus serviços de qualidade e acomodações luxuosas, esse hotel é extremamente popular.";
+					if (.@compass_check)
+						viewpoint 1,159,133,6,0x00FF00;
+					break;
+				case 6:
+					mes "[Guia de Lighthalzen]";
+					mes "O Aeroporto fica ao oeste do Calçadão Central.";
+					mes "Você pode viajar a qualquer lugar dentro da República de Schwaltzvalt, utilizando um dos Aeroplanos.";
+					if (.@compass_check)
+						viewpoint 1,267,75,7,0x00FF00;
+					break;
+				case 7:
+					mes "[Guia de Lighthalzen]";
+					mes "A Guilda dos Mercadores pode ser encontrada na parte sudoeste de Lighthalzen.";
+					if (.@compass_check)
+						viewpoint 1,74,53,8,0xFF99FF;
+					break;
+				case 8:
+					mes "[Guia de Lighthalzen]";
+					mes "A Joalheria está localizada ao oeste da Praça Sul.";
+					if (.@compass_check)
+						viewpoint 1,93,110,9,0xFF9900;
+					break;
+				case 9:
+					mes "[Guia de Lighthalzen]";
+					mes "A Loja de Armas está localizada no final do Calçadão Central.";
+					mes "Vale a pena dar uma olhada se você realmente quiser se aventurar por aqui.";
+					if (.@compass_check)
+						viewpoint 1,196,46,10,0x330033;
+					break;
+				case 10:
+					mes "[Guia de Lighthalzen]";
+					mes "A Loja de Departamentos está localizada no meio de Lighthalzen e é a maior e mais bem localizada loja, onde você pode comprar quase tudo.";
+					if (.@compass_check)
+						viewpoint 1,199,163,11,0xFFFF00;
+					break;
+				case 11:
+					mes "[Guia de Lighthalzen]";
+  				mes "Por favor, me peça para “Limpar marcações do minimapa”, se você não quiser mais que os locais sejam exibidos no seu Minimapa.";
+					set .@loop2,0;
+				}
+			}
+			break;
+		case 2:
+			viewpoint 2,102,247,2,0xFF0000;
+			viewpoint 2,233,164,3,0xFF00FF;
+			viewpoint 2,236,276,4,0x99FFFF;
+			viewpoint 2,198,257,5,0x0000FF;
+			viewpoint 2,159,133,6,0x00FF00;
+			viewpoint 2,267,75,7,0x00FF00;
+			viewpoint 2,74,53,8,0xFF99FF;
+			viewpoint 2,93,110,9,0xFF9900;
+			viewpoint 2,196,46,10,0x330033;
+			viewpoint 2,199,163,11,0xFFFF00;
+			set .@compass_check,0;
+			break;
+		case 3:
+			mes "[Guia de Lighthalzen]";
+			mes "Os avanços na magia e tecnologia, permitiram que nós pudéssemos atualizar nosso sistema de informações, nos habilitando para sinalizar os locas no seu Minimapa, para uma navegação mais fácil.";
+			next;
+			mes "[Guia de Lighthalzen]";
+			mes "O seu Minimapa está no canto superior direito da tela.";
+			mes "Se você não pode vê-lo, pressione as teclas CTRL + TAB, ou clique no botão 'Mapa' em sua Janela Informações Básicas.";
+			next;
+			mes "[Guia de Lighthalzen]";
+			mes "Em seu Minimapa, clique nos símbolos “+” e “-“ para aproximar e afastar a visão do seu Minimapa.";
+			mes "Nós esperamos que você aproveite seus passeios aqui em Lighthalzen.";
+			break;
+		case 4:
+			mes "[Guia de Lighthalzen]";
+			mes "Lighthalzen é dividida nos distritos Leste e Oeste cortados ao meio por uma linha de trem que corre exatamente no meio dos dois.";
+			mes "Há sempre guardas de vigia para garantir a paz.";
+			next;
+			mes "[Guia de Lighthalzen]";
+			mes "Por favor, não hesite em relatar quaisquer atividades ou pessoas suspeitas a nós.";
+			mes "Esperamos que aproveite";
+			close2;
+			set .@loop1,0;
+		}
+	}
+	cutin "ein_soldier",255;
+	end;
+
+}
+
+lighthalzen,220,310,3	duplicate(Guia#lhz01)	Guia#lhz02	852
+lighthalzen,154,100,5	duplicate(Guia#lhz01)	Guia#lhz03	852
+lighthalzen,307,224,3	duplicate(Guia#lhz01)	Guia#lhz04	852

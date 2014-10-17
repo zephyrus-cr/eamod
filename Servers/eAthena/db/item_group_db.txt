@@ -1,0 +1,9 @@
+import: db/item_bluebox.txt
+import: db/item_violetbox.txt
+import: db/item_cardalbum.txt
+import: db/item_cookie_bag.txt
+import: db/item_findingore.txt
+import: db/item_giftbox.txt
+import: db/item_scroll.txt
+import: db/item_misc.txt
+import: db/item_terrahats.txt

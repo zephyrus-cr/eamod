@@ -1,0 +1,89 @@
+Date
+
+2008/05/17
+	* Changed password.php and changemail.php to POST method. [BeoWulf]
+	* Fixed the mail sending function, now the recover password function should work, also
+	now that we're using the phpmailer class you should be able to use gmail smtp server too [Dekamaster]
+	* Disabled error report by default. [Dekamaster]
+	* Added a definition file for the e-mail template, now you can customize the template of
+	the email that will be sent to your players in /language/mail/ [Dekamaster]
+	* Added Castle names, kisuka report on eAthena forums. [BeoWulf]
+	* Added extra protection to login.php after some security leak rumors (not yet confirmed though). [BeoWulf]
+	* Testing a new Captcha, its uglier than the original, but more safe. [Dekamaster]
+	* Extended some of login.php protection to account.php and recover.php just in case. [BeoWulf]
+
+2008/05/14
+	* Fixed a bug with reset position leting a jailed person to get out, reported by panchox
+	at ea boards (and thanks for the temporary fix, brianlew, we really appreciated it.) [Dekamaster]
+
+------------------
+We are retaking the project today (2008/05/14), we'll be slowly adding new stuffs to the control
+panel and fixing old bugs, if you have a bug to report you are welcome to share it with us at
+cerescp@gmail.com (yes we are reading it again)
+------------------
+
+2007/01/01
+	* Fixed Firefox incompatibility, stupid browser. [BeoWulf]
+
+2006/12/03
+	* Reviewed img.php and middle.php files with help of gunawan wibisono. [BeoWulf]
+
+2006/10/23
+	* Added a variable in recover.php. [BeoWulf]
+
+2006/10/18
+	* Fixed an exploit in language.php. [BeoWulf]
+
+2006/10/15
+	* Added a one day ipban to users blocked, it will keep then out to think about
+	what they did and can't creat accounts with ofensive nicks against GMs. [BeoWulf]
+	* Small fix in server_status.php, and a change in account.php so now its
+	post not get (internal stuff). [BeoWulf]
+
+2006/10/03
+	* Fixed errors in emblems.php, adminquery.php, ladder.php and functions.php. [BeoWulf]
+
+2006/10/03
+	* Changed all session maybe now there is no conflict with 2 cps in same machine. [BeoWulf]
+
+2006/09/22
+	* Added some fuzzy to code image. [BeoWulf]
+
+2006/09/18
+	* Created first trial of an install script. [BeoWulf]
+	* Fixed install script checks and w3c instructions. [BeoWulf]
+	* Changed INSTALL.TXT instructions to fit the new install script. [BeoWulf]
+
+2006/09/18
+	* Added jail check to position.php so jailed characters may not reset
+		their position. [Entwined]
+	* Added Post functions do ajax engine. [BeoWulf]
+	* Changed login.php from get to post. [BeoWulf]
+	* Fixed whoisonline.php adjust to show position to minimum admin level set 
+		in config.php. [BeoWulf]
+	* Added check in functions.php to destroy session if you use more than one
+		CP in same machine when changing beteween them use different names 
+		for the CPs or it can be exploitable, still working on a different 
+		solution. [BeoWulf]
+	* Changed admincharinfo.php to a beta test in changing stored char_id in 
+		equip slots into something we can read. [BeoWulf]
+	* Added adminchars.php still working on it, to manage chars. [BeoWulf]
+	* Added money.php testing a 2 minutes ban after transfer. [BeoWulf]
+	* Added marriage.php testing a 2 minutes ban after divorce. [BeoWulf]
+	* Added guild.php if castle name is not defined it will skip and not show. [BeoWulf]
+	* Added dutch and indonesian to languages. [BeoWulf]
+	* Fixed some stuff in other language files, but still need translations. [BeoWulf]
+	* Fixed ladder.php and about.php to show the new classes. [BeoWulf]
+
+2006/09/14
+	* Added map and gm level check for position reset, so you can't reset your position if your in jail [Entwined]
+	* Added install/sql/rag_ragsrvinfo.sql and install/npc/agit_status.txt. You will have to install both of 
+		these correctly for agit status	check to work. [Entwined]
+	* Added ceres.php for control panel information [Entwined]
+	* Added max account check for account registration [Entwined]
+
+2006/09/13
+	* Added IP address field insertion on registrations (last_ip) [Entwined]
+	* Added an email verification field for account registration. [Entwined]
+	* Added some config settings for future use. [Entwined]
+	* Created the initial repository of CeresCP (rev4) as the working base. [Entwined]

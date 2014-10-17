@@ -1,0 +1,19 @@
+About 3rd Class progress:
+=======================================================
+
+As you know, i use 3rd Classes from 3CeAM project but i am working on doing a Review of each class
+and fixing each one according to official info and tests. Lots of improvements in the coding way
+are done for each class i check.
+
+So, for your servers, i recommend you to enable only:
+
+Arch Bishop
+Rune Knight
+Warlock
+Guillotine Cross
+Ranger
+Mechanic
+Shadow Chaser
+
+Also, you can enable all classes, but my recommendation is to block the non revised classes skills,
+using the skill_block_db.txt file in /db.

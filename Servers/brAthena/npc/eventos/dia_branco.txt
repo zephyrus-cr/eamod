@@ -1,0 +1,132 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: dia_branco.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Venda de doces, biscoito, balas e bengalas. |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução (PT-BR) [Hold]                            |
+//   | 1.2 Otimizações [Hold]                                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+alberta,188,64,4	script	Sugar	91,{
+	mes "[Sugar]";
+	mes "Bem-vind"+(Sex?"o":"a")+"!";
+	mes "Não acha que doces são deliciosos?";
+	mes "Meu professor.........";
+	mes "Doceiro caseiro de ARUBERUTA";
+	mes "lá são fabricados doces especiais.";
+	next;
+	mes "[Sugar]";
+	mes "Estes foram trazidos por um amigo.";
+	mes "Em troca de um presente...";
+	mes "sincero como";
+	mes "como o sabor doce de um presente.";
+	next;
+	switch(select("Quero alguns por favor!:Não preciso agora.:O professor.")) {
+	case 1: break;
+	case 2:
+		mes "[Sugar]";
+		mes "Certo... Volte caso você...";
+		mes "Mude de ideia.";
+		mes "Eu estarei aqui ok.";
+		mes "Tenha um bom dia!";
+		close;
+	case 3:
+		mes "[Sugar]";
+		mes "Sim";
+		mes "O meu professor era o";
+		mes "Sr. Kuberu, um bom doceiro.";
+		mes "Fazendo vários doces em dupla,";
+		mes "me serviu como um treino próprio.";
+		next;
+		mes "[Sugar]";
+		mes "Contudo era para estarmos vendendo juntos agora...";
+		mes "Onde está ele?";
+		mes "Não faço ideia.";
+		close;
+	}
+	mes "[Sugar]";
+	mes "Sim!";
+	mes "Escolha aqui no menu.";
+	mes "Existe um limite de quantidade";
+	mes "Não se pode comprar mais que^ff0000 5 pedaços^000000.";
+	mes "de uma vez só.";
+	next;
+	switch(select("Bala:Bengala Doce:Biscoito de Gengibre")) {
+	mes "[Sugar]";
+	case 1:
+		set .@price, 3000;
+		set .@id, 529;
+		mes "Você escolheu Bala, e ela custa";
+		mes "3000 Zeny cada.";
+		break;
+	case 2:
+		set .@price, 4000;
+		set .@id, 530;
+		mes "Você escolheu Bengala Doce, e ela custa";
+		mes "4000 Zeny cada.";
+		break;
+	case 3:
+		set .@price, 2000;
+		set .@id, 538;
+		mes "Você escolheu Biscoito de Gengibre, e ela custa";
+		mes "2000 Zeny cada.";
+		break;
+	}
+	mes "Quantas você gostaria de comprar?";
+	next;
+	input .@qt;
+	while(.@qt > 5) {
+		mes "[Sugar]";
+		mes "???";
+		mes "Você parece não estar me ouvindo.";
+		mes "Preciso falar mais uma vez?";
+		mes "Você pode comprar somente";
+		mes "^ff0000 5 pedaços^000000 de cada vez.";
+		next;
+		input .@qt;
+	}
+	if (.@qt == 0) {
+		mes "[Sugar]";
+		mes "Certo... Volte caso você...";
+		mes "Mude de ideia.";
+		mes "Eu estarei aqui ok.";
+		mes "Tenha um bom dia!";
+		close;
+	}
+	set .@tprice, .@price * .@qt;
+	if (Zeny < .@tprice) {
+		mes "[Sugar]";
+		mes "???";
+		mes "Hmmm parece que você não tem Zeny suficiente";
+		mes "para realizar esta compra.";
+		mes "Peço que verifique quantos Zeny você tem.";
+		close;
+	}
+	set Zeny, Zeny - .@tprice;
+	getitem .@id, .@qt;
+	mes "[Sugar]";
+	mes "Obrigada!!!";
+	mes "Esses doces são realmente deliciosos.";
+	mes "Meu professor doceiro é o n°1 em todo o mundo!";
+	mes "Você pode comer quantos doces quiser";
+	mes "mas não coma muitos se não irá engordar.";
+	mes "Tome muito cuidado!!!";
+	close;
+}

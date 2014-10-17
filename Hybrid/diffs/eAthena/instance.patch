@@ -1,0 +1,467 @@
+Index: doc/script_commands.txt
+===================================================================
+--- doc/script_commands.txt	(revision 150)
++++ doc/script_commands.txt	(working copy)
+@@ -188,12 +188,14 @@
+ //= 3.48.20120108
+ //=       Updated 'viewpoint' to mention effect of type 0. [Ai4rei]
+ //= 3.49.20120319
+-//=       Added 'getnpcid' command. [Ai4rei]
+-//= 3.50.20120416
+-//=       Allow any type of argument in 'escape_sql' command. [FlavioJS]
+-//=========================================================
+-
+-This document is a reference manual for all the scripting commands and functions 
++//=       Added 'getnpcid' command. [Ai4rei]
++//= 3.50.20120416
++//=       Allow any type of argument in 'escape_sql' command. [FlavioJS]
++//= 3.50.20140422
++//=	  Added in modes for 'instance_create' command. [Panda]
++//=========================================================
++
++This document is a reference manual for all the scripting commands and functions 
+ available in current eAthena SVN. It is not a simple tutorial. When people tell 
+ you to "Read The F***ing Manual", they mean this.
+ 
+@@ -7028,18 +7030,23 @@
+ 
+ ========================
+ |7.- Instance commands.|
+-========================
+----------------------------------------
+-
+-*instance_create("<instance name>",<party id>);
+-
+-Create an instance using the name "<instance name>" for the Party of <party id>.
+-Most instance_* commands are used in conjunction with this command and depend
+-on the ID this command returns.
+-
+-Example: 
+-	// Store the Party ID of the invoking character.
+-	set .@party_id, getcharid(1);
++========================
++---------------------------------------
++
++*instance_create("<instance name>",<attach id>{, mode});
++
++Create an instance using the name "<instance name>" for a Party, Guild or Player of <attach id>.
++Most instance_* commands are used in conjunction with this command and depend
++on the ID this command returns.
++
++Modes are the following
++    0 - Party ID (Default)
++    1 - Guild ID
++    2 - Account ID 
++
++Example: 
++	// Store the Party ID of the invoking character.
++	set .@party_id, getcharid(1);
+ 	// Attempt to create an instance using that party ID.
+ 	set .@id, instance_create("Endless Tower", .@party_id);
+ 	if (.@id == -1) { // Party ID is in use by another instance.
+Index: src/common/mmo.h
+===================================================================
+--- src/common/mmo.h	(revision 150)
++++ src/common/mmo.h	(working copy)
+@@ -486,8 +486,9 @@
+ 	unsigned char karma;
+ 	short hair,hair_color,clothes_color;
+ 	int party_id,guild_id,pet_id,hom_id,mer_id,faction_id;
+-	int fame;
+-
++	int fame;
++	unsigned int instance_id;
++
+ 	// Mercenary Guilds Rank
+ 	int arch_faith, arch_calls;
+ 	int spear_faith, spear_calls;
+@@ -688,8 +689,9 @@
+ 	char emblem_data[2048];
+ 	struct guild_alliance alliance[MAX_GUILDALLIANCE];
+ 	struct guild_expulsion expulsion[MAX_GUILDEXPULSION];
+-	struct guild_skill skill[MAX_GUILDSKILL];
+-
++	struct guild_skill skill[MAX_GUILDSKILL];
++	unsigned int instance_id;
++
+ 	struct guild_rank_data castle[MAX_GUILDCASTLE];
+ 
+ 	int skill_block_timer[MAX_GUILDSKILL];
+Index: src/map/clif.c
+===================================================================
+--- src/map/clif.c	(revision 150)
++++ src/map/clif.c	(working copy)
+@@ -16521,15 +16521,16 @@
+  * Instancing Window
+  *------------------------------------------*/
+ int clif_instance(int instance_id, int type, int flag)
+-{
+-	struct map_session_data *sd;
+-	struct party_data *p;
+-	unsigned char buf[255];
+-
+-	if( (p = party_search(instance[instance_id].party_id)) == NULL || (sd = party_getavailablesd(p)) == NULL )
+-		return 0;
+-
+-	switch( type )
++{
++	struct map_session_data *sd;
++	struct party_data *p;
++	struct guild *g;
++	unsigned char buf[255];
++
++	if( ( (p = party_search(instance[instance_id].attach_id)) == NULL || (sd = party_getavailablesd(p)) == NULL ) && (g = guild_search(instance[instance_id].attach_id)) == NULL || (sd = guild_getavailablesd(g)) == NULL)
++		return 0;
++
++	switch( type )
+ 	{
+ 	case 1:
+ 		// S 0x2cb <Instance name>.61B <Standby Position>.W
+Index: src/map/guild.c
+===================================================================
+--- src/map/guild.c	(revision 150)
++++ src/map/guild.c	(working copy)
+@@ -25,12 +25,13 @@
+ #include "status.h"
+ #include "mob.h"
+ #include "intif.h"
+-#include "clif.h"
+-#include "skill.h"
+-#include "log.h"
+-
+-#include <stdio.h>
+-#include <stdlib.h>
++#include "clif.h"
++#include "skill.h"
++#include "log.h"
++#include "instance.h"
++
++#include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+ 
+ 
+@@ -1833,14 +1834,20 @@
+ 	}
+ 	if(i<g->max_member){
+ 		clif_guild_broken(sd,2);
+-		return 0;
+-	}
++		return 0;
++	}
++
++	if (g->instance_id)
++	{
++		instance[g->instance_id].attach_id = 0;
++		instance_destroy( g->instance_id );
++	}
++
++	intif_guild_break(g->guild_id);
++	return 0;
++}
+ 
+-	intif_guild_break(g->guild_id);
+-	return 0;
+-}
+ 
+-
+ /*------------------------------------------
+  * Guild Ranking System
+  *------------------------------------------*/
+Index: src/map/instance.c
+===================================================================
+--- src/map/instance.c	(revision 150)
++++ src/map/instance.c	(working copy)
+@@ -15,12 +15,13 @@
+ #include "clif.h"
+ #include "instance.h"
+ #include "map.h"
+-#include "npc.h"
+-#include "party.h"
+-#include "pc.h"
+-
+-#include <stdio.h>
+-#include <stdlib.h>
++#include "npc.h"
++#include "party.h"
++#include "pc.h"
++#include "guild.h"
++
++#include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+ #include <stdarg.h>
+ #include <time.h>
+@@ -49,25 +50,42 @@
+ /*--------------------------------------
+  * name : instance name
+  * Return value could be
+- * -4 = already exists | -3 = no free instances | -2 = party not found | -1 = invalid type
+- * On success return instance_id
+- *--------------------------------------*/
+-int instance_create(int party_id, const char *name)
+-{
+-	int i;
+-	struct party_data* p;
+-
+-	if( ( p = party_search(party_id) ) == NULL )
+-	{
+-		ShowError("instance_create: party %d not found for instance '%s'.\n", party_id, name);
+-		return -2;
+-	}
+-
+-	if( p->instance_id )
+-		return -4; // Party already instancing
+-
+-	// Searching a Free Instance
+-	// 0 is ignored as this mean "no instance" on maps
++ * -4 = already exists | -3 = no free instances | -2 = party not found | -1 = invalid type
++ * On success return instance_id
++ *--------------------------------------*/
++int instance_create(int attach_id, const char *name, int mode )
++{
++	int i;
++	struct party_data* p;
++	struct guild* g;
++	struct map_session_data* sd; 
++
++	if( mode == 0 && ( p = party_search(attach_id) ) == NULL) // Default mode is Party [Panda]
++	{
++		ShowError("instance_create: party %d not found for instance '%s' Mode '%t' .\n", attach_id, name);
++		return -2;
++	}
++	if ( mode == 1 && ( g = guild_search(attach_id) ) == NULL )
++	{
++		ShowError("instance_create: guild not found for instance '%s' Mode '%t' .\n", attach_id, name);
++		return -2;
++	}
++	if ( mode == 2 && ( sd = map_id2sd(attach_id) ) == NULL)
++	{
++		ShowError("instance_create: char %d not found for instance '%s'. Mode '%t' .\n", attach_id, name);
++		return -2;
++	}
++	if ( mode > 2 )
++	{
++		ShowError ("instance_create: invalid mode type '%s' ", mode);
++		return -2;
++	}
++
++	if( (mode == 0 && p->instance_id) || (mode == 1 && g->instance_id) || (mode == 2 && sd->status.instance_id) )
++		return -4; // Party or guild already instancing
++
++	// Searching a Free Instance
++	// 0 is ignored as this mean "no instance" on maps
+ 	ARR_FIND(1, MAX_INSTANCE, i, instance[i].state == INSTANCE_FREE);
+ 	if( i == MAX_INSTANCE )
+ 	{
+@@ -79,19 +97,29 @@
+ 	instance[i].instance_id = i;
+ 	instance[i].idle_timer = INVALID_TIMER;
+ 	instance[i].idle_timeout = instance[i].idle_timeoutval = 0;
+-	instance[i].progress_timer = INVALID_TIMER;
+-	instance[i].progress_timeout = 0;
+-	instance[i].users = 0;
+-	instance[i].party_id = party_id;
+-	instance[i].ivar = NULL;
+-	instance[i].svar = NULL;
+-
+-	safestrncpy( instance[i].name, name, sizeof(instance[i].name) );
+-	memset( instance[i].map, 0x00, sizeof(instance[i].map) );
+-	p->instance_id = i;
+-
+-	clif_instance(i, 1, 0); // Start instancing window
+-	ShowInfo("[Instance] Created: %s.\n", name);
++	instance[i].progress_timer = INVALID_TIMER;
++	instance[i].progress_timeout = 0;
++	instance[i].users = 0;
++	instance[i].attach_id = attach_id;
++	instance[i].ivar = NULL;
++	instance[i].svar = NULL;
++
++	safestrncpy( instance[i].name, name, sizeof(instance[i].name) );
++	memset( instance[i].map, 0x00, sizeof(instance[i].map) );
++	switch(mode)
++	{
++		case 0:
++			p->instance_id = i;
++			break;
++		case 1:
++			g->instance_id = i;
++			break;
++		case 2:
++			sd->status.instance_id = i;
++	}
++
++	clif_instance(i, 1, 0); // Start instancing window
++	ShowInfo("[Instance] Created: %s.\n", name);
+ 	return i;
+ }
+ 
+@@ -358,13 +386,13 @@
+ 	if( instance[instance_id].idle_timer != INVALID_TIMER )
+ 		delete_timer( instance[instance_id].idle_timer, instance_destroy_timer);
+ 
+-	instance[instance_id].ivar = NULL;
+-	instance[instance_id].svar = NULL;
+-
+-	if( instance[instance_id].party_id && (p = party_search(instance[instance_id].party_id)) != NULL )
+-		p->instance_id = 0; // Update Party information
+-
+-	ShowInfo("[Instance] Destroyed %s.\n", instance[instance_id].name);
++	instance[instance_id].ivar = NULL;
++	instance[instance_id].svar = NULL;
++
++	if( instance[instance_id].attach_id && (p = party_search(instance[instance_id].attach_id)) != NULL )
++		p->instance_id = 0; // Update Party information
++
++	ShowInfo("[Instance] Destroyed %s.\n", instance[instance_id].name);
+ 	memset( &instance[instance_id], 0x00, sizeof(instance[0]) );
+ 
+ 	instance[instance_id].state = INSTANCE_FREE;
+Index: src/map/instance.h
+===================================================================
+--- src/map/instance.h	(revision 150)
++++ src/map/instance.h	(working copy)
+@@ -12,13 +12,13 @@
+ typedef enum instance_state { INSTANCE_FREE, INSTANCE_IDLE, INSTANCE_BUSY } instance_state;
+ 
+ struct s_instance {
+-	char name[INSTANCE_NAME_LENGTH]; // Instance Name - required for clif functions.
+-	instance_state state;
+-	short instance_id;
+-	int party_id;
+-
+-	int map[MAX_MAP_PER_INSTANCE];
+-	int num_map;
++	char name[INSTANCE_NAME_LENGTH]; // Instance Name - required for clif functions.
++	instance_state state;
++	short instance_id;
++	int attach_id;
++
++	int map[MAX_MAP_PER_INSTANCE];
++	int num_map;
+ 	int users;
+ 
+ 	struct linkdb_node *ivar, *svar; // Instance Variable for scripts
+@@ -30,13 +30,13 @@
+ 	time_t idle_timeout, idle_timeoutval;
+ };
+ 
+-extern int instance_start;
+-extern struct s_instance instance[MAX_INSTANCE];
+-
+-int instance_create(int party_id, const char *name);
+-int instance_add_map(const char *name, int instance_id, bool usebasename);
+-void instance_del_map(int m);
+-int instance_map2imap(int m, int instance_id);
++extern int instance_start;
++extern struct s_instance instance[MAX_INSTANCE];
++
++int instance_create(int party_id, const char *name, int mode);
++int instance_add_map(const char *name, int instance_id, bool usebasename);
++void instance_del_map(int m);
++int instance_map2imap(int m, int instance_id);
+ int instance_mapid2imapid(int m, int instance_id);
+ void instance_destroy(int instance_id);
+ void instance_init(int instance_id);
+Index: src/map/party.c
+===================================================================
+--- src/map/party.c	(revision 150)
++++ src/map/party.c	(working copy)
+@@ -615,13 +615,13 @@
+ 	p = party_search(party_id);
+ 	if( p == NULL )
+ 		return 0;
+-		
+-	if( p->instance_id )
+-	{
+-		instance[p->instance_id].party_id = 0;
+-		instance_destroy( p->instance_id );
+-	}
+-
++		
++	if( p->instance_id )
++	{
++		instance[p->instance_id].attach_id = 0;
++		instance_destroy( p->instance_id );
++	}
++
+ 	for( i = 0; i < MAX_PARTY; i++ )
+ 	{
+ 		if( p->data[i].sd!=NULL )
+Index: src/map/script.c
+===================================================================
+--- src/map/script.c	(revision 150)
++++ src/map/script.c	(working copy)
+@@ -17701,18 +17701,21 @@
+  * Instancing Script Commands
+  *------------------------------------------*/
+ 
+-BUILDIN_FUNC(instance_create)
+-{
+-	const char *name;
+-	int party_id, res;
+-
+-	name = script_getstr(st, 2);
+-	party_id = script_getnum(st, 3);
+-
+-	res = instance_create(party_id, name);
+-	if( res == -4 ) // Already exists
+-	{
+-		script_pushint(st, -1);
++BUILDIN_FUNC(instance_create)
++{
++	const char *name;
++	int party_id, res, mode;
++
++	name = script_getstr(st, 2);
++	party_id = script_getnum(st, 3);
++	mode = 0;
++	if (script_hasdata(st, 4))
++		mode = script_getnum(st, 4);
++
++	res = instance_create(party_id, name, mode);
++	if( res == -4 ) // Already exists
++	{
++		script_pushint(st, -1);
+ 		return 0;
+ 	}
+ 	else if( res < 0 )
+@@ -17992,13 +17995,13 @@
+ 		instance_id = p->instance_id;
+ 	else return 0;
+ 
+-	if( (m = map_mapname2mapid(mapn)) < 0 || (map[m].flag.src4instance && (m = instance_mapid2imapid(m, instance_id)) < 0) )
+-		return 0;
+-
+-	if( !(p = party_search(instance[instance_id].party_id)) )
+-		return 0;
+-
+-	mapindex = map_id2index(m);
++	if( (m = map_mapname2mapid(mapn)) < 0 || (map[m].flag.src4instance && (m = instance_mapid2imapid(m, instance_id)) < 0) )
++		return 0;
++
++	if( !(p = party_search(instance[instance_id].attach_id)) )
++		return 0;
++
++	mapindex = map_id2index(m);
+ 	for( i = 0; i < MAX_PARTY; i++ )
+ 		if( (pl_sd = p->data[i].sd) && map[pl_sd->bl.m].instance_id == st->instance_id ) pc_setpos(pl_sd,mapindex,x,y,CLR_TELEPORT);
+ 
+@@ -19218,11 +19221,11 @@
+ 	BUILDIN_DEF(bg_getkafrapoints,"ii"),
+ 	BUILDIN_DEF(bg_reward,"iiiiisiii"),
+ 	BUILDIN_DEF(bgannounce,"s?????"),
+-
+-	// Instancing
+-	BUILDIN_DEF(instance_create,"si"),
+-	BUILDIN_DEF(instance_destroy,"?"),
+-	BUILDIN_DEF(instance_attachmap,"si?"),
++
++	// Instancing
++	BUILDIN_DEF(instance_create,"si?"),
++	BUILDIN_DEF(instance_destroy,"?"),
++	BUILDIN_DEF(instance_attachmap,"si?"),
+ 	BUILDIN_DEF(instance_detachmap,"s?"),
+ 	BUILDIN_DEF(instance_attach,"i"),
+ 	BUILDIN_DEF(instance_id,"?"),

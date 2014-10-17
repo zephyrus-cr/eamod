@@ -1,0 +1,32 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: skillmodifier.txt                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/??/1.0                           |
+//   |--------------------------------------------------------|
+//   | Descrição: Este mapflag permite que você modifique o   |
+//   | dano de qualquer habilidade em qualquer mapa.          |
+//   |                                                        |
+//   | Exemplo (1):                                           |
+//   | Prontera mapflag	adjust_skill_damage MG_FIREBOLT 50    |
+//   | Metade do dano de Lanças de Fogo em Prontera.          |
+//   |                                                        |
+//   | Exemplo (2):                                           |
+//   | Prontera mapflag adjust_skill_damage MG_FIREBOLT 200   |
+//   | Dobra o dano de Lanças de Fogo em Prontera.            |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/

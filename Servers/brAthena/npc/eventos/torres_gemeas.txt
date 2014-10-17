@@ -1,0 +1,103 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: torres_gemeas.txt                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.6/1.6/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: mRO Evento: Torres Gêmeas - Irmãos Siameses.|
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR e Otimização [Holy]                 |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,146,92,4	script	Torres Gêmeas#tg1::Torres-Gêmeas	812,{
+	mes "[Torres Gêmeas]";
+	mes "Quem é você? Nós somos as Torres Gêmeas.";
+	mes "É um prazer poder encontrá-lo aqui.";
+	mes "Eu suponho que você sabe que este é o Ragnarök Online, uma terra de sonhos e fantasias.";
+	mes "Você está tendo uma aventura alegre e uma grande experiência?";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Embora não possamos nos mover e não possamos viver da mesma forma como vocÊ,";
+	mes "nós amamos o mundo tanto quanto você!";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Que você possa experimentar a sensação deste mundo encantador!";
+	mes "Por esta razão, estamos aqui ao seu serviço com a nossa magia especial.";
+	mes "Por favor, deixe-nos saber.";
+	next;
+	if(select("Irei aceitar a sua oferta.:Vou deixar para uma outra hora.") == 1) {
+	mes "[Torres Gêmeas]";
+	mes "A paixão ardente de um aventureiro,";
+	mes "O desejo de explorar os reinos desconhecidos,";
+	mes "A dedicação e empenho para alcançar a aspiração...";
+	mes "Você é simplesmente um verdadeiro aventureiro com compaixão.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Queremos ajudar os aventureiros apaixonados.";
+	mes "Embora não sejamos capazes de nos mover, felizmente, nós temos a habilidade especial que pode levá-lo a lugares de perigo e emoção.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Vamos lá! Onde você quer ir?";
+	mes "Só precisamos saber o destino desejado e vamos enviá-lo!";
+	switch(select("Labirinto da Floresta:Caverna dos Orcs:Formigueiro:Monte Mjolnir:Esfinge:Glast Heim:Comodo")) {
+
+		case 1:
+			warp "prt_fild01",136,368;
+			close;
+		case 2:
+			warp "gef_fild10",67,334;
+			close;
+		case 3:
+			warp "moc_fild04",210,329;
+			close;
+		case 4:
+			warp "mjolnir_02",79,361;
+			close;
+		case 5:
+			warp "moc_fild19",105,99;
+			close;
+		case 6:
+			warp "gef_fild06",45,304;
+			close;
+		case 7:
+			warp "cmd_fild01",30,317;
+			close;
+	  }
+}
+	mes "[Torres Gêmeas]"; 
+	mes "É uma pena. Viajar sozinho é uma das maiores provas de aventura.";
+	mes "Está com medo por que ainda é jovem?";
+	mes "Respeitamos corações valentes como o seu.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Há bons e maus momentos na vida, além disso, a aventura não é uma tarefa fácil.";
+	mes "Isso não é verdade?";
+	mes "Sinta-se livre para vir até nós quando tiver tempo, vamos estar sempre aqui para atendê-lo.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Esqueça todos os seus problemas e crie sua história neste mundo.";
+	mes "Este é um mundo maravilhoso, e você será sempre um grande aventureiro!";
+	close;
+}
+
+morocc,160,97,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg2	812
+payon,176,226,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg3	812
+izlude,134,92,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg4	812
+alberta,25,238,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg5	812
+geffen,120,60,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg6	812
+aldebaran,143,116,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg7	812
+comodo,194,158,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg8	812

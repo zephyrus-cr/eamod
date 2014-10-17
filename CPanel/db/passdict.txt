@@ -1,0 +1,111 @@
+// Ceres Control Panel
+// 
+// This is a control panel program for eAthena and other Athena SQL based servers
+// Copyright (C) 2005 by Beowulf and Dekamaster
+// 
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+// 
+// To contact any of the authors about special permissions send
+// an e-mail to cerescp@gmail.com
+//
+123abc
+123asd
+123bot
+123lol
+123qwe
+123qweasd
+123qwerty
+123456ab
+123456abc
+1234asdf
+1234qwer
+12d12d12d
+12e12e
+12e12e12e
+1a2s3d
+1q2w3e4r5t
+a12a12
+a1a1a1
+a1b2c3
+aa123456
+aa356752
+aaa111
+aaaa11
+aaaa1111
+abc123
+abcd12.
+abcd123
+abcd1234
+abra123
+acc123
+asd123
+asde12
+asdf123
+asdfasdf
+asdfasdf123
+assassin2007
+bads123
+bobo123
+bullshit30
+duh123
+fdsa123
+fuckgm123
+good12
+h0h0h0
+h2d6o6
+happy12
+hero12
+hohoho
+iamretarded
+iloveyou33
+jia123
+jjjj01
+jjjjjj12
+lala123
+lol123
+lolpass123
+lolwat00
+Lawl23q1
+money123
+omgwtfwow08
+pass12
+passis12
+password123
+pmpm12
+pmpmpm12
+pokemon11
+q1w2e3r4t5
+qw123e
+qwe123
+qweasd123
+qwert12
+qwerty12
+qwerty13
+qwerty32
+r0ller1
+rice12
+so12345
+south20
+test22
+testest
+vase11
+version123
+wasd123
+water34
+webster12
+zeny99
+zxasqw12
+zxc123
+zz1234
