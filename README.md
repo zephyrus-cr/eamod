@@ -1,5 +1,8 @@
 eamod
 =====
+Now eAmod works under GNU General Public License, and
+everybody can read about it at http://www.gnu.org/licenses/gpl.html
+
 eAmod is an extended project of eAthena, a Ragnarok Private Server Emulator, created by
 Andres Garbanzo Mora, also known as Zephyrus, owner and administrator of eAthena Modifications
 
